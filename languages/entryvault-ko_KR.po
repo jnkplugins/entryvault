@@ -1,0 +1,1961 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: EntryVault\n"
+"Report-Msgid-Bugs-To: https://jnkplugins.com/entryvault/\n"
+"POT-Creation-Date: 2026-10-18T17:40:51+00:00\n"
+"PO-Revision-Date: 2026-10-10 16:40+0000\n"
+"Last-Translator: JNK Plugins\n"
+"Language-Team: Korean\n"
+"Language: ko_KR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Domain: entryvault\n"
+"X-Generator: WP-CLI 2.12.0\n"
+
+#. Plugin Name of the plugin
+#: entryvault.php includes/class-admin-ui.php:81 includes/class-plugin.php:116
+#: includes/class-plugin.php:117 includes/class-plugin.php:128
+#: includes/class-plugin.php:129
+msgid "EntryVault"
+msgstr "EntryVault"
+
+#. Plugin URI of the plugin
+#: entryvault.php
+msgid "https://jnkplugins.com/entryvault/"
+msgstr "https://jnkplugins.com/entryvault/"
+
+#. Description of the plugin
+#: entryvault.php
+msgid "Lightweight CRM & entry manager for WordPress form plugins."
+msgstr "WordPress 양식 플러그인을 위한 가벼운 CRM 및 항목 관리자입니다."
+
+#. Author of the plugin
+#: entryvault.php
+msgid "JNK Plugins"
+msgstr "JNK Plugins"
+
+#. Author URI of the plugin
+#: entryvault.php
+msgid "https://jnkplugins.com"
+msgstr "https://jnkplugins.com"
+
+#: admin/views/dashboard.php:9 includes/class-submissions-admin.php:178
+msgid "You do not have permission to view this page."
+msgstr "이 페이지를 볼 권한이 없습니다."
+
+#: admin/views/dashboard.php:72 includes/class-admin-ui.php:24
+msgid "Overview"
+msgstr "개요"
+
+#: admin/views/dashboard.php:73
+msgid "What came in, what is waiting on you, and how your pipeline is doing."
+msgstr "들어온 항목, 처리를 기다리는 항목, 파이프라인 진행 상황을 보여줍니다."
+
+#: admin/views/dashboard.php:74
+msgid "All submissions"
+msgstr "모든 제출"
+
+#: admin/views/dashboard.php:75 admin/views/dashboard.php:84
+#: includes/class-submissions-admin.php:217
+msgid "Open the board"
+msgstr "보드 열기"
+
+#: admin/views/dashboard.php:81
+msgid "Getting started"
+msgstr "시작하기"
+
+#: admin/views/dashboard.php:82
+msgid ""
+"EntryVault picks up submissions from the form plugins you already use. There "
+"is nothing to change on your forms. Submit one of them once and it appears "
+"on the board within moments."
+msgstr ""
+"EntryVault는 이미 사용 중인 양식 플러그인에서 제출을 가져옵니다. 양식은 아무"
+"것도 바꿀 필요가 없습니다. 양식을 한 번 제출하면 잠시 후 보드에 나타납니다."
+
+#: admin/views/dashboard.php:85 admin/assets/kanban/build/index.js:34
+msgid "Import a CSV instead"
+msgstr "대신 CSV 가져오기"
+
+#: admin/views/dashboard.php:92
+msgid "New in the last 7 days"
+msgstr "최근 7일간 새 항목"
+
+#. translators: %s: number of submissions received today.
+#: admin/views/dashboard.php:96
+#, php-format
+msgid "%s today"
+msgstr "오늘 %s건"
+
+#: admin/views/dashboard.php:100
+msgid "Open"
+msgstr "진행 중"
+
+#. translators: %s: total number of submissions.
+#: admin/views/dashboard.php:104
+#, php-format
+msgid "Out of %s in total"
+msgstr "전체 %s건 중"
+
+#: admin/views/dashboard.php:108
+msgid "Nobody assigned"
+msgstr "담당자 없음"
+
+#: admin/views/dashboard.php:110
+msgid "Open entries without an owner"
+msgstr "담당자가 없는 진행 중 항목"
+
+#: admin/views/dashboard.php:110
+msgid "Every open entry has an owner"
+msgstr "진행 중인 모든 항목에 담당자가 있습니다"
+
+#: admin/views/dashboard.php:113
+msgid "Waiting 3 days or more"
+msgstr "3일 이상 대기 중"
+
+#. translators: %s: number of entries moved to a won stage this week.
+#: admin/views/dashboard.php:117
+#, php-format
+msgid "Open, and nothing changed lately. %s won in the last 7 days."
+msgstr "진행 중이며 최근 변경이 없습니다. 최근 7일간 %s건 성사되었습니다."
+
+#: admin/views/dashboard.php:125
+msgid "Needs attention"
+msgstr "확인 필요"
+
+#: admin/views/dashboard.php:126
+msgid ""
+"Open entries with no owner, or that nobody has touched for 3 days. Oldest "
+"first."
+msgstr ""
+"담당자가 없거나 3일 동안 아무도 손대지 않은 진행 중 항목입니다. 오래된 순서"
+"로 표시합니다."
+
+#: admin/views/dashboard.php:129
+msgid "All caught up"
+msgstr "모두 처리했습니다"
+
+#: admin/views/dashboard.php:129
+msgid "Every open entry has an owner and has been looked at recently."
+msgstr "진행 중인 모든 항목에 담당자가 있고 최근에 확인되었습니다."
+
+#. translators: %s: relative time, e.g. "3 days ago".
+#: admin/views/dashboard.php:139
+#, php-format
+msgid "last change %s"
+msgstr "마지막 변경 %s"
+
+#: admin/views/dashboard.php:143
+msgid "No owner"
+msgstr "담당자 없음"
+
+#: admin/views/dashboard.php:145
+msgid "Waiting"
+msgstr "대기 중"
+
+#: admin/views/dashboard.php:155
+msgid "Recent activity"
+msgstr "최근 활동"
+
+#: admin/views/dashboard.php:156
+msgid "The latest changes across all your entries."
+msgstr "모든 항목의 최근 변경 사항입니다."
+
+#: admin/views/dashboard.php:159
+msgid "No activity yet"
+msgstr "아직 활동이 없습니다"
+
+#: admin/views/dashboard.php:159
+msgid "New submissions, stage moves, notes and replies show up here."
+msgstr "새 제출, 단계 이동, 메모, 답장이 여기에 표시됩니다."
+
+#: admin/views/dashboard.php:185
+msgid "Where entries come from"
+msgstr "항목 출처"
+
+#: admin/views/dashboard.php:186
+msgid "The form plugins EntryVault is listening to right now."
+msgstr "EntryVault가 지금 수신하고 있는 양식 플러그인입니다."
+
+#: admin/views/dashboard.php:187
+msgid "Check health"
+msgstr "상태 확인"
+
+#: admin/views/dashboard.php:195
+msgid "No form plugin found yet"
+msgstr "아직 양식 플러그인을 찾지 못했습니다"
+
+#: admin/views/dashboard.php:196
+msgid "Activate a form plugin, or import a CSV file."
+msgstr "양식 플러그인을 활성화하거나 CSV 파일을 가져오세요."
+
+#: admin/views/dashboard.php:201
+msgid "Reports"
+msgstr "보고서"
+
+#: admin/views/dashboard.php:202
+msgid ""
+"Pick a pipeline and a date range. The numbers below update straight away."
+msgstr "파이프라인과 기간을 선택하세요. 아래 숫자가 바로 업데이트됩니다."
+
+#: admin/views/dashboard.php:207 admin/views/import.php:83
+#: includes/class-submissions-list-table.php:57
+#: admin/assets/kanban/build/index.js:34
+msgid "Pipeline"
+msgstr "파이프라인"
+
+#: admin/views/dashboard.php:211 includes/class-submissions-admin.php:333
+msgid "From"
+msgstr "시작"
+
+#: admin/views/dashboard.php:215 includes/class-submissions-admin.php:337
+msgid "To"
+msgstr "종료"
+
+#: admin/views/dashboard.php:218
+msgid "Refresh"
+msgstr "새로 고침"
+
+#: admin/views/dashboard.php:226
+msgid "By stage"
+msgstr "단계별"
+
+#: admin/views/dashboard.php:227
+msgid "How many entries sit in each stage."
+msgstr "각 단계에 있는 항목 수입니다."
+
+#: admin/views/dashboard.php:231
+msgid "Sources"
+msgstr "출처"
+
+#: admin/views/dashboard.php:232
+msgid "Which form plugin each entry came from."
+msgstr "각 항목이 어느 양식 플러그인에서 왔는지 보여줍니다."
+
+#: admin/views/dashboard.php:238
+msgid "Entries per day"
+msgstr "일별 항목"
+
+#: admin/views/dashboard.php:239
+msgid "The last 30 days. Hover a bar for the date."
+msgstr "최근 30일입니다. 막대에 마우스를 올리면 날짜가 보입니다."
+
+#: admin/views/dashboard.php:245
+msgid "Funnel"
+msgstr "퍼널"
+
+#: admin/views/dashboard.php:246
+msgid "How many entries reach each stage, and the share that move on."
+msgstr "각 단계에 도달한 항목 수와 다음 단계로 넘어간 비율입니다."
+
+#: admin/views/dashboard.php:250
+msgid "Time in each stage"
+msgstr "단계별 소요 시간"
+
+#: admin/views/dashboard.php:251
+msgid "Average hours an entry spends in a stage before it moves."
+msgstr "항목이 다음 단계로 이동하기 전까지 한 단계에 머무는 평균 시간입니다."
+
+#: admin/views/dashboard.php:257
+msgid "By owner"
+msgstr "담당자별"
+
+#: admin/views/dashboard.php:258
+msgid "Click a column title to sort."
+msgstr "열 제목을 클릭하면 정렬됩니다."
+
+#: admin/views/feedback.php:13 admin/views/health.php:16
+#: admin/views/import.php:18 admin/views/settings.php:15
+#: admin/views/upgrade.php:15
+msgid "You do not have permission to access this page."
+msgstr "이 페이지에 접근할 권한이 없습니다."
+
+#: admin/views/feedback.php:23
+msgid "Help and feedback"
+msgstr "도움말 및 의견"
+
+#: admin/views/feedback.php:24
+msgid ""
+"Found a bug, have an idea, or just want to say hello? Send a note straight "
+"to the people who make EntryVault."
+msgstr ""
+"버그를 찾았거나 아이디어가 있거나 그냥 인사하고 싶으신가요? EntryVault를 만드"
+"는 사람들에게 바로 메시지를 보내세요."
+
+#: admin/views/feedback.php:25
+msgid "Read the guides"
+msgstr "가이드 읽기"
+
+#: admin/views/feedback.php:32
+msgid "Thanks! Your feedback was sent to the EntryVault author."
+msgstr "감사합니다! 의견이 EntryVault 제작자에게 전송되었습니다."
+
+#: admin/views/feedback.php:36
+msgid ""
+"You’ve sent several messages recently. Please try again in a little while."
+msgstr "최근에 여러 메시지를 보내셨습니다. 잠시 후 다시 시도하세요."
+
+#: admin/views/feedback.php:40
+msgid ""
+"Sorry, your feedback could not be sent. Please check your message and your "
+"site’s email configuration, then try again."
+msgstr ""
+"죄송합니다. 의견을 보내지 못했습니다. 메시지와 사이트의 이메일 설정을 확인한 "
+"뒤 다시 시도하세요."
+
+#: admin/views/feedback.php:50
+msgid "Website"
+msgstr "웹사이트"
+
+#: admin/views/feedback.php:56
+msgid "What is it about?"
+msgstr "어떤 내용인가요?"
+
+#: admin/views/feedback.php:66 includes/class-submissions-list-table.php:56
+#: admin/assets/kanban/build/index.js:26
+msgid "Message"
+msgstr "메시지"
+
+#: admin/views/feedback.php:72
+msgid "Your email (optional, so we can reply)"
+msgstr "이메일 (선택 사항, 답장을 드릴 수 있도록)"
+
+#: admin/views/feedback.php:79
+msgid "Site details"
+msgstr "사이트 정보"
+
+#: admin/views/feedback.php:83
+msgid "Include basic site details to help us find the problem"
+msgstr "문제를 찾는 데 도움이 되도록 기본 사이트 정보 포함"
+
+#: admin/views/feedback.php:86
+msgid ""
+"Sends: WordPress version, PHP version, EntryVault version, active theme name "
+"and your site URL. No personal data."
+msgstr ""
+"보내는 정보: WordPress 버전, PHP 버전, EntryVault 버전, 활성 테마 이름, 사이"
+"트 URL. 개인 정보는 보내지 않습니다."
+
+#: admin/views/feedback.php:93 admin/assets/kanban/build/index.js:26
+msgid "Send"
+msgstr "보내기"
+
+#: admin/views/feedback.php:94
+msgid "Your message goes out through your site’s own email."
+msgstr "메시지는 사이트 자체 이메일로 발송됩니다."
+
+#: admin/views/health.php:31 includes/class-admin-ui.php:28
+#: includes/class-plugin.php:143
+msgid "Health"
+msgstr "상태"
+
+#: admin/views/health.php:32
+msgid ""
+"A quick check that EntryVault is set up right and is picking up your forms."
+msgstr ""
+"EntryVault가 올바르게 설정되어 양식을 가져오고 있는지 빠르게 확인합니다."
+
+#: admin/views/health.php:35
+msgid "Check again"
+msgstr "다시 확인"
+
+#: admin/views/import.php:36 includes/class-admin-ui.php:27
+#: includes/class-plugin.php:142
+msgid "Import"
+msgstr "가져오기"
+
+#: admin/views/import.php:37
+msgid ""
+"Bring in entries from a spreadsheet. Save it as a CSV file first, with "
+"column names in the first row."
+msgstr ""
+"스프레드시트에서 항목을 가져옵니다. 먼저 첫 행에 열 이름이 있는 CSV 파일로 저"
+"장하세요."
+
+#: admin/views/import.php:41
+msgid "Choose your file"
+msgstr "파일 선택"
+
+#: admin/views/import.php:42
+msgid ""
+"The file is read in your browser first, so you can check it before anything "
+"is saved."
+msgstr "파일은 먼저 브라우저에서 읽히므로 저장하기 전에 확인할 수 있습니다."
+
+#: admin/views/import.php:44
+msgid "CSV file"
+msgstr "CSV 파일"
+
+#: admin/views/import.php:47
+msgid "or"
+msgstr "또는"
+
+#: admin/views/import.php:48
+msgid "Paste the CSV text"
+msgstr "CSV 텍스트 붙여넣기"
+
+#: admin/views/import.php:54
+msgid "Preview"
+msgstr "미리보기"
+
+#: admin/views/import.php:62
+msgid "Match the columns"
+msgstr "열 연결"
+
+#: admin/views/import.php:63
+msgid ""
+"Tell EntryVault what each column holds. One column must be the email address."
+msgstr ""
+"각 열에 무엇이 들어 있는지 EntryVault에 알려주세요. 한 열은 반드시 이메일 주"
+"소여야 합니다."
+
+#: admin/views/import.php:68
+msgid "Column"
+msgstr "열"
+
+#: admin/views/import.php:69
+msgid "First value"
+msgstr "첫 번째 값"
+
+#: admin/views/import.php:70
+msgid "Use as"
+msgstr "용도"
+
+#: admin/views/import.php:79
+msgid "Where they go"
+msgstr "저장 위치"
+
+#: admin/views/import.php:80
+msgid ""
+"Pick the pipeline and stage for the new entries. Try a test run first: it "
+"checks the file and saves nothing."
+msgstr ""
+"새 항목이 들어갈 파이프라인과 단계를 선택하세요. 먼저 테스트 실행을 해 보세"
+"요. 파일을 확인만 하고 아무것도 저장하지 않습니다."
+
+#: admin/views/import.php:85
+msgid "Use the default pipeline"
+msgstr "기본 파이프라인 사용"
+
+#: admin/views/import.php:91 includes/class-frontend.php:503
+#: includes/class-submissions-list-table.php:58
+#: admin/assets/kanban/build/index.js:5
+#: blocks/submissions-table/index.js:26
+msgid "Stage"
+msgstr "단계"
+
+#: admin/views/import.php:93 includes/class-plugin.php:317
+msgid "First stage of the pipeline"
+msgstr "파이프라인의 첫 단계"
+
+#: admin/views/import.php:100
+msgid "Test run only: check the file but do not save anything"
+msgstr "테스트 실행만: 파일을 확인하되 아무것도 저장하지 않음"
+
+#: admin/views/import.php:113
+msgid "Run import"
+msgstr "가져오기 실행"
+
+#: admin/views/kanban.php:5 includes/class-admin-ui.php:23
+msgid "Board"
+msgstr "보드"
+
+#: admin/views/kanban.php:6
+msgid ""
+"Every form submission as a card. Drag a card to move it to the next stage, "
+"or open it to reply, add notes and tags."
+msgstr ""
+"모든 양식 제출이 카드로 표시됩니다. 카드를 끌어 다음 단계로 옮기거나, 카드를 "
+"열어 답장하고 메모와 태그를 추가하세요."
+
+#: admin/views/kanban.php:14 admin/assets/kanban/build/index.js:26
+msgid "Loading the board…"
+msgstr "보드를 불러오는 중…"
+
+#: admin/views/kanban.php:16
+msgid "If this message stays, the board files are missing. Run"
+msgstr "이 메시지가 계속 보이면 보드 파일이 없는 것입니다. 다음 명령을"
+
+#: admin/views/kanban.php:18
+msgid "in the plugin folder."
+msgstr "플러그인 폴더에서 실행하세요."
+
+#: admin/views/settings.php:49 includes/class-admin-ui.php:107
+#: includes/class-plugin.php:77 includes/class-plugin.php:144
+msgid "Settings"
+msgstr "설정"
+
+#: admin/views/settings.php:50
+msgid ""
+"How EntryVault sends replies, who can own entries, and what happens to your "
+"data."
+msgstr ""
+"EntryVault가 답장을 보내는 방식, 항목 담당자가 될 수 있는 사람, 데이터 처리 "
+"방식을 설정합니다."
+
+#: admin/views/settings.php:56
+msgid "General"
+msgstr "일반"
+
+#: admin/views/settings.php:57
+msgid "Owners"
+msgstr "담당자"
+
+#: admin/views/settings.php:75
+msgid "Default pipeline"
+msgstr "기본 파이프라인"
+
+#: admin/views/settings.php:78
+msgid "None"
+msgstr "없음"
+
+#: admin/views/settings.php:80
+msgid ""
+"New entries land here unless something else sends them to another pipeline."
+msgstr "다른 설정이 없으면 새 항목은 이 파이프라인으로 들어옵니다."
+
+#: admin/views/settings.php:84
+msgid "Send replies as"
+msgstr "답장 보내는 사람"
+
+#: admin/views/settings.php:92
+msgid ""
+"The name and address your replies come from. Leave blank to use the site "
+"name and admin address. Without this, WordPress sends as \"WordPress\", so "
+"someone who wrote to your business gets a reply from a stranger."
+msgstr ""
+"답장이 발송되는 이름과 주소입니다. 비워 두면 사이트 이름과 관리자 주소를 사용"
+"합니다. 이 설정이 없으면 WordPress가 \"WordPress\"라는 이름으로 보내므로, 회"
+"사에 문의한 사람이 모르는 사람에게서 답장을 받게 됩니다."
+
+#: admin/views/settings.php:107
+msgid "Reply address domain"
+msgstr "답장 주소 도메인"
+
+#: admin/views/settings.php:111
+msgid ""
+"Optional. The domain used in the reply-to address of emails you send, so "
+"answers come back to the right entry. Leave blank to use this site's domain."
+msgstr ""
+"선택 사항입니다. 보내는 이메일의 회신 주소에 쓰이는 도메인으로, 답장이 올바"
+"른 항목으로 돌아오게 합니다. 비워 두면 이 사이트의 도메인을 사용합니다."
+
+#: admin/views/settings.php:116
+msgid "Show entries on a page"
+msgstr "페이지에 항목 표시"
+
+#: admin/views/settings.php:131
+msgid "No pipelines yet."
+msgstr "아직 파이프라인이 없습니다."
+
+#: admin/views/settings.php:147
+msgid ""
+"Paste one of these into a page to show that pipeline's submissions. Anyone "
+"who can open the page can read the table, so treat the token as a password. "
+"By default the table shows the date, name and stage, never the email "
+"address. A submission without a name shows as \"(no name)\" rather than its "
+"address. Add columns=\"submitted_at,name,stage,email\" only if you really "
+"want addresses on a public page. The owner and tags columns are public too "
+"once you add them, so leave out internal tags. The Submissions Table block "
+"uses the same defaults. If EntryVault is ever deactivated, WordPress prints "
+"an unknown shortcode as plain text, token included; the block does not, so "
+"prefer the block on public pages."
+msgstr ""
+"이 중 하나를 페이지에 붙여 넣으면 해당 파이프라인의 제출이 표시됩니다. 페이지"
+"를 열 수 있는 사람은 누구나 표를 볼 수 있으므로 토큰은 비밀번호처럼 다루세"
+"요. 기본적으로 표에는 날짜, 이름, 단계만 표시되고 이메일 주소는 표시되지 않습"
+"니다. 이름이 없는 제출은 주소 대신 \"(이름 없음)\"으로 표시됩니다. 공개 페이"
+"지에 주소를 꼭 보여야 할 때만 columns=\"submitted_at,name,stage,email\"을 추"
+"가하세요. 담당자 열과 태그 열도 추가하면 공개되므로 내부용 태그는 빼세요. 제"
+"출 표 블록도 같은 기본값을 사용합니다. EntryVault가 비활성화되면 WordPress는 "
+"알 수 없는 쇼트코드를 토큰까지 포함해 일반 텍스트로 출력합니다. 블록은 그렇"
+"지 않으므로 공개 페이지에는 블록을 사용하세요."
+
+#: admin/views/settings.php:153
+msgid "Spam"
+msgstr "스팸"
+
+#: admin/views/settings.php:157
+msgid "Leave out entries your form plugin marked as spam"
+msgstr "폼 플러그인이 스팸으로 표시한 항목은 가져오지 않기"
+
+#: admin/views/settings.php:159
+msgid ""
+"On by default. Some form plugins save spam and still pass it on (Gravity "
+"Forms, Fluent Forms, Forminator, Formidable, Ninja Forms with Akismet, "
+"Everest Forms, WS Form, Jetpack). With this on, those never reach your "
+"board. Spam stays in the form plugin, so nothing is lost. Untick to bring "
+"spam in too."
+msgstr ""
+"기본으로 켜져 있습니다. 일부 폼 플러그인은 스팸을 저장한 뒤에도 그대로 넘겨줍"
+"니다(Gravity Forms, Fluent Forms, Forminator, Formidable, Akismet을 쓰는 "
+"Ninja Forms, Everest Forms, WS Form, Jetpack). 이 옵션을 켜면 그런 항목은 보"
+"드에 오지 않습니다. 스팸은 폼 플러그인에 남아 있으니 잃는 것은 없습니다. 스팸"
+"도 가져오려면 체크를 해제하세요."
+
+#: admin/views/settings.php:163
+msgid "Data"
+msgstr "데이터"
+
+#: admin/views/settings.php:168
+msgid "Delete all EntryVault data when the plugin is deleted"
+msgstr "플러그인을 삭제할 때 EntryVault 데이터도 모두 삭제"
+
+#: admin/views/settings.php:170
+msgid ""
+"Off by default. Your submissions, tags and notes are kept if you deactivate "
+"or delete the plugin, or let a Pro licence lapse. Tick this only if deleting "
+"the plugin should also remove the data."
+msgstr ""
+"기본값은 꺼짐입니다. 플러그인을 비활성화하거나 삭제해도, Pro 라이선스가 만료"
+"되어도 제출, 태그, 메모는 유지됩니다. 플러그인을 삭제할 때 데이터도 지워야 하"
+"는 경우에만 선택하세요."
+
+#: admin/views/settings.php:175 admin/views/settings.php:204
+msgid "Save changes"
+msgstr "변경 사항 저장"
+
+#: admin/views/settings.php:186
+msgid "Who can own entries"
+msgstr "항목 담당자가 될 수 있는 사람"
+
+#: admin/views/settings.php:189
+msgid "No roles are available."
+msgstr "사용할 수 있는 역할이 없습니다."
+
+#: admin/views/settings.php:198
+msgid ""
+"People with a ticked role can be made the owner of an entry. People who can "
+"edit posts are always included."
+msgstr ""
+"선택한 역할의 사용자를 항목 담당자로 지정할 수 있습니다. 글을 편집할 수 있는 "
+"사용자는 항상 포함됩니다."
+
+#: admin/views/tags.php:14 includes/class-admin-ui.php:26
+#: includes/class-frontend.php:505 includes/class-plugin.php:141
+#: includes/class-submissions-list-table.php:62
+#: admin/assets/kanban/build/index.js:5
+msgid "Tags"
+msgstr "태그"
+
+#: admin/views/tags.php:15
+msgid ""
+"Labels you can put on any entry, like \"Hot lead\" or \"Wholesale\". Use "
+"them to filter the board and the Submissions list."
+msgstr ""
+"\"유망 고객\"이나 \"도매\"처럼 어떤 항목에든 붙일 수 있는 라벨입니다. 보드와 "
+"제출 목록을 필터링할 때 사용하세요."
+
+#: admin/views/tags.php:21
+msgid "Your tags"
+msgstr "내 태그"
+
+#: admin/views/tags.php:22
+msgid "Edit a tag to rename it or change its colour. Entries keep their tags."
+msgstr ""
+"태그를 편집해 이름이나 색상을 바꿀 수 있습니다. 항목에 붙은 태그는 그대로 유"
+"지됩니다."
+
+#: admin/views/tags.php:27 admin/views/tags.php:45
+#: includes/class-frontend.php:501
+#: blocks/submissions-table/index.js:23
+msgid "Name"
+msgstr "이름"
+
+#: admin/views/tags.php:28
+msgid "Short name"
+msgstr "짧은 이름"
+
+#: admin/views/tags.php:29 admin/views/tags.php:48
+msgid "Colour"
+msgstr "색상"
+
+#: admin/views/tags.php:30
+msgid "Actions"
+msgstr "작업"
+
+#: admin/views/tags.php:39 includes/class-plugin.php:270
+msgid "Add a tag"
+msgstr "태그 추가"
+
+#: admin/views/tags.php:40
+msgid ""
+"Pick a name and a colour. You can also create tags from an entry on the "
+"board."
+msgstr "이름과 색상을 고르세요. 보드의 항목에서도 태그를 만들 수 있습니다."
+
+#: admin/views/tags.php:53
+msgid "Save tag"
+msgstr "태그 저장"
+
+#: admin/views/tags.php:54
+#: admin/assets/kanban/build/index.js:5 admin/assets/kanban/build/index.js:26
+msgid "Cancel"
+msgstr "취소"
+
+#: admin/views/upgrade.php:29
+msgid "Automation engine"
+msgstr "자동화 엔진"
+
+#: admin/views/upgrade.php:29
+msgid ""
+"Set up rules once: when a form comes in, a stage changes, a tag is added or "
+"someone replies, send an email, move the entry, tag it, assign it or notify "
+"another app."
+msgstr ""
+"규칙을 한 번만 설정하세요. 양식이 들어오거나, 단계가 바뀌거나, 태그가 추가되"
+"거나, 누군가 답장하면 이메일 보내기, 항목 이동, 태그 지정, 담당자 지정, 다른 "
+"앱에 알림을 실행합니다."
+
+#: admin/views/upgrade.php:30
+msgid "Integrations"
+msgstr "연동"
+
+#: admin/views/upgrade.php:30
+msgid ""
+"Send people to Mailchimp or MailerLite, notify other apps safely, and tag "
+"entries by form."
+msgstr ""
+"Mailchimp나 MailerLite로 연락처를 보내고, 다른 앱에 안전하게 알리고, 양식별"
+"로 항목에 태그를 지정합니다."
+
+#: admin/views/upgrade.php:31
+msgid "Email reply tracking"
+msgstr "이메일 답장 추적"
+
+#: admin/views/upgrade.php:31
+msgid ""
+"Connect a mailbox and replies to your emails are filed under the right "
+"entry, so the whole conversation sits in one place."
+msgstr ""
+"메일함을 연결하면 내 이메일에 온 답장이 올바른 항목에 정리되어 대화 전체를 한"
+"곳에서 볼 수 있습니다."
+
+#: admin/views/upgrade.php:32
+msgid "Multiple pipelines"
+msgstr "여러 파이프라인"
+
+#: admin/views/upgrade.php:32
+msgid "Run separate Kanban boards for different teams or workflows."
+msgstr "팀이나 업무 흐름별로 칸반 보드를 따로 운영하세요."
+
+#: admin/views/upgrade.php:33
+msgid "Historical backfill"
+msgstr "과거 항목 가져오기"
+
+#: admin/views/upgrade.php:33
+msgid "Pull past form entries into EntryVault in one pass."
+msgstr "지난 양식 항목을 한 번에 EntryVault로 가져옵니다."
+
+#: admin/views/upgrade.php:34
+msgid "Public Kanban board"
+msgstr "공개 칸반 보드"
+
+#: admin/views/upgrade.php:34
+msgid ""
+"Show a view-only board on any page, behind a private link. Plus approvals, "
+"quick edits and exports emailed on a schedule."
+msgstr ""
+"비공개 링크를 통해 어떤 페이지에서든 읽기 전용 보드를 보여줍니다. 승인, 빠른 "
+"편집, 예약된 이메일 내보내기도 포함됩니다."
+
+#: admin/views/upgrade.php:39
+msgid "EntryVault Pro"
+msgstr "EntryVault Pro"
+
+#: admin/views/upgrade.php:40
+msgid ""
+"You are using the free EntryVault: a complete board for one pipeline. Pro "
+"adds the rules, connections, email replies and extra pipelines a growing "
+"team needs."
+msgstr ""
+"지금 사용 중인 무료 EntryVault는 파이프라인 하나를 위한 완전한 보드입니다. "
+"Pro는 성장하는 팀에 필요한 규칙, 연동, 이메일 답장, 추가 파이프라인을 더합니"
+"다."
+
+#: admin/views/upgrade.php:41
+msgid "See Pro plans"
+msgstr "Pro 요금제 보기"
+
+#: admin/views/upgrade.php:45
+msgid "Upgrading keeps everything."
+msgstr "업그레이드해도 모든 것이 그대로 유지됩니다."
+
+#: admin/views/upgrade.php:46
+msgid ""
+"Install Pro over this version. It is the same plugin with the same database, "
+"so your pipelines, entries, tags and settings carry over untouched."
+msgstr ""
+"이 버전 위에 Pro를 설치하세요. 같은 데이터베이스를 쓰는 같은 플러그인이므로 "
+"파이프라인, 항목, 태그, 설정이 그대로 유지됩니다."
+
+#: admin/views/upgrade.php:59
+msgid "Already bought Pro?"
+msgstr "이미 Pro를 구매하셨나요?"
+
+#: admin/views/upgrade.php:61
+msgid "Download the Pro zip"
+msgstr "Pro zip 파일 다운로드"
+
+#: admin/views/upgrade.php:61
+msgid "From your account on jnkplugins.com."
+msgstr "jnkplugins.com의 내 계정에서 받으세요."
+
+#: admin/views/upgrade.php:62
+msgid "Upload it over this one"
+msgstr "현재 플러그인 위에 업로드"
+
+#: admin/views/upgrade.php:62
+msgid ""
+"Plugins, Add New, Upload Plugin. When WordPress asks, choose \"Replace "
+"current with uploaded\". It shows the same name and version for both copies; "
+"that is expected."
+msgstr ""
+"플러그인, 새로 추가, 플러그인 업로드로 이동하세요. WordPress가 물으면 \"현재 "
+"플러그인을 업로드한 것으로 교체\"를 선택하세요. 두 사본의 이름과 버전이 같게 "
+"표시되는데, 정상입니다."
+
+#: admin/views/upgrade.php:63
+msgid "Enter your licence key"
+msgstr "라이선스 키 입력"
+
+#: admin/views/upgrade.php:63
+msgid "At the bottom of EntryVault Settings."
+msgstr "EntryVault 설정 맨 아래에 있습니다."
+
+#: admin/views/upgrade.php:66
+msgid ""
+"The Pro zip is a few megabytes. If your host refuses the upload, unzip it "
+"and copy the entryvault folder over the existing one in wp-content/plugins "
+"with SFTP or your host's file manager."
+msgstr ""
+"Pro zip 파일은 몇 메가바이트 크기입니다. 호스팅에서 업로드를 거부하면 압축을 "
+"풀고 SFTP나 호스팅의 파일 관리자로 entryvault 폴더를 wp-content/plugins의 기"
+"존 폴더 위에 복사하세요."
+
+#: includes/class-admin-ui.php:25 includes/class-plugin.php:140
+#: includes/class-submissions-admin.php:214
+msgid "Submissions"
+msgstr "제출"
+
+#: includes/class-admin-ui.php:61
+msgid "Locked"
+msgstr "잠김"
+
+#: includes/class-admin-ui.php:88
+msgid "EntryVault sections"
+msgstr "EntryVault 메뉴"
+
+#: includes/class-admin-ui.php:94
+msgid "More tools"
+msgstr "추가 도구"
+
+#: includes/class-admin-ui.php:104
+msgid "Upgrade"
+msgstr "업그레이드"
+
+#: includes/class-admin-ui.php:106
+msgid "Help"
+msgstr "도움말"
+
+#: includes/class-dates.php:59 admin/assets/kanban/build/index.js:2
+#: admin/assets/kanban/build/index.js:20
+msgid "just now"
+msgstr "방금"
+
+#. translators: %s: human-readable time difference, e.g. "3 hours".
+#: includes/class-dates.php:63
+#, php-format
+msgid "in %s"
+msgstr "%s 후"
+
+#. translators: %s: human-readable time difference, e.g. "3 hours".
+#: includes/class-dates.php:65
+#, php-format
+msgid "%s ago"
+msgstr "%s 전"
+
+#: includes/class-feedback.php:41
+msgid "You do not have permission to do this."
+msgstr "이 작업을 할 권한이 없습니다."
+
+#: includes/class-feedback.php:115
+msgid "Bug report"
+msgstr "버그 신고"
+
+#: includes/class-feedback.php:116
+msgid "Feature request"
+msgstr "기능 요청"
+
+#: includes/class-feedback.php:117
+msgid "Question"
+msgstr "질문"
+
+#: includes/class-feedback.php:118
+msgid "Praise"
+msgstr "칭찬"
+
+#: includes/class-feedback.php:119
+msgid "Other"
+msgstr "기타"
+
+#: includes/class-field-values.php:39 includes/class-field-values.php:101
+#: includes/class-field-values.php:166
+msgid "Yes"
+msgstr "예"
+
+#: includes/class-field-values.php:39
+msgid "No"
+msgstr "아니요"
+
+#: includes/class-frontend.php:83
+msgid "No pipeline specified."
+msgstr "파이프라인이 지정되지 않았습니다."
+
+#: includes/class-frontend.php:88 includes/class-rest-public.php:123
+msgid "Pipeline not found."
+msgstr "파이프라인을 찾을 수 없습니다."
+
+#: includes/class-frontend.php:98 includes/class-rest-public.php:107
+msgid "Access required."
+msgstr "접근 권한이 필요합니다."
+
+#: includes/class-frontend.php:102
+msgid ""
+"Only editors see this note: visitors cannot read this table because the "
+"access_token is missing or does not match this pipeline. Copy the ready-made "
+"shortcode from EntryVault > Settings > General."
+msgstr ""
+"이 안내는 편집자에게만 보입니다. access_token이 없거나 이 파이프라인과 맞지 "
+"않아 방문자는 이 표를 볼 수 없습니다. EntryVault > 설정 > 일반에서 준비된 쇼"
+"트코드를 복사하세요."
+
+#: includes/class-frontend.php:450 includes/class-frontend.php:453
+msgid "(no name)"
+msgstr "(이름 없음)"
+
+#: includes/class-frontend.php:452
+msgid "(email hidden)"
+msgstr "(이메일 숨김)"
+
+#: includes/class-frontend.php:498 blocks/submissions-table/index.js:30
+msgid "Submitted"
+msgstr "제출일"
+
+#: includes/class-frontend.php:499 includes/class-submissions-list-table.php:65
+#: blocks/submissions-table/index.js:29
+msgid "Created"
+msgstr "생성일"
+
+#: includes/class-frontend.php:500 includes/class-plugin.php:325
+#: includes/class-privacy.php:227 includes/class-submissions-list-table.php:51
+#: blocks/submissions-table/index.js:24
+msgid "Title"
+msgstr "제목"
+
+#: includes/class-frontend.php:502 includes/class-plugin.php:326
+#: includes/class-privacy.php:228 includes/class-submissions-list-table.php:52
+#: admin/assets/kanban/build/index.js:5
+msgid "Email"
+msgstr "이메일"
+
+#: includes/class-frontend.php:504 includes/class-submissions-list-table.php:63
+#: includes/class-submissions-list-table.php:128
+#: admin/assets/kanban/build/index.js:5 admin/assets/kanban/build/index.js:34
+msgid "Owner"
+msgstr "담당자"
+
+#: includes/class-plugin.php:84 includes/class-plugin.php:166
+#: includes/class-plugin.php:167
+msgid "Upgrade to Pro"
+msgstr "Pro로 업그레이드"
+
+#: includes/class-plugin.php:98
+msgid "Docs"
+msgstr "문서"
+
+#: includes/class-plugin.php:103
+msgid "Support"
+msgstr "지원"
+
+#: includes/class-plugin.php:138
+msgid "Kanban"
+msgstr "칸반"
+
+#: includes/class-plugin.php:139
+msgid "Dashboard"
+msgstr "대시보드"
+
+#: includes/class-plugin.php:145
+msgid "Feedback"
+msgstr "의견 보내기"
+
+#: includes/class-plugin.php:213 includes/class-plugin.php:266
+msgid "Saved."
+msgstr "저장했습니다."
+
+#: includes/class-plugin.php:214
+msgid "Save failed."
+msgstr "저장하지 못했습니다."
+
+#: includes/class-plugin.php:264
+msgid "Edit"
+msgstr "편집"
+
+#: includes/class-plugin.php:265 includes/class-submissions-list-table.php:94
+msgid "Delete"
+msgstr "삭제"
+
+#: includes/class-plugin.php:267
+msgid "Error."
+msgstr "오류가 발생했습니다."
+
+#: includes/class-plugin.php:268
+msgid "Delete this tag? It comes off every entry that has it."
+msgstr "이 태그를 삭제할까요? 이 태그가 붙은 모든 항목에서 제거됩니다."
+
+#: includes/class-plugin.php:269
+msgid "No tags yet. Add your first one with the form next to this list."
+msgstr "아직 태그가 없습니다. 이 목록 옆의 양식에서 첫 태그를 추가하세요."
+
+#: includes/class-plugin.php:271
+msgid "Edit tag"
+msgstr "태그 편집"
+
+#: includes/class-plugin.php:318
+msgid "Please choose a file or paste CSV first."
+msgstr "먼저 파일을 선택하거나 CSV를 붙여 넣으세요."
+
+#: includes/class-plugin.php:319
+msgid "Loading preview…"
+msgstr "미리보기를 불러오는 중…"
+
+#: includes/class-plugin.php:320
+msgid "Preview failed."
+msgstr "미리보기에 실패했습니다."
+
+#. translators: %s: number of rows loaded.
+#: includes/class-plugin.php:322
+#, php-format
+msgid "Loaded %s rows."
+msgstr "%s개 행을 불러왔습니다."
+
+#: includes/class-plugin.php:323
+msgid "Network error."
+msgstr "네트워크 오류입니다."
+
+#: includes/class-plugin.php:324
+msgid "Ignore"
+msgstr "무시"
+
+#: includes/class-plugin.php:327 includes/class-privacy.php:226
+#: includes/class-submissions-list-table.php:64
+#: admin/assets/kanban/build/index.js:5
+msgid "Source"
+msgstr "출처"
+
+#: includes/class-plugin.php:328
+msgid "Field"
+msgstr "필드"
+
+#: includes/class-plugin.php:329
+msgid "You must map one column to Email."
+msgstr "한 열을 이메일로 지정해야 합니다."
+
+#: includes/class-plugin.php:330
+msgid "Running…"
+msgstr "실행 중…"
+
+#: includes/class-plugin.php:331
+msgid "Import failed."
+msgstr "가져오기에 실패했습니다."
+
+#: includes/class-plugin.php:332
+msgid "Done."
+msgstr "완료했습니다."
+
+#: includes/class-plugin.php:333
+msgid "Results"
+msgstr "결과"
+
+#: includes/class-plugin.php:334
+msgid "Test run: nothing was saved."
+msgstr "테스트 실행: 아무것도 저장하지 않았습니다."
+
+#: includes/class-plugin.php:335
+msgid "Imported:"
+msgstr "가져옴:"
+
+#: includes/class-plugin.php:336
+msgid "Would import:"
+msgstr "가져올 항목:"
+
+#. translators: %s: comma-separated column names.
+#: includes/class-plugin.php:338
+#, php-format
+msgid ""
+"Only one column can be the title, but these are all set to Title: %s. Set "
+"the others to Field so their values are kept."
+msgstr ""
+"제목으로 지정할 수 있는 열은 하나뿐인데, 다음 열이 모두 제목으로 설정되어 있"
+"습니다: %s. 나머지는 필드로 바꾸면 값이 유지됩니다."
+
+#: includes/class-plugin.php:339
+msgid "Already present:"
+msgstr "이미 있음:"
+
+#: includes/class-plugin.php:340
+msgid ""
+"Rows already present were recognised from an earlier import and left "
+"untouched, so nothing was duplicated."
+msgstr ""
+"이미 있는 행은 이전 가져오기에서 들어온 것으로 확인되어 그대로 두었으므로 중"
+"복된 항목은 없습니다."
+
+#: includes/class-plugin.php:341
+msgid "Skipped:"
+msgstr "건너뜀:"
+
+#: includes/class-plugin.php:342
+msgid "Errors"
+msgstr "오류"
+
+#: includes/class-plugin.php:343
+msgid "Row"
+msgstr "행"
+
+#: includes/class-privacy.php:36 includes/class-privacy.php:46
+msgid "EntryVault form entries"
+msgstr "EntryVault 폼 항목"
+
+#: includes/class-privacy.php:59
+msgid ""
+"When you send a form on this site, a copy of what you entered (including "
+"your name and email address if the form asks for them) is kept so our team "
+"can follow up. We keep it until it is no longer needed, then delete it. You "
+"can ask for a copy of it, or for it to be deleted, by contacting us."
+msgstr ""
+"이 사이트에서 폼을 보내면 팀이 후속 연락을 할 수 있도록 입력한 내용(폼에서 묻"
+"는 경우 이름과 이메일 주소 포함)의 사본을 보관합니다. 더 이상 필요하지 않으"
+"면 삭제합니다. 사본을 요청하거나 삭제를 원하시면 연락해 주세요."
+
+#: includes/class-privacy.php:89
+msgid "Emails"
+msgstr "이메일"
+
+#. translators: 1: entry id, 2: reason.
+#: includes/class-privacy.php:129
+#, php-format
+msgid "EntryVault entry #%1$d was kept: %2$s"
+msgstr "EntryVault 항목 #%1$d을(를) 보관했습니다: %2$s"
+
+#: includes/class-privacy.php:225 admin/assets/kanban/build/index.js:5
+msgid "Received"
+msgstr "받은 날짜"
+
+#: includes/class-privacy.php:254
+msgid "Note"
+msgstr "메모"
+
+#: includes/class-privacy.php:270
+msgid "Form entries"
+msgstr "폼 항목"
+
+#: includes/class-privacy.php:271
+msgid "Copies of forms you sent on this site, kept by EntryVault."
+msgstr "이 사이트에서 보낸 폼의 사본으로, EntryVault가 보관합니다."
+
+#: includes/class-privacy.php:279
+msgid "Email sent"
+msgstr "보낸 이메일"
+
+#: includes/class-privacy.php:279
+msgid "Email received"
+msgstr "받은 이메일"
+
+#: includes/class-privacy.php:282
+msgid "Email text"
+msgstr "이메일 내용"
+
+#. translators: %s: column name.
+#: includes/class-rest-public.php:140
+#, php-format
+msgid "Unknown column: %s"
+msgstr "알 수 없는 열: %s"
+
+#: includes/class-rest-public.php:147
+msgid "Column not available without authentication."
+msgstr "인증 없이는 사용할 수 없는 열입니다."
+
+#: includes/class-submissions-admin.php:215
+msgid ""
+"Every entry in one list. Filter it, tick rows to change many at once, or "
+"export what you see to a spreadsheet."
+msgstr ""
+"모든 항목을 한 목록에서 봅니다. 필터링하거나, 여러 행을 선택해 한 번에 바꾸거"
+"나, 보이는 내용을 스프레드시트로 내보내세요."
+
+#: includes/class-submissions-admin.php:216
+msgid "Export CSV"
+msgstr "CSV 내보내기"
+
+#: includes/class-submissions-admin.php:231
+msgid "All"
+msgstr "전체"
+
+#: includes/class-submissions-admin.php:236 includes/class-timeline.php:93
+msgid "Archived"
+msgstr "보관됨"
+
+#: includes/class-submissions-admin.php:255
+msgid "All pipelines"
+msgstr "모든 파이프라인"
+
+#: includes/class-submissions-admin.php:263
+msgid "All stages"
+msgstr "모든 단계"
+
+#: includes/class-submissions-admin.php:286
+msgid "All sources"
+msgstr "모든 출처"
+
+#: includes/class-submissions-admin.php:305
+msgid "All tags"
+msgstr "모든 태그"
+
+#: includes/class-submissions-admin.php:314
+msgid "All owners"
+msgstr "모든 담당자"
+
+#: includes/class-submissions-admin.php:316 includes/class-timeline.php:90
+#: admin/assets/kanban/build/index.js:5 admin/assets/kanban/build/index.js:20
+#: admin/assets/kanban/build/index.js:34
+msgid "Unassigned"
+msgstr "미지정"
+
+#: includes/class-submissions-admin.php:340
+msgid "Filter"
+msgstr "필터"
+
+#: includes/class-submissions-admin.php:348
+#: public/templates/submissions-table.php:54
+#: public/templates/submissions-table.php:63
+#: admin/assets/kanban/build/index.js:34
+msgid "Search"
+msgstr "검색"
+
+#. translators: 1: opening link tag, 2: closing link tag.
+#: includes/class-submissions-admin.php:362
+#, php-format
+msgid ""
+"Tagging, assigning and replying to these by hand? %1$sSee what Pro "
+"automates%2$s."
+msgstr ""
+"태그 지정, 담당자 지정, 답장을 직접 하고 계신가요? %1$sPro가 자동화하는 기능 "
+"보기%2$s."
+
+#. translators: %d: count
+#: includes/class-submissions-admin.php:413
+#, php-format
+msgid "Deleted %d submission."
+msgid_plural "Deleted %d submissions."
+msgstr[0] "제출 %d건을 삭제했습니다."
+
+#. translators: 1: moved 2: skipped
+#: includes/class-submissions-admin.php:421
+#, php-format
+msgid "Moved %1$d submission(s); %2$d skipped."
+msgstr "제출 %1$d건을 이동했고 %2$d건은 건너뛰었습니다."
+
+#. translators: %d: count
+#: includes/class-submissions-admin.php:431
+#, php-format
+msgid "Assigned owner on %d submission."
+msgid_plural "Assigned owner on %d submissions."
+msgstr[0] "제출 %d건에 담당자를 지정했습니다."
+
+#. translators: %d: count
+#: includes/class-submissions-admin.php:436
+#, php-format
+msgid "Cleared owner on %d submission."
+msgid_plural "Cleared owner on %d submissions."
+msgstr[0] "제출 %d건의 담당자를 해제했습니다."
+
+#. translators: %d: count
+#: includes/class-submissions-admin.php:444
+#, php-format
+msgid "Tagged %d submission."
+msgid_plural "Tagged %d submissions."
+msgstr[0] "제출 %d건에 태그를 지정했습니다."
+
+#. translators: %d: count
+#: includes/class-submissions-admin.php:451
+#, php-format
+msgid "Archived %d submission."
+msgid_plural "Archived %d submissions."
+msgstr[0] "제출 %d건을 보관했습니다."
+
+#. translators: %d: count
+#: includes/class-submissions-admin.php:458
+#, php-format
+msgid "Restored %d submission."
+msgid_plural "Restored %d submissions."
+msgstr[0] "제출 %d건을 복원했습니다."
+
+#: includes/class-submissions-admin.php:487
+msgid "Forbidden."
+msgstr "금지되었습니다."
+
+#. translators: %s: form field label that clashes with a fixed column, e.g. "Email".
+#: includes/class-submissions-admin.php:594
+#, php-format
+msgid "%s (form field)"
+msgstr "%s (양식 필드)"
+
+#: includes/class-submissions-list-table.php:50
+msgid "ID"
+msgstr "ID"
+
+#: includes/class-submissions-list-table.php:66
+msgid "Updated"
+msgstr "수정일"
+
+#. translators: 1: pipeline name, 2: stage name.
+#: includes/class-submissions-list-table.php:99
+#, php-format
+msgid "Move to: %1$s / %2$s"
+msgstr "이동: %1$s / %2$s"
+
+#. translators: %s: stage name.
+#: includes/class-submissions-list-table.php:101
+#, php-format
+msgid "Move to: %s"
+msgstr "이동: %s"
+
+#: includes/class-submissions-list-table.php:104
+msgid "Assign owner"
+msgstr "담당자 지정"
+
+#: includes/class-submissions-list-table.php:105
+msgid "Add tag"
+msgstr "태그 추가"
+
+#: includes/class-submissions-list-table.php:106
+msgid "Archive"
+msgstr "보관"
+
+#: includes/class-submissions-list-table.php:107
+msgid "Unarchive"
+msgstr "보관 해제"
+
+#: includes/class-submissions-list-table.php:130
+msgid "(unassign)"
+msgstr "(지정 해제)"
+
+#: includes/class-submissions-list-table.php:139
+msgid "Tag"
+msgstr "태그"
+
+#: includes/class-submissions-list-table.php:141
+msgid "— Select tag —"
+msgstr "— 태그 선택 —"
+
+#: includes/class-submissions-list-table.php:327
+msgid "No submissions match these filters."
+msgstr "이 필터에 맞는 제출이 없습니다."
+
+#: includes/class-submissions-list-table.php:331
+msgid "No submissions yet."
+msgstr "아직 제출이 없습니다."
+
+#. translators: 1: opening link tag to the import screen, 2: closing link tag.
+#: includes/class-submissions-list-table.php:334
+#, php-format
+msgid ""
+"Submissions from every supported form plugin land here automatically. You "
+"can also %1$simport a CSV%2$s to bring existing ones in."
+msgstr ""
+"지원하는 모든 양식 플러그인의 제출이 자동으로 여기에 들어옵니다. 기존 제출은 "
+"%1$sCSV 가져오기%2$s로 옮길 수도 있습니다."
+
+#. translators: 1: previous stage name, 2: new stage name.
+#: includes/class-timeline.php:44 admin/assets/kanban/build/index.js:7
+#, php-format
+msgid "Moved from %1$s to %2$s"
+msgstr "%1$s에서 %2$s(으)로 이동"
+
+#. translators: 1: previous pipeline name, 2: new pipeline name.
+#: includes/class-timeline.php:47
+#, php-format
+msgid "(pipeline %1$s → %2$s)"
+msgstr "(파이프라인 %1$s → %2$s)"
+
+#: includes/class-timeline.php:52
+msgid "Note deleted"
+msgstr "메모 삭제됨"
+
+#. translators: 1: event name, 2: source name.
+#: includes/class-timeline.php:59 admin/assets/kanban/build/index.js:9
+#, php-format
+msgid "%1$s from %2$s"
+msgstr "%2$s에서 %1$s"
+
+#. translators: 1: recipient, 2: subject.
+#: includes/class-timeline.php:64 admin/assets/kanban/build/index.js:11
+#, php-format
+msgid "Email to %1$s: %2$s"
+msgstr "%1$s에게 보낸 이메일: %2$s"
+
+#. translators: %s: tag name.
+#: includes/class-timeline.php:74 admin/assets/kanban/build/index.js:14
+#, php-format
+msgid "Tagged %s"
+msgstr "태그 지정: %s"
+
+#. translators: %s: tag name.
+#: includes/class-timeline.php:76 admin/assets/kanban/build/index.js:16
+#, php-format
+msgid "Removed tag %s"
+msgstr "태그 제거: %s"
+
+#. translators: %s: user display name.
+#: includes/class-timeline.php:80 admin/assets/kanban/build/index.js:18
+#, php-format
+msgid "Assigned to %s"
+msgstr "담당자 지정: %s"
+
+#. translators: %s: user display name.
+#: includes/class-timeline.php:83
+#, php-format
+msgid "(was %s)"
+msgstr "(이전 담당자 %s)"
+
+#. translators: %s: user display name.
+#: includes/class-timeline.php:89 admin/assets/kanban/build/index.js:20
+#, php-format
+msgid "Unassigned from %s"
+msgstr "담당자 해제: %s"
+
+#: includes/class-timeline.php:96
+msgid "Restored from the archive"
+msgstr "보관함에서 복원됨"
+
+#. translators: %d: stage id.
+#: includes/class-timeline.php:123
+#, php-format
+msgid "a deleted stage (#%d)"
+msgstr "삭제된 단계 (#%d)"
+
+#: includes/class-timeline.php:140
+msgid "nobody"
+msgstr "없음"
+
+#: admin/assets/kanban/build/index.js:5
+msgid "Status"
+msgstr "상태"
+
+#: admin/assets/kanban/build/index.js:5
+msgid "Close"
+msgstr "닫기"
+
+#: public/templates/submissions-table.php:59
+msgid "Search…"
+msgstr "검색…"
+
+#: public/templates/submissions-table.php:94
+msgid "No submissions found."
+msgstr "제출을 찾지 못했습니다."
+
+#: public/templates/submissions-table.php:122
+msgid "Pagination"
+msgstr "페이지 이동"
+
+#: public/templates/submissions-table.php:143
+msgid "« Previous"
+msgstr "« 이전"
+
+#. translators: 1: current page, 2: total pages
+#: public/templates/submissions-table.php:151
+#, php-format
+msgid "Page %1$d of %2$d"
+msgstr "%2$d페이지 중 %1$d페이지"
+
+#: public/templates/submissions-table.php:160
+msgid "Next »"
+msgstr "다음 »"
+
+#. translators: %s: owner name, or #user id when the user no longer exists.
+#: admin/assets/kanban/build/index.js:2
+msgid "Owner: %s"
+msgstr "담당자: %s"
+
+#: admin/assets/kanban/build/index.js:2
+msgid "Unassigned: no owner set"
+msgstr "미지정: 담당자가 없습니다"
+
+#. translators: %s: form plugin name.
+#: admin/assets/kanban/build/index.js:2
+msgid "Source: %s"
+msgstr "출처: %s"
+
+#: admin/assets/kanban/build/index.js:2
+msgctxt "badge on a card nobody has seen yet"
+msgid "New"
+msgstr "새 항목"
+
+#. translators: %s: date and time the submission arrived.
+#: admin/assets/kanban/build/index.js:2
+msgid "Arrived %s"
+msgstr "도착: %s"
+
+#. translators: %d: number of minutes, shown in a short card corner.
+#: admin/assets/kanban/build/index.js:3
+msgid "%dm"
+msgstr "%d분"
+
+#. translators: %d: number of hours, shown in a short card corner.
+#: admin/assets/kanban/build/index.js:4
+msgid "%dh"
+msgstr "%d시간"
+
+#. translators: %d: number of days, shown in a short card corner.
+#: admin/assets/kanban/build/index.js:5
+msgid "%dd"
+msgstr "%d일"
+
+#: admin/assets/kanban/build/index.js:5
+msgid "Open details"
+msgstr "상세 정보 열기"
+
+#. translators: %s: submission title.
+#: admin/assets/kanban/build/index.js:5
+msgid "Open %s"
+msgstr "%s 열기"
+
+#: admin/assets/kanban/build/index.js:5
+msgid "this submission"
+msgstr "이 제출"
+
+#: admin/assets/kanban/build/index.js:5
+msgctxt "button: open a card's details"
+msgid "Open"
+msgstr "열기"
+
+#: admin/assets/kanban/build/index.js:5
+msgid "More cards than this stage's limit"
+msgstr "이 단계의 한도보다 카드가 많습니다"
+
+#: admin/assets/kanban/build/index.js:5
+msgid "No submissions"
+msgstr "제출 없음"
+
+#: admin/assets/kanban/build/index.js:5
+msgid "Could not save the note."
+msgstr "메모를 저장하지 못했습니다."
+
+#: admin/assets/kanban/build/index.js:5
+msgid "Could not load this submission."
+msgstr "이 제출을 불러오지 못했습니다."
+
+#: admin/assets/kanban/build/index.js:5
+msgid "Submission details"
+msgstr "제출 상세 정보"
+
+#. translators: %d: submission id.
+#: admin/assets/kanban/build/index.js:5
+msgid "Submission #%d"
+msgstr "제출 #%d"
+
+#: admin/assets/kanban/build/index.js:5
+msgid "Details"
+msgstr "상세 정보"
+
+#: admin/assets/kanban/build/index.js:5
+msgid "Timeline"
+msgstr "타임라인"
+
+#: admin/assets/kanban/build/index.js:5
+msgid "Notes"
+msgstr "메모"
+
+#: admin/assets/kanban/build/index.js:5
+msgid "Could not add the tag."
+msgstr "태그를 추가하지 못했습니다."
+
+#: admin/assets/kanban/build/index.js:5
+msgid "Could not remove the tag."
+msgstr "태그를 제거하지 못했습니다."
+
+#: admin/assets/kanban/build/index.js:5
+msgid "Could not create the tag."
+msgstr "태그를 만들지 못했습니다."
+
+#: admin/assets/kanban/build/index.js:5
+msgid "Could not delete the note."
+msgstr "메모를 삭제하지 못했습니다."
+
+#: admin/assets/kanban/build/index.js:5
+msgid "Loading…"
+msgstr "불러오는 중…"
+
+#: admin/assets/kanban/build/index.js:5
+msgid "Click to edit"
+msgstr "클릭해서 편집"
+
+#. translators: %s: form id.
+#: admin/assets/kanban/build/index.js:5
+msgid "form %s"
+msgstr "양식 %s"
+
+#: admin/assets/kanban/build/index.js:5
+msgid "What they sent"
+msgstr "보낸 내용"
+
+#: admin/assets/kanban/build/index.js:5
+msgid "This field is no longer on the form"
+msgstr "이 필드는 더 이상 양식에 없습니다"
+
+#: admin/assets/kanban/build/index.js:5
+msgid "old field"
+msgstr "이전 필드"
+
+#: admin/assets/kanban/build/index.js:5
+msgid "Remove tag"
+msgstr "태그 제거"
+
+#. translators: %s: tag name.
+#: admin/assets/kanban/build/index.js:5
+msgid "Remove tag %s"
+msgstr "%s 태그 제거"
+
+#: admin/assets/kanban/build/index.js:5
+msgid "New tag name"
+msgstr "새 태그 이름"
+
+#: admin/assets/kanban/build/index.js:5
+msgid "Add"
+msgstr "추가"
+
+#: admin/assets/kanban/build/index.js:5
+msgid "Add a tag to this submission"
+msgstr "이 제출에 태그 추가"
+
+#: admin/assets/kanban/build/index.js:5
+msgid "+ Add tag…"
+msgstr "+ 태그 추가…"
+
+#: admin/assets/kanban/build/index.js:5
+msgid "+ Create new tag…"
+msgstr "+ 새 태그 만들기…"
+
+#: admin/assets/kanban/build/index.js:7
+msgid "Moved to a new stage"
+msgstr "새 단계로 이동"
+
+#: admin/assets/kanban/build/index.js:7
+msgid "(empty note)"
+msgstr "(빈 메모)"
+
+#: admin/assets/kanban/build/index.js:9
+msgid "created"
+msgstr "생성됨"
+
+#: admin/assets/kanban/build/index.js:12
+msgid "Email to %s"
+msgstr "%s에게 보낸 이메일"
+
+#. translators: %d: user id.
+#: admin/assets/kanban/build/index.js:18 admin/assets/kanban/build/index.js:20
+msgid "User #%d"
+msgstr "사용자 #%d"
+
+#: admin/assets/kanban/build/index.js:20
+msgid "No activity yet."
+msgstr "아직 활동이 없습니다."
+
+#: admin/assets/kanban/build/index.js:20
+msgid "Posting as %s"
+msgstr "%s(으)로 작성 중"
+
+#: admin/assets/kanban/build/index.js:20
+msgid "Add a note for your team. The customer never sees it."
+msgstr "팀을 위한 메모를 남기세요. 고객에게는 보이지 않습니다."
+
+#: admin/assets/kanban/build/index.js:20
+msgid "Tip: **bold**, *italic*, lists and links work."
+msgstr "팁: **굵게**, *기울임*, 목록, 링크를 쓸 수 있습니다."
+
+#: admin/assets/kanban/build/index.js:20 admin/assets/kanban/build/index.js:26
+msgid "Saving…"
+msgstr "저장 중…"
+
+#: admin/assets/kanban/build/index.js:20
+msgid "Add note"
+msgstr "메모 추가"
+
+#: admin/assets/kanban/build/index.js:20
+msgid "No notes yet."
+msgstr "아직 메모가 없습니다."
+
+#: admin/assets/kanban/build/index.js:20
+msgid "Unknown"
+msgstr "알 수 없음"
+
+#. translators: %d: number of minutes.
+#: admin/assets/kanban/build/index.js:22
+msgid "%dm ago"
+msgstr "%d분 전"
+
+#. translators: %d: number of hours.
+#: admin/assets/kanban/build/index.js:24
+msgid "%dh ago"
+msgstr "%d시간 전"
+
+#. translators: %d: number of days.
+#: admin/assets/kanban/build/index.js:26
+msgid "%dd ago"
+msgstr "%d일 전"
+
+#: admin/assets/kanban/build/index.js:26
+msgid "Delete note"
+msgstr "메모 삭제"
+
+#: admin/assets/kanban/build/index.js:26
+msgid "[deleted]"
+msgstr "[삭제됨]"
+
+#: admin/assets/kanban/build/index.js:26
+msgid "Reply…"
+msgstr "답글…"
+
+#: admin/assets/kanban/build/index.js:26
+msgid "Post reply"
+msgstr "답글 게시"
+
+#: admin/assets/kanban/build/index.js:26
+msgid "Reply"
+msgstr "답글"
+
+#: admin/assets/kanban/build/index.js:26
+msgctxt "email recipient"
+msgid "To"
+msgstr "받는 사람"
+
+#: admin/assets/kanban/build/index.js:26
+msgid "Subject"
+msgstr "제목"
+
+#: admin/assets/kanban/build/index.js:26
+msgid "Sent."
+msgstr "보냈습니다."
+
+#: admin/assets/kanban/build/index.js:26
+msgid "Could not send the email."
+msgstr "이메일을 보내지 못했습니다."
+
+#: admin/assets/kanban/build/index.js:26
+msgid "Sending…"
+msgstr "보내는 중…"
+
+#: admin/assets/kanban/build/index.js:26
+msgid "Conversation"
+msgstr "대화"
+
+#: admin/assets/kanban/build/index.js:26
+msgid "No emails yet."
+msgstr "아직 이메일이 없습니다."
+
+#. translators: %s: sender address.
+#: admin/assets/kanban/build/index.js:26
+msgid "From %s"
+msgstr "보낸 사람: %s"
+
+#. translators: %s: recipient address.
+#: admin/assets/kanban/build/index.js:26
+msgid "To %s"
+msgstr "받는 사람: %s"
+
+#: admin/assets/kanban/build/index.js:26
+msgid "(no subject)"
+msgstr "(제목 없음)"
+
+#: admin/assets/kanban/build/index.js:26
+msgctxt "submission status"
+msgid "Open"
+msgstr "진행 중"
+
+#: admin/assets/kanban/build/index.js:26
+msgctxt "submission status"
+msgid "Archived"
+msgstr "보관됨"
+
+#: admin/assets/kanban/build/index.js:26
+msgctxt "submission status"
+msgid "Won"
+msgstr "성사"
+
+#: admin/assets/kanban/build/index.js:26
+msgctxt "submission status"
+msgid "Lost"
+msgstr "실패"
+
+#: admin/assets/kanban/build/index.js:26
+msgid "Failed to load board"
+msgstr "보드를 불러오지 못했습니다"
+
+#: admin/assets/kanban/build/index.js:26
+msgid "this card"
+msgstr "이 카드"
+
+#: admin/assets/kanban/build/index.js:26
+msgid "a stage"
+msgstr "단계"
+
+#: admin/assets/kanban/build/index.js:26
+msgid ""
+"To pick up a card, press space or enter. Use the arrow keys to move it, then "
+"press space or enter to drop it, or escape to cancel."
+msgstr ""
+"카드를 잡으려면 스페이스나 엔터 키를 누르세요. 화살표 키로 옮긴 다음 스페이스"
+"나 엔터 키로 놓거나, Esc 키로 취소하세요."
+
+#. translators: %s: card title.
+#: admin/assets/kanban/build/index.js:28
+msgid "Picked up %s."
+msgstr "%s 카드를 잡았습니다."
+
+#: admin/assets/kanban/build/index.js:29
+msgid "%1$s is over %2$s."
+msgstr "%1$s 카드가 %2$s 위에 있습니다."
+
+#: admin/assets/kanban/build/index.js:30
+msgid "%s is not over a stage."
+msgstr "%s 카드가 단계 위에 있지 않습니다."
+
+#: admin/assets/kanban/build/index.js:31
+msgid "%1$s was dropped in %2$s."
+msgstr "%1$s 카드를 %2$s에 놓았습니다."
+
+#: admin/assets/kanban/build/index.js:32
+msgid "%s was dropped."
+msgstr "%s 카드를 놓았습니다."
+
+#. translators: %s: card title.
+#: admin/assets/kanban/build/index.js:34
+msgid "Moving %s was cancelled."
+msgstr "%s 카드 이동을 취소했습니다."
+
+#: admin/assets/kanban/build/index.js:34
+msgid "Search name or email…"
+msgstr "이름 또는 이메일 검색…"
+
+#. translators: %d: number of cards on the board.
+#: admin/assets/kanban/build/index.js:34
+msgid "%d card"
+msgid_plural "%d cards"
+msgstr[0] "카드 %d개"
+
+#: admin/assets/kanban/build/index.js:34
+msgid "Could not mark all cards as seen"
+msgstr "모든 카드를 확인함으로 표시하지 못했습니다"
+
+#: admin/assets/kanban/build/index.js:34
+msgid "Clear the New badge from every card"
+msgstr "모든 카드에서 새 항목 배지를 지웁니다"
+
+#: admin/assets/kanban/build/index.js:34
+msgid "Mark all seen"
+msgstr "모두 확인함으로 표시"
+
+#: admin/assets/kanban/build/index.js:34
+msgid "Show only cards owned by"
+msgstr "다음 담당자의 카드만 보기"
+
+#: admin/assets/kanban/build/index.js:34
+msgid "Clear"
+msgstr "지우기"
+
+#: admin/assets/kanban/build/index.js:34
+msgid "The move failed, so the card went back."
+msgstr "이동하지 못해 카드가 원래 자리로 돌아갔습니다."
+
+#: admin/assets/kanban/build/index.js:34
+msgid "Nothing here yet. That is expected."
+msgstr "아직 아무것도 없습니다. 정상입니다."
+
+#: admin/assets/kanban/build/index.js:34
+msgid ""
+"EntryVault picks up submissions from the form plugins you already use. There "
+"is nothing to add to your forms: submit one of them once and it appears on "
+"this board within moments."
+msgstr ""
+"EntryVault는 이미 사용 중인 양식 플러그인에서 제출을 가져옵니다. 양식에 추가"
+"할 것은 없습니다. 양식을 한 번 제출하면 잠시 후 이 보드에 나타납니다."
+
+#: admin/assets/kanban/build/index.js:34
+msgid "Check which form plugins were found"
+msgstr "찾은 양식 플러그인 확인"
+
+#: admin/assets/kanban/build/index.js:34
+msgid ""
+"No pipeline is set up yet. Deactivate and activate EntryVault once to create "
+"the default one."
+msgstr ""
+"아직 설정된 파이프라인이 없습니다. EntryVault를 한 번 비활성화했다가 다시 활"
+"성화하면 기본 파이프라인이 만들어집니다."
+
+#: blocks/submissions-table/index.js:25
+msgid "Email (shown publicly)"
+msgstr "이메일 (공개됨)"
+
+#: blocks/submissions-table/index.js:27
+msgid "Owner (staff name, shown publicly)"
+msgstr "담당자 (직원 이름, 공개됨)"
+
+#: blocks/submissions-table/index.js:28
+msgid "Tags (shown publicly)"
+msgstr "태그 (공개됨)"
+
+#: blocks/submissions-table/index.js:70
+msgid "Submissions Table"
+msgstr "제출 표"
+
+#: blocks/submissions-table/index.js:72
+msgid "Pipeline slug"
+msgstr "파이프라인 슬러그"
+
+#: blocks/submissions-table/index.js:77
+msgid "Stage slug (optional)"
+msgstr "단계 슬러그 (선택 사항)"
+
+#: blocks/submissions-table/index.js:82
+msgid "Access token (optional)"
+msgstr "접근 토큰 (선택 사항)"
+
+#: blocks/submissions-table/index.js:89
+msgid "Columns"
+msgstr "열"
+
+#: blocks/submissions-table/index.js:103
+msgid "EntryVault Submissions Table"
+msgstr "EntryVault 제출 표"
+
+#: blocks/submissions-table/index.js:108
+msgid "pipeline: "
+msgstr "파이프라인: "
+
+#: blocks/submissions-table/index.js:109
+msgid "(no pipeline set)"
+msgstr "(파이프라인 미설정)"
+
+#: blocks/submissions-table/index.js:114
+msgid "columns: "
+msgstr "열: "
+
+#: blocks/submissions-table/block.json
+msgctxt "block title"
+msgid "EntryVault Submissions Table"
+msgstr "EntryVault 제출 표"

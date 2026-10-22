@@ -1,0 +1,17 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "entryvault/submissions-table",
+    "title": "EntryVault Submissions Table",
+    "category": "widgets",
+    "textdomain": "entryvault",
+    "icon": "list-view",
+    "attributes": {
+        "pipeline":     { "type": "string", "default": "" },
+        "stage":        { "type": "string", "default": "" },
+        "access_token": { "type": "string", "default": "" },
+        "columns":      { "type": "array",  "default": [ "submitted_at", "name", "stage" ], "items": { "type": "string" } }
+    },
+    "editorScript": "file:./index.js",
+    "render": "file:./render.php"
+}

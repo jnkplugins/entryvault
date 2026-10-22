@@ -1,0 +1,1863 @@
+# Copyright (C) 2026 JNK Plugins
+# This file is distributed under the GPL-2.0-or-later.
+msgid ""
+msgstr ""
+"Project-Id-Version: EntryVault 1.12.0\n"
+"Report-Msgid-Bugs-To: https://jnkplugins.com/entryvault/\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-10-18T17:41:05+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.12.0\n"
+"X-Domain: entryvault\n"
+
+#. Plugin Name of the plugin
+#: entryvault.php
+#: includes/class-admin-ui.php:81
+#: includes/class-plugin.php:116
+#: includes/class-plugin.php:117
+#: includes/class-plugin.php:128
+#: includes/class-plugin.php:129
+msgid "EntryVault"
+msgstr ""
+
+#. Plugin URI of the plugin
+#: entryvault.php
+msgid "https://jnkplugins.com/entryvault/"
+msgstr ""
+
+#. Description of the plugin
+#: entryvault.php
+msgid "Lightweight CRM & entry manager for WordPress form plugins."
+msgstr ""
+
+#. Author of the plugin
+#: entryvault.php
+msgid "JNK Plugins"
+msgstr ""
+
+#. Author URI of the plugin
+#: entryvault.php
+msgid "https://jnkplugins.com"
+msgstr ""
+
+#: admin/views/dashboard.php:9
+#: includes/class-submissions-admin.php:178
+msgid "You do not have permission to view this page."
+msgstr ""
+
+#: admin/views/dashboard.php:72
+#: includes/class-admin-ui.php:24
+msgid "Overview"
+msgstr ""
+
+#: admin/views/dashboard.php:73
+msgid "What came in, what is waiting on you, and how your pipeline is doing."
+msgstr ""
+
+#: admin/views/dashboard.php:74
+msgid "All submissions"
+msgstr ""
+
+#: admin/views/dashboard.php:75
+#: admin/views/dashboard.php:84
+#: includes/class-submissions-admin.php:217
+msgid "Open the board"
+msgstr ""
+
+#: admin/views/dashboard.php:81
+msgid "Getting started"
+msgstr ""
+
+#: admin/views/dashboard.php:82
+msgid "EntryVault picks up submissions from the form plugins you already use. There is nothing to change on your forms. Submit one of them once and it appears on the board within moments."
+msgstr ""
+
+#: admin/views/dashboard.php:85
+#: admin/assets/kanban/build/index.js:34
+msgid "Import a CSV instead"
+msgstr ""
+
+#: admin/views/dashboard.php:92
+msgid "New in the last 7 days"
+msgstr ""
+
+#. translators: %s: number of submissions received today.
+#: admin/views/dashboard.php:96
+#, php-format
+msgid "%s today"
+msgstr ""
+
+#: admin/views/dashboard.php:100
+msgid "Open"
+msgstr ""
+
+#. translators: %s: total number of submissions.
+#: admin/views/dashboard.php:104
+#, php-format
+msgid "Out of %s in total"
+msgstr ""
+
+#: admin/views/dashboard.php:108
+msgid "Nobody assigned"
+msgstr ""
+
+#: admin/views/dashboard.php:110
+msgid "Open entries without an owner"
+msgstr ""
+
+#: admin/views/dashboard.php:110
+msgid "Every open entry has an owner"
+msgstr ""
+
+#: admin/views/dashboard.php:113
+msgid "Waiting 3 days or more"
+msgstr ""
+
+#. translators: %s: number of entries moved to a won stage this week.
+#: admin/views/dashboard.php:117
+#, php-format
+msgid "Open, and nothing changed lately. %s won in the last 7 days."
+msgstr ""
+
+#: admin/views/dashboard.php:125
+msgid "Needs attention"
+msgstr ""
+
+#: admin/views/dashboard.php:126
+msgid "Open entries with no owner, or that nobody has touched for 3 days. Oldest first."
+msgstr ""
+
+#: admin/views/dashboard.php:129
+msgid "All caught up"
+msgstr ""
+
+#: admin/views/dashboard.php:129
+msgid "Every open entry has an owner and has been looked at recently."
+msgstr ""
+
+#. translators: %s: relative time, e.g. "3 days ago".
+#: admin/views/dashboard.php:139
+#, php-format
+msgid "last change %s"
+msgstr ""
+
+#: admin/views/dashboard.php:143
+msgid "No owner"
+msgstr ""
+
+#: admin/views/dashboard.php:145
+msgid "Waiting"
+msgstr ""
+
+#: admin/views/dashboard.php:155
+msgid "Recent activity"
+msgstr ""
+
+#: admin/views/dashboard.php:156
+msgid "The latest changes across all your entries."
+msgstr ""
+
+#: admin/views/dashboard.php:159
+msgid "No activity yet"
+msgstr ""
+
+#: admin/views/dashboard.php:159
+msgid "New submissions, stage moves, notes and replies show up here."
+msgstr ""
+
+#: admin/views/dashboard.php:185
+msgid "Where entries come from"
+msgstr ""
+
+#: admin/views/dashboard.php:186
+msgid "The form plugins EntryVault is listening to right now."
+msgstr ""
+
+#: admin/views/dashboard.php:187
+msgid "Check health"
+msgstr ""
+
+#: admin/views/dashboard.php:195
+msgid "No form plugin found yet"
+msgstr ""
+
+#: admin/views/dashboard.php:196
+msgid "Activate a form plugin, or import a CSV file."
+msgstr ""
+
+#: admin/views/dashboard.php:201
+msgid "Reports"
+msgstr ""
+
+#: admin/views/dashboard.php:202
+msgid "Pick a pipeline and a date range. The numbers below update straight away."
+msgstr ""
+
+#: admin/views/dashboard.php:207
+#: admin/views/import.php:83
+#: includes/class-submissions-list-table.php:57
+#: admin/assets/kanban/build/index.js:34
+msgid "Pipeline"
+msgstr ""
+
+#: admin/views/dashboard.php:211
+#: includes/class-submissions-admin.php:333
+msgid "From"
+msgstr ""
+
+#: admin/views/dashboard.php:215
+#: includes/class-submissions-admin.php:337
+msgid "To"
+msgstr ""
+
+#: admin/views/dashboard.php:218
+msgid "Refresh"
+msgstr ""
+
+#: admin/views/dashboard.php:226
+msgid "By stage"
+msgstr ""
+
+#: admin/views/dashboard.php:227
+msgid "How many entries sit in each stage."
+msgstr ""
+
+#: admin/views/dashboard.php:231
+msgid "Sources"
+msgstr ""
+
+#: admin/views/dashboard.php:232
+msgid "Which form plugin each entry came from."
+msgstr ""
+
+#: admin/views/dashboard.php:238
+msgid "Entries per day"
+msgstr ""
+
+#: admin/views/dashboard.php:239
+msgid "The last 30 days. Hover a bar for the date."
+msgstr ""
+
+#: admin/views/dashboard.php:245
+msgid "Funnel"
+msgstr ""
+
+#: admin/views/dashboard.php:246
+msgid "How many entries reach each stage, and the share that move on."
+msgstr ""
+
+#: admin/views/dashboard.php:250
+msgid "Time in each stage"
+msgstr ""
+
+#: admin/views/dashboard.php:251
+msgid "Average hours an entry spends in a stage before it moves."
+msgstr ""
+
+#: admin/views/dashboard.php:257
+msgid "By owner"
+msgstr ""
+
+#: admin/views/dashboard.php:258
+msgid "Click a column title to sort."
+msgstr ""
+
+#: admin/views/feedback.php:13
+#: admin/views/health.php:16
+#: admin/views/import.php:18
+#: admin/views/settings.php:15
+#: admin/views/upgrade.php:15
+msgid "You do not have permission to access this page."
+msgstr ""
+
+#: admin/views/feedback.php:23
+msgid "Help and feedback"
+msgstr ""
+
+#: admin/views/feedback.php:24
+msgid "Found a bug, have an idea, or just want to say hello? Send a note straight to the people who make EntryVault."
+msgstr ""
+
+#: admin/views/feedback.php:25
+msgid "Read the guides"
+msgstr ""
+
+#: admin/views/feedback.php:32
+msgid "Thanks! Your feedback was sent to the EntryVault author."
+msgstr ""
+
+#: admin/views/feedback.php:36
+msgid "You’ve sent several messages recently. Please try again in a little while."
+msgstr ""
+
+#: admin/views/feedback.php:40
+msgid "Sorry, your feedback could not be sent. Please check your message and your site’s email configuration, then try again."
+msgstr ""
+
+#: admin/views/feedback.php:50
+msgid "Website"
+msgstr ""
+
+#: admin/views/feedback.php:56
+msgid "What is it about?"
+msgstr ""
+
+#: admin/views/feedback.php:66
+#: includes/class-submissions-list-table.php:56
+#: admin/assets/kanban/build/index.js:26
+msgid "Message"
+msgstr ""
+
+#: admin/views/feedback.php:72
+msgid "Your email (optional, so we can reply)"
+msgstr ""
+
+#: admin/views/feedback.php:79
+msgid "Site details"
+msgstr ""
+
+#: admin/views/feedback.php:83
+msgid "Include basic site details to help us find the problem"
+msgstr ""
+
+#: admin/views/feedback.php:86
+msgid "Sends: WordPress version, PHP version, EntryVault version, active theme name and your site URL. No personal data."
+msgstr ""
+
+#: admin/views/feedback.php:93
+#: admin/assets/kanban/build/index.js:26
+msgid "Send"
+msgstr ""
+
+#: admin/views/feedback.php:94
+msgid "Your message goes out through your site’s own email."
+msgstr ""
+
+#: admin/views/health.php:31
+#: includes/class-admin-ui.php:28
+#: includes/class-plugin.php:143
+msgid "Health"
+msgstr ""
+
+#: admin/views/health.php:32
+msgid "A quick check that EntryVault is set up right and is picking up your forms."
+msgstr ""
+
+#: admin/views/health.php:35
+msgid "Check again"
+msgstr ""
+
+#: admin/views/import.php:36
+#: includes/class-admin-ui.php:27
+#: includes/class-plugin.php:142
+msgid "Import"
+msgstr ""
+
+#: admin/views/import.php:37
+msgid "Bring in entries from a spreadsheet. Save it as a CSV file first, with column names in the first row."
+msgstr ""
+
+#: admin/views/import.php:41
+msgid "Choose your file"
+msgstr ""
+
+#: admin/views/import.php:42
+msgid "The file is read in your browser first, so you can check it before anything is saved."
+msgstr ""
+
+#: admin/views/import.php:44
+msgid "CSV file"
+msgstr ""
+
+#: admin/views/import.php:47
+msgid "or"
+msgstr ""
+
+#: admin/views/import.php:48
+msgid "Paste the CSV text"
+msgstr ""
+
+#: admin/views/import.php:54
+msgid "Preview"
+msgstr ""
+
+#: admin/views/import.php:62
+msgid "Match the columns"
+msgstr ""
+
+#: admin/views/import.php:63
+msgid "Tell EntryVault what each column holds. One column must be the email address."
+msgstr ""
+
+#: admin/views/import.php:68
+msgid "Column"
+msgstr ""
+
+#: admin/views/import.php:69
+msgid "First value"
+msgstr ""
+
+#: admin/views/import.php:70
+msgid "Use as"
+msgstr ""
+
+#: admin/views/import.php:79
+msgid "Where they go"
+msgstr ""
+
+#: admin/views/import.php:80
+msgid "Pick the pipeline and stage for the new entries. Try a test run first: it checks the file and saves nothing."
+msgstr ""
+
+#: admin/views/import.php:85
+msgid "Use the default pipeline"
+msgstr ""
+
+#: admin/views/import.php:91
+#: includes/class-frontend.php:503
+#: includes/class-submissions-list-table.php:58
+#: admin/assets/kanban/build/index.js:5
+#: blocks/submissions-table/index.js:26
+msgid "Stage"
+msgstr ""
+
+#: admin/views/import.php:93
+#: includes/class-plugin.php:317
+msgid "First stage of the pipeline"
+msgstr ""
+
+#: admin/views/import.php:100
+msgid "Test run only: check the file but do not save anything"
+msgstr ""
+
+#: admin/views/import.php:113
+msgid "Run import"
+msgstr ""
+
+#: admin/views/kanban.php:5
+#: includes/class-admin-ui.php:23
+msgid "Board"
+msgstr ""
+
+#: admin/views/kanban.php:6
+msgid "Every form submission as a card. Drag a card to move it to the next stage, or open it to reply, add notes and tags."
+msgstr ""
+
+#: admin/views/kanban.php:14
+#: admin/assets/kanban/build/index.js:26
+msgid "Loading the board…"
+msgstr ""
+
+#: admin/views/kanban.php:16
+msgid "If this message stays, the board files are missing. Run"
+msgstr ""
+
+#: admin/views/kanban.php:18
+msgid "in the plugin folder."
+msgstr ""
+
+#: admin/views/settings.php:49
+#: includes/class-admin-ui.php:107
+#: includes/class-plugin.php:77
+#: includes/class-plugin.php:144
+msgid "Settings"
+msgstr ""
+
+#: admin/views/settings.php:50
+msgid "How EntryVault sends replies, who can own entries, and what happens to your data."
+msgstr ""
+
+#: admin/views/settings.php:56
+msgid "General"
+msgstr ""
+
+#: admin/views/settings.php:57
+msgid "Owners"
+msgstr ""
+
+#: admin/views/settings.php:75
+msgid "Default pipeline"
+msgstr ""
+
+#: admin/views/settings.php:78
+msgid "None"
+msgstr ""
+
+#: admin/views/settings.php:80
+msgid "New entries land here unless something else sends them to another pipeline."
+msgstr ""
+
+#: admin/views/settings.php:84
+msgid "Send replies as"
+msgstr ""
+
+#: admin/views/settings.php:92
+msgid "The name and address your replies come from. Leave blank to use the site name and admin address. Without this, WordPress sends as \"WordPress\", so someone who wrote to your business gets a reply from a stranger."
+msgstr ""
+
+#: admin/views/settings.php:107
+msgid "Reply address domain"
+msgstr ""
+
+#: admin/views/settings.php:111
+msgid "Optional. The domain used in the reply-to address of emails you send, so answers come back to the right entry. Leave blank to use this site's domain."
+msgstr ""
+
+#: admin/views/settings.php:116
+msgid "Show entries on a page"
+msgstr ""
+
+#: admin/views/settings.php:131
+msgid "No pipelines yet."
+msgstr ""
+
+#: admin/views/settings.php:147
+msgid "Paste one of these into a page to show that pipeline's submissions. Anyone who can open the page can read the table, so treat the token as a password. By default the table shows the date, name and stage, never the email address. A submission without a name shows as \"(no name)\" rather than its address. Add columns=\"submitted_at,name,stage,email\" only if you really want addresses on a public page. The owner and tags columns are public too once you add them, so leave out internal tags. The Submissions Table block uses the same defaults. If EntryVault is ever deactivated, WordPress prints an unknown shortcode as plain text, token included; the block does not, so prefer the block on public pages."
+msgstr ""
+
+#: admin/views/settings.php:153
+msgid "Spam"
+msgstr ""
+
+#: admin/views/settings.php:157
+msgid "Leave out entries your form plugin marked as spam"
+msgstr ""
+
+#: admin/views/settings.php:159
+msgid "On by default. Some form plugins save spam and still pass it on (Gravity Forms, Fluent Forms, Forminator, Formidable, Ninja Forms with Akismet, Everest Forms, WS Form, Jetpack). With this on, those never reach your board. Spam stays in the form plugin, so nothing is lost. Untick to bring spam in too."
+msgstr ""
+
+#: admin/views/settings.php:163
+msgid "Data"
+msgstr ""
+
+#: admin/views/settings.php:168
+msgid "Delete all EntryVault data when the plugin is deleted"
+msgstr ""
+
+#: admin/views/settings.php:170
+msgid "Off by default. Your submissions, tags and notes are kept if you deactivate or delete the plugin, or let a Pro licence lapse. Tick this only if deleting the plugin should also remove the data."
+msgstr ""
+
+#: admin/views/settings.php:175
+#: admin/views/settings.php:204
+msgid "Save changes"
+msgstr ""
+
+#: admin/views/settings.php:186
+msgid "Who can own entries"
+msgstr ""
+
+#: admin/views/settings.php:189
+msgid "No roles are available."
+msgstr ""
+
+#: admin/views/settings.php:198
+msgid "People with a ticked role can be made the owner of an entry. People who can edit posts are always included."
+msgstr ""
+
+#: admin/views/tags.php:14
+#: includes/class-admin-ui.php:26
+#: includes/class-frontend.php:505
+#: includes/class-plugin.php:141
+#: includes/class-submissions-list-table.php:62
+#: admin/assets/kanban/build/index.js:5
+msgid "Tags"
+msgstr ""
+
+#: admin/views/tags.php:15
+msgid "Labels you can put on any entry, like \"Hot lead\" or \"Wholesale\". Use them to filter the board and the Submissions list."
+msgstr ""
+
+#: admin/views/tags.php:21
+msgid "Your tags"
+msgstr ""
+
+#: admin/views/tags.php:22
+msgid "Edit a tag to rename it or change its colour. Entries keep their tags."
+msgstr ""
+
+#: admin/views/tags.php:27
+#: admin/views/tags.php:45
+#: includes/class-frontend.php:501
+#: blocks/submissions-table/index.js:23
+msgid "Name"
+msgstr ""
+
+#: admin/views/tags.php:28
+msgid "Short name"
+msgstr ""
+
+#: admin/views/tags.php:29
+#: admin/views/tags.php:48
+msgid "Colour"
+msgstr ""
+
+#: admin/views/tags.php:30
+msgid "Actions"
+msgstr ""
+
+#: admin/views/tags.php:39
+#: includes/class-plugin.php:270
+msgid "Add a tag"
+msgstr ""
+
+#: admin/views/tags.php:40
+msgid "Pick a name and a colour. You can also create tags from an entry on the board."
+msgstr ""
+
+#: admin/views/tags.php:53
+msgid "Save tag"
+msgstr ""
+
+#: admin/views/tags.php:54
+#: admin/assets/kanban/build/index.js:5
+#: admin/assets/kanban/build/index.js:26
+msgid "Cancel"
+msgstr ""
+
+#: admin/views/upgrade.php:29
+msgid "Automation engine"
+msgstr ""
+
+#: admin/views/upgrade.php:29
+msgid "Set up rules once: when a form comes in, a stage changes, a tag is added or someone replies, send an email, move the entry, tag it, assign it or notify another app."
+msgstr ""
+
+#: admin/views/upgrade.php:30
+msgid "Integrations"
+msgstr ""
+
+#: admin/views/upgrade.php:30
+msgid "Send people to Mailchimp or MailerLite, notify other apps safely, and tag entries by form."
+msgstr ""
+
+#: admin/views/upgrade.php:31
+msgid "Email reply tracking"
+msgstr ""
+
+#: admin/views/upgrade.php:31
+msgid "Connect a mailbox and replies to your emails are filed under the right entry, so the whole conversation sits in one place."
+msgstr ""
+
+#: admin/views/upgrade.php:32
+msgid "Multiple pipelines"
+msgstr ""
+
+#: admin/views/upgrade.php:32
+msgid "Run separate Kanban boards for different teams or workflows."
+msgstr ""
+
+#: admin/views/upgrade.php:33
+msgid "Historical backfill"
+msgstr ""
+
+#: admin/views/upgrade.php:33
+msgid "Pull past form entries into EntryVault in one pass."
+msgstr ""
+
+#: admin/views/upgrade.php:34
+msgid "Public Kanban board"
+msgstr ""
+
+#: admin/views/upgrade.php:34
+msgid "Show a view-only board on any page, behind a private link. Plus approvals, quick edits and exports emailed on a schedule."
+msgstr ""
+
+#: admin/views/upgrade.php:39
+msgid "EntryVault Pro"
+msgstr ""
+
+#: admin/views/upgrade.php:40
+msgid "You are using the free EntryVault: a complete board for one pipeline. Pro adds the rules, connections, email replies and extra pipelines a growing team needs."
+msgstr ""
+
+#: admin/views/upgrade.php:41
+msgid "See Pro plans"
+msgstr ""
+
+#: admin/views/upgrade.php:45
+msgid "Upgrading keeps everything."
+msgstr ""
+
+#: admin/views/upgrade.php:46
+msgid "Install Pro over this version. It is the same plugin with the same database, so your pipelines, entries, tags and settings carry over untouched."
+msgstr ""
+
+#: admin/views/upgrade.php:59
+msgid "Already bought Pro?"
+msgstr ""
+
+#: admin/views/upgrade.php:61
+msgid "Download the Pro zip"
+msgstr ""
+
+#: admin/views/upgrade.php:61
+msgid "From your account on jnkplugins.com."
+msgstr ""
+
+#: admin/views/upgrade.php:62
+msgid "Upload it over this one"
+msgstr ""
+
+#: admin/views/upgrade.php:62
+msgid "Plugins, Add New, Upload Plugin. When WordPress asks, choose \"Replace current with uploaded\". It shows the same name and version for both copies; that is expected."
+msgstr ""
+
+#: admin/views/upgrade.php:63
+msgid "Enter your licence key"
+msgstr ""
+
+#: admin/views/upgrade.php:63
+msgid "At the bottom of EntryVault Settings."
+msgstr ""
+
+#: admin/views/upgrade.php:66
+msgid "The Pro zip is a few megabytes. If your host refuses the upload, unzip it and copy the entryvault folder over the existing one in wp-content/plugins with SFTP or your host's file manager."
+msgstr ""
+
+#: includes/class-admin-ui.php:25
+#: includes/class-plugin.php:140
+#: includes/class-submissions-admin.php:214
+msgid "Submissions"
+msgstr ""
+
+#: includes/class-admin-ui.php:61
+msgid "Locked"
+msgstr ""
+
+#: includes/class-admin-ui.php:88
+msgid "EntryVault sections"
+msgstr ""
+
+#: includes/class-admin-ui.php:94
+msgid "More tools"
+msgstr ""
+
+#: includes/class-admin-ui.php:104
+msgid "Upgrade"
+msgstr ""
+
+#: includes/class-admin-ui.php:106
+msgid "Help"
+msgstr ""
+
+#: includes/class-dates.php:59
+#: admin/assets/kanban/build/index.js:2
+#: admin/assets/kanban/build/index.js:20
+msgid "just now"
+msgstr ""
+
+#. translators: %s: human-readable time difference, e.g. "3 hours".
+#: includes/class-dates.php:63
+#, php-format
+msgid "in %s"
+msgstr ""
+
+#. translators: %s: human-readable time difference, e.g. "3 hours".
+#: includes/class-dates.php:65
+#, php-format
+msgid "%s ago"
+msgstr ""
+
+#: includes/class-feedback.php:41
+msgid "You do not have permission to do this."
+msgstr ""
+
+#: includes/class-feedback.php:115
+msgid "Bug report"
+msgstr ""
+
+#: includes/class-feedback.php:116
+msgid "Feature request"
+msgstr ""
+
+#: includes/class-feedback.php:117
+msgid "Question"
+msgstr ""
+
+#: includes/class-feedback.php:118
+msgid "Praise"
+msgstr ""
+
+#: includes/class-feedback.php:119
+msgid "Other"
+msgstr ""
+
+#: includes/class-field-values.php:39
+#: includes/class-field-values.php:101
+#: includes/class-field-values.php:166
+msgid "Yes"
+msgstr ""
+
+#: includes/class-field-values.php:39
+msgid "No"
+msgstr ""
+
+#: includes/class-frontend.php:83
+msgid "No pipeline specified."
+msgstr ""
+
+#: includes/class-frontend.php:88
+#: includes/class-rest-public.php:123
+msgid "Pipeline not found."
+msgstr ""
+
+#: includes/class-frontend.php:98
+#: includes/class-rest-public.php:107
+msgid "Access required."
+msgstr ""
+
+#: includes/class-frontend.php:102
+msgid "Only editors see this note: visitors cannot read this table because the access_token is missing or does not match this pipeline. Copy the ready-made shortcode from EntryVault > Settings > General."
+msgstr ""
+
+#: includes/class-frontend.php:450
+#: includes/class-frontend.php:453
+msgid "(no name)"
+msgstr ""
+
+#: includes/class-frontend.php:452
+msgid "(email hidden)"
+msgstr ""
+
+#: includes/class-frontend.php:498
+#: blocks/submissions-table/index.js:30
+msgid "Submitted"
+msgstr ""
+
+#: includes/class-frontend.php:499
+#: includes/class-submissions-list-table.php:65
+#: blocks/submissions-table/index.js:29
+msgid "Created"
+msgstr ""
+
+#: includes/class-frontend.php:500
+#: includes/class-plugin.php:325
+#: includes/class-privacy.php:227
+#: includes/class-submissions-list-table.php:51
+#: blocks/submissions-table/index.js:24
+msgid "Title"
+msgstr ""
+
+#: includes/class-frontend.php:502
+#: includes/class-plugin.php:326
+#: includes/class-privacy.php:228
+#: includes/class-submissions-list-table.php:52
+#: admin/assets/kanban/build/index.js:5
+msgid "Email"
+msgstr ""
+
+#: includes/class-frontend.php:504
+#: includes/class-submissions-list-table.php:63
+#: includes/class-submissions-list-table.php:128
+#: admin/assets/kanban/build/index.js:5
+#: admin/assets/kanban/build/index.js:34
+msgid "Owner"
+msgstr ""
+
+#: includes/class-plugin.php:84
+#: includes/class-plugin.php:166
+#: includes/class-plugin.php:167
+msgid "Upgrade to Pro"
+msgstr ""
+
+#: includes/class-plugin.php:98
+msgid "Docs"
+msgstr ""
+
+#: includes/class-plugin.php:103
+msgid "Support"
+msgstr ""
+
+#: includes/class-plugin.php:138
+msgid "Kanban"
+msgstr ""
+
+#: includes/class-plugin.php:139
+msgid "Dashboard"
+msgstr ""
+
+#: includes/class-plugin.php:145
+msgid "Feedback"
+msgstr ""
+
+#: includes/class-plugin.php:213
+#: includes/class-plugin.php:266
+msgid "Saved."
+msgstr ""
+
+#: includes/class-plugin.php:214
+msgid "Save failed."
+msgstr ""
+
+#: includes/class-plugin.php:264
+msgid "Edit"
+msgstr ""
+
+#: includes/class-plugin.php:265
+#: includes/class-submissions-list-table.php:94
+msgid "Delete"
+msgstr ""
+
+#: includes/class-plugin.php:267
+msgid "Error."
+msgstr ""
+
+#: includes/class-plugin.php:268
+msgid "Delete this tag? It comes off every entry that has it."
+msgstr ""
+
+#: includes/class-plugin.php:269
+msgid "No tags yet. Add your first one with the form next to this list."
+msgstr ""
+
+#: includes/class-plugin.php:271
+msgid "Edit tag"
+msgstr ""
+
+#: includes/class-plugin.php:318
+msgid "Please choose a file or paste CSV first."
+msgstr ""
+
+#: includes/class-plugin.php:319
+msgid "Loading preview…"
+msgstr ""
+
+#: includes/class-plugin.php:320
+msgid "Preview failed."
+msgstr ""
+
+#. translators: %s: number of rows loaded.
+#: includes/class-plugin.php:322
+#, php-format
+msgid "Loaded %s rows."
+msgstr ""
+
+#: includes/class-plugin.php:323
+msgid "Network error."
+msgstr ""
+
+#: includes/class-plugin.php:324
+msgid "Ignore"
+msgstr ""
+
+#: includes/class-plugin.php:327
+#: includes/class-privacy.php:226
+#: includes/class-submissions-list-table.php:64
+#: admin/assets/kanban/build/index.js:5
+msgid "Source"
+msgstr ""
+
+#: includes/class-plugin.php:328
+msgid "Field"
+msgstr ""
+
+#: includes/class-plugin.php:329
+msgid "You must map one column to Email."
+msgstr ""
+
+#: includes/class-plugin.php:330
+msgid "Running…"
+msgstr ""
+
+#: includes/class-plugin.php:331
+msgid "Import failed."
+msgstr ""
+
+#: includes/class-plugin.php:332
+msgid "Done."
+msgstr ""
+
+#: includes/class-plugin.php:333
+msgid "Results"
+msgstr ""
+
+#: includes/class-plugin.php:334
+msgid "Test run: nothing was saved."
+msgstr ""
+
+#: includes/class-plugin.php:335
+msgid "Imported:"
+msgstr ""
+
+#: includes/class-plugin.php:336
+msgid "Would import:"
+msgstr ""
+
+#. translators: %s: comma-separated column names.
+#: includes/class-plugin.php:338
+#, php-format
+msgid "Only one column can be the title, but these are all set to Title: %s. Set the others to Field so their values are kept."
+msgstr ""
+
+#: includes/class-plugin.php:339
+msgid "Already present:"
+msgstr ""
+
+#: includes/class-plugin.php:340
+msgid "Rows already present were recognised from an earlier import and left untouched, so nothing was duplicated."
+msgstr ""
+
+#: includes/class-plugin.php:341
+msgid "Skipped:"
+msgstr ""
+
+#: includes/class-plugin.php:342
+msgid "Errors"
+msgstr ""
+
+#: includes/class-plugin.php:343
+msgid "Row"
+msgstr ""
+
+#: includes/class-privacy.php:36
+#: includes/class-privacy.php:46
+msgid "EntryVault form entries"
+msgstr ""
+
+#: includes/class-privacy.php:59
+msgid "When you send a form on this site, a copy of what you entered (including your name and email address if the form asks for them) is kept so our team can follow up. We keep it until it is no longer needed, then delete it. You can ask for a copy of it, or for it to be deleted, by contacting us."
+msgstr ""
+
+#: includes/class-privacy.php:89
+msgid "Emails"
+msgstr ""
+
+#. translators: 1: entry id, 2: reason.
+#: includes/class-privacy.php:129
+#, php-format
+msgid "EntryVault entry #%1$d was kept: %2$s"
+msgstr ""
+
+#: includes/class-privacy.php:225
+#: admin/assets/kanban/build/index.js:5
+msgid "Received"
+msgstr ""
+
+#: includes/class-privacy.php:254
+msgid "Note"
+msgstr ""
+
+#: includes/class-privacy.php:270
+msgid "Form entries"
+msgstr ""
+
+#: includes/class-privacy.php:271
+msgid "Copies of forms you sent on this site, kept by EntryVault."
+msgstr ""
+
+#: includes/class-privacy.php:279
+msgid "Email sent"
+msgstr ""
+
+#: includes/class-privacy.php:279
+msgid "Email received"
+msgstr ""
+
+#: includes/class-privacy.php:282
+msgid "Email text"
+msgstr ""
+
+#. translators: %s: column name.
+#: includes/class-rest-public.php:140
+#, php-format
+msgid "Unknown column: %s"
+msgstr ""
+
+#: includes/class-rest-public.php:147
+msgid "Column not available without authentication."
+msgstr ""
+
+#: includes/class-submissions-admin.php:215
+msgid "Every entry in one list. Filter it, tick rows to change many at once, or export what you see to a spreadsheet."
+msgstr ""
+
+#: includes/class-submissions-admin.php:216
+msgid "Export CSV"
+msgstr ""
+
+#: includes/class-submissions-admin.php:231
+msgid "All"
+msgstr ""
+
+#: includes/class-submissions-admin.php:236
+#: includes/class-timeline.php:93
+msgid "Archived"
+msgstr ""
+
+#: includes/class-submissions-admin.php:255
+msgid "All pipelines"
+msgstr ""
+
+#: includes/class-submissions-admin.php:263
+msgid "All stages"
+msgstr ""
+
+#: includes/class-submissions-admin.php:286
+msgid "All sources"
+msgstr ""
+
+#: includes/class-submissions-admin.php:305
+msgid "All tags"
+msgstr ""
+
+#: includes/class-submissions-admin.php:314
+msgid "All owners"
+msgstr ""
+
+#: includes/class-submissions-admin.php:316
+#: includes/class-timeline.php:90
+#: admin/assets/kanban/build/index.js:5
+#: admin/assets/kanban/build/index.js:20
+#: admin/assets/kanban/build/index.js:34
+msgid "Unassigned"
+msgstr ""
+
+#: includes/class-submissions-admin.php:340
+msgid "Filter"
+msgstr ""
+
+#: includes/class-submissions-admin.php:348
+#: public/templates/submissions-table.php:54
+#: public/templates/submissions-table.php:63
+#: admin/assets/kanban/build/index.js:34
+msgid "Search"
+msgstr ""
+
+#. translators: 1: opening link tag, 2: closing link tag.
+#: includes/class-submissions-admin.php:362
+#, php-format
+msgid "Tagging, assigning and replying to these by hand? %1$sSee what Pro automates%2$s."
+msgstr ""
+
+#. translators: %d: count
+#: includes/class-submissions-admin.php:413
+#, php-format
+msgid "Deleted %d submission."
+msgid_plural "Deleted %d submissions."
+msgstr[0] ""
+msgstr[1] ""
+
+#. translators: 1: moved 2: skipped
+#: includes/class-submissions-admin.php:421
+#, php-format
+msgid "Moved %1$d submission(s); %2$d skipped."
+msgstr ""
+
+#. translators: %d: count
+#: includes/class-submissions-admin.php:431
+#, php-format
+msgid "Assigned owner on %d submission."
+msgid_plural "Assigned owner on %d submissions."
+msgstr[0] ""
+msgstr[1] ""
+
+#. translators: %d: count
+#: includes/class-submissions-admin.php:436
+#, php-format
+msgid "Cleared owner on %d submission."
+msgid_plural "Cleared owner on %d submissions."
+msgstr[0] ""
+msgstr[1] ""
+
+#. translators: %d: count
+#: includes/class-submissions-admin.php:444
+#, php-format
+msgid "Tagged %d submission."
+msgid_plural "Tagged %d submissions."
+msgstr[0] ""
+msgstr[1] ""
+
+#. translators: %d: count
+#: includes/class-submissions-admin.php:451
+#, php-format
+msgid "Archived %d submission."
+msgid_plural "Archived %d submissions."
+msgstr[0] ""
+msgstr[1] ""
+
+#. translators: %d: count
+#: includes/class-submissions-admin.php:458
+#, php-format
+msgid "Restored %d submission."
+msgid_plural "Restored %d submissions."
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/class-submissions-admin.php:487
+msgid "Forbidden."
+msgstr ""
+
+#. translators: %s: form field label that clashes with a fixed column, e.g. "Email".
+#: includes/class-submissions-admin.php:594
+#, php-format
+msgid "%s (form field)"
+msgstr ""
+
+#: includes/class-submissions-list-table.php:50
+msgid "ID"
+msgstr ""
+
+#: includes/class-submissions-list-table.php:66
+msgid "Updated"
+msgstr ""
+
+#. translators: 1: pipeline name, 2: stage name.
+#: includes/class-submissions-list-table.php:99
+#, php-format
+msgid "Move to: %1$s / %2$s"
+msgstr ""
+
+#. translators: %s: stage name.
+#: includes/class-submissions-list-table.php:101
+#, php-format
+msgid "Move to: %s"
+msgstr ""
+
+#: includes/class-submissions-list-table.php:104
+msgid "Assign owner"
+msgstr ""
+
+#: includes/class-submissions-list-table.php:105
+msgid "Add tag"
+msgstr ""
+
+#: includes/class-submissions-list-table.php:106
+msgid "Archive"
+msgstr ""
+
+#: includes/class-submissions-list-table.php:107
+msgid "Unarchive"
+msgstr ""
+
+#: includes/class-submissions-list-table.php:130
+msgid "(unassign)"
+msgstr ""
+
+#: includes/class-submissions-list-table.php:139
+msgid "Tag"
+msgstr ""
+
+#: includes/class-submissions-list-table.php:141
+msgid "— Select tag —"
+msgstr ""
+
+#: includes/class-submissions-list-table.php:327
+msgid "No submissions match these filters."
+msgstr ""
+
+#: includes/class-submissions-list-table.php:331
+msgid "No submissions yet."
+msgstr ""
+
+#. translators: 1: opening link tag to the import screen, 2: closing link tag.
+#: includes/class-submissions-list-table.php:334
+#, php-format
+msgid "Submissions from every supported form plugin land here automatically. You can also %1$simport a CSV%2$s to bring existing ones in."
+msgstr ""
+
+#. translators: 1: previous stage name, 2: new stage name.
+#: includes/class-timeline.php:44
+#: admin/assets/kanban/build/index.js:7
+#, php-format,js-format
+msgid "Moved from %1$s to %2$s"
+msgstr ""
+
+#. translators: 1: previous pipeline name, 2: new pipeline name.
+#: includes/class-timeline.php:47
+#, php-format
+msgid "(pipeline %1$s → %2$s)"
+msgstr ""
+
+#: includes/class-timeline.php:52
+msgid "Note deleted"
+msgstr ""
+
+#. translators: 1: event name, 2: source name.
+#: includes/class-timeline.php:59
+#: admin/assets/kanban/build/index.js:9
+#, php-format,js-format
+msgid "%1$s from %2$s"
+msgstr ""
+
+#. translators: 1: recipient, 2: subject.
+#: includes/class-timeline.php:64
+#: admin/assets/kanban/build/index.js:11
+#, php-format,js-format
+msgid "Email to %1$s: %2$s"
+msgstr ""
+
+#. translators: %s: tag name.
+#: includes/class-timeline.php:74
+#: admin/assets/kanban/build/index.js:14
+#, php-format,js-format
+msgid "Tagged %s"
+msgstr ""
+
+#. translators: %s: tag name.
+#: includes/class-timeline.php:76
+#: admin/assets/kanban/build/index.js:16
+#, php-format,js-format
+msgid "Removed tag %s"
+msgstr ""
+
+#. translators: %s: user display name.
+#: includes/class-timeline.php:80
+#: admin/assets/kanban/build/index.js:18
+#, php-format,js-format
+msgid "Assigned to %s"
+msgstr ""
+
+#. translators: %s: user display name.
+#: includes/class-timeline.php:83
+#, php-format
+msgid "(was %s)"
+msgstr ""
+
+#. translators: %s: user display name.
+#: includes/class-timeline.php:89
+#: admin/assets/kanban/build/index.js:20
+#, php-format,js-format
+msgid "Unassigned from %s"
+msgstr ""
+
+#: includes/class-timeline.php:96
+msgid "Restored from the archive"
+msgstr ""
+
+#. translators: %d: stage id.
+#: includes/class-timeline.php:123
+#, php-format
+msgid "a deleted stage (#%d)"
+msgstr ""
+
+#: includes/class-timeline.php:140
+msgid "nobody"
+msgstr ""
+
+#: admin/assets/kanban/build/index.js:5
+msgid "Status"
+msgstr ""
+
+#: admin/assets/kanban/build/index.js:5
+msgid "Close"
+msgstr ""
+
+#: public/templates/submissions-table.php:59
+msgid "Search…"
+msgstr ""
+
+#: public/templates/submissions-table.php:94
+msgid "No submissions found."
+msgstr ""
+
+#: public/templates/submissions-table.php:122
+msgid "Pagination"
+msgstr ""
+
+#: public/templates/submissions-table.php:143
+msgid "« Previous"
+msgstr ""
+
+#. translators: 1: current page, 2: total pages
+#: public/templates/submissions-table.php:151
+#, php-format
+msgid "Page %1$d of %2$d"
+msgstr ""
+
+#: public/templates/submissions-table.php:160
+msgid "Next »"
+msgstr ""
+
+#. translators: %s: owner name, or #user id when the user no longer exists.
+#: admin/assets/kanban/build/index.js:2
+#, js-format
+msgid "Owner: %s"
+msgstr ""
+
+#: admin/assets/kanban/build/index.js:2
+msgid "Unassigned: no owner set"
+msgstr ""
+
+#. translators: %s: form plugin name.
+#: admin/assets/kanban/build/index.js:2
+#, js-format
+msgid "Source: %s"
+msgstr ""
+
+#: admin/assets/kanban/build/index.js:2
+msgctxt "badge on a card nobody has seen yet"
+msgid "New"
+msgstr ""
+
+#. translators: %s: date and time the submission arrived.
+#: admin/assets/kanban/build/index.js:2
+#, js-format
+msgid "Arrived %s"
+msgstr ""
+
+#. translators: %d: number of minutes, shown in a short card corner.
+#: admin/assets/kanban/build/index.js:3
+#, js-format
+msgid "%dm"
+msgstr ""
+
+#. translators: %d: number of hours, shown in a short card corner.
+#: admin/assets/kanban/build/index.js:4
+#, js-format
+msgid "%dh"
+msgstr ""
+
+#. translators: %d: number of days, shown in a short card corner.
+#: admin/assets/kanban/build/index.js:5
+#, js-format
+msgid "%dd"
+msgstr ""
+
+#: admin/assets/kanban/build/index.js:5
+msgid "Open details"
+msgstr ""
+
+#. translators: %s: submission title.
+#: admin/assets/kanban/build/index.js:5
+#, js-format
+msgid "Open %s"
+msgstr ""
+
+#: admin/assets/kanban/build/index.js:5
+msgid "this submission"
+msgstr ""
+
+#: admin/assets/kanban/build/index.js:5
+msgctxt "button: open a card's details"
+msgid "Open"
+msgstr ""
+
+#: admin/assets/kanban/build/index.js:5
+msgid "More cards than this stage's limit"
+msgstr ""
+
+#: admin/assets/kanban/build/index.js:5
+msgid "No submissions"
+msgstr ""
+
+#: admin/assets/kanban/build/index.js:5
+msgid "Could not save the note."
+msgstr ""
+
+#: admin/assets/kanban/build/index.js:5
+msgid "Could not load this submission."
+msgstr ""
+
+#: admin/assets/kanban/build/index.js:5
+msgid "Submission details"
+msgstr ""
+
+#. translators: %d: submission id.
+#: admin/assets/kanban/build/index.js:5
+#, js-format
+msgid "Submission #%d"
+msgstr ""
+
+#: admin/assets/kanban/build/index.js:5
+msgid "Details"
+msgstr ""
+
+#: admin/assets/kanban/build/index.js:5
+msgid "Timeline"
+msgstr ""
+
+#: admin/assets/kanban/build/index.js:5
+msgid "Notes"
+msgstr ""
+
+#: admin/assets/kanban/build/index.js:5
+msgid "Could not add the tag."
+msgstr ""
+
+#: admin/assets/kanban/build/index.js:5
+msgid "Could not remove the tag."
+msgstr ""
+
+#: admin/assets/kanban/build/index.js:5
+msgid "Could not create the tag."
+msgstr ""
+
+#: admin/assets/kanban/build/index.js:5
+msgid "Could not delete the note."
+msgstr ""
+
+#: admin/assets/kanban/build/index.js:5
+msgid "Loading…"
+msgstr ""
+
+#: admin/assets/kanban/build/index.js:5
+msgid "Click to edit"
+msgstr ""
+
+#. translators: %s: form id.
+#: admin/assets/kanban/build/index.js:5
+#, js-format
+msgid "form %s"
+msgstr ""
+
+#: admin/assets/kanban/build/index.js:5
+msgid "What they sent"
+msgstr ""
+
+#: admin/assets/kanban/build/index.js:5
+msgid "This field is no longer on the form"
+msgstr ""
+
+#: admin/assets/kanban/build/index.js:5
+msgid "old field"
+msgstr ""
+
+#: admin/assets/kanban/build/index.js:5
+msgid "Remove tag"
+msgstr ""
+
+#. translators: %s: tag name.
+#: admin/assets/kanban/build/index.js:5
+#, js-format
+msgid "Remove tag %s"
+msgstr ""
+
+#: admin/assets/kanban/build/index.js:5
+msgid "New tag name"
+msgstr ""
+
+#: admin/assets/kanban/build/index.js:5
+msgid "Add"
+msgstr ""
+
+#: admin/assets/kanban/build/index.js:5
+msgid "Add a tag to this submission"
+msgstr ""
+
+#: admin/assets/kanban/build/index.js:5
+msgid "+ Add tag…"
+msgstr ""
+
+#: admin/assets/kanban/build/index.js:5
+msgid "+ Create new tag…"
+msgstr ""
+
+#: admin/assets/kanban/build/index.js:7
+msgid "Moved to a new stage"
+msgstr ""
+
+#: admin/assets/kanban/build/index.js:7
+msgid "(empty note)"
+msgstr ""
+
+#: admin/assets/kanban/build/index.js:9
+msgid "created"
+msgstr ""
+
+#: admin/assets/kanban/build/index.js:12
+#, js-format
+msgid "Email to %s"
+msgstr ""
+
+#. translators: %d: user id.
+#: admin/assets/kanban/build/index.js:18
+#: admin/assets/kanban/build/index.js:20
+#, js-format
+msgid "User #%d"
+msgstr ""
+
+#: admin/assets/kanban/build/index.js:20
+msgid "No activity yet."
+msgstr ""
+
+#: admin/assets/kanban/build/index.js:20
+#, js-format
+msgid "Posting as %s"
+msgstr ""
+
+#: admin/assets/kanban/build/index.js:20
+msgid "Add a note for your team. The customer never sees it."
+msgstr ""
+
+#: admin/assets/kanban/build/index.js:20
+msgid "Tip: **bold**, *italic*, lists and links work."
+msgstr ""
+
+#: admin/assets/kanban/build/index.js:20
+#: admin/assets/kanban/build/index.js:26
+msgid "Saving…"
+msgstr ""
+
+#: admin/assets/kanban/build/index.js:20
+msgid "Add note"
+msgstr ""
+
+#: admin/assets/kanban/build/index.js:20
+msgid "No notes yet."
+msgstr ""
+
+#: admin/assets/kanban/build/index.js:20
+msgid "Unknown"
+msgstr ""
+
+#. translators: %d: number of minutes.
+#: admin/assets/kanban/build/index.js:22
+#, js-format
+msgid "%dm ago"
+msgstr ""
+
+#. translators: %d: number of hours.
+#: admin/assets/kanban/build/index.js:24
+#, js-format
+msgid "%dh ago"
+msgstr ""
+
+#. translators: %d: number of days.
+#: admin/assets/kanban/build/index.js:26
+#, js-format
+msgid "%dd ago"
+msgstr ""
+
+#: admin/assets/kanban/build/index.js:26
+msgid "Delete note"
+msgstr ""
+
+#: admin/assets/kanban/build/index.js:26
+msgid "[deleted]"
+msgstr ""
+
+#: admin/assets/kanban/build/index.js:26
+msgid "Reply…"
+msgstr ""
+
+#: admin/assets/kanban/build/index.js:26
+msgid "Post reply"
+msgstr ""
+
+#: admin/assets/kanban/build/index.js:26
+msgid "Reply"
+msgstr ""
+
+#: admin/assets/kanban/build/index.js:26
+msgctxt "email recipient"
+msgid "To"
+msgstr ""
+
+#: admin/assets/kanban/build/index.js:26
+msgid "Subject"
+msgstr ""
+
+#: admin/assets/kanban/build/index.js:26
+msgid "Sent."
+msgstr ""
+
+#: admin/assets/kanban/build/index.js:26
+msgid "Could not send the email."
+msgstr ""
+
+#: admin/assets/kanban/build/index.js:26
+msgid "Sending…"
+msgstr ""
+
+#: admin/assets/kanban/build/index.js:26
+msgid "Conversation"
+msgstr ""
+
+#: admin/assets/kanban/build/index.js:26
+msgid "No emails yet."
+msgstr ""
+
+#. translators: %s: sender address.
+#: admin/assets/kanban/build/index.js:26
+#, js-format
+msgid "From %s"
+msgstr ""
+
+#. translators: %s: recipient address.
+#: admin/assets/kanban/build/index.js:26
+#, js-format
+msgid "To %s"
+msgstr ""
+
+#: admin/assets/kanban/build/index.js:26
+msgid "(no subject)"
+msgstr ""
+
+#: admin/assets/kanban/build/index.js:26
+msgctxt "submission status"
+msgid "Open"
+msgstr ""
+
+#: admin/assets/kanban/build/index.js:26
+msgctxt "submission status"
+msgid "Archived"
+msgstr ""
+
+#: admin/assets/kanban/build/index.js:26
+msgctxt "submission status"
+msgid "Won"
+msgstr ""
+
+#: admin/assets/kanban/build/index.js:26
+msgctxt "submission status"
+msgid "Lost"
+msgstr ""
+
+#: admin/assets/kanban/build/index.js:26
+msgid "Failed to load board"
+msgstr ""
+
+#: admin/assets/kanban/build/index.js:26
+msgid "this card"
+msgstr ""
+
+#: admin/assets/kanban/build/index.js:26
+msgid "a stage"
+msgstr ""
+
+#: admin/assets/kanban/build/index.js:26
+msgid "To pick up a card, press space or enter. Use the arrow keys to move it, then press space or enter to drop it, or escape to cancel."
+msgstr ""
+
+#. translators: %s: card title.
+#: admin/assets/kanban/build/index.js:28
+#, js-format
+msgid "Picked up %s."
+msgstr ""
+
+#: admin/assets/kanban/build/index.js:29
+#, js-format
+msgid "%1$s is over %2$s."
+msgstr ""
+
+#: admin/assets/kanban/build/index.js:30
+#, js-format
+msgid "%s is not over a stage."
+msgstr ""
+
+#: admin/assets/kanban/build/index.js:31
+#, js-format
+msgid "%1$s was dropped in %2$s."
+msgstr ""
+
+#: admin/assets/kanban/build/index.js:32
+#, js-format
+msgid "%s was dropped."
+msgstr ""
+
+#. translators: %s: card title.
+#: admin/assets/kanban/build/index.js:34
+#, js-format
+msgid "Moving %s was cancelled."
+msgstr ""
+
+#: admin/assets/kanban/build/index.js:34
+msgid "Search name or email…"
+msgstr ""
+
+#. translators: %d: number of cards on the board.
+#: admin/assets/kanban/build/index.js:34
+#, js-format
+msgid "%d card"
+msgid_plural "%d cards"
+msgstr[0] ""
+msgstr[1] ""
+
+#: admin/assets/kanban/build/index.js:34
+msgid "Could not mark all cards as seen"
+msgstr ""
+
+#: admin/assets/kanban/build/index.js:34
+msgid "Clear the New badge from every card"
+msgstr ""
+
+#: admin/assets/kanban/build/index.js:34
+msgid "Mark all seen"
+msgstr ""
+
+#: admin/assets/kanban/build/index.js:34
+msgid "Show only cards owned by"
+msgstr ""
+
+#: admin/assets/kanban/build/index.js:34
+msgid "Clear"
+msgstr ""
+
+#: admin/assets/kanban/build/index.js:34
+msgid "The move failed, so the card went back."
+msgstr ""
+
+#: admin/assets/kanban/build/index.js:34
+msgid "Nothing here yet. That is expected."
+msgstr ""
+
+#: admin/assets/kanban/build/index.js:34
+msgid "EntryVault picks up submissions from the form plugins you already use. There is nothing to add to your forms: submit one of them once and it appears on this board within moments."
+msgstr ""
+
+#: admin/assets/kanban/build/index.js:34
+msgid "Check which form plugins were found"
+msgstr ""
+
+#: admin/assets/kanban/build/index.js:34
+msgid "No pipeline is set up yet. Deactivate and activate EntryVault once to create the default one."
+msgstr ""
+
+#: blocks/submissions-table/index.js:25
+msgid "Email (shown publicly)"
+msgstr ""
+
+#: blocks/submissions-table/index.js:27
+msgid "Owner (staff name, shown publicly)"
+msgstr ""
+
+#: blocks/submissions-table/index.js:28
+msgid "Tags (shown publicly)"
+msgstr ""
+
+#: blocks/submissions-table/index.js:70
+msgid "Submissions Table"
+msgstr ""
+
+#: blocks/submissions-table/index.js:72
+msgid "Pipeline slug"
+msgstr ""
+
+#: blocks/submissions-table/index.js:77
+msgid "Stage slug (optional)"
+msgstr ""
+
+#: blocks/submissions-table/index.js:82
+msgid "Access token (optional)"
+msgstr ""
+
+#: blocks/submissions-table/index.js:89
+msgid "Columns"
+msgstr ""
+
+#: blocks/submissions-table/index.js:103
+msgid "EntryVault Submissions Table"
+msgstr ""
+
+#: blocks/submissions-table/index.js:108
+msgid "pipeline: "
+msgstr ""
+
+#: blocks/submissions-table/index.js:109
+msgid "(no pipeline set)"
+msgstr ""
+
+#: blocks/submissions-table/index.js:114
+msgid "columns: "
+msgstr ""
+
+#: blocks/submissions-table/block.json
+msgctxt "block title"
+msgid "EntryVault Submissions Table"
+msgstr ""

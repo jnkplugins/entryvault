@@ -1,0 +1,323 @@
+/*
+ * EntryVault admin: brand colours and the EntryVault-only pieces on top of the
+ * shared JnK UI kit (jnk-ui.css). Every rule is scoped under .jnkui so nothing
+ * here can restyle WordPress core screens or another plugin.
+ */
+
+/* ---------- Brand: violet to magenta ---------- */
+.jnkui.ev-ui {
+	--jnk-brand: #7c3aed;
+	--jnk-brand-2: #c026d3;
+	--jnk-brand-soft: #f5f3ff;
+}
+.jnkui .jnkui-page.is-wide { max-width: none; }
+.jnkui .ev-ui-upgrade { color: #fff !important; background: linear-gradient(135deg, var(--jnk-brand), var(--jnk-brand-2)); padding: 5px 12px; border-radius: 999px; }
+.jnkui .ev-ui-upgrade:hover { filter: brightness(1.08); }
+.jnkui .jnkui-topbar-end .jnkui-tab { align-self: stretch; padding: 0 4px; min-height: 60px; }
+@media (max-width: 782px) { .jnkui .jnkui-topbar-end .jnkui-tab { min-height: 40px; } }
+/* Small helpers used across the screens. */
+.jnkui .ev-ui-row-main { display: block; min-width: 0; overflow-wrap: anywhere; }
+.jnkui .ev-ui-when { flex: none; text-align: right; color: var(--jnk-mute); font-size: 12.5px; white-space: nowrap; }
+.jnkui .ev-ui-sources { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.jnkui .ev-ui-callout-actions { margin-top: 10px !important; display: flex; gap: 8px; flex-wrap: wrap; }
+.jnkui .ev-ui-actions { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin: 0; }
+.jnkui .ev-ui-msg:empty { display: none; }
+.jnkui .ev-ui-msg { font-weight: 600; }
+.jnkui code { background: var(--jnk-line-2); border-radius: 5px; padding: 1px 6px; font-size: 12.5px; }
+.jnkui .jnkui-card > .form-table { border: 0; box-shadow: none; margin: 0; border-radius: 0 0 var(--jnk-radius) var(--jnk-radius); }
+.jnkui .jnkui-card-foot { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; padding: 14px 22px; border-top: 1px solid var(--jnk-line-2); background: #fbfbfe; border-radius: 0 0 var(--jnk-radius) var(--jnk-radius); }
+.jnkui p.submit { margin: 0; padding: 14px 0 0; }
+.jnkui .jnkui-card-foot p.submit, .jnkui p.submit.jnkui-card-foot { padding: 14px 22px; }
+.jnkui .jnkui-callout.is-ok { background: var(--jnk-ok-bg); border-color: #a7f3d0; color: #065f46; }
+.jnkui .jnkui-callout.is-bad { background: var(--jnk-bad-bg); border-color: #fecaca; color: #7f1d1d; }
+.jnkui .jnkui-callout p + p { margin-top: 6px; }
+.jnkui .jnkui-card-head h2 .jnkui-pill { margin-left: 8px; vertical-align: 2px; }
+
+/* ---------- WordPress parts inside our screens ---------- */
+.jnkui .notice { border-radius: 10px; border-width: 1px 1px 1px 4px; box-shadow: var(--jnk-shadow); }
+.jnkui .jnkui-page .notice { margin: 0 0 16px; }
+.jnkui .widefat td, .jnkui .widefat th { font-size: 13.5px; }
+.jnkui .widefat.striped > tbody > :nth-child(odd) { background: transparent; }
+.jnkui .jnkui-card table.widefat, .jnkui .jnkui-card table.jnkui-table { border: 0; border-radius: 0; box-shadow: none; }
+.jnkui .jnkui-card > .jnkui-table-wrap:last-child table, .jnkui .jnkui-card > table:last-child { border-radius: 0 0 var(--jnk-radius) var(--jnk-radius); }
+.jnkui input[type=color] { width: 44px; height: 36px; padding: 3px; border: 1px solid #cbd5e1; border-radius: 8px; background: #fff; cursor: pointer; vertical-align: middle; }
+.jnkui input[type=checkbox] { border-color: #94a3b8; border-radius: 4px; }
+.jnkui input[type=checkbox]:checked { background: var(--jnk-brand); border-color: var(--jnk-brand); }
+.jnkui input[type=checkbox]:checked::before { filter: brightness(0) invert(1); }
+.jnkui input[type=file] { font-size: 13px; max-width: 100%; }
+.jnkui textarea { width: 100%; line-height: 1.5; }
+.jnkui .button-link { color: var(--jnk-brand); }
+.jnkui .button-link:hover { color: color-mix(in srgb, var(--jnk-brand) 80%, #000); }
+.jnkui .button-link-delete, .jnkui .button-link.is-danger { color: var(--jnk-bad); }
+.jnkui .button.button-link-delete { color: var(--jnk-bad); }
+.jnkui .button.button-link-delete:hover { background: var(--jnk-bad-bg); border-color: #fecaca; color: var(--jnk-bad); }
+
+/* Settings tabs: WordPress nav-tabs, drawn as the kit's underline tabs. */
+.jnkui .nav-tab-wrapper { display: flex; gap: 2px; flex-wrap: nowrap; overflow-x: auto; scrollbar-width: thin; margin: 0 0 20px; padding: 0; border-bottom: 1px solid var(--jnk-line); }
+.jnkui .nav-tab-wrapper .nav-tab { position: relative; float: none; margin: 0; padding: 10px 14px; border: 0; background: transparent; color: var(--jnk-mute); font-size: 13.5px; font-weight: 600; line-height: 1.4; white-space: nowrap; }
+.jnkui .nav-tab-wrapper .nav-tab:hover { color: var(--jnk-ink); background: transparent; }
+.jnkui .nav-tab-wrapper .nav-tab:focus { box-shadow: none; outline: 2px solid var(--jnk-brand); outline-offset: -4px; border-radius: 8px; }
+.jnkui .nav-tab-wrapper .nav-tab-active, .jnkui .nav-tab-wrapper .nav-tab-active:hover { color: var(--jnk-ink); background: transparent; }
+.jnkui .nav-tab-wrapper .nav-tab-active::after { content: ""; position: absolute; left: 10px; right: 10px; bottom: 0; height: 2px; border-radius: 2px; background: var(--jnk-brand); }
+.jnkui .ev-tab-panel h2 { font-size: 15px; font-weight: 650; color: var(--jnk-ink); }
+.jnkui .ev-tab-panel > form > p.description, .jnkui .ev-tab-panel > p.description { margin: 0 0 14px; font-size: 13px; max-width: 760px; }
+
+/* The licence box the Pro build prints at the foot of Settings. */
+.jnkui .ev-ui-licence .wrap { margin: 0; }
+.jnkui .ev-ui-licence h1, .jnkui .ev-ui-licence h2 { font-size: 15px; font-weight: 650; color: var(--jnk-ink); margin: 0 0 8px; padding: 0; }
+
+/* List table (Submissions). */
+.jnkui .subsubsub { float: none; display: flex; gap: 4px; margin: 0 0 14px; padding: 4px; background: #fff; border: 1px solid var(--jnk-line); border-radius: 10px; width: fit-content; }
+.jnkui .subsubsub li { margin: 0; font-size: 0; }
+.jnkui .subsubsub a { display: inline-block; padding: 5px 14px; border-radius: 7px; color: var(--jnk-mute); font-size: 13px; font-weight: 600; text-decoration: none; }
+.jnkui .subsubsub a.current { background: var(--jnk-brand-soft); color: var(--jnk-brand); }
+.jnkui .tablenav { height: auto; margin: 0 0 12px; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.jnkui .tablenav .actions { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; padding: 0; float: none; overflow: visible; }
+.jnkui .tablenav .actions select, .jnkui .tablenav .actions input { margin: 0; float: none; }
+.jnkui .tablenav .tablenav-pages { margin: 0 0 0 auto; float: none; display: flex; align-items: center; gap: 6px; }
+.jnkui .tablenav .tablenav-pages .button, .jnkui .tablenav .tablenav-pages .tablenav-pages-navspan { min-height: 30px; min-width: 30px; justify-content: center; padding: 0 8px; border-radius: 8px; }
+.jnkui .tablenav br.clear { display: none; }
+.jnkui .tablenav.bottom { margin: 12px 0 0; }
+.jnkui p.search-box { float: none; display: flex; gap: 8px; justify-content: flex-end; margin: 0 0 12px; position: static; height: auto; }
+.jnkui .ev-ui-filters { padding: 14px 18px; }
+.jnkui .ev-ui-filters .tablenav { margin: 0; }
+.jnkui .wp-list-table thead th a, .jnkui .wp-list-table thead th.sortable a { color: var(--jnk-mute); padding: 0; }
+.jnkui .wp-list-table thead th a:hover { color: var(--jnk-ink); }
+.jnkui .wp-list-table tbody th.check-column { padding: 12px 0 0 14px; border-bottom: 1px solid var(--jnk-line-2); }
+.jnkui .wp-list-table tbody tr:hover td, .jnkui .wp-list-table tbody tr:hover th { background: #fafaff; }
+.jnkui .wp-list-table tfoot { display: none; }
+@media (max-width: 782px) {
+	.jnkui p.search-box { justify-content: stretch; }
+	.jnkui p.search-box input[type=search] { flex: 1; min-width: 0; }
+	.jnkui .tablenav .actions select { max-width: 100%; }
+	.jnkui .wp-list-table tbody th.check-column { padding: 12px 0 0 10px; }
+	.jnkui .tablenav .tablenav-pages { margin: 0; width: 100%; justify-content: center; }
+}
+
+/* Health cards (drawn by health.js; extensions reuse window.EntryVaultHealth.card). */
+.jnkui .ev-health-grid { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+.jnkui .ev-health-card { margin: 0; }
+.jnkui .ev-health-card .jnkui-card-head { padding: 14px 18px; }
+.jnkui .ev-health-card dl { margin: 0; padding: 4px 18px 14px; display: grid; grid-template-columns: minmax(90px, auto) 1fr; gap: 0 14px; font-size: 13px; }
+.jnkui .ev-health-card dt { font-weight: 600; color: var(--jnk-mute); padding: 8px 0 0; }
+.jnkui .ev-health-card dd { margin: 0; padding: 8px 0 0; color: var(--jnk-ink); overflow-wrap: anywhere; }
+.jnkui .ev-health-overall { display: flex; align-items: center; gap: 14px; }
+.jnkui .ev-health-overall:empty { display: none; }
+.jnkui .ev-health-overall .jnkui-empty-icon { margin: 0; flex: none; }
+.jnkui .ev-health-overall h2 { margin: 0; font-size: 16px; color: var(--jnk-ink); }
+.jnkui .ev-health-overall p { margin: 2px 0 0; color: var(--jnk-mute); }
+.jnkui .ev-health-overall.is-warn .jnkui-empty-icon { background: var(--jnk-warn-bg); color: var(--jnk-warn); }
+.jnkui .ev-health-overall.is-fail .jnkui-empty-icon { background: var(--jnk-bad-bg); color: var(--jnk-bad); }
+.jnkui .ev-health-overall.is-ok .jnkui-empty-icon { background: var(--jnk-ok-bg); color: var(--jnk-ok); }
+
+/* Tags. */
+.jnkui .ev-tag-swatch { display: inline-block; width: 14px; height: 14px; border-radius: 4px; vertical-align: -2px; margin-right: 8px; border: 1px solid rgba(15, 23, 42, .08); }
+.jnkui .ev-tag-form { display: flex; flex-wrap: wrap; gap: 12px; align-items: flex-end; }
+.jnkui .ev-tag-form input[type=text] { width: 260px; max-width: 100%; }
+
+/* Import. */
+.jnkui .ev-import-or { display: flex; align-items: center; gap: 10px; color: var(--jnk-mute); font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: .05em; margin: 16px 0; }
+.jnkui .ev-import-or::before, .jnkui .ev-import-or::after { content: ""; flex: 1; height: 1px; background: var(--jnk-line); }
+.jnkui #ev-import-textarea { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12.5px; min-height: 120px; }
+.jnkui .ev-import-dest { display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-end; }
+.jnkui #ev-import-results:empty { display: none; }
+.jnkui .ev-step { display: inline-grid; place-items: center; width: 24px; height: 24px; border-radius: 50%; margin-right: 8px; font-size: 12px; font-weight: 700; background: var(--jnk-brand-soft); color: var(--jnk-brand); vertical-align: 1px; }
+
+/* Forms laid out inside cards. */
+.jnkui .ev-form-grid { display: grid; gap: 16px; }
+.jnkui .ev-form-grid .jnkui-field > span:first-child, .jnkui .ev-form-grid .jnkui-field > label { font-weight: 600; color: var(--jnk-ink); }
+.jnkui .ev-form-grid .regular-text { width: 100%; max-width: 420px; }
+.jnkui .ev-form-row { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
+.jnkui .ev-check { display: flex; gap: 8px; align-items: flex-start; font-weight: 500; color: var(--jnk-ink-2); }
+.jnkui .ev-check input { margin-top: 2px; }
+
+/* Pipelines. */
+.jnkui .ev-pipeline-card .jnkui-card-head h2 { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.jnkui .ev-color-dot { width: 12px; height: 12px; border-radius: 50%; display: inline-block; flex: none; box-shadow: 0 0 0 3px #fff, 0 0 0 4px var(--jnk-line); }
+.jnkui .ev-inline-form { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin: 0; }
+.jnkui .ev-inline-form label { display: inline-flex; align-items: center; gap: 6px; font-weight: 500; font-size: 13px; }
+.jnkui .ev-stage-rows .button { min-height: 30px; padding: 0 9px; }
+.jnkui .ev-stage-rows td:first-child { white-space: nowrap; }
+.jnkui .ev-stage-edit-row td { background: var(--jnk-brand-soft) !important; }
+
+/* ---------- Board ---------- */
+.jnkui .ev-board-root { min-height: 200px; }
+.jnkui .ev-board-loading { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; padding: 36px 24px; color: var(--jnk-mute); background: #fff; border: 1px dashed #cbd5e1; border-radius: var(--jnk-radius); }
+.jnkui .ev-board-loading p { flex-basis: 100%; margin: 0; font-size: 12.5px; }
+.jnkui .ev-board-msg { padding: 12px 16px; margin: 0 0 14px; border-radius: 10px; background: #fff; border: 1px solid var(--jnk-line); color: var(--jnk-ink-2); }
+.jnkui .ev-board-msg.is-error { background: var(--jnk-bad-bg); border-color: #fecaca; color: var(--jnk-bad); font-weight: 600; }
+.jnkui .ev-board-toolbar { padding: 12px 16px; display: grid; gap: 10px; margin-bottom: 18px; }
+.jnkui .ev-board-toolbar-row { display: flex; flex-wrap: wrap; gap: 10px 14px; align-items: center; }
+.jnkui .ev-board-field { display: inline-flex; align-items: center; gap: 8px; margin: 0; }
+.jnkui .ev-board-field > span:not(.screen-reader-text) { font-size: 12px; font-weight: 600; color: var(--jnk-mute); }
+.jnkui .ev-board-search { flex: 1 1 220px; max-width: 360px; }
+.jnkui .ev-board-search input { width: 100%; }
+.jnkui .ev-board-total { margin-left: auto; color: var(--jnk-mute); font-size: 12.5px; font-variant-numeric: tabular-nums; }
+.jnkui .ev-board-owners { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; padding-top: 10px; border-top: 1px solid var(--jnk-line-2); }
+.jnkui .ev-board-owners-label { font-size: 12px; font-weight: 600; color: var(--jnk-mute); margin-right: 4px; }
+.jnkui .ev-chip { font: inherit; font-size: 12.5px; font-weight: 550; line-height: 1; padding: 6px 11px; border-radius: 999px; border: 1px solid var(--jnk-line); background: #fff; color: var(--jnk-ink-2); cursor: pointer; transition: background .12s, border-color .12s; }
+.jnkui .ev-chip:hover { border-color: #cbd5e1; background: var(--jnk-line-2); }
+.jnkui .ev-chip.is-active { background: var(--jnk-brand); border-color: var(--jnk-brand); color: #fff; }
+.jnkui .ev-chip:focus-visible, .jnkui .ev-chip-clear:focus-visible { outline: 2px solid var(--jnk-brand); outline-offset: 2px; }
+.jnkui .ev-chip-clear { font: inherit; font-size: 12.5px; background: none; border: 0; color: var(--jnk-brand); cursor: pointer; text-decoration: underline; padding: 4px; }
+.jnkui .ev-board-start { margin-bottom: 18px; max-width: 760px; }
+.jnkui .ev-board-start-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px !important; }
+
+.jnkui .ev-board { display: flex; gap: 14px; overflow-x: auto; padding: 0 0 16px; align-items: flex-start; }
+.jnkui .ev-col { flex: 0 0 290px; min-width: 0; background: #eceef5; border-radius: var(--jnk-radius); padding: 10px; transition: background .12s, box-shadow .12s; }
+.jnkui .ev-col.is-over { background: color-mix(in srgb, var(--jnk-brand) 10%, #eceef5); box-shadow: inset 0 0 0 2px color-mix(in srgb, var(--jnk-brand) 40%, transparent); }
+.jnkui .ev-col-head { display: flex; align-items: center; gap: 8px; margin: 2px 4px 10px; font-size: 13px; font-weight: 650; color: var(--jnk-ink); }
+.jnkui .ev-col-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--ev-stage); flex: none; }
+.jnkui .ev-col-name { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.jnkui .ev-col-count { font-size: 11.5px; font-weight: 650; color: var(--jnk-mute); background: #fff; border-radius: 999px; padding: 1px 8px; font-variant-numeric: tabular-nums; }
+.jnkui .ev-col.is-over-limit .ev-col-count { background: var(--jnk-bad-bg); color: var(--jnk-bad); }
+.jnkui .ev-col-body { display: grid; gap: 8px; min-height: 40px; }
+.jnkui .ev-col-empty { margin: 0; padding: 18px 8px; text-align: center; color: var(--jnk-mute); font-size: 12.5px; border: 1px dashed #cbd5e1; border-radius: 10px; }
+.jnkui .ev-card { position: relative; background: #fff; border: 1px solid var(--jnk-line); border-radius: 10px; padding: 10px 12px; box-shadow: var(--jnk-shadow); cursor: grab; }
+.jnkui .ev-card::before { content: ""; position: absolute; left: -1px; top: 10px; bottom: 10px; width: 3px; border-radius: 0 3px 3px 0; background: var(--ev-stage, transparent); }
+.jnkui .ev-card:hover { border-color: #cbd5e1; box-shadow: var(--jnk-shadow-lg); }
+.jnkui .ev-card.is-dragging { opacity: .4; }
+.jnkui .ev-card.is-overlay { cursor: grabbing; box-shadow: 0 18px 40px -12px rgba(15, 23, 42, .35); }
+.jnkui .ev-card-top { display: flex; align-items: center; gap: 7px; min-width: 0; }
+.jnkui .ev-card-source { width: 8px; height: 8px; border-radius: 50%; flex: none; }
+.jnkui .ev-card-title { flex: 1; min-width: 0; font-size: 13.5px; font-weight: 650; color: var(--jnk-ink); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.jnkui .ev-card-new { flex: none; font-size: 10px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: #fff; background: linear-gradient(135deg, var(--jnk-brand), var(--jnk-brand-2)); border-radius: 999px; padding: 1px 7px; }
+.jnkui .ev-card-email { margin-top: 2px; font-size: 12.5px; color: var(--jnk-mute); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.jnkui .ev-card-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 8px; }
+.jnkui .ev-tag { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; font-weight: 600; line-height: 18px; padding: 0 8px; border-radius: 999px; color: color-mix(in srgb, var(--ev-tag) 72%, #000); background: color-mix(in srgb, var(--ev-tag) 13%, #fff); border: 1px solid color-mix(in srgb, var(--ev-tag) 30%, #fff); white-space: nowrap; }
+.jnkui .ev-card-foot { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-top: 10px; }
+.jnkui .ev-card-age { font-size: 11.5px; color: var(--jnk-mute); font-variant-numeric: tabular-nums; }
+.jnkui .ev-card-actions { display: inline-flex; align-items: center; gap: 6px; }
+.jnkui .ev-avatar { width: 24px; height: 24px; border-radius: 50%; display: inline-grid; place-items: center; font-size: 10px; font-weight: 700; color: #fff; background: #94a3b8; }
+.jnkui .ev-avatar.is-empty { background: transparent; border: 1.5px dashed #cbd5e1; }
+.jnkui .ev-card-open { font: inherit; font-size: 11.5px; font-weight: 600; padding: 3px 9px; border-radius: 7px; border: 1px solid var(--jnk-line); background: #fff; color: var(--jnk-ink-2); cursor: pointer; }
+.jnkui .ev-card-open:hover { border-color: var(--jnk-brand); color: var(--jnk-brand); }
+.jnkui .ev-card-open:focus-visible { outline: 2px solid var(--jnk-brand); outline-offset: 1px; }
+
+/* ---------- Detail panel ---------- */
+.jnkui .ev-panel-overlay { position: fixed; inset: 0; z-index: 99999; display: flex; justify-content: flex-end; background: rgba(15, 23, 42, .35); }
+.jnkui .ev-panel { width: 520px; max-width: 100%; height: 100%; display: flex; flex-direction: column; background: #fff; box-shadow: -18px 0 40px -18px rgba(15, 23, 42, .4); animation: ev-panel-in .18s ease-out; }
+@keyframes ev-panel-in { from { transform: translateX(24px); opacity: .6; } to { transform: none; opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .jnkui .ev-panel { animation: none; } }
+.jnkui .ev-panel-head { display: flex; align-items: center; gap: 10px; padding: 18px 20px 6px; }
+.jnkui .ev-panel-title { flex: 1; min-width: 0; font-size: 18px; font-weight: 650; letter-spacing: -.01em; color: var(--jnk-ink); overflow-wrap: anywhere; border-radius: 6px; padding: 2px 4px; margin-left: -4px; }
+.jnkui .ev-panel-title.is-editable { cursor: text; }
+.jnkui .ev-panel-title.is-editable:hover { background: var(--jnk-line-2); }
+.jnkui .ev-panel-title-input { flex: 1; font-size: 17px !important; font-weight: 650; }
+.jnkui .ev-panel-close { width: 34px; height: 34px; border-radius: 9px; border: 1px solid var(--jnk-line); background: #fff; font-size: 20px; line-height: 1; color: var(--jnk-mute); cursor: pointer; flex: none; }
+.jnkui .ev-panel-close:hover { color: var(--jnk-ink); background: var(--jnk-line-2); }
+.jnkui .ev-panel-meta { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; padding: 0 20px 12px; font-size: 12.5px; color: var(--jnk-mute); }
+.jnkui .ev-panel-stage { display: inline-flex; align-items: center; gap: 6px; padding: 1px 9px; border-radius: 999px; font-weight: 600; color: var(--jnk-ink-2); background: var(--jnk-line-2); border: 1px solid var(--jnk-line); }
+.jnkui .ev-panel-stage::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--ev-stage); }
+.jnkui .ev-panel-email { overflow-wrap: anywhere; }
+.jnkui .ev-panel-error { margin: 0 20px 10px; padding: 8px 12px; border-radius: 8px; background: var(--jnk-bad-bg); color: var(--jnk-bad); font-weight: 600; font-size: 13px; }
+.jnkui .ev-panel-tabs { display: flex; gap: 2px; padding: 0 14px; border-bottom: 1px solid var(--jnk-line); }
+.jnkui .ev-panel-tab { position: relative; font: inherit; font-size: 13px; font-weight: 600; padding: 10px; border: 0; background: none; color: var(--jnk-mute); cursor: pointer; }
+.jnkui .ev-panel-tab:hover, .jnkui .ev-panel-tab.is-active { color: var(--jnk-ink); }
+.jnkui .ev-panel-tab.is-active::after { content: ""; position: absolute; left: 8px; right: 8px; bottom: -1px; height: 2px; border-radius: 2px; background: var(--jnk-brand); }
+.jnkui .ev-panel-tab:focus-visible { outline: 2px solid var(--jnk-brand); outline-offset: -4px; border-radius: 8px; }
+.jnkui .ev-panel-body { flex: 1; overflow-y: auto; padding: 16px 20px 28px; }
+.jnkui .ev-panel-h { margin: 22px 0 6px; font-size: 11.5px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: var(--jnk-mute); }
+.jnkui .ev-row { display: grid; grid-template-columns: 130px 1fr; gap: 12px; padding: 9px 0; border-bottom: 1px solid var(--jnk-line-2); font-size: 13.5px; }
+.jnkui .ev-row.is-editor { align-items: center; }
+.jnkui .ev-row-label { color: var(--jnk-mute); font-size: 12.5px; font-weight: 600; padding-top: 1px; }
+.jnkui .ev-row-value { min-width: 0; color: var(--jnk-ink); overflow-wrap: anywhere; white-space: pre-wrap; }
+.jnkui .ev-row.is-editor .ev-row-value { white-space: normal; }
+.jnkui .ev-row-value select { width: 100%; max-width: 280px; }
+.jnkui .ev-row.is-muted .ev-row-value { color: #94a3b8; font-style: italic; }
+.jnkui .ev-stale-label { color: #94a3b8; }
+.jnkui .ev-stale-tag { font-style: normal; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; color: var(--jnk-warn); margin-left: 4px; }
+.jnkui .ev-tagpicker { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.jnkui .ev-tag.is-removable { padding-right: 3px; }
+.jnkui .ev-tag-x { border: 0; background: none; padding: 0 4px; font-size: 14px; line-height: 1; color: inherit; cursor: pointer; opacity: .7; border-radius: 999px; }
+.jnkui .ev-tag-x:hover { opacity: 1; }
+.jnkui .ev-tagpicker-new { display: inline-flex; gap: 6px; align-items: center; }
+.jnkui .ev-tagpicker-new input { width: 140px; min-height: 30px; }
+.jnkui select.ev-tagpicker-add { min-height: 30px; font-size: 12.5px; }
+.jnkui .ev-icon-btn { border: 0; background: none; cursor: pointer; font-size: 16px; line-height: 1; padding: 2px 6px; border-radius: 6px; color: var(--jnk-mute); }
+.jnkui .ev-icon-btn.is-danger:hover { color: var(--jnk-bad); background: var(--jnk-bad-bg); }
+.jnkui .ev-link-btn { border: 0; background: none; padding: 0; font: inherit; font-size: 12.5px; font-weight: 600; color: var(--jnk-brand); cursor: pointer; }
+.jnkui .ev-link-btn:hover { text-decoration: underline; }
+.jnkui .ev-muted { color: var(--jnk-mute); }
+.jnkui .ev-small { font-size: 12px; }
+.jnkui .ev-textarea { display: block; width: 100%; min-height: 96px; }
+.jnkui .ev-textarea.is-small { min-height: 64px; }
+.jnkui .ev-textarea.is-tall { min-height: 160px; }
+.jnkui .ev-compose-foot { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-top: 8px; flex-wrap: wrap; }
+.jnkui .ev-btn-row { display: flex; gap: 8px; align-items: center; margin-top: 8px; flex-wrap: wrap; }
+.jnkui .ev-notes { margin-top: 18px; display: grid; gap: 10px; }
+.jnkui .ev-note { padding: 10px 12px; border-radius: 10px; background: #f8fafc; border: 1px solid var(--jnk-line-2); }
+.jnkui .ev-note.is-reply { margin: 8px 0 0 14px; background: #fff; }
+.jnkui .ev-note-head { display: flex; align-items: baseline; gap: 8px; font-size: 12px; color: var(--jnk-mute); }
+.jnkui .ev-note-head strong { color: var(--jnk-ink); font-size: 12.5px; }
+.jnkui .ev-note-del { margin-left: auto; }
+.jnkui .ev-note-body { font-size: 13.5px; padding: 4px 0; color: var(--jnk-ink); overflow-wrap: anywhere; }
+.jnkui .ev-note-body p { margin: 0 0 6px; }
+.jnkui .ev-note-body.is-deleted { color: #94a3b8; font-style: italic; }
+.jnkui .ev-note-body blockquote { margin: 4px 0; padding-left: 10px; border-left: 3px solid var(--jnk-line); color: var(--jnk-ink-2); }
+.jnkui .ev-note-reply { margin-top: 6px; }
+.jnkui .ev-timeline { list-style: none; margin: 0; padding: 0 0 0 4px; }
+.jnkui .ev-timeline-item { position: relative; margin: 0; padding: 0 0 16px 20px; border-left: 2px solid var(--jnk-line); }
+.jnkui .ev-timeline-item:last-child { border-left-color: transparent; padding-bottom: 0; }
+.jnkui .ev-timeline-item::before { content: ""; position: absolute; left: -6px; top: 2px; width: 10px; height: 10px; border-radius: 50%; background: #fff; border: 2px solid var(--jnk-brand); }
+.jnkui .ev-timeline-when { font-size: 11.5px; color: var(--jnk-mute); }
+.jnkui .ev-timeline-what { font-size: 13.5px; color: var(--jnk-ink); overflow-wrap: anywhere; }
+.jnkui .ev-timeline-item.is-deleted .ev-timeline-what { color: #94a3b8; font-style: italic; }
+.jnkui .ev-email { display: grid; gap: 12px; }
+.jnkui .ev-label { display: grid; gap: 5px; font-size: 12px; font-weight: 600; color: var(--jnk-mute); }
+.jnkui .ev-label input { width: 100%; }
+.jnkui .ev-mail { border: 1px solid var(--jnk-line); border-left-width: 3px; border-radius: 10px; padding: 10px 12px; font-size: 13.5px; }
+.jnkui .ev-mail.is-in { border-left-color: #10b981; background: #f6fef9; }
+.jnkui .ev-mail.is-out { border-left-color: var(--jnk-brand); background: #faf9ff; }
+.jnkui .ev-mail-meta { font-size: 11.5px; color: var(--jnk-mute); }
+.jnkui .ev-mail-subject { font-weight: 650; color: var(--jnk-ink); margin: 2px 0; }
+.jnkui .ev-mail-body { white-space: pre-wrap; overflow-wrap: anywhere; color: var(--jnk-ink-2); }
+.jnkui .ev-detail-ext:empty { display: none; }
+@media (max-width: 600px) {
+	.jnkui .ev-row { grid-template-columns: 1fr; gap: 2px; }
+	.jnkui .ev-col { flex-basis: 80vw; }
+	.jnkui .ev-board-total { margin-left: 0; }
+	.jnkui .ev-panel-overlay { top: 46px; }
+}
+
+/* Settings panels added by extensions: give their forms the card look too. */
+.jnkui .ev-tab-panel > form:not(.jnkui-card) { background: var(--jnk-card); border: 1px solid var(--jnk-line); border-radius: var(--jnk-radius); box-shadow: var(--jnk-shadow); margin: 0 0 20px; overflow: hidden; }
+.jnkui .ev-tab-panel > form:not(.jnkui-card) > .form-table,
+.jnkui .ev-tab-panel > form:not(.jnkui-card) > table.widefat,
+.jnkui .ev-tab-panel > form:not(.jnkui-card) > .jnkui-table-wrap > table { border: 0; border-radius: 0; box-shadow: none; margin: 0; }
+.jnkui .ev-tab-panel > form:not(.jnkui-card) > p.description { margin: 0; padding: 16px 22px 12px; }
+.jnkui .ev-tab-panel > form:not(.jnkui-card) > p.submit { padding: 14px 22px; border-top: 1px solid var(--jnk-line-2); background: #fbfbfe; display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+.jnkui .ev-tab-panel > form:not(.jnkui-card) > .notice { margin: 16px 22px; }
+.jnkui .ev-access summary { cursor: pointer; color: var(--jnk-brand); font-weight: 600; width: fit-content; }
+.jnkui .ev-access[open] summary { margin-bottom: 6px; }
+.jnkui table.jnkui-table th.is-num, .jnkui table.widefat th.is-num { text-align: right; }
+
+/* WordPress's Screen Options tab sits above the page; tuck it under our top bar. */
+#wpbody-content:has(> .jnkui) { position: relative; }
+#wpbody-content:has(> .jnkui) > #screen-meta-links { position: absolute; top: 72px; right: 28px; z-index: 5; margin: 0; }
+#wpbody-content:has(> .jnkui) > #screen-meta-links .show-settings { border-radius: 8px; border: 1px solid #e2e8f0; background: #fff; }
+#wpbody-content:has(> .jnkui) > #screen-meta { margin: 0 20px 0 0; }
+@media (max-width: 782px) { #wpbody-content:has(> .jnkui) > #screen-meta-links { display: none; } }
+.jnkui input.code, .jnkui input.large-text.code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12.5px; line-height: 1.8; height: auto; padding: 6px 10px; }
+.jnkui .ev-ui-licence .form-table { box-shadow: none; }
+.jnkui .button.button-link { border: 0; background: none; box-shadow: none; color: var(--jnk-brand); text-decoration: none; }
+.jnkui .button.button-link:hover { background: var(--jnk-brand-soft); color: var(--jnk-brand); }
+.jnkui .jnkui-grid-2 { align-items: start; }
+.jnkui .jnkui-grid-2 .form-table th { width: 130px; }
+/* Keep hidden screen-reader labels inside scrolling tables from widening the page. */
+.jnkui .jnkui-table-wrap { position: relative; }
+.jnkui .jnkui-grid-2 > *, .jnkui .jnkui-grid > * { min-width: 0; }
+@media (max-width: 600px) {
+	.jnkui .jnkui-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+	.jnkui .jnkui-grid .jnkui-stat { padding: 14px; }
+	.jnkui .jnkui-grid .jnkui-stat-value { font-size: 22px; }
+	.jnkui .jnkui-grid .jnkui-stat-foot { font-size: 12px; }
+}
+.jnkui .subsubsub + br.clear { display: none; }
+/* Submissions has many columns: tighter cells so it fits a laptop screen. */
+.jnkui table.wp-list-table td, .jnkui table.wp-list-table thead th { padding-left: 10px; padding-right: 10px; }
+.jnkui table.wp-list-table td.column-preview > span { font-size: 13px; }
+@media (max-width: 600px) {
+	.jnkui #ev-tags-table th:nth-child(2), .jnkui #ev-tags-table td:nth-child(2),
+	.jnkui #ev-tags-table th:nth-child(3), .jnkui #ev-tags-table td:nth-child(3) { display: none; }
+}

@@ -1,0 +1,58 @@
+/* Submissions list.
+   WP_List_Table uses table-layout:fixed, which splits the width equally: dates and
+   stage names got more room than they need while the email and message wrapped to one
+   word per line. Auto layout sizes columns by content; short values stay on one line
+   and the message preview takes what is left. Less-used columns start hidden (see
+   Submissions_Admin::DEFAULT_HIDDEN_COLUMNS) and come back from Screen Options. */
+@media screen and (min-width: 783px) {
+	.wp-list-table.submissions { table-layout: auto; }
+
+	.wp-list-table.submissions thead th,
+	.wp-list-table.submissions tfoot th,
+	.wp-list-table.submissions td.column-id,
+	.wp-list-table.submissions td.column-pipeline,
+	.wp-list-table.submissions td.column-stage,
+	.wp-list-table.submissions td.column-approval,
+	.wp-list-table.submissions td.column-owner,
+	.wp-list-table.submissions td.column-source,
+	.wp-list-table.submissions td.column-created_at,
+	.wp-list-table.submissions td.column-updated_at { white-space: nowrap; }
+
+	.wp-list-table.submissions td.column-title { min-width: 110px; }
+	.wp-list-table.submissions td.column-tags { min-width: 100px; }
+	.wp-list-table.submissions td.column-preview { min-width: 140px; }
+
+	/* An email address is one token: cut it with an ellipsis (the whole address is in
+	   the title attribute) instead of breaking it across lines. */
+	.wp-list-table.submissions td.column-email {
+		max-width: 140px;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+}
+
+/* The column is called "preview", and WordPress core has `.preview { float: right }`
+   for its Preview button: every message cell floated, dropped out of the table
+   layout and drifted right on short messages. */
+.wp-list-table.submissions td.column-preview { float: none; }
+
+/* Two lines of the message are enough to recognise it. */
+.wp-list-table.submissions td.column-preview > span {
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+}
+
+.wp-list-table.submissions td abbr { text-decoration: none; }
+
+.ev-tag-pill {
+	display: inline-block;
+	padding: 1px 8px;
+	margin: 0 2px 2px 0;
+	border-radius: 999px;
+	font-size: 12px;
+	line-height: 18px;
+	white-space: nowrap;
+}

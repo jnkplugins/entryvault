@@ -1,0 +1,21 @@
+/* Overview screen: the report pieces dashboard.js draws, in the JnK UI look. */
+.jnkui .ev-filters { display: flex; gap: 14px; align-items: flex-end; flex-wrap: wrap; }
+.jnkui .ev-filters .jnkui-field span { font-size: 12px; font-weight: 600; color: var(--jnk-mute); }
+.jnkui .ev-filters select, .jnkui .ev-filters input { min-width: 160px; }
+.jnkui #ev-cards:empty { display: none; }
+.jnkui .ev-bar-row { display: grid; grid-template-columns: minmax(90px, 160px) 1fr 48px; align-items: center; gap: 12px; margin: 0 0 12px; }
+.jnkui .ev-bar-row:last-child { margin-bottom: 0; }
+.jnkui .ev-bar-row .name { font-weight: 600; color: var(--jnk-ink); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.jnkui .ev-bar-row .count { text-align: right; font-variant-numeric: tabular-nums; color: var(--jnk-ink-2); }
+.jnkui .ev-bar-row .jnkui-bar { min-width: 0; height: 10px; }
+/* Share the panel width between however many days are plotted. A fixed width here
+   pinned 30 bars to ~300px, so the chart sat in the left sixth of its own panel. */
+.jnkui .ev-daily { display: flex; align-items: flex-end; gap: 3px; height: 140px; padding: 0 2px; border-bottom: 1px solid var(--jnk-line); }
+.jnkui .ev-daily-bar { flex: 1 1 0; min-width: 2px; border-radius: 4px 4px 1px 1px; background: linear-gradient(180deg, var(--jnk-brand-2), var(--jnk-brand)); opacity: .9; }
+.jnkui .ev-daily-bar:hover { opacity: 1; }
+.jnkui .ev-swatch { display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 8px; vertical-align: middle; }
+.jnkui .ev-table { box-shadow: none; }
+.jnkui .ev-sortable { cursor: pointer; user-select: none; }
+.jnkui .ev-sortable:hover { color: var(--jnk-ink); }
+.jnkui .ev-empty-line { margin: 0; }
+.jnkui .ev-ui-reports-title { margin-top: 12px; }

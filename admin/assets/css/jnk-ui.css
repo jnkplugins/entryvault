@@ -1,0 +1,254 @@
+/*
+ * JnK UI: the shared admin design kit for JnK Plugins (Linkweave, EntryVault,
+ * Trinity Forms). Every rule is scoped under .jnkui, the wrapper our own admin
+ * screens render, so nothing here can restyle WordPress core screens or another
+ * plugin. Each plugin sets its brand with --jnk-brand / --jnk-brand-2 on .jnkui.
+ *
+ * Keep this file identical across the three plugins (same as the bundled SDK).
+ */
+
+.jnkui {
+	--jnk-brand: #0e7490;
+	--jnk-brand-2: #2563eb;
+	--jnk-brand-soft: #ecfeff;
+	--jnk-ink: #0f172a;
+	--jnk-ink-2: #334155;
+	--jnk-mute: #64748b;
+	--jnk-line: #e2e8f0;
+	--jnk-line-2: #f1f5f9;
+	--jnk-bg: #f6f7fb;
+	--jnk-card: #fff;
+	--jnk-ok: #047857;
+	--jnk-ok-bg: #ecfdf5;
+	--jnk-warn: #b45309;
+	--jnk-warn-bg: #fffbeb;
+	--jnk-bad: #b91c1c;
+	--jnk-bad-bg: #fef2f2;
+	--jnk-info: #1d4ed8;
+	--jnk-info-bg: #eff6ff;
+	--jnk-radius: 12px;
+	--jnk-shadow: 0 1px 2px rgba(15, 23, 42, .05), 0 1px 3px rgba(15, 23, 42, .06);
+	--jnk-shadow-lg: 0 10px 30px -12px rgba(15, 23, 42, .18);
+	margin: 0 0 0 -20px;
+	padding: 0 0 48px;
+	color: var(--jnk-ink-2);
+	font-size: 14px;
+	line-height: 1.55;
+	-webkit-font-smoothing: antialiased;
+}
+@media (max-width: 782px) { .jnkui { margin-left: -10px; } }
+#wpbody-content:has(> .jnkui), .wrap.jnkui { background: var(--jnk-bg); }
+body:has(.jnkui), body:has(.jnkui) #wpcontent, body:has(.jnkui) #wpfooter { background: #f6f7fb; }
+
+/* ---------- Top bar ---------- */
+.jnkui-topbar {
+	position: sticky; top: 32px; z-index: 20;
+	display: flex; align-items: center; gap: 18px;
+	padding: 0 28px; min-height: 60px;
+	background: #fff; border-bottom: 1px solid var(--jnk-line);
+}
+@media (max-width: 782px) { .jnkui-topbar { position: static; padding: 0 14px; flex-wrap: wrap; gap: 10px; } }
+.jnkui-brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--jnk-ink); flex: none; }
+.jnkui-brand:focus { box-shadow: none; }
+.jnkui-mark {
+	width: 32px; height: 32px; border-radius: 9px; display: grid; place-items: center; color: #fff;
+	background: linear-gradient(135deg, var(--jnk-brand), var(--jnk-brand-2));
+	box-shadow: 0 4px 10px -4px var(--jnk-brand);
+}
+.jnkui-mark svg { width: 18px; height: 18px; }
+.jnkui-brand b { font-size: 15px; font-weight: 650; letter-spacing: -.01em; }
+.jnkui-ver { font-size: 11px; font-weight: 600; color: var(--jnk-mute); background: var(--jnk-line-2); border-radius: 999px; padding: 2px 8px; }
+.jnkui-tabs { display: flex; align-items: stretch; gap: 2px; flex: 1; min-width: 0; overflow-x: auto; scrollbar-width: none; align-self: stretch; }
+.jnkui-tabs::-webkit-scrollbar { display: none; }
+.jnkui-tab {
+	position: relative; display: inline-flex; align-items: center; gap: 6px; padding: 0 12px;
+	font-size: 13px; font-weight: 550; color: var(--jnk-mute); text-decoration: none; white-space: nowrap;
+}
+.jnkui-tab:hover { color: var(--jnk-ink); }
+.jnkui-tab:focus { box-shadow: none; outline: 2px solid var(--jnk-brand); outline-offset: -6px; border-radius: 8px; }
+.jnkui-tab.is-active { color: var(--jnk-ink); }
+.jnkui-tab.is-active::after { content: ""; position: absolute; left: 10px; right: 10px; bottom: 0; height: 2px; border-radius: 2px; background: var(--jnk-brand); }
+.jnkui-tab .jnkui-pill { font-size: 10px; padding: 0 6px; }
+.jnkui-more { position: relative; display: flex; align-items: stretch; }
+.jnkui-more > summary { list-style: none; cursor: pointer; }
+.jnkui-more > summary::-webkit-details-marker { display: none; }
+.jnkui-more[open] > .jnkui-menu { display: block; }
+.jnkui-menu {
+	display: none; position: absolute; top: 100%; left: 0; min-width: 220px; padding: 6px;
+	background: #fff; border: 1px solid var(--jnk-line); border-radius: 10px; box-shadow: var(--jnk-shadow-lg); z-index: 30;
+}
+.jnkui-menu a { display: flex; justify-content: space-between; gap: 8px; padding: 8px 10px; border-radius: 7px; color: var(--jnk-ink-2); text-decoration: none; font-weight: 500; }
+.jnkui-menu a:hover, .jnkui-menu a.is-active { background: var(--jnk-line-2); color: var(--jnk-ink); }
+/* The tab row scrolls sideways on phones, and a scrolling box clips anything that
+   hangs out of it: the open "More" menu was cut off at the bar and could not be
+   clicked. On desktop the row has room, so it does not scroll; on phones the tabs
+   get their own row and the open menu is lifted out of it. */
+@media (min-width: 783px) { .jnkui-tabs { overflow: visible; } }
+@media (max-width: 782px) {
+	.jnkui-topbar { padding-top: 10px; }
+	.jnkui-tabs { order: 3; flex: 1 1 100%; min-height: 42px; }
+	.jnkui-topbar-end { margin-left: auto; }
+	.jnkui-more[open] > .jnkui-menu { position: fixed; top: auto; left: 14px; right: 14px; }
+}
+.jnkui-topbar-end { display: flex; align-items: center; gap: 12px; flex: none; }
+.jnkui-topbar-end a { color: var(--jnk-mute); text-decoration: none; font-weight: 550; font-size: 13px; }
+.jnkui-topbar-end a:hover { color: var(--jnk-ink); }
+
+/* WordPress moves admin notices after the first .wp-header-end; give them room. */
+.jnkui > .notice, .jnkui > div.updated, .jnkui > div.error { margin: 16px 28px 0; }
+
+/* ---------- Page ---------- */
+.jnkui-page { padding: 28px 28px 0; max-width: 1280px; }
+@media (max-width: 782px) { .jnkui-page { padding: 18px 14px 0; } }
+.jnkui-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 22px; }
+.jnkui-head h1 { margin: 0; padding: 0; font-size: 24px; line-height: 1.25; font-weight: 650; letter-spacing: -.02em; color: var(--jnk-ink); }
+.jnkui-head p { margin: 6px 0 0; max-width: 720px; color: var(--jnk-mute); font-size: 14px; }
+.jnkui-head-actions { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+
+/* ---------- Cards, grids, stats ---------- */
+.jnkui-card { background: var(--jnk-card); border: 1px solid var(--jnk-line); border-radius: var(--jnk-radius); box-shadow: var(--jnk-shadow); margin: 0 0 20px; }
+.jnkui-card-body { padding: 20px 22px; }
+.jnkui-card-head { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 16px 22px; border-bottom: 1px solid var(--jnk-line-2); }
+.jnkui-card-head h2, .jnkui-card h2 { margin: 0; font-size: 15px; font-weight: 650; color: var(--jnk-ink); letter-spacing: -.01em; }
+.jnkui-card-head p { margin: 2px 0 0; color: var(--jnk-mute); font-size: 13px; }
+.jnkui-grid { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); margin-bottom: 20px; }
+.jnkui-grid-2 { display: grid; gap: 20px; grid-template-columns: 1.4fr 1fr; }
+@media (max-width: 1100px) { .jnkui-grid-2 { grid-template-columns: 1fr; } }
+.jnkui-stat { position: relative; padding: 18px 20px; background: #fff; border: 1px solid var(--jnk-line); border-radius: var(--jnk-radius); box-shadow: var(--jnk-shadow); text-decoration: none; color: inherit; display: block; }
+a.jnkui-stat:hover { border-color: color-mix(in srgb, var(--jnk-brand) 35%, var(--jnk-line)); box-shadow: var(--jnk-shadow-lg); }
+.jnkui-stat-label { font-size: 12px; font-weight: 600; color: var(--jnk-mute); display: flex; align-items: center; gap: 8px; }
+.jnkui-stat-value { margin-top: 6px; font-size: 28px; line-height: 1.1; font-weight: 700; letter-spacing: -.02em; color: var(--jnk-ink); font-variant-numeric: tabular-nums; }
+.jnkui-stat-foot { margin-top: 6px; font-size: 12.5px; color: var(--jnk-mute); }
+.jnkui-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--jnk-mute); display: inline-block; }
+.jnkui-dot.is-ok { background: #10b981; } .jnkui-dot.is-warn { background: #f59e0b; } .jnkui-dot.is-bad { background: #ef4444; } .jnkui-dot.is-brand { background: var(--jnk-brand); }
+
+/* ---------- Pills ---------- */
+.jnkui-pill, .jnkui .jnk-linkweave-pill {
+	display: inline-flex; align-items: center; gap: 4px; padding: 1px 8px; border-radius: 999px;
+	font-size: 11.5px; font-weight: 600; line-height: 18px; white-space: nowrap;
+	background: var(--jnk-line-2); color: var(--jnk-ink-2); border: 1px solid var(--jnk-line);
+}
+.jnkui-pill.is-ok { background: var(--jnk-ok-bg); color: var(--jnk-ok); border-color: #a7f3d0; }
+.jnkui-pill.is-warn { background: var(--jnk-warn-bg); color: var(--jnk-warn); border-color: #fde68a; }
+.jnkui-pill.is-bad, .jnkui .jnk-linkweave-pill.is-broken { background: var(--jnk-bad-bg); color: var(--jnk-bad); border-color: #fecaca; }
+.jnkui-pill.is-info { background: var(--jnk-info-bg); color: var(--jnk-info); border-color: #bfdbfe; }
+.jnkui-pill.is-brand { background: var(--jnk-brand-soft); color: var(--jnk-brand); border-color: color-mix(in srgb, var(--jnk-brand) 25%, #fff); }
+.jnkui-pill.is-pro { background: linear-gradient(135deg, var(--jnk-brand), var(--jnk-brand-2)); color: #fff; border: 0; }
+
+/* ---------- Buttons (WordPress .button, restyled only inside .jnkui) ---------- */
+.jnkui .button, .jnkui .button-secondary {
+	display: inline-flex; align-items: center; gap: 6px; min-height: 36px; padding: 0 14px; line-height: 1;
+	border-radius: 9px; border: 1px solid var(--jnk-line); background: #fff; color: var(--jnk-ink);
+	font-weight: 600; font-size: 13px; box-shadow: 0 1px 1px rgba(15, 23, 42, .04); transition: background .15s, border-color .15s;
+}
+.jnkui .button:hover { background: var(--jnk-line-2); border-color: #cbd5e1; color: var(--jnk-ink); }
+.jnkui .button:focus { box-shadow: 0 0 0 3px color-mix(in srgb, var(--jnk-brand) 25%, transparent); border-color: var(--jnk-brand); outline: 0; }
+.jnkui .button-primary, .jnkui .button.button-primary {
+	background: var(--jnk-ink); border-color: var(--jnk-ink); color: #fff;
+}
+.jnkui .button-primary:hover, .jnkui .button.button-primary:hover { background: #1e293b; border-color: #1e293b; color: #fff; }
+.jnkui .button-link-delete, .jnkui .button.is-danger { color: var(--jnk-bad); }
+.jnkui .button.button-small { min-height: 30px; padding: 0 10px; font-size: 12.5px; border-radius: 8px; }
+.jnkui .button[disabled], .jnkui .button:disabled { opacity: .55; }
+.jnkui-btn-brand.button { background: var(--jnk-brand); border-color: var(--jnk-brand); color: #fff; }
+.jnkui-btn-brand.button:hover { background: color-mix(in srgb, var(--jnk-brand) 88%, #000); border-color: color-mix(in srgb, var(--jnk-brand) 88%, #000); color: #fff; }
+
+/* ---------- Tables ---------- */
+.jnkui table.jnkui-table, .jnkui table.jnk-linkweave-table, .jnkui table.widefat {
+	width: 100%; border-collapse: separate; border-spacing: 0; background: #fff;
+	border: 1px solid var(--jnk-line); border-radius: var(--jnk-radius); box-shadow: var(--jnk-shadow); overflow: hidden;
+}
+.jnkui table.jnkui-table th, .jnkui table.jnk-linkweave-table th, .jnkui table.widefat thead th, .jnkui table.widefat thead td {
+	background: #f8fafc; color: var(--jnk-mute); font-size: 11.5px; font-weight: 650; text-transform: uppercase; letter-spacing: .04em;
+	padding: 11px 16px; border-bottom: 1px solid var(--jnk-line); text-align: left;
+}
+.jnkui table.jnkui-table td, .jnkui table.jnk-linkweave-table td, .jnkui table.widefat td {
+	padding: 12px 16px; border-bottom: 1px solid var(--jnk-line-2); vertical-align: middle; color: var(--jnk-ink-2);
+}
+.jnkui table.jnkui-table tbody tr:last-child td, .jnkui table.jnk-linkweave-table tbody tr:last-child td { border-bottom: 0; }
+.jnkui table.jnkui-table tbody tr:hover td, .jnkui table.jnk-linkweave-table tbody tr:hover td { background: #fafbff; }
+.jnkui table a { color: var(--jnk-ink); font-weight: 600; text-decoration: none; }
+.jnkui table a:hover { color: var(--jnk-brand); text-decoration: underline; }
+.jnkui td.is-num, .jnkui th.is-num { text-align: right; font-variant-numeric: tabular-nums; }
+.jnkui .jnkui-sub { display: block; color: var(--jnk-mute); font-size: 12.5px; font-weight: 400; margin-top: 2px; }
+.jnkui-table-wrap { overflow-x: auto; border-radius: var(--jnk-radius); }
+.jnkui-toolbar { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; margin: 0 0 14px; }
+
+/* ---------- Bars ---------- */
+.jnkui-bar { height: 8px; border-radius: 999px; background: var(--jnk-line-2); overflow: hidden; min-width: 80px; }
+.jnkui-bar > i { display: block; height: 100%; border-radius: 999px; background: linear-gradient(90deg, var(--jnk-brand), var(--jnk-brand-2)); }
+
+/* ---------- Empty states ---------- */
+.jnkui-empty, .jnkui .jnk-linkweave-empty {
+	display: block; text-align: center; padding: 44px 24px; background: #fff; border: 1px dashed #cbd5e1;
+	border-radius: var(--jnk-radius); color: var(--jnk-mute); font-style: normal;
+}
+.jnkui-empty-icon { width: 48px; height: 48px; margin: 0 auto 12px; border-radius: 14px; display: grid; place-items: center; background: var(--jnk-brand-soft); color: var(--jnk-brand); }
+.jnkui-empty-icon svg { width: 24px; height: 24px; }
+.jnkui-empty h3 { margin: 0 0 4px; color: var(--jnk-ink); font-size: 15px; font-weight: 650; }
+.jnkui-empty p { margin: 0 auto; max-width: 440px; }
+.jnkui-empty .button { margin-top: 14px; }
+
+/* ---------- Forms ---------- */
+.jnkui input[type=text], .jnkui input[type=url], .jnkui input[type=email], .jnkui input[type=number],
+.jnkui input[type=password], .jnkui input[type=search], .jnkui input[type=date], .jnkui select, .jnkui textarea {
+	border: 1px solid #cbd5e1; border-radius: 8px; min-height: 36px; padding: 6px 10px; background: #fff; color: var(--jnk-ink);
+	box-shadow: 0 1px 1px rgba(15, 23, 42, .03); font-size: 13.5px;
+}
+.jnkui select { padding-right: 28px; }
+.jnkui input:focus, .jnkui select:focus, .jnkui textarea:focus { border-color: var(--jnk-brand); box-shadow: 0 0 0 3px color-mix(in srgb, var(--jnk-brand) 18%, transparent); outline: 0; }
+.jnkui .form-table { background: #fff; border: 1px solid var(--jnk-line); border-radius: var(--jnk-radius); box-shadow: var(--jnk-shadow); border-collapse: separate; margin: 0 0 20px; }
+.jnkui .form-table th { padding: 18px 22px; width: 240px; color: var(--jnk-ink); font-weight: 600; border-bottom: 1px solid var(--jnk-line-2); }
+.jnkui .form-table td { padding: 16px 22px; border-bottom: 1px solid var(--jnk-line-2); }
+.jnkui .form-table tr:last-child th, .jnkui .form-table tr:last-child td { border-bottom: 0; }
+.jnkui .description, .jnkui p.description { color: var(--jnk-mute); font-size: 12.5px; }
+.jnkui-field { display: grid; gap: 6px; }
+.jnkui-field label { font-weight: 600; color: var(--jnk-ink); }
+
+/* ---------- Misc ---------- */
+.jnkui-list { margin: 0; padding: 0; list-style: none; }
+.jnkui-list li { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 22px; border-bottom: 1px solid var(--jnk-line-2); margin: 0; }
+.jnkui-list li:last-child { border-bottom: 0; }
+.jnkui-steps { counter-reset: s; margin: 0; padding: 0; list-style: none; }
+.jnkui-steps li { counter-increment: s; position: relative; padding: 12px 22px 12px 58px; border-bottom: 1px solid var(--jnk-line-2); margin: 0; }
+.jnkui-steps li:last-child { border-bottom: 0; }
+.jnkui-steps li::before { content: counter(s); position: absolute; left: 22px; top: 12px; width: 24px; height: 24px; border-radius: 50%; display: grid; place-items: center; font-size: 12px; font-weight: 700; background: var(--jnk-brand-soft); color: var(--jnk-brand); }
+.jnkui-steps li.is-done::before { content: "✓"; background: var(--jnk-ok-bg); color: var(--jnk-ok); }
+.jnkui-steps strong { color: var(--jnk-ink); display: block; }
+.jnkui-callout { display: flex; gap: 12px; align-items: flex-start; padding: 14px 16px; border-radius: 10px; background: var(--jnk-info-bg); color: #1e3a8a; border: 1px solid #bfdbfe; margin: 0 0 16px; }
+.jnkui-callout.is-warn { background: var(--jnk-warn-bg); color: #78350f; border-color: #fde68a; }
+.jnkui-callout p { margin: 0; }
+.jnkui-muted { color: var(--jnk-mute); }
+.jnkui-kbd { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; background: var(--jnk-line-2); border: 1px solid var(--jnk-line); border-radius: 6px; padding: 1px 6px; }
+.jnkui-spin { display: inline-block; width: 14px; height: 14px; border: 2px solid currentColor; border-right-color: transparent; border-radius: 50%; animation: jnkui-spin .8s linear infinite; vertical-align: -2px; }
+@keyframes jnkui-spin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .jnkui-spin { animation: none; } }
+
+/* ---------- Lists: links read as titles, not raw hyperlinks ---------- */
+.jnkui-list a, .jnkui-card-body a:not(.button) { color: var(--jnk-ink); font-weight: 600; text-decoration: none; }
+.jnkui-list a:hover, .jnkui-card-body a:not(.button):hover { color: var(--jnk-brand); text-decoration: underline; }
+
+/* ---------- Segmented bar chart (stacked share of a whole) ---------- */
+.jnkui-seg { display: flex; height: 14px; border-radius: 999px; overflow: hidden; background: var(--jnk-line-2); }
+.jnkui-seg > span { display: block; height: 100%; min-width: 3px; }
+.jnkui-legend { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin-top: 16px; }
+.jnkui-legend > div { display: flex; flex-direction: column; gap: 2px; padding: 10px 12px; border-radius: 10px; background: #f8fafc; border: 1px solid var(--jnk-line-2); }
+.jnkui-legend b { font-size: 20px; color: var(--jnk-ink); font-variant-numeric: tabular-nums; }
+.jnkui-legend small { display: flex; align-items: center; gap: 6px; color: var(--jnk-mute); font-size: 12.5px; }
+.jnkui-legend i { width: 10px; height: 10px; border-radius: 3px; display: inline-block; }
+
+/* ---------- Column chart ---------- */
+.jnkui-cols { display: flex; align-items: flex-end; gap: 6px; height: 160px; padding-top: 8px; }
+.jnkui-cols > div { flex: 1; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; gap: 6px; height: 100%; min-width: 0; }
+.jnkui-cols > div > i { width: 100%; max-width: 46px; border-radius: 6px 6px 2px 2px; background: linear-gradient(180deg, var(--jnk-brand-2), var(--jnk-brand)); min-height: 2px; }
+.jnkui-cols > div > small { font-size: 11px; color: var(--jnk-mute); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; }
+
+/* WordPress "Add new"-style header links rendered by hooks: show them as buttons. */
+.jnkui .page-title-action { display: inline-flex; align-items: center; min-height: 36px; padding: 0 14px; border-radius: 9px; border: 1px solid var(--jnk-line); background: #fff; color: var(--jnk-ink); font-weight: 600; font-size: 13px; text-decoration: none; top: 0; margin: 0; }
+.jnkui .page-title-action:hover { background: var(--jnk-line-2); color: var(--jnk-ink); border-color: #cbd5e1; }
+
+/* ---------- Settings sections ---------- */
+.jnkui .jnkui-section-title { margin: 28px 0 2px; font-size: 15px; font-weight: 650; color: var(--jnk-ink); }
+.jnkui .jnkui-section-title:first-child { margin-top: 0; }
+.jnkui .jnkui-section-desc { margin: 0 0 12px; color: var(--jnk-mute); font-size: 13px; }
+.jnkui select { min-height: 36px; padding-top: 4px; padding-bottom: 4px; line-height: 1.4; }
