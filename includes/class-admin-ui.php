@@ -79,7 +79,11 @@ class Admin_UI {
         echo '<a class="jnkui-brand" href="' . esc_url( self::url( 'entryvault' ) ) . '">'
             . '<span class="jnkui-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="5" rx="1.5"/><path d="M5 9v9a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V9"/><path d="M10 13h4"/></svg></span>'
             . '<b>' . esc_html__( 'EntryVault', 'entryvault' ) . '</b>'
-            . '<span class="jnkui-ver">' . esc_html( 'v' . ( defined( 'ENTRYVAULT_VERSION' ) ? ENTRYVAULT_VERSION : '' ) ) . '</span></a>';
+            . '<span class="jnkui-ver">' . esc_html( 'v' . ( defined( 'ENTRYVAULT_VERSION' ) ? ENTRYVAULT_VERSION : '' ) ) . '</span>'
+            // Says Pro is on, rather than leaving people to infer it from tabs that unlock.
+            // Free core has no licence code; the Pro module answers through this filter.
+            . ( apply_filters( 'entryvault_pro_active', false ) ? '<span class="jnkui-pro-badge" style="margin-left:6px;padding:1px 7px;border-radius:999px;background:#4f46e5;color:#fff;font-size:11px;font-weight:600;letter-spacing:.02em;vertical-align:middle">Pro</span>' : '' )
+            . '</a>';
 
         if ( $manager ) {
             $more    = self::more_tabs();

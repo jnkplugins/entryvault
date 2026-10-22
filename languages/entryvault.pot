@@ -2,14 +2,14 @@
 # This file is distributed under the GPL-2.0-or-later.
 msgid ""
 msgstr ""
-"Project-Id-Version: EntryVault 1.12.0\n"
+"Project-Id-Version: EntryVault 1.13.0\n"
 "Report-Msgid-Bugs-To: https://jnkplugins.com/entryvault/\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-10-18T17:41:05+00:00\n"
+"POT-Creation-Date: 2026-10-22T20:46:46+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: entryvault\n"
@@ -461,7 +461,7 @@ msgid "in the plugin folder."
 msgstr ""
 
 #: admin/views/settings.php:49
-#: includes/class-admin-ui.php:107
+#: includes/class-admin-ui.php:111
 #: includes/class-plugin.php:77
 #: includes/class-plugin.php:144
 msgid "Settings"
@@ -472,91 +472,95 @@ msgid "How EntryVault sends replies, who can own entries, and what happens to yo
 msgstr ""
 
 #: admin/views/settings.php:56
+msgid "License"
+msgstr ""
+
+#: admin/views/settings.php:60
 msgid "General"
 msgstr ""
 
-#: admin/views/settings.php:57
+#: admin/views/settings.php:61
 msgid "Owners"
 msgstr ""
 
-#: admin/views/settings.php:75
+#: admin/views/settings.php:79
 msgid "Default pipeline"
 msgstr ""
 
-#: admin/views/settings.php:78
+#: admin/views/settings.php:82
 msgid "None"
 msgstr ""
 
-#: admin/views/settings.php:80
+#: admin/views/settings.php:84
 msgid "New entries land here unless something else sends them to another pipeline."
 msgstr ""
 
-#: admin/views/settings.php:84
+#: admin/views/settings.php:88
 msgid "Send replies as"
 msgstr ""
 
-#: admin/views/settings.php:92
+#: admin/views/settings.php:96
 msgid "The name and address your replies come from. Leave blank to use the site name and admin address. Without this, WordPress sends as \"WordPress\", so someone who wrote to your business gets a reply from a stranger."
 msgstr ""
 
-#: admin/views/settings.php:107
+#: admin/views/settings.php:111
 msgid "Reply address domain"
 msgstr ""
 
-#: admin/views/settings.php:111
+#: admin/views/settings.php:115
 msgid "Optional. The domain used in the reply-to address of emails you send, so answers come back to the right entry. Leave blank to use this site's domain."
 msgstr ""
 
-#: admin/views/settings.php:116
+#: admin/views/settings.php:120
 msgid "Show entries on a page"
 msgstr ""
 
-#: admin/views/settings.php:131
+#: admin/views/settings.php:135
 msgid "No pipelines yet."
 msgstr ""
 
-#: admin/views/settings.php:147
+#: admin/views/settings.php:151
 msgid "Paste one of these into a page to show that pipeline's submissions. Anyone who can open the page can read the table, so treat the token as a password. By default the table shows the date, name and stage, never the email address. A submission without a name shows as \"(no name)\" rather than its address. Add columns=\"submitted_at,name,stage,email\" only if you really want addresses on a public page. The owner and tags columns are public too once you add them, so leave out internal tags. The Submissions Table block uses the same defaults. If EntryVault is ever deactivated, WordPress prints an unknown shortcode as plain text, token included; the block does not, so prefer the block on public pages."
 msgstr ""
 
-#: admin/views/settings.php:153
+#: admin/views/settings.php:157
 msgid "Spam"
 msgstr ""
 
-#: admin/views/settings.php:157
+#: admin/views/settings.php:161
 msgid "Leave out entries your form plugin marked as spam"
 msgstr ""
 
-#: admin/views/settings.php:159
+#: admin/views/settings.php:163
 msgid "On by default. Some form plugins save spam and still pass it on (Gravity Forms, Fluent Forms, Forminator, Formidable, Ninja Forms with Akismet, Everest Forms, WS Form, Jetpack). With this on, those never reach your board. Spam stays in the form plugin, so nothing is lost. Untick to bring spam in too."
 msgstr ""
 
-#: admin/views/settings.php:163
+#: admin/views/settings.php:167
 msgid "Data"
 msgstr ""
 
-#: admin/views/settings.php:168
+#: admin/views/settings.php:172
 msgid "Delete all EntryVault data when the plugin is deleted"
 msgstr ""
 
-#: admin/views/settings.php:170
-msgid "Off by default. Your submissions, tags and notes are kept if you deactivate or delete the plugin, or let a Pro licence lapse. Tick this only if deleting the plugin should also remove the data."
+#: admin/views/settings.php:174
+msgid "Off by default. Your submissions, tags and notes are kept if you deactivate or delete the plugin, or let a Pro license lapse. Tick this only if deleting the plugin should also remove the data."
 msgstr ""
 
-#: admin/views/settings.php:175
-#: admin/views/settings.php:204
+#: admin/views/settings.php:179
+#: admin/views/settings.php:208
 msgid "Save changes"
 msgstr ""
 
-#: admin/views/settings.php:186
+#: admin/views/settings.php:190
 msgid "Who can own entries"
 msgstr ""
 
-#: admin/views/settings.php:189
+#: admin/views/settings.php:193
 msgid "No roles are available."
 msgstr ""
 
-#: admin/views/settings.php:198
+#: admin/views/settings.php:202
 msgid "People with a ticked role can be made the owner of an entry. People who can edit posts are always included."
 msgstr ""
 
@@ -693,30 +697,31 @@ msgid "Already bought Pro?"
 msgstr ""
 
 #: admin/views/upgrade.php:61
+#: admin/views/upgrade.php:62
 msgid "Download the Pro zip"
 msgstr ""
 
 #: admin/views/upgrade.php:61
-msgid "From your account on jnkplugins.com."
+msgid "From your account on jnkplugins.com, under your license."
 msgstr ""
 
-#: admin/views/upgrade.php:62
+#: admin/views/upgrade.php:63
 msgid "Upload it over this one"
 msgstr ""
 
-#: admin/views/upgrade.php:62
-msgid "Plugins, Add New, Upload Plugin. When WordPress asks, choose \"Replace current with uploaded\". It shows the same name and version for both copies; that is expected."
-msgstr ""
-
 #: admin/views/upgrade.php:63
-msgid "Enter your licence key"
+msgid "Plugins, Add New, Upload Plugin. WordPress shows this copy as EntryVault and the upload as EntryVault Pro. Choose \"Replace current with uploaded\"."
 msgstr ""
 
-#: admin/views/upgrade.php:63
-msgid "At the bottom of EntryVault Settings."
+#: admin/views/upgrade.php:64
+msgid "Enter your license key"
 msgstr ""
 
-#: admin/views/upgrade.php:66
+#: admin/views/upgrade.php:64
+msgid "A notice at the top of the screen takes you to the box, in EntryVault Settings under License. The key is in your purchase email."
+msgstr ""
+
+#: admin/views/upgrade.php:67
 msgid "The Pro zip is a few megabytes. If your host refuses the upload, unzip it and copy the entryvault folder over the existing one in wp-content/plugins with SFTP or your host's file manager."
 msgstr ""
 
@@ -730,19 +735,19 @@ msgstr ""
 msgid "Locked"
 msgstr ""
 
-#: includes/class-admin-ui.php:88
+#: includes/class-admin-ui.php:92
 msgid "EntryVault sections"
 msgstr ""
 
-#: includes/class-admin-ui.php:94
+#: includes/class-admin-ui.php:98
 msgid "More tools"
 msgstr ""
 
-#: includes/class-admin-ui.php:104
+#: includes/class-admin-ui.php:108
 msgid "Upgrade"
 msgstr ""
 
-#: includes/class-admin-ui.php:106
+#: includes/class-admin-ui.php:110
 msgid "Help"
 msgstr ""
 

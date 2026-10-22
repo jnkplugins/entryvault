@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: EntryVault\n"
 "Report-Msgid-Bugs-To: https://jnkplugins.com/entryvault/\n"
-"POT-Creation-Date: 2026-10-18T17:40:51+00:00\n"
+"POT-Creation-Date: 2026-10-22T20:46:46+00:00\n"
 "PO-Revision-Date: 2026-10-10 16:40+0000\n"
 "Last-Translator: JNK Plugins\n"
 "Language-Team: Spanish (Spain)\n"
@@ -494,7 +494,7 @@ msgstr ""
 msgid "in the plugin folder."
 msgstr "en la carpeta del plugin."
 
-#: admin/views/settings.php:49 includes/class-admin-ui.php:107
+#: admin/views/settings.php:49 includes/class-admin-ui.php:111
 #: includes/class-plugin.php:77 includes/class-plugin.php:144
 msgid "Settings"
 msgstr "Ajustes"
@@ -508,32 +508,36 @@ msgstr ""
 "entradas y qué pasa con tus datos."
 
 #: admin/views/settings.php:56
+msgid "License"
+msgstr "Licencia"
+
+#: admin/views/settings.php:60
 msgid "General"
 msgstr "General"
 
-#: admin/views/settings.php:57
+#: admin/views/settings.php:61
 msgid "Owners"
 msgstr "Responsables"
 
-#: admin/views/settings.php:75
+#: admin/views/settings.php:79
 msgid "Default pipeline"
 msgstr "Pipeline predeterminado"
 
-#: admin/views/settings.php:78
+#: admin/views/settings.php:82
 msgid "None"
 msgstr "Ninguno"
 
-#: admin/views/settings.php:80
+#: admin/views/settings.php:84
 msgid ""
 "New entries land here unless something else sends them to another pipeline."
 msgstr ""
 "Las nuevas entradas llegan aquí salvo que algo las envíe a otro pipeline."
 
-#: admin/views/settings.php:84
+#: admin/views/settings.php:88
 msgid "Send replies as"
 msgstr "Enviar respuestas como"
 
-#: admin/views/settings.php:92
+#: admin/views/settings.php:96
 msgid ""
 "The name and address your replies come from. Leave blank to use the site "
 "name and admin address. Without this, WordPress sends as \"WordPress\", so "
@@ -544,11 +548,11 @@ msgstr ""
 "esto, WordPress envía como \"WordPress\", así que quien escribió a tu "
 "negocio recibe la respuesta de un desconocido."
 
-#: admin/views/settings.php:107
+#: admin/views/settings.php:111
 msgid "Reply address domain"
 msgstr "Dominio de la dirección de respuesta"
 
-#: admin/views/settings.php:111
+#: admin/views/settings.php:115
 msgid ""
 "Optional. The domain used in the reply-to address of emails you send, so "
 "answers come back to the right entry. Leave blank to use this site's domain."
@@ -557,15 +561,15 @@ msgstr ""
 "envías, para que las respuestas vuelvan a la entrada correcta. Déjalo en "
 "blanco para usar el dominio de este sitio."
 
-#: admin/views/settings.php:116
+#: admin/views/settings.php:120
 msgid "Show entries on a page"
 msgstr "Mostrar entradas en una página"
 
-#: admin/views/settings.php:131
+#: admin/views/settings.php:135
 msgid "No pipelines yet."
 msgstr "Todavía no hay pipelines."
 
-#: admin/views/settings.php:147
+#: admin/views/settings.php:151
 msgid ""
 "Paste one of these into a page to show that pipeline's submissions. Anyone "
 "who can open the page can read the table, so treat the token as a password. "
@@ -591,15 +595,15 @@ msgstr ""
 "desconocido como texto plano, token incluido; el bloque no, así que en "
 "páginas públicas es mejor usar el bloque."
 
-#: admin/views/settings.php:153
+#: admin/views/settings.php:157
 msgid "Spam"
 msgstr "Spam"
 
-#: admin/views/settings.php:157
+#: admin/views/settings.php:161
 msgid "Leave out entries your form plugin marked as spam"
 msgstr "Dejar fuera las entradas que tu plugin de formularios marcó como spam"
 
-#: admin/views/settings.php:159
+#: admin/views/settings.php:163
 msgid ""
 "On by default. Some form plugins save spam and still pass it on (Gravity "
 "Forms, Fluent Forms, Forminator, Formidable, Ninja Forms with Akismet, "
@@ -614,37 +618,37 @@ msgstr ""
 "formularios, así que no se pierde nada. Desmárcala para traer también el "
 "spam."
 
-#: admin/views/settings.php:163
+#: admin/views/settings.php:167
 msgid "Data"
 msgstr "Datos"
 
-#: admin/views/settings.php:168
+#: admin/views/settings.php:172
 msgid "Delete all EntryVault data when the plugin is deleted"
 msgstr "Eliminar todos los datos de EntryVault cuando se borre el plugin"
 
-#: admin/views/settings.php:170
+#: admin/views/settings.php:174
 msgid ""
 "Off by default. Your submissions, tags and notes are kept if you deactivate "
-"or delete the plugin, or let a Pro licence lapse. Tick this only if deleting "
+"or delete the plugin, or let a Pro license lapse. Tick this only if deleting "
 "the plugin should also remove the data."
 msgstr ""
 "Desactivado por defecto. Tus envíos, etiquetas y notas se conservan si "
 "desactivas o borras el plugin, o si dejas caducar una licencia Pro. Marca "
 "esto solo si al borrar el plugin también deben eliminarse los datos."
 
-#: admin/views/settings.php:175 admin/views/settings.php:204
+#: admin/views/settings.php:179 admin/views/settings.php:208
 msgid "Save changes"
 msgstr "Guardar cambios"
 
-#: admin/views/settings.php:186
+#: admin/views/settings.php:190
 msgid "Who can own entries"
 msgstr "Quién puede ser responsable de las entradas"
 
-#: admin/views/settings.php:189
+#: admin/views/settings.php:193
 msgid "No roles are available."
 msgstr "No hay perfiles disponibles."
 
-#: admin/views/settings.php:198
+#: admin/views/settings.php:202
 msgid ""
 "People with a ticked role can be made the owner of an entry. People who can "
 "edit posts are always included."
@@ -820,37 +824,40 @@ msgstr ""
 msgid "Already bought Pro?"
 msgstr "¿Ya has comprado Pro?"
 
-#: admin/views/upgrade.php:61
+#: admin/views/upgrade.php:61 admin/views/upgrade.php:62
 msgid "Download the Pro zip"
 msgstr "Descarga el zip de Pro"
 
 #: admin/views/upgrade.php:61
-msgid "From your account on jnkplugins.com."
-msgstr "Desde tu cuenta en jnkplugins.com."
+msgid "From your account on jnkplugins.com, under your license."
+msgstr "Desde tu cuenta en jnkplugins.com, en tu licencia."
 
-#: admin/views/upgrade.php:62
+#: admin/views/upgrade.php:63
 msgid "Upload it over this one"
 msgstr "Súbelo sobre este"
 
-#: admin/views/upgrade.php:62
-msgid ""
-"Plugins, Add New, Upload Plugin. When WordPress asks, choose \"Replace "
-"current with uploaded\". It shows the same name and version for both copies; "
-"that is expected."
-msgstr ""
-"Plugins, Añadir nuevo, Subir plugin. Cuando WordPress pregunte, elige "
-"\"Reemplazar el actual con la versión subida\". Muestra el mismo nombre y la "
-"misma versión para ambas copias; es lo esperado."
-
 #: admin/views/upgrade.php:63
-msgid "Enter your licence key"
+msgid ""
+"Plugins, Add New, Upload Plugin. WordPress shows this copy as EntryVault and "
+"the upload as EntryVault Pro. Choose \"Replace current with uploaded\"."
+msgstr ""
+"Plugins, Añadir nuevo, Subir plugin. WordPress muestra esta copia como "
+"EntryVault y la subida como EntryVault Pro. Elige «Reemplazar el actual con "
+"el subido»."
+
+#: admin/views/upgrade.php:64
+msgid "Enter your license key"
 msgstr "Introduce tu clave de licencia"
 
-#: admin/views/upgrade.php:63
-msgid "At the bottom of EntryVault Settings."
-msgstr "Al final de los ajustes de EntryVault."
+#: admin/views/upgrade.php:64
+msgid ""
+"A notice at the top of the screen takes you to the box, in EntryVault "
+"Settings under License. The key is in your purchase email."
+msgstr ""
+"Un aviso en la parte superior de la pantalla te lleva al cuadro, en Ajustes "
+"de EntryVault, en Licencia. La clave está en el correo de tu compra."
 
-#: admin/views/upgrade.php:66
+#: admin/views/upgrade.php:67
 msgid ""
 "The Pro zip is a few megabytes. If your host refuses the upload, unzip it "
 "and copy the entryvault folder over the existing one in wp-content/plugins "
@@ -869,19 +876,19 @@ msgstr "Envíos"
 msgid "Locked"
 msgstr "Bloqueado"
 
-#: includes/class-admin-ui.php:88
+#: includes/class-admin-ui.php:92
 msgid "EntryVault sections"
 msgstr "Secciones de EntryVault"
 
-#: includes/class-admin-ui.php:94
+#: includes/class-admin-ui.php:98
 msgid "More tools"
 msgstr "Más herramientas"
 
-#: includes/class-admin-ui.php:104
+#: includes/class-admin-ui.php:108
 msgid "Upgrade"
 msgstr "Mejorar"
 
-#: includes/class-admin-ui.php:106
+#: includes/class-admin-ui.php:110
 msgid "Help"
 msgstr "Ayuda"
 

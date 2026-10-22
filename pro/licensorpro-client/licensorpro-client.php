@@ -60,7 +60,7 @@ class LicensorPro_Client {
      * change and re-propagate to every plugin's pro/licensorpro-client/.
      * Audit sync with: LicensorPro_Client::SDK_VERSION.
      */
-    const SDK_VERSION = '1.7.1';
+    const SDK_VERSION = '1.8.0';
 
     /** @var array */
     private $opts;
@@ -122,6 +122,20 @@ class LicensorPro_Client {
     /** @var string */
     private $cron_hook;
 
+    /** @var bool This build ships the paid features (false: a free build that only self-updates). */
+    private $pro_build = true;
+
+    /**
+     * @var bool The plugin SAID it is a Pro build (1.8.0+ callers pass pro_build).
+     *
+     * Older callers pass nothing, and the first SDK copy loaded serves every JnK
+     * plugin on the site, so this class runs for plugins built before it
+     * existed, free builds among them. Anything that would harm a free build if
+     * guessed wrong (blocking its updates, a "Pro is installed" notice) waits
+     * for an explicit true.
+     */
+    private $pro_build_declared = false;
+
     public function __construct(array $opts) {
         $defaults = [
             'api_url'            => 'https://api.jnkplugins.com',
@@ -140,6 +154,25 @@ class LicensorPro_Client {
             'licence_notices'    => true,
             // Where "Renew" points. Defaults to the customer account on api_url.
             'renew_url'          => '',
+            // ---- Plugin wiring (1.8.0). Everything a plugin used to hand-roll
+            // around this class, so every plugin behaves the same. All optional.
+            //
+            // false for a free build that ships this class only to update itself:
+            // its licence is a free one, it has no Pro to switch on, and it must
+            // not show "enter your Pro key" prompts.
+            'pro_build'          => true,
+            // An action the plugin fires on its settings screen; the license card
+            // renders there. Empty: the plugin calls render_settings_page() itself.
+            'card_hook'          => '',
+            // The admin URL of that screen, for the Plugins-row link and notices.
+            'settings_url'       => '',
+            // A Plugins-row action link key the plugin adds for upselling, removed
+            // in a Pro build ("Upgrade" next to "Activate license" reads as a bug).
+            'upsell_link'        => '',
+            // Shown under the license card.
+            'support_url'        => '',
+            // Where buyers download Pro and manage sites. Defaults to the account.
+            'account_url'        => '',
         ];
         $this->opts        = array_merge($defaults, $opts);
         /**
@@ -165,6 +198,8 @@ class LicensorPro_Client {
         ));
 
         $this->plugin_basename = $this->plugin_file ? plugin_basename($this->plugin_file) : '';
+        $this->pro_build       = (bool) $this->opts['pro_build'];
+        $this->pro_build_declared = array_key_exists('pro_build', $opts) && (bool) $opts['pro_build'];
 
         $this->opt_key      = 'licensorpro_' . $this->slug . '_key';
         $this->opt_license  = 'licensorpro_' . $this->slug . '_license';
@@ -203,6 +238,16 @@ class LicensorPro_Client {
         }
         if (!empty($this->opts['licence_notices'])) {
             add_action('admin_notices', [$this, 'render_licence_notice']);
+            if ($this->pro_build_declared) {
+                add_action('admin_notices', [$this, 'render_unlicensed_notice']);
+                add_action('admin_notices', [$this, 'render_activated_notice']);
+            }
+        }
+        if ((string) $this->opts['card_hook'] !== '') {
+            add_action((string) $this->opts['card_hook'], [$this, 'render_settings_page']);
+        }
+        if ($this->pro_build && $this->plugin_basename !== '' && (string) $this->opts['settings_url'] !== '') {
+            add_filter('plugin_action_links_' . $this->plugin_basename, [$this, 'plugin_action_links'], 20);
         }
 
         // WP-CLI: register `wp licensorpro <slug> <subcommand>` if available.
@@ -354,6 +399,12 @@ class LicensorPro_Client {
             return 'invalid';
         }
 
+        // Same for is_free (1.8.0): the server signs it on free licences only, so
+        // deleting it from a stored verdict must not turn a free key into Pro.
+        if ((int) !empty($claims['is_free']) !== (int) !empty($lic['is_free'])) {
+            return 'invalid';
+        }
+
         return 'valid';
     }
 
@@ -407,7 +458,7 @@ class LicensorPro_Client {
     public function was_ever_licensed() {
         $ever = (bool) get_option($this->opt_ever);
         // Installs licensed before 1.7.0 have a stored verdict but no marker yet.
-        if (!$ever && $this->valid_verdict($this->stored_verdict())) {
+        if (!$ever && $this->valid_verdict($this->stored_verdict()) && !self::verdict_is_free($this->stored_verdict())) {
             update_option($this->opt_ever, time(), false);
             $ever = true;
         }
@@ -428,7 +479,10 @@ class LicensorPro_Client {
      *   days_left  whole days until grace_ends, rounded up (grace only)
      *   code       the server's reason, for 'revoked'
      *
-     * @return array{state:string,expired_at:int,grace_ends:int,days_left:int,code:string}
+     *   free       true when the stored licence is a free one (1.8.0). In a Pro
+     *              build the state is then 'unlicensed'.
+     *
+     * @return array{state:string,expired_at:int,grace_ends:int,days_left:int,code:string,free:bool}
      */
     public function status() {
         /**
@@ -440,7 +494,7 @@ class LicensorPro_Client {
     }
 
     private function compute_status() {
-        $out   = ['state' => 'unlicensed', 'expired_at' => 0, 'grace_ends' => 0, 'days_left' => 0, 'code' => ''];
+        $out   = ['state' => 'unlicensed', 'expired_at' => 0, 'grace_ends' => 0, 'days_left' => 0, 'code' => '', 'free' => false];
         $lapse = get_option($this->opt_lapse, null);
         $lapse = is_array($lapse) ? $lapse : null;
 
@@ -455,6 +509,15 @@ class LicensorPro_Client {
         $info = $this->get_license();
         if (!$this->valid_verdict($info)) {
             return $out;
+        }
+        // A free licence (1.8.0) only buys updates of the free build. In a Pro
+        // build it is no licence at all: until then any free key, which anyone
+        // can download, switched every Pro tool on.
+        if (self::verdict_is_free($info)) {
+            $out['free'] = true;
+            if ($this->pro_build) {
+                return $out;
+            }
         }
 
         $now     = time();
@@ -620,12 +683,149 @@ class LicensorPro_Client {
         }
     }
 
+    /**
+     * Is the stored licence a free one? Free licences come with free builds,
+     * from the public download page, and only fetch updates of the free build.
+     * Read from the verdict, whose is_free the signature check has vouched for.
+     */
+    public function is_free_licence() {
+        $info = $this->get_license();
+        return $this->valid_verdict($info) && self::verdict_is_free($info);
+    }
+
+    /** Has a key been entered on this site (any key, free or Pro)? */
+    public function has_key() {
+        return (string) get_option($this->opt_key, '') !== '';
+    }
+
+    /** Is this the Pro build (the one with paid features), as the plugin said? */
+    public function is_pro_build() {
+        return $this->pro_build;
+    }
+
+    /** Where the buyer downloads Pro and manages their sites. */
+    public function account_url() {
+        $url = (string) $this->opts['account_url'];
+        return $url !== '' ? $url : $this->api_url . '/account/licenses';
+    }
+
+    /** @param mixed $info */
+    private static function verdict_is_free($info) {
+        return is_array($info) && !empty($info['license']['is_free']);
+    }
+
     public function renew_url() {
         $url = (string) $this->opts['renew_url'];
         return $url !== '' ? $url : $this->api_url . '/account';
     }
 
+    // ---- Plugins screen ------------------------------------------------------
+
+    /**
+     * The Plugins-row link for a Pro build: Manage, Renew or Activate license,
+     * pointing at the license card. Replaces the plugin's upsell link, which on a
+     * Pro build that only lacks a key read as "buy it again".
+     *
+     * @param array<string,string> $links
+     * @return array<string,string>
+     */
+    public function plugin_action_links($links) {
+        $links = (array) $links;
+        $url   = esc_url((string) $this->opts['settings_url']);
+        $td    = $this->text_domain;
+        $key   = 'licensorpro_' . $this->slug . '_license';
+        if ($this->is_licensed()) {
+            $links[$key] = '<a href="' . $url . '">' . esc_html__('Manage license', $td) . '</a>';
+        } else {
+            $label = $this->has_key() && !$this->is_free_licence()
+                ? __('Renew license', $td)
+                : __('Activate license', $td);
+            $links[$key] = '<a href="' . $url . '" style="color:#b45309;font-weight:600;">' . esc_html($label) . '</a>';
+        }
+        $upsell = (string) $this->opts['upsell_link'];
+        if ($upsell !== '') {
+            unset($links[$upsell]);
+        }
+        return $links;
+    }
+
     // ---- Admin notice --------------------------------------------------------
+
+    /**
+     * "Pro is on", once, after a Pro key activates. Until 1.8.0 the only signs
+     * were indirect: upgrade links vanishing, tabs that started working.
+     */
+    public function render_activated_notice() {
+        if (!$this->pro_build_declared || !current_user_can('manage_options')) {
+            return;
+        }
+        $flag = 'licensorpro_' . $this->slug . '_activated';
+        if (!get_transient($flag) || !$this->is_licensed()) {
+            return;
+        }
+        delete_transient($flag);
+        $msg = sprintf(
+            /* translators: %s: plugin name */
+            __('<strong>%s Pro is on.</strong> Thank you! Every Pro tool is switched on for this site, and updates come to your dashboard.', $this->text_domain),
+            esc_html($this->plugin_name)
+        );
+        echo '<div class="notice notice-success is-dismissible"><p>' . wp_kses($msg, ['strong' => []]) . '</p></div>';
+    }
+
+    /** Is the current admin screen one where license notices belong? */
+    private function notice_screen_here() {
+        $screen = function_exists('get_current_screen') ? get_current_screen() : null;
+        $id     = $screen ? (string) $screen->id : '';
+        return in_array($id, ['dashboard', 'plugins', 'update-core'], true)
+            || ($this->slug !== '' && strpos($id, $this->slug) !== false)
+            || ($this->menu_slug !== '' && strpos($id, $this->menu_slug) !== false);
+    }
+
+    /** Is this request the screen the license card is on? */
+    private function on_settings_screen() {
+        $url = (string) $this->opts['settings_url'];
+        if ($url === '' || !isset($_GET['page'])) {
+            return false;
+        }
+        $query = (string) wp_parse_url($url, PHP_URL_QUERY);
+        parse_str($query, $args);
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- screen routing only.
+        return isset($args['page']) && (string) $args['page'] === sanitize_key(wp_unslash((string) $_GET['page']));
+    }
+
+    /**
+     * "Pro is installed, but no Pro license is active." A Pro build uploaded over
+     * the free one ends on WordPress's "Plugin updated" screen with nothing that
+     * says where the key goes. Not shown on the license card's own screen, and
+     * hidden in place the moment a key activates there.
+     */
+    public function render_unlicensed_notice() {
+        if (!$this->pro_build_declared || !current_user_can('manage_options')) {
+            return;
+        }
+        $st = $this->status();
+        if ($st['state'] !== 'unlicensed' || $this->on_settings_screen()) {
+            return;
+        }
+        $here = $this->notice_screen_here();
+        if (!(bool) apply_filters('licensorpro_show_unlicensed_notice', $here, $this->slug)) {
+            return;
+        }
+        $td   = $this->text_domain;
+        $url  = (string) $this->opts['settings_url'];
+        $msg  = sprintf(
+            /* translators: %s: plugin name */
+            __('<strong>%s Pro is installed, but no Pro license is active on this site.</strong> Enter your license key to switch on the Pro tools.', $td),
+            esc_html($this->plugin_name)
+        );
+        echo '<div class="notice notice-warning licensorpro-unlicensed-notice" data-licensorpro="' . esc_attr($this->slug) . '"><p>'
+            . wp_kses($msg, ['strong' => []]);
+        if ($url !== '') {
+            echo ' <a href="' . esc_url($url) . '">' . esc_html__('Enter license key', $td) . '</a>';
+        }
+        echo ' &middot; <a href="' . esc_url($this->account_url()) . '" target="_blank" rel="noopener">'
+            . esc_html__('Find your key in your account', $td) . '</a></p></div>';
+    }
 
     /**
      * The expiry notice. Shown to admins on the dashboard, the Plugins and
@@ -641,9 +841,7 @@ class LicensorPro_Client {
         }
         $screen = function_exists('get_current_screen') ? get_current_screen() : null;
         $id     = $screen ? (string) $screen->id : '';
-        $here   = in_array($id, ['dashboard', 'plugins', 'update-core'], true)
-            || ($this->slug !== '' && strpos($id, $this->slug) !== false)
-            || ($this->menu_slug !== '' && strpos($id, $this->menu_slug) !== false);
+        $here   = $this->notice_screen_here();
         if (!(bool) apply_filters('licensorpro_show_licence_notice', $here, $this->slug, $id)) {
             return;
         }
@@ -652,13 +850,13 @@ class LicensorPro_Client {
         $name  = $this->plugin_name;
         $fmt   = get_option('date_format') ?: 'j F Y';
         $renew = '<a href="' . esc_url($this->renew_url()) . '" target="_blank" rel="noopener">'
-            . esc_html__('Renew your licence', $td) . '</a>';
+            . esc_html__('Renew your license', $td) . '</a>';
 
         if ($st['state'] === 'grace') {
             $class = 'notice-warning';
             $msg   = sprintf(
                 /* translators: 1: plugin name, 2: expiry date, 3: lock date, 4: days left */
-                __('<strong>Your %1$s Pro licence expired on %2$s.</strong> Pro keeps working as normal until %3$s (%4$d days left). Updates, including security fixes, and email support have stopped. After %3$s, everything you already set up keeps working and your visitors won\'t notice a thing, but the Pro tools in your dashboard will lock.', $td),
+                __('<strong>Your %1$s Pro license expired on %2$s.</strong> Pro keeps working as normal until %3$s (%4$d days left). Updates, including security fixes, and email support have stopped. After %3$s, everything you already set up keeps working and your visitors won\'t notice a thing, but the Pro tools in your dashboard will lock.', $td),
                 esc_html($name),
                 esc_html(date_i18n($fmt, $st['expired_at'])),
                 esc_html(date_i18n($fmt, $st['grace_ends'])),
@@ -668,7 +866,7 @@ class LicensorPro_Client {
             $class = 'notice-error';
             $msg   = sprintf(
                 /* translators: 1: plugin name, 2: expiry date */
-                __('<strong>%1$s Pro tools are locked because your licence expired on %2$s.</strong> Your site, and everything visitors see, still works. Renew to unlock the Pro tools and get updates, including security fixes, again.', $td),
+                __('<strong>%1$s Pro tools are locked because your license expired on %2$s.</strong> Your site, and everything visitors see, still works. Renew to unlock the Pro tools and get updates, including security fixes, again.', $td),
                 esc_html($name),
                 esc_html(date_i18n($fmt, $st['expired_at']))
             );
@@ -676,14 +874,14 @@ class LicensorPro_Client {
             $class = 'notice-error';
             $msg   = sprintf(
                 /* translators: %s: plugin name */
-                __('<strong>This site is no longer activated on your %s Pro licence.</strong> The Pro tools in your dashboard are locked until you activate it again. Everything visitors see keeps working.', $td),
+                __('<strong>This site is no longer activated on your %s Pro license.</strong> The Pro tools in your dashboard are locked until you activate it again. Everything visitors see keeps working.', $td),
                 esc_html($name)
             );
         } else {
             $class = 'notice-error';
             $msg   = sprintf(
                 /* translators: %s: plugin name */
-                __('<strong>Your %s Pro licence is no longer active.</strong> It was refunded or cancelled, so the Pro tools in your dashboard are locked and updates have stopped. Everything visitors see keeps working.', $td),
+                __('<strong>Your %s Pro license is no longer active.</strong> It was refunded or cancelled, so the Pro tools in your dashboard are locked and updates have stopped. Everything visitors see keeps working.', $td),
                 esc_html($name)
             );
         }
@@ -804,7 +1002,11 @@ class LicensorPro_Client {
             update_option($this->opt_license, $resp);
             set_transient($this->tr_validate, $resp, 12 * HOUR_IN_SECONDS);
             delete_option($this->opt_lapse);
-            update_option($this->opt_ever, time(), false);
+            if (!self::verdict_is_free($resp)) {
+                update_option($this->opt_ever, time(), false);
+                // Shown once, on the page the card reloads to. See render_activated_notice().
+                set_transient('licensorpro_' . $this->slug . '_activated', 1, 10 * MINUTE_IN_SECONDS);
+            }
             $this->ensure_schedule();
             $this->refresh_remote(true);
         }
@@ -867,7 +1069,9 @@ class LicensorPro_Client {
             if (is_array($lapse) && !($still_expired && ($lapse['kind'] ?? '') === 'expired')) {
                 delete_option($this->opt_lapse);
             }
-            update_option($this->opt_ever, time(), false);
+            if (!self::verdict_is_free($resp)) {
+                update_option($this->opt_ever, time(), false);
+            }
             return $resp;
         }
         // A definite, signed refusal: remember it. Before 1.7.0 this was dropped
@@ -1274,7 +1478,10 @@ class LicensorPro_Client {
         $remote     = $this->refresh_remote(false);
         $installed  = $this->installed_version();
         $has_update = $remote && !empty($remote['version']) && !empty($remote['has_update'])
-            && version_compare((string) $remote['version'], $installed, '>');
+            && version_compare((string) $remote['version'], $installed, '>')
+            // The server answers a free licence with the free build. Installed over
+            // a Pro build that would delete pro/ without a word (1.8.0).
+            && !($this->pro_build_declared && $this->is_free_licence());
 
         $icons   = $this->plugin_icons($remote);
         $banners = $this->plugin_banners($remote);
@@ -1440,6 +1647,7 @@ class LicensorPro_Client {
             return;
         }
         $st       = $this->status();
+        $free     = !empty($st['free']);
         $licensed = $st['state'] !== 'unlicensed';
         $info     = $this->get_license();
         $key      = (string) get_option($this->opt_key, '');
@@ -1455,10 +1663,41 @@ class LicensorPro_Client {
 
         // Rendered inline within the plugin's own settings screen (not a standalone
         // wrap/page), so emit a section heading rather than an <h1> + .wrap.
-        echo '<h2>' . esc_html(sprintf(__('%s License', $td), $this->plugin_name)) . '</h2>';
+        echo '<h2 id="lp-' . esc_attr($this->slug) . '-license">' . esc_html(sprintf(__('%s License', $td), $this->plugin_name)) . '</h2>';
         echo '<div id="lp-' . esc_attr($this->slug) . '-msg" style="margin:1em 0;"></div>';
 
-        if ($licensed) {
+        // "Deactivate this site" reloads the page, which used to take its own
+        // confirmation with it. Say once, after the reload, what happened.
+        $flag = 'licensorpro_' . $this->slug . '_deactivated_' . get_current_user_id();
+        if (get_transient($flag)) {
+            delete_transient($flag);
+            if (!$licensed) {
+                echo '<div class="notice notice-info inline"><p>'
+                    . esc_html__('This site was deactivated, so its seat is free for another site. Enter the key again here to switch the Pro tools back on.', $td)
+                    . '</p></div>';
+            }
+        }
+
+        if ($free) {
+            // A free licence: it came stamped into the free zip. There is nothing
+            // to deactivate (it has no seats) and nothing Pro to switch off.
+            $checkedAt = isset($info['_checked_at']) ? (int) $info['_checked_at'] : 0;
+            echo '<table class="form-table"><tbody>';
+            echo '<tr><th>' . esc_html__('License key', $td) . '</th><td><code>' . esc_html($masked) . '</code></td></tr>';
+            echo '<tr><th>' . esc_html__('Type', $td) . '</th><td>' . esc_html(
+                $this->pro_build
+                    ? __('Free license: updates of the free version only. It does not switch on Pro.', $td)
+                    : __('Free license: updates arrive in your dashboard like any other plugin.', $td)
+            ) . '</td></tr>';
+            echo '<tr><th>' . esc_html__('Last checked', $td) . '</th><td>' . esc_html($checkedAt ? $this->human_dt($checkedAt) : '—') . '</td></tr>';
+            echo '</tbody></table>';
+            if (!$this->pro_build) {
+                echo '<p><button class="button" id="lp-' . esc_attr($this->slug) . '-check">'
+                     . esc_html__('Check for updates now', $td) . '</button></p>';
+                echo '<p>' . esc_html__('Bought Pro? Download the Pro version from your account and upload it over this one. Everything you set up stays.', $td)
+                     . ' <a href="' . esc_url($this->account_url()) . '" target="_blank" rel="noopener">' . esc_html__('Go to your account', $td) . '</a></p>';
+            }
+        } elseif ($licensed) {
             $offline   = !empty($info['_offline']);
             $checkedAt = isset($info['_checked_at']) ? (int) $info['_checked_at'] : 0;
             $checkedStr = $checkedAt ? $this->human_dt($checkedAt) : '—';
@@ -1498,19 +1737,38 @@ class LicensorPro_Client {
                  . esc_html__('Check for updates now', $td) . '</button>';
             echo '</p>';
         }
-        if (!$licensed || in_array($st['state'], ['locked', 'revoked'], true)) {
+        // The key box. In a Pro build: no licence, a free one, or a lapsed one. In
+        // a free build only when there is no key at all (the stamp did not take).
+        $show_box = $this->pro_build
+            ? (!$licensed || in_array($st['state'], ['locked', 'revoked'], true))
+            : !$this->has_key();
+        if ($show_box) {
             // Wrapped so a successful activation can take the prompt away. Leaving
             // "Enter your license key" and the Activate button under "License
             // activated." read as if the key had not been accepted.
             echo '<div id="lp-' . esc_attr($this->slug) . '-unlicensed">';
-            echo '<p>' . esc_html__('Enter your license key to activate this site.', $td) . '</p>';
+            echo '<p>' . esc_html(
+                $free
+                    ? __('Have a Pro license key? Enter it here to switch on the Pro tools. It replaces the free license on this site.', $td)
+                    : __('Enter your license key to activate this site.', $td)
+            ) . '</p>';
             echo '<table class="form-table"><tbody><tr>';
             echo '<th><label for="lp-' . esc_attr($this->slug) . '-key">' . esc_html__('License key', $td) . '</label></th>';
             echo '<td><input type="text" class="regular-text" id="lp-' . esc_attr($this->slug) . '-key" autocomplete="off" /> ';
             echo '<button class="button button-primary" id="lp-' . esc_attr($this->slug) . '-activate">'
                  . esc_html__('Activate', $td) . '</button></td>';
             echo '</tr></tbody></table>';
+            if ($this->pro_build) {
+                echo '<p class="description">' . esc_html__('Your key is in your purchase email and in your account.', $td)
+                     . ' <a href="' . esc_url($this->account_url()) . '" target="_blank" rel="noopener">' . esc_html__('Go to your account', $td) . '</a></p>';
+            }
             echo '</div>';
+        }
+
+        $support = (string) $this->opts['support_url'];
+        if ($support !== '') {
+            echo '<p class="description">' . esc_html__('Need a hand?', $td)
+                 . ' <a href="' . esc_url($support) . '" target="_blank" rel="noopener">' . esc_html__('Contact support', $td) . '</a></p>';
         }
 
         // Inline JS for AJAX flow.
@@ -1612,14 +1870,21 @@ class LicensorPro_Client {
                             try {
                                 document.dispatchEvent(new CustomEvent('licensorpro:activated', {detail: {slug: slug}}));
                             } catch (err) { /* very old browsers: the reload link still works */ }
+                            document.querySelectorAll('.licensorpro-unlicensed-notice[data-licensorpro="' + slug + '"]').forEach(function(n){
+                                n.style.display = 'none';
+                            });
+                            // The Pro screens only appear after a reload. Do it for
+                            // them, after long enough to read "License activated.";
+                            // the button stays for a browser that blocks it.
                             var again = document.createElement('p');
                             var a = document.createElement('a');
                             a.href = location.href;
                             a.className = 'button button-primary';
-                            a.textContent = 'Reload to use the premium features';
+                            a.textContent = 'Reloading to switch on the Pro tools…';
                             again.appendChild(a);
                             if ($msg) { $msg.appendChild(again); }
                             actBtn.disabled = true;
+                            setTimeout(function(){ location.reload(); }, 1500);
                         }
                     }).catch(function(){
                         actBtn.disabled = false;
@@ -1676,6 +1941,9 @@ class LicensorPro_Client {
     public function ajax_deactivate() {
         $this->verify_ajax();
         $resp = $this->deactivate();
+        if (!empty($resp['ok'])) {
+            set_transient('licensorpro_' . $this->slug . '_deactivated_' . get_current_user_id(), 1, 5 * MINUTE_IN_SECONDS);
+        }
         if (!empty($resp['ok']) && empty($resp['message'])) {
             $resp['message'] = __('Site deactivated.', $this->text_domain);
         }

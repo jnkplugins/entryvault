@@ -58,9 +58,10 @@ $ev_pro_features = [
 <div class="jnkui-card">
     <div class="jnkui-card-head"><div><h2><?php esc_html_e( 'Already bought Pro?', 'entryvault' ); ?></h2></div></div>
     <ol class="jnkui-steps">
-        <li><strong><?php esc_html_e( 'Download the Pro zip', 'entryvault' ); ?></strong><?php esc_html_e( 'From your account on jnkplugins.com.', 'entryvault' ); ?></li>
-        <li><strong><?php esc_html_e( 'Upload it over this one', 'entryvault' ); ?></strong><?php esc_html_e( 'Plugins, Add New, Upload Plugin. When WordPress asks, choose "Replace current with uploaded". It shows the same name and version for both copies; that is expected.', 'entryvault' ); ?></li>
-        <li><strong><?php esc_html_e( 'Enter your licence key', 'entryvault' ); ?></strong><?php esc_html_e( 'At the bottom of EntryVault Settings.', 'entryvault' ); ?></li>
+        <li><strong><?php esc_html_e( 'Download the Pro zip', 'entryvault' ); ?></strong><?php esc_html_e( 'From your account on jnkplugins.com, under your license.', 'entryvault' ); ?>
+            <br><a class="button button-primary" style="margin-top:6px" href="<?php echo esc_url( 'https://license.jnkplugins.com/account/licenses?utm_source=plugin&utm_medium=upgrade-page&utm_campaign=entryvault' ); ?>" target="_blank" rel="noopener"><?php esc_html_e( 'Download the Pro zip', 'entryvault' ); ?></a></li>
+        <li><strong><?php esc_html_e( 'Upload it over this one', 'entryvault' ); ?></strong><?php esc_html_e( 'Plugins, Add New, Upload Plugin. WordPress shows this copy as EntryVault and the upload as EntryVault Pro. Choose "Replace current with uploaded".', 'entryvault' ); ?></li>
+        <li><strong><?php esc_html_e( 'Enter your license key', 'entryvault' ); ?></strong><?php esc_html_e( 'A notice at the top of the screen takes you to the box, in EntryVault Settings under License. The key is in your purchase email.', 'entryvault' ); ?></li>
     </ol>
     <div class="jnkui-card-body" style="border-top:1px solid var(--jnk-line-2)">
         <p class="description" style="margin:0"><?php esc_html_e( 'The Pro zip is a few megabytes. If your host refuses the upload, unzip it and copy the entryvault folder over the existing one in wp-content/plugins with SFTP or your host\'s file manager.', 'entryvault' ); ?></p>

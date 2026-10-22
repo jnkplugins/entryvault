@@ -51,6 +51,10 @@ if ( function_exists( 'wp_roles' ) ) {
 );
 ?>
 <div class="entryvault-settings">
+    <?php if ( has_action( 'entryvault_settings_after' ) ) : ?>
+        <?php // The license card sits under the tabs; the same jump link as in every JnK plugin. ?>
+        <p style="margin:0 0 8px;text-align:right"><a href="#lp-entryvault-license"><?php esc_html_e( 'License', 'entryvault' ); ?> &darr;</a></p>
+    <?php endif; ?>
 
     <h2 class="nav-tab-wrapper" id="ev-settings-tabs" role="tablist">
         <a href="#ev-tab-general"   class="nav-tab nav-tab-active" data-ev-tab="general"   role="tab"><?php esc_html_e( 'General', 'entryvault' ); ?></a>
@@ -167,7 +171,7 @@ if ( function_exists( 'wp_roles' ) ) {
                                    value="1" <?php checked( $ev_delete_on_uninstall ); ?> />
                             <?php esc_html_e( 'Delete all EntryVault data when the plugin is deleted', 'entryvault' ); ?>
                         </label>
-                        <p class="description"><?php esc_html_e( 'Off by default. Your submissions, tags and notes are kept if you deactivate or delete the plugin, or let a Pro licence lapse. Tick this only if deleting the plugin should also remove the data.', 'entryvault' ); ?></p>
+                        <p class="description"><?php esc_html_e( 'Off by default. Your submissions, tags and notes are kept if you deactivate or delete the plugin, or let a Pro license lapse. Tick this only if deleting the plugin should also remove the data.', 'entryvault' ); ?></p>
                     </td>
                 </tr>
             </tbody></table>
