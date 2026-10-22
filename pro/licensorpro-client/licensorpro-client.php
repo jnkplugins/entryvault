@@ -218,6 +218,8 @@ class LicensorPro_Client {
         add_action('wp_ajax_licensorpro_' . $this->slug . '_activate',   [$this, 'ajax_activate']);
         add_action('wp_ajax_licensorpro_' . $this->slug . '_deactivate', [$this, 'ajax_deactivate']);
         add_action('wp_ajax_licensorpro_' . $this->slug . '_check',     [$this, 'ajax_check']);
+        // Key-only upgrade from a free build (1.8.0). See ajax_install_pro().
+        add_action('wp_ajax_licensorpro_' . $this->slug . '_install_pro', [$this, 'ajax_install_pro']);
         // One question on the way out. See deactivation_prompt().
         add_action('wp_ajax_licensorpro_' . $this->slug . '_feedback', [$this, 'ajax_feedback']);
         add_action('admin_footer-plugins.php', [$this, 'deactivation_prompt']);
@@ -707,6 +709,12 @@ class LicensorPro_Client {
     public function account_url() {
         $url = (string) $this->opts['account_url'];
         return $url !== '' ? $url : $this->api_url . '/account/licenses';
+    }
+
+    /** A valid stored licence that is not a free one, whatever build this is. */
+    private function is_licensed_paid() {
+        $info = $this->get_license();
+        return $this->valid_verdict($info) && !self::verdict_is_free($info);
     }
 
     /** @param mixed $info */
@@ -1694,8 +1702,19 @@ class LicensorPro_Client {
             if (!$this->pro_build) {
                 echo '<p><button class="button" id="lp-' . esc_attr($this->slug) . '-check">'
                      . esc_html__('Check for updates now', $td) . '</button></p>';
-                echo '<p>' . esc_html__('Bought Pro? Download the Pro version from your account and upload it over this one. Everything you set up stays.', $td)
+                // Key-only upgrade (1.8.0): the key installs Pro over this copy.
+                echo '<div id="lp-' . esc_attr($this->slug) . '-unlicensed">';
+                echo '<p><strong>' . esc_html__('Bought Pro?', $td) . '</strong> '
+                     . esc_html__('Enter your Pro license key and Pro is installed over this version. Everything you set up stays.', $td) . '</p>';
+                echo '<table class="form-table"><tbody><tr>';
+                echo '<th><label for="lp-' . esc_attr($this->slug) . '-key">' . esc_html__('Pro license key', $td) . '</label></th>';
+                echo '<td><input type="text" class="regular-text" id="lp-' . esc_attr($this->slug) . '-key" autocomplete="off" /> ';
+                echo '<button class="button button-primary" id="lp-' . esc_attr($this->slug) . '-activate" data-install="1">'
+                     . esc_html__('Install Pro now', $td) . '</button></td>';
+                echo '</tr></tbody></table>';
+                echo '<p class="description">' . esc_html__('Rather do it by hand? Download the Pro zip from your account and upload it over this plugin.', $td)
                      . ' <a href="' . esc_url($this->account_url()) . '" target="_blank" rel="noopener">' . esc_html__('Go to your account', $td) . '</a></p>';
+                echo '</div>';
             }
         } elseif ($licensed) {
             $offline   = !empty($info['_offline']);
@@ -1736,6 +1755,13 @@ class LicensorPro_Client {
             echo '<button class="button" id="lp-' . esc_attr($this->slug) . '-check">'
                  . esc_html__('Check for updates now', $td) . '</button>';
             echo '</p>';
+            if (!$this->pro_build && $st['state'] === 'active') {
+                // A Pro key on the free build: the install did not run or did not
+                // finish. One click, with the key already here.
+                echo '<p>' . esc_html__('This is the free version, running on your Pro license.', $td) . ' '
+                     . '<button class="button button-primary" id="lp-' . esc_attr($this->slug) . '-activate" data-install="1" data-nokey="1">'
+                     . esc_html__('Install Pro now', $td) . '</button></p>';
+            }
         }
         // The key box. In a Pro build: no licence, a free one, or a lapsed one. In
         // a free build only when there is no key at all (the stamp did not take).
@@ -1755,7 +1781,8 @@ class LicensorPro_Client {
             echo '<table class="form-table"><tbody><tr>';
             echo '<th><label for="lp-' . esc_attr($this->slug) . '-key">' . esc_html__('License key', $td) . '</label></th>';
             echo '<td><input type="text" class="regular-text" id="lp-' . esc_attr($this->slug) . '-key" autocomplete="off" /> ';
-            echo '<button class="button button-primary" id="lp-' . esc_attr($this->slug) . '-activate">'
+            echo '<button class="button button-primary" id="lp-' . esc_attr($this->slug) . '-activate"'
+                 . ($this->pro_build ? '' : ' data-install="1"') . '>'
                  . esc_html__('Activate', $td) . '</button></td>';
             echo '</tr></tbody></table>';
             if ($this->pro_build) {
@@ -1849,9 +1876,11 @@ class LicensorPro_Client {
                     // it here and write it back so the field shows what was sent.
                     var key = keyEl ? String(keyEl.value).replace(/\s+/g, '') : '';
                     if (keyEl) { keyEl.value = key; }
-                    if (!key) { setMsg('Enter your license key first.', false); return; }
+                    var install = actBtn.getAttribute('data-install') === '1';
+                    if (!key && actBtn.getAttribute('data-nokey') !== '1') { setMsg('Enter your license key first.', false); return; }
                     actBtn.disabled = true;
-                    post('licensorpro_' + slug + '_activate', {license_key: key}).then(function(d){
+                    if (install) { setMsg('Installing Pro. This takes a few seconds, keep this page open…', true); }
+                    post('licensorpro_' + slug + (install ? '_install_pro' : '_activate'), {license_key: key}).then(function(d){
                         actBtn.disabled = false;
                         setResult(d, 'Done.');
                         // Reloading 800ms after success threw away the confirmation
@@ -1926,6 +1955,128 @@ class LicensorPro_Client {
         })();
         </script>
         <?php
+    }
+
+    /**
+     * The latest build this site's key may download, from the update API.
+     *
+     * Asked as if nothing were installed (current_version 0.0.0), so the server
+     * always answers with a signed download URL. A paid key gets the Pro build:
+     * UpdateService picks the file by the licence, not by what is installed.
+     *
+     * @return array{version:string,package:string}|null
+     */
+    public function pro_package() {
+        $key = (string) get_option($this->opt_key, '');
+        if ($key === '') {
+            return null;
+        }
+        $resp = $this->get('/api/v1/update/check', [
+            'license_key'     => $key,
+            'site_url'        => home_url('/'),
+            'product_slug'    => $this->slug,
+            'current_version' => '0.0.0',
+            'channel'         => $this->channel,
+        ]);
+        if (empty($resp['ok']) || empty($resp['download_url']) || empty($resp['version'])) {
+            return null;
+        }
+        return ['version' => (string) $resp['version'], 'package' => (string) $resp['download_url']];
+    }
+
+    /**
+     * "Have a Pro key? Install Pro now", from the free build's license card.
+     *
+     * Until 1.8.0 a buyer had to find their account, download the Pro zip,
+     * upload it and pick "Replace current with uploaded", then come back for the
+     * key. Here the key is activated, the Pro package is fetched with it and
+     * installed over this plugin the way WordPress applies any update (the
+     * plugin stays active, nothing in the database is touched). The manual zip
+     * stays as the fallback, and every refusal says so.
+     *
+     * A free key typed here is simply activated: it is what this build runs on.
+     */
+    public function ajax_install_pro() {
+        $this->verify_ajax();
+        $td = $this->text_domain;
+        if (!current_user_can('update_plugins') || !current_user_can('install_plugins')) {
+            wp_send_json(['ok' => false, 'message' => __('Only someone who may install plugins on this site can install Pro.', $td)], 403);
+        }
+        $key = isset($_POST['license_key']) ? sanitize_text_field((string) wp_unslash($_POST['license_key'])) : '';
+        // No key typed: the Pro key is already active here and an earlier install
+        // did not finish. Use it rather than asking for it again.
+        $resp = ($key === '' && $this->has_key() && $this->is_licensed_paid())
+            ? (array) $this->get_license()
+            : $this->activate($key);
+        if (empty($resp['ok'])) {
+            wp_send_json($resp);
+        }
+        if (self::verdict_is_free($resp)) {
+            wp_send_json(['ok' => true, 'reload' => true,
+                'message' => __('That is a free license key, so it keeps this free version updated. Pro needs the key from your purchase email.', $td)]);
+        }
+
+        $fallback = ' ' . sprintf(
+            /* translators: %s: URL of the customer account */
+            __('Your key is active. Download the Pro zip from your account (%s) and upload it over this plugin instead.', $td),
+            $this->account_url()
+        );
+        if (defined('DISALLOW_FILE_MODS') && DISALLOW_FILE_MODS) {
+            wp_send_json(['ok' => false, 'message' => __('This site does not allow installing plugins from the dashboard.', $td) . $fallback]);
+        }
+        $pkg = $this->pro_package();
+        if (!$pkg) {
+            wp_send_json(['ok' => false, 'message' => __('The Pro download could not be fetched for this key.', $td) . $fallback]);
+        }
+
+        require_once ABSPATH . 'wp-admin/includes/class-wp-upgrader.php';
+        require_once ABSPATH . 'wp-admin/includes/plugin.php';
+        if (!WP_Filesystem()) {
+            // The host wants FTP details for every install; that dialog cannot run
+            // inside this request.
+            wp_send_json(['ok' => false, 'message' => __('This site asks for FTP details to install plugins.', $td) . $fallback]);
+        }
+
+        // Hand core's updater the Pro package for this plugin, for this request
+        // only, then run the same bulk_upgrade() as "Update now" on the Plugins
+        // screen: the plugin stays active and its data is not touched. Priority
+        // 99 runs after drop_stale_update(), which would remove an entry whose
+        // version equals the one on disk (free and Pro share a version).
+        $basename = $this->plugin_basename;
+        $inject = static function ($t) use ($basename, $pkg) {
+            if (!is_object($t)) {
+                $t = new \stdClass();
+            }
+            if (!isset($t->response) || !is_array($t->response)) {
+                $t->response = [];
+            }
+            $t->response[$basename] = (object) [
+                'slug'        => dirname($basename),
+                'plugin'      => $basename,
+                'new_version' => $pkg['version'],
+                'package'     => $pkg['package'],
+            ];
+            return $t;
+        };
+        add_filter('site_transient_update_plugins', $inject, 99);
+        $skin     = new \WP_Ajax_Upgrader_Skin();
+        $upgrader = new \Plugin_Upgrader($skin);
+        $result   = $upgrader->bulk_upgrade([$basename], ['clear_update_cache' => true]);
+        remove_filter('site_transient_update_plugins', $inject, 99);
+        delete_transient($this->tr_update);
+        delete_option($this->opt_remote);
+
+        if (is_wp_error($skin->result) || $skin->get_errors()->has_errors() || !is_array($result) || empty($result[$basename]) || true === $result[$basename]) {
+            $why = is_wp_error($skin->result) ? $skin->result->get_error_message()
+                : ($skin->get_errors()->has_errors() ? implode(' ', (array) $skin->get_error_messages()) : '');
+            wp_send_json(['ok' => false, 'message' => __('Installing Pro did not finish.', $td) . ($why !== '' ? ' ' . $why : '') . $fallback]);
+        }
+        wp_send_json(['ok' => true, 'reload' => true,
+            'message' => sprintf(
+                /* translators: %s: plugin name */
+                __('%s Pro is installed and your license is active. Reloading…', $td),
+                $this->plugin_name
+            )]);
     }
 
     public function ajax_activate() {

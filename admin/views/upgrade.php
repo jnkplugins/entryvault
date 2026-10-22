@@ -57,6 +57,7 @@ $ev_pro_features = [
 
 <div class="jnkui-card">
     <div class="jnkui-card-head"><div><h2><?php esc_html_e( 'Already bought Pro?', 'entryvault' ); ?></h2></div></div>
+    <div class="jnkui-card-body"><p style="margin:0"><strong><?php esc_html_e( 'Fastest: paste your Pro license key in EntryVault Settings, under License, and click Install Pro now. Pro is installed over this version for you. Or do it by hand:', 'entryvault' ); ?></strong> <a class="button" href="<?php echo esc_url( admin_url( 'admin.php?page=entryvault-settings#lp-entryvault-license' ) ); ?>"><?php esc_html_e( 'Open the License box', 'entryvault' ); ?></a></p></div>
     <ol class="jnkui-steps">
         <li><strong><?php esc_html_e( 'Download the Pro zip', 'entryvault' ); ?></strong><?php esc_html_e( 'From your account on jnkplugins.com, under your license.', 'entryvault' ); ?>
             <br><a class="button button-primary" style="margin-top:6px" href="<?php echo esc_url( 'https://license.jnkplugins.com/account/licenses?utm_source=plugin&utm_medium=upgrade-page&utm_campaign=entryvault' ); ?>" target="_blank" rel="noopener"><?php esc_html_e( 'Download the Pro zip', 'entryvault' ); ?></a></li>

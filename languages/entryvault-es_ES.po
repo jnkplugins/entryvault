@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: EntryVault\n"
 "Report-Msgid-Bugs-To: https://jnkplugins.com/entryvault/\n"
-"POT-Creation-Date: 2026-10-22T20:46:46+00:00\n"
+"POT-Creation-Date: 2026-10-22T21:13:04+00:00\n"
 "PO-Revision-Date: 2026-10-10 16:40+0000\n"
 "Last-Translator: JNK Plugins\n"
 "Language-Team: Spanish (Spain)\n"
@@ -824,19 +824,33 @@ msgstr ""
 msgid "Already bought Pro?"
 msgstr "¿Ya has comprado Pro?"
 
-#: admin/views/upgrade.php:61 admin/views/upgrade.php:62
+#: admin/views/upgrade.php:60
+msgid ""
+"Fastest: paste your Pro license key in EntryVault Settings, under License, "
+"and click Install Pro now. Pro is installed over this version for you. Or do "
+"it by hand:"
+msgstr ""
+"Lo más rápido: pega tu clave de licencia Pro en Ajustes de EntryVault, en "
+"Licencia, y haz clic en Instalar Pro ahora. Pro se instala sobre esta "
+"versión por ti. O hazlo a mano:"
+
+#: admin/views/upgrade.php:60
+msgid "Open the License box"
+msgstr "Abrir el cuadro de licencia"
+
+#: admin/views/upgrade.php:62 admin/views/upgrade.php:63
 msgid "Download the Pro zip"
 msgstr "Descarga el zip de Pro"
 
-#: admin/views/upgrade.php:61
+#: admin/views/upgrade.php:62
 msgid "From your account on jnkplugins.com, under your license."
 msgstr "Desde tu cuenta en jnkplugins.com, en tu licencia."
 
-#: admin/views/upgrade.php:63
+#: admin/views/upgrade.php:64
 msgid "Upload it over this one"
 msgstr "Súbelo sobre este"
 
-#: admin/views/upgrade.php:63
+#: admin/views/upgrade.php:64
 msgid ""
 "Plugins, Add New, Upload Plugin. WordPress shows this copy as EntryVault and "
 "the upload as EntryVault Pro. Choose \"Replace current with uploaded\"."
@@ -845,11 +859,11 @@ msgstr ""
 "EntryVault y la subida como EntryVault Pro. Elige «Reemplazar el actual con "
 "el subido»."
 
-#: admin/views/upgrade.php:64
+#: admin/views/upgrade.php:65
 msgid "Enter your license key"
 msgstr "Introduce tu clave de licencia"
 
-#: admin/views/upgrade.php:64
+#: admin/views/upgrade.php:65
 msgid ""
 "A notice at the top of the screen takes you to the box, in EntryVault "
 "Settings under License. The key is in your purchase email."
@@ -857,7 +871,7 @@ msgstr ""
 "Un aviso en la parte superior de la pantalla te lleva al cuadro, en Ajustes "
 "de EntryVault, en Licencia. La clave está en el correo de tu compra."
 
-#: admin/views/upgrade.php:67
+#: admin/views/upgrade.php:68
 msgid ""
 "The Pro zip is a few megabytes. If your host refuses the upload, unzip it "
 "and copy the entryvault folder over the existing one in wp-content/plugins "

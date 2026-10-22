@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: EntryVault\n"
 "Report-Msgid-Bugs-To: https://jnkplugins.com/entryvault/\n"
-"POT-Creation-Date: 2026-10-22T20:46:46+00:00\n"
+"POT-Creation-Date: 2026-10-22T21:13:04+00:00\n"
 "PO-Revision-Date: 2026-10-10 16:40+0000\n"
 "Last-Translator: JNK Plugins\n"
 "Language-Team: Korean\n"
@@ -800,19 +800,33 @@ msgstr ""
 msgid "Already bought Pro?"
 msgstr "이미 Pro를 구매하셨나요?"
 
-#: admin/views/upgrade.php:61 admin/views/upgrade.php:62
+#: admin/views/upgrade.php:60
+msgid ""
+"Fastest: paste your Pro license key in EntryVault Settings, under License, "
+"and click Install Pro now. Pro is installed over this version for you. Or do "
+"it by hand:"
+msgstr ""
+"가장 빠른 방법: EntryVault 설정의 라이선스 항목에 Pro 라이선스 키를 붙여 넣"
+"고 지금 Pro 설치를 누르세요. Pro가 이 버전 위에 자동으로 설치됩니다. 직접 하"
+"려면:"
+
+#: admin/views/upgrade.php:60
+msgid "Open the License box"
+msgstr "라이선스 입력란 열기"
+
+#: admin/views/upgrade.php:62 admin/views/upgrade.php:63
 msgid "Download the Pro zip"
 msgstr "Pro zip 파일 다운로드"
 
-#: admin/views/upgrade.php:61
+#: admin/views/upgrade.php:62
 msgid "From your account on jnkplugins.com, under your license."
 msgstr "jnkplugins.com 계정의 라이선스 항목에서 받으세요."
 
-#: admin/views/upgrade.php:63
+#: admin/views/upgrade.php:64
 msgid "Upload it over this one"
 msgstr "현재 플러그인 위에 업로드"
 
-#: admin/views/upgrade.php:63
+#: admin/views/upgrade.php:64
 msgid ""
 "Plugins, Add New, Upload Plugin. WordPress shows this copy as EntryVault and "
 "the upload as EntryVault Pro. Choose \"Replace current with uploaded\"."
@@ -821,11 +835,11 @@ msgstr ""
 "EntryVault(으)로, 업로드한 파일을 EntryVault Pro로 표시합니다. \"현재 플러그"
 "인을 업로드한 것으로 교체\"를 선택하세요."
 
-#: admin/views/upgrade.php:64
+#: admin/views/upgrade.php:65
 msgid "Enter your license key"
 msgstr "라이선스 키 입력"
 
-#: admin/views/upgrade.php:64
+#: admin/views/upgrade.php:65
 msgid ""
 "A notice at the top of the screen takes you to the box, in EntryVault "
 "Settings under License. The key is in your purchase email."
@@ -833,7 +847,7 @@ msgstr ""
 "화면 상단의 알림을 누르면 EntryVault 설정의 라이선스 항목에 있는 입력란으로 "
 "이동합니다. 키는 구매 확인 이메일에 있습니다."
 
-#: admin/views/upgrade.php:67
+#: admin/views/upgrade.php:68
 msgid ""
 "The Pro zip is a few megabytes. If your host refuses the upload, unzip it "
 "and copy the entryvault folder over the existing one in wp-content/plugins "
