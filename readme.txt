@@ -4,7 +4,7 @@ Tags: form entries, contact form, crm, leads, csv export
 Requires at least: 6.2
 Tested up to: 7.0
 Requires PHP: 8.2
-Stable tag: 1.14.0
+Stable tag: 1.14.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -18,7 +18,7 @@ https://www.youtube.com/watch?v=JmBZw7nU8R8
 
 You collected the lead. Now what? To actually *work* those entries — move them through stages, assign them to a teammate, keep notes, reply — the usual answer is to bolt Gravity Flow ($99/year) onto GravityView ($99/year), roughly $198/year in add-ons on top of the form plugin you already bought, all tied to one form builder.
 
-EntryVault takes a different path: it sits on top of the form plugins you already use and turns their submissions into one unified Kanban board — drag leads through stages, tag and assign them, keep notes, and reply from inside WordPress. Your data stays in your own database. No SaaS, no per-contact fees, no phone-home.
+EntryVault takes a different path: it sits on top of the form plugins you already use and turns their submissions into one unified Kanban board — drag leads through stages, tag and assign them, keep notes, and reply from inside WordPress. Your data stays in your own database. No SaaS, no per-contact fees, no tracking.
 
 It's built for agencies, freelancers, and small teams who outgrew "submissions live in your inbox" but don't want a heavyweight external CRM — and who'd rather pay a flat price than rent a pricing ladder.
 
@@ -102,7 +102,7 @@ No. Submissions are copied into EntryVault's own tables (`wp_entryvault_submissi
 
 = Where does my data live? =
 
-Everything stays in your own WordPress database. No SaaS, no telemetry, no external dashboards. The free zip from jnkplugins.com includes a small update client: it asks our licence server (api.jnkplugins.com) whether a newer EntryVault is out, sending your site address and the installed version, so WordPress can offer the update. Your submissions are never sent anywhere.
+Everything stays in your own WordPress database. No SaaS, no telemetry, no external dashboards. The free zip from jnkplugins.com includes a small update client: it asks our license server (api.jnkplugins.com) whether a newer EntryVault is out, sending your site address, the license key the zip came with and the installed version, so WordPress can offer the update. Your submissions are never sent anywhere.
 
 = Does it run on multisite? =
 
@@ -137,6 +137,9 @@ Use the contact page at https://jnkplugins.com/entryvault/, or Feedback & Suppor
 7. Pro: automations that tag, assign, move or email entries for you.
 
 == Changelog ==
+
+= 1.14.1 =
+* Changed: the readme says plainly what the free zip's update check sends and where, with current prices, and how to install from the jnkplugins.com zip. No code changes.
 
 = 1.14.0 =
 * New: bought Pro? Paste your Pro license key in Settings, under License, and click "Install Pro now". Pro is installed over this version for you, the same way WordPress applies an update, and everything you set up stays. Downloading and uploading the Pro zip still works.
