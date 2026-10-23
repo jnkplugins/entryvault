@@ -4,7 +4,7 @@ Tags: form entries, contact form, crm, leads, csv export
 Requires at least: 6.2
 Tested up to: 7.0
 Requires PHP: 8.2
-Stable tag: 1.14.1
+Stable tag: 1.14.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -102,7 +102,7 @@ No. Submissions are copied into EntryVault's own tables (`wp_entryvault_submissi
 
 = Where does my data live? =
 
-Everything stays in your own WordPress database. No SaaS, no telemetry, no external dashboards. The free zip from jnkplugins.com includes a small update client: it asks our license server (api.jnkplugins.com) whether a newer EntryVault is out, sending your site address, the license key the zip came with and the installed version, so WordPress can offer the update. Your submissions are never sent anywhere.
+Everything stays in your own WordPress database. No SaaS, no telemetry, no external dashboards. The free zip from jnkplugins.com includes a small update client: it asks our license server on jnkplugins.com whether a newer EntryVault is out, sending your site address, the license key the zip came with and the installed version, so WordPress can offer the update. Your submissions are never sent anywhere.
 
 = Does it run on multisite? =
 
@@ -137,6 +137,9 @@ Use the contact page at https://jnkplugins.com/entryvault/, or Feedback & Suppor
 7. Pro: automations that tag, assign, move or email entries for you.
 
 == Changelog ==
+
+= 1.14.2 =
+* Fixed: "Check again" on Dashboard > Updates now finds a new version straight away. Before, a release could stay hidden for up to 12 hours unless you used "Check for updates now" in the License card.
 
 = 1.14.1 =
 * Changed: the readme says plainly what the free zip's update check sends and where, with current prices, and how to install from the jnkplugins.com zip. No code changes.

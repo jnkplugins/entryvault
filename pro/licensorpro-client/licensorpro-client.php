@@ -230,6 +230,8 @@ class LicensorPro_Client {
         add_filter('plugins_api', [$this, 'plugins_api'], 10, 3);
         // Clear update transient when license changes.
         add_action('upgrader_process_complete', [$this, 'clear_cache_after_upgrade'], 10, 2);
+        // Dashboard > Updates > "Check again" must also ask our server (1.8.0).
+        add_action('load-update-core.php', [$this, 'forget_update_on_force_check'], 1);
         // Daily re-check, so an expiry or refund is noticed without anyone clicking
         // "Check". Scheduled on every request when missing, so a lost cron event
         // comes back by itself instead of silently ending all checks.
@@ -1105,6 +1107,26 @@ class LicensorPro_Client {
             }
         }
         return $resp;
+    }
+
+    /**
+     * "Check again" on Dashboard > Updates (update-core.php?force-check=1).
+     *
+     * WordPress refreshes its own list there, but the list asks inject_update(),
+     * which answered from this class's 12-hour cache: a release made after the
+     * last check stayed invisible until the cache ran out, however often the
+     * owner clicked (seen 23 Oct 2026 after several releases in one day). Drop
+     * that cache first, at priority 1, ahead of core's wp_update_plugins() at 10.
+     */
+    public function forget_update_on_force_check() {
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- a read-only refresh, as in core.
+        if (empty($_GET['force-check']) || !current_user_can('update_plugins')) {
+            return;
+        }
+        delete_transient($this->tr_update);
+        // Core skips its refresh when the last one is under a minute old, which
+        // would leave the list as it was. The owner asked for a check: make it one.
+        delete_site_transient('update_plugins');
     }
 
     public function clear_cache() {
