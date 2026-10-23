@@ -4,7 +4,7 @@ Tags: form entries, contact form, crm, leads, csv export
 Requires at least: 6.2
 Tested up to: 7.0
 Requires PHP: 8.2
-Stable tag: 1.15.0
+Stable tag: 1.15.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -137,6 +137,9 @@ Use the contact page at https://jnkplugins.com/entryvault/, or Feedback & Suppor
 7. Pro: automations that tag, assign, move or email entries for you.
 
 == Changelog ==
+
+= 1.15.1 =
+* Fixed: the new Site Health and database-table messages showed in English on Spanish and Korean sites.
 
 = 1.15.0 =
 * New: Tools > Site Health checks that EntryVault's database tables exist. If the database refused one, it says which, with the database's own error, and EntryVault's screens show the same notice.

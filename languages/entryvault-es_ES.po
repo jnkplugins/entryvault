@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: EntryVault\n"
 "Report-Msgid-Bugs-To: https://jnkplugins.com/entryvault/\n"
-"POT-Creation-Date: 2026-10-23T07:13:06+00:00\n"
+"POT-Creation-Date: 2026-10-23T07:19:56+00:00\n"
 "PO-Revision-Date: 2026-10-10 16:40+0000\n"
 "Last-Translator: JNK Plugins\n"
 "Language-Team: Spanish (Spain)\n"
@@ -1242,8 +1242,6 @@ msgid "Column not available without authentication."
 msgstr "Columna no disponible sin autenticación."
 
 #: includes/class-schema-check.php:82
-#, fuzzy
-#| msgid "Could not create the tag."
 msgid "EntryVault could not create its database tables."
 msgstr "EntryVault no pudo crear sus tablas en la base de datos."
 
@@ -1256,14 +1254,10 @@ msgstr ""
 "abajo al soporte (jnkplugins.com/contact) y lo resolvemos contigo."
 
 #: includes/class-schema-check.php:92
-#, fuzzy
-#| msgid "EntryVault Submissions Table"
 msgid "EntryVault database tables"
 msgstr "Tablas de la base de datos de EntryVault"
 
 #: includes/class-schema-check.php:105
-#, fuzzy
-#| msgid "EntryVault Submissions Table"
 msgid "EntryVault is missing database tables"
 msgstr "A EntryVault le faltan tablas en la base de datos"
 
@@ -1276,8 +1270,6 @@ msgstr ""
 "soporte (jnkplugins.com/contact):"
 
 #: includes/class-schema-check.php:116
-#, fuzzy
-#| msgid "EntryVault Pro"
 msgid "EntryVault Pro data is ready"
 msgstr "Los datos de EntryVault Pro están listos"
 
