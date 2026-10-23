@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: EntryVault\n"
 "Report-Msgid-Bugs-To: https://jnkplugins.com/entryvault/\n"
-"POT-Creation-Date: 2026-10-22T21:13:04+00:00\n"
+"POT-Creation-Date: 2026-10-23T07:13:06+00:00\n"
 "PO-Revision-Date: 2026-10-10 16:40+0000\n"
 "Last-Translator: JNK Plugins\n"
 "Language-Team: Spanish (Spain)\n"
@@ -16,9 +16,9 @@ msgstr ""
 "X-Generator: WP-CLI 2.12.0\n"
 
 #. Plugin Name of the plugin
-#: entryvault.php includes/class-admin-ui.php:81 includes/class-plugin.php:116
-#: includes/class-plugin.php:117 includes/class-plugin.php:128
-#: includes/class-plugin.php:129
+#: entryvault.php includes/class-admin-ui.php:81 includes/class-plugin.php:117
+#: includes/class-plugin.php:118 includes/class-plugin.php:129
+#: includes/class-plugin.php:130
 msgid "EntryVault"
 msgstr "EntryVault"
 
@@ -355,7 +355,7 @@ msgstr ""
 "Tu mensaje se envía a través del correo electrónico de tu propio sitio."
 
 #: admin/views/health.php:31 includes/class-admin-ui.php:28
-#: includes/class-plugin.php:143
+#: includes/class-plugin.php:144
 msgid "Health"
 msgstr "Estado"
 
@@ -371,7 +371,7 @@ msgid "Check again"
 msgstr "Comprobar de nuevo"
 
 #: admin/views/import.php:36 includes/class-admin-ui.php:27
-#: includes/class-plugin.php:142
+#: includes/class-plugin.php:143
 msgid "Import"
 msgstr "Importar"
 
@@ -457,7 +457,7 @@ msgstr "Usar el pipeline predeterminado"
 msgid "Stage"
 msgstr "Etapa"
 
-#: admin/views/import.php:93 includes/class-plugin.php:317
+#: admin/views/import.php:93 includes/class-plugin.php:318
 msgid "First stage of the pipeline"
 msgstr "Primera etapa del pipeline"
 
@@ -495,7 +495,7 @@ msgid "in the plugin folder."
 msgstr "en la carpeta del plugin."
 
 #: admin/views/settings.php:49 includes/class-admin-ui.php:111
-#: includes/class-plugin.php:77 includes/class-plugin.php:144
+#: includes/class-plugin.php:78 includes/class-plugin.php:145
 msgid "Settings"
 msgstr "Ajustes"
 
@@ -657,7 +657,7 @@ msgstr ""
 "Quienes pueden editar entradas del blog siempre están incluidos."
 
 #: admin/views/tags.php:14 includes/class-admin-ui.php:26
-#: includes/class-frontend.php:505 includes/class-plugin.php:141
+#: includes/class-frontend.php:505 includes/class-plugin.php:142
 #: includes/class-submissions-list-table.php:62
 #: admin/assets/kanban/build/index.js:5
 msgid "Tags"
@@ -699,7 +699,7 @@ msgstr "Color"
 msgid "Actions"
 msgstr "Acciones"
 
-#: admin/views/tags.php:39 includes/class-plugin.php:270
+#: admin/views/tags.php:39 includes/class-plugin.php:271
 msgid "Add a tag"
 msgstr "Añadir una etiqueta"
 
@@ -881,7 +881,7 @@ msgstr ""
 "subida, descomprímelo y copia la carpeta entryvault sobre la existente en wp-"
 "content/plugins por SFTP o con el gestor de archivos de tu alojamiento."
 
-#: includes/class-admin-ui.php:25 includes/class-plugin.php:140
+#: includes/class-admin-ui.php:25 includes/class-plugin.php:141
 #: includes/class-submissions-admin.php:214
 msgid "Submissions"
 msgstr "Envíos"
@@ -995,13 +995,13 @@ msgstr "Enviado"
 msgid "Created"
 msgstr "Creado"
 
-#: includes/class-frontend.php:500 includes/class-plugin.php:325
+#: includes/class-frontend.php:500 includes/class-plugin.php:326
 #: includes/class-privacy.php:227 includes/class-submissions-list-table.php:51
 #: blocks/submissions-table/index.js:24
 msgid "Title"
 msgstr "Título"
 
-#: includes/class-frontend.php:502 includes/class-plugin.php:326
+#: includes/class-frontend.php:502 includes/class-plugin.php:327
 #: includes/class-privacy.php:228 includes/class-submissions-list-table.php:52
 #: admin/assets/kanban/build/index.js:5
 msgid "Email"
@@ -1013,135 +1013,135 @@ msgstr "Correo electrónico"
 msgid "Owner"
 msgstr "Responsable"
 
-#: includes/class-plugin.php:84 includes/class-plugin.php:166
-#: includes/class-plugin.php:167
+#: includes/class-plugin.php:85 includes/class-plugin.php:167
+#: includes/class-plugin.php:168
 msgid "Upgrade to Pro"
 msgstr "Mejorar a Pro"
 
-#: includes/class-plugin.php:98
+#: includes/class-plugin.php:99
 msgid "Docs"
 msgstr "Documentación"
 
-#: includes/class-plugin.php:103
+#: includes/class-plugin.php:104
 msgid "Support"
 msgstr "Soporte"
 
-#: includes/class-plugin.php:138
+#: includes/class-plugin.php:139
 msgid "Kanban"
 msgstr "Kanban"
 
-#: includes/class-plugin.php:139
+#: includes/class-plugin.php:140
 msgid "Dashboard"
 msgstr "Escritorio"
 
-#: includes/class-plugin.php:145
+#: includes/class-plugin.php:146
 msgid "Feedback"
 msgstr "Comentarios"
 
-#: includes/class-plugin.php:213 includes/class-plugin.php:266
+#: includes/class-plugin.php:214 includes/class-plugin.php:267
 msgid "Saved."
 msgstr "Guardado."
 
-#: includes/class-plugin.php:214
+#: includes/class-plugin.php:215
 msgid "Save failed."
 msgstr "No se ha podido guardar."
 
-#: includes/class-plugin.php:264
+#: includes/class-plugin.php:265
 msgid "Edit"
 msgstr "Editar"
 
-#: includes/class-plugin.php:265 includes/class-submissions-list-table.php:94
+#: includes/class-plugin.php:266 includes/class-submissions-list-table.php:94
 msgid "Delete"
 msgstr "Borrar"
 
-#: includes/class-plugin.php:267
+#: includes/class-plugin.php:268
 msgid "Error."
 msgstr "Error."
 
-#: includes/class-plugin.php:268
+#: includes/class-plugin.php:269
 msgid "Delete this tag? It comes off every entry that has it."
 msgstr "¿Borrar esta etiqueta? Se quitará de todas las entradas que la tengan."
 
-#: includes/class-plugin.php:269
+#: includes/class-plugin.php:270
 msgid "No tags yet. Add your first one with the form next to this list."
 msgstr ""
 "Todavía no hay etiquetas. Añade la primera con el formulario junto a esta "
 "lista."
 
-#: includes/class-plugin.php:271
+#: includes/class-plugin.php:272
 msgid "Edit tag"
 msgstr "Editar etiqueta"
 
-#: includes/class-plugin.php:318
+#: includes/class-plugin.php:319
 msgid "Please choose a file or paste CSV first."
 msgstr "Elige primero un archivo o pega el CSV."
 
-#: includes/class-plugin.php:319
+#: includes/class-plugin.php:320
 msgid "Loading preview…"
 msgstr "Cargando la vista previa…"
 
-#: includes/class-plugin.php:320
+#: includes/class-plugin.php:321
 msgid "Preview failed."
 msgstr "Ha fallado la vista previa."
 
 #. translators: %s: number of rows loaded.
-#: includes/class-plugin.php:322
+#: includes/class-plugin.php:323
 #, php-format
 msgid "Loaded %s rows."
 msgstr "Se han cargado %s filas."
 
-#: includes/class-plugin.php:323
+#: includes/class-plugin.php:324
 msgid "Network error."
 msgstr "Error de red."
 
-#: includes/class-plugin.php:324
+#: includes/class-plugin.php:325
 msgid "Ignore"
 msgstr "Ignorar"
 
-#: includes/class-plugin.php:327 includes/class-privacy.php:226
+#: includes/class-plugin.php:328 includes/class-privacy.php:226
 #: includes/class-submissions-list-table.php:64
 #: admin/assets/kanban/build/index.js:5
 msgid "Source"
 msgstr "Origen"
 
-#: includes/class-plugin.php:328
+#: includes/class-plugin.php:329
 msgid "Field"
 msgstr "Campo"
 
-#: includes/class-plugin.php:329
+#: includes/class-plugin.php:330
 msgid "You must map one column to Email."
 msgstr "Debes asignar una columna al correo electrónico."
 
-#: includes/class-plugin.php:330
+#: includes/class-plugin.php:331
 msgid "Running…"
 msgstr "Ejecutando…"
 
-#: includes/class-plugin.php:331
+#: includes/class-plugin.php:332
 msgid "Import failed."
 msgstr "Ha fallado la importación."
 
-#: includes/class-plugin.php:332
+#: includes/class-plugin.php:333
 msgid "Done."
 msgstr "Hecho."
 
-#: includes/class-plugin.php:333
+#: includes/class-plugin.php:334
 msgid "Results"
 msgstr "Resultados"
 
-#: includes/class-plugin.php:334
+#: includes/class-plugin.php:335
 msgid "Test run: nothing was saved."
 msgstr "Prueba: no se ha guardado nada."
 
-#: includes/class-plugin.php:335
+#: includes/class-plugin.php:336
 msgid "Imported:"
 msgstr "Importadas:"
 
-#: includes/class-plugin.php:336
+#: includes/class-plugin.php:337
 msgid "Would import:"
 msgstr "Se importarían:"
 
 #. translators: %s: comma-separated column names.
-#: includes/class-plugin.php:338
+#: includes/class-plugin.php:339
 #, php-format
 msgid ""
 "Only one column can be the title, but these are all set to Title: %s. Set "
@@ -1150,11 +1150,11 @@ msgstr ""
 "Solo una columna puede ser el título, pero todas estas están como Título: "
 "%s. Pon las demás como Campo para conservar sus valores."
 
-#: includes/class-plugin.php:339
+#: includes/class-plugin.php:340
 msgid "Already present:"
 msgstr "Ya existentes:"
 
-#: includes/class-plugin.php:340
+#: includes/class-plugin.php:341
 msgid ""
 "Rows already present were recognised from an earlier import and left "
 "untouched, so nothing was duplicated."
@@ -1162,15 +1162,15 @@ msgstr ""
 "Las filas ya existentes se han reconocido de una importación anterior y no "
 "se han tocado, así que no se ha duplicado nada."
 
-#: includes/class-plugin.php:341
+#: includes/class-plugin.php:342
 msgid "Skipped:"
 msgstr "Omitidas:"
 
-#: includes/class-plugin.php:342
+#: includes/class-plugin.php:343
 msgid "Errors"
 msgstr "Errores"
 
-#: includes/class-plugin.php:343
+#: includes/class-plugin.php:344
 msgid "Row"
 msgstr "Fila"
 
@@ -1240,6 +1240,58 @@ msgstr "Columna desconocida: %s"
 #: includes/class-rest-public.php:147
 msgid "Column not available without authentication."
 msgstr "Columna no disponible sin autenticación."
+
+#: includes/class-schema-check.php:82
+#, fuzzy
+#| msgid "Could not create the tag."
+msgid "EntryVault could not create its database tables."
+msgstr "EntryVault no pudo crear sus tablas en la base de datos."
+
+#: includes/class-schema-check.php:83
+msgid ""
+"Submissions cannot reach the board without them. Send the details below to "
+"support (jnkplugins.com/contact) and we will sort it out with you."
+msgstr ""
+"Los envíos no pueden llegar al tablero sin ellas. Envía los detalles de "
+"abajo al soporte (jnkplugins.com/contact) y lo resolvemos contigo."
+
+#: includes/class-schema-check.php:92
+#, fuzzy
+#| msgid "EntryVault Submissions Table"
+msgid "EntryVault database tables"
+msgstr "Tablas de la base de datos de EntryVault"
+
+#: includes/class-schema-check.php:105
+#, fuzzy
+#| msgid "EntryVault Submissions Table"
+msgid "EntryVault is missing database tables"
+msgstr "A EntryVault le faltan tablas en la base de datos"
+
+#: includes/class-schema-check.php:108
+msgid ""
+"Submissions cannot reach the board without these tables. Send this list to "
+"support (jnkplugins.com/contact):"
+msgstr ""
+"Los envíos no pueden llegar al tablero sin estas tablas. Envía esta lista al "
+"soporte (jnkplugins.com/contact):"
+
+#: includes/class-schema-check.php:116
+#, fuzzy
+#| msgid "EntryVault Pro"
+msgid "EntryVault Pro data is ready"
+msgstr "Los datos de EntryVault Pro están listos"
+
+#: includes/class-schema-check.php:116
+msgid "EntryVault database tables are ready"
+msgstr "Las tablas de la base de datos de EntryVault están listas"
+
+#. translators: %d: number of database tables
+#: includes/class-schema-check.php:121
+#, php-format
+msgid "The %d table EntryVault needs is in the database."
+msgid_plural "All %d tables EntryVault needs are in the database."
+msgstr[0] "La %d tabla que necesita EntryVault está en la base de datos."
+msgstr[1] "Las %d tablas que necesita EntryVault están en la base de datos."
 
 #: includes/class-submissions-admin.php:215
 msgid ""

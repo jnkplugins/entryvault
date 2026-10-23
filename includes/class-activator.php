@@ -11,6 +11,9 @@ class Activator {
 
         self::migrate_legacy_tables();
         self::create_tables();
+        // dbDelta() says nothing when the database refuses a table; check, and
+        // keep the database's own error for the notice and Site Health.
+        Schema_Check::record();
         self::migrate_columns();
         self::seed_defaults();
         self::ensure_settings();

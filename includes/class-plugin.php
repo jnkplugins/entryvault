@@ -43,6 +43,7 @@ final class Plugin {
             // Apply pending schema migrations on update (the activation hook does
             // not fire on in-place upgrades, e.g. free → Pro via zip upload).
             add_action( 'admin_init', [ Activator::class, 'maybe_upgrade' ] );
+            Schema_Check::register();
             Submissions_Admin::register();
             Feedback::register();
             add_action( 'admin_menu', [ $this, 'register_admin_menu' ] );
