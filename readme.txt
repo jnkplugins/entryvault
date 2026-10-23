@@ -4,7 +4,7 @@ Tags: form entries, contact form, crm, leads, csv export
 Requires at least: 6.2
 Tested up to: 7.0
 Requires PHP: 8.2
-Stable tag: 1.14.2
+Stable tag: 1.14.3
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -137,6 +137,9 @@ Use the contact page at https://jnkplugins.com/entryvault/, or Feedback & Suppor
 7. Pro: automations that tag, assign, move or email entries for you.
 
 == Changelog ==
+
+= 1.14.3 =
+* Fixed: "Update now" could fail with "Download link expired" when clicked a while after WordPress last checked for updates. The plugin now fetches a fresh download link right before the update starts.
 
 = 1.14.2 =
 * Fixed: "Check again" on Dashboard > Updates now finds a new version straight away. Before, a release could stay hidden for up to 12 hours unless you used "Check for updates now" in the License card.

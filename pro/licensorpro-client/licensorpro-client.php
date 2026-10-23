@@ -232,6 +232,8 @@ class LicensorPro_Client {
         add_action('upgrader_process_complete', [$this, 'clear_cache_after_upgrade'], 10, 2);
         // Dashboard > Updates > "Check again" must also ask our server (1.8.0).
         add_action('load-update-core.php', [$this, 'forget_update_on_force_check'], 1);
+        // A fresh signed download link at the moment the update starts.
+        add_filter('upgrader_package_options', [$this, 'fresh_package']);
         // Daily re-check, so an expiry or refund is noticed without anyone clicking
         // "Check". Scheduled on every request when missing, so a lost cron event
         // comes back by itself instead of silently ending all checks.
@@ -1127,6 +1129,33 @@ class LicensorPro_Client {
         // Core skips its refresh when the last one is under a minute old, which
         // would leave the list as it was. The owner asked for a check: make it one.
         delete_site_transient('update_plugins');
+    }
+
+    /**
+     * Swap the package URL for a fresh one just before WordPress downloads it.
+     *
+     * Our download links are signed with a short expiry, but WordPress keeps the
+     * URL from the last update check for up to 12 hours, so "Update now" clicked
+     * later failed with "Download link expired" (23 Oct 2026; the server now also
+     * allows a day of grace). Only our own links for this plugin are touched.
+     *
+     * @param array<string,mixed> $options
+     * @return array<string,mixed>
+     */
+    public function fresh_package($options) {
+        if (!is_array($options) || empty($options['package']) || !is_string($options['package'])) {
+            return $options;
+        }
+        $plugin = isset($options['hook_extra']['plugin']) ? (string) $options['hook_extra']['plugin'] : '';
+        if ($plugin === '' || $plugin !== $this->plugin_basename
+            || strpos($options['package'], '/api/v1/update/download') === false) {
+            return $options;
+        }
+        $remote = $this->refresh_remote(true);
+        if (is_array($remote) && !empty($remote['download_url'])) {
+            $options['package'] = (string) $remote['download_url'];
+        }
+        return $options;
     }
 
     public function clear_cache() {
