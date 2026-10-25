@@ -6,6 +6,14 @@ defined( 'ABSPATH' ) || exit;
 
 class Email_Sender {
 
+    /** Why the last send() failed ('' after a success). */
+    private static string $last_error = '';
+
+    /** The mailer's reason for the last failed send(), e.g. "SMTP Error: Could not authenticate." */
+    public static function last_error(): string {
+        return self::$last_error;
+    }
+
     /**
      * Send an outbound email tied to a submission.
      *
@@ -79,15 +87,34 @@ class Email_Sender {
 
         $attachments = (array) ( $opts['attachments'] ?? [] );
 
+        // A failed send was stored and shown as sent: keep the mailer's reason.
+        $failure      = '';
+        $catch_failed = static function ( $error ) use ( &$failure ) {
+            $failure = is_wp_error( $error ) ? (string) $error->get_error_message() : 'wp_mail failed';
+        };
+        add_action( 'wp_mail_failed', $catch_failed );
+
         $sent = wp_mail( $to, $subject, $body, $headers, $attachments );
 
         remove_action( 'phpmailer_init', $set_message_id );
+        remove_action( 'wp_mail_failed', $catch_failed );
+        // WordPress keeps one PHPMailer for the whole request and never clears
+        // MessageID, so the next wp_mail() (Trinity's admin notification, its
+        // autoresponder) went out with this email's Message-ID.
+        global $phpmailer;
+        if ( is_object( $phpmailer ) && property_exists( $phpmailer, 'MessageID' ) ) {
+            $phpmailer->MessageID = ''; // phpcs:ignore WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase -- PHPMailer property.
+        }
+        if ( ! $sent && '' === $failure ) {
+            $failure = __( 'The mailer did not accept the email.', 'entryvault' );
+        }
+        self::$last_error = $sent ? '' : substr( $failure, 0, 500 );
 
         $now = current_time( 'mysql' );
         $from_addr = ! empty( $opts['from'] ) ? (string) $opts['from'] : ( function_exists( 'get_bloginfo' ) ? (string) get_bloginfo( 'admin_email' ) : '' );
 
         global $wpdb;
-        $wpdb->insert( $wpdb->prefix . 'entryvault_emails', [
+        $row = [
             'submission_id' => $submission_id,
             'inbox_id'      => null,
             'direction'     => 'out',
@@ -100,7 +127,17 @@ class Email_Sender {
             'body_html'     => ! empty( $opts['html'] ) ? $body : null,
             'raw_headers'   => $headers ? wp_json_encode( $headers ) : null,
             'sent_at'       => $now,
-        ] );
+        ];
+        if ( ! $sent ) {
+            // The column arrives with the schema update; until it does, a failed
+            // email is left out of the conversation rather than shown as sent.
+            if ( self::has_error_column() ) {
+                $row['send_error'] = self::$last_error;
+                $wpdb->insert( $wpdb->prefix . 'entryvault_emails', $row );
+            }
+        } else {
+            $wpdb->insert( $wpdb->prefix . 'entryvault_emails', $row );
+        }
 
         Timeline::log( $submission_id, 'email_sent', null, [
             'to'       => $to,
@@ -108,11 +145,21 @@ class Email_Sender {
             'body'     => $body,
             'reply_to' => $reply_to,
             'sent'     => (bool) $sent,
+            'error'    => self::$last_error,
         ] );
 
         do_action( 'entryvault_email_sent', $submission_id, $to, $subject, (bool) $sent );
 
         return (bool) $sent;
+    }
+
+    private static function has_error_column(): bool {
+        static $has = null;
+        if ( null === $has ) {
+            global $wpdb;
+            $has = (bool) $wpdb->get_row( $wpdb->prepare( 'SHOW COLUMNS FROM %i LIKE %s', $wpdb->prefix . 'entryvault_emails', 'send_error' ) );
+        }
+        return $has;
     }
 
     /**
@@ -158,6 +205,9 @@ class Email_Sender {
         if ( '' === $name ) {
             $name = (string) get_bloginfo( 'name' );
         }
+        // WordPress stores the site title HTML-escaped: "Duniya &amp; Friends"
+        // went out as the sender name.
+        $name = wp_specialchars_decode( $name, ENT_QUOTES );
         $name = str_replace( [ "\r", "\n", '"' ], '', $name );
 
         return '' !== $name

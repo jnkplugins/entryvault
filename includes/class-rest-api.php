@@ -19,6 +19,10 @@ class REST_API {
             'permission_callback' => [ $this, 'can_view_board' ],
             'args'                => [
                 'pipeline_id' => [ 'type' => 'integer', 'required' => true ],
+                'q'           => [ 'type' => 'string', 'required' => false ],
+                'stage_id'    => [ 'type' => 'integer', 'required' => false ],
+                'offset'      => [ 'type' => 'integer', 'required' => false, 'minimum' => 0 ],
+                'per_stage'   => [ 'type' => 'integer', 'required' => false, 'minimum' => 1, 'maximum' => 200 ],
             ],
         ] );
 
@@ -201,31 +205,58 @@ class REST_API {
         // Optional owner filter (single id or array via ?owner_id[]=).
         $owner_filter = self::parse_owner_filter( $req );
 
-        foreach ( $stages as &$stage ) {
-            $owner_sql    = '';
-            $owner_params = [];
-            if ( ! empty( $owner_filter['ids'] ) || $owner_filter['unassigned'] ) {
-                $clauses = [];
-                if ( ! empty( $owner_filter['ids'] ) ) {
-                    $ids          = array_map( 'intval', $owner_filter['ids'] );
-                    $placeholders = implode( ',', array_fill( 0, count( $ids ), '%d' ) );
-                    $clauses[]    = "owner_user_id IN ({$placeholders})";
-                    $owner_params = $ids;
-                }
-                if ( $owner_filter['unassigned'] ) {
-                    $clauses[] = 'owner_user_id IS NULL';
-                }
-                $owner_sql = ' AND (' . implode( ' OR ', $clauses ) . ')';
-            }
+        // A column showed at most the 50 most recently touched cards and said "50",
+        // so on a busy pipeline (or after a Backfill, which touches every imported
+        // row) real new leads fell off the board, and the search only looked at the
+        // cards already loaded. Each stage now carries its full count, newest
+        // submissions come first, the search runs here, and ?stage_id + ?offset
+        // loads the next page of one column.
+        $per_stage   = max( 1, min( 200, (int) ( $req->get_param( 'per_stage' ) ?: 50 ) ) );
+        $offset      = max( 0, (int) $req->get_param( 'offset' ) );
+        $only_stage  = (int) $req->get_param( 'stage_id' );
+        $search      = trim( (string) $req->get_param( 'q' ) );
+        if ( $only_stage > 0 ) {
+            $stages = array_values( array_filter( (array) $stages, static fn( $s ) => (int) $s['id'] === $only_stage ) );
+        }
 
-            // phpcs:disable WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.PreparedSQLPlaceholders.ReplacementsWrongNumber, PluginCheck.Security.DirectDB.UnescapedDBParameter -- $owner_sql is a static SQL fragment holding only %d placeholders; %i identifier and all values are bound via prepare().
+        $extra_sql    = '';
+        $extra_params = [];
+        if ( ! empty( $owner_filter['ids'] ) || $owner_filter['unassigned'] ) {
+            $clauses = [];
+            if ( ! empty( $owner_filter['ids'] ) ) {
+                $ids          = array_map( 'intval', $owner_filter['ids'] );
+                $placeholders = implode( ',', array_fill( 0, count( $ids ), '%d' ) );
+                $clauses[]    = "owner_user_id IN ({$placeholders})";
+                $extra_params = $ids;
+            }
+            if ( $owner_filter['unassigned'] ) {
+                $clauses[] = 'owner_user_id IS NULL';
+            }
+            $extra_sql = ' AND (' . implode( ' OR ', $clauses ) . ')';
+        }
+        if ( '' !== $search ) {
+            $like           = '%' . $wpdb->esc_like( substr( $search, 0, 200 ) ) . '%';
+            $extra_sql     .= ' AND (title LIKE %s OR email LIKE %s)';
+            $extra_params[] = $like;
+            $extra_params[] = $like;
+        }
+
+        foreach ( $stages as &$stage ) {
+            $base = [ $wpdb->prefix . 'entryvault_submissions', $pipeline_id, (int) $stage['id'] ];
+
+            // phpcs:disable WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.PreparedSQLPlaceholders.ReplacementsWrongNumber, PluginCheck.Security.DirectDB.UnescapedDBParameter -- $extra_sql is a static SQL fragment holding only %d/%s placeholders; %i identifier and all values are bound via prepare().
+            $total = (int) $wpdb->get_var( $wpdb->prepare(
+                "SELECT COUNT(*) FROM %i
+                  WHERE pipeline_id = %d AND stage_id = %d AND status = 'open'{$extra_sql}",
+                array_merge( $base, $extra_params )
+            ) );
             $cards = $wpdb->get_results( $wpdb->prepare(
                 "SELECT id, title, email, source_plugin, owner_user_id, created_at, updated_at
                    FROM %i
-                  WHERE pipeline_id = %d AND stage_id = %d AND status = 'open'{$owner_sql}
-               ORDER BY updated_at DESC
-                  LIMIT 50",
-                array_merge( [ $wpdb->prefix . 'entryvault_submissions', $pipeline_id, (int) $stage['id'] ], $owner_params )
+                  WHERE pipeline_id = %d AND stage_id = %d AND status = 'open'{$extra_sql}
+               ORDER BY created_at DESC, id DESC
+                  LIMIT %d OFFSET %d",
+                array_merge( $base, $extra_params, [ $per_stage, $offset ] )
             ), ARRAY_A );
             // phpcs:enable WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.PreparedSQLPlaceholders.ReplacementsWrongNumber, PluginCheck.Security.DirectDB.UnescapedDBParameter
 
@@ -238,7 +269,9 @@ class REST_API {
             } else {
                 $cards = [];
             }
-            $stage['cards'] = $cards;
+            $stage['cards']  = $cards;
+            $stage['total']  = $total;
+            $stage['offset'] = $offset;
         }
         unset( $stage );
 
@@ -639,7 +672,8 @@ class REST_API {
 
         $sent = Email_Sender::send( $id, $to, $subject, $body, [ 'html' => $html ] );
         if ( ! $sent ) {
-            return self::envelope( [ 'sent' => false ], [ 'send_failed' ], 500 );
+            // Say why: "Could not send the email." alone gave the owner nothing to fix.
+            return self::envelope( [ 'sent' => false, 'reason' => Email_Sender::last_error() ], [ 'send_failed' ], 500 );
         }
         return self::envelope( [ 'sent' => true ] );
     }
@@ -694,14 +728,12 @@ class REST_API {
             'search'      => isset( $params['search'] ) ? sanitize_text_field( (string) $params['search'] ) : '',
             'date_from'   => isset( $params['date_from'] ) ? self::sanitize_date( (string) $params['date_from'] ) : '',
             'date_to'     => isset( $params['date_to'] ) ? self::sanitize_date( (string) $params['date_to'] ) : '',
-            'paged'       => 1,
-            'per_page'    => 5000,
             'orderby'     => 'created_at',
             'order'       => 'DESC',
         ];
 
-        $result = Submission_Store::query( $args );
-        $rows   = $result['rows'];
+        // Paged (one query() page is 200 rows), still bounded at 5000.
+        $rows = Submission_Store::query_all( $args, 5000 );
 
         global $wpdb;
         // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_fopen -- streaming CSV to php://output; WP_Filesystem has no streaming API.
@@ -753,7 +785,29 @@ class REST_API {
             $response->header( 'Content-Type', 'application/octet-stream' );
             $response->header( 'Content-Disposition', 'attachment; filename="' . $filename . '"' );
         }
+        // WordPress JSON-encodes every REST body, so the "CSV" arrived as one
+        // quoted string full of \n escapes. Send this one as it is.
+        add_filter( 'rest_pre_serve_request', [ self::class, 'serve_raw_csv' ], 10, 3 );
         return $response;
+    }
+
+    /**
+     * rest_pre_serve_request: echo the export route's CSV body unencoded.
+     *
+     * @param bool              $served
+     * @param \WP_HTTP_Response $result
+     * @param WP_REST_Request   $request
+     */
+    public static function serve_raw_csv( $served, $result, $request ) {
+        if ( $served || ! $request instanceof WP_REST_Request || '/' . self::NS . '/submissions/export.csv' !== $request->get_route() ) {
+            return $served;
+        }
+        $body = $result instanceof \WP_HTTP_Response ? $result->get_data() : null;
+        if ( ! is_string( $body ) ) {
+            return $served;
+        }
+        echo $body; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- a CSV file download, cells already neutralised by csv_safe().
+        return true;
     }
 
     private static function sanitize_date( string $date ): string {

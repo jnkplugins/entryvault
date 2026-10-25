@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: EntryVault\n"
 "Report-Msgid-Bugs-To: https://jnkplugins.com/entryvault/\n"
-"POT-Creation-Date: 2026-10-23T07:19:56+00:00\n"
+"POT-Creation-Date: 2026-10-25T11:18:05+00:00\n"
 "PO-Revision-Date: 2026-10-10 16:40+0000\n"
 "Last-Translator: JNK Plugins\n"
 "Language-Team: Korean\n"
@@ -76,7 +76,7 @@ msgstr ""
 "EntryVault는 이미 사용 중인 양식 플러그인에서 제출을 가져옵니다. 양식은 아무"
 "것도 바꿀 필요가 없습니다. 양식을 한 번 제출하면 잠시 후 보드에 나타납니다."
 
-#: admin/views/dashboard.php:85 admin/assets/kanban/build/index.js:34
+#: admin/views/dashboard.php:85 admin/assets/kanban/build/index.js:37
 msgid "Import a CSV instead"
 msgstr "대신 CSV 가져오기"
 
@@ -203,7 +203,7 @@ msgstr "파이프라인과 기간을 선택하세요. 아래 숫자가 바로 �
 
 #: admin/views/dashboard.php:207 admin/views/import.php:83
 #: includes/class-submissions-list-table.php:57
-#: admin/assets/kanban/build/index.js:34
+#: admin/assets/kanban/build/index.js:37
 msgid "Pipeline"
 msgstr "파이프라인"
 
@@ -339,7 +339,7 @@ msgstr ""
 "보내는 정보: WordPress 버전, PHP 버전, EntryVault 버전, 활성 테마 이름, 사이"
 "트 URL. 개인 정보는 보내지 않습니다."
 
-#: admin/views/feedback.php:93 admin/assets/kanban/build/index.js:26
+#: admin/views/feedback.php:93 admin/assets/kanban/build/index.js:27
 msgid "Send"
 msgstr "보내기"
 
@@ -471,15 +471,42 @@ msgstr ""
 "모든 양식 제출이 카드로 표시됩니다. 카드를 끌어 다음 단계로 옮기거나, 카드를 "
 "열어 답장하고 메모와 태그를 추가하세요."
 
-#: admin/views/kanban.php:14 admin/assets/kanban/build/index.js:26
+#. translators: 1: number of entries, 2: date of the latest one.
+#: admin/views/kanban.php:25
+#, php-format
+msgid ""
+"%1$d entry in the last 30 days was left out because its form plugin marked "
+"it as spam (latest %2$s). Spam filters are sometimes wrong, so it is worth a "
+"look."
+msgid_plural ""
+"%1$d entries in the last 30 days were left out because their form plugin "
+"marked them as spam (latest %2$s). Spam filters are sometimes wrong, so they "
+"are worth a look."
+msgstr[0] ""
+"최근 30일 동안 폼 플러그인이 스팸으로 표시한 항목 %1$d개가 제외되었습니다(가"
+"장 최근: %2$s). 스팸 필터가 틀릴 때도 있으니 한번 확인해 보세요."
+
+#: admin/views/kanban.php:36
+msgid "Review them in Trinity Forms"
+msgstr "Trinity Forms에서 검토하기"
+
+#: admin/views/kanban.php:37
+msgid "(an entry you restore there comes onto this board)."
+msgstr "(거기서 복원한 항목은 이 보드에 들어옵니다)."
+
+#: admin/views/kanban.php:39
+msgid "Keep spam entries in EntryVault"
+msgstr "스팸 항목도 EntryVault에 보관하기"
+
+#: admin/views/kanban.php:45 admin/assets/kanban/build/index.js:27
 msgid "Loading the board…"
 msgstr "보드를 불러오는 중…"
 
-#: admin/views/kanban.php:16
+#: admin/views/kanban.php:47
 msgid "If this message stays, the board files are missing. Run"
 msgstr "이 메시지가 계속 보이면 보드 파일이 없는 것입니다. 다음 명령을"
 
-#: admin/views/kanban.php:18
+#: admin/views/kanban.php:49
 msgid "in the plugin folder."
 msgstr "플러그인 폴더에서 실행하세요."
 
@@ -578,7 +605,7 @@ msgstr ""
 "알 수 없는 쇼트코드를 토큰까지 포함해 일반 텍스트로 출력합니다. 블록은 그렇"
 "지 않으므로 공개 페이지에는 블록을 사용하세요."
 
-#: admin/views/settings.php:157
+#: admin/views/settings.php:157 includes/class-tag-manager.php:135
 msgid "Spam"
 msgstr "스팸"
 
@@ -899,6 +926,10 @@ msgstr "%s 후"
 msgid "%s ago"
 msgstr "%s 전"
 
+#: includes/class-email-sender.php:109
+msgid "The mailer did not accept the email."
+msgstr "메일러가 이메일을 받아들이지 않았습니다."
+
 #: includes/class-feedback.php:41
 msgid "You do not have permission to do this."
 msgstr "이 작업을 할 권한이 없습니다."
@@ -985,7 +1016,7 @@ msgstr "이메일"
 
 #: includes/class-frontend.php:504 includes/class-submissions-list-table.php:63
 #: includes/class-submissions-list-table.php:128
-#: admin/assets/kanban/build/index.js:5 admin/assets/kanban/build/index.js:34
+#: admin/assets/kanban/build/index.js:5 admin/assets/kanban/build/index.js:37
 msgid "Owner"
 msgstr "담당자"
 
@@ -1270,7 +1301,7 @@ msgstr "CSV 내보내기"
 msgid "All"
 msgstr "전체"
 
-#: includes/class-submissions-admin.php:236 includes/class-timeline.php:93
+#: includes/class-submissions-admin.php:236 includes/class-timeline.php:97
 msgid "Archived"
 msgstr "보관됨"
 
@@ -1294,9 +1325,9 @@ msgstr "모든 태그"
 msgid "All owners"
 msgstr "모든 담당자"
 
-#: includes/class-submissions-admin.php:316 includes/class-timeline.php:90
+#: includes/class-submissions-admin.php:316 includes/class-timeline.php:94
 #: admin/assets/kanban/build/index.js:5 admin/assets/kanban/build/index.js:20
-#: admin/assets/kanban/build/index.js:34
+#: admin/assets/kanban/build/index.js:37
 msgid "Unassigned"
 msgstr "미지정"
 
@@ -1307,7 +1338,7 @@ msgstr "필터"
 #: includes/class-submissions-admin.php:348
 #: public/templates/submissions-table.php:54
 #: public/templates/submissions-table.php:63
-#: admin/assets/kanban/build/index.js:34
+#: admin/assets/kanban/build/index.js:37
 msgid "Search"
 msgstr "검색"
 
@@ -1374,7 +1405,7 @@ msgid "Forbidden."
 msgstr "금지되었습니다."
 
 #. translators: %s: form field label that clashes with a fixed column, e.g. "Email".
-#: includes/class-submissions-admin.php:594
+#: includes/class-submissions-admin.php:610
 #, php-format
 msgid "%s (form field)"
 msgstr "%s (양식 필드)"
@@ -1473,47 +1504,65 @@ msgstr "%2$s에서 %1$s"
 msgid "Email to %1$s: %2$s"
 msgstr "%1$s에게 보낸 이메일: %2$s"
 
+#. translators: 1: recipient, 2: why it failed.
+#: includes/class-timeline.php:67
+#, php-format
+msgid "Email to %1$s NOT sent: %2$s"
+msgstr "%1$s에게 이메일을 보내지 못함: %2$s"
+
 #. translators: %s: tag name.
-#: includes/class-timeline.php:74 admin/assets/kanban/build/index.js:14
+#: includes/class-timeline.php:78 admin/assets/kanban/build/index.js:14
 #, php-format
 msgid "Tagged %s"
 msgstr "태그 지정: %s"
 
 #. translators: %s: tag name.
-#: includes/class-timeline.php:76 admin/assets/kanban/build/index.js:16
+#: includes/class-timeline.php:80 admin/assets/kanban/build/index.js:16
 #, php-format
 msgid "Removed tag %s"
 msgstr "태그 제거: %s"
 
 #. translators: %s: user display name.
-#: includes/class-timeline.php:80 admin/assets/kanban/build/index.js:18
+#: includes/class-timeline.php:84 admin/assets/kanban/build/index.js:18
 #, php-format
 msgid "Assigned to %s"
 msgstr "담당자 지정: %s"
 
 #. translators: %s: user display name.
-#: includes/class-timeline.php:83
+#: includes/class-timeline.php:87
 #, php-format
 msgid "(was %s)"
 msgstr "(이전 담당자 %s)"
 
 #. translators: %s: user display name.
-#: includes/class-timeline.php:89 admin/assets/kanban/build/index.js:20
+#: includes/class-timeline.php:93 admin/assets/kanban/build/index.js:20
 #, php-format
 msgid "Unassigned from %s"
 msgstr "담당자 해제: %s"
 
-#: includes/class-timeline.php:96
+#. translators: %s: form plugin name.
+#: includes/class-timeline.php:100
+#, php-format
+msgid "Archived: marked as spam in %s"
+msgstr "보관됨: %s에서 스팸으로 표시됨"
+
+#. translators: %s: form plugin name.
+#: includes/class-timeline.php:103
+#, php-format
+msgid "Archived: moved to the trash in %s"
+msgstr "보관됨: %s에서 휴지통으로 이동됨"
+
+#: includes/class-timeline.php:107
 msgid "Restored from the archive"
 msgstr "보관함에서 복원됨"
 
 #. translators: %d: stage id.
-#: includes/class-timeline.php:123
+#: includes/class-timeline.php:134
 #, php-format
 msgid "a deleted stage (#%d)"
 msgstr "삭제된 단계 (#%d)"
 
-#: includes/class-timeline.php:140
+#: includes/class-timeline.php:151
 msgid "nobody"
 msgstr "없음"
 
@@ -1615,6 +1664,11 @@ msgstr "이 단계의 한도보다 카드가 많습니다"
 #: admin/assets/kanban/build/index.js:5
 msgid "No submissions"
 msgstr "제출 없음"
+
+#. translators: %d: cards not shown yet.
+#: admin/assets/kanban/build/index.js:5
+msgid "Show more (%d left)"
+msgstr "더 보기(%d개 남음)"
 
 #: admin/assets/kanban/build/index.js:5
 msgid "Could not save the note."
@@ -1816,69 +1870,78 @@ msgstr "제목"
 msgid "Sent."
 msgstr "보냈습니다."
 
-#: admin/assets/kanban/build/index.js:26
+#: admin/assets/kanban/build/index.js:27
+msgid "Could not send the email: %s"
+msgstr "이메일을 보내지 못했습니다: %s"
+
+#: admin/assets/kanban/build/index.js:27
 msgid "Could not send the email."
 msgstr "이메일을 보내지 못했습니다."
 
-#: admin/assets/kanban/build/index.js:26
+#: admin/assets/kanban/build/index.js:27
 msgid "Sending…"
 msgstr "보내는 중…"
 
-#: admin/assets/kanban/build/index.js:26
+#: admin/assets/kanban/build/index.js:27
 msgid "Conversation"
 msgstr "대화"
 
-#: admin/assets/kanban/build/index.js:26
+#: admin/assets/kanban/build/index.js:27
 msgid "No emails yet."
 msgstr "아직 이메일이 없습니다."
 
 #. translators: %s: sender address.
-#: admin/assets/kanban/build/index.js:26
+#: admin/assets/kanban/build/index.js:27
 msgid "From %s"
 msgstr "보낸 사람: %s"
 
 #. translators: %s: recipient address.
-#: admin/assets/kanban/build/index.js:26
+#: admin/assets/kanban/build/index.js:27
 msgid "To %s"
 msgstr "받는 사람: %s"
 
-#: admin/assets/kanban/build/index.js:26
+#. translators: %s: the mail server's reason.
+#: admin/assets/kanban/build/index.js:27
+msgid "Not sent: %s"
+msgstr "보내지 못함: %s"
+
+#: admin/assets/kanban/build/index.js:27
 msgid "(no subject)"
 msgstr "(제목 없음)"
 
-#: admin/assets/kanban/build/index.js:26
+#: admin/assets/kanban/build/index.js:27
 msgctxt "submission status"
 msgid "Open"
 msgstr "진행 중"
 
-#: admin/assets/kanban/build/index.js:26
+#: admin/assets/kanban/build/index.js:27
 msgctxt "submission status"
 msgid "Archived"
 msgstr "보관됨"
 
-#: admin/assets/kanban/build/index.js:26
+#: admin/assets/kanban/build/index.js:27
 msgctxt "submission status"
 msgid "Won"
 msgstr "성사"
 
-#: admin/assets/kanban/build/index.js:26
+#: admin/assets/kanban/build/index.js:27
 msgctxt "submission status"
 msgid "Lost"
 msgstr "실패"
 
-#: admin/assets/kanban/build/index.js:26
+#: admin/assets/kanban/build/index.js:27
 msgid "Failed to load board"
 msgstr "보드를 불러오지 못했습니다"
 
-#: admin/assets/kanban/build/index.js:26
+#: admin/assets/kanban/build/index.js:27
 msgid "this card"
 msgstr "이 카드"
 
-#: admin/assets/kanban/build/index.js:26
+#: admin/assets/kanban/build/index.js:27
 msgid "a stage"
 msgstr "단계"
 
-#: admin/assets/kanban/build/index.js:26
+#: admin/assets/kanban/build/index.js:27
 msgid ""
 "To pick up a card, press space or enter. Use the arrow keys to move it, then "
 "press space or enter to drop it, or escape to cancel."
@@ -1887,70 +1950,73 @@ msgstr ""
 "나 엔터 키로 놓거나, Esc 키로 취소하세요."
 
 #. translators: %s: card title.
-#: admin/assets/kanban/build/index.js:28
+#: admin/assets/kanban/build/index.js:29
 msgid "Picked up %s."
 msgstr "%s 카드를 잡았습니다."
 
-#: admin/assets/kanban/build/index.js:29
+#: admin/assets/kanban/build/index.js:30
 msgid "%1$s is over %2$s."
 msgstr "%1$s 카드가 %2$s 위에 있습니다."
 
-#: admin/assets/kanban/build/index.js:30
+#: admin/assets/kanban/build/index.js:31
 msgid "%s is not over a stage."
 msgstr "%s 카드가 단계 위에 있지 않습니다."
 
-#: admin/assets/kanban/build/index.js:31
+#: admin/assets/kanban/build/index.js:32
 msgid "%1$s was dropped in %2$s."
 msgstr "%1$s 카드를 %2$s에 놓았습니다."
 
-#: admin/assets/kanban/build/index.js:32
+#: admin/assets/kanban/build/index.js:33
 msgid "%s was dropped."
 msgstr "%s 카드를 놓았습니다."
 
 #. translators: %s: card title.
-#: admin/assets/kanban/build/index.js:34
+#: admin/assets/kanban/build/index.js:35
 msgid "Moving %s was cancelled."
 msgstr "%s 카드 이동을 취소했습니다."
 
-#: admin/assets/kanban/build/index.js:34
-msgid "Search name or email…"
-msgstr "이름 또는 이메일 검색…"
+#: admin/assets/kanban/build/index.js:36
+msgid "%1$d of %2$d cards"
+msgstr "카드 %2$d개 중 %1$d개"
 
-#. translators: %d: number of cards on the board.
-#: admin/assets/kanban/build/index.js:34
+#: admin/assets/kanban/build/index.js:37
 msgid "%d card"
 msgid_plural "%d cards"
 msgstr[0] "카드 %d개"
 
-#: admin/assets/kanban/build/index.js:34
+#: admin/assets/kanban/build/index.js:37
+msgid "Search name or email…"
+msgstr "이름 또는 이메일 검색…"
+
+#: admin/assets/kanban/build/index.js:37
 msgid "Could not mark all cards as seen"
 msgstr "모든 카드를 확인함으로 표시하지 못했습니다"
 
-#: admin/assets/kanban/build/index.js:34
+#: admin/assets/kanban/build/index.js:37
 msgid "Clear the New badge from every card"
 msgstr "모든 카드에서 새 항목 배지를 지웁니다"
 
-#: admin/assets/kanban/build/index.js:34
+#: admin/assets/kanban/build/index.js:37
 msgid "Mark all seen"
 msgstr "모두 확인함으로 표시"
 
-#: admin/assets/kanban/build/index.js:34
+#: admin/assets/kanban/build/index.js:37
 msgid "Show only cards owned by"
 msgstr "다음 담당자의 카드만 보기"
 
-#: admin/assets/kanban/build/index.js:34
+#: admin/assets/kanban/build/index.js:37
 msgid "Clear"
 msgstr "지우기"
 
-#: admin/assets/kanban/build/index.js:34
+#: admin/assets/kanban/build/index.js:37
 msgid "The move failed, so the card went back."
 msgstr "이동하지 못해 카드가 원래 자리로 돌아갔습니다."
 
-#: admin/assets/kanban/build/index.js:34
+#: admin/assets/kanban/build/index.js:37
 msgid "Nothing here yet. That is expected."
 msgstr "아직 아무것도 없습니다. 정상입니다."
 
-#: admin/assets/kanban/build/index.js:34
+#: admin/assets/kanban/build/index.js:37
 msgid ""
 "EntryVault picks up submissions from the form plugins you already use. There "
 "is nothing to add to your forms: submit one of them once and it appears on "
@@ -1959,11 +2025,11 @@ msgstr ""
 "EntryVault는 이미 사용 중인 양식 플러그인에서 제출을 가져옵니다. 양식에 추가"
 "할 것은 없습니다. 양식을 한 번 제출하면 잠시 후 이 보드에 나타납니다."
 
-#: admin/assets/kanban/build/index.js:34
+#: admin/assets/kanban/build/index.js:37
 msgid "Check which form plugins were found"
 msgstr "찾은 양식 플러그인 확인"
 
-#: admin/assets/kanban/build/index.js:34
+#: admin/assets/kanban/build/index.js:37
 msgid ""
 "No pipeline is set up yet. Deactivate and activate EntryVault once to create "
 "the default one."

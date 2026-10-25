@@ -1,5 +1,6 @@
 import { useEffect, useState } from "@wordpress/element";
 import { __, _x, sprintf } from "@wordpress/i18n";
+import { siteTimeMs } from "./siteTime";
 import {
     fetchSubmission,
     addNote,
@@ -718,7 +719,7 @@ function formatWhen( iso ) {
 
 function formatRelative( iso ) {
     if ( ! iso ) return "";
-    const t = new Date( iso.replace( " ", "T" ) + "Z" ).getTime();
+    const t = siteTimeMs( iso );
     if ( isNaN( t ) ) return iso;
     const delta = ( Date.now() - t ) / 1000;
     if ( delta < 60 ) return __( "just now", "entryvault" );
@@ -844,7 +845,12 @@ function EmailTab( { submissionId, defaultTo, onSend, originalSubject, fields } 
             setBody( quoted( fields ) );
             await loadThread();
         } catch ( e ) {
-            setStatus( e.message || __( "Could not send the email.", "entryvault" ) );
+            const reason = e && e.data && e.data.reason ? e.data.reason : "";
+            setStatus( reason
+                /* translators: %s: the mail server's reason. */
+                ? sprintf( __( "Could not send the email: %s", "entryvault" ), reason )
+                : ( e.message || __( "Could not send the email.", "entryvault" ) ) );
+            await loadThread();
         } finally {
             setSending( false );
         }
@@ -891,12 +897,15 @@ function EmailTab( { submissionId, defaultTo, onSend, originalSubject, fields } 
             <h4 className="ev-panel-h">{ __( "Conversation", "entryvault" ) }</h4>
             { thread.length === 0 && <p className="ev-muted">{ __( "No emails yet.", "entryvault" ) }</p> }
             { thread.slice().reverse().map( ( m ) => (
-                <div key={ m.id } className={ m.direction === "in" ? "ev-mail is-in" : "ev-mail is-out" }>
+                <div key={ m.id } className={ [ "ev-mail", m.direction === "in" ? "is-in" : "is-out", m.error ? "is-failed" : "" ].join( " " ).trim() }>
                     <div className="ev-mail-meta">
                         { m.direction === "in"
                             ? /* translators: %s: sender address. */ sprintf( __( "From %s", "entryvault" ), m.from )
                             : /* translators: %s: recipient address. */ sprintf( __( "To %s", "entryvault" ), m.to ) } · { m.created_at }
                     </div>
+                    { m.error && (
+                        <div className="ev-mail-failed" role="note">{ /* translators: %s: the mail server's reason. */ sprintf( __( "Not sent: %s", "entryvault" ), m.error ) }</div>
+                    ) }
                     <div className="ev-mail-subject">{ m.subject || __( "(no subject)", "entryvault" ) }</div>
                     <div className="ev-mail-body">{ m.body }</div>
                 </div>

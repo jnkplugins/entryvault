@@ -392,6 +392,9 @@ final class Plugin {
             // five read as #4, #7, #12 — while Notes and the by-owner report showed
             // the same people by name.
             'owners'          => self::assignable_owners(),
+            // Stored times are the site's clock; the board needs the offset to
+            // say how long ago something arrived.
+            'gmtOffset'       => (int) wp_timezone()->getOffset( new \DateTimeImmutable( 'now' ) ),
         ] );
         if ( file_exists( $build_dir . 'index.css' ) ) {
             wp_enqueue_style(

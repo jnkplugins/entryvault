@@ -16,6 +16,114 @@ class Submission_Store {
         return $id ? (int) $id : null;
     }
 
+    /**
+     * Every submission copied from one entry of a source plugin, whatever form
+     * it is filed under. For hooks that pass only the entry id (Trinity's
+     * entry_deleted, entry_status_changed).
+     *
+     * @return int[]
+     */
+    public static function find_by_source_entry( string $plugin, string $entry_id ): array {
+        global $wpdb;
+        if ( '' === $entry_id ) {
+            return [];
+        }
+        $ids = $wpdb->get_col( $wpdb->prepare(
+            "SELECT id FROM {$wpdb->prefix}entryvault_submissions
+              WHERE source_plugin = %s AND source_entry_id = %s",
+            $plugin, $entry_id
+        ) );
+        return array_map( 'intval', (array) $ids );
+    }
+
+    /** Stored (non-stale) field rows of a submission, in the shape adapters build. */
+    public static function fields_for( int $submission_id ): array {
+        global $wpdb;
+        $rows = $wpdb->get_results( $wpdb->prepare(
+            "SELECT field_key AS `key`, field_label AS label, field_type AS type, value
+               FROM {$wpdb->prefix}entryvault_submission_data
+              WHERE submission_id = %d AND is_stale = 0 ORDER BY id ASC",
+            $submission_id
+        ), ARRAY_A );
+        return is_array( $rows ) ? $rows : [];
+    }
+
+    /**
+     * Archive a card because its source entry went to spam or the trash. The
+     * timeline row says so, which is how unarchive_for_source() knows the
+     * archive was ours to undo and not the owner's.
+     */
+    public static function archive_for_source( int $id, string $source_status ): bool {
+        global $wpdb;
+        $row = self::get( $id );
+        if ( ! $row || 'archived' === (string) $row['status'] ) {
+            return false;
+        }
+        $wpdb->update( $wpdb->prefix . 'entryvault_submissions', [ 'status' => 'archived', 'updated_at' => current_time( 'mysql' ) ], [ 'id' => $id ] );
+        Timeline::log( $id, 'archived', null, [
+            'from'          => (string) $row['status'],
+            'to'            => 'archived',
+            'source'        => (string) $row['source_plugin'],
+            'source_status' => substr( $source_status, 0, 20 ),
+        ] );
+        return true;
+    }
+
+    /** Undo archive_for_source() once the entry is restored at the source. */
+    public static function unarchive_for_source( int $id ): bool {
+        global $wpdb;
+        $row = self::get( $id );
+        if ( ! $row || 'archived' !== (string) $row['status'] ) {
+            return false;
+        }
+        $last = $wpdb->get_row( $wpdb->prepare(
+            "SELECT type, data FROM {$wpdb->prefix}entryvault_timeline
+              WHERE submission_id = %d AND type IN ( 'archived', 'unarchived' )
+           ORDER BY id DESC LIMIT 1",
+            $id
+        ), ARRAY_A );
+        $data = $last ? json_decode( (string) $last['data'], true ) : null;
+        if ( ! $last || 'archived' !== $last['type'] || empty( $data['source_status'] ) ) {
+            return false; // archived by a person: leave it
+        }
+        $to = (string) ( $data['from'] ?? 'open' );
+        $to = in_array( $to, [ 'open', 'closed' ], true ) ? $to : 'open';
+        $wpdb->update( $wpdb->prefix . 'entryvault_submissions', [ 'status' => $to, 'updated_at' => current_time( 'mysql' ) ], [ 'id' => $id ] );
+        Timeline::log( $id, 'unarchived', null, [ 'from' => 'archived', 'to' => $to, 'source' => (string) $row['source_plugin'] ] );
+        return true;
+    }
+
+    /**
+     * Bring a re-synced submission's email and title up to date with its fields
+     * (an entry edited at the source). A title the owner typed is kept: it is
+     * replaced only while it still equals what the old fields gave.
+     *
+     * @param array{email?:?string,title?:string} $old What the old fields gave.
+     * @param array{email?:?string,title?:string} $new What the new fields give.
+     */
+    public static function refresh_contact( int $id, array $old, array $new ): bool {
+        global $wpdb;
+        $row = self::get( $id );
+        if ( ! $row ) {
+            return false;
+        }
+        $update    = [];
+        $new_email = (string) ( $new['email'] ?? '' );
+        if ( '' !== $new_email && $new_email !== (string) $row['email'] ) {
+            $update['email'] = substr( $new_email, 0, 254 );
+        }
+        $new_title = (string) ( $new['title'] ?? '' );
+        if ( '' !== $new_title && $new_title !== (string) $row['title'] && (string) $row['title'] === (string) ( $old['title'] ?? '' ) ) {
+            $update['title'] = substr( $new_title, 0, 500 );
+        }
+        if ( ! $update ) {
+            return false;
+        }
+        $update['updated_at'] = current_time( 'mysql' );
+        $wpdb->update( $wpdb->prefix . 'entryvault_submissions', $update, [ 'id' => $id ] );
+        return true;
+    }
+
     public static function insert( array $row ): int {
         global $wpdb;
         $now = current_time( 'mysql' );
@@ -297,7 +405,7 @@ class Submission_Store {
         $orderby         = in_array( $args['orderby'], $allowed_orderby, true ) ? $args['orderby'] : 'created_at';
         $order           = strtoupper( (string) $args['order'] ) === 'ASC' ? 'ASC' : 'DESC';
 
-        $per_page = max( 1, min( 200, (int) $args['per_page'] ) );
+        $per_page = max( 1, min( self::MAX_PER_PAGE, (int) $args['per_page'] ) );
         $paged    = max( 1, (int) $args['paged'] );
         $offset   = ( $paged - 1 ) * $per_page;
 
@@ -435,7 +543,7 @@ class Submission_Store {
             return [];
         }
         $rows = $wpdb->get_results( $wpdb->prepare(
-            "SELECT id, direction, from_addr, to_addr, subject, body_text, body_html, sent_at, message_id
+            "SELECT *
                FROM {$wpdb->prefix}entryvault_emails
               WHERE submission_id = %d
            ORDER BY sent_at ASC, id ASC",
@@ -458,8 +566,38 @@ class Submission_Store {
                 'body'       => $body,
                 'created_at' => (string) ( $row['sent_at'] ?? '' ),
                 'message_id' => (string) ( $row['message_id'] ?? '' ),
+                // Set when the email could not be sent (the mailer's reason).
+                'error'      => (string) ( $row['send_error'] ?? '' ),
             ];
         }
+        return $out;
+    }
+
+    /** query() never returns more rows than this in one page. */
+    public const MAX_PER_PAGE = 200;
+
+    /**
+     * Every row matching $args, read page by page. Exports asked query() for
+     * 1000 or 5000 rows, got the 200 it allows, and stopped there without a word.
+     *
+     * @param int $limit Most rows to return; 0 = all.
+     * @return array<int,array<string,mixed>>
+     */
+    public static function query_all( array $args, int $limit = 0 ): array {
+        $args['per_page'] = self::MAX_PER_PAGE;
+        $args['paged']    = 1;
+        $out              = [];
+        do {
+            $page = self::query( $args );
+            $rows = $page['rows'];
+            foreach ( $rows as $row ) {
+                $out[] = $row;
+                if ( $limit > 0 && count( $out ) >= $limit ) {
+                    return $out;
+                }
+            }
+            $args['paged']++;
+        } while ( count( $rows ) === self::MAX_PER_PAGE && count( $out ) < (int) $page['total'] );
         return $out;
     }
 

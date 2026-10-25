@@ -29,6 +29,8 @@ delete_option( "entryvault_pro_schema" );
 delete_option( "entryvault_retention" );
 delete_option( "entryvault_retention_state" );
 delete_option( "entryvault_form_pipelines" );
+delete_option( "entryvault_spam_skips" );
+delete_option( "entryvault_spam_skip_days" );
 wp_clear_scheduled_hook( "entryvault_retention_run" );
 delete_option( "ev_version" ); // pre-1.0.7 name
 delete_transient( "entryvault_imap_manual_poll_cooldown" );

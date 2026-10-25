@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: EntryVault\n"
 "Report-Msgid-Bugs-To: https://jnkplugins.com/entryvault/\n"
-"POT-Creation-Date: 2026-10-23T07:19:56+00:00\n"
+"POT-Creation-Date: 2026-10-25T11:18:05+00:00\n"
 "PO-Revision-Date: 2026-10-10 16:40+0000\n"
 "Last-Translator: JNK Plugins\n"
 "Language-Team: Spanish (Spain)\n"
@@ -78,7 +78,7 @@ msgstr ""
 "tienes que cambiar nada en tus formularios. Envía uno de ellos una vez y "
 "aparecerá en el tablero en unos instantes."
 
-#: admin/views/dashboard.php:85 admin/assets/kanban/build/index.js:34
+#: admin/views/dashboard.php:85 admin/assets/kanban/build/index.js:37
 msgid "Import a CSV instead"
 msgstr "Importar un CSV en su lugar"
 
@@ -208,7 +208,7 @@ msgstr ""
 
 #: admin/views/dashboard.php:207 admin/views/import.php:83
 #: includes/class-submissions-list-table.php:57
-#: admin/assets/kanban/build/index.js:34
+#: admin/assets/kanban/build/index.js:37
 msgid "Pipeline"
 msgstr "Pipeline"
 
@@ -345,7 +345,7 @@ msgstr ""
 "Envía: versión de WordPress, versión de PHP, versión de EntryVault, nombre "
 "del tema activo y la URL de tu sitio. Ningún dato personal."
 
-#: admin/views/feedback.php:93 admin/assets/kanban/build/index.js:26
+#: admin/views/feedback.php:93 admin/assets/kanban/build/index.js:27
 msgid "Send"
 msgstr "Enviar"
 
@@ -481,16 +481,48 @@ msgstr ""
 "Cada envío de formulario como una tarjeta. Arrastra una tarjeta para moverla "
 "a la siguiente etapa, o ábrela para responder y añadir notas y etiquetas."
 
-#: admin/views/kanban.php:14 admin/assets/kanban/build/index.js:26
+#. translators: 1: number of entries, 2: date of the latest one.
+#: admin/views/kanban.php:25
+#, php-format
+msgid ""
+"%1$d entry in the last 30 days was left out because its form plugin marked "
+"it as spam (latest %2$s). Spam filters are sometimes wrong, so it is worth a "
+"look."
+msgid_plural ""
+"%1$d entries in the last 30 days were left out because their form plugin "
+"marked them as spam (latest %2$s). Spam filters are sometimes wrong, so they "
+"are worth a look."
+msgstr[0] ""
+"%1$d entrada de los últimos 30 días se dejó fuera porque su plugin de "
+"formularios la marcó como spam (la última, %2$s). Los filtros de spam a "
+"veces se equivocan, así que merece la pena echarle un vistazo."
+msgstr[1] ""
+"%1$d entradas de los últimos 30 días se dejaron fuera porque su plugin de "
+"formularios las marcó como spam (la última, %2$s). Los filtros de spam a "
+"veces se equivocan, así que merece la pena echarles un vistazo."
+
+#: admin/views/kanban.php:36
+msgid "Review them in Trinity Forms"
+msgstr "Revísalas en Trinity Forms"
+
+#: admin/views/kanban.php:37
+msgid "(an entry you restore there comes onto this board)."
+msgstr "(las entradas que restaures allí aparecerán en este tablero)."
+
+#: admin/views/kanban.php:39
+msgid "Keep spam entries in EntryVault"
+msgstr "Conservar las entradas de spam en EntryVault"
+
+#: admin/views/kanban.php:45 admin/assets/kanban/build/index.js:27
 msgid "Loading the board…"
 msgstr "Cargando el tablero…"
 
-#: admin/views/kanban.php:16
+#: admin/views/kanban.php:47
 msgid "If this message stays, the board files are missing. Run"
 msgstr ""
 "Si este mensaje no desaparece, faltan los archivos del tablero. Ejecuta"
 
-#: admin/views/kanban.php:18
+#: admin/views/kanban.php:49
 msgid "in the plugin folder."
 msgstr "en la carpeta del plugin."
 
@@ -595,7 +627,7 @@ msgstr ""
 "desconocido como texto plano, token incluido; el bloque no, así que en "
 "páginas públicas es mejor usar el bloque."
 
-#: admin/views/settings.php:157
+#: admin/views/settings.php:157 includes/class-tag-manager.php:135
 msgid "Spam"
 msgstr "Spam"
 
@@ -923,6 +955,10 @@ msgstr "en %s"
 msgid "%s ago"
 msgstr "hace %s"
 
+#: includes/class-email-sender.php:109
+msgid "The mailer did not accept the email."
+msgstr "El sistema de correo no aceptó el mensaje."
+
 #: includes/class-feedback.php:41
 msgid "You do not have permission to do this."
 msgstr "No tienes permiso para hacer esto."
@@ -1009,7 +1045,7 @@ msgstr "Correo electrónico"
 
 #: includes/class-frontend.php:504 includes/class-submissions-list-table.php:63
 #: includes/class-submissions-list-table.php:128
-#: admin/assets/kanban/build/index.js:5 admin/assets/kanban/build/index.js:34
+#: admin/assets/kanban/build/index.js:5 admin/assets/kanban/build/index.js:37
 msgid "Owner"
 msgstr "Responsable"
 
@@ -1301,7 +1337,7 @@ msgstr "Exportar CSV"
 msgid "All"
 msgstr "Todas"
 
-#: includes/class-submissions-admin.php:236 includes/class-timeline.php:93
+#: includes/class-submissions-admin.php:236 includes/class-timeline.php:97
 msgid "Archived"
 msgstr "Archivadas"
 
@@ -1325,9 +1361,9 @@ msgstr "Todas las etiquetas"
 msgid "All owners"
 msgstr "Todos los responsables"
 
-#: includes/class-submissions-admin.php:316 includes/class-timeline.php:90
+#: includes/class-submissions-admin.php:316 includes/class-timeline.php:94
 #: admin/assets/kanban/build/index.js:5 admin/assets/kanban/build/index.js:20
-#: admin/assets/kanban/build/index.js:34
+#: admin/assets/kanban/build/index.js:37
 msgid "Unassigned"
 msgstr "Sin asignar"
 
@@ -1338,7 +1374,7 @@ msgstr "Filtrar"
 #: includes/class-submissions-admin.php:348
 #: public/templates/submissions-table.php:54
 #: public/templates/submissions-table.php:63
-#: admin/assets/kanban/build/index.js:34
+#: admin/assets/kanban/build/index.js:37
 msgid "Search"
 msgstr "Buscar"
 
@@ -1410,7 +1446,7 @@ msgid "Forbidden."
 msgstr "Prohibido."
 
 #. translators: %s: form field label that clashes with a fixed column, e.g. "Email".
-#: includes/class-submissions-admin.php:594
+#: includes/class-submissions-admin.php:610
 #, php-format
 msgid "%s (form field)"
 msgstr "%s (campo del formulario)"
@@ -1510,47 +1546,65 @@ msgstr "%1$s desde %2$s"
 msgid "Email to %1$s: %2$s"
 msgstr "Correo a %1$s: %2$s"
 
+#. translators: 1: recipient, 2: why it failed.
+#: includes/class-timeline.php:67
+#, php-format
+msgid "Email to %1$s NOT sent: %2$s"
+msgstr "Correo a %1$s NO enviado: %2$s"
+
 #. translators: %s: tag name.
-#: includes/class-timeline.php:74 admin/assets/kanban/build/index.js:14
+#: includes/class-timeline.php:78 admin/assets/kanban/build/index.js:14
 #, php-format
 msgid "Tagged %s"
 msgstr "Etiquetada con %s"
 
 #. translators: %s: tag name.
-#: includes/class-timeline.php:76 admin/assets/kanban/build/index.js:16
+#: includes/class-timeline.php:80 admin/assets/kanban/build/index.js:16
 #, php-format
 msgid "Removed tag %s"
 msgstr "Etiqueta %s quitada"
 
 #. translators: %s: user display name.
-#: includes/class-timeline.php:80 admin/assets/kanban/build/index.js:18
+#: includes/class-timeline.php:84 admin/assets/kanban/build/index.js:18
 #, php-format
 msgid "Assigned to %s"
 msgstr "Asignada a %s"
 
 #. translators: %s: user display name.
-#: includes/class-timeline.php:83
+#: includes/class-timeline.php:87
 #, php-format
 msgid "(was %s)"
 msgstr "(antes %s)"
 
 #. translators: %s: user display name.
-#: includes/class-timeline.php:89 admin/assets/kanban/build/index.js:20
+#: includes/class-timeline.php:93 admin/assets/kanban/build/index.js:20
 #, php-format
 msgid "Unassigned from %s"
 msgstr "Ya no asignada a %s"
 
-#: includes/class-timeline.php:96
+#. translators: %s: form plugin name.
+#: includes/class-timeline.php:100
+#, php-format
+msgid "Archived: marked as spam in %s"
+msgstr "Archivada: marcada como spam en %s"
+
+#. translators: %s: form plugin name.
+#: includes/class-timeline.php:103
+#, php-format
+msgid "Archived: moved to the trash in %s"
+msgstr "Archivada: movida a la papelera en %s"
+
+#: includes/class-timeline.php:107
 msgid "Restored from the archive"
 msgstr "Restaurada desde el archivo"
 
 #. translators: %d: stage id.
-#: includes/class-timeline.php:123
+#: includes/class-timeline.php:134
 #, php-format
 msgid "a deleted stage (#%d)"
 msgstr "una etapa borrada (#%d)"
 
-#: includes/class-timeline.php:140
+#: includes/class-timeline.php:151
 msgid "nobody"
 msgstr "nadie"
 
@@ -1652,6 +1706,11 @@ msgstr "Más tarjetas que el límite de esta etapa"
 #: admin/assets/kanban/build/index.js:5
 msgid "No submissions"
 msgstr "Sin envíos"
+
+#. translators: %d: cards not shown yet.
+#: admin/assets/kanban/build/index.js:5
+msgid "Show more (%d left)"
+msgstr "Mostrar más (quedan %d)"
 
 #: admin/assets/kanban/build/index.js:5
 msgid "Could not save the note."
@@ -1853,69 +1912,78 @@ msgstr "Asunto"
 msgid "Sent."
 msgstr "Enviado."
 
-#: admin/assets/kanban/build/index.js:26
+#: admin/assets/kanban/build/index.js:27
+msgid "Could not send the email: %s"
+msgstr "No se ha podido enviar el correo: %s"
+
+#: admin/assets/kanban/build/index.js:27
 msgid "Could not send the email."
 msgstr "No se ha podido enviar el correo."
 
-#: admin/assets/kanban/build/index.js:26
+#: admin/assets/kanban/build/index.js:27
 msgid "Sending…"
 msgstr "Enviando…"
 
-#: admin/assets/kanban/build/index.js:26
+#: admin/assets/kanban/build/index.js:27
 msgid "Conversation"
 msgstr "Conversación"
 
-#: admin/assets/kanban/build/index.js:26
+#: admin/assets/kanban/build/index.js:27
 msgid "No emails yet."
 msgstr "Todavía no hay correos."
 
 #. translators: %s: sender address.
-#: admin/assets/kanban/build/index.js:26
+#: admin/assets/kanban/build/index.js:27
 msgid "From %s"
 msgstr "De %s"
 
 #. translators: %s: recipient address.
-#: admin/assets/kanban/build/index.js:26
+#: admin/assets/kanban/build/index.js:27
 msgid "To %s"
 msgstr "Para %s"
 
-#: admin/assets/kanban/build/index.js:26
+#. translators: %s: the mail server's reason.
+#: admin/assets/kanban/build/index.js:27
+msgid "Not sent: %s"
+msgstr "No enviado: %s"
+
+#: admin/assets/kanban/build/index.js:27
 msgid "(no subject)"
 msgstr "(sin asunto)"
 
-#: admin/assets/kanban/build/index.js:26
+#: admin/assets/kanban/build/index.js:27
 msgctxt "submission status"
 msgid "Open"
 msgstr "Abierta"
 
-#: admin/assets/kanban/build/index.js:26
+#: admin/assets/kanban/build/index.js:27
 msgctxt "submission status"
 msgid "Archived"
 msgstr "Archivada"
 
-#: admin/assets/kanban/build/index.js:26
+#: admin/assets/kanban/build/index.js:27
 msgctxt "submission status"
 msgid "Won"
 msgstr "Ganada"
 
-#: admin/assets/kanban/build/index.js:26
+#: admin/assets/kanban/build/index.js:27
 msgctxt "submission status"
 msgid "Lost"
 msgstr "Perdida"
 
-#: admin/assets/kanban/build/index.js:26
+#: admin/assets/kanban/build/index.js:27
 msgid "Failed to load board"
 msgstr "No se ha podido cargar el tablero"
 
-#: admin/assets/kanban/build/index.js:26
+#: admin/assets/kanban/build/index.js:27
 msgid "this card"
 msgstr "esta tarjeta"
 
-#: admin/assets/kanban/build/index.js:26
+#: admin/assets/kanban/build/index.js:27
 msgid "a stage"
 msgstr "una etapa"
 
-#: admin/assets/kanban/build/index.js:26
+#: admin/assets/kanban/build/index.js:27
 msgid ""
 "To pick up a card, press space or enter. Use the arrow keys to move it, then "
 "press space or enter to drop it, or escape to cancel."
@@ -1924,71 +1992,74 @@ msgstr ""
 "y luego pulsa espacio o intro para soltarla, o escape para cancelar."
 
 #. translators: %s: card title.
-#: admin/assets/kanban/build/index.js:28
+#: admin/assets/kanban/build/index.js:29
 msgid "Picked up %s."
 msgstr "Has cogido %s."
 
-#: admin/assets/kanban/build/index.js:29
+#: admin/assets/kanban/build/index.js:30
 msgid "%1$s is over %2$s."
 msgstr "%1$s está sobre %2$s."
 
-#: admin/assets/kanban/build/index.js:30
+#: admin/assets/kanban/build/index.js:31
 msgid "%s is not over a stage."
 msgstr "%s no está sobre ninguna etapa."
 
-#: admin/assets/kanban/build/index.js:31
+#: admin/assets/kanban/build/index.js:32
 msgid "%1$s was dropped in %2$s."
 msgstr "%1$s se ha soltado en %2$s."
 
-#: admin/assets/kanban/build/index.js:32
+#: admin/assets/kanban/build/index.js:33
 msgid "%s was dropped."
 msgstr "%s se ha soltado."
 
 #. translators: %s: card title.
-#: admin/assets/kanban/build/index.js:34
+#: admin/assets/kanban/build/index.js:35
 msgid "Moving %s was cancelled."
 msgstr "Se ha cancelado el movimiento de %s."
 
-#: admin/assets/kanban/build/index.js:34
-msgid "Search name or email…"
-msgstr "Buscar nombre o correo…"
+#: admin/assets/kanban/build/index.js:36
+msgid "%1$d of %2$d cards"
+msgstr "%1$d de %2$d tarjetas"
 
-#. translators: %d: number of cards on the board.
-#: admin/assets/kanban/build/index.js:34
+#: admin/assets/kanban/build/index.js:37
 msgid "%d card"
 msgid_plural "%d cards"
 msgstr[0] "%d tarjeta"
 msgstr[1] "%d tarjetas"
 
-#: admin/assets/kanban/build/index.js:34
+#: admin/assets/kanban/build/index.js:37
+msgid "Search name or email…"
+msgstr "Buscar nombre o correo…"
+
+#: admin/assets/kanban/build/index.js:37
 msgid "Could not mark all cards as seen"
 msgstr "No se han podido marcar todas las tarjetas como vistas"
 
-#: admin/assets/kanban/build/index.js:34
+#: admin/assets/kanban/build/index.js:37
 msgid "Clear the New badge from every card"
 msgstr "Quita la insignia Nueva de todas las tarjetas"
 
-#: admin/assets/kanban/build/index.js:34
+#: admin/assets/kanban/build/index.js:37
 msgid "Mark all seen"
 msgstr "Marcar todo como visto"
 
-#: admin/assets/kanban/build/index.js:34
+#: admin/assets/kanban/build/index.js:37
 msgid "Show only cards owned by"
 msgstr "Mostrar solo las tarjetas de"
 
-#: admin/assets/kanban/build/index.js:34
+#: admin/assets/kanban/build/index.js:37
 msgid "Clear"
 msgstr "Limpiar"
 
-#: admin/assets/kanban/build/index.js:34
+#: admin/assets/kanban/build/index.js:37
 msgid "The move failed, so the card went back."
 msgstr "No se ha podido mover, así que la tarjeta ha vuelto a su sitio."
 
-#: admin/assets/kanban/build/index.js:34
+#: admin/assets/kanban/build/index.js:37
 msgid "Nothing here yet. That is expected."
 msgstr "Todavía no hay nada aquí. Es lo normal."
 
-#: admin/assets/kanban/build/index.js:34
+#: admin/assets/kanban/build/index.js:37
 msgid ""
 "EntryVault picks up submissions from the form plugins you already use. There "
 "is nothing to add to your forms: submit one of them once and it appears on "
@@ -1998,11 +2069,11 @@ msgstr ""
 "tienes que añadir nada a tus formularios: envía uno de ellos una vez y "
 "aparecerá en este tablero en unos instantes."
 
-#: admin/assets/kanban/build/index.js:34
+#: admin/assets/kanban/build/index.js:37
 msgid "Check which form plugins were found"
 msgstr "Comprobar qué plugins de formularios se han encontrado"
 
-#: admin/assets/kanban/build/index.js:34
+#: admin/assets/kanban/build/index.js:37
 msgid ""
 "No pipeline is set up yet. Deactivate and activate EntryVault once to create "
 "the default one."

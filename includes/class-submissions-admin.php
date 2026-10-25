@@ -488,13 +488,32 @@ class Submissions_Admin {
         }
         check_admin_referer( 'entryvault_export_submissions' );
 
-        $args             = self::args_from_request( $_GET );
-        $args['per_page'] = 1000;
-        $args['paged']    = 1;
+        $args = self::args_from_request( $_GET );
 
         nocache_headers();
         header( 'Content-Type: text/csv; charset=utf-8' );
         header( 'Content-Disposition: attachment; filename="entryvault-submissions-' . gmdate( 'Ymd-His' ) . '.csv"' );
+
+        // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_fopen -- streaming CSV to php://output; WP_Filesystem has no streaming API.
+        $out = fopen( 'php://output', 'w' );
+        self::write_csv( $out, $args );
+        // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_fclose -- streaming CSV to php://output; WP_Filesystem has no streaming API.
+        fclose( $out );
+        exit;
+    }
+
+    /**
+     * Write the export (header + every matching row, page by page) to $out.
+     *
+     * @param resource $out
+     * @return int Rows written.
+     */
+    public static function write_csv( $out, array $args ): int {
+        // query() returns at most MAX_PER_PAGE rows; asking for 1000 got 200 and
+        // the loop thought it had them all, so the file stopped at 200 rows.
+        $args['per_page'] = Submission_Store::MAX_PER_PAGE;
+        $args['paged']    = 1;
+        $written          = 0;
 
         // The export used to carry only the envelope — ids, timestamps and numeric
         // pipeline/stage references — and none of what people had actually
@@ -504,8 +523,6 @@ class Submissions_Admin {
         $field_labels = self::exportable_field_labels( $args );
         $names        = self::pipeline_stage_names();
 
-        // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_fopen -- streaming CSV to php://output; WP_Filesystem has no streaming API.
-        $out = fopen( 'php://output', 'w' );
         // Pass an explicit $escape ('' = no escape char, matching WP core) — the
         // 4-arg/implicit form is deprecated on PHP 8.4 and removed in PHP 9.
         $header = [ 'ID', 'Title', 'Email', 'Pipeline', 'Stage', 'Owner', 'Tags', 'Source', 'Source Form', 'Source Entry', 'Status', 'Created', 'Updated' ];
@@ -537,14 +554,13 @@ class Submissions_Admin {
                 }
 
                 fputcsv( $out, array_map( [ self::class, 'csv_safe' ], $line ), ',', '"', '' );
+                $written++;
             }
             $args['paged']++;
             $more = ( $args['paged'] - 1 ) * $args['per_page'] < (int) $page['total'];
         } while ( $more );
 
-        // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_fclose -- streaming CSV to php://output; WP_Filesystem has no streaming API.
-        fclose( $out );
-        exit;
+        return $written;
     }
 
     /**

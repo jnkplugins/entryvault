@@ -33,12 +33,24 @@ class Sync_Engine {
             (string) ( $normalized['source_entry_id'] ?? '' )
         );
         if ( $existing ) {
+            $old_fields = Submission_Store::fields_for( (int) $existing );
             // F-04: reconcile field set on re-sync — mark missing fields stale,
             // un-stale reappearing ones, upsert in place. Preserves history.
             Submission_Store::reconcile_fields(
                 $existing,
                 (array) ( $normalized['fields'] ?? [] )
             );
+            // An entry edited at the source got new field values, but the card
+            // kept the old email (Reply went to it) and the old name.
+            $old_email = Adapters\Adapter_Base::email_from_fields( $old_fields );
+            $changed   = Submission_Store::refresh_contact(
+                (int) $existing,
+                [ 'email' => $old_email, 'title' => Adapters\Adapter_Base::title_from_fields( $old_fields, $old_email ) ],
+                [ 'email' => $normalized['email'] ?? null, 'title' => (string) ( $normalized['title'] ?? '' ) ]
+            );
+            if ( $changed ) {
+                Timeline::log( (int) $existing, 'status', null, [ 'event' => 'updated', 'source' => $normalized['source_plugin'] ?? '' ] );
+            }
             return [ 'id' => (int) $existing, 'created' => false ];
         }
 
@@ -74,6 +86,15 @@ class Sync_Engine {
         }
 
         Timeline::log( $submission_id, 'status', null, [ 'event' => 'created', 'source' => $normalized['source_plugin'] ?? '' ] );
+
+        // Spam its form plugin flagged, kept because "Keep entries marked as
+        // spam" is ticked: say so on the card. Automations skip it (Pro_Boot).
+        if ( ! empty( $normalized['is_spam'] ) ) {
+            $spam_tag = Tag_Manager::spam_tag_id();
+            if ( $spam_tag > 0 ) {
+                Tag_Manager::attach( $submission_id, $spam_tag );
+            }
+        }
 
         do_action( 'entryvault_submission_synced', $submission_id, $normalized['source_plugin'] ?? '' );
         // Premium automations subscribe to this action (pro/ only); free core just fires it.

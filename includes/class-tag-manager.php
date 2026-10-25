@@ -119,6 +119,23 @@ class Tag_Manager {
         return true;
     }
 
+    /**
+     * The tag that marks a card as spam (slug "spam"), made on first use. Spam
+     * kept by "Keep entries marked as spam" used to look like any new lead.
+     */
+    public static function spam_tag_id( bool $create = true ): int {
+        global $wpdb;
+        $id = (int) $wpdb->get_var( $wpdb->prepare(
+            "SELECT id FROM {$wpdb->prefix}entryvault_tags WHERE slug = %s",
+            'spam'
+        ) );
+        if ( $id > 0 || ! $create ) {
+            return $id;
+        }
+        $made = self::create( __( 'Spam', 'entryvault' ), '#dc2626' );
+        return is_int( $made ) ? $made : 0;
+    }
+
     public static function all(): array {
         global $wpdb;
         $rows = $wpdb->get_results(

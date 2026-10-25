@@ -268,6 +268,7 @@ class Activator {
                 body_html LONGTEXT,
                 raw_headers LONGTEXT,
                 sent_at DATETIME NOT NULL,
+                send_error VARCHAR(500) DEFAULT NULL,
                 PRIMARY KEY  (id),
                 KEY idx_submission (submission_id),
                 KEY idx_message_id (message_id(191))

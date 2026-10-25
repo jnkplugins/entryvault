@@ -62,6 +62,10 @@ class Timeline {
             case 'email_sent':
                 /* translators: 1: recipient, 2: subject. */
                 $s = sprintf( __( 'Email to %1$s: %2$s', 'entryvault' ), (string) ( $d['to'] ?? '' ), (string) ( $d['subject'] ?? '' ) );
+                if ( array_key_exists( 'sent', $d ) && ! $d['sent'] ) {
+                    /* translators: 1: recipient, 2: why it failed. */
+                    $s = sprintf( __( 'Email to %1$s NOT sent: %2$s', 'entryvault' ), (string) ( $d['to'] ?? '' ), (string) ( $d['error'] ?? '' ) );
+                }
                 break;
             case 'tag_added':
             case 'tag_removed':
@@ -91,6 +95,13 @@ class Timeline {
                 break;
             case 'archived':
                 $s = __( 'Archived', 'entryvault' );
+                if ( 'spam' === ( $d['source_status'] ?? '' ) ) {
+                    /* translators: %s: form plugin name. */
+                    $s = sprintf( __( 'Archived: marked as spam in %s', 'entryvault' ), Sources::label( (string) ( $d['source'] ?? '' ) ) );
+                } elseif ( 'trash' === ( $d['source_status'] ?? '' ) ) {
+                    /* translators: %s: form plugin name. */
+                    $s = sprintf( __( 'Archived: moved to the trash in %s', 'entryvault' ), Sources::label( (string) ( $d['source'] ?? '' ) ) );
+                }
                 break;
             case 'unarchived':
                 $s = __( 'Restored from the archive', 'entryvault' );

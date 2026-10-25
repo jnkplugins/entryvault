@@ -4,7 +4,7 @@ Tags: form entries, contact form, crm, leads, csv export
 Requires at least: 6.2
 Tested up to: 7.0
 Requires PHP: 8.2
-Stable tag: 1.15.1
+Stable tag: 1.16.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -137,6 +137,15 @@ Use the contact page at https://jnkplugins.com/entryvault/, or Feedback & Suppor
 7. Pro: automations that tag, assign, move or email entries for you.
 
 == Changelog ==
+
+= 1.16.0 =
+* Fixed: the board showed only the newest 50 cards per stage, and its count and search covered only those. Columns show the real total with "Show more", and search covers every entry.
+* Fixed: card ages were shifted by the site's time zone ("just now" for an entry from the morning).
+* Fixed: Export CSV included only the newest 200 entries. It includes all of them.
+* Fixed: Trinity Forms spam never reached EntryVault, even with spam kept. Spam now follows your setting and is tagged "Spam", the board says how many entries were left out with a link to review them, and an entry restored in Trinity Forms comes onto the board.
+* Changed: what happens to an entry in Trinity Forms now happens to its card. An edit updates the card, spam or trash archives it, a restore brings it back, and deleting the entry (by hand, by retention or by a privacy erase request) deletes the card with its notes. The filter entryvault_delete_with_source_entry turns the delete off.
+* Fixed: an email that failed to send was shown as sent. It now shows "Not sent" with the reason.
+* Fixed: emails went out with "&amp;" in the sender name, and the next email sent in the same request reused the EntryVault email's Message-ID.
 
 = 1.15.1 =
 * Fixed: the new Site Health and database-table messages showed in English on Spanish and Korean sites.

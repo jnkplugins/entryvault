@@ -1,9 +1,14 @@
+import { useState } from "@wordpress/element";
 import { useDroppable } from "@dnd-kit/core";
-import { __ } from "@wordpress/i18n";
+import { __, sprintf } from "@wordpress/i18n";
 import Card from "./Card";
 
-export default function Column( { stage, onOpenCard } ) {
+export default function Column( { stage, onOpenCard, onLoadMore } ) {
     const cards = stage.cards || [];
+    // The column shows the first page of its cards; the count is the whole stage.
+    const total = stage.total !== undefined && stage.total !== null ? Number( stage.total ) : cards.length;
+    const left = Math.max( 0, total - cards.length );
+    const [ loading, setLoading ] = useState( false );
     const accent = stage.color || "#94a3b8";
     const { isOver, setNodeRef } = useDroppable( { id: `stage-${ stage.id }` } );
 
@@ -11,10 +16,10 @@ export default function Column( { stage, onOpenCard } ) {
     const wipLimit = wipLimitRaw !== null && wipLimitRaw !== "" && Number( wipLimitRaw ) > 0
         ? Number( wipLimitRaw )
         : null;
-    const overLimit = wipLimit !== null && cards.length > wipLimit;
+    const overLimit = wipLimit !== null && total > wipLimit;
     const countLabel = wipLimit !== null
-        ? `${ cards.length } / ${ wipLimit }`
-        : String( cards.length );
+        ? `${ total } / ${ wipLimit }`
+        : String( total );
 
     const cls = [ "ev-col" ];
     if ( isOver ) cls.push( "is-over" );
@@ -34,6 +39,17 @@ export default function Column( { stage, onOpenCard } ) {
                 { cards.length === 0
                     ? <p className="ev-col-empty">{ __( "No submissions", "entryvault" ) }</p>
                     : cards.map( ( c ) => <Card key={ c.id } card={ c } onOpen={ onOpenCard } /> ) }
+                { left > 0 && onLoadMore && (
+                    <button
+                        type="button"
+                        className="button ev-col-more"
+                        disabled={ loading }
+                        onClick={ () => {
+                            setLoading( true );
+                            Promise.resolve( onLoadMore( stage.id ) ).finally( () => setLoading( false ) );
+                        } }
+                    >{ /* translators: %d: cards not shown yet. */ sprintf( __( "Show more (%d left)", "entryvault" ), left ) }</button>
+                ) }
             </div>
         </div>
     );

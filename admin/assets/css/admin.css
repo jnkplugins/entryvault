@@ -173,6 +173,7 @@
 .jnkui .ev-col.is-over-limit .ev-col-count { background: var(--jnk-bad-bg); color: var(--jnk-bad); }
 .jnkui .ev-col-body { display: grid; gap: 8px; min-height: 40px; }
 .jnkui .ev-col-empty { margin: 0; padding: 18px 8px; text-align: center; color: var(--jnk-mute); font-size: 12.5px; border: 1px dashed #cbd5e1; border-radius: 10px; }
+.jnkui .ev-col-more { display: block; width: 100%; margin-top: 4px; text-align: center; }
 .jnkui .ev-card { position: relative; background: #fff; border: 1px solid var(--jnk-line); border-radius: 10px; padding: 10px 12px; box-shadow: var(--jnk-shadow); cursor: grab; }
 .jnkui .ev-card::before { content: ""; position: absolute; left: -1px; top: 10px; bottom: 10px; width: 3px; border-radius: 0 3px 3px 0; background: var(--ev-stage, transparent); }
 .jnkui .ev-card:hover { border-color: #cbd5e1; box-shadow: var(--jnk-shadow-lg); }
@@ -269,6 +270,8 @@
 .jnkui .ev-mail { border: 1px solid var(--jnk-line); border-left-width: 3px; border-radius: 10px; padding: 10px 12px; font-size: 13.5px; }
 .jnkui .ev-mail.is-in { border-left-color: #10b981; background: #f6fef9; }
 .jnkui .ev-mail.is-out { border-left-color: var(--jnk-brand); background: #faf9ff; }
+.jnkui .ev-mail.is-failed { border-left-color: #dc2626; background: #fef2f2; }
+.jnkui .ev-mail-failed { color: #b91c1c; font-weight: 600; font-size: 12.5px; margin: 2px 0; }
 .jnkui .ev-mail-meta { font-size: 11.5px; color: var(--jnk-mute); }
 .jnkui .ev-mail-subject { font-weight: 650; color: var(--jnk-ink); margin: 2px 0; }
 .jnkui .ev-mail-body { white-space: pre-wrap; overflow-wrap: anywhere; color: var(--jnk-ink-2); }

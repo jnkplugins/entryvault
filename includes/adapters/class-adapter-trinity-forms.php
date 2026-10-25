@@ -28,6 +28,17 @@ class Adapter_Trinity_Forms extends Adapter_Base {
         // before the payment redirect, so leads are captured even when payment
         // is still pending. Two args: ( $entry_id, $form_id ).
         add_action( "trinity_forms_entry_created", [ $this, "on_entry_created" ], 20, 2 );
+        // Trinity files spam without firing entry_created, so its spam never reached
+        // EntryVault, not even with "Keep entries marked as spam" ticked, and nothing
+        // was counted. Both now follow the setting, and an entry marked "not spam"
+        // in Trinity afterwards comes to the board.
+        add_action( "trinity_forms_spam_rejected", [ $this, "on_spam_rejected" ], 20, 2 );
+        add_action( "trinity_forms_entry_status_changed", [ $this, "on_status_changed" ], 20, 2 );
+        // An entry edited in Trinity kept its old email and message on the card,
+        // and one deleted there (by hand, by its retention period, or by a
+        // personal-data erasure) stayed in EntryVault for ever.
+        add_action( "trinity_forms_entry_updated", [ $this, "on_entry_updated" ], 20, 1 );
+        add_action( "trinity_forms_entry_deleted", [ $this, "on_entry_deleted" ], 20, 1 );
         // Lets matchers (automation conditions) treat an option value and its
         // label as the same answer, now that entries are stored as labels.
         add_filter( "entryvault_field_choice_labels", [ $this, "field_choice_labels" ], 10, 4 );
@@ -47,6 +58,93 @@ class Adapter_Trinity_Forms extends Adapter_Base {
             $cache[ $form_id ] = $this->choice_labels( $form_id );
         }
         return $cache[ $form_id ][ (string) $field_key ] ?? (array) $labels;
+    }
+
+    public function on_spam_rejected( $entry_id, $form_id = 0 ): void {
+        if ( $this->skip_as_spam( (string) (int) $form_id, (string) (int) $entry_id ) ) {
+            return;
+        }
+        $this->on_entry_created( $entry_id, $form_id );
+    }
+
+    /**
+     * Trinity moved an entry between Entries, Spam and Trash.
+     *
+     * Restored ("completed"): bring it in if EntryVault has no copy (it used to
+     * look only in the skip list, which keeps the latest 100, so an older spam
+     * entry restored there never arrived), and undo an archive we made.
+     * Spam: archive the card when spam is left out, else tag it Spam.
+     * Trash: archive the card, so it leaves the board but can come back.
+     */
+    public function on_status_changed( $entry_id, $status = "" ): void {
+        $entry_ref = (string) (int) $entry_id;
+        $status    = (string) $status;
+        $ids       = \EntryVault\Submission_Store::find_by_source_entry( $this->slug(), $entry_ref );
+
+        if ( "completed" === $status ) {
+            self::forget_spam_skip( $this->slug(), $entry_ref );
+            if ( ! $ids ) {
+                $this->on_entry_created( $entry_id );
+                return;
+            }
+            $spam_tag = \EntryVault\Tag_Manager::spam_tag_id( false );
+            foreach ( $ids as $id ) {
+                \EntryVault\Submission_Store::unarchive_for_source( $id );
+                if ( $spam_tag > 0 && in_array( $spam_tag, array_map( "intval", wp_list_pluck( \EntryVault\Tag_Manager::for_submission( $id ), "id" ) ), true ) ) {
+                    \EntryVault\Tag_Manager::detach( $id, $spam_tag );
+                }
+            }
+            return;
+        }
+
+        if ( "spam" === $status && ! self::skip_spam_enabled() ) {
+            $spam_tag = \EntryVault\Tag_Manager::spam_tag_id();
+            foreach ( $ids as $id ) {
+                if ( $spam_tag > 0 ) {
+                    \EntryVault\Tag_Manager::attach( $id, $spam_tag );
+                }
+            }
+            return;
+        }
+
+        if ( "spam" === $status || "trash" === $status ) {
+            foreach ( $ids as $id ) {
+                \EntryVault\Submission_Store::archive_for_source( $id, $status );
+            }
+        }
+    }
+
+    /** An entry edited in Trinity: update the copy EntryVault already has. */
+    public function on_entry_updated( $entry_id ): void {
+        if ( \EntryVault\Submission_Store::find_by_source_entry( $this->slug(), (string) (int) $entry_id ) ) {
+            $this->on_entry_created( $entry_id );
+        }
+    }
+
+    /**
+     * An entry deleted for good in Trinity: delete EntryVault's copy too, with
+     * its fields, notes and emails. Trinity's retention period and its
+     * personal-data eraser both end here.
+     */
+    public function on_entry_deleted( $entry_id ): void {
+        $entry_ref = (string) (int) $entry_id;
+        /**
+         * Filter whether a submission is deleted when its Trinity Forms entry is.
+         *
+         * @param bool   $delete    Default true.
+         * @param string $entry_ref Trinity entry id.
+         */
+        if ( ! apply_filters( "entryvault_delete_with_source_entry", true, $entry_ref, $this->slug() ) ) {
+            return;
+        }
+        foreach ( \EntryVault\Submission_Store::find_by_source_entry( $this->slug(), $entry_ref ) as $id ) {
+            \EntryVault\Submission_Store::delete( $id );
+            \EntryVault\Logger::info( "sync", "Deleted a submission whose Trinity Forms entry was deleted", [
+                "submission_id" => $id,
+                "entry_id"      => $entry_ref,
+            ] );
+        }
+        self::forget_spam_skip( $this->slug(), $entry_ref );
     }
 
     public function on_entry_created( $entry_id, $form_id = 0 ): void {
@@ -111,7 +209,7 @@ class Adapter_Trinity_Forms extends Adapter_Base {
         }
         // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- table name is a constant prefix.
         $entry = $wpdb->get_row( $wpdb->prepare(
-            "SELECT id, form_id, submitted_at FROM {$wpdb->prefix}trinity_forms_entries WHERE id = %d",
+            "SELECT * FROM {$wpdb->prefix}trinity_forms_entries WHERE id = %d",
             $entry_id
         ), ARRAY_A );
         if ( ! $entry ) {
@@ -149,7 +247,7 @@ class Adapter_Trinity_Forms extends Adapter_Base {
         $email = $this->pick_email( $fields );
         $title = $this->pick_title( $fields, $email );
 
-        return [
+        $out = [
             "source_plugin"   => $this->slug(),
             "source_form_id"  => (string) $entry["form_id"],
             "source_entry_id" => (string) $entry["id"],
@@ -158,5 +256,11 @@ class Adapter_Trinity_Forms extends Adapter_Base {
             "fields"          => $fields,
             "created_at"      => (string) ( $entry["submitted_at"] ?: current_time( "mysql" ) ),
         ];
+        // Kept spam ("Keep entries marked as spam") is tagged Spam and no
+        // automation answers it (Sync_Engine, Pro_Boot).
+        if ( "spam" === (string) ( $entry["status"] ?? "" ) ) {
+            $out["is_spam"] = true;
+        }
+        return $out;
     }
 }

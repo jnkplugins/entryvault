@@ -1,10 +1,10 @@
 import { useDraggable } from "@dnd-kit/core";
 import { __, _x, sprintf } from "@wordpress/i18n";
+import { siteTimeMs } from "./siteTime";
 
 function relativeAge( iso ) {
     if ( ! iso ) return "";
-    const then = new Date( iso.replace( " ", "T" ) + "Z" );
-    const diffMs = Date.now() - then.getTime();
+    const diffMs = Date.now() - siteTimeMs( iso );
     const m = Math.floor( diffMs / 60000 );
     if ( m < 1 ) return __( "just now", "entryvault" );
     /* translators: %d: number of minutes, shown in a short card corner. */

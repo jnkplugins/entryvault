@@ -6,6 +6,11 @@ export async function fetchBoard( pipelineId, params = {} ) {
     for ( const id of ownerIds ) {
         qs.push( `owner_id[]=${ encodeURIComponent( id ) }` );
     }
+    // The search, and "load more" for one column, run on the server: the board
+    // only holds the first page of each stage.
+    if ( params.q ) qs.push( `q=${ encodeURIComponent( params.q ) }` );
+    if ( params.stageId ) qs.push( `stage_id=${ encodeURIComponent( params.stageId ) }` );
+    if ( params.offset ) qs.push( `offset=${ encodeURIComponent( params.offset ) }` );
     const path = qs.length
         ? `/entryvault/v1/board/${ pipelineId }?${ qs.join( "&" ) }`
         : `/entryvault/v1/board/${ pipelineId }`;

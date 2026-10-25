@@ -25,6 +25,7 @@ export default function Board( { pipelineId, onPipelineChange, initialOpenId = n
     const [ owners, setOwners ] = useState( [] );
     const [ selectedOwners, setSelectedOwners ] = useState( [] ); // ids + "unassigned"
     const [ search, setSearch ] = useState( "" );
+    const [ query, setQuery ] = useState( "" ); // the search as last sent to the server
     const [ lastSeen, setLastSeen ] = useState( "" );
     const [ error, setError ] = useState( null );
     const [ activeCard, setActiveCard ] = useState( null );
@@ -34,7 +35,7 @@ export default function Board( { pipelineId, onPipelineChange, initialOpenId = n
 
     function loadBoard() {
         const ownerIds = selectedOwners; // includes "unassigned" sentinel
-        return fetchBoard( pipelineId, { ownerIds } )
+        return fetchBoard( pipelineId, { ownerIds, q: query } )
             .then( ( res ) => {
                 const data = unwrap( res ) || {};
                 setPipeline( data.pipeline || null );
@@ -56,7 +57,37 @@ export default function Board( { pipelineId, onPipelineChange, initialOpenId = n
     useEffect( () => {
         loadBoard();
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [ pipelineId, selectedOwners.join( "," ) ] );
+    }, [ pipelineId, selectedOwners.join( "," ), query ] );
+
+    // Search the whole pipeline, not just the cards on screen: send the text to
+    // the server once typing pauses.
+    useEffect( () => {
+        const t = setTimeout( () => setQuery( search.trim() ), 300 );
+        return () => clearTimeout( t );
+    }, [ search ] );
+
+    function loadMore( stageId ) {
+        const stage = ( stages || [] ).find( ( s ) => String( s.id ) === String( stageId ) );
+        if ( ! stage ) return Promise.resolve();
+        return fetchBoard( pipelineId, {
+            ownerIds: selectedOwners,
+            q: query,
+            stageId,
+            offset: ( stage.cards || [] ).length,
+        } )
+            .then( ( res ) => {
+                const data = unwrap( res ) || {};
+                const more = ( data.stages || [] ).find( ( s ) => String( s.id ) === String( stageId ) );
+                if ( ! more ) return;
+                setStages( ( prev ) => prev.map( ( s ) => {
+                    if ( String( s.id ) !== String( stageId ) ) return s;
+                    const have = new Set( ( s.cards || [] ).map( ( c ) => String( c.id ) ) );
+                    const add = ( more.cards || [] ).filter( ( c ) => ! have.has( String( c.id ) ) );
+                    return { ...s, cards: [ ...( s.cards || [] ), ...add ], total: more.total };
+                } ) );
+            } )
+            .catch( ( e ) => setError( e.message || __( "Failed to load board", "entryvault" ) ) );
+    }
 
     const stagesView = useMemo( () => {
         const needle = search.trim().toLowerCase();
@@ -95,7 +126,8 @@ export default function Board( { pipelineId, onPipelineChange, initialOpenId = n
                 return { ...c, is_new: isNew };
             } );
 
-            return { ...s, cards };
+            const total = s.total !== undefined && s.total !== null ? Number( s.total ) : cards.length;
+            return { ...s, cards, total: Math.max( total, cards.length ) };
         } );
     }, [ stages, search, selectedOwners, lastSeen ] );
 
@@ -187,12 +219,13 @@ export default function Board( { pipelineId, onPipelineChange, initialOpenId = n
         if ( String( fromLoc.stage.id ) === String( toStageId ) ) return;
 
         const previous = stages;
-        const next = stages.map( ( s ) => ( {
-            ...s,
-            cards: ( s.cards || [] ).filter( ( c ) => String( c.id ) !== String( active.id ) ),
-        } ) ).map( ( s ) => {
+        const bump = ( s, by ) => ( s.total !== undefined && s.total !== null ? Math.max( 0, Number( s.total ) + by ) : s.total );
+        const next = stages.map( ( s ) => ( String( s.id ) === String( fromLoc.stage.id )
+            ? { ...s, cards: ( s.cards || [] ).filter( ( c ) => String( c.id ) !== String( active.id ) ), total: bump( s, -1 ) }
+            : s
+        ) ).map( ( s ) => {
             if ( String( s.id ) !== String( toStageId ) ) return s;
-            return { ...s, cards: [ fromLoc.card, ...( s.cards || [] ) ] };
+            return { ...s, cards: [ fromLoc.card, ...( s.cards || [] ) ], total: bump( s, 1 ) };
         } );
         setStages( next );
 
@@ -214,7 +247,13 @@ export default function Board( { pipelineId, onPipelineChange, initialOpenId = n
         selectedOwners.length === 0 &&
         ( stagesView || [] ).every( ( s ) => ! ( s.cards || [] ).length );
 
-    const totalCards = ( stagesView || [] ).reduce( ( n, s ) => n + ( s.cards || [] ).length, 0 );
+    const shownCards = ( stagesView || [] ).reduce( ( n, s ) => n + ( s.cards || [] ).length, 0 );
+    const totalCards = ( stagesView || [] ).reduce( ( n, s ) => n + ( s.total || 0 ), 0 );
+    const totalLabel = shownCards < totalCards
+        /* translators: 1: cards shown, 2: cards in the pipeline. */
+        ? sprintf( __( "%1$d of %2$d cards", "entryvault" ), shownCards, totalCards )
+        /* translators: %d: number of cards on the board. */
+        : sprintf( _n( "%d card", "%d cards", totalCards, "entryvault" ), totalCards );
 
     return (
         <>
@@ -249,7 +288,7 @@ export default function Board( { pipelineId, onPipelineChange, initialOpenId = n
                         />
                     </label>
 
-                    <span className="ev-board-total">{ /* translators: %d: number of cards on the board. */ sprintf( _n( "%d card", "%d cards", totalCards, "entryvault" ), totalCards ) }</span>
+                    <span className="ev-board-total">{ totalLabel }</span>
 
                     <button
                         type="button"
@@ -288,7 +327,7 @@ export default function Board( { pipelineId, onPipelineChange, initialOpenId = n
             { boardIsEmpty && <GettingStarted /> }
             <DndContext sensors={ sensors } onDragStart={ handleDragStart } onDragEnd={ handleDragEnd } accessibility={ dragA11y }>
                 <div className="ev-board">
-                    { stagesView.map( ( s ) => <Column key={ s.id } stage={ s } onOpenCard={ setOpenId } /> ) }
+                    { stagesView.map( ( s ) => <Column key={ s.id } stage={ s } onOpenCard={ setOpenId } onLoadMore={ loadMore } /> ) }
                 </div>
                 <DragOverlay>
                     { activeCard ? <Card card={ activeCard } overlay /> : null }

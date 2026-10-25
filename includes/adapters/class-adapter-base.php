@@ -45,7 +45,7 @@ abstract class Adapter_Base {
      * Call when the source marked this submission as spam. Returns true (and
      * logs it) when the entry should be skipped.
      */
-    protected function skip_as_spam( string $form_id = '' ): bool {
+    protected function skip_as_spam( string $form_id = '', string $entry_ref = '' ): bool {
         if ( ! self::skip_spam_enabled() ) {
             return false;
         }
@@ -53,7 +53,77 @@ abstract class Adapter_Base {
             'source'  => $this->slug(),
             'form_id' => $form_id,
         ] );
+        self::record_spam_skip( $this->slug(), $form_id, $entry_ref );
         do_action( 'entryvault_spam_skipped', $this->slug(), $form_id );
+        return true;
+    }
+
+    public const SPAM_SKIPS_OPTION = 'entryvault_spam_skips';
+    private const SPAM_SKIPS_KEEP  = 100;
+    /** Skips per day (Y-m-d => n), uncapped: the list above keeps only the latest 100. */
+    public const SPAM_SKIP_DAYS_OPTION = 'entryvault_spam_skip_days';
+
+    /**
+     * Remember a skipped spam entry. Skipping was silent, so a real message a form
+     * plugin got wrong (a live site, 24 Oct 2026: a phone's autofill tripped the
+     * honeypot) never reached the board and nothing said it had been left out.
+     */
+    public static function record_spam_skip( string $source, string $form_id = '', string $entry_ref = '' ): void {
+        $list = self::spam_skips();
+        array_unshift( $list, [ 'at' => time(), 'source' => $source, 'form_id' => $form_id, 'entry' => $entry_ref ] );
+        update_option( self::SPAM_SKIPS_OPTION, array_slice( $list, 0, self::SPAM_SKIPS_KEEP ), false );
+        self::count_spam_skip( time(), 1 );
+    }
+
+    private static function count_spam_skip( int $at, int $by ): void {
+        $days = get_option( self::SPAM_SKIP_DAYS_OPTION, [] );
+        $days = is_array( $days ) ? $days : [];
+        $day  = gmdate( 'Y-m-d', $at );
+        $days[ $day ] = max( 0, (int) ( $days[ $day ] ?? 0 ) + $by );
+        $cut  = gmdate( 'Y-m-d', time() - 40 * DAY_IN_SECONDS );
+        $days = array_filter( $days, static fn( $n, $d ) => $n > 0 && (string) $d >= $cut, ARRAY_FILTER_USE_BOTH );
+        update_option( self::SPAM_SKIP_DAYS_OPTION, $days, false );
+    }
+
+    /**
+     * How many entries were left out as spam since $since. The board said "99"
+     * once the 100-row list was full, however many more had come in.
+     */
+    public static function spam_skip_count( int $since ): int {
+        $days = get_option( self::SPAM_SKIP_DAYS_OPTION, [] );
+        if ( ! is_array( $days ) || ! $days ) {
+            return count( self::spam_skips( $since ) ); // skips recorded before the counter existed
+        }
+        $from = gmdate( 'Y-m-d', $since );
+        $n    = 0;
+        foreach ( $days as $day => $count ) {
+            if ( (string) $day >= $from ) {
+                $n += (int) $count;
+            }
+        }
+        return max( $n, count( self::spam_skips( $since ) ) );
+    }
+
+    /** @return list<array{at:int,source:string,form_id:string,entry:string}> newest first */
+    public static function spam_skips( int $since = 0 ): array {
+        $list = get_option( self::SPAM_SKIPS_OPTION, [] );
+        $list = is_array( $list ) ? array_values( array_filter( $list, 'is_array' ) ) : [];
+        return $since > 0 ? array_values( array_filter( $list, static fn( $s ) => (int) ( $s['at'] ?? 0 ) >= $since ) ) : $list;
+    }
+
+    /** Forget a skip, once the entry reached EntryVault after all. */
+    public static function forget_spam_skip( string $source, string $entry_ref ): bool {
+        $list = self::spam_skips();
+        $kept = array_values( array_filter( $list, static fn( $s ) => ! ( $s['source'] === $source && (string) $s['entry'] === $entry_ref ) ) );
+        if ( count( $kept ) === count( $list ) ) {
+            return false;
+        }
+        update_option( self::SPAM_SKIPS_OPTION, $kept, false );
+        foreach ( $list as $s ) {
+            if ( $s['source'] === $source && (string) $s['entry'] === $entry_ref ) {
+                self::count_spam_skip( (int) ( $s['at'] ?? time() ), -1 );
+            }
+        }
         return true;
     }
 
@@ -63,6 +133,15 @@ abstract class Adapter_Base {
     }
 
     protected function pick_email( array $fields ): ?string {
+        return self::email_from_fields( $fields );
+    }
+
+    protected function pick_title( array $fields, ?string $email ): string {
+        return self::title_from_fields( $fields, $email );
+    }
+
+    /** The email an entry's fields give: the first email field, else any value that is an address. */
+    public static function email_from_fields( array $fields ): ?string {
         foreach ( $fields as $f ) {
             if ( ( $f['type'] ?? '' ) === 'email' && ! empty( $f['value'] ) && is_string( $f['value'] ) ) {
                 return $f['value'];
@@ -77,7 +156,8 @@ abstract class Adapter_Base {
         return null;
     }
 
-    protected function pick_title( array $fields, ?string $email ): string {
+    /** The card title an entry's fields give: a name field, else the email. */
+    public static function title_from_fields( array $fields, ?string $email ): string {
         foreach ( $fields as $f ) {
             $key = strtolower( (string) ( $f['key']   ?? '' ) );
             $lab = strtolower( (string) ( $f['label'] ?? '' ) );

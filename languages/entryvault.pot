@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-10-23T07:20:16+00:00\n"
+"POT-Creation-Date: 2026-10-25T11:18:22+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: entryvault\n"
@@ -77,7 +77,7 @@ msgid "EntryVault picks up submissions from the form plugins you already use. Th
 msgstr ""
 
 #: admin/views/dashboard.php:85
-#: admin/assets/kanban/build/index.js:34
+#: admin/assets/kanban/build/index.js:37
 msgid "Import a CSV instead"
 msgstr ""
 
@@ -200,7 +200,7 @@ msgstr ""
 #: admin/views/dashboard.php:207
 #: admin/views/import.php:83
 #: includes/class-submissions-list-table.php:57
-#: admin/assets/kanban/build/index.js:34
+#: admin/assets/kanban/build/index.js:37
 msgid "Pipeline"
 msgstr ""
 
@@ -329,7 +329,7 @@ msgid "Sends: WordPress version, PHP version, EntryVault version, active theme n
 msgstr ""
 
 #: admin/views/feedback.php:93
-#: admin/assets/kanban/build/index.js:26
+#: admin/assets/kanban/build/index.js:27
 msgid "Send"
 msgstr ""
 
@@ -447,16 +447,36 @@ msgstr ""
 msgid "Every form submission as a card. Drag a card to move it to the next stage, or open it to reply, add notes and tags."
 msgstr ""
 
-#: admin/views/kanban.php:14
-#: admin/assets/kanban/build/index.js:26
+#. translators: 1: number of entries, 2: date of the latest one.
+#: admin/views/kanban.php:25
+#, php-format
+msgid "%1$d entry in the last 30 days was left out because its form plugin marked it as spam (latest %2$s). Spam filters are sometimes wrong, so it is worth a look."
+msgid_plural "%1$d entries in the last 30 days were left out because their form plugin marked them as spam (latest %2$s). Spam filters are sometimes wrong, so they are worth a look."
+msgstr[0] ""
+msgstr[1] ""
+
+#: admin/views/kanban.php:36
+msgid "Review them in Trinity Forms"
+msgstr ""
+
+#: admin/views/kanban.php:37
+msgid "(an entry you restore there comes onto this board)."
+msgstr ""
+
+#: admin/views/kanban.php:39
+msgid "Keep spam entries in EntryVault"
+msgstr ""
+
+#: admin/views/kanban.php:45
+#: admin/assets/kanban/build/index.js:27
 msgid "Loading the board…"
 msgstr ""
 
-#: admin/views/kanban.php:16
+#: admin/views/kanban.php:47
 msgid "If this message stays, the board files are missing. Run"
 msgstr ""
 
-#: admin/views/kanban.php:18
+#: admin/views/kanban.php:49
 msgid "in the plugin folder."
 msgstr ""
 
@@ -524,6 +544,7 @@ msgid "Paste one of these into a page to show that pipeline's submissions. Anyon
 msgstr ""
 
 #: admin/views/settings.php:157
+#: includes/class-tag-manager.php:135
 msgid "Spam"
 msgstr ""
 
@@ -777,6 +798,10 @@ msgstr ""
 msgid "%s ago"
 msgstr ""
 
+#: includes/class-email-sender.php:109
+msgid "The mailer did not accept the email."
+msgstr ""
+
 #: includes/class-feedback.php:41
 msgid "You do not have permission to do this."
 msgstr ""
@@ -869,7 +894,7 @@ msgstr ""
 #: includes/class-submissions-list-table.php:63
 #: includes/class-submissions-list-table.php:128
 #: admin/assets/kanban/build/index.js:5
-#: admin/assets/kanban/build/index.js:34
+#: admin/assets/kanban/build/index.js:37
 msgid "Owner"
 msgstr ""
 
@@ -1135,7 +1160,7 @@ msgid "All"
 msgstr ""
 
 #: includes/class-submissions-admin.php:236
-#: includes/class-timeline.php:93
+#: includes/class-timeline.php:97
 msgid "Archived"
 msgstr ""
 
@@ -1160,10 +1185,10 @@ msgid "All owners"
 msgstr ""
 
 #: includes/class-submissions-admin.php:316
-#: includes/class-timeline.php:90
+#: includes/class-timeline.php:94
 #: admin/assets/kanban/build/index.js:5
 #: admin/assets/kanban/build/index.js:20
-#: admin/assets/kanban/build/index.js:34
+#: admin/assets/kanban/build/index.js:37
 msgid "Unassigned"
 msgstr ""
 
@@ -1174,7 +1199,7 @@ msgstr ""
 #: includes/class-submissions-admin.php:348
 #: public/templates/submissions-table.php:54
 #: public/templates/submissions-table.php:63
-#: admin/assets/kanban/build/index.js:34
+#: admin/assets/kanban/build/index.js:37
 msgid "Search"
 msgstr ""
 
@@ -1243,7 +1268,7 @@ msgid "Forbidden."
 msgstr ""
 
 #. translators: %s: form field label that clashes with a fixed column, e.g. "Email".
-#: includes/class-submissions-admin.php:594
+#: includes/class-submissions-admin.php:610
 #, php-format
 msgid "%s (form field)"
 msgstr ""
@@ -1341,51 +1366,69 @@ msgstr ""
 msgid "Email to %1$s: %2$s"
 msgstr ""
 
+#. translators: 1: recipient, 2: why it failed.
+#: includes/class-timeline.php:67
+#, php-format
+msgid "Email to %1$s NOT sent: %2$s"
+msgstr ""
+
 #. translators: %s: tag name.
-#: includes/class-timeline.php:74
+#: includes/class-timeline.php:78
 #: admin/assets/kanban/build/index.js:14
 #, php-format,js-format
 msgid "Tagged %s"
 msgstr ""
 
 #. translators: %s: tag name.
-#: includes/class-timeline.php:76
+#: includes/class-timeline.php:80
 #: admin/assets/kanban/build/index.js:16
 #, php-format,js-format
 msgid "Removed tag %s"
 msgstr ""
 
 #. translators: %s: user display name.
-#: includes/class-timeline.php:80
+#: includes/class-timeline.php:84
 #: admin/assets/kanban/build/index.js:18
 #, php-format,js-format
 msgid "Assigned to %s"
 msgstr ""
 
 #. translators: %s: user display name.
-#: includes/class-timeline.php:83
+#: includes/class-timeline.php:87
 #, php-format
 msgid "(was %s)"
 msgstr ""
 
 #. translators: %s: user display name.
-#: includes/class-timeline.php:89
+#: includes/class-timeline.php:93
 #: admin/assets/kanban/build/index.js:20
 #, php-format,js-format
 msgid "Unassigned from %s"
 msgstr ""
 
-#: includes/class-timeline.php:96
+#. translators: %s: form plugin name.
+#: includes/class-timeline.php:100
+#, php-format
+msgid "Archived: marked as spam in %s"
+msgstr ""
+
+#. translators: %s: form plugin name.
+#: includes/class-timeline.php:103
+#, php-format
+msgid "Archived: moved to the trash in %s"
+msgstr ""
+
+#: includes/class-timeline.php:107
 msgid "Restored from the archive"
 msgstr ""
 
 #. translators: %d: stage id.
-#: includes/class-timeline.php:123
+#: includes/class-timeline.php:134
 #, php-format
 msgid "a deleted stage (#%d)"
 msgstr ""
 
-#: includes/class-timeline.php:140
+#: includes/class-timeline.php:151
 msgid "nobody"
 msgstr ""
 
@@ -1493,6 +1536,12 @@ msgstr ""
 
 #: admin/assets/kanban/build/index.js:5
 msgid "No submissions"
+msgstr ""
+
+#. translators: %d: cards not shown yet.
+#: admin/assets/kanban/build/index.js:5
+#, js-format
+msgid "Show more (%d left)"
 msgstr ""
 
 #: admin/assets/kanban/build/index.js:5
@@ -1706,155 +1755,170 @@ msgstr ""
 msgid "Sent."
 msgstr ""
 
-#: admin/assets/kanban/build/index.js:26
+#: admin/assets/kanban/build/index.js:27
+#, js-format
+msgid "Could not send the email: %s"
+msgstr ""
+
+#: admin/assets/kanban/build/index.js:27
 msgid "Could not send the email."
 msgstr ""
 
-#: admin/assets/kanban/build/index.js:26
+#: admin/assets/kanban/build/index.js:27
 msgid "Sending…"
 msgstr ""
 
-#: admin/assets/kanban/build/index.js:26
+#: admin/assets/kanban/build/index.js:27
 msgid "Conversation"
 msgstr ""
 
-#: admin/assets/kanban/build/index.js:26
+#: admin/assets/kanban/build/index.js:27
 msgid "No emails yet."
 msgstr ""
 
 #. translators: %s: sender address.
-#: admin/assets/kanban/build/index.js:26
+#: admin/assets/kanban/build/index.js:27
 #, js-format
 msgid "From %s"
 msgstr ""
 
 #. translators: %s: recipient address.
-#: admin/assets/kanban/build/index.js:26
+#: admin/assets/kanban/build/index.js:27
 #, js-format
 msgid "To %s"
 msgstr ""
 
-#: admin/assets/kanban/build/index.js:26
+#. translators: %s: the mail server's reason.
+#: admin/assets/kanban/build/index.js:27
+#, js-format
+msgid "Not sent: %s"
+msgstr ""
+
+#: admin/assets/kanban/build/index.js:27
 msgid "(no subject)"
 msgstr ""
 
-#: admin/assets/kanban/build/index.js:26
+#: admin/assets/kanban/build/index.js:27
 msgctxt "submission status"
 msgid "Open"
 msgstr ""
 
-#: admin/assets/kanban/build/index.js:26
+#: admin/assets/kanban/build/index.js:27
 msgctxt "submission status"
 msgid "Archived"
 msgstr ""
 
-#: admin/assets/kanban/build/index.js:26
+#: admin/assets/kanban/build/index.js:27
 msgctxt "submission status"
 msgid "Won"
 msgstr ""
 
-#: admin/assets/kanban/build/index.js:26
+#: admin/assets/kanban/build/index.js:27
 msgctxt "submission status"
 msgid "Lost"
 msgstr ""
 
-#: admin/assets/kanban/build/index.js:26
+#: admin/assets/kanban/build/index.js:27
 msgid "Failed to load board"
 msgstr ""
 
-#: admin/assets/kanban/build/index.js:26
+#: admin/assets/kanban/build/index.js:27
 msgid "this card"
 msgstr ""
 
-#: admin/assets/kanban/build/index.js:26
+#: admin/assets/kanban/build/index.js:27
 msgid "a stage"
 msgstr ""
 
-#: admin/assets/kanban/build/index.js:26
+#: admin/assets/kanban/build/index.js:27
 msgid "To pick up a card, press space or enter. Use the arrow keys to move it, then press space or enter to drop it, or escape to cancel."
 msgstr ""
 
 #. translators: %s: card title.
-#: admin/assets/kanban/build/index.js:28
+#: admin/assets/kanban/build/index.js:29
 #, js-format
 msgid "Picked up %s."
 msgstr ""
 
-#: admin/assets/kanban/build/index.js:29
+#: admin/assets/kanban/build/index.js:30
 #, js-format
 msgid "%1$s is over %2$s."
 msgstr ""
 
-#: admin/assets/kanban/build/index.js:30
+#: admin/assets/kanban/build/index.js:31
 #, js-format
 msgid "%s is not over a stage."
 msgstr ""
 
-#: admin/assets/kanban/build/index.js:31
+#: admin/assets/kanban/build/index.js:32
 #, js-format
 msgid "%1$s was dropped in %2$s."
 msgstr ""
 
-#: admin/assets/kanban/build/index.js:32
+#: admin/assets/kanban/build/index.js:33
 #, js-format
 msgid "%s was dropped."
 msgstr ""
 
 #. translators: %s: card title.
-#: admin/assets/kanban/build/index.js:34
+#: admin/assets/kanban/build/index.js:35
 #, js-format
 msgid "Moving %s was cancelled."
 msgstr ""
 
-#: admin/assets/kanban/build/index.js:34
-msgid "Search name or email…"
+#: admin/assets/kanban/build/index.js:36
+#, js-format
+msgid "%1$d of %2$d cards"
 msgstr ""
 
-#. translators: %d: number of cards on the board.
-#: admin/assets/kanban/build/index.js:34
+#: admin/assets/kanban/build/index.js:37
 #, js-format
 msgid "%d card"
 msgid_plural "%d cards"
 msgstr[0] ""
 msgstr[1] ""
 
-#: admin/assets/kanban/build/index.js:34
+#: admin/assets/kanban/build/index.js:37
+msgid "Search name or email…"
+msgstr ""
+
+#: admin/assets/kanban/build/index.js:37
 msgid "Could not mark all cards as seen"
 msgstr ""
 
-#: admin/assets/kanban/build/index.js:34
+#: admin/assets/kanban/build/index.js:37
 msgid "Clear the New badge from every card"
 msgstr ""
 
-#: admin/assets/kanban/build/index.js:34
+#: admin/assets/kanban/build/index.js:37
 msgid "Mark all seen"
 msgstr ""
 
-#: admin/assets/kanban/build/index.js:34
+#: admin/assets/kanban/build/index.js:37
 msgid "Show only cards owned by"
 msgstr ""
 
-#: admin/assets/kanban/build/index.js:34
+#: admin/assets/kanban/build/index.js:37
 msgid "Clear"
 msgstr ""
 
-#: admin/assets/kanban/build/index.js:34
+#: admin/assets/kanban/build/index.js:37
 msgid "The move failed, so the card went back."
 msgstr ""
 
-#: admin/assets/kanban/build/index.js:34
+#: admin/assets/kanban/build/index.js:37
 msgid "Nothing here yet. That is expected."
 msgstr ""
 
-#: admin/assets/kanban/build/index.js:34
+#: admin/assets/kanban/build/index.js:37
 msgid "EntryVault picks up submissions from the form plugins you already use. There is nothing to add to your forms: submit one of them once and it appears on this board within moments."
 msgstr ""
 
-#: admin/assets/kanban/build/index.js:34
+#: admin/assets/kanban/build/index.js:37
 msgid "Check which form plugins were found"
 msgstr ""
 
-#: admin/assets/kanban/build/index.js:34
+#: admin/assets/kanban/build/index.js:37
 msgid "No pipeline is set up yet. Deactivate and activate EntryVault once to create the default one."
 msgstr ""
 
