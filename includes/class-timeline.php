@@ -15,7 +15,7 @@ class Timeline {
             'type'          => substr( $type, 0, 20 ),
             'data'          => $data ? wp_json_encode( $data ) : null,
             'meta'          => $meta ? wp_json_encode( $meta ) : null,
-            'created_at'    => current_time( 'mysql' ),
+            'created_at'    => current_time( 'mysql', true ),
         ] );
         return (int) $wpdb->insert_id;
     }

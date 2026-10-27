@@ -546,8 +546,9 @@ class Submissions_Admin {
                     $row['source_form_id']  ?? '',
                     $row['source_entry_id'] ?? '',
                     $row['status']          ?? '',
-                    $row['created_at']      ?? '',
-                    $row['updated_at']      ?? '',
+                    // Exports keep the site's clock, as before 1.17.0.
+                    Dates::to_site( $row['created_at'] ?? '' ),
+                    Dates::to_site( $row['updated_at'] ?? '' ),
                 ];
                 foreach ( $field_labels as $label ) {
                     $line[] = $fields[ $label ] ?? '';

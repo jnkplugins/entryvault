@@ -9,6 +9,12 @@ class Activator {
     public static function activate(): void {
         require_once ABSPATH . 'wp-admin/includes/upgrade.php';
 
+        // A fresh install stores UTC from the first row: nothing to convert.
+        // (Read before the version is stamped at the end of this method.)
+        if ( false === get_option( 'entryvault_version' ) && false === get_option( 'ev_version' ) ) {
+            Utc_Migration::mark_fresh();
+        }
+
         self::migrate_legacy_tables();
         self::create_tables();
         // dbDelta() says nothing when the database refuses a table; check, and
@@ -65,11 +71,15 @@ class Activator {
      * so re-running is safe; the version gate keeps it to once per release.
      */
     public static function maybe_upgrade(): void {
-        if ( get_option( 'entryvault_version' ) === ENTRYVAULT_VERSION ) {
-            return;
+        if ( get_option( 'entryvault_version' ) !== ENTRYVAULT_VERSION ) {
+            // activate() stamps the new version; it reads the old one first to
+            // tell a fresh install (nothing to convert) from an upgrade.
+            self::activate();
+            self::drop_email_from_public_columns();
         }
-        self::activate();
-        self::drop_email_from_public_columns();
+        // Stored times move from the site's clock to UTC once (1.17.0). Not tied
+        // to the version check: an interrupted run resumes on the next admin page.
+        Utc_Migration::maybe_run();
     }
 
     /**
@@ -282,7 +292,7 @@ class Activator {
 
     private static function seed_defaults(): void {
         global $wpdb;
-        $now       = current_time( 'mysql' );
+        $now       = current_time( 'mysql', true );
         $pipelines = $wpdb->prefix . 'entryvault_pipelines';
         $stages    = $wpdb->prefix . 'entryvault_stages';
 

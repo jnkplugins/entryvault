@@ -59,7 +59,7 @@ class Submission_Store {
         if ( ! $row || 'archived' === (string) $row['status'] ) {
             return false;
         }
-        $wpdb->update( $wpdb->prefix . 'entryvault_submissions', [ 'status' => 'archived', 'updated_at' => current_time( 'mysql' ) ], [ 'id' => $id ] );
+        $wpdb->update( $wpdb->prefix . 'entryvault_submissions', [ 'status' => 'archived', 'updated_at' => current_time( 'mysql', true ) ], [ 'id' => $id ] );
         Timeline::log( $id, 'archived', null, [
             'from'          => (string) $row['status'],
             'to'            => 'archived',
@@ -88,7 +88,7 @@ class Submission_Store {
         }
         $to = (string) ( $data['from'] ?? 'open' );
         $to = in_array( $to, [ 'open', 'closed' ], true ) ? $to : 'open';
-        $wpdb->update( $wpdb->prefix . 'entryvault_submissions', [ 'status' => $to, 'updated_at' => current_time( 'mysql' ) ], [ 'id' => $id ] );
+        $wpdb->update( $wpdb->prefix . 'entryvault_submissions', [ 'status' => $to, 'updated_at' => current_time( 'mysql', true ) ], [ 'id' => $id ] );
         Timeline::log( $id, 'unarchived', null, [ 'from' => 'archived', 'to' => $to, 'source' => (string) $row['source_plugin'] ] );
         return true;
     }
@@ -119,14 +119,14 @@ class Submission_Store {
         if ( ! $update ) {
             return false;
         }
-        $update['updated_at'] = current_time( 'mysql' );
+        $update['updated_at'] = current_time( 'mysql', true );
         $wpdb->update( $wpdb->prefix . 'entryvault_submissions', $update, [ 'id' => $id ] );
         return true;
     }
 
     public static function insert( array $row ): int {
         global $wpdb;
-        $now = current_time( 'mysql' );
+        $now = current_time( 'mysql', true );
         $wpdb->insert( $wpdb->prefix . 'entryvault_submissions', array_merge( [
             'status'      => 'open',
             'created_at'  => $now,
@@ -314,7 +314,7 @@ class Submission_Store {
             return true;
         }
 
-        $update['updated_at'] = current_time( 'mysql' );
+        $update['updated_at'] = current_time( 'mysql', true );
 
         $ok = $wpdb->update( $wpdb->prefix . 'entryvault_submissions', $update, [ 'id' => $id ] );
         if ( $ok === false ) {
@@ -339,7 +339,7 @@ class Submission_Store {
         $old_stage_id = (int) $current['stage_id'];
         $wpdb->update(
             $wpdb->prefix . 'entryvault_submissions',
-            [ 'stage_id' => $stage_id, 'updated_at' => current_time( 'mysql' ) ],
+            [ 'stage_id' => $stage_id, 'updated_at' => current_time( 'mysql', true ) ],
             [ 'id' => $submission_id ]
         );
         // One row per move. This used to write a 'stage_change' row for the
@@ -461,13 +461,14 @@ class Submission_Store {
             $params[] = $like;
             $params[] = $like;
         }
+        // The owner picks days on the site's clock; stored times are UTC.
         if ( $args['date_from'] !== '' ) {
             $where[]  = 'created_at >= %s';
-            $params[] = (string) $args['date_from'] . ' 00:00:00';
+            $params[] = Dates::site_day_bounds_utc( (string) $args['date_from'] )[0];
         }
         if ( $args['date_to'] !== '' ) {
             $where[]  = 'created_at <= %s';
-            $params[] = (string) $args['date_to'] . ' 23:59:59';
+            $params[] = Dates::site_day_bounds_utc( (string) $args['date_to'] )[1];
         }
         $status_arg = is_string( $args['status'] ) ? strtolower( trim( $args['status'] ) ) : '';
         if ( $status_arg === 'any' || $status_arg === 'all' ) {
@@ -513,7 +514,7 @@ class Submission_Store {
 
         $rows = $wpdb->get_results(
             $wpdb->prepare(
-                "SELECT * FROM %i WHERE {$where_sql} ORDER BY {$orderby} {$order} LIMIT %d OFFSET %d",
+                "SELECT * FROM %i WHERE {$where_sql} ORDER BY {$orderby} {$order}, id {$order} LIMIT %d OFFSET %d",
                 array_merge( [ $table ], $params, [ $per_page, $offset ] )
             ),
             ARRAY_A
@@ -630,7 +631,41 @@ class Submission_Store {
             }
         }
         $ok = $wpdb->delete( $wpdb->prefix . 'entryvault_submissions', [ 'id' => $id ] );
+        if ( $ok ) {
+            self::remember_deleted( (string) $exists['source_plugin'], (string) $exists['source_entry_id'] );
+        }
         return $ok !== false && $ok > 0;
+    }
+
+    public const DELETED_SOURCES_OPTION = 'entryvault_deleted_sources';
+
+    /**
+     * Source entries whose card was deleted here, newest 1000. Restoring such an
+     * entry in its form plugin (Trash, then Restore) used to bring the card back
+     * and run "Submission created" again, emailing the lead a second time.
+     */
+    private static function remember_deleted( string $plugin, string $entry_id ): void {
+        if ( '' === $plugin || '' === $entry_id ) {
+            return;
+        }
+        $list = get_option( self::DELETED_SOURCES_OPTION, [] );
+        $list = is_array( $list ) ? $list : [];
+        array_unshift( $list, $plugin . ':' . $entry_id );
+        update_option( self::DELETED_SOURCES_OPTION, array_slice( array_values( array_unique( $list ) ), 0, 1000 ), false );
+    }
+
+    /** The source entry is gone for good, so its id may be handed out again. */
+    public static function forget_deleted( string $plugin, string $entry_id ): void {
+        $list = get_option( self::DELETED_SOURCES_OPTION, [] );
+        if ( ! is_array( $list ) || ! in_array( $plugin . ':' . $entry_id, $list, true ) ) {
+            return;
+        }
+        update_option( self::DELETED_SOURCES_OPTION, array_values( array_diff( $list, [ $plugin . ':' . $entry_id ] ) ), false );
+    }
+
+    public static function was_deleted_here( string $plugin, string $entry_id ): bool {
+        $list = get_option( self::DELETED_SOURCES_OPTION, [] );
+        return is_array( $list ) && in_array( $plugin . ':' . $entry_id, $list, true );
     }
 
     /**
@@ -706,7 +741,7 @@ class Submission_Store {
         $old_pipeline_id = (int) $current['pipeline_id'];
         $ok = $wpdb->update(
             $wpdb->prefix . 'entryvault_submissions',
-            [ 'pipeline_id' => $pipeline_id, 'stage_id' => $stage_id, 'updated_at' => current_time( 'mysql' ) ],
+            [ 'pipeline_id' => $pipeline_id, 'stage_id' => $stage_id, 'updated_at' => current_time( 'mysql', true ) ],
             [ 'id' => $submission_id ]
         );
         if ( false === $ok ) {
@@ -728,7 +763,7 @@ class Submission_Store {
         global $wpdb;
         $owner_id = ( $owner_id === null || (int) $owner_id <= 0 ) ? null : (int) $owner_id;
         $modified = 0;
-        $now      = current_time( 'mysql' );
+        $now      = current_time( 'mysql', true );
         foreach ( $ids as $sid ) {
             $sid = (int) $sid;
             if ( $sid <= 0 ) {
@@ -839,7 +874,7 @@ class Submission_Store {
     private static function bulk_set_status( array $ids, string $status, string $event, ?int $actor_id ): int {
         global $wpdb;
         $modified = 0;
-        $now      = current_time( 'mysql' );
+        $now      = current_time( 'mysql', true );
         foreach ( $ids as $sid ) {
             $sid = (int) $sid;
             if ( $sid <= 0 ) {

@@ -27,7 +27,7 @@ class Adapter_WPForms extends Adapter_Base {
         // exactly the ones with no other record on the site, so capture them under an
         // id of our own instead of dropping them.
         $source_id  = (int) $entry_id > 0 ? (string) (int) $entry_id : $this->synthesize_entry_id( $form_id, (array) $fields );
-        $normalized = $this->build_normalized( $form_id, $source_id, (array) $fields, current_time( 'mysql' ) );
+        $normalized = $this->build_normalized( $form_id, $source_id, (array) $fields, current_time( 'mysql', true ) );
         $this->dispatch( $normalized );
     }
 
@@ -73,7 +73,7 @@ class Adapter_WPForms extends Adapter_Base {
             'title'           => $title,
             'email'           => $email,
             'fields'          => $fields,
-            'created_at'      => $created_at ?: current_time( 'mysql' ),
+            'created_at'      => $created_at ?: current_time( 'mysql', true ),
         ];
     }
 }

@@ -136,12 +136,20 @@ class Reporting {
         $subs_t = $wpdb->prefix . 'entryvault_submissions';
 
         $days = max( 1, min( 365, (int) $days ) );
-        $end  = self::current_date();
-        $start_ts = strtotime( $end ) - ( ( $days - 1 ) * 86400 );
+        // Days are the site's days. Calendar arithmetic on the "Y-m-d" labels
+        // (read as UTC midnights, so no daylight-saving day is 23 or 25 hours).
+        $end      = self::current_date();
+        $start_ts = strtotime( $end . ' 00:00:00 UTC' ) - ( ( $days - 1 ) * 86400 );
         $start    = gmdate( 'Y-m-d', $start_ts );
 
+        // Stored times are UTC: bound by the UTC moments those site days span,
+        // and group each row under its site day (offset per daylight-saving
+        // stretch, see Dates::offset_case_sql()).
+        $lo     = Dates::site_day_bounds_utc( $start )[0];
+        $hi     = Dates::site_day_bounds_utc( $end )[1];
+        $shift  = Dates::offset_case_sql( 'created_at', Dates::timestamp( $lo ) - DAY_IN_SECONDS, Dates::timestamp( $hi ) + DAY_IN_SECONDS );
         $where  = ' WHERE created_at >= %s AND created_at <= %s ';
-        $params = [ $start . ' 00:00:00', $end . ' 23:59:59' ];
+        $params = [ $lo, $hi ];
         if ( $pipeline_id ) {
             $where   .= ' AND pipeline_id = %d ';
             $params[] = (int) $pipeline_id;
@@ -149,10 +157,10 @@ class Reporting {
 
         // phpcs:disable WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.PreparedSQLPlaceholders.ReplacementsWrongNumber, PluginCheck.Security.DirectDB.UnescapedDBParameter -- $where is a static SQL fragment holding only %s/%d placeholders; %i identifier and all values are bound via prepare().
         $rows = $wpdb->get_results( $wpdb->prepare(
-            "SELECT DATE(created_at) AS d, COUNT(*) AS cnt
+            "SELECT DATE(DATE_ADD(created_at, INTERVAL ({$shift}) SECOND)) AS d, COUNT(*) AS cnt
              FROM %i
              {$where}
-             GROUP BY DATE(created_at)
+             GROUP BY d
              ORDER BY d ASC",
             array_merge( [ $subs_t ], $params )
         ), ARRAY_A );
@@ -203,7 +211,7 @@ class Reporting {
     /**
      * Average hours each submission has spent in each stage, derived from
      * consecutive `stage_changed` timeline events. The "current" stage (open
-     * interval) is approximated using NOW() as the end timestamp.
+     * interval) ends now. Stored times are UTC, read as such.
      *
      * @return array<int,array{stage_id:int,stage_name:string,avg_hours:float,sample_size:int}>
      */
@@ -257,8 +265,8 @@ class Reporting {
             $first      = $list[0];
             $first_data = self::decode_data( $first['data'] ?? '' );
             $first_from = (int) ( $first_data['from_stage_id'] ?? ( $first_data['from'] ?? 0 ) );
-            $arrived_ts = strtotime( (string) ( $first['sub_created_at'] ?? '' ) );
-            $left_ts    = strtotime( (string) $first['created_at'] );
+            $arrived_ts = Dates::timestamp( (string) ( $first['sub_created_at'] ?? '' ) );
+            $left_ts    = Dates::timestamp( (string) $first['created_at'] );
             if ( $first_from > 0 && $arrived_ts && $left_ts && $left_ts >= $arrived_ts ) {
                 if ( ! isset( $buckets[ $first_from ] ) ) {
                     $buckets[ $first_from ] = [ 0, 0 ];
@@ -277,12 +285,12 @@ class Reporting {
                 if ( $stage_id <= 0 ) {
                     continue;
                 }
-                $start_ts = strtotime( (string) $cur['created_at'] );
+                $start_ts = Dates::timestamp( (string) $cur['created_at'] );
                 if ( ! $start_ts ) {
                     continue;
                 }
                 $end_ts = ( $i + 1 < $count )
-                    ? strtotime( (string) $list[ $i + 1 ]['created_at'] )
+                    ? Dates::timestamp( (string) $list[ $i + 1 ]['created_at'] )
                     : $now_ts;
                 if ( ! $end_ts || $end_ts < $start_ts ) {
                     continue;
@@ -525,11 +533,11 @@ class Reporting {
             $total = 0;
             $n     = 0;
             for ( $i = 0; $i < $count; $i++ ) {
-                $start = strtotime( $stamps[ $i ] );
+                $start = Dates::timestamp( $stamps[ $i ] );
                 if ( ! $start ) {
                     continue;
                 }
-                $end = ( $i + 1 < $count ) ? strtotime( $stamps[ $i + 1 ] ) : $now_ts;
+                $end = ( $i + 1 < $count ) ? Dates::timestamp( $stamps[ $i + 1 ] ) : $now_ts;
                 if ( ! $end || $end < $start ) {
                     continue;
                 }
@@ -556,43 +564,30 @@ class Reporting {
         return is_array( $decoded ) ? $decoded : [];
     }
 
+    /**
+     * A date the owner typed (a day on the site's clock, or a site-time
+     * "Y-m-d H:i:s") as the UTC bound to compare stored values with.
+     */
     private static function sanitize_date( $val, bool $end_of_day = false ): string {
         $val = trim( (string) $val );
         // Accept Y-m-d or Y-m-d H:i:s
         if ( preg_match( '/^\d{4}-\d{2}-\d{2}$/', $val ) ) {
-            return $val . ( $end_of_day ? ' 23:59:59' : ' 00:00:00' );
+            return Dates::site_day_bounds_utc( $val )[ $end_of_day ? 1 : 0 ];
         }
         if ( preg_match( '/^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$/', $val ) ) {
-            return $val;
+            return Dates::to_utc( $val );
         }
-        // Fallback: today.
-        return gmdate( 'Y-m-d' ) . ( $end_of_day ? ' 23:59:59' : ' 00:00:00' );
+        // Fallback: today on the site's clock.
+        return Dates::site_day_bounds_utc( self::current_date() )[ $end_of_day ? 1 : 0 ];
     }
 
+    /** Today on the site's clock. */
     private static function current_date(): string {
-        if ( function_exists( 'current_time' ) ) {
-            $now = current_time( 'mysql' );
-            if ( is_string( $now ) && strlen( $now ) >= 10 ) {
-                return substr( $now, 0, 10 );
-            }
-        }
-        return gmdate( 'Y-m-d' );
+        return Dates::site_today();
     }
 
+    /** Now. Stored times are UTC and read with Dates::timestamp(). */
     private static function current_timestamp(): int {
-        if ( function_exists( 'current_time' ) ) {
-            $ts = current_time( 'timestamp' );
-            if ( is_int( $ts ) ) {
-                return $ts;
-            }
-            $mysql = current_time( 'mysql' );
-            if ( is_string( $mysql ) ) {
-                $parsed = strtotime( $mysql );
-                if ( $parsed ) {
-                    return $parsed;
-                }
-            }
-        }
         return time();
     }
 }

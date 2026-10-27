@@ -53,7 +53,7 @@ class Adapter_CF7 extends Adapter_Base {
             : [];
 
         $tag_map    = $this->build_tag_map( $contact_form );
-        $normalized = $this->build_normalized( $form_id, $form_title, $posted, $tag_map, current_time( 'mysql' ) );
+        $normalized = $this->build_normalized( $form_id, $form_title, $posted, $tag_map, current_time( 'mysql', true ) );
         $this->dispatch( $normalized );
     }
 
@@ -104,7 +104,7 @@ class Adapter_CF7 extends Adapter_Base {
             'title'           => $title,
             'email'           => $email,
             'fields'          => $fields,
-            'created_at'      => $created_at ?: current_time( 'mysql' ),
+            'created_at'      => $created_at ?: current_time( 'mysql', true ),
         ];
     }
 

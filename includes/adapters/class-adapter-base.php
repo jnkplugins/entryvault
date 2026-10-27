@@ -42,6 +42,17 @@ abstract class Adapter_Base {
     }
 
     /**
+     * Whether a submission is deleted when its entry is deleted in the form
+     * plugin. Off by default: EntryVault keeps its copy as a backup. Ticked in
+     * Settings > Data. Privacy erase requests reach EntryVault through its own
+     * eraser either way.
+     */
+    public static function delete_with_source_enabled(): bool {
+        $settings = get_option( 'entryvault_settings', [] );
+        return is_array( $settings ) && ! empty( $settings['delete_with_source'] );
+    }
+
+    /**
      * Call when the source marked this submission as spam. Returns true (and
      * logs it) when the entry should be skipped.
      */
@@ -252,7 +263,7 @@ abstract class Adapter_Base {
             'title'           => $title,
             'email'           => $email,
             'fields'          => $fields,
-            'created_at'      => $created_at ?: current_time( 'mysql' ),
+            'created_at'      => $created_at ?: current_time( 'mysql', true ),
         ];
     }
 }

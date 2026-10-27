@@ -4,7 +4,7 @@ Tags: form entries, contact form, crm, leads, csv export
 Requires at least: 6.2
 Tested up to: 7.0
 Requires PHP: 8.2
-Stable tag: 1.16.0
+Stable tag: 1.17.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -137,6 +137,15 @@ Use the contact page at https://jnkplugins.com/entryvault/, or Feedback & Suppor
 7. Pro: automations that tag, assign, move or email entries for you.
 
 == Changelog ==
+
+= 1.17.0 =
+* Changed: a card now stays as a backup when its Trinity Forms entry is deleted. To delete it with the entry, tick "Delete a card when its entry is deleted in Trinity Forms" in Settings. Privacy erase requests still clear EntryVault.
+* Changed: times are now stored in UTC and shown in the time zone set in Settings > General. Existing cards are converted once, the first time an admin page opens after the update. Do not go back to an older version afterwards, as it would show the times shifted.
+* Fixed: a new Trinity Forms entry could land on an old kept card when Trinity reused the entry number.
+* Fixed: a card you deleted came back when its Trinity Forms entry was restored from the trash.
+* Fixed: cards from Gravity Forms looked hours older than they were.
+* Fixed: "Show more" skipped a card after you dragged one into the column, and searching "jose" did not find "José".
+* Fixed: pages of the Submissions list could repeat or skip entries sent in the same second.
 
 = 1.16.0 =
 * Fixed: the board showed only the newest 50 cards per stage, and its count and search covered only those. Columns show the real total with "Show more", and search covers every entry.

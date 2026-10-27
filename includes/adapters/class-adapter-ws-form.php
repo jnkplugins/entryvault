@@ -50,7 +50,7 @@ class Adapter_WS_Form extends Adapter_Base {
         $entry_id = $this->resolve_entry_id( $submit, $form_id );
         $raw      = $this->extract_fields( $submit, $this->field_labels( $submit, $form_id ) );
 
-        $normalized = $this->build_normalized( $form_id, $entry_id, $raw, current_time( 'mysql' ) );
+        $normalized = $this->build_normalized( $form_id, $entry_id, $raw, current_time( 'mysql', true ) );
         $this->dispatch( $normalized );
     }
 
@@ -99,7 +99,7 @@ class Adapter_WS_Form extends Adapter_Base {
             'title'           => $title,
             'email'           => $email,
             'fields'          => $fields,
-            'created_at'      => $created_at ?: current_time( 'mysql' ),
+            'created_at'      => $created_at ?: current_time( 'mysql', true ),
         ];
     }
 

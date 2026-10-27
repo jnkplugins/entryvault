@@ -50,7 +50,7 @@ class Adapter_Everest_Forms extends Adapter_Base {
             ? (string) $eid
             : 'evf_' . md5( $form_id . '|' . microtime( true ) . '|' . uniqid( '', true ) );
 
-        $normalized = $this->build_normalized( $form_id, $entry_key, $raw, current_time( 'mysql' ) );
+        $normalized = $this->build_normalized( $form_id, $entry_key, $raw, current_time( 'mysql', true ) );
         $this->dispatch( $normalized );
     }
 
@@ -100,7 +100,7 @@ class Adapter_Everest_Forms extends Adapter_Base {
             'title'           => $title,
             'email'           => $email,
             'fields'          => $fields,
-            'created_at'      => $created_at ?: current_time( 'mysql' ),
+            'created_at'      => $created_at ?: current_time( 'mysql', true ),
         ];
     }
 

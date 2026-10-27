@@ -1,6 +1,6 @@
 import { useEffect, useState } from "@wordpress/element";
 import { __, _x, sprintf } from "@wordpress/i18n";
-import { siteTimeMs } from "./siteTime";
+import { utcMs, formatSiteTime } from "./siteTime";
 import {
     fetchSubmission,
     addNote,
@@ -405,7 +405,7 @@ function Details( { data, stages, owners, allTags, tags, onStageChange, onOwnerC
                 />
             </RowEditor>
             <Row label={ __( "Status", "entryvault" ) } value={ statusLabel( s.status ) } />
-            <Row label={ __( "Received", "entryvault" ) } value={ formatWhen( s.created_at ) } />
+            <Row label={ __( "Received", "entryvault" ) } value={ formatWhen( s.created_at_gmt ) } />
             <h4 className="ev-panel-h">{ __( "What they sent", "entryvault" ) }</h4>
             { ( data.fields || [] ).map( ( f ) => {
                 const stale = Number( f.is_stale ) === 1;
@@ -539,7 +539,7 @@ function Timeline( { events } ) {
         <ul className="ev-timeline">
             { events.map( ( e ) => (
                 <li key={ e.id } className={ e.deleted ? "ev-timeline-item is-deleted" : "ev-timeline-item" }>
-                    <div className="ev-timeline-when" title={ e.created_at }>{ formatWhen( e.created_at ) }</div>
+                    <div className="ev-timeline-when">{ formatWhen( e.created_at_gmt ) }</div>
                     <div className="ev-timeline-what">
                         { e.summary || formatTimelineData( e ) }
                     </div>
@@ -626,7 +626,7 @@ function NoteItem( { note, depth, owners, currentUser, onReply, onDelete, saving
         <div className={ depth ? "ev-note is-reply" : "ev-note" }>
             <div className="ev-note-head">
                 <strong>{ authorName }</strong>
-                <span>{ formatRelative( note.created_at ) }</span>
+                <span title={ formatWhen( note.created_at_gmt ) }>{ formatRelative( note.created_at_gmt ) }</span>
                 { canDelete && ! deleted && (
                     <button
                         type="button"
@@ -710,16 +710,15 @@ function buildNoteTree( notes ) {
 }
 
 // Timeline dates. The raw event id ("· email_sent") used to follow the date.
+// Stored UTC values, shown on the site's clock (not the browser's).
 function formatWhen( iso ) {
     if ( ! iso ) return "";
-    const d = new Date( String( iso ).replace( " ", "T" ) );
-    if ( isNaN( d.getTime() ) ) return iso;
-    return d.toLocaleString( undefined, { year: "numeric", month: "short", day: "numeric", hour: "numeric", minute: "2-digit" } );
+    return formatSiteTime( iso );
 }
 
 function formatRelative( iso ) {
     if ( ! iso ) return "";
-    const t = siteTimeMs( iso );
+    const t = utcMs( iso );
     if ( isNaN( t ) ) return iso;
     const delta = ( Date.now() - t ) / 1000;
     if ( delta < 60 ) return __( "just now", "entryvault" );
@@ -729,7 +728,7 @@ function formatRelative( iso ) {
     if ( delta < 86400 ) return sprintf( __( "%dh ago", "entryvault" ), Math.floor( delta / 3600 ) );
     /* translators: %d: number of days. */
     if ( delta < 604800 ) return sprintf( __( "%dd ago", "entryvault" ), Math.floor( delta / 86400 ) );
-    return iso;
+    return formatWhen( iso );
 }
 
 function readBootUser() {
@@ -901,7 +900,7 @@ function EmailTab( { submissionId, defaultTo, onSend, originalSubject, fields } 
                     <div className="ev-mail-meta">
                         { m.direction === "in"
                             ? /* translators: %s: sender address. */ sprintf( __( "From %s", "entryvault" ), m.from )
-                            : /* translators: %s: recipient address. */ sprintf( __( "To %s", "entryvault" ), m.to ) } · { m.created_at }
+                            : /* translators: %s: recipient address. */ sprintf( __( "To %s", "entryvault" ), m.to ) } · { formatWhen( m.created_at_gmt ) }
                     </div>
                     { m.error && (
                         <div className="ev-mail-failed" role="note">{ /* translators: %s: the mail server's reason. */ sprintf( __( "Not sent: %s", "entryvault" ), m.error ) }</div>

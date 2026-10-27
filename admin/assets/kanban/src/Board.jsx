@@ -4,6 +4,7 @@ import { __, _n, sprintf } from "@wordpress/i18n";
 import Column from "./Column";
 import Card from "./Card";
 import DetailPanel from "./DetailPanel";
+import { utcMs } from "./siteTime";
 import {
     fetchBoard,
     fetchPipelines,
@@ -16,6 +17,12 @@ const UNASSIGNED = "unassigned";
 
 function unwrap( res ) {
     return res && res.data !== undefined ? res.data : res;
+}
+
+// Lower case without accents, the way the server's search compares ("jose"
+// finds "José"). The server found the card and this filter hid it again.
+function fold( v ) {
+    return String( v || "" ).toLowerCase().normalize( "NFD" ).replace( /[\u0300-\u036f]/g, "" );
 }
 
 export default function Board( { pipelineId, onPipelineChange, initialOpenId = null } ) {
@@ -40,7 +47,7 @@ export default function Board( { pipelineId, onPipelineChange, initialOpenId = n
                 const data = unwrap( res ) || {};
                 setPipeline( data.pipeline || null );
                 setStages( data.stages || [] );
-                setLastSeen( data.last_seen || "" );
+                setLastSeen( data.last_seen_gmt || "" );
             } )
             .catch( ( e ) => setError( e.message || __( "Failed to load board", "entryvault" ) ) );
     }
@@ -73,7 +80,8 @@ export default function Board( { pipelineId, onPipelineChange, initialOpenId = n
             ownerIds: selectedOwners,
             q: query,
             stageId,
-            offset: ( stage.cards || [] ).length,
+            // Possibly one row too early, never too late: repeats are dropped below.
+            offset: Math.max( 0, ( stage.cards || [] ).length - ( stage.dropped || 0 ) ),
         } )
             .then( ( res ) => {
                 const data = unwrap( res ) || {};
@@ -90,16 +98,16 @@ export default function Board( { pipelineId, onPipelineChange, initialOpenId = n
     }
 
     const stagesView = useMemo( () => {
-        const needle = search.trim().toLowerCase();
-        const seenTs = lastSeen ? Date.parse( lastSeen.replace( " ", "T" ) + "Z" ) : 0;
+        const needle = fold( search.trim() );
+        const seenTs = lastSeen ? utcMs( lastSeen ) || 0 : 0;
 
         return ( stages || [] ).map( ( s ) => {
             let cards = s.cards || [];
 
             if ( needle ) {
                 cards = cards.filter( ( c ) => {
-                    const t = String( c.title || "" ).toLowerCase();
-                    const e = String( c.email || "" ).toLowerCase();
+                    const t = fold( c.title );
+                    const e = fold( c.email );
                     return t.includes( needle ) || e.includes( needle );
                 } );
             }
@@ -116,10 +124,10 @@ export default function Board( { pipelineId, onPipelineChange, initialOpenId = n
 
             cards = cards.map( ( c ) => {
                 let isNew = false;
-                if ( seenTs && c.created_at ) {
-                    const ts = Date.parse( String( c.created_at ).replace( " ", "T" ) + "Z" );
+                if ( seenTs && c.created_at_gmt ) {
+                    const ts = utcMs( c.created_at_gmt );
                     if ( ts && ts > seenTs ) isNew = true;
-                } else if ( ! seenTs && c.created_at ) {
+                } else if ( ! seenTs && c.created_at_gmt ) {
                     // Never marked seen — treat all as new.
                     isNew = true;
                 }
@@ -144,7 +152,7 @@ export default function Board( { pipelineId, onPipelineChange, initialOpenId = n
         try {
             const res = await markSeen( pipelineId );
             const data = unwrap( res ) || {};
-            setLastSeen( data.last_seen || "" );
+            setLastSeen( data.last_seen_gmt || "" );
         } catch ( e ) {
             setError( e.message || __( "Could not mark all cards as seen", "entryvault" ) );
             setTimeout( () => setError( null ), 3000 );
@@ -225,7 +233,10 @@ export default function Board( { pipelineId, onPipelineChange, initialOpenId = n
             : s
         ) ).map( ( s ) => {
             if ( String( s.id ) !== String( toStageId ) ) return s;
-            return { ...s, cards: [ fromLoc.card, ...( s.cards || [] ) ], total: bump( s, 1 ) };
+            // dropped: cards that arrived by drag. They sit at the top here but
+            // anywhere in the server's date order, so "Show more" pages from the
+            // count the server sent, not the count on screen (one was skipped).
+            return { ...s, cards: [ fromLoc.card, ...( s.cards || [] ) ], total: bump( s, 1 ), dropped: ( s.dropped || 0 ) + 1 };
         } );
         setStages( next );
 

@@ -47,6 +47,7 @@ class REST_Settings {
         'owner_roles',
         'delete_data_on_uninstall',
         'skip_spam',
+        'delete_with_source',
     ];
 
     /** Writable keys plus any registered by premium modules. @return string[] */
@@ -153,6 +154,7 @@ class REST_Settings {
 
             case 'delete_data_on_uninstall':
             case 'skip_spam':
+            case 'delete_with_source':
                 return (bool) filter_var( $value, FILTER_VALIDATE_BOOLEAN );
 
             case 'reply_to_host':

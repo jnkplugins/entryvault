@@ -110,7 +110,7 @@ class Email_Sender {
         }
         self::$last_error = $sent ? '' : substr( $failure, 0, 500 );
 
-        $now = current_time( 'mysql' );
+        $now = current_time( 'mysql', true );
         $from_addr = ! empty( $opts['from'] ) ? (string) $opts['from'] : ( function_exists( 'get_bloginfo' ) ? (string) get_bloginfo( 'admin_email' ) : '' );
 
         global $wpdb;

@@ -43,17 +43,18 @@
         return '<p class="jnkui-muted ev-empty-line">' + esc('Nothing to show for this range yet.') + '</p>';
     }
 
+    // Days are the site's days (Settings > General), sent as boot.today.
+    function siteToday() {
+        return /^\d{4}-\d{2}-\d{2}$/.test(boot.today || '') ? boot.today : new Date().toISOString().slice(0, 10);
+    }
+
     function defaultDates() {
-        var to = new Date();
-        var from = new Date();
-        from.setDate(to.getDate() - 29);
-        function fmt(d) {
-            var m = String(d.getMonth() + 1).padStart(2, '0');
-            var dd = String(d.getDate()).padStart(2, '0');
-            return d.getFullYear() + '-' + m + '-' + dd;
-        }
-        document.getElementById('ev-date-from').value = fmt(from);
-        document.getElementById('ev-date-to').value = fmt(to);
+        // Calendar arithmetic on the site's "Y-m-d", done in UTC so no
+        // daylight-saving day is skipped or repeated.
+        var to = new Date(siteToday() + 'T00:00:00Z');
+        var from = new Date(to.getTime() - 29 * 86400000);
+        document.getElementById('ev-date-from').value = from.toISOString().slice(0, 10);
+        document.getElementById('ev-date-to').value = to.toISOString().slice(0, 10);
     }
 
     function loadPipelines() {
@@ -211,15 +212,14 @@
         document.getElementById('ev-tis').innerHTML = html;
     }
 
-    function todayStr() { var d = new Date(); return d.toISOString().slice(0, 10); }
+    function todayStr() { return siteToday(); }
     function startOfWeek() {
-        var d = new Date();
-        d.setDate(d.getDate() - d.getDay());
-        return d.toISOString().slice(0, 10);
+        if (boot.weekStart) return boot.weekStart;
+        var d = new Date(siteToday() + 'T00:00:00Z');
+        return new Date(d.getTime() - d.getUTCDay() * 86400000).toISOString().slice(0, 10);
     }
     function startOfMonth() {
-        var d = new Date();
-        return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-01';
+        return boot.monthStart || (siteToday().slice(0, 8) + '01');
     }
 
     function refresh() {

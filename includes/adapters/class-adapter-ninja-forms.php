@@ -51,7 +51,7 @@ class Adapter_Ninja_Forms extends Adapter_Base {
         $raw      = is_array( $form_data['fields'] ?? null ) ? $form_data['fields'] : [];
         $entry_id = $this->resolve_entry_id( $form_data, $form_id );
 
-        $normalized = $this->build_normalized( $form_id, $entry_id, $raw, current_time( 'mysql' ) );
+        $normalized = $this->build_normalized( $form_id, $entry_id, $raw, current_time( 'mysql', true ) );
         $this->dispatch( $normalized );
     }
 
@@ -108,7 +108,7 @@ class Adapter_Ninja_Forms extends Adapter_Base {
             'title'           => $title,
             'email'           => $email,
             'fields'          => $fields,
-            'created_at'      => $created_at ?: current_time( 'mysql' ),
+            'created_at'      => $created_at ?: current_time( 'mysql', true ),
         ];
     }
 

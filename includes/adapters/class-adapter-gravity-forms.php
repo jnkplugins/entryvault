@@ -42,7 +42,8 @@ class Adapter_Gravity_Forms extends Adapter_Base {
             $entry_id,
             $entry,
             $form,
-            $entry['date_created'] ?? current_time( 'mysql' )
+            // Gravity Forms stores date_created in UTC, as EntryVault does: kept as is.
+            ! empty( $entry['date_created'] ) ? (string) $entry['date_created'] : current_time( 'mysql', true )
         );
         $this->dispatch( $normalized );
     }
@@ -116,7 +117,7 @@ class Adapter_Gravity_Forms extends Adapter_Base {
             'title'           => $title,
             'email'           => $email,
             'fields'          => $fields,
-            'created_at'      => $created_at ?: current_time( 'mysql' ),
+            'created_at'      => $created_at ?: current_time( 'mysql', true ),
         ];
     }
 }

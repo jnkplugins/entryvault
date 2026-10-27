@@ -33,7 +33,7 @@ class Adapter_Sureforms extends Adapter_Base {
         }
         $data = is_array( $response['data'] ?? null ) ? $response['data'] : [];
 
-        $normalized = $this->build_normalized( $form_id, $entry_id, $data, current_time( 'mysql' ) );
+        $normalized = $this->build_normalized( $form_id, $entry_id, $data, current_time( 'mysql', true ) );
         if ( ! empty( $response['form_name'] ) && empty( $normalized['title'] ) ) {
             $normalized['title'] = (string) $response['form_name'];
         }
@@ -76,7 +76,7 @@ class Adapter_Sureforms extends Adapter_Base {
             'title'           => $title,
             'email'           => $email,
             'fields'          => $fields,
-            'created_at'      => $created_at ?: current_time( 'mysql' ),
+            'created_at'      => $created_at ?: current_time( 'mysql', true ),
         ];
     }
 

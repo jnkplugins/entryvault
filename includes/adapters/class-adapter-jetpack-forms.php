@@ -72,7 +72,11 @@ class Adapter_Jetpack_Forms extends Adapter_Base {
         }
 
         $form_id = $this->form_id( $fields, $feedback );
-        $created = function_exists( 'get_post_field' ) ? (string) get_post_field( 'post_date', $post_id ) : '';
+        // post_date is the site's clock; post_date_gmt is the same moment in UTC.
+        $created = function_exists( 'get_post_field' ) ? (string) get_post_field( 'post_date_gmt', $post_id ) : '';
+        if ( '' === $created || 0 === strpos( $created, '0000' ) ) {
+            $created = '';
+        }
         $page    = isset( $entry_values['entry_title'] ) && is_scalar( $entry_values['entry_title'] ) ? (string) $entry_values['entry_title'] : '';
 
         $this->dispatch( $this->build_payload( $form_id, (string) $post_id, $normalized, $page, $created ?: null ) );

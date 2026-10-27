@@ -262,6 +262,9 @@ class REST_API {
 
             if ( is_array( $cards ) ) {
                 foreach ( $cards as &$card ) {
+                    // Site time in created_at / updated_at as before; the board
+                    // reads the *_gmt twins.
+                    $card                 = Dates::outward( $card, [ 'created_at', 'updated_at' ] );
                     $card['tags']         = Tag_Manager::for_submission( (int) $card['id'] );
                     $card['source_label'] = Sources::label( (string) ( $card['source_plugin'] ?? '' ) );
                 }
@@ -281,10 +284,12 @@ class REST_API {
             $last_seen = (string) get_user_meta( $user_id, 'entryvault_kanban_seen_' . $pipeline_id, true );
         }
 
+        // last_seen is stored in UTC (1.17.0); last_seen stays the site's clock.
         return self::envelope( [
-            'pipeline'  => $pipeline,
-            'stages'    => $stages,
-            'last_seen' => $last_seen,
+            'pipeline'      => $pipeline,
+            'stages'        => $stages,
+            'last_seen'     => '' === $last_seen ? '' : Dates::to_site( $last_seen ),
+            'last_seen_gmt' => $last_seen,
         ] );
     }
 
@@ -297,11 +302,11 @@ class REST_API {
         if ( $user_id <= 0 ) {
             return self::envelope( null, [ 'not_logged_in' ], 401 );
         }
-        $now = current_time( 'mysql' );
+        $now = current_time( 'mysql', true );
         if ( function_exists( 'update_user_meta' ) ) {
             update_user_meta( $user_id, 'entryvault_kanban_seen_' . $pipeline_id, $now );
         }
-        return self::envelope( [ 'pipeline_id' => $pipeline_id, 'last_seen' => $now ] );
+        return self::envelope( [ 'pipeline_id' => $pipeline_id, 'last_seen' => Dates::to_site( $now ), 'last_seen_gmt' => $now ] );
     }
 
     /**
@@ -360,6 +365,7 @@ class REST_API {
             ), ARRAY_A );
             // phpcs:enable WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.PreparedSQLPlaceholders.UnfinishedPrepare
         }
+        $rows = array_map( static fn( $r ) => Dates::outward( (array) $r, [ 'created_at' ] ), (array) $rows );
         return self::envelope( $rows );
     }
 
@@ -411,6 +417,7 @@ class REST_API {
             // Every row carries a readable sentence so the panel never has to
             // print a raw payload (stage ids, approval/edit JSON, …).
             $t['summary'] = Timeline::summary( $t );
+            $t            = Dates::outward( $t, [ 'created_at' ] );
         }
         unset( $t );
 
@@ -425,7 +432,7 @@ class REST_API {
         $row['source_form_title'] = Sources::form_title( (string) ( $row['source_plugin'] ?? '' ), (int) ( $row['source_form_id'] ?? 0 ) );
 
         $detail = [
-            'submission' => $row,
+            'submission' => Dates::outward( $row, [ 'created_at', 'updated_at' ] ),
             'stage'      => $stage,
             'fields'     => $fields,
             'timeline'   => $timeline,
@@ -479,7 +486,7 @@ class REST_API {
         );
 
         $row = Timeline::get( $entry_id );
-        return self::envelope( [
+        return self::envelope( Dates::outward( [
             'id'            => $entry_id,
             'submission_id' => $id,
             'parent_id'     => $parent_id ?: null,
@@ -487,7 +494,7 @@ class REST_API {
             'data'          => [ 'body' => $body ],
             'meta'          => [ 'user_id' => $user_id ],
             'created_at'    => $row['created_at'] ?? null,
-        ] );
+        ], [ 'created_at' ] ) );
     }
 
     /**
@@ -518,7 +525,7 @@ class REST_API {
             if ( is_array( $meta ) && ! empty( $meta['deleted_at'] ) ) {
                 $data = [ 'body' => '', 'deleted' => true ];
             }
-            $out[] = [
+            $out[] = Dates::outward( [
                 'id'            => (int) ( $row['id'] ?? 0 ),
                 'submission_id' => (int) ( $row['submission_id'] ?? 0 ),
                 'parent_id'     => isset( $row['parent_id'] ) && $row['parent_id'] !== null ? (int) $row['parent_id'] : null,
@@ -526,7 +533,7 @@ class REST_API {
                 'data'          => $data,
                 'meta'          => $meta,
                 'created_at'    => (string) ( $row['created_at'] ?? '' ),
-            ];
+            ], [ 'created_at' ] );
         }
         return self::envelope( $out );
     }
@@ -564,14 +571,14 @@ class REST_API {
             return self::envelope( null, [ 'forbidden' ], 403 );
         }
 
-        $meta['deleted_at']    = current_time( 'mysql' );
+        $meta['deleted_at']    = current_time( 'mysql', true );
         $meta['deleted_by']    = $current_id ?: null;
         Timeline::update_meta( $note_id, $meta );
 
-        return self::envelope( [
+        return self::envelope( Dates::outward( [
             'id'         => $note_id,
             'deleted_at' => $meta['deleted_at'],
-        ] );
+        ], [ 'deleted_at' ] ) );
     }
 
     public function move_submission( WP_REST_Request $req ): WP_REST_Response {
@@ -644,7 +651,7 @@ class REST_API {
         }
 
         $row = Submission_Store::get( $id );
-        return self::envelope( [ 'submission' => $row ] );
+        return self::envelope( [ 'submission' => is_array( $row ) ? Dates::outward( $row, [ 'created_at', 'updated_at' ] ) : $row ] );
     }
 
     public function send_submission_email( WP_REST_Request $req ): WP_REST_Response {
@@ -706,7 +713,7 @@ class REST_API {
         if ( ! Submission_Store::get( $id ) ) {
             return self::envelope( null, [ 'not_found' ], 404 );
         }
-        $emails = Submission_Store::emails_for( $id );
+        $emails = array_map( static fn( $e ) => Dates::outward( $e, [ 'created_at' ] ), Submission_Store::emails_for( $id ) );
         return self::envelope( $emails );
     }
 
@@ -768,8 +775,9 @@ class REST_API {
                 (int) ( $row['pipeline_id'] ?? 0 ),
                 (int) ( $row['stage_id'] ?? 0 ),
                 $row['owner_user_id'] === null ? '' : (int) $row['owner_user_id'],
-                (string) ( $row['created_at'] ?? '' ),
-                (string) ( $row['updated_at'] ?? '' ),
+                // Exports keep the site's clock, as before 1.17.0.
+                Dates::to_site( $row['created_at'] ?? '' ),
+                Dates::to_site( $row['updated_at'] ?? '' ),
                 wp_json_encode( $fields ),
             ] ), ',', '"', '' );
         }

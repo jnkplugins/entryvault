@@ -16,6 +16,10 @@ final class Plugin {
         // Priority 0: the blocks register on init (10) and need the domain loaded.
         add_action( 'init', [ $this, 'load_textdomain' ], 0 );
 
+        // First request on 1.17.0+: note where the site-time rows end, before
+        // anything new (UTC) is written. Two autoloaded options otherwise.
+        Utc_Migration::record_marks();
+
         Adapter_Registry::instance()->boot();
 
         add_action( 'rest_api_init', [ new REST_API(), 'register_routes' ] );
@@ -289,9 +293,16 @@ final class Plugin {
                 ENTRYVAULT_VERSION,
                 true
             );
+            // "Today", "this week" and "this month" are the site's days, not
+            // the browser's (or UTC's).
+            $ev_today = Dates::site_today();
+            $ev_ts    = (int) strtotime( $ev_today . ' 00:00:00 UTC' );
             wp_localize_script( 'entryvault-dashboard', 'EntryVaultDashboardBoot', [
-                'rest'  => esc_url_raw( rest_url( 'entryvault/v1' ) ),
-                'nonce' => wp_create_nonce( 'wp_rest' ),
+                'rest'       => esc_url_raw( rest_url( 'entryvault/v1' ) ),
+                'nonce'      => wp_create_nonce( 'wp_rest' ),
+                'today'      => $ev_today,
+                'weekStart'  => gmdate( 'Y-m-d', $ev_ts - ( (int) gmdate( 'w', $ev_ts ) ) * DAY_IN_SECONDS ),
+                'monthStart' => gmdate( 'Y-m-01', $ev_ts ),
             ] );
         }
 
@@ -392,9 +403,9 @@ final class Plugin {
             // five read as #4, #7, #12 — while Notes and the by-owner report showed
             // the same people by name.
             'owners'          => self::assignable_owners(),
-            // Stored times are the site's clock; the board needs the offset to
-            // say how long ago something arrived.
-            'gmtOffset'       => (int) wp_timezone()->getOffset( new \DateTimeImmutable( 'now' ) ),
+            // Stored times are UTC; the board shows clock times in the site's
+            // zone ("Asia/Kolkata", or "+05:30" for a fixed-offset site).
+            'timezone'        => wp_timezone_string(),
         ] );
         if ( file_exists( $build_dir . 'index.css' ) ) {
             wp_enqueue_style(

@@ -152,6 +152,9 @@
                 if ( document.getElementById( 'ev-skip-spam' ) ) {
                     payload.skip_spam = document.getElementById( 'ev-skip-spam' ).checked;
                 }
+                if ( document.getElementById( 'ev-delete-with-source' ) ) {
+                    payload.delete_with_source = document.getElementById( 'ev-delete-with-source' ).checked;
+                }
                 // Only shown when something can use it; don't wipe a stored value
                 // just because the row is hidden.
                 if ( document.getElementById( 'ev-reply-to-host' ) ) {

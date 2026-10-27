@@ -399,16 +399,14 @@ class Frontend {
 	public static function format_cell( string $column, array $row, bool $show_email = true ): string {
 		switch ( $column ) {
 			case 'submitted_at':
-				$ts = strtotime( (string) ( $row['created_at'] ?? '' ) );
+				// Stored in UTC; shown on the site's clock.
+				$ts = Dates::timestamp( (string) ( $row['created_at'] ?? '' ) );
 				if ( ! $ts ) {
 					return '';
 				}
-				if ( function_exists( 'date_i18n' ) ) {
-					return (string) date_i18n( get_option( 'date_format' ) . ' ' . get_option( 'time_format' ), $ts );
-				}
-				return gmdate( 'Y-m-d H:i', $ts );
+				return (string) wp_date( get_option( 'date_format' ) . ' ' . get_option( 'time_format' ), $ts );
 			case 'created':
-				return (string) ( $row['created_at'] ?? '' );
+				return Dates::to_site( $row['created_at'] ?? '' );
 			case 'title':
 			case 'name':
 				return $show_email ? (string) ( $row['title'] ?? '' ) : self::public_title( $row );

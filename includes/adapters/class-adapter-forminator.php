@@ -59,7 +59,9 @@ class Adapter_Forminator extends Adapter_Base {
             }
         }
 
-        $normalized = $this->build_normalized( $form_id, $entry_id, $meta, $created ?: current_time( 'mysql' ) );
+        // Forminator writes date_created with date_i18n( 'Y-m-d H:i:s' ): the
+        // site's clock, so convert it to UTC.
+        $normalized = $this->build_normalized( $form_id, $entry_id, $meta, $created ? \EntryVault\Dates::to_utc( (string) $created ) : current_time( 'mysql', true ) );
         $this->dispatch( $normalized );
     }
 
@@ -114,7 +116,7 @@ class Adapter_Forminator extends Adapter_Base {
             'title'           => $title,
             'email'           => $email,
             'fields'          => $fields,
-            'created_at'      => $created_at ?: current_time( 'mysql' ),
+            'created_at'      => $created_at ?: current_time( 'mysql', true ),
         ];
     }
 

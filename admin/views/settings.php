@@ -29,6 +29,7 @@ $ev_owner_roles      = isset( $ev_settings['owner_roles'] ) && is_array( $ev_set
     : [];
 $ev_delete_on_uninstall = ! empty( $ev_settings['delete_data_on_uninstall'] );
 $ev_skip_spam           = \EntryVault\Adapters\Adapter_Base::skip_spam_enabled();
+$ev_delete_with_source  = \EntryVault\Adapters\Adapter_Base::delete_with_source_enabled();
 
 $ev_all_roles = [];
 if ( function_exists( 'wp_roles' ) ) {
@@ -166,6 +167,13 @@ if ( function_exists( 'wp_roles' ) ) {
                 <tr>
                     <th scope="row"><?php esc_html_e( 'Data', 'entryvault' ); ?></th>
                     <td>
+                        <label for="ev-delete-with-source">
+                            <input type="checkbox" id="ev-delete-with-source" name="delete_with_source"
+                                   value="1" <?php checked( $ev_delete_with_source ); ?> />
+                            <?php esc_html_e( 'Delete a card when its entry is deleted in Trinity Forms', 'entryvault' ); ?>
+                        </label>
+                        <p class="description"><?php esc_html_e( 'Off by default, so EntryVault keeps its copy as a backup when an entry is deleted in Trinity Forms, by hand or by its retention setting. Tick this to delete the card, its notes and emails too. Privacy erase requests from Tools > Erase Personal Data clear EntryVault either way.', 'entryvault' ); ?></p>
+                        <br />
                         <label for="ev-delete-data-on-uninstall">
                             <input type="checkbox" id="ev-delete-data-on-uninstall" name="delete_data_on_uninstall"
                                    value="1" <?php checked( $ev_delete_on_uninstall ); ?> />

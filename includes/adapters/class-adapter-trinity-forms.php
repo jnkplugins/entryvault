@@ -84,7 +84,10 @@ class Adapter_Trinity_Forms extends Adapter_Base {
         if ( "completed" === $status ) {
             self::forget_spam_skip( $this->slug(), $entry_ref );
             if ( ! $ids ) {
-                $this->on_entry_created( $entry_id );
+                // Not when the owner deleted the card here on purpose.
+                if ( ! \EntryVault\Submission_Store::was_deleted_here( $this->slug(), $entry_ref ) ) {
+                    $this->on_entry_created( $entry_id );
+                }
                 return;
             }
             $spam_tag = \EntryVault\Tag_Manager::spam_tag_id( false );
@@ -122,19 +125,34 @@ class Adapter_Trinity_Forms extends Adapter_Base {
     }
 
     /**
-     * An entry deleted for good in Trinity: delete EntryVault's copy too, with
-     * its fields, notes and emails. Trinity's retention period and its
-     * personal-data eraser both end here.
+     * An entry deleted for good in Trinity. EntryVault keeps its copy as a
+     * backup unless "Delete a card when its form entry is deleted" is ticked
+     * in Settings; then the copy goes too, with its fields, notes and emails.
      */
     public function on_entry_deleted( $entry_id ): void {
         $entry_ref = (string) (int) $entry_id;
+        self::forget_spam_skip( $this->slug(), $entry_ref );
         /**
          * Filter whether a submission is deleted when its Trinity Forms entry is.
          *
-         * @param bool   $delete    Default true.
+         * @param bool   $delete    Default from Settings > Data (off).
          * @param string $entry_ref Trinity entry id.
          */
-        if ( ! apply_filters( "entryvault_delete_with_source_entry", true, $entry_ref, $this->slug() ) ) {
+        if ( ! apply_filters( "entryvault_delete_with_source_entry", self::delete_with_source_enabled(), $entry_ref, $this->slug() ) ) {
+            // Kept as a backup, but no longer tied to that id: Trinity can hand the
+            // same id to a new entry (MySQL resets AUTO_INCREMENT after the newest
+            // rows are deleted), and the new lead was merged into this old card.
+            global $wpdb;
+            foreach ( \EntryVault\Submission_Store::find_by_source_entry( $this->slug(), $entry_ref ) as $id ) {
+                $wpdb->update(
+                    $wpdb->prefix . "entryvault_submissions",
+                    [ "source_entry_id" => $entry_ref . "-deleted-" . $id ],
+                    [ "id" => $id ],
+                    [ "%s" ],
+                    [ "%d" ]
+                );
+            }
+            \EntryVault\Submission_Store::forget_deleted( $this->slug(), $entry_ref );
             return;
         }
         foreach ( \EntryVault\Submission_Store::find_by_source_entry( $this->slug(), $entry_ref ) as $id ) {
@@ -144,7 +162,8 @@ class Adapter_Trinity_Forms extends Adapter_Base {
                 "entry_id"      => $entry_ref,
             ] );
         }
-        self::forget_spam_skip( $this->slug(), $entry_ref );
+        // The entry is gone for good: a later entry with this id is a new one.
+        \EntryVault\Submission_Store::forget_deleted( $this->slug(), $entry_ref );
     }
 
     public function on_entry_created( $entry_id, $form_id = 0 ): void {
@@ -254,7 +273,7 @@ class Adapter_Trinity_Forms extends Adapter_Base {
             "title"           => $title,
             "email"           => $email,
             "fields"          => $fields,
-            "created_at"      => (string) ( $entry["submitted_at"] ?: current_time( "mysql" ) ),
+            "created_at"      => self::created_at_utc( (string) ( $entry["submitted_at"] ?? "" ) ),
         ];
         // Kept spam ("Keep entries marked as spam") is tagged Spam and no
         // automation answers it (Sync_Engine, Pro_Boot).
@@ -262,5 +281,21 @@ class Adapter_Trinity_Forms extends Adapter_Base {
             $out["is_spam"] = true;
         }
         return $out;
+    }
+
+    /**
+     * Trinity's submitted_at in UTC. Trinity 2.15.0 stores UTC and sets the
+     * option trinity_forms_times_utc once its data is converted; older Trinity
+     * stores the site's clock. Asking per entry keeps a new EntryVault with an
+     * old Trinity (and the other way round) right.
+     */
+    public static function created_at_utc( string $submitted_at ): string {
+        if ( "" === $submitted_at || 0 === strpos( $submitted_at, "0000" ) ) {
+            return current_time( "mysql", true );
+        }
+        if ( get_option( "trinity_forms_times_utc" ) ) {
+            return $submitted_at;
+        }
+        return \EntryVault\Dates::to_utc( $submitted_at );
     }
 }

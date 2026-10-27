@@ -14,10 +14,10 @@ $t_sub   = $wpdb->prefix . 'entryvault_submissions';
 $t_stage = $wpdb->prefix . 'entryvault_stages';
 $t_tl    = $wpdb->prefix . 'entryvault_timeline';
 
-// Stored datetimes are site-local (current_time( 'mysql' )), so compare with site-local strings.
-$now       = (int) current_time( 'timestamp' );
+// Stored datetimes are UTC; "today" is the site's day, as UTC bounds.
+$now       = time();
 $week_ago  = gmdate( 'Y-m-d H:i:s', $now - WEEK_IN_SECONDS );
-$day_start = gmdate( 'Y-m-d 00:00:00', $now );
+$day_start = \EntryVault\Dates::site_day_bounds_utc( \EntryVault\Dates::site_today() )[0];
 $stale_at  = gmdate( 'Y-m-d H:i:s', $now - 3 * DAY_IN_SECONDS );
 
 $ev_total = (int) $wpdb->get_var( $wpdb->prepare( 'SELECT COUNT(*) FROM %i', $t_sub ) );

@@ -48,7 +48,8 @@ class Adapter_Fluent_Forms extends Adapter_Base {
             $entry_id,
             $payload,
             $form_id,
-            current_time( 'mysql' )
+            // Captured as it arrives: now, in UTC.
+            current_time( 'mysql', true )
         );
         $this->dispatch( $normalized );
     }
@@ -85,7 +86,7 @@ class Adapter_Fluent_Forms extends Adapter_Base {
             'title'           => $title,
             'email'           => $email,
             'fields'          => $fields,
-            'created_at'      => $created_at ?: current_time( 'mysql' ),
+            'created_at'      => $created_at ?: current_time( 'mysql', true ),
         ];
     }
 

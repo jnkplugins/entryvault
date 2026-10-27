@@ -24,6 +24,44 @@ class Sync_Engine {
      *
      * @return array{id:int, created:bool}
      */
+    /**
+     * A value the owner changed in "Edit captured values" stays as they set it
+     * when the source entry is edited later: the panel promises the edit lives in
+     * EntryVault, and a Trinity edit to another field used to undo it silently.
+     *
+     * @param array<int,array<string,mixed>> $fields     Incoming fields.
+     * @param array<int,array<string,mixed>> $old_fields Stored fields (key, value).
+     * @return array<int,array<string,mixed>>
+     */
+    private static function keep_owner_edits( int $submission_id, array $fields, array $old_fields ): array {
+        global $wpdb;
+        $rows = $wpdb->get_col( $wpdb->prepare(
+            "SELECT data FROM {$wpdb->prefix}entryvault_timeline WHERE submission_id = %d AND type = 'field_edited'",
+            $submission_id
+        ) );
+        if ( ! $rows ) {
+            return $fields;
+        }
+        $edited = [];
+        foreach ( $rows as $json ) {
+            $d = json_decode( (string) $json, true );
+            if ( is_array( $d ) && '' !== (string) ( $d['field_key'] ?? '' ) ) {
+                $edited[ (string) $d['field_key'] ] = true;
+            }
+        }
+        $stored = [];
+        foreach ( $old_fields as $f ) {
+            $stored[ (string) ( $f['key'] ?? '' ) ] = $f['value'] ?? '';
+        }
+        foreach ( $fields as $i => $f ) {
+            $key = (string) ( $f['key'] ?? '' );
+            if ( isset( $edited[ $key ] ) && array_key_exists( $key, $stored ) ) {
+                $fields[ $i ]['value'] = $stored[ $key ];
+            }
+        }
+        return $fields;
+    }
+
     public function ingest_result( array $normalized ): array {
         $normalized = apply_filters( 'entryvault_normalize_submission', $normalized );
 
@@ -34,12 +72,16 @@ class Sync_Engine {
         );
         if ( $existing ) {
             $old_fields = Submission_Store::fields_for( (int) $existing );
+            $incoming   = (array) ( $normalized['fields'] ?? [] );
+            $kept       = self::keep_owner_edits( (int) $existing, $incoming, $old_fields );
+            if ( $kept !== $incoming ) {
+                // The card's email and name follow the owner's edit too.
+                $normalized['email'] = Adapters\Adapter_Base::email_from_fields( $kept );
+                $normalized['title'] = Adapters\Adapter_Base::title_from_fields( $kept, $normalized['email'] );
+            }
             // F-04: reconcile field set on re-sync — mark missing fields stale,
             // un-stale reappearing ones, upsert in place. Preserves history.
-            Submission_Store::reconcile_fields(
-                $existing,
-                (array) ( $normalized['fields'] ?? [] )
-            );
+            Submission_Store::reconcile_fields( $existing, $kept );
             // An entry edited at the source got new field values, but the card
             // kept the old email (Reply went to it) and the old name.
             $old_email = Adapters\Adapter_Base::email_from_fields( $old_fields );
@@ -74,7 +116,7 @@ class Sync_Engine {
             'owner_user_id'   => $owner,
             'title'           => substr( (string) ( $normalized['title'] ?? '' ), 0, 500 ),
             'email'           => $normalized['email'] ?? null,
-            'created_at'      => $normalized['created_at'] ?? current_time( 'mysql' ),
+            'created_at'      => $normalized['created_at'] ?? current_time( 'mysql', true ),
         ] );
 
         if ( ! $submission_id ) {

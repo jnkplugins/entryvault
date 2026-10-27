@@ -51,7 +51,7 @@ class Adapter_Formidable extends Adapter_Base {
         $metas      = $this->read_entry_metas( $entry_id );
         $field_defs = $this->read_field_defs( $form_id );
 
-        $normalized = $this->build_normalized( $form_id, $entry_id, $metas, $field_defs, current_time( 'mysql' ) );
+        $normalized = $this->build_normalized( $form_id, $entry_id, $metas, $field_defs, current_time( 'mysql', true ) );
         $this->dispatch( $normalized );
     }
 
@@ -89,7 +89,7 @@ class Adapter_Formidable extends Adapter_Base {
             'title'           => $title,
             'email'           => $email,
             'fields'          => $fields,
-            'created_at'      => $created_at ?: current_time( 'mysql' ),
+            'created_at'      => $created_at ?: current_time( 'mysql', true ),
         ];
     }
 
