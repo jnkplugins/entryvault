@@ -1,6 +1,6 @@
 import { useDraggable } from "@dnd-kit/core";
 import { __, _x, sprintf } from "@wordpress/i18n";
-import { utcMs, formatSiteTime } from "./siteTime";
+import { utcMs, formatSiteTime, isolate } from "./siteTime";
 
 function relativeAge( iso ) {
     if ( ! iso ) return "";
@@ -116,8 +116,8 @@ export default function Card( { card, overlay = false, onOpen } ) {
                 { /* How long it has been waiting, counted from arrival. Using
                      updated_at reset the age to "just now" on every tag,
                      note or owner change. */ }
-                <span className="ev-card-age" title={ /* translators: %s: date and time the submission arrived. */ sprintf( __( "Arrived %s", "entryvault" ), formatSiteTime( card.created_at_gmt ) ) }>
-                    { relativeAge( card.created_at_gmt || card.updated_at_gmt ) }
+                <span className="ev-card-age" title={ /* translators: %s: date and time the submission arrived. */ sprintf( __( "Arrived %s", "entryvault" ), isolate( formatSiteTime( card.created_at_gmt ) ) ) }>
+                    <bdi>{ relativeAge( card.created_at_gmt || card.updated_at_gmt ) }</bdi>
                 </span>
                 <span className="ev-card-actions">
                     <span

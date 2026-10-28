@@ -54,7 +54,7 @@ if ( function_exists( 'wp_roles' ) ) {
 <div class="entryvault-settings">
     <?php if ( has_action( 'entryvault_settings_after' ) ) : ?>
         <?php // The license card sits under the tabs; the same jump link as in every JnK plugin. ?>
-        <p style="margin:0 0 8px;text-align:right"><a href="#lp-entryvault-license"><?php esc_html_e( 'License', 'entryvault' ); ?> &darr;</a></p>
+        <p style="margin:0 0 8px;text-align:end"><a href="#lp-entryvault-license"><?php esc_html_e( 'License', 'entryvault' ); ?> &darr;</a></p>
     <?php endif; ?>
 
     <h2 class="nav-tab-wrapper" id="ev-settings-tabs" role="tablist">
@@ -139,7 +139,7 @@ if ( function_exists( 'wp_roles' ) ) {
                                 <?php $ev_token = \EntryVault\Frontend::ensure_token( (string) $ev_p['slug'] ); ?>
                                 <p style="margin:0 0 10px;">
                                     <strong><?php echo esc_html( (string) $ev_p['name'] ); ?></strong>
-                                    <code style="margin-left:6px;"><?php echo esc_html( (string) $ev_p['slug'] ); ?></code>
+                                    <code style="margin-inline-start:6px;"><?php echo esc_html( (string) $ev_p['slug'] ); ?></code>
                                     <input type="text" class="large-text code" style="margin-top:6px" readonly onclick="this.select();"
                                            value="<?php echo esc_attr( sprintf(
                                                '[entryvault_table pipeline="%s" access_token="%s"]',

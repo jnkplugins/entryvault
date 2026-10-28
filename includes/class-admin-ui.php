@@ -82,7 +82,7 @@ class Admin_UI {
             . '<span class="jnkui-ver">' . esc_html( 'v' . ( defined( 'ENTRYVAULT_VERSION' ) ? ENTRYVAULT_VERSION : '' ) ) . '</span>'
             // Says Pro is on, rather than leaving people to infer it from tabs that unlock.
             // Free core has no licence code; the Pro module answers through this filter.
-            . ( apply_filters( 'entryvault_pro_active', false ) ? '<span class="jnkui-pro-badge" style="margin-left:6px;padding:1px 7px;border-radius:999px;background:#4f46e5;color:#fff;font-size:11px;font-weight:600;letter-spacing:.02em;vertical-align:middle">Pro</span>' : '' )
+            . ( apply_filters( 'entryvault_pro_active', false ) ? '<span class="jnkui-pro-badge" style="margin-inline-start:6px;padding:1px 7px;border-radius:999px;background:#4f46e5;color:#fff;font-size:11px;font-weight:600;letter-spacing:.02em;vertical-align:middle">Pro</span>' : '' )
             . '</a>';
 
         if ( $manager ) {

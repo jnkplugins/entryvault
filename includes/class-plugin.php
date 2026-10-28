@@ -406,6 +406,9 @@ final class Plugin {
             // Stored times are UTC; the board shows clock times in the site's
             // zone ("Asia/Kolkata", or "+05:30" for a fixed-offset site).
             'timezone'        => wp_timezone_string(),
+            // Dates on the board are written in the user's WordPress language
+            // (Profile > Language), not the browser's. BCP 47 tag, e.g. "ko-KR".
+            'locale'          => self::js_locale(),
         ] );
         if ( file_exists( $build_dir . 'index.css' ) ) {
             wp_enqueue_style(
@@ -431,6 +434,15 @@ final class Plugin {
      * The pipeline the board opens on: the configured default, or, for a user
      * who may not view that one, the first pipeline they were granted.
      */
+    /**
+     * The current user's WordPress locale as a BCP 47 tag for Intl in the
+     * browser: "ar" stays "ar", "ko_KR" becomes "ko-KR".
+     */
+    public static function js_locale(): string {
+        $locale = function_exists( 'get_user_locale' ) ? get_user_locale() : get_locale();
+        return str_replace( '_', '-', (string) $locale );
+    }
+
     public static function default_pipeline_for_current_user(): int {
         $opt     = get_option( 'entryvault_settings' );
         $default = is_array( $opt ) ? (int) ( $opt['default_pipeline'] ?? 0 ) : 0;

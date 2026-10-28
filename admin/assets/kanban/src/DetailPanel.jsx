@@ -1,6 +1,6 @@
 import { useEffect, useState } from "@wordpress/element";
 import { __, _x, sprintf } from "@wordpress/i18n";
-import { utcMs, formatSiteTime } from "./siteTime";
+import { utcMs, formatSiteTime, isolate } from "./siteTime";
 import {
     fetchSubmission,
     addNote,
@@ -405,7 +405,7 @@ function Details( { data, stages, owners, allTags, tags, onStageChange, onOwnerC
                 />
             </RowEditor>
             <Row label={ __( "Status", "entryvault" ) } value={ statusLabel( s.status ) } />
-            <Row label={ __( "Received", "entryvault" ) } value={ formatWhen( s.created_at_gmt ) } />
+            <Row label={ __( "Received", "entryvault" ) } value={ s.created_at_gmt ? <When iso={ s.created_at_gmt } /> : "" } />
             <h4 className="ev-panel-h">{ __( "What they sent", "entryvault" ) }</h4>
             { ( data.fields || [] ).map( ( f ) => {
                 const stale = Number( f.is_stale ) === 1;
@@ -539,7 +539,7 @@ function Timeline( { events } ) {
         <ul className="ev-timeline">
             { events.map( ( e ) => (
                 <li key={ e.id } className={ e.deleted ? "ev-timeline-item is-deleted" : "ev-timeline-item" }>
-                    <div className="ev-timeline-when">{ formatWhen( e.created_at_gmt ) }</div>
+                    <div className="ev-timeline-when"><When iso={ e.created_at_gmt } /></div>
                     <div className="ev-timeline-what">
                         { e.summary || formatTimelineData( e ) }
                     </div>
@@ -626,7 +626,7 @@ function NoteItem( { note, depth, owners, currentUser, onReply, onDelete, saving
         <div className={ depth ? "ev-note is-reply" : "ev-note" }>
             <div className="ev-note-head">
                 <strong>{ authorName }</strong>
-                <span title={ formatWhen( note.created_at_gmt ) }>{ formatRelative( note.created_at_gmt ) }</span>
+                <span title={ isolate( formatWhen( note.created_at_gmt ) ) }><bdi>{ formatRelative( note.created_at_gmt ) }</bdi></span>
                 { canDelete && ! deleted && (
                     <button
                         type="button"
@@ -714,6 +714,13 @@ function buildNoteTree( notes ) {
 function formatWhen( iso ) {
     if ( ! iso ) return "";
     return formatSiteTime( iso );
+}
+
+// A date and clock time, isolated with <bdi> so Arabic or Hebrew around it
+// cannot reorder its parts ("Oct 2026, 8:33 28").
+function When( { iso } ) {
+    const text = formatWhen( iso );
+    return text ? <bdi className="ev-when">{ text }</bdi> : null;
 }
 
 function formatRelative( iso ) {
@@ -900,7 +907,7 @@ function EmailTab( { submissionId, defaultTo, onSend, originalSubject, fields } 
                     <div className="ev-mail-meta">
                         { m.direction === "in"
                             ? /* translators: %s: sender address. */ sprintf( __( "From %s", "entryvault" ), m.from )
-                            : /* translators: %s: recipient address. */ sprintf( __( "To %s", "entryvault" ), m.to ) } · { formatWhen( m.created_at_gmt ) }
+                            : /* translators: %s: recipient address. */ sprintf( __( "To %s", "entryvault" ), m.to ) } · <When iso={ m.created_at_gmt } />
                     </div>
                     { m.error && (
                         <div className="ev-mail-failed" role="note">{ /* translators: %s: the mail server's reason. */ sprintf( __( "Not sent: %s", "entryvault" ), m.error ) }</div>

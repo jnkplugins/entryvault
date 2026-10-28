@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: EntryVault\n"
 "Report-Msgid-Bugs-To: https://jnkplugins.com/entryvault/\n"
-"POT-Creation-Date: 2026-10-27T05:52:55+00:00\n"
+"POT-Creation-Date: 2026-10-28T03:49:21+00:00\n"
 "PO-Revision-Date: 2026-10-10 16:40+0000\n"
 "Last-Translator: JNK Plugins\n"
 "Language-Team: Korean\n"
@@ -42,7 +42,7 @@ msgstr "JNK Plugins"
 msgid "https://jnkplugins.com"
 msgstr "https://jnkplugins.com"
 
-#: admin/views/dashboard.php:9 includes/class-submissions-admin.php:178
+#: admin/views/dashboard.php:9 includes/class-submissions-admin.php:185
 msgid "You do not have permission to view this page."
 msgstr "이 페이지를 볼 권한이 없습니다."
 
@@ -59,7 +59,7 @@ msgid "All submissions"
 msgstr "모든 제출"
 
 #: admin/views/dashboard.php:75 admin/views/dashboard.php:84
-#: includes/class-submissions-admin.php:217
+#: includes/class-submissions-admin.php:224
 msgid "Open the board"
 msgstr "보드 열기"
 
@@ -207,11 +207,11 @@ msgstr "파이프라인과 기간을 선택하세요. 아래 숫자가 바로 �
 msgid "Pipeline"
 msgstr "파이프라인"
 
-#: admin/views/dashboard.php:211 includes/class-submissions-admin.php:333
+#: admin/views/dashboard.php:211 includes/class-submissions-admin.php:340
 msgid "From"
 msgstr "시작"
 
-#: admin/views/dashboard.php:215 includes/class-submissions-admin.php:337
+#: admin/views/dashboard.php:215 includes/class-submissions-admin.php:344
 msgid "To"
 msgstr "종료"
 
@@ -901,7 +901,7 @@ msgstr ""
 "존 폴더 위에 복사하세요."
 
 #: includes/class-admin-ui.php:25 includes/class-plugin.php:145
-#: includes/class-submissions-admin.php:214
+#: includes/class-submissions-admin.php:221
 msgid "Submissions"
 msgstr "제출"
 
@@ -925,19 +925,19 @@ msgstr "업그레이드"
 msgid "Help"
 msgstr "도움말"
 
-#: includes/class-dates.php:59 admin/assets/kanban/build/index.js:2
+#: includes/class-dates.php:61 admin/assets/kanban/build/index.js:2
 #: admin/assets/kanban/build/index.js:20
 msgid "just now"
 msgstr "방금"
 
 #. translators: %s: human-readable time difference, e.g. "3 hours".
-#: includes/class-dates.php:63
+#: includes/class-dates.php:65
 #, php-format
 msgid "in %s"
 msgstr "%s 후"
 
 #. translators: %s: human-readable time difference, e.g. "3 hours".
-#: includes/class-dates.php:65
+#: includes/class-dates.php:67
 #, php-format
 msgid "%s ago"
 msgstr "%s 전"
@@ -1301,7 +1301,7 @@ msgid "The %d table EntryVault needs is in the database."
 msgid_plural "All %d tables EntryVault needs are in the database."
 msgstr[0] "EntryVault에 필요한 테이블 %d개가 모두 데이터베이스에 있습니다."
 
-#: includes/class-submissions-admin.php:215
+#: includes/class-submissions-admin.php:222
 msgid ""
 "Every entry in one list. Filter it, tick rows to change many at once, or "
 "export what you see to a spreadsheet."
@@ -1309,49 +1309,49 @@ msgstr ""
 "모든 항목을 한 목록에서 봅니다. 필터링하거나, 여러 행을 선택해 한 번에 바꾸거"
 "나, 보이는 내용을 스프레드시트로 내보내세요."
 
-#: includes/class-submissions-admin.php:216
+#: includes/class-submissions-admin.php:223
 msgid "Export CSV"
 msgstr "CSV 내보내기"
 
-#: includes/class-submissions-admin.php:231
+#: includes/class-submissions-admin.php:238
 msgid "All"
 msgstr "전체"
 
-#: includes/class-submissions-admin.php:236 includes/class-timeline.php:97
+#: includes/class-submissions-admin.php:243 includes/class-timeline.php:97
 msgid "Archived"
 msgstr "보관됨"
 
-#: includes/class-submissions-admin.php:255
+#: includes/class-submissions-admin.php:262
 msgid "All pipelines"
 msgstr "모든 파이프라인"
 
-#: includes/class-submissions-admin.php:263
+#: includes/class-submissions-admin.php:270
 msgid "All stages"
 msgstr "모든 단계"
 
-#: includes/class-submissions-admin.php:286
+#: includes/class-submissions-admin.php:293
 msgid "All sources"
 msgstr "모든 출처"
 
-#: includes/class-submissions-admin.php:305
+#: includes/class-submissions-admin.php:312
 msgid "All tags"
 msgstr "모든 태그"
 
-#: includes/class-submissions-admin.php:314
+#: includes/class-submissions-admin.php:321
 msgid "All owners"
 msgstr "모든 담당자"
 
-#: includes/class-submissions-admin.php:316 includes/class-timeline.php:94
+#: includes/class-submissions-admin.php:323 includes/class-timeline.php:94
 #: admin/assets/kanban/build/index.js:5 admin/assets/kanban/build/index.js:20
 #: admin/assets/kanban/build/index.js:37
 msgid "Unassigned"
 msgstr "미지정"
 
-#: includes/class-submissions-admin.php:340
+#: includes/class-submissions-admin.php:347
 msgid "Filter"
 msgstr "필터"
 
-#: includes/class-submissions-admin.php:348
+#: includes/class-submissions-admin.php:355
 #: public/templates/submissions-table.php:54
 #: public/templates/submissions-table.php:63
 #: admin/assets/kanban/build/index.js:37
@@ -1359,7 +1359,7 @@ msgid "Search"
 msgstr "검색"
 
 #. translators: 1: opening link tag, 2: closing link tag.
-#: includes/class-submissions-admin.php:362
+#: includes/class-submissions-admin.php:369
 #, php-format
 msgid ""
 "Tagging, assigning and replying to these by hand? %1$sSee what Pro "
@@ -1369,59 +1369,59 @@ msgstr ""
 "보기%2$s."
 
 #. translators: %d: count
-#: includes/class-submissions-admin.php:413
+#: includes/class-submissions-admin.php:420
 #, php-format
 msgid "Deleted %d submission."
 msgid_plural "Deleted %d submissions."
 msgstr[0] "제출 %d건을 삭제했습니다."
 
 #. translators: 1: moved 2: skipped
-#: includes/class-submissions-admin.php:421
+#: includes/class-submissions-admin.php:428
 #, php-format
 msgid "Moved %1$d submission(s); %2$d skipped."
 msgstr "제출 %1$d건을 이동했고 %2$d건은 건너뛰었습니다."
 
 #. translators: %d: count
-#: includes/class-submissions-admin.php:431
+#: includes/class-submissions-admin.php:438
 #, php-format
 msgid "Assigned owner on %d submission."
 msgid_plural "Assigned owner on %d submissions."
 msgstr[0] "제출 %d건에 담당자를 지정했습니다."
 
 #. translators: %d: count
-#: includes/class-submissions-admin.php:436
+#: includes/class-submissions-admin.php:443
 #, php-format
 msgid "Cleared owner on %d submission."
 msgid_plural "Cleared owner on %d submissions."
 msgstr[0] "제출 %d건의 담당자를 해제했습니다."
 
 #. translators: %d: count
-#: includes/class-submissions-admin.php:444
+#: includes/class-submissions-admin.php:451
 #, php-format
 msgid "Tagged %d submission."
 msgid_plural "Tagged %d submissions."
 msgstr[0] "제출 %d건에 태그를 지정했습니다."
 
 #. translators: %d: count
-#: includes/class-submissions-admin.php:451
+#: includes/class-submissions-admin.php:458
 #, php-format
 msgid "Archived %d submission."
 msgid_plural "Archived %d submissions."
 msgstr[0] "제출 %d건을 보관했습니다."
 
 #. translators: %d: count
-#: includes/class-submissions-admin.php:458
+#: includes/class-submissions-admin.php:465
 #, php-format
 msgid "Restored %d submission."
 msgid_plural "Restored %d submissions."
 msgstr[0] "제출 %d건을 복원했습니다."
 
-#: includes/class-submissions-admin.php:487
+#: includes/class-submissions-admin.php:494
 msgid "Forbidden."
 msgstr "금지되었습니다."
 
 #. translators: %s: form field label that clashes with a fixed column, e.g. "Email".
-#: includes/class-submissions-admin.php:611
+#: includes/class-submissions-admin.php:620
 #, php-format
 msgid "%s (form field)"
 msgstr "%s (양식 필드)"

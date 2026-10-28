@@ -46,7 +46,7 @@ $ev_status       = isset( $_GET['entryvault_feedback'] ) ? sanitize_key( wp_unsl
         <input type="hidden" name="action" value="entryvault_send_feedback">
 
         <?php /* Honeypot: visually hidden, never filled by a real user. */ ?>
-        <div aria-hidden="true" style="position:absolute;left:-9999px;top:-9999px;height:1px;width:1px;overflow:hidden;">
+        <div aria-hidden="true" style="position:absolute;inset-inline-start:-9999px;top:-9999px;height:1px;width:1px;overflow:hidden;">
             <label for="entryvault_website"><?php esc_html_e( 'Website', 'entryvault' ); ?></label>
             <input type="text" id="entryvault_website" name="entryvault_website" tabindex="-1" autocomplete="off" value="">
         </div>

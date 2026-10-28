@@ -40,8 +40,10 @@ class Dates {
         $abs = function_exists( 'wp_date' )
             ? wp_date( 'M j, Y g:i A', $ts )
             : date_i18n( 'M j, Y g:i A', $ts );
-        return '<abbr title="' . esc_attr( $abs ) . '" style="white-space:nowrap">'
-            . esc_html( self::relative_from_ts( $ts ) ) . '</abbr>';
+        // Isolate the date (FSI ... PDI in the tooltip, <bdi> in the cell) so
+        // an Arabic or Hebrew screen does not reorder its numbers and words.
+        return '<abbr title="' . esc_attr( "\u{2068}" . $abs . "\u{2069}" ) . '" style="white-space:nowrap"><bdi>'
+            . esc_html( self::relative_from_ts( $ts ) ) . '</bdi></abbr>';
     }
 
     /** Just the relative phrase, e.g. "13 days ago" / "in 3 months". */

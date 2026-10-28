@@ -28,6 +28,41 @@ export function fixedOffsetMs( zone ) {
     return m[ 1 ] === "-" ? -ms : ms;
 }
 
+/**
+ * The user's WordPress language as a BCP 47 tag ("ko-KR", "ar"), sent in the
+ * boot data, so dates follow Profile > Language and not the browser. Falls back
+ * to undefined (the browser's locale) when missing or not known to Intl.
+ */
+let cachedLocale = null;
+export function siteLocale() {
+    if ( cachedLocale !== null ) return cachedLocale || undefined;
+    const raw = ( typeof window !== "undefined" && window.EntryVaultBoot && window.EntryVaultBoot.locale ) || "";
+    const tag = String( raw ).replace( /_/g, "-" );
+    cachedLocale = "";
+    if ( tag ) {
+        try {
+            if ( Intl.DateTimeFormat.supportedLocalesOf( [ tag ] ).length ) {
+                cachedLocale = tag;
+            } else {
+                // "de-DE-formal" and the like: try the language-region part.
+                const base = tag.split( "-" ).slice( 0, 2 ).join( "-" );
+                if ( Intl.DateTimeFormat.supportedLocalesOf( [ base ] ).length ) cachedLocale = base;
+            }
+        } catch ( e ) {
+            cachedLocale = "";
+        }
+    }
+    return cachedLocale || undefined;
+}
+
+/**
+ * Wrap text for a title attribute in Unicode isolates (FSI ... PDI), the plain
+ * text twin of <bdi>, so a date keeps its order inside RTL text.
+ */
+export function isolate( text ) {
+    return text ? "\u2068" + text + "\u2069" : "";
+}
+
 const DEFAULT_OPTS = { year: "numeric", month: "short", day: "numeric", hour: "numeric", minute: "2-digit" };
 
 /**
@@ -39,14 +74,15 @@ export function formatSiteTime( stored, opts = DEFAULT_OPTS ) {
     if ( isNaN( t ) ) return stored ? String( stored ) : "";
     const zone = siteZone();
     const fixed = fixedOffsetMs( zone );
+    const locale = siteLocale();
     try {
         if ( fixed !== null ) {
             // Shift by hand and format as UTC: works where Intl does not know
             // offset zones.
-            return new Intl.DateTimeFormat( undefined, { ...opts, timeZone: "UTC" } ).format( new Date( t + fixed ) );
+            return new Intl.DateTimeFormat( locale, { ...opts, timeZone: "UTC" } ).format( new Date( t + fixed ) );
         }
-        return new Intl.DateTimeFormat( undefined, { ...opts, timeZone: zone } ).format( new Date( t ) );
+        return new Intl.DateTimeFormat( locale, { ...opts, timeZone: zone } ).format( new Date( t ) );
     } catch ( e ) {
-        return new Intl.DateTimeFormat( undefined, { ...opts, timeZone: "UTC" } ).format( new Date( t ) ) + " UTC";
+        return new Intl.DateTimeFormat( locale, { ...opts, timeZone: "UTC" } ).format( new Date( t ) ) + " UTC";
     }
 }

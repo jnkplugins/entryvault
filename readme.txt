@@ -4,7 +4,7 @@ Tags: form entries, contact form, crm, leads, csv export
 Requires at least: 6.2
 Tested up to: 7.0
 Requires PHP: 8.2
-Stable tag: 1.17.0
+Stable tag: 1.18.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -137,6 +137,13 @@ Use the contact page at https://jnkplugins.com/entryvault/, or Feedback & Suppor
 7. Pro: automations that tag, assign, move or email entries for you.
 
 == Changelog ==
+
+= 1.18.0 =
+* Fixed: CSV exports now open in Excel with Korean, Japanese and emoji intact.
+* Fixed: the REST CSV export keeps non-Latin field values readable in the fields_json column.
+* Fixed: admin screens no longer scroll sideways in Arabic and Hebrew.
+* Fixed: dates on the board use your WordPress language and read in the right order in Arabic and Hebrew.
+* Fixed: the card stage stripe, the timeline line and other side details now sit on the correct side in right-to-left languages.
 
 = 1.17.0 =
 * Changed: a card now stays as a backup when its Trinity Forms entry is deleted. To delete it with the entry, tick "Delete a card when its entry is deleted in Trinity Forms" in Settings. Privacy erase requests still clear EntryVault.

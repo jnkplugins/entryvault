@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: EntryVault\n"
 "Report-Msgid-Bugs-To: https://jnkplugins.com/entryvault/\n"
-"POT-Creation-Date: 2026-10-27T05:52:55+00:00\n"
+"POT-Creation-Date: 2026-10-28T03:49:21+00:00\n"
 "PO-Revision-Date: 2026-10-10 16:40+0000\n"
 "Last-Translator: JNK Plugins\n"
 "Language-Team: Spanish (Spain)\n"
@@ -43,7 +43,7 @@ msgstr "JNK Plugins"
 msgid "https://jnkplugins.com"
 msgstr "https://jnkplugins.com"
 
-#: admin/views/dashboard.php:9 includes/class-submissions-admin.php:178
+#: admin/views/dashboard.php:9 includes/class-submissions-admin.php:185
 msgid "You do not have permission to view this page."
 msgstr "No tienes permiso para ver esta página."
 
@@ -60,7 +60,7 @@ msgid "All submissions"
 msgstr "Todos los envíos"
 
 #: admin/views/dashboard.php:75 admin/views/dashboard.php:84
-#: includes/class-submissions-admin.php:217
+#: includes/class-submissions-admin.php:224
 msgid "Open the board"
 msgstr "Abrir el tablero"
 
@@ -212,11 +212,11 @@ msgstr ""
 msgid "Pipeline"
 msgstr "Pipeline"
 
-#: admin/views/dashboard.php:211 includes/class-submissions-admin.php:333
+#: admin/views/dashboard.php:211 includes/class-submissions-admin.php:340
 msgid "From"
 msgstr "Desde"
 
-#: admin/views/dashboard.php:215 includes/class-submissions-admin.php:337
+#: admin/views/dashboard.php:215 includes/class-submissions-admin.php:344
 msgid "To"
 msgstr "Hasta"
 
@@ -931,7 +931,7 @@ msgstr ""
 "content/plugins por SFTP o con el gestor de archivos de tu alojamiento."
 
 #: includes/class-admin-ui.php:25 includes/class-plugin.php:145
-#: includes/class-submissions-admin.php:214
+#: includes/class-submissions-admin.php:221
 msgid "Submissions"
 msgstr "Envíos"
 
@@ -955,19 +955,19 @@ msgstr "Mejorar"
 msgid "Help"
 msgstr "Ayuda"
 
-#: includes/class-dates.php:59 admin/assets/kanban/build/index.js:2
+#: includes/class-dates.php:61 admin/assets/kanban/build/index.js:2
 #: admin/assets/kanban/build/index.js:20
 msgid "just now"
 msgstr "justo ahora"
 
 #. translators: %s: human-readable time difference, e.g. "3 hours".
-#: includes/class-dates.php:63
+#: includes/class-dates.php:65
 #, php-format
 msgid "in %s"
 msgstr "en %s"
 
 #. translators: %s: human-readable time difference, e.g. "3 hours".
-#: includes/class-dates.php:65
+#: includes/class-dates.php:67
 #, php-format
 msgid "%s ago"
 msgstr "hace %s"
@@ -1338,7 +1338,7 @@ msgid_plural "All %d tables EntryVault needs are in the database."
 msgstr[0] "La %d tabla que necesita EntryVault está en la base de datos."
 msgstr[1] "Las %d tablas que necesita EntryVault están en la base de datos."
 
-#: includes/class-submissions-admin.php:215
+#: includes/class-submissions-admin.php:222
 msgid ""
 "Every entry in one list. Filter it, tick rows to change many at once, or "
 "export what you see to a spreadsheet."
@@ -1346,49 +1346,49 @@ msgstr ""
 "Todas las entradas en una lista. Fíltrala, marca filas para cambiar muchas a "
 "la vez o exporta lo que ves a una hoja de cálculo."
 
-#: includes/class-submissions-admin.php:216
+#: includes/class-submissions-admin.php:223
 msgid "Export CSV"
 msgstr "Exportar CSV"
 
-#: includes/class-submissions-admin.php:231
+#: includes/class-submissions-admin.php:238
 msgid "All"
 msgstr "Todas"
 
-#: includes/class-submissions-admin.php:236 includes/class-timeline.php:97
+#: includes/class-submissions-admin.php:243 includes/class-timeline.php:97
 msgid "Archived"
 msgstr "Archivadas"
 
-#: includes/class-submissions-admin.php:255
+#: includes/class-submissions-admin.php:262
 msgid "All pipelines"
 msgstr "Todos los pipelines"
 
-#: includes/class-submissions-admin.php:263
+#: includes/class-submissions-admin.php:270
 msgid "All stages"
 msgstr "Todas las etapas"
 
-#: includes/class-submissions-admin.php:286
+#: includes/class-submissions-admin.php:293
 msgid "All sources"
 msgstr "Todos los orígenes"
 
-#: includes/class-submissions-admin.php:305
+#: includes/class-submissions-admin.php:312
 msgid "All tags"
 msgstr "Todas las etiquetas"
 
-#: includes/class-submissions-admin.php:314
+#: includes/class-submissions-admin.php:321
 msgid "All owners"
 msgstr "Todos los responsables"
 
-#: includes/class-submissions-admin.php:316 includes/class-timeline.php:94
+#: includes/class-submissions-admin.php:323 includes/class-timeline.php:94
 #: admin/assets/kanban/build/index.js:5 admin/assets/kanban/build/index.js:20
 #: admin/assets/kanban/build/index.js:37
 msgid "Unassigned"
 msgstr "Sin asignar"
 
-#: includes/class-submissions-admin.php:340
+#: includes/class-submissions-admin.php:347
 msgid "Filter"
 msgstr "Filtrar"
 
-#: includes/class-submissions-admin.php:348
+#: includes/class-submissions-admin.php:355
 #: public/templates/submissions-table.php:54
 #: public/templates/submissions-table.php:63
 #: admin/assets/kanban/build/index.js:37
@@ -1396,7 +1396,7 @@ msgid "Search"
 msgstr "Buscar"
 
 #. translators: 1: opening link tag, 2: closing link tag.
-#: includes/class-submissions-admin.php:362
+#: includes/class-submissions-admin.php:369
 #, php-format
 msgid ""
 "Tagging, assigning and replying to these by hand? %1$sSee what Pro "
@@ -1405,7 +1405,7 @@ msgstr ""
 "¿Etiquetas, asignas y respondes a mano? %1$sMira lo que automatiza Pro%2$s."
 
 #. translators: %d: count
-#: includes/class-submissions-admin.php:413
+#: includes/class-submissions-admin.php:420
 #, php-format
 msgid "Deleted %d submission."
 msgid_plural "Deleted %d submissions."
@@ -1413,13 +1413,13 @@ msgstr[0] "%d envío borrado."
 msgstr[1] "%d envíos borrados."
 
 #. translators: 1: moved 2: skipped
-#: includes/class-submissions-admin.php:421
+#: includes/class-submissions-admin.php:428
 #, php-format
 msgid "Moved %1$d submission(s); %2$d skipped."
 msgstr "%1$d envío(s) movido(s); %2$d omitido(s)."
 
 #. translators: %d: count
-#: includes/class-submissions-admin.php:431
+#: includes/class-submissions-admin.php:438
 #, php-format
 msgid "Assigned owner on %d submission."
 msgid_plural "Assigned owner on %d submissions."
@@ -1427,7 +1427,7 @@ msgstr[0] "Responsable asignado en %d envío."
 msgstr[1] "Responsable asignado en %d envíos."
 
 #. translators: %d: count
-#: includes/class-submissions-admin.php:436
+#: includes/class-submissions-admin.php:443
 #, php-format
 msgid "Cleared owner on %d submission."
 msgid_plural "Cleared owner on %d submissions."
@@ -1435,7 +1435,7 @@ msgstr[0] "Responsable quitado en %d envío."
 msgstr[1] "Responsable quitado en %d envíos."
 
 #. translators: %d: count
-#: includes/class-submissions-admin.php:444
+#: includes/class-submissions-admin.php:451
 #, php-format
 msgid "Tagged %d submission."
 msgid_plural "Tagged %d submissions."
@@ -1443,7 +1443,7 @@ msgstr[0] "%d envío etiquetado."
 msgstr[1] "%d envíos etiquetados."
 
 #. translators: %d: count
-#: includes/class-submissions-admin.php:451
+#: includes/class-submissions-admin.php:458
 #, php-format
 msgid "Archived %d submission."
 msgid_plural "Archived %d submissions."
@@ -1451,19 +1451,19 @@ msgstr[0] "%d envío archivado."
 msgstr[1] "%d envíos archivados."
 
 #. translators: %d: count
-#: includes/class-submissions-admin.php:458
+#: includes/class-submissions-admin.php:465
 #, php-format
 msgid "Restored %d submission."
 msgid_plural "Restored %d submissions."
 msgstr[0] "%d envío restaurado."
 msgstr[1] "%d envíos restaurados."
 
-#: includes/class-submissions-admin.php:487
+#: includes/class-submissions-admin.php:494
 msgid "Forbidden."
 msgstr "Prohibido."
 
 #. translators: %s: form field label that clashes with a fixed column, e.g. "Email".
-#: includes/class-submissions-admin.php:611
+#: includes/class-submissions-admin.php:620
 #, php-format
 msgid "%s (form field)"
 msgstr "%s (campo del formulario)"

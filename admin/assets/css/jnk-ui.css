@@ -29,14 +29,17 @@
 	--jnk-radius: 12px;
 	--jnk-shadow: 0 1px 2px rgba(15, 23, 42, .05), 0 1px 3px rgba(15, 23, 42, .06);
 	--jnk-shadow-lg: 0 10px 30px -12px rgba(15, 23, 42, .18);
-	margin: 0 0 0 -20px;
+	/* Logical side: WordPress pads #wpcontent on the right in RTL, so a physical
+	   margin-left pushed every screen 20px past the edge and it scrolled sideways. */
+	margin: 0;
+	margin-inline-start: -20px;
 	padding: 0 0 48px;
 	color: var(--jnk-ink-2);
 	font-size: 14px;
 	line-height: 1.55;
 	-webkit-font-smoothing: antialiased;
 }
-@media (max-width: 782px) { .jnkui { margin-left: -10px; } }
+@media (max-width: 782px) { .jnkui { margin-inline-start: -10px; } }
 #wpbody-content:has(> .jnkui), .wrap.jnkui { background: var(--jnk-bg); }
 body:has(.jnkui), body:has(.jnkui) #wpcontent, body:has(.jnkui) #wpfooter { background: #f6f7fb; }
 
@@ -74,7 +77,7 @@ body:has(.jnkui), body:has(.jnkui) #wpcontent, body:has(.jnkui) #wpfooter { back
 .jnkui-more > summary::-webkit-details-marker { display: none; }
 .jnkui-more[open] > .jnkui-menu { display: block; }
 .jnkui-menu {
-	display: none; position: absolute; top: 100%; left: 0; min-width: 220px; padding: 6px;
+	display: none; position: absolute; top: 100%; inset-inline-start: 0; min-width: 220px; padding: 6px;
 	background: #fff; border: 1px solid var(--jnk-line); border-radius: 10px; box-shadow: var(--jnk-shadow-lg); z-index: 30;
 }
 .jnkui-menu a { display: flex; justify-content: space-between; gap: 8px; padding: 8px 10px; border-radius: 7px; color: var(--jnk-ink-2); text-decoration: none; font-weight: 500; }
@@ -87,7 +90,7 @@ body:has(.jnkui), body:has(.jnkui) #wpcontent, body:has(.jnkui) #wpfooter { back
 @media (max-width: 782px) {
 	.jnkui-topbar { padding-top: 10px; }
 	.jnkui-tabs { order: 3; flex: 1 1 100%; min-height: 42px; }
-	.jnkui-topbar-end { margin-left: auto; }
+	.jnkui-topbar-end { margin-inline-start: auto; }
 	.jnkui-more[open] > .jnkui-menu { position: fixed; top: auto; left: 14px; right: 14px; }
 }
 .jnkui-topbar-end { display: flex; align-items: center; gap: 12px; flex: none; }
@@ -160,7 +163,7 @@ a.jnkui-stat:hover { border-color: color-mix(in srgb, var(--jnk-brand) 35%, var(
 }
 .jnkui table.jnkui-table th, .jnkui table.jnk-linkweave-table th, .jnkui table.widefat thead th, .jnkui table.widefat thead td {
 	background: #f8fafc; color: var(--jnk-mute); font-size: 11.5px; font-weight: 650; text-transform: uppercase; letter-spacing: .04em;
-	padding: 11px 16px; border-bottom: 1px solid var(--jnk-line); text-align: left;
+	padding: 11px 16px; border-bottom: 1px solid var(--jnk-line); text-align: start;
 }
 .jnkui table.jnkui-table td, .jnkui table.jnk-linkweave-table td, .jnkui table.widefat td {
 	padding: 12px 16px; border-bottom: 1px solid var(--jnk-line-2); vertical-align: middle; color: var(--jnk-ink-2);
@@ -169,7 +172,7 @@ a.jnkui-stat:hover { border-color: color-mix(in srgb, var(--jnk-brand) 35%, var(
 .jnkui table.jnkui-table tbody tr:hover td, .jnkui table.jnk-linkweave-table tbody tr:hover td { background: #fafbff; }
 .jnkui table a { color: var(--jnk-ink); font-weight: 600; text-decoration: none; }
 .jnkui table a:hover { color: var(--jnk-brand); text-decoration: underline; }
-.jnkui td.is-num, .jnkui th.is-num { text-align: right; font-variant-numeric: tabular-nums; }
+.jnkui td.is-num, .jnkui th.is-num { text-align: end; font-variant-numeric: tabular-nums; }
 .jnkui .jnkui-sub { display: block; color: var(--jnk-mute); font-size: 12.5px; font-weight: 400; margin-top: 2px; }
 .jnkui-table-wrap { overflow-x: auto; border-radius: var(--jnk-radius); }
 .jnkui-toolbar { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; margin: 0 0 14px; }
@@ -195,7 +198,7 @@ a.jnkui-stat:hover { border-color: color-mix(in srgb, var(--jnk-brand) 35%, var(
 	border: 1px solid #cbd5e1; border-radius: 8px; min-height: 36px; padding: 6px 10px; background: #fff; color: var(--jnk-ink);
 	box-shadow: 0 1px 1px rgba(15, 23, 42, .03); font-size: 13.5px;
 }
-.jnkui select { padding-right: 28px; }
+.jnkui select { padding-inline-end: 28px; }
 .jnkui input:focus, .jnkui select:focus, .jnkui textarea:focus { border-color: var(--jnk-brand); box-shadow: 0 0 0 3px color-mix(in srgb, var(--jnk-brand) 18%, transparent); outline: 0; }
 .jnkui .form-table { background: #fff; border: 1px solid var(--jnk-line); border-radius: var(--jnk-radius); box-shadow: var(--jnk-shadow); border-collapse: separate; margin: 0 0 20px; }
 .jnkui .form-table th { padding: 18px 22px; width: 240px; color: var(--jnk-ink); font-weight: 600; border-bottom: 1px solid var(--jnk-line-2); }
@@ -210,9 +213,9 @@ a.jnkui-stat:hover { border-color: color-mix(in srgb, var(--jnk-brand) 35%, var(
 .jnkui-list li { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 22px; border-bottom: 1px solid var(--jnk-line-2); margin: 0; }
 .jnkui-list li:last-child { border-bottom: 0; }
 .jnkui-steps { counter-reset: s; margin: 0; padding: 0; list-style: none; }
-.jnkui-steps li { counter-increment: s; position: relative; padding: 12px 22px 12px 58px; border-bottom: 1px solid var(--jnk-line-2); margin: 0; }
+.jnkui-steps li { counter-increment: s; position: relative; padding-block: 12px; padding-inline: 58px 22px; border-bottom: 1px solid var(--jnk-line-2); margin: 0; }
 .jnkui-steps li:last-child { border-bottom: 0; }
-.jnkui-steps li::before { content: counter(s); position: absolute; left: 22px; top: 12px; width: 24px; height: 24px; border-radius: 50%; display: grid; place-items: center; font-size: 12px; font-weight: 700; background: var(--jnk-brand-soft); color: var(--jnk-brand); }
+.jnkui-steps li::before { content: counter(s); position: absolute; inset-inline-start: 22px; top: 12px; width: 24px; height: 24px; border-radius: 50%; display: grid; place-items: center; font-size: 12px; font-weight: 700; background: var(--jnk-brand-soft); color: var(--jnk-brand); }
 .jnkui-steps li.is-done::before { content: "✓"; background: var(--jnk-ok-bg); color: var(--jnk-ok); }
 .jnkui-steps strong { color: var(--jnk-ink); display: block; }
 .jnkui-callout { display: flex; gap: 12px; align-items: flex-start; padding: 14px 16px; border-radius: 10px; background: var(--jnk-info-bg); color: #1e3a8a; border: 1px solid #bfdbfe; margin: 0 0 16px; }
@@ -220,7 +223,7 @@ a.jnkui-stat:hover { border-color: color-mix(in srgb, var(--jnk-brand) 35%, var(
 .jnkui-callout p { margin: 0; }
 .jnkui-muted { color: var(--jnk-mute); }
 .jnkui-kbd { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; background: var(--jnk-line-2); border: 1px solid var(--jnk-line); border-radius: 6px; padding: 1px 6px; }
-.jnkui-spin { display: inline-block; width: 14px; height: 14px; border: 2px solid currentColor; border-right-color: transparent; border-radius: 50%; animation: jnkui-spin .8s linear infinite; vertical-align: -2px; }
+.jnkui-spin { display: inline-block; width: 14px; height: 14px; border: 2px solid currentColor; border-inline-end-color: transparent; border-radius: 50%; animation: jnkui-spin .8s linear infinite; vertical-align: -2px; }
 @keyframes jnkui-spin { to { transform: rotate(360deg); } }
 @media (prefers-reduced-motion: reduce) { .jnkui-spin { animation: none; } }
 

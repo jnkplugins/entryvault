@@ -751,6 +751,9 @@ class REST_API {
         ];
         // Explicit $escape ('' = no escape char) — implicit form is deprecated on
         // PHP 8.4. Header cells are static/safe; no injection guard needed there.
+        // BOM first so Excel on Windows reads the file as UTF-8.
+        // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_fwrite -- in-memory CSV buffer.
+        fwrite( $fh, Submissions_Admin::CSV_BOM );
         fputcsv( $fh, $cols, ',', '"', '' );
 
         foreach ( $rows as $row ) {
@@ -778,7 +781,9 @@ class REST_API {
                 // Exports keep the site's clock, as before 1.17.0.
                 Dates::to_site( $row['created_at'] ?? '' ),
                 Dates::to_site( $row['updated_at'] ?? '' ),
-                wp_json_encode( $fields ),
+                // Keep Korean, Japanese, emoji and URLs readable in the cell
+                // instead of \uXXXX and \/ escapes.
+                wp_json_encode( $fields, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES ),
             ] ), ',', '"', '' );
         }
 

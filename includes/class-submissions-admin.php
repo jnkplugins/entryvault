@@ -13,6 +13,13 @@ class Submissions_Admin {
     public const CAPABILITY = 'manage_options';
 
     /**
+     * UTF-8 byte order mark written at the start of every CSV export. Without
+     * it Excel on Windows reads the file as ANSI and Korean, Japanese or emoji
+     * cells turn into mojibake. The CSV importer strips it again on the way in.
+     */
+    public const CSV_BOM = "\xEF\xBB\xBF";
+
+    /**
      * Hook the admin-post handler. Safe to call from a view file.
      */
     public static function register(): void {
@@ -526,6 +533,8 @@ class Submissions_Admin {
         // Pass an explicit $escape ('' = no escape char, matching WP core) — the
         // 4-arg/implicit form is deprecated on PHP 8.4 and removed in PHP 9.
         $header = [ 'ID', 'Title', 'Email', 'Pipeline', 'Stage', 'Owner', 'Tags', 'Source', 'Source Form', 'Source Entry', 'Status', 'Created', 'Updated' ];
+        // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_fwrite -- streaming CSV; WP_Filesystem has no streaming API.
+        fwrite( $out, self::CSV_BOM );
         fputcsv( $out, array_merge( $header, self::field_headers( $header, $field_labels ) ), ',', '"', '' );
 
         do {
