@@ -4,7 +4,7 @@ Tags: form entries, contact form, crm, leads, csv export
 Requires at least: 6.2
 Tested up to: 7.0
 Requires PHP: 8.2
-Stable tag: 1.18.0
+Stable tag: 1.18.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -137,6 +137,10 @@ Use the contact page at https://jnkplugins.com/entryvault/, or Feedback & Suppor
 7. Pro: automations that tag, assign, move or email entries for you.
 
 == Changelog ==
+
+= 1.18.1 =
+* Fixed: an empty board now points to the pipelines that hold your cards instead of saying nothing has arrived yet.
+* Fixed: card ages (12m, 3h, 2d) now follow your WordPress language.
 
 = 1.18.0 =
 * Fixed: CSV exports now open in Excel with Korean, Japanese and emoji intact.

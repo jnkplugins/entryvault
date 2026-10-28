@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: EntryVault\n"
 "Report-Msgid-Bugs-To: https://jnkplugins.com/entryvault/\n"
-"POT-Creation-Date: 2026-10-28T03:49:21+00:00\n"
+"POT-Creation-Date: 2026-10-28T12:51:53+00:00\n"
 "PO-Revision-Date: 2026-10-10 16:40+0000\n"
 "Last-Translator: JNK Plugins\n"
 "Language-Team: Korean\n"
@@ -2027,6 +2027,24 @@ msgstr "지우기"
 #: admin/assets/kanban/build/index.js:37
 msgid "The move failed, so the card went back."
 msgstr "이동하지 못해 카드가 원래 자리로 돌아갔습니다."
+
+#: admin/assets/kanban/build/index.js:37
+msgid "No cards on this pipeline."
+msgstr "이 파이프라인에는 카드가 없습니다."
+
+#: admin/assets/kanban/build/index.js:37
+msgid ""
+"Your entries are on other pipelines. Open one below, or pick it in the "
+"Pipeline menu above."
+msgstr ""
+"항목은 다른 파이프라인에 있습니다. 아래에서 하나를 열거나 위의 파이프라인 메"
+"뉴에서 고르세요."
+
+#. translators: 1: pipeline name, 2: number of cards on it.
+#: admin/assets/kanban/build/index.js:37
+msgid "%1$s: %2$d card"
+msgid_plural "%1$s: %2$d cards"
+msgstr[0] "%1$s: 카드 %2$d개"
 
 #: admin/assets/kanban/build/index.js:37
 msgid "Nothing here yet. That is expected."

@@ -176,8 +176,18 @@ class REST_API {
                 return in_array( (int) $p['id'], $viewable, true );
             } ) );
         }
+        // Open cards per pipeline, so an empty board can say where the cards are
+        // instead of telling the owner to submit a form.
+        $counts = [];
+        foreach ( (array) $wpdb->get_results( $wpdb->prepare(
+            "SELECT pipeline_id, COUNT(*) AS n FROM %i WHERE status = 'open' GROUP BY pipeline_id",
+            $wpdb->prefix . 'entryvault_submissions'
+        ), ARRAY_A ) as $row ) {
+            $counts[ (int) $row['pipeline_id'] ] = (int) $row['n'];
+        }
         foreach ( $pipelines as &$p ) {
-            $p['stages'] = $wpdb->get_results( $wpdb->prepare(
+            $p['open_count'] = $counts[ (int) $p['id'] ] ?? 0;
+            $p['stages']     = $wpdb->get_results( $wpdb->prepare(
                 "SELECT * FROM {$wpdb->prefix}entryvault_stages WHERE pipeline_id = %d ORDER BY position ASC, id ASC",
                 $p['id']
             ), ARRAY_A );

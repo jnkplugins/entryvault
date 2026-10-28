@@ -1,6 +1,26 @@
 import { useDraggable } from "@dnd-kit/core";
 import { __, _x, sprintf } from "@wordpress/i18n";
-import { utcMs, formatSiteTime, isolate } from "./siteTime";
+import { utcMs, formatSiteTime, isolate, siteLocale } from "./siteTime";
+
+/**
+ * A compact unit in the user's WordPress language ("12m", "12분", "12 د"),
+ * from Intl's narrow unit style, so the card corner is not English on every
+ * site. null when there is no known locale or Intl lacks unit formatting
+ * (older browsers): the caller then uses the translated text as before.
+ */
+const unitFormats = {};
+function narrowUnit( n, unit ) {
+    const locale = siteLocale();
+    if ( ! locale ) return null;
+    try {
+        if ( ! unitFormats[ unit ] ) {
+            unitFormats[ unit ] = new Intl.NumberFormat( locale, { style: "unit", unit, unitDisplay: "narrow" } );
+        }
+        return unitFormats[ unit ].format( n );
+    } catch ( e ) {
+        return null;
+    }
+}
 
 function relativeAge( iso ) {
     if ( ! iso ) return "";
@@ -8,13 +28,13 @@ function relativeAge( iso ) {
     const m = Math.floor( diffMs / 60000 );
     if ( m < 1 ) return __( "just now", "entryvault" );
     /* translators: %d: number of minutes, shown in a short card corner. */
-    if ( m < 60 ) return sprintf( __( "%dm", "entryvault" ), m );
+    if ( m < 60 ) return narrowUnit( m, "minute" ) || sprintf( __( "%dm", "entryvault" ), m );
     const h = Math.floor( m / 60 );
     /* translators: %d: number of hours, shown in a short card corner. */
-    if ( h < 24 ) return sprintf( __( "%dh", "entryvault" ), h );
+    if ( h < 24 ) return narrowUnit( h, "hour" ) || sprintf( __( "%dh", "entryvault" ), h );
     const d = Math.floor( h / 24 );
     /* translators: %d: number of days, shown in a short card corner. */
-    return sprintf( __( "%dd", "entryvault" ), d );
+    return narrowUnit( d, "day" ) || sprintf( __( "%dd", "entryvault" ), d );
 }
 
 /** The owner's name, for the avatar tooltip. Falls back to the id only if the

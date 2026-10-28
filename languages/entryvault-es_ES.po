@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: EntryVault\n"
 "Report-Msgid-Bugs-To: https://jnkplugins.com/entryvault/\n"
-"POT-Creation-Date: 2026-10-28T03:49:21+00:00\n"
+"POT-Creation-Date: 2026-10-28T12:51:53+00:00\n"
 "PO-Revision-Date: 2026-10-10 16:40+0000\n"
 "Last-Translator: JNK Plugins\n"
 "Language-Team: Spanish (Spain)\n"
@@ -2071,6 +2071,25 @@ msgstr "Limpiar"
 #: admin/assets/kanban/build/index.js:37
 msgid "The move failed, so the card went back."
 msgstr "No se ha podido mover, así que la tarjeta ha vuelto a su sitio."
+
+#: admin/assets/kanban/build/index.js:37
+msgid "No cards on this pipeline."
+msgstr "No hay tarjetas en este pipeline."
+
+#: admin/assets/kanban/build/index.js:37
+msgid ""
+"Your entries are on other pipelines. Open one below, or pick it in the "
+"Pipeline menu above."
+msgstr ""
+"Tus entradas están en otros pipelines. Abre uno aquí abajo o elígelo en el "
+"menú Pipeline de arriba."
+
+#. translators: 1: pipeline name, 2: number of cards on it.
+#: admin/assets/kanban/build/index.js:37
+msgid "%1$s: %2$d card"
+msgid_plural "%1$s: %2$d cards"
+msgstr[0] "%1$s: %2$d tarjeta"
+msgstr[1] "%1$s: %2$d tarjetas"
 
 #: admin/assets/kanban/build/index.js:37
 msgid "Nothing here yet. That is expected."

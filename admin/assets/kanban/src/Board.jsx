@@ -29,6 +29,7 @@ export default function Board( { pipelineId, onPipelineChange, initialOpenId = n
     const [ stages, setStages ] = useState( [] );
     const [ pipeline, setPipeline ] = useState( null );
     const [ pipelines, setPipelines ] = useState( [] );
+    const [ pipelinesLoaded, setPipelinesLoaded ] = useState( false );
     const [ owners, setOwners ] = useState( [] );
     const [ selectedOwners, setSelectedOwners ] = useState( [] ); // ids + "unassigned"
     const [ search, setSearch ] = useState( "" );
@@ -55,7 +56,8 @@ export default function Board( { pipelineId, onPipelineChange, initialOpenId = n
     useEffect( () => {
         fetchPipelines()
             .then( ( res ) => setPipelines( unwrap( res ) || [] ) )
-            .catch( () => {} );
+            .catch( () => {} )
+            .finally( () => setPipelinesLoaded( true ) );
         fetchOwners()
             .then( ( res ) => setOwners( unwrap( res ) || [] ) )
             .catch( () => {} );
@@ -258,6 +260,13 @@ export default function Board( { pipelineId, onPipelineChange, initialOpenId = n
         selectedOwners.length === 0 &&
         ( stagesView || [] ).every( ( s ) => ! ( s.cards || [] ).length );
 
+    // Pipelines other than this one that hold open cards: an empty board then
+    // points there instead of showing the first-run text ("submit one of your
+    // forms"), which read wrong with 30 cards on the next board.
+    const otherBoards = ( pipelines || [] ).filter(
+        ( p ) => String( p.id ) !== String( pipelineId ) && Number( p.open_count ) > 0
+    );
+
     const shownCards = ( stagesView || [] ).reduce( ( n, s ) => n + ( s.cards || [] ).length, 0 );
     const totalCards = ( stagesView || [] ).reduce( ( n, s ) => n + ( s.total || 0 ), 0 );
     const totalLabel = shownCards < totalCards
@@ -335,7 +344,9 @@ export default function Board( { pipelineId, onPipelineChange, initialOpenId = n
             </div>
 
             { error && <div className="ev-board-msg is-error">{ error }</div> }
-            { boardIsEmpty && <GettingStarted /> }
+            { boardIsEmpty && pipelinesLoaded && ( otherBoards.length
+                ? <OtherBoards boards={ otherBoards } onPick={ onPipelineChange } />
+                : <GettingStarted /> ) }
             <DndContext sensors={ sensors } onDragStart={ handleDragStart } onDragEnd={ handleDragEnd } accessibility={ dragA11y }>
                 <div className="ev-board">
                     { stagesView.map( ( s ) => <Column key={ s.id } stage={ s } onOpenCard={ setOpenId } onLoadMore={ loadMore } /> ) }
@@ -364,6 +375,33 @@ function OwnerChip( { label, active, onClick } ) {
             aria-pressed={ active }
             onClick={ onClick }
         >{ label }</button>
+    );
+}
+
+/** This board is empty, but other pipelines hold cards: say so and link them. */
+function OtherBoards( { boards, onPick } ) {
+    return (
+        <div className="jnkui-callout ev-board-start">
+            <div>
+                <p><strong>{ __( "No cards on this pipeline.", "entryvault" ) }</strong></p>
+                <p>{ __( "Your entries are on other pipelines. Open one below, or pick it in the Pipeline menu above.", "entryvault" ) }</p>
+                <p className="ev-board-start-actions">
+                    { boards.map( ( b ) => {
+                        const n = Number( b.open_count );
+                        return (
+                            <button
+                                type="button"
+                                className="button"
+                                key={ b.id }
+                                onClick={ () => onPick && onPick( String( b.id ) ) }
+                            >
+                                { /* translators: 1: pipeline name, 2: number of cards on it. */ sprintf( _n( "%1$s: %2$d card", "%1$s: %2$d cards", n, "entryvault" ), b.name, n ) }
+                            </button>
+                        );
+                    } ) }
+                </p>
+            </div>
+        </div>
     );
 }
 
