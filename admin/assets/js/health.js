@@ -8,6 +8,9 @@
     var boot      = window.EntryVaultHealthBoot || {};
     var REST_ROOT = boot.restRoot || '';
     var NONCE     = boot.nonce || '';
+    // Translations come from languages/entryvault-<locale>-<md5>.json through
+    // wp_set_script_translations(); the fallback only matters if wp-i18n is gone.
+    var __ = ( window.wp && window.wp.i18n && window.wp.i18n.__ ) || function ( s ) { return s; };
 
     var cardsEl   = document.getElementById( 'ev-health-cards' );
     var overallEl = document.getElementById( 'ev-health-overall' );
@@ -23,9 +26,9 @@
     }
 
     var LEVELS = {
-        ok:   { pill: 'is-ok',   text: 'All good' },
-        warn: { pill: 'is-warn', text: 'Check this' },
-        fail: { pill: 'is-bad',  text: 'Needs fixing' }
+        ok:   { pill: 'is-ok',   text: __( 'All good', 'entryvault' ) },
+        warn: { pill: 'is-warn', text: __( 'Check this', 'entryvault' ) },
+        fail: { pill: 'is-bad',  text: __( 'Needs fixing', 'entryvault' ) }
     };
 
     function levelOf( level ) {
@@ -51,9 +54,9 @@
     }
 
     var OVERALL = {
-        ok:   { title: 'Everything looks good', text: 'EntryVault is set up and listening to your forms.', icon: '<path d="M20 6 9 17l-5-5"/>' },
-        warn: { title: 'Working, with one thing to check', text: 'See the card marked "Check this" below.', icon: '<path d="M12 9v4"/><path d="M12 17h.01"/><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/>' },
-        fail: { title: 'Something needs fixing', text: 'See the card marked "Needs fixing" below. Deactivating and activating EntryVault once often repairs it.', icon: '<path d="M18 6 6 18"/><path d="m6 6 12 12"/>' }
+        ok:   { title: __( 'Everything looks good', 'entryvault' ), text: __( 'EntryVault is set up and listening to your forms.', 'entryvault' ), icon: '<path d="M20 6 9 17l-5-5"/>' },
+        warn: { title: __( 'Working, with one thing to check', 'entryvault' ), text: __( 'See the card marked "Check this" below.', 'entryvault' ), icon: '<path d="M12 9v4"/><path d="M12 17h.01"/><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/>' },
+        fail: { title: __( 'Something needs fixing', 'entryvault' ), text: __( 'See the card marked "Needs fixing" below. Deactivating and activating EntryVault once often repairs it.', 'entryvault' ), icon: '<path d="M18 6 6 18"/><path d="m6 6 12 12"/>' }
     };
 
     function render( report ) {
@@ -77,27 +80,27 @@
         var active  = sources.active || [];
         // Green "OK" next to "No form plugin detected yet" read as all-clear while
         // nothing was being captured. It is not a failure, but it is a warning.
-        html += card( 'Form plugins', active.length ? 'ok' : 'warn', [
+        html += card( __( 'Form plugins', 'entryvault' ), active.length ? 'ok' : 'warn', [
             [
-                'Listening to',
+                __( 'Listening to', 'entryvault' ),
                 active.length
                     ? active.join( ', ' )
-                    : 'No form plugin found yet. Activate one, or import a CSV file.'
+                    : __( 'No form plugin found yet. Activate one, or import a CSV file.', 'entryvault' )
             ],
         ] );
 
         var db = report.db || {};
-        html += card( 'Database', db.ok ? 'ok' : 'fail', [
-            [ 'Tables', db.tables_present ? 'All in place' : 'Some are missing' ],
-            [ 'Missing', ( db.missing_tables && db.missing_tables.length ) ? db.missing_tables.join( ', ' ) : 'None' ],
+        html += card( __( 'Database', 'entryvault' ), db.ok ? 'ok' : 'fail', [
+            [ __( 'Tables', 'entryvault' ), db.tables_present ? __( 'All in place', 'entryvault' ) : __( 'Some are missing', 'entryvault' ) ],
+            [ __( 'Missing', 'entryvault' ), ( db.missing_tables && db.missing_tables.length ) ? db.missing_tables.join( ', ' ) : __( 'None', 'entryvault' ) ],
         ] );
 
         var composer = report.composer || {};
-        html += card( 'Plugin files', composer.ok ? 'ok' : 'fail', [
-            [ 'Helper code', composer.autoload_ok ? 'Found' : 'Missing. Reinstall EntryVault from a fresh download.' ],
+        html += card( __( 'Plugin files', 'entryvault' ), composer.ok ? 'ok' : 'fail', [
+            [ __( 'Helper code', 'entryvault' ), composer.autoload_ok ? __( 'Found', 'entryvault' ) : __( 'Missing. Reinstall EntryVault from a fresh download.', 'entryvault' ) ],
         ] );
 
-        html += card( 'Versions', 'ok', [
+        html += card( __( 'Versions', 'entryvault' ), 'ok', [
             [ 'EntryVault', report.plugin_version || '' ],
             [ 'WordPress', report.wp_version || '' ],
             [ 'PHP', report.php_version || '' ],
@@ -132,16 +135,16 @@
     }
 
     function load() {
-        setStatus( 'Checking…' );
+        setStatus( __( 'Checking…', 'entryvault' ) );
         api( '/health' ).then( function ( res ) {
             if ( res.body && res.body.success ) {
                 render( res.body.data );
                 setStatus( '' );
             } else {
-                setStatus( 'Could not load the check. Reload the page and try again.', 'fail' );
+                setStatus( __( 'Could not load the check. Reload the page and try again.', 'entryvault' ), 'fail' );
             }
         } ).catch( function () {
-            setStatus( 'Could not load the check. Reload the page and try again.', 'fail' );
+            setStatus( __( 'Could not load the check. Reload the page and try again.', 'entryvault' ), 'fail' );
         } );
     }
 

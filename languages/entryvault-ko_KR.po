@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: EntryVault\n"
 "Report-Msgid-Bugs-To: https://jnkplugins.com/entryvault/\n"
-"POT-Creation-Date: 2026-10-28T12:51:53+00:00\n"
+"POT-Creation-Date: 2026-10-29T03:45:35+00:00\n"
 "PO-Revision-Date: 2026-10-10 16:40+0000\n"
 "Last-Translator: JNK Plugins\n"
 "Language-Team: Korean\n"
@@ -14,6 +14,436 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Domain: entryvault\n"
 "X-Generator: WP-CLI 2.12.0\n"
+
+#: pro/licensorpro-client/licensorpro-client.php:750
+msgid "Manage license"
+msgstr "라이선스 관리"
+
+#: pro/licensorpro-client/licensorpro-client.php:753
+msgid "Renew license"
+msgstr "라이선스 갱신"
+
+#: pro/licensorpro-client/licensorpro-client.php:754
+msgid "Activate license"
+msgstr "라이선스 활성화"
+
+#. translators: %s: plugin name
+#: pro/licensorpro-client/licensorpro-client.php:781
+#, php-format
+msgid ""
+"<strong>%s Pro is on.</strong> Thank you! Every Pro tool is switched on for "
+"this site, and updates come to your dashboard."
+msgstr ""
+"<strong>%s Pro가 켜졌습니다.</strong> 감사합니다! 이 사이트에서 모든 Pro 도구"
+"가 켜졌고, 업데이트는 대시보드로 전달됩니다."
+
+#. translators: %s: plugin name
+#: pro/licensorpro-client/licensorpro-client.php:830
+#, php-format
+msgid ""
+"<strong>%s Pro is installed, but no Pro license is active on this site.</"
+"strong> Enter your license key to switch on the Pro tools."
+msgstr ""
+"<strong>%s Pro가 설치되었지만 이 사이트에 활성화된 Pro 라이선스가 없습니다.</"
+"strong> Pro 도구를 켜려면 라이선스 키를 입력하세요."
+
+#: pro/licensorpro-client/licensorpro-client.php:836
+msgid "Enter license key"
+msgstr "라이선스 키 입력"
+
+#: pro/licensorpro-client/licensorpro-client.php:839
+msgid "Find your key in your account"
+msgstr "계정에서 키 찾기"
+
+#: pro/licensorpro-client/licensorpro-client.php:865
+msgid "Renew your license"
+msgstr "라이선스 갱신하기"
+
+#. translators: 1: plugin name, 2: expiry date, 3: lock date, 4: days left
+#: pro/licensorpro-client/licensorpro-client.php:871
+#, php-format
+msgid ""
+"<strong>Your %1$s Pro license expired on %2$s.</strong> Pro keeps working as "
+"normal until %3$s (%4$d days left). Updates, including security fixes, and "
+"email support have stopped. After %3$s, everything you already set up keeps "
+"working and your visitors won't notice a thing, but the Pro tools in your "
+"dashboard will lock."
+msgstr ""
+"<strong>%1$s Pro 라이선스가 %2$s에 만료되었습니다.</strong> Pro는 %3$s까지 평"
+"소처럼 작동합니다(%4$d일 남음). 보안 수정을 포함한 업데이트와 이메일 지원은 "
+"중단되었습니다. %3$s 이후에도 이미 설정한 모든 것은 계속 작동하고 방문자는 아"
+"무 차이도 느끼지 못하지만, 대시보드의 Pro 도구는 잠깁니다."
+
+#. translators: 1: plugin name, 2: expiry date
+#: pro/licensorpro-client/licensorpro-client.php:881
+#, php-format
+msgid ""
+"<strong>%1$s Pro tools are locked because your license expired on %2$s.</"
+"strong> Your site, and everything visitors see, still works. Renew to unlock "
+"the Pro tools and get updates, including security fixes, again."
+msgstr ""
+"<strong>라이선스가 %2$s에 만료되어 %1$s Pro 도구가 잠겼습니다.</strong> 사이"
+"트와 방문자가 보는 모든 것은 계속 작동합니다. 갱신하면 Pro 도구가 다시 열리"
+"고, 보안 수정을 포함한 업데이트도 다시 받을 수 있습니다."
+
+#. translators: %s: plugin name
+#: pro/licensorpro-client/licensorpro-client.php:889
+#, php-format
+msgid ""
+"<strong>This site is no longer activated on your %s Pro license.</strong> "
+"The Pro tools in your dashboard are locked until you activate it again. "
+"Everything visitors see keeps working."
+msgstr ""
+"<strong>이 사이트는 더 이상 %s Pro 라이선스에서 활성화되어 있지 않습니다.</"
+"strong> 다시 활성화할 때까지 대시보드의 Pro 도구는 잠깁니다. 방문자가 보는 모"
+"든 것은 계속 작동합니다."
+
+#. translators: %s: plugin name
+#: pro/licensorpro-client/licensorpro-client.php:896
+#, php-format
+msgid ""
+"<strong>Your %s Pro license is no longer active.</strong> It was refunded or "
+"cancelled, so the Pro tools in your dashboard are locked and updates have "
+"stopped. Everything visitors see keeps working."
+msgstr ""
+"<strong>%s Pro 라이선스가 더 이상 활성 상태가 아닙니다.</strong> 환불되었거"
+"나 취소되어 대시보드의 Pro 도구가 잠겼고 업데이트도 중단되었습니다. 방문자가 "
+"보는 모든 것은 계속 작동합니다."
+
+#: pro/licensorpro-client/licensorpro-client.php:998
+msgid "Please enter a license key."
+msgstr "라이선스 키를 입력하세요."
+
+#: pro/licensorpro-client/licensorpro-client.php:1010
+#: pro/licensorpro-client/licensorpro-client.php:1069
+msgid "License response failed signature verification."
+msgstr "라이선스 응답의 서명 검증에 실패했습니다."
+
+#: pro/licensorpro-client/licensorpro-client.php:1052
+msgid "No license key set."
+msgstr "라이선스 키가 설정되지 않았습니다."
+
+#: pro/licensorpro-client/licensorpro-client.php:1184
+msgid "Only deactivating temporarily"
+msgstr "잠시 비활성화하는 것뿐입니다"
+
+#: pro/licensorpro-client/licensorpro-client.php:1185
+msgid "I could not work out how to use it"
+msgstr "사용 방법을 모르겠습니다"
+
+#: pro/licensorpro-client/licensorpro-client.php:1186
+msgid "It is missing a feature I need"
+msgstr "필요한 기능이 없습니다"
+
+#: pro/licensorpro-client/licensorpro-client.php:1187
+msgid "It did not work"
+msgstr "작동하지 않았습니다"
+
+#: pro/licensorpro-client/licensorpro-client.php:1188
+msgid "It broke something on my site"
+msgstr "사이트에 문제가 생겼습니다"
+
+#: pro/licensorpro-client/licensorpro-client.php:1189
+msgid "I found a better plugin"
+msgstr "더 좋은 플러그인을 찾았습니다"
+
+#: pro/licensorpro-client/licensorpro-client.php:1190
+msgid "I no longer need it"
+msgstr "더 이상 필요하지 않습니다"
+
+#: pro/licensorpro-client/licensorpro-client.php:1191
+msgid "Something else"
+msgstr "기타"
+
+#. translators: %s: plugin name.
+#: pro/licensorpro-client/licensorpro-client.php:1218
+#, php-format
+msgid "Before you turn %s off"
+msgstr "%s 비활성화 전에"
+
+#: pro/licensorpro-client/licensorpro-client.php:1222
+msgid ""
+"If you have a moment, what went wrong? It is the only way we hear about it."
+msgstr ""
+"잠시 시간이 있으시면 무엇이 문제였는지 알려 주세요. 저희가 문제를 알 수 있는 "
+"유일한 방법입니다."
+
+#: pro/licensorpro-client/licensorpro-client.php:1233
+msgid "Anything else? (optional)"
+msgstr "더 하실 말씀이 있나요? (선택)"
+
+#: pro/licensorpro-client/licensorpro-client.php:1235
+msgid ""
+"Sends your answer, the plugin version and your site address. Nothing else, "
+"and nothing from your site content."
+msgstr ""
+"답변, 플러그인 버전, 사이트 주소를 보냅니다. 그 밖의 정보나 사이트 콘텐츠는 "
+"보내지 않습니다."
+
+#: pro/licensorpro-client/licensorpro-client.php:1239
+msgid "Send and deactivate"
+msgstr "보내고 비활성화"
+
+#: pro/licensorpro-client/licensorpro-client.php:1242
+msgid "Skip and deactivate"
+msgstr "건너뛰고 비활성화"
+
+#: pro/licensorpro-client/licensorpro-client.php:1245 admin/views/tags.php:54
+#: admin/assets/kanban/build/index.js:5 admin/assets/kanban/build/index.js:26
+msgid "Cancel"
+msgstr "취소"
+
+#: pro/licensorpro-client/licensorpro-client.php:1366
+#: pro/licensorpro-client/licensorpro-client.php:1382
+msgid "API URL not configured."
+msgstr "API URL이 설정되지 않았습니다."
+
+#: pro/licensorpro-client/licensorpro-client.php:1401
+msgid "Unexpected response from license server."
+msgstr "라이선스 서버에서 예상하지 못한 응답이 왔습니다."
+
+#. translators: %s: human-readable time difference, e.g. "3 hours".
+#: pro/licensorpro-client/licensorpro-client.php:1699
+#: includes/class-dates.php:65
+#, php-format
+msgid "in %s"
+msgstr "%s 후"
+
+#. translators: %s: human-readable time difference, e.g. "3 hours".
+#: pro/licensorpro-client/licensorpro-client.php:1700
+#: includes/class-dates.php:67
+#, php-format
+msgid "%s ago"
+msgstr "%s 전"
+
+#: pro/licensorpro-client/licensorpro-client.php:1725
+#, php-format
+msgid "%s License"
+msgstr "%s 라이선스"
+
+#: pro/licensorpro-client/licensorpro-client.php:1735
+msgid ""
+"This site was deactivated, so its seat is free for another site. Enter the "
+"key again here to switch the Pro tools back on."
+msgstr ""
+"이 사이트가 비활성화되어 다른 사이트에서 이 자리를 쓸 수 있습니다. Pro 도구"
+"를 다시 켜려면 여기에 키를 다시 입력하세요."
+
+#: pro/licensorpro-client/licensorpro-client.php:1745
+#: pro/licensorpro-client/licensorpro-client.php:1776
+#: pro/licensorpro-client/licensorpro-client.php:1833
+msgid "License key"
+msgstr "라이선스 키"
+
+#: pro/licensorpro-client/licensorpro-client.php:1746
+msgid "Type"
+msgstr "유형"
+
+#: pro/licensorpro-client/licensorpro-client.php:1748
+msgid ""
+"Free license: updates of the free version only. It does not switch on Pro."
+msgstr "무료 라이선스: 무료 버전 업데이트만 받습니다. Pro를 켜지 않습니다."
+
+#: pro/licensorpro-client/licensorpro-client.php:1749
+msgid "Free license: updates arrive in your dashboard like any other plugin."
+msgstr "무료 라이선스: 다른 플러그인처럼 대시보드에서 업데이트를 받습니다."
+
+#: pro/licensorpro-client/licensorpro-client.php:1751
+#: pro/licensorpro-client/licensorpro-client.php:1801
+msgid "Last checked"
+msgstr "마지막 확인"
+
+#: pro/licensorpro-client/licensorpro-client.php:1755
+#: pro/licensorpro-client/licensorpro-client.php:1807
+msgid "Check for updates now"
+msgstr "지금 업데이트 확인"
+
+#: pro/licensorpro-client/licensorpro-client.php:1758
+msgid "Bought Pro?"
+msgstr "Pro를 구매하셨나요?"
+
+#: pro/licensorpro-client/licensorpro-client.php:1759
+msgid ""
+"Enter your Pro license key and Pro is installed over this version. "
+"Everything you set up stays."
+msgstr ""
+"Pro 라이선스 키를 입력하면 Pro가 이 버전 위에 설치됩니다. 설정한 내용은 모두 "
+"그대로 유지됩니다."
+
+#: pro/licensorpro-client/licensorpro-client.php:1761
+msgid "Pro license key"
+msgstr "Pro 라이선스 키"
+
+#: pro/licensorpro-client/licensorpro-client.php:1764
+#: pro/licensorpro-client/licensorpro-client.php:1814
+msgid "Install Pro now"
+msgstr "지금 Pro 설치"
+
+#: pro/licensorpro-client/licensorpro-client.php:1766
+msgid ""
+"Rather do it by hand? Download the Pro zip from your account and upload it "
+"over this plugin."
+msgstr ""
+"직접 하시겠어요? 계정에서 Pro zip 파일을 내려받아 이 플러그인 위에 업로드하세"
+"요."
+
+#: pro/licensorpro-client/licensorpro-client.php:1767
+#: pro/licensorpro-client/licensorpro-client.php:1841
+msgid "Go to your account"
+msgstr "계정으로 이동"
+
+#: pro/licensorpro-client/licensorpro-client.php:1778
+msgid "active"
+msgstr "활성"
+
+#. translators: %s: date the Pro tools lock
+#: pro/licensorpro-client/licensorpro-client.php:1780
+#, php-format
+msgid "expired, Pro tools stay on until %s"
+msgstr "만료됨, %s까지 Pro 도구 사용 가능"
+
+#: pro/licensorpro-client/licensorpro-client.php:1781
+msgid "expired, Pro tools locked"
+msgstr "만료됨, Pro 도구 잠김"
+
+#: pro/licensorpro-client/licensorpro-client.php:1783
+msgid "this site is not activated"
+msgstr "이 사이트는 활성화되지 않았습니다"
+
+#: pro/licensorpro-client/licensorpro-client.php:1784
+msgid "no longer active (refunded or cancelled)"
+msgstr "더 이상 활성 상태가 아님(환불 또는 취소됨)"
+
+#: pro/licensorpro-client/licensorpro-client.php:1786
+#: admin/assets/kanban/build/index.js:5
+msgid "Status"
+msgstr "상태"
+
+#: pro/licensorpro-client/licensorpro-client.php:1788
+msgid "Renew"
+msgstr "갱신"
+
+#: pro/licensorpro-client/licensorpro-client.php:1792
+msgid "Offline mode"
+msgstr "오프라인 모드"
+
+#: pro/licensorpro-client/licensorpro-client.php:1794
+#, php-format
+msgid "cached license valid until %s"
+msgstr "캐시된 라이선스, %s까지 유효"
+
+#: pro/licensorpro-client/licensorpro-client.php:1798
+msgid "Update channel"
+msgstr "업데이트 채널"
+
+#: pro/licensorpro-client/licensorpro-client.php:1799
+msgid "Site limit"
+msgstr "사이트 한도"
+
+#: pro/licensorpro-client/licensorpro-client.php:1800
+msgid "Expires"
+msgstr "만료일"
+
+#: pro/licensorpro-client/licensorpro-client.php:1800
+msgid "Never"
+msgstr "없음"
+
+#: pro/licensorpro-client/licensorpro-client.php:1805
+msgid "Deactivate this site"
+msgstr "이 사이트 비활성화"
+
+#: pro/licensorpro-client/licensorpro-client.php:1812
+msgid "This is the free version, running on your Pro license."
+msgstr "Pro 라이선스로 실행 중인 무료 버전입니다."
+
+#: pro/licensorpro-client/licensorpro-client.php:1829
+msgid ""
+"Have a Pro license key? Enter it here to switch on the Pro tools. It "
+"replaces the free license on this site."
+msgstr ""
+"Pro 라이선스 키가 있나요? 여기에 입력하면 Pro 도구가 켜집니다. 이 사이트의 무"
+"료 라이선스를 대신합니다."
+
+#: pro/licensorpro-client/licensorpro-client.php:1830
+msgid "Enter your license key to activate this site."
+msgstr "이 사이트를 활성화하려면 라이선스 키를 입력하세요."
+
+#: pro/licensorpro-client/licensorpro-client.php:1837
+msgid "Activate"
+msgstr "활성화"
+
+#: pro/licensorpro-client/licensorpro-client.php:1840
+msgid "Your key is in your purchase email and in your account."
+msgstr "키는 구매 확인 이메일과 계정에 있습니다."
+
+#: pro/licensorpro-client/licensorpro-client.php:1848
+msgid "Need a hand?"
+msgstr "도움이 필요하신가요?"
+
+#: pro/licensorpro-client/licensorpro-client.php:1849
+msgid "Contact support"
+msgstr "지원팀에 문의"
+
+#: pro/licensorpro-client/licensorpro-client.php:2054
+msgid "Only someone who may install plugins on this site can install Pro."
+msgstr ""
+"이 사이트에 플러그인을 설치할 수 있는 사용자만 Pro를 설치할 수 있습니다."
+
+#: pro/licensorpro-client/licensorpro-client.php:2067
+msgid ""
+"That is a free license key, so it keeps this free version updated. Pro needs "
+"the key from your purchase email."
+msgstr ""
+"무료 라이선스 키이므로 이 무료 버전의 업데이트를 받는 데 쓰입니다. Pro에는 구"
+"매 확인 이메일에 있는 키가 필요합니다."
+
+#. translators: %s: URL of the customer account
+#: pro/licensorpro-client/licensorpro-client.php:2072
+#, php-format
+msgid ""
+"Your key is active. Download the Pro zip from your account (%s) and upload "
+"it over this plugin instead."
+msgstr ""
+"키가 활성화되었습니다. 계정(%s)에서 Pro zip 파일을 내려받아 이 플러그인 위에 "
+"업로드하세요."
+
+#: pro/licensorpro-client/licensorpro-client.php:2076
+msgid "This site does not allow installing plugins from the dashboard."
+msgstr "이 사이트는 대시보드에서 플러그인 설치를 허용하지 않습니다."
+
+#: pro/licensorpro-client/licensorpro-client.php:2080
+msgid "The Pro download could not be fetched for this key."
+msgstr "이 키로 Pro 다운로드를 가져오지 못했습니다."
+
+#: pro/licensorpro-client/licensorpro-client.php:2088
+msgid "This site asks for FTP details to install plugins."
+msgstr "이 사이트는 플러그인을 설치할 때 FTP 정보를 요구합니다."
+
+#: pro/licensorpro-client/licensorpro-client.php:2123
+msgid "Installing Pro did not finish."
+msgstr "Pro 설치가 끝나지 않았습니다."
+
+#. translators: %s: plugin name
+#: pro/licensorpro-client/licensorpro-client.php:2128
+#, php-format
+msgid "%s Pro is installed and your license is active. Reloading…"
+msgstr "%s Pro가 설치되었고 라이선스가 활성화되었습니다. 새로 고치는 중…"
+
+#: pro/licensorpro-client/licensorpro-client.php:2138
+msgid "License activated."
+msgstr "라이선스가 활성화되었습니다."
+
+#: pro/licensorpro-client/licensorpro-client.php:2150
+msgid "Site deactivated."
+msgstr "사이트가 비활성화되었습니다."
+
+#: pro/licensorpro-client/licensorpro-client.php:2161
+msgid "License is valid. Update info refreshed."
+msgstr "라이선스가 유효합니다. 업데이트 정보를 새로 고쳤습니다."
+
+#: pro/licensorpro-client/licensorpro-client.php:2168
+msgid "Permission denied."
+msgstr "권한이 없습니다."
 
 #. Plugin Name of the plugin
 #: entryvault.php includes/class-admin-ui.php:81 includes/class-plugin.php:121
@@ -442,12 +872,13 @@ msgstr "기본 파이프라인 사용"
 
 #: admin/views/import.php:91 includes/class-frontend.php:501
 #: includes/class-submissions-list-table.php:58
-#: admin/assets/kanban/build/index.js:5
+#: admin/assets/js/dashboard.js:140
+#: admin/assets/js/dashboard.js:219 admin/assets/kanban/build/index.js:5
 #: blocks/submissions-table/index.js:26
 msgid "Stage"
 msgstr "단계"
 
-#: admin/views/import.php:93 includes/class-plugin.php:329
+#: admin/views/import.php:93 includes/class-plugin.php:331
 msgid "First stage of the pipeline"
 msgstr "파이프라인의 첫 단계"
 
@@ -540,6 +971,7 @@ msgid "Default pipeline"
 msgstr "기본 파이프라인"
 
 #: admin/views/settings.php:83
+#: admin/assets/js/health.js:95
 msgid "None"
 msgstr "없음"
 
@@ -724,7 +1156,7 @@ msgstr "색상"
 msgid "Actions"
 msgstr "작업"
 
-#: admin/views/tags.php:39 includes/class-plugin.php:275
+#: admin/views/tags.php:39 includes/class-plugin.php:276
 msgid "Add a tag"
 msgstr "태그 추가"
 
@@ -737,11 +1169,6 @@ msgstr "이름과 색상을 고르세요. 보드의 항목에서도 태그를 �
 #: admin/views/tags.php:53
 msgid "Save tag"
 msgstr "태그 저장"
-
-#: admin/views/tags.php:54
-#: admin/assets/kanban/build/index.js:5 admin/assets/kanban/build/index.js:26
-msgid "Cancel"
-msgstr "취소"
 
 #: admin/views/upgrade.php:29
 msgid "Automation engine"
@@ -930,18 +1357,6 @@ msgstr "도움말"
 msgid "just now"
 msgstr "방금"
 
-#. translators: %s: human-readable time difference, e.g. "3 hours".
-#: includes/class-dates.php:65
-#, php-format
-msgid "in %s"
-msgstr "%s 후"
-
-#. translators: %s: human-readable time difference, e.g. "3 hours".
-#: includes/class-dates.php:67
-#, php-format
-msgid "%s ago"
-msgstr "%s 전"
-
 #: includes/class-email-sender.php:109
 msgid "The mailer did not accept the email."
 msgstr "메일러가 이메일을 받아들이지 않았습니다."
@@ -1018,13 +1433,13 @@ msgstr "제출일"
 msgid "Created"
 msgstr "생성일"
 
-#: includes/class-frontend.php:498 includes/class-plugin.php:337
+#: includes/class-frontend.php:498 includes/class-plugin.php:339
 #: includes/class-privacy.php:227 includes/class-submissions-list-table.php:51
 #: blocks/submissions-table/index.js:24
 msgid "Title"
 msgstr "제목"
 
-#: includes/class-frontend.php:500 includes/class-plugin.php:338
+#: includes/class-frontend.php:500 includes/class-plugin.php:340
 #: includes/class-privacy.php:228 includes/class-submissions-list-table.php:52
 #: admin/assets/kanban/build/index.js:5
 msgid "Email"
@@ -1032,7 +1447,8 @@ msgstr "이메일"
 
 #: includes/class-frontend.php:502 includes/class-submissions-list-table.php:63
 #: includes/class-submissions-list-table.php:128
-#: admin/assets/kanban/build/index.js:5 admin/assets/kanban/build/index.js:37
+#: admin/assets/js/dashboard.js:156 admin/assets/kanban/build/index.js:5
+#: admin/assets/kanban/build/index.js:37
 msgid "Owner"
 msgstr "담당자"
 
@@ -1061,7 +1477,7 @@ msgstr "대시보드"
 msgid "Feedback"
 msgstr "의견 보내기"
 
-#: includes/class-plugin.php:218 includes/class-plugin.php:271
+#: includes/class-plugin.php:218 includes/class-plugin.php:272
 msgid "Saved."
 msgstr "저장했습니다."
 
@@ -1069,100 +1485,100 @@ msgstr "저장했습니다."
 msgid "Save failed."
 msgstr "저장하지 못했습니다."
 
-#: includes/class-plugin.php:269
+#: includes/class-plugin.php:270
 msgid "Edit"
 msgstr "편집"
 
-#: includes/class-plugin.php:270 includes/class-submissions-list-table.php:94
+#: includes/class-plugin.php:271 includes/class-submissions-list-table.php:94
 msgid "Delete"
 msgstr "삭제"
 
-#: includes/class-plugin.php:272
+#: includes/class-plugin.php:273
 msgid "Error."
 msgstr "오류가 발생했습니다."
 
-#: includes/class-plugin.php:273
+#: includes/class-plugin.php:274
 msgid "Delete this tag? It comes off every entry that has it."
 msgstr "이 태그를 삭제할까요? 이 태그가 붙은 모든 항목에서 제거됩니다."
 
-#: includes/class-plugin.php:274
+#: includes/class-plugin.php:275
 msgid "No tags yet. Add your first one with the form next to this list."
 msgstr "아직 태그가 없습니다. 이 목록 옆의 양식에서 첫 태그를 추가하세요."
 
-#: includes/class-plugin.php:276
+#: includes/class-plugin.php:277
 msgid "Edit tag"
 msgstr "태그 편집"
 
-#: includes/class-plugin.php:330
+#: includes/class-plugin.php:332
 msgid "Please choose a file or paste CSV first."
 msgstr "먼저 파일을 선택하거나 CSV를 붙여 넣으세요."
 
-#: includes/class-plugin.php:331
+#: includes/class-plugin.php:333
 msgid "Loading preview…"
 msgstr "미리보기를 불러오는 중…"
 
-#: includes/class-plugin.php:332
+#: includes/class-plugin.php:334
 msgid "Preview failed."
 msgstr "미리보기에 실패했습니다."
 
 #. translators: %s: number of rows loaded.
-#: includes/class-plugin.php:334
+#: includes/class-plugin.php:336
 #, php-format
 msgid "Loaded %s rows."
 msgstr "%s개 행을 불러왔습니다."
 
-#: includes/class-plugin.php:335
+#: includes/class-plugin.php:337
 msgid "Network error."
 msgstr "네트워크 오류입니다."
 
-#: includes/class-plugin.php:336
+#: includes/class-plugin.php:338
 msgid "Ignore"
 msgstr "무시"
 
-#: includes/class-plugin.php:339 includes/class-privacy.php:226
+#: includes/class-plugin.php:341 includes/class-privacy.php:226
 #: includes/class-submissions-list-table.php:64
 #: admin/assets/kanban/build/index.js:5
 msgid "Source"
 msgstr "출처"
 
-#: includes/class-plugin.php:340
+#: includes/class-plugin.php:342
 msgid "Field"
 msgstr "필드"
 
-#: includes/class-plugin.php:341
+#: includes/class-plugin.php:343
 msgid "You must map one column to Email."
 msgstr "한 열을 이메일로 지정해야 합니다."
 
-#: includes/class-plugin.php:342
+#: includes/class-plugin.php:344
 msgid "Running…"
 msgstr "실행 중…"
 
-#: includes/class-plugin.php:343
+#: includes/class-plugin.php:345
 msgid "Import failed."
 msgstr "가져오기에 실패했습니다."
 
-#: includes/class-plugin.php:344
+#: includes/class-plugin.php:346
 msgid "Done."
 msgstr "완료했습니다."
 
-#: includes/class-plugin.php:345
+#: includes/class-plugin.php:347
 msgid "Results"
 msgstr "결과"
 
-#: includes/class-plugin.php:346
+#: includes/class-plugin.php:348
 msgid "Test run: nothing was saved."
 msgstr "테스트 실행: 아무것도 저장하지 않았습니다."
 
-#: includes/class-plugin.php:347
+#: includes/class-plugin.php:349
 msgid "Imported:"
 msgstr "가져옴:"
 
-#: includes/class-plugin.php:348
+#: includes/class-plugin.php:350
 msgid "Would import:"
 msgstr "가져올 항목:"
 
 #. translators: %s: comma-separated column names.
-#: includes/class-plugin.php:350
+#: includes/class-plugin.php:352
 #, php-format
 msgid ""
 "Only one column can be the title, but these are all set to Title: %s. Set "
@@ -1171,11 +1587,11 @@ msgstr ""
 "제목으로 지정할 수 있는 열은 하나뿐인데, 다음 열이 모두 제목으로 설정되어 있"
 "습니다: %s. 나머지는 필드로 바꾸면 값이 유지됩니다."
 
-#: includes/class-plugin.php:351
+#: includes/class-plugin.php:353
 msgid "Already present:"
 msgstr "이미 있음:"
 
-#: includes/class-plugin.php:352
+#: includes/class-plugin.php:354
 msgid ""
 "Rows already present were recognised from an earlier import and left "
 "untouched, so nothing was duplicated."
@@ -1183,15 +1599,15 @@ msgstr ""
 "이미 있는 행은 이전 가져오기에서 들어온 것으로 확인되어 그대로 두었으므로 중"
 "복된 항목은 없습니다."
 
-#: includes/class-plugin.php:353
+#: includes/class-plugin.php:355
 msgid "Skipped:"
 msgstr "건너뜀:"
 
-#: includes/class-plugin.php:354
+#: includes/class-plugin.php:356
 msgid "Errors"
 msgstr "오류"
 
-#: includes/class-plugin.php:355
+#: includes/class-plugin.php:357
 msgid "Row"
 msgstr "행"
 
@@ -1583,12 +1999,20 @@ msgid "nobody"
 msgstr "없음"
 
 #: admin/assets/kanban/build/index.js:5
-msgid "Status"
-msgstr "상태"
-
-#: admin/assets/kanban/build/index.js:5
 msgid "Close"
 msgstr "닫기"
+
+#: admin/assets/js/dashboard.js:140
+msgid "Entries"
+msgstr "항목"
+
+#: admin/assets/js/dashboard.js:158
+msgid "Won"
+msgstr "성사"
+
+#: admin/assets/js/dashboard.js:159
+msgid "Lost"
+msgstr "실패"
 
 #: public/templates/submissions-table.php:59
 msgid "Search…"
@@ -1615,6 +2039,172 @@ msgstr "%2$d페이지 중 %1$d페이지"
 #: public/templates/submissions-table.php:160
 msgid "Next »"
 msgstr "다음 »"
+
+#: admin/assets/js/dashboard.js:52 admin/assets/js/dashboard.js:183
+msgid "Nothing to show for this range yet."
+msgstr "이 기간에 표시할 내용이 아직 없습니다."
+
+#: admin/assets/js/dashboard.js:75
+msgid "(none)"
+msgstr "(없음)"
+
+#. translators: %d: pipeline ID, shown when the pipeline has no name.
+#: admin/assets/js/dashboard.js:82
+msgid "Pipeline #%d"
+msgstr "파이프라인 #%d"
+
+#: admin/assets/js/dashboard.js:92
+msgid "In this date range"
+msgstr "이 기간"
+
+#: admin/assets/js/dashboard.js:93
+msgid "Today"
+msgstr "오늘"
+
+#: admin/assets/js/dashboard.js:94
+msgid "This week"
+msgstr "이번 주"
+
+#: admin/assets/js/dashboard.js:95
+msgid "This month"
+msgstr "이번 달"
+
+#. translators: 1: date (YYYY-MM-DD), 2: number of entries that day.
+#: admin/assets/js/dashboard.js:135
+msgid "%1$s: %2$d entry"
+msgid_plural "%1$s: %2$d entries"
+msgstr[0] "%1$s: 항목 %2$d건"
+
+#: admin/assets/js/dashboard.js:140
+msgid "Moved on"
+msgstr "다음 단계로 이동"
+
+#: admin/assets/js/dashboard.js:157
+msgid "Total"
+msgstr "합계"
+
+#: admin/assets/js/dashboard.js:160
+msgid "Win rate"
+msgstr "성사율"
+
+#: admin/assets/js/dashboard.js:161
+msgid "Avg hours per stage"
+msgstr "단계당 평균 시간"
+
+#: admin/assets/js/dashboard.js:188
+msgid "(Unknown)"
+msgstr "(알 수 없음)"
+
+#: admin/assets/js/dashboard.js:219
+msgid "Average hours"
+msgstr "평균 시간"
+
+#: admin/assets/js/dashboard.js:219
+msgid "Based on"
+msgstr "표본 수"
+
+#: admin/assets/js/health.js:29
+msgid "All good"
+msgstr "정상"
+
+#: admin/assets/js/health.js:30
+msgid "Check this"
+msgstr "확인 필요"
+
+#: admin/assets/js/health.js:31
+msgid "Needs fixing"
+msgstr "수정 필요"
+
+#: admin/assets/js/health.js:57
+msgid "Everything looks good"
+msgstr "모두 정상입니다"
+
+#: admin/assets/js/health.js:57
+msgid "EntryVault is set up and listening to your forms."
+msgstr "EntryVault가 설정되어 양식을 수신하고 있습니다."
+
+#: admin/assets/js/health.js:58
+msgid "Working, with one thing to check"
+msgstr "작동 중이며 확인할 것이 하나 있습니다"
+
+#: admin/assets/js/health.js:58
+msgid "See the card marked \"Check this\" below."
+msgstr "아래에서 \"확인 필요\" 표시가 있는 카드를 보세요."
+
+#: admin/assets/js/health.js:59
+msgid "Something needs fixing"
+msgstr "수정할 것이 있습니다"
+
+#: admin/assets/js/health.js:59
+msgid ""
+"See the card marked \"Needs fixing\" below. Deactivating and activating "
+"EntryVault once often repairs it."
+msgstr ""
+"아래에서 \"수정 필요\" 표시가 있는 카드를 보세요. EntryVault를 한 번 비활성화"
+"했다가 다시 활성화하면 대개 해결됩니다."
+
+#: admin/assets/js/health.js:83
+msgid "Form plugins"
+msgstr "양식 플러그인"
+
+#: admin/assets/js/health.js:85
+msgid "Listening to"
+msgstr "수신 중"
+
+#: admin/assets/js/health.js:88
+msgid "No form plugin found yet. Activate one, or import a CSV file."
+msgstr ""
+"아직 양식 플러그인을 찾지 못했습니다. 하나를 활성화하거나 CSV 파일을 가져오세"
+"요."
+
+#: admin/assets/js/health.js:93
+msgid "Database"
+msgstr "데이터베이스"
+
+#: admin/assets/js/health.js:94
+msgid "Tables"
+msgstr "테이블"
+
+#: admin/assets/js/health.js:94
+msgid "All in place"
+msgstr "모두 있음"
+
+#: admin/assets/js/health.js:94
+msgid "Some are missing"
+msgstr "일부 없음"
+
+#: admin/assets/js/health.js:95
+msgid "Missing"
+msgstr "없는 테이블"
+
+#: admin/assets/js/health.js:99
+msgid "Plugin files"
+msgstr "플러그인 파일"
+
+#: admin/assets/js/health.js:100
+msgid "Helper code"
+msgstr "도우미 코드"
+
+#: admin/assets/js/health.js:100
+msgid "Found"
+msgstr "있음"
+
+#: admin/assets/js/health.js:100
+msgid "Missing. Reinstall EntryVault from a fresh download."
+msgstr "없습니다. 새로 내려받은 EntryVault를 다시 설치하세요."
+
+#: admin/assets/js/health.js:103
+msgid "Versions"
+msgstr "버전"
+
+#: admin/assets/js/health.js:138
+msgid "Checking…"
+msgstr "확인 중…"
+
+#: admin/assets/js/health.js:144 admin/assets/js/health.js:147
+msgid "Could not load the check. Reload the page and try again."
+msgstr ""
+"점검 결과를 불러오지 못했습니다. 페이지를 새로 고친 뒤 다시 시도하세요."
 
 #. translators: %s: owner name, or #user id when the user no longer exists.
 #: admin/assets/kanban/build/index.js:2

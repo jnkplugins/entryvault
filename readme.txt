@@ -4,7 +4,7 @@ Tags: form entries, contact form, crm, leads, csv export
 Requires at least: 6.2
 Tested up to: 7.0
 Requires PHP: 8.2
-Stable tag: 1.18.1
+Stable tag: 1.19.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -137,6 +137,11 @@ Use the contact page at https://jnkplugins.com/entryvault/, or Feedback & Suppor
 7. Pro: automations that tag, assign, move or email entries for you.
 
 == Changelog ==
+
+= 1.19.0 =
+* New: Hindi translation.
+* Fixed: the Dashboard and Health screens are now translated.
+* Fixed: the licence box is now translated.
 
 = 1.18.1 =
 * Fixed: an empty board now points to the pipelines that hold your cards instead of saying nothing has arrived yet.

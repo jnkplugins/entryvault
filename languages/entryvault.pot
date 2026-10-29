@@ -9,10 +9,374 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-10-28T15:04:44+00:00\n"
+"POT-Creation-Date: 2026-10-29T03:45:51+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: entryvault\n"
+
+#: pro/licensorpro-client/licensorpro-client.php:750
+msgid "Manage license"
+msgstr ""
+
+#: pro/licensorpro-client/licensorpro-client.php:753
+msgid "Renew license"
+msgstr ""
+
+#: pro/licensorpro-client/licensorpro-client.php:754
+msgid "Activate license"
+msgstr ""
+
+#. translators: %s: plugin name
+#: pro/licensorpro-client/licensorpro-client.php:781
+#, php-format
+msgid "<strong>%s Pro is on.</strong> Thank you! Every Pro tool is switched on for this site, and updates come to your dashboard."
+msgstr ""
+
+#. translators: %s: plugin name
+#: pro/licensorpro-client/licensorpro-client.php:830
+#, php-format
+msgid "<strong>%s Pro is installed, but no Pro license is active on this site.</strong> Enter your license key to switch on the Pro tools."
+msgstr ""
+
+#: pro/licensorpro-client/licensorpro-client.php:836
+msgid "Enter license key"
+msgstr ""
+
+#: pro/licensorpro-client/licensorpro-client.php:839
+msgid "Find your key in your account"
+msgstr ""
+
+#: pro/licensorpro-client/licensorpro-client.php:865
+msgid "Renew your license"
+msgstr ""
+
+#. translators: 1: plugin name, 2: expiry date, 3: lock date, 4: days left
+#: pro/licensorpro-client/licensorpro-client.php:871
+#, php-format
+msgid "<strong>Your %1$s Pro license expired on %2$s.</strong> Pro keeps working as normal until %3$s (%4$d days left). Updates, including security fixes, and email support have stopped. After %3$s, everything you already set up keeps working and your visitors won't notice a thing, but the Pro tools in your dashboard will lock."
+msgstr ""
+
+#. translators: 1: plugin name, 2: expiry date
+#: pro/licensorpro-client/licensorpro-client.php:881
+#, php-format
+msgid "<strong>%1$s Pro tools are locked because your license expired on %2$s.</strong> Your site, and everything visitors see, still works. Renew to unlock the Pro tools and get updates, including security fixes, again."
+msgstr ""
+
+#. translators: %s: plugin name
+#: pro/licensorpro-client/licensorpro-client.php:889
+#, php-format
+msgid "<strong>This site is no longer activated on your %s Pro license.</strong> The Pro tools in your dashboard are locked until you activate it again. Everything visitors see keeps working."
+msgstr ""
+
+#. translators: %s: plugin name
+#: pro/licensorpro-client/licensorpro-client.php:896
+#, php-format
+msgid "<strong>Your %s Pro license is no longer active.</strong> It was refunded or cancelled, so the Pro tools in your dashboard are locked and updates have stopped. Everything visitors see keeps working."
+msgstr ""
+
+#: pro/licensorpro-client/licensorpro-client.php:998
+msgid "Please enter a license key."
+msgstr ""
+
+#: pro/licensorpro-client/licensorpro-client.php:1010
+#: pro/licensorpro-client/licensorpro-client.php:1069
+msgid "License response failed signature verification."
+msgstr ""
+
+#: pro/licensorpro-client/licensorpro-client.php:1052
+msgid "No license key set."
+msgstr ""
+
+#: pro/licensorpro-client/licensorpro-client.php:1184
+msgid "Only deactivating temporarily"
+msgstr ""
+
+#: pro/licensorpro-client/licensorpro-client.php:1185
+msgid "I could not work out how to use it"
+msgstr ""
+
+#: pro/licensorpro-client/licensorpro-client.php:1186
+msgid "It is missing a feature I need"
+msgstr ""
+
+#: pro/licensorpro-client/licensorpro-client.php:1187
+msgid "It did not work"
+msgstr ""
+
+#: pro/licensorpro-client/licensorpro-client.php:1188
+msgid "It broke something on my site"
+msgstr ""
+
+#: pro/licensorpro-client/licensorpro-client.php:1189
+msgid "I found a better plugin"
+msgstr ""
+
+#: pro/licensorpro-client/licensorpro-client.php:1190
+msgid "I no longer need it"
+msgstr ""
+
+#: pro/licensorpro-client/licensorpro-client.php:1191
+msgid "Something else"
+msgstr ""
+
+#. translators: %s: plugin name.
+#: pro/licensorpro-client/licensorpro-client.php:1218
+#, php-format
+msgid "Before you turn %s off"
+msgstr ""
+
+#: pro/licensorpro-client/licensorpro-client.php:1222
+msgid "If you have a moment, what went wrong? It is the only way we hear about it."
+msgstr ""
+
+#: pro/licensorpro-client/licensorpro-client.php:1233
+msgid "Anything else? (optional)"
+msgstr ""
+
+#: pro/licensorpro-client/licensorpro-client.php:1235
+msgid "Sends your answer, the plugin version and your site address. Nothing else, and nothing from your site content."
+msgstr ""
+
+#: pro/licensorpro-client/licensorpro-client.php:1239
+msgid "Send and deactivate"
+msgstr ""
+
+#: pro/licensorpro-client/licensorpro-client.php:1242
+msgid "Skip and deactivate"
+msgstr ""
+
+#: pro/licensorpro-client/licensorpro-client.php:1245
+#: admin/views/tags.php:54
+#: admin/assets/kanban/build/index.js:5
+#: admin/assets/kanban/build/index.js:26
+msgid "Cancel"
+msgstr ""
+
+#: pro/licensorpro-client/licensorpro-client.php:1366
+#: pro/licensorpro-client/licensorpro-client.php:1382
+msgid "API URL not configured."
+msgstr ""
+
+#: pro/licensorpro-client/licensorpro-client.php:1401
+msgid "Unexpected response from license server."
+msgstr ""
+
+#. translators: %s: human-readable time difference, e.g. "3 hours".
+#: pro/licensorpro-client/licensorpro-client.php:1699
+#: includes/class-dates.php:65
+#, php-format
+msgid "in %s"
+msgstr ""
+
+#. translators: %s: human-readable time difference, e.g. "3 hours".
+#: pro/licensorpro-client/licensorpro-client.php:1700
+#: includes/class-dates.php:67
+#, php-format
+msgid "%s ago"
+msgstr ""
+
+#: pro/licensorpro-client/licensorpro-client.php:1725
+#, php-format
+msgid "%s License"
+msgstr ""
+
+#: pro/licensorpro-client/licensorpro-client.php:1735
+msgid "This site was deactivated, so its seat is free for another site. Enter the key again here to switch the Pro tools back on."
+msgstr ""
+
+#: pro/licensorpro-client/licensorpro-client.php:1745
+#: pro/licensorpro-client/licensorpro-client.php:1776
+#: pro/licensorpro-client/licensorpro-client.php:1833
+msgid "License key"
+msgstr ""
+
+#: pro/licensorpro-client/licensorpro-client.php:1746
+msgid "Type"
+msgstr ""
+
+#: pro/licensorpro-client/licensorpro-client.php:1748
+msgid "Free license: updates of the free version only. It does not switch on Pro."
+msgstr ""
+
+#: pro/licensorpro-client/licensorpro-client.php:1749
+msgid "Free license: updates arrive in your dashboard like any other plugin."
+msgstr ""
+
+#: pro/licensorpro-client/licensorpro-client.php:1751
+#: pro/licensorpro-client/licensorpro-client.php:1801
+msgid "Last checked"
+msgstr ""
+
+#: pro/licensorpro-client/licensorpro-client.php:1755
+#: pro/licensorpro-client/licensorpro-client.php:1807
+msgid "Check for updates now"
+msgstr ""
+
+#: pro/licensorpro-client/licensorpro-client.php:1758
+msgid "Bought Pro?"
+msgstr ""
+
+#: pro/licensorpro-client/licensorpro-client.php:1759
+msgid "Enter your Pro license key and Pro is installed over this version. Everything you set up stays."
+msgstr ""
+
+#: pro/licensorpro-client/licensorpro-client.php:1761
+msgid "Pro license key"
+msgstr ""
+
+#: pro/licensorpro-client/licensorpro-client.php:1764
+#: pro/licensorpro-client/licensorpro-client.php:1814
+msgid "Install Pro now"
+msgstr ""
+
+#: pro/licensorpro-client/licensorpro-client.php:1766
+msgid "Rather do it by hand? Download the Pro zip from your account and upload it over this plugin."
+msgstr ""
+
+#: pro/licensorpro-client/licensorpro-client.php:1767
+#: pro/licensorpro-client/licensorpro-client.php:1841
+msgid "Go to your account"
+msgstr ""
+
+#: pro/licensorpro-client/licensorpro-client.php:1778
+msgid "active"
+msgstr ""
+
+#. translators: %s: date the Pro tools lock
+#: pro/licensorpro-client/licensorpro-client.php:1780
+#, php-format
+msgid "expired, Pro tools stay on until %s"
+msgstr ""
+
+#: pro/licensorpro-client/licensorpro-client.php:1781
+msgid "expired, Pro tools locked"
+msgstr ""
+
+#: pro/licensorpro-client/licensorpro-client.php:1783
+msgid "this site is not activated"
+msgstr ""
+
+#: pro/licensorpro-client/licensorpro-client.php:1784
+msgid "no longer active (refunded or cancelled)"
+msgstr ""
+
+#: pro/licensorpro-client/licensorpro-client.php:1786
+#: admin/assets/kanban/build/index.js:5
+msgid "Status"
+msgstr ""
+
+#: pro/licensorpro-client/licensorpro-client.php:1788
+msgid "Renew"
+msgstr ""
+
+#: pro/licensorpro-client/licensorpro-client.php:1792
+msgid "Offline mode"
+msgstr ""
+
+#: pro/licensorpro-client/licensorpro-client.php:1794
+#, php-format
+msgid "cached license valid until %s"
+msgstr ""
+
+#: pro/licensorpro-client/licensorpro-client.php:1798
+msgid "Update channel"
+msgstr ""
+
+#: pro/licensorpro-client/licensorpro-client.php:1799
+msgid "Site limit"
+msgstr ""
+
+#: pro/licensorpro-client/licensorpro-client.php:1800
+msgid "Expires"
+msgstr ""
+
+#: pro/licensorpro-client/licensorpro-client.php:1800
+msgid "Never"
+msgstr ""
+
+#: pro/licensorpro-client/licensorpro-client.php:1805
+msgid "Deactivate this site"
+msgstr ""
+
+#: pro/licensorpro-client/licensorpro-client.php:1812
+msgid "This is the free version, running on your Pro license."
+msgstr ""
+
+#: pro/licensorpro-client/licensorpro-client.php:1829
+msgid "Have a Pro license key? Enter it here to switch on the Pro tools. It replaces the free license on this site."
+msgstr ""
+
+#: pro/licensorpro-client/licensorpro-client.php:1830
+msgid "Enter your license key to activate this site."
+msgstr ""
+
+#: pro/licensorpro-client/licensorpro-client.php:1837
+msgid "Activate"
+msgstr ""
+
+#: pro/licensorpro-client/licensorpro-client.php:1840
+msgid "Your key is in your purchase email and in your account."
+msgstr ""
+
+#: pro/licensorpro-client/licensorpro-client.php:1848
+msgid "Need a hand?"
+msgstr ""
+
+#: pro/licensorpro-client/licensorpro-client.php:1849
+msgid "Contact support"
+msgstr ""
+
+#: pro/licensorpro-client/licensorpro-client.php:2054
+msgid "Only someone who may install plugins on this site can install Pro."
+msgstr ""
+
+#: pro/licensorpro-client/licensorpro-client.php:2067
+msgid "That is a free license key, so it keeps this free version updated. Pro needs the key from your purchase email."
+msgstr ""
+
+#. translators: %s: URL of the customer account
+#: pro/licensorpro-client/licensorpro-client.php:2072
+#, php-format
+msgid "Your key is active. Download the Pro zip from your account (%s) and upload it over this plugin instead."
+msgstr ""
+
+#: pro/licensorpro-client/licensorpro-client.php:2076
+msgid "This site does not allow installing plugins from the dashboard."
+msgstr ""
+
+#: pro/licensorpro-client/licensorpro-client.php:2080
+msgid "The Pro download could not be fetched for this key."
+msgstr ""
+
+#: pro/licensorpro-client/licensorpro-client.php:2088
+msgid "This site asks for FTP details to install plugins."
+msgstr ""
+
+#: pro/licensorpro-client/licensorpro-client.php:2123
+msgid "Installing Pro did not finish."
+msgstr ""
+
+#. translators: %s: plugin name
+#: pro/licensorpro-client/licensorpro-client.php:2128
+#, php-format
+msgid "%s Pro is installed and your license is active. Reloading…"
+msgstr ""
+
+#: pro/licensorpro-client/licensorpro-client.php:2138
+msgid "License activated."
+msgstr ""
+
+#: pro/licensorpro-client/licensorpro-client.php:2150
+msgid "Site deactivated."
+msgstr ""
+
+#: pro/licensorpro-client/licensorpro-client.php:2161
+msgid "License is valid. Update info refreshed."
+msgstr ""
+
+#: pro/licensorpro-client/licensorpro-client.php:2168
+msgid "Permission denied."
+msgstr ""
 
 #. Plugin Name of the plugin
 #: entryvault.php
@@ -420,13 +784,15 @@ msgstr ""
 #: admin/views/import.php:91
 #: includes/class-frontend.php:501
 #: includes/class-submissions-list-table.php:58
+#: admin/assets/js/dashboard.js:140
+#: admin/assets/js/dashboard.js:219
 #: admin/assets/kanban/build/index.js:5
 #: blocks/submissions-table/index.js:26
 msgid "Stage"
 msgstr ""
 
 #: admin/views/import.php:93
-#: includes/class-plugin.php:329
+#: includes/class-plugin.php:331
 msgid "First stage of the pipeline"
 msgstr ""
 
@@ -508,6 +874,7 @@ msgid "Default pipeline"
 msgstr ""
 
 #: admin/views/settings.php:83
+#: admin/assets/js/health.js:95
 msgid "None"
 msgstr ""
 
@@ -635,7 +1002,7 @@ msgid "Actions"
 msgstr ""
 
 #: admin/views/tags.php:39
-#: includes/class-plugin.php:275
+#: includes/class-plugin.php:276
 msgid "Add a tag"
 msgstr ""
 
@@ -645,12 +1012,6 @@ msgstr ""
 
 #: admin/views/tags.php:53
 msgid "Save tag"
-msgstr ""
-
-#: admin/views/tags.php:54
-#: admin/assets/kanban/build/index.js:5
-#: admin/assets/kanban/build/index.js:26
-msgid "Cancel"
 msgstr ""
 
 #: admin/views/upgrade.php:29
@@ -794,18 +1155,6 @@ msgstr ""
 msgid "just now"
 msgstr ""
 
-#. translators: %s: human-readable time difference, e.g. "3 hours".
-#: includes/class-dates.php:65
-#, php-format
-msgid "in %s"
-msgstr ""
-
-#. translators: %s: human-readable time difference, e.g. "3 hours".
-#: includes/class-dates.php:67
-#, php-format
-msgid "%s ago"
-msgstr ""
-
 #: includes/class-email-sender.php:109
 msgid "The mailer did not accept the email."
 msgstr ""
@@ -883,7 +1232,7 @@ msgid "Created"
 msgstr ""
 
 #: includes/class-frontend.php:498
-#: includes/class-plugin.php:337
+#: includes/class-plugin.php:339
 #: includes/class-privacy.php:227
 #: includes/class-submissions-list-table.php:51
 #: blocks/submissions-table/index.js:24
@@ -891,7 +1240,7 @@ msgid "Title"
 msgstr ""
 
 #: includes/class-frontend.php:500
-#: includes/class-plugin.php:338
+#: includes/class-plugin.php:340
 #: includes/class-privacy.php:228
 #: includes/class-submissions-list-table.php:52
 #: admin/assets/kanban/build/index.js:5
@@ -901,6 +1250,7 @@ msgstr ""
 #: includes/class-frontend.php:502
 #: includes/class-submissions-list-table.php:63
 #: includes/class-submissions-list-table.php:128
+#: admin/assets/js/dashboard.js:156
 #: admin/assets/kanban/build/index.js:5
 #: admin/assets/kanban/build/index.js:37
 msgid "Owner"
@@ -933,7 +1283,7 @@ msgid "Feedback"
 msgstr ""
 
 #: includes/class-plugin.php:218
-#: includes/class-plugin.php:271
+#: includes/class-plugin.php:272
 msgid "Saved."
 msgstr ""
 
@@ -941,123 +1291,123 @@ msgstr ""
 msgid "Save failed."
 msgstr ""
 
-#: includes/class-plugin.php:269
+#: includes/class-plugin.php:270
 msgid "Edit"
 msgstr ""
 
-#: includes/class-plugin.php:270
+#: includes/class-plugin.php:271
 #: includes/class-submissions-list-table.php:94
 msgid "Delete"
 msgstr ""
 
-#: includes/class-plugin.php:272
+#: includes/class-plugin.php:273
 msgid "Error."
 msgstr ""
 
-#: includes/class-plugin.php:273
+#: includes/class-plugin.php:274
 msgid "Delete this tag? It comes off every entry that has it."
 msgstr ""
 
-#: includes/class-plugin.php:274
+#: includes/class-plugin.php:275
 msgid "No tags yet. Add your first one with the form next to this list."
 msgstr ""
 
-#: includes/class-plugin.php:276
+#: includes/class-plugin.php:277
 msgid "Edit tag"
 msgstr ""
 
-#: includes/class-plugin.php:330
+#: includes/class-plugin.php:332
 msgid "Please choose a file or paste CSV first."
 msgstr ""
 
-#: includes/class-plugin.php:331
+#: includes/class-plugin.php:333
 msgid "Loading preview…"
 msgstr ""
 
-#: includes/class-plugin.php:332
+#: includes/class-plugin.php:334
 msgid "Preview failed."
 msgstr ""
 
 #. translators: %s: number of rows loaded.
-#: includes/class-plugin.php:334
+#: includes/class-plugin.php:336
 #, php-format
 msgid "Loaded %s rows."
 msgstr ""
 
-#: includes/class-plugin.php:335
+#: includes/class-plugin.php:337
 msgid "Network error."
 msgstr ""
 
-#: includes/class-plugin.php:336
+#: includes/class-plugin.php:338
 msgid "Ignore"
 msgstr ""
 
-#: includes/class-plugin.php:339
+#: includes/class-plugin.php:341
 #: includes/class-privacy.php:226
 #: includes/class-submissions-list-table.php:64
 #: admin/assets/kanban/build/index.js:5
 msgid "Source"
 msgstr ""
 
-#: includes/class-plugin.php:340
+#: includes/class-plugin.php:342
 msgid "Field"
 msgstr ""
 
-#: includes/class-plugin.php:341
+#: includes/class-plugin.php:343
 msgid "You must map one column to Email."
 msgstr ""
 
-#: includes/class-plugin.php:342
+#: includes/class-plugin.php:344
 msgid "Running…"
 msgstr ""
 
-#: includes/class-plugin.php:343
+#: includes/class-plugin.php:345
 msgid "Import failed."
 msgstr ""
 
-#: includes/class-plugin.php:344
+#: includes/class-plugin.php:346
 msgid "Done."
 msgstr ""
 
-#: includes/class-plugin.php:345
+#: includes/class-plugin.php:347
 msgid "Results"
 msgstr ""
 
-#: includes/class-plugin.php:346
+#: includes/class-plugin.php:348
 msgid "Test run: nothing was saved."
 msgstr ""
 
-#: includes/class-plugin.php:347
+#: includes/class-plugin.php:349
 msgid "Imported:"
 msgstr ""
 
-#: includes/class-plugin.php:348
+#: includes/class-plugin.php:350
 msgid "Would import:"
 msgstr ""
 
 #. translators: %s: comma-separated column names.
-#: includes/class-plugin.php:350
+#: includes/class-plugin.php:352
 #, php-format
 msgid "Only one column can be the title, but these are all set to Title: %s. Set the others to Field so their values are kept."
 msgstr ""
 
-#: includes/class-plugin.php:351
+#: includes/class-plugin.php:353
 msgid "Already present:"
 msgstr ""
 
-#: includes/class-plugin.php:352
+#: includes/class-plugin.php:354
 msgid "Rows already present were recognised from an earlier import and left untouched, so nothing was duplicated."
 msgstr ""
 
-#: includes/class-plugin.php:353
+#: includes/class-plugin.php:355
 msgid "Skipped:"
 msgstr ""
 
-#: includes/class-plugin.php:354
+#: includes/class-plugin.php:356
 msgid "Errors"
 msgstr ""
 
-#: includes/class-plugin.php:355
+#: includes/class-plugin.php:357
 msgid "Row"
 msgstr ""
 
@@ -1441,11 +1791,19 @@ msgid "nobody"
 msgstr ""
 
 #: admin/assets/kanban/build/index.js:5
-msgid "Status"
+msgid "Close"
 msgstr ""
 
-#: admin/assets/kanban/build/index.js:5
-msgid "Close"
+#: admin/assets/js/dashboard.js:140
+msgid "Entries"
+msgstr ""
+
+#: admin/assets/js/dashboard.js:158
+msgid "Won"
+msgstr ""
+
+#: admin/assets/js/dashboard.js:159
+msgid "Lost"
 msgstr ""
 
 #: public/templates/submissions-table.php:59
@@ -1472,6 +1830,170 @@ msgstr ""
 
 #: public/templates/submissions-table.php:160
 msgid "Next »"
+msgstr ""
+
+#: admin/assets/js/dashboard.js:52
+#: admin/assets/js/dashboard.js:183
+msgid "Nothing to show for this range yet."
+msgstr ""
+
+#: admin/assets/js/dashboard.js:75
+msgid "(none)"
+msgstr ""
+
+#. translators: %d: pipeline ID, shown when the pipeline has no name.
+#: admin/assets/js/dashboard.js:82
+#, js-format
+msgid "Pipeline #%d"
+msgstr ""
+
+#: admin/assets/js/dashboard.js:92
+msgid "In this date range"
+msgstr ""
+
+#: admin/assets/js/dashboard.js:93
+msgid "Today"
+msgstr ""
+
+#: admin/assets/js/dashboard.js:94
+msgid "This week"
+msgstr ""
+
+#: admin/assets/js/dashboard.js:95
+msgid "This month"
+msgstr ""
+
+#. translators: 1: date (YYYY-MM-DD), 2: number of entries that day.
+#: admin/assets/js/dashboard.js:135
+#, js-format
+msgid "%1$s: %2$d entry"
+msgid_plural "%1$s: %2$d entries"
+msgstr[0] ""
+msgstr[1] ""
+
+#: admin/assets/js/dashboard.js:140
+msgid "Moved on"
+msgstr ""
+
+#: admin/assets/js/dashboard.js:157
+msgid "Total"
+msgstr ""
+
+#: admin/assets/js/dashboard.js:160
+msgid "Win rate"
+msgstr ""
+
+#: admin/assets/js/dashboard.js:161
+msgid "Avg hours per stage"
+msgstr ""
+
+#: admin/assets/js/dashboard.js:188
+msgid "(Unknown)"
+msgstr ""
+
+#: admin/assets/js/dashboard.js:219
+msgid "Average hours"
+msgstr ""
+
+#: admin/assets/js/dashboard.js:219
+msgid "Based on"
+msgstr ""
+
+#: admin/assets/js/health.js:29
+msgid "All good"
+msgstr ""
+
+#: admin/assets/js/health.js:30
+msgid "Check this"
+msgstr ""
+
+#: admin/assets/js/health.js:31
+msgid "Needs fixing"
+msgstr ""
+
+#: admin/assets/js/health.js:57
+msgid "Everything looks good"
+msgstr ""
+
+#: admin/assets/js/health.js:57
+msgid "EntryVault is set up and listening to your forms."
+msgstr ""
+
+#: admin/assets/js/health.js:58
+msgid "Working, with one thing to check"
+msgstr ""
+
+#: admin/assets/js/health.js:58
+msgid "See the card marked \"Check this\" below."
+msgstr ""
+
+#: admin/assets/js/health.js:59
+msgid "Something needs fixing"
+msgstr ""
+
+#: admin/assets/js/health.js:59
+msgid "See the card marked \"Needs fixing\" below. Deactivating and activating EntryVault once often repairs it."
+msgstr ""
+
+#: admin/assets/js/health.js:83
+msgid "Form plugins"
+msgstr ""
+
+#: admin/assets/js/health.js:85
+msgid "Listening to"
+msgstr ""
+
+#: admin/assets/js/health.js:88
+msgid "No form plugin found yet. Activate one, or import a CSV file."
+msgstr ""
+
+#: admin/assets/js/health.js:93
+msgid "Database"
+msgstr ""
+
+#: admin/assets/js/health.js:94
+msgid "Tables"
+msgstr ""
+
+#: admin/assets/js/health.js:94
+msgid "All in place"
+msgstr ""
+
+#: admin/assets/js/health.js:94
+msgid "Some are missing"
+msgstr ""
+
+#: admin/assets/js/health.js:95
+msgid "Missing"
+msgstr ""
+
+#: admin/assets/js/health.js:99
+msgid "Plugin files"
+msgstr ""
+
+#: admin/assets/js/health.js:100
+msgid "Helper code"
+msgstr ""
+
+#: admin/assets/js/health.js:100
+msgid "Found"
+msgstr ""
+
+#: admin/assets/js/health.js:100
+msgid "Missing. Reinstall EntryVault from a fresh download."
+msgstr ""
+
+#: admin/assets/js/health.js:103
+msgid "Versions"
+msgstr ""
+
+#: admin/assets/js/health.js:138
+msgid "Checking…"
+msgstr ""
+
+#: admin/assets/js/health.js:144
+#: admin/assets/js/health.js:147
+msgid "Could not load the check. Reload the page and try again."
 msgstr ""
 
 #. translators: %s: owner name, or #user id when the user no longer exists.

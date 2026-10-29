@@ -243,10 +243,11 @@ final class Plugin {
             wp_enqueue_script(
                 'entryvault-health',
                 ENTRYVAULT_URL . 'admin/assets/js/health.js',
-                [],
+                [ 'wp-i18n' ],
                 ENTRYVAULT_VERSION,
                 true
             );
+            wp_set_script_translations( 'entryvault-health', 'entryvault', ENTRYVAULT_PATH . 'languages' );
             wp_localize_script( 'entryvault-health', 'EntryVaultHealthBoot', [
                 'restRoot' => esc_url_raw( rest_url( 'entryvault/v1' ) ),
                 'nonce'    => wp_create_nonce( 'wp_rest' ),
@@ -289,10 +290,11 @@ final class Plugin {
             wp_enqueue_script(
                 'entryvault-dashboard',
                 ENTRYVAULT_URL . 'admin/assets/js/dashboard.js',
-                [],
+                [ 'wp-i18n' ],
                 ENTRYVAULT_VERSION,
                 true
             );
+            wp_set_script_translations( 'entryvault-dashboard', 'entryvault', ENTRYVAULT_PATH . 'languages' );
             // "Today", "this week" and "this month" are the site's days, not
             // the browser's (or UTC's).
             $ev_today = Dates::site_today();

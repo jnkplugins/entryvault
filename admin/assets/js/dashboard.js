@@ -7,6 +7,15 @@
     var boot = window.EntryVaultDashboardBoot || {};
     var REST = boot.rest || '';
     var NONCE = boot.nonce || '';
+    // Translations come from languages/entryvault-<locale>-<md5>.json through
+    // wp_set_script_translations(); the fallbacks only matter if wp-i18n is gone.
+    var i18n = (window.wp && window.wp.i18n) || {};
+    var __ = i18n.__ || function (s) { return s; };
+    var _n = i18n._n || function (s, p, n) { return n === 1 ? s : p; };
+    var sprintf = i18n.sprintf || function (f) {
+        var a = [].slice.call(arguments, 1), i = 0;
+        return f.replace(/%(?:(\d+)\$)?[sd]/g, function (m, k) { return a[k ? k - 1 : i++]; });
+    };
 
     function esc(s) {
         return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
@@ -40,7 +49,7 @@
     }
 
     function empty() {
-        return '<p class="jnkui-muted ev-empty-line">' + esc('Nothing to show for this range yet.') + '</p>';
+        return '<p class="jnkui-muted ev-empty-line">' + esc(__('Nothing to show for this range yet.', 'entryvault')) + '</p>';
     }
 
     // Days are the site's days (Settings > General), sent as boot.today.
@@ -63,13 +72,14 @@
             sel.innerHTML = '';
             var rows = Array.isArray(data) ? data : (data && data.pipelines) || [];
             if (!rows.length) {
-                sel.innerHTML = '<option value="">' + esc('(none)') + '</option>';
+                sel.innerHTML = '<option value="">' + esc(__('(none)', 'entryvault')) + '</option>';
                 return null;
             }
             rows.forEach(function (p) {
                 var o = document.createElement('option');
                 o.value = p.id;
-                o.textContent = p.name || ('Pipeline #' + p.id);
+                /* translators: %d: pipeline ID, shown when the pipeline has no name. */
+                o.textContent = p.name || sprintf(__('Pipeline #%d', 'entryvault'), p.id);
                 sel.appendChild(o);
             });
             return Number(sel.value);
@@ -79,10 +89,10 @@
     function renderCards(stages, totals) {
         var total = stages.reduce(function (s, r) { return s + (r.count || 0); }, 0);
         var data = [
-            { label: 'In this date range', value: total },
-            { label: 'Today', value: totals.today },
-            { label: 'This week', value: totals.week },
-            { label: 'This month', value: totals.month }
+            { label: __('In this date range', 'entryvault'), value: total },
+            { label: __('Today', 'entryvault'), value: totals.today },
+            { label: __('This week', 'entryvault'), value: totals.week },
+            { label: __('This month', 'entryvault'), value: totals.month }
         ];
         document.getElementById('ev-cards').innerHTML = data.map(function (c) {
             return '<div class="jnkui-stat"><div class="jnkui-stat-label">' + esc(c.label) + '</div><div class="jnkui-stat-value">' + esc(c.value) + '</div></div>';
@@ -120,12 +130,14 @@
         var max = rows.reduce(function (m, r) { return Math.max(m, r.count || 0); }, 0) || 1;
         el.innerHTML = rows.map(function (r) {
             var h = Math.max(2, Math.round((r.count / max) * 100));
-            return '<div class="ev-daily-bar" style="height:' + h + '%" title="' + esc(r.date + ': ' + r.count) + '"></div>';
+            return '<div class="ev-daily-bar" style="height:' + h + '%" title="' + esc(sprintf(
+                /* translators: 1: date (YYYY-MM-DD), 2: number of entries that day. */
+                _n('%1$s: %2$d entry', '%1$s: %2$d entries', r.count, 'entryvault'), r.date, r.count)) + '"></div>';
         }).join('');
     }
 
     function renderFunnel(rows) {
-        var html = '<table class="jnkui-table ev-table"><thead><tr><th>' + esc('Stage') + '</th><th class="is-num">' + esc('Entries') + '</th><th class="is-num">' + esc('Moved on') + '</th></tr></thead><tbody>';
+        var html = '<table class="jnkui-table ev-table"><thead><tr><th>' + esc(__('Stage', 'entryvault')) + '</th><th class="is-num">' + esc(__('Entries', 'entryvault')) + '</th><th class="is-num">' + esc(__('Moved on', 'entryvault')) + '</th></tr></thead><tbody>';
         rows.forEach(function (r) {
             var conv = (r.conversion === null || r.conversion === undefined) ? '—' : (r.conversion + '%');
             html += '<tr><td><span class="ev-swatch" style="background:' + esc(r.color || '#999') + '"></span>' + esc(r.stage_name) + '</td>';
@@ -141,12 +153,12 @@
     function renderByOwner(rows) {
         ownerRows = rows || [];
         var headers = [
-            { key: 'owner_name',          label: 'Owner' },
-            { key: 'total',               label: 'Total' },
-            { key: 'won',                 label: 'Won' },
-            { key: 'lost',                label: 'Lost' },
-            { key: 'win_rate',            label: 'Win rate' },
-            { key: 'avg_time_in_stage_h', label: 'Avg hours per stage' }
+            { key: 'owner_name',          label: __('Owner', 'entryvault') },
+            { key: 'total',               label: __('Total', 'entryvault') },
+            { key: 'won',                 label: __('Won', 'entryvault') },
+            { key: 'lost',                label: __('Lost', 'entryvault') },
+            { key: 'win_rate',            label: __('Win rate', 'entryvault') },
+            { key: 'avg_time_in_stage_h', label: __('Avg hours per stage', 'entryvault') }
         ];
         var sorted = ownerRows.slice().sort(function (a, b) {
             var va = a[ownerSort.key];
@@ -168,12 +180,12 @@
         });
         html += '</tr></thead><tbody>';
         if (!sorted.length) {
-            html += '<tr><td colspan="' + headers.length + '">' + esc('Nothing to show for this range yet.') + '</td></tr>';
+            html += '<tr><td colspan="' + headers.length + '">' + esc(__('Nothing to show for this range yet.', 'entryvault')) + '</td></tr>';
         } else {
             sorted.forEach(function (r) {
                 var wr = (r.win_rate === null || r.win_rate === undefined) ? '—' : (Math.round(r.win_rate * 100) + '%');
                 html += '<tr>';
-                html += '<td>' + esc(r.owner_name || '(Unknown)') + '</td>';
+                html += '<td>' + esc(r.owner_name || __('(Unknown)', 'entryvault')) + '</td>';
                 html += '<td class="is-num">' + esc(r.total) + '</td>';
                 html += '<td class="is-num">' + esc(r.won) + '</td>';
                 html += '<td class="is-num">' + esc(r.lost) + '</td>';
@@ -204,7 +216,7 @@
     }
 
     function renderTis(rows) {
-        var html = '<table class="jnkui-table ev-table"><thead><tr><th>' + esc('Stage') + '</th><th class="is-num">' + esc('Average hours') + '</th><th class="is-num">' + esc('Based on') + '</th></tr></thead><tbody>';
+        var html = '<table class="jnkui-table ev-table"><thead><tr><th>' + esc(__('Stage', 'entryvault')) + '</th><th class="is-num">' + esc(__('Average hours', 'entryvault')) + '</th><th class="is-num">' + esc(__('Based on', 'entryvault')) + '</th></tr></thead><tbody>';
         rows.forEach(function (r) {
             html += '<tr><td>' + esc(r.stage_name) + '</td><td class="is-num">' + esc(r.avg_hours) + '</td><td class="is-num">' + esc(r.sample_size) + '</td></tr>';
         });

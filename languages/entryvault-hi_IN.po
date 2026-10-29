@@ -1,0 +1,2719 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: EntryVault\n"
+"Report-Msgid-Bugs-To: https://jnkplugins.com/entryvault/\n"
+"POT-Creation-Date: 2026-10-29T03:45:35+00:00\n"
+"PO-Revision-Date: 2026-10-29 12:00+0000\n"
+"Last-Translator: JNK Plugins\n"
+"Language-Team: Hindi\n"
+"Language: hi_IN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Domain: entryvault\n"
+"X-Generator: WP-CLI 2.12.0\n"
+
+#: pro/licensorpro-client/licensorpro-client.php:750
+msgid "Manage license"
+msgstr "लाइसेंस प्रबंधित करें"
+
+#: pro/licensorpro-client/licensorpro-client.php:753
+msgid "Renew license"
+msgstr "लाइसेंस रिन्यू करें"
+
+#: pro/licensorpro-client/licensorpro-client.php:754
+msgid "Activate license"
+msgstr "लाइसेंस सक्रिय करें"
+
+#. translators: %s: plugin name
+#: pro/licensorpro-client/licensorpro-client.php:781
+#, php-format
+msgid ""
+"<strong>%s Pro is on.</strong> Thank you! Every Pro tool is switched on for "
+"this site, and updates come to your dashboard."
+msgstr ""
+"<strong>%s Pro चालू है।</strong> धन्यवाद! इस साइट पर हर Pro टूल चालू है, और अपडेट "
+"आपके डैशबोर्ड में आते हैं।"
+
+#. translators: %s: plugin name
+#: pro/licensorpro-client/licensorpro-client.php:830
+#, php-format
+msgid ""
+"<strong>%s Pro is installed, but no Pro license is active on this site.</"
+"strong> Enter your license key to switch on the Pro tools."
+msgstr ""
+"<strong>%s Pro इंस्टॉल है, लेकिन इस साइट पर कोई Pro लाइसेंस सक्रिय नहीं है।</strong> "
+"Pro टूल चालू करने के लिए अपनी लाइसेंस Key डालें।"
+
+#: pro/licensorpro-client/licensorpro-client.php:836
+msgid "Enter license key"
+msgstr "लाइसेंस Key डालें"
+
+#: pro/licensorpro-client/licensorpro-client.php:839
+msgid "Find your key in your account"
+msgstr "अपनी Key अपने अकाउंट में देखें"
+
+#: pro/licensorpro-client/licensorpro-client.php:865
+msgid "Renew your license"
+msgstr "अपना लाइसेंस रिन्यू करें"
+
+#. translators: 1: plugin name, 2: expiry date, 3: lock date, 4: days left
+#: pro/licensorpro-client/licensorpro-client.php:871
+#, php-format
+msgid ""
+"<strong>Your %1$s Pro license expired on %2$s.</strong> Pro keeps working as "
+"normal until %3$s (%4$d days left). Updates, including security fixes, and "
+"email support have stopped. After %3$s, everything you already set up keeps "
+"working and your visitors won't notice a thing, but the Pro tools in your "
+"dashboard will lock."
+msgstr ""
+"<strong>आपका %1$s Pro लाइसेंस %2$s को समाप्त हो गया।</strong> Pro %3$s तक पहले "
+"की तरह काम करता रहेगा (%4$d दिन बाकी)। अपडेट, जिनमें सुरक्षा सुधार भी शामिल हैं, और "
+"ईमेल सहायता बंद हो गई है। %3$s के बाद, आपने जो कुछ सेट किया है वह काम करता रहेगा और "
+"आपके विज़िटर को कुछ पता नहीं चलेगा, लेकिन आपके डैशबोर्ड के Pro टूल लॉक हो जाएँगे।"
+
+#. translators: 1: plugin name, 2: expiry date
+#: pro/licensorpro-client/licensorpro-client.php:881
+#, php-format
+msgid ""
+"<strong>%1$s Pro tools are locked because your license expired on %2$s.</"
+"strong> Your site, and everything visitors see, still works. Renew to unlock "
+"the Pro tools and get updates, including security fixes, again."
+msgstr ""
+"<strong>%1$s Pro टूल लॉक हैं क्योंकि आपका लाइसेंस %2$s को समाप्त हो गया।</strong> "
+"आपकी साइट, और विज़िटर को दिखने वाली हर चीज़, अब भी काम करती है। Pro टूल अनलॉक करने "
+"और फिर से अपडेट (सुरक्षा सुधार समेत) पाने के लिए रिन्यू करें।"
+
+#. translators: %s: plugin name
+#: pro/licensorpro-client/licensorpro-client.php:889
+#, php-format
+msgid ""
+"<strong>This site is no longer activated on your %s Pro license.</strong> "
+"The Pro tools in your dashboard are locked until you activate it again. "
+"Everything visitors see keeps working."
+msgstr ""
+"<strong>यह साइट अब आपके %s Pro लाइसेंस पर सक्रिय नहीं है।</strong> जब तक आप इसे फिर "
+"से सक्रिय नहीं करते, आपके डैशबोर्ड के Pro टूल लॉक रहेंगे। विज़िटर को दिखने वाली हर चीज़ काम "
+"करती रहेगी।"
+
+#. translators: %s: plugin name
+#: pro/licensorpro-client/licensorpro-client.php:896
+#, php-format
+msgid ""
+"<strong>Your %s Pro license is no longer active.</strong> It was refunded or "
+"cancelled, so the Pro tools in your dashboard are locked and updates have "
+"stopped. Everything visitors see keeps working."
+msgstr ""
+"<strong>आपका %s Pro लाइसेंस अब सक्रिय नहीं है।</strong> इसका पैसा लौटाया गया या इसे "
+"रद्द किया गया, इसलिए आपके डैशबोर्ड के Pro टूल लॉक हैं और अपडेट बंद हो गए हैं। विज़िटर को "
+"दिखने वाली हर चीज़ काम करती रहेगी।"
+
+#: pro/licensorpro-client/licensorpro-client.php:998
+msgid "Please enter a license key."
+msgstr "कृपया लाइसेंस Key डालें।"
+
+#: pro/licensorpro-client/licensorpro-client.php:1010
+#: pro/licensorpro-client/licensorpro-client.php:1069
+msgid "License response failed signature verification."
+msgstr "लाइसेंस सर्वर के जवाब का सिग्नेचर सत्यापित नहीं हुआ।"
+
+#: pro/licensorpro-client/licensorpro-client.php:1052
+msgid "No license key set."
+msgstr "कोई लाइसेंस Key सेट नहीं है।"
+
+#: pro/licensorpro-client/licensorpro-client.php:1184
+msgid "Only deactivating temporarily"
+msgstr "बस कुछ समय के लिए बंद कर रहा/रही हूँ"
+
+#: pro/licensorpro-client/licensorpro-client.php:1185
+msgid "I could not work out how to use it"
+msgstr "मुझे समझ नहीं आया कि इसे कैसे इस्तेमाल करें"
+
+#: pro/licensorpro-client/licensorpro-client.php:1186
+msgid "It is missing a feature I need"
+msgstr "इसमें वह सुविधा नहीं है जो मुझे चाहिए"
+
+#: pro/licensorpro-client/licensorpro-client.php:1187
+msgid "It did not work"
+msgstr "यह काम नहीं किया"
+
+#: pro/licensorpro-client/licensorpro-client.php:1188
+msgid "It broke something on my site"
+msgstr "इससे मेरी साइट पर कुछ खराब हो गया"
+
+#: pro/licensorpro-client/licensorpro-client.php:1189
+msgid "I found a better plugin"
+msgstr "मुझे इससे बेहतर प्लगइन मिल गया"
+
+#: pro/licensorpro-client/licensorpro-client.php:1190
+msgid "I no longer need it"
+msgstr "अब मुझे इसकी ज़रूरत नहीं है"
+
+#: pro/licensorpro-client/licensorpro-client.php:1191
+msgid "Something else"
+msgstr "कुछ और"
+
+#. translators: %s: plugin name.
+#: pro/licensorpro-client/licensorpro-client.php:1218
+#, php-format
+msgid "Before you turn %s off"
+msgstr "%s बंद करने से पहले"
+
+#: pro/licensorpro-client/licensorpro-client.php:1222
+msgid ""
+"If you have a moment, what went wrong? It is the only way we hear about it."
+msgstr ""
+"अगर आपके पास एक पल हो, तो बताएँ क्या गड़बड़ हुई? हमें इसके बारे में जानने का यही एकमात्र "
+"तरीका है।"
+
+#: pro/licensorpro-client/licensorpro-client.php:1233
+msgid "Anything else? (optional)"
+msgstr "कुछ और? (वैकल्पिक)"
+
+#: pro/licensorpro-client/licensorpro-client.php:1235
+msgid ""
+"Sends your answer, the plugin version and your site address. Nothing else, "
+"and nothing from your site content."
+msgstr ""
+"आपका जवाब, प्लगइन का वर्शन और आपकी साइट का पता भेजता है। इसके अलावा कुछ नहीं, और "
+"आपकी साइट की सामग्री से कुछ भी नहीं।"
+
+#: pro/licensorpro-client/licensorpro-client.php:1239
+msgid "Send and deactivate"
+msgstr "भेजें और निष्क्रिय करें"
+
+#: pro/licensorpro-client/licensorpro-client.php:1242
+msgid "Skip and deactivate"
+msgstr "छोड़ें और निष्क्रिय करें"
+
+#: pro/licensorpro-client/licensorpro-client.php:1245 admin/views/tags.php:54
+#: admin/assets/kanban/build/index.js:5 admin/assets/kanban/build/index.js:26
+msgid "Cancel"
+msgstr "रद्द करें"
+
+#: pro/licensorpro-client/licensorpro-client.php:1366
+#: pro/licensorpro-client/licensorpro-client.php:1382
+msgid "API URL not configured."
+msgstr "API URL कॉन्फ़िगर नहीं है।"
+
+#: pro/licensorpro-client/licensorpro-client.php:1401
+msgid "Unexpected response from license server."
+msgstr "लाइसेंस सर्वर से अनपेक्षित जवाब मिला।"
+
+#. translators: %s: human-readable time difference, e.g. "3 hours".
+#: pro/licensorpro-client/licensorpro-client.php:1699
+#: includes/class-dates.php:65
+#, php-format
+msgid "in %s"
+msgstr "%s में"
+
+#. translators: %s: human-readable time difference, e.g. "3 hours".
+#: pro/licensorpro-client/licensorpro-client.php:1700
+#: includes/class-dates.php:67
+#, php-format
+msgid "%s ago"
+msgstr "%s पहले"
+
+#: pro/licensorpro-client/licensorpro-client.php:1725
+#, php-format
+msgid "%s License"
+msgstr "%s लाइसेंस"
+
+#: pro/licensorpro-client/licensorpro-client.php:1735
+msgid ""
+"This site was deactivated, so its seat is free for another site. Enter the "
+"key again here to switch the Pro tools back on."
+msgstr ""
+"इस साइट को निष्क्रिय कर दिया गया, इसलिए इसकी सीट किसी दूसरी साइट के लिए खाली है। "
+"Pro टूल फिर से चालू करने के लिए यहाँ Key दोबारा डालें।"
+
+#: pro/licensorpro-client/licensorpro-client.php:1745
+#: pro/licensorpro-client/licensorpro-client.php:1776
+#: pro/licensorpro-client/licensorpro-client.php:1833
+msgid "License key"
+msgstr "लाइसेंस Key"
+
+#: pro/licensorpro-client/licensorpro-client.php:1746
+msgid "Type"
+msgstr "प्रकार"
+
+#: pro/licensorpro-client/licensorpro-client.php:1748
+msgid ""
+"Free license: updates of the free version only. It does not switch on Pro."
+msgstr "Free लाइसेंस: सिर्फ़ Free वर्शन के अपडेट। इससे Pro चालू नहीं होता।"
+
+#: pro/licensorpro-client/licensorpro-client.php:1749
+msgid "Free license: updates arrive in your dashboard like any other plugin."
+msgstr "Free लाइसेंस: अपडेट किसी भी दूसरे प्लगइन की तरह आपके डैशबोर्ड में आते हैं।"
+
+#: pro/licensorpro-client/licensorpro-client.php:1751
+#: pro/licensorpro-client/licensorpro-client.php:1801
+msgid "Last checked"
+msgstr "पिछली जाँच"
+
+#: pro/licensorpro-client/licensorpro-client.php:1755
+#: pro/licensorpro-client/licensorpro-client.php:1807
+msgid "Check for updates now"
+msgstr "अभी अपडेट जाँचें"
+
+#: pro/licensorpro-client/licensorpro-client.php:1758
+msgid "Bought Pro?"
+msgstr "Pro खरीदा है?"
+
+#: pro/licensorpro-client/licensorpro-client.php:1759
+msgid ""
+"Enter your Pro license key and Pro is installed over this version. "
+"Everything you set up stays."
+msgstr ""
+"अपनी Pro लाइसेंस Key डालें और Pro इस वर्शन के ऊपर इंस्टॉल हो जाएगा। आपने जो कुछ सेट "
+"किया है, वह बना रहेगा।"
+
+#: pro/licensorpro-client/licensorpro-client.php:1761
+msgid "Pro license key"
+msgstr "Pro लाइसेंस Key"
+
+#: pro/licensorpro-client/licensorpro-client.php:1764
+#: pro/licensorpro-client/licensorpro-client.php:1814
+msgid "Install Pro now"
+msgstr "अभी Pro इंस्टॉल करें"
+
+#: pro/licensorpro-client/licensorpro-client.php:1766
+msgid ""
+"Rather do it by hand? Download the Pro zip from your account and upload it "
+"over this plugin."
+msgstr ""
+"खुद करना चाहते हैं? अपने अकाउंट से Pro zip डाउनलोड करें और इसे इस प्लगइन के ऊपर अपलोड करें।"
+
+#: pro/licensorpro-client/licensorpro-client.php:1767
+#: pro/licensorpro-client/licensorpro-client.php:1841
+msgid "Go to your account"
+msgstr "अपने अकाउंट पर जाएँ"
+
+#: pro/licensorpro-client/licensorpro-client.php:1778
+msgid "active"
+msgstr "सक्रिय"
+
+#. translators: %s: date the Pro tools lock
+#: pro/licensorpro-client/licensorpro-client.php:1780
+#, php-format
+msgid "expired, Pro tools stay on until %s"
+msgstr "समाप्त, Pro टूल %s तक चालू रहेंगे"
+
+#: pro/licensorpro-client/licensorpro-client.php:1781
+msgid "expired, Pro tools locked"
+msgstr "समाप्त, Pro टूल लॉक हैं"
+
+#: pro/licensorpro-client/licensorpro-client.php:1783
+msgid "this site is not activated"
+msgstr "यह साइट सक्रिय नहीं है"
+
+#: pro/licensorpro-client/licensorpro-client.php:1784
+msgid "no longer active (refunded or cancelled)"
+msgstr "अब सक्रिय नहीं (पैसा लौटाया गया या रद्द)"
+
+#: pro/licensorpro-client/licensorpro-client.php:1786
+#: admin/assets/kanban/build/index.js:5
+msgid "Status"
+msgstr "स्थिति"
+
+#: pro/licensorpro-client/licensorpro-client.php:1788
+msgid "Renew"
+msgstr "रिन्यू करें"
+
+#: pro/licensorpro-client/licensorpro-client.php:1792
+msgid "Offline mode"
+msgstr "ऑफ़लाइन मोड"
+
+#: pro/licensorpro-client/licensorpro-client.php:1794
+#, php-format
+msgid "cached license valid until %s"
+msgstr "कैश किया गया लाइसेंस %s तक मान्य"
+
+#: pro/licensorpro-client/licensorpro-client.php:1798
+msgid "Update channel"
+msgstr "अपडेट चैनल"
+
+#: pro/licensorpro-client/licensorpro-client.php:1799
+msgid "Site limit"
+msgstr "साइट सीमा"
+
+#: pro/licensorpro-client/licensorpro-client.php:1800
+msgid "Expires"
+msgstr "समाप्त होता है"
+
+#: pro/licensorpro-client/licensorpro-client.php:1800
+msgid "Never"
+msgstr "कभी नहीं"
+
+#: pro/licensorpro-client/licensorpro-client.php:1805
+msgid "Deactivate this site"
+msgstr "इस साइट को निष्क्रिय करें"
+
+#: pro/licensorpro-client/licensorpro-client.php:1812
+msgid "This is the free version, running on your Pro license."
+msgstr "यह Free वर्शन है, जो आपके Pro लाइसेंस पर चल रहा है।"
+
+#: pro/licensorpro-client/licensorpro-client.php:1829
+msgid ""
+"Have a Pro license key? Enter it here to switch on the Pro tools. It "
+"replaces the free license on this site."
+msgstr ""
+"क्या आपके पास Pro लाइसेंस Key है? Pro टूल चालू करने के लिए उसे यहाँ डालें। यह इस साइट के "
+"Free लाइसेंस की जगह ले लेगी।"
+
+#: pro/licensorpro-client/licensorpro-client.php:1830
+msgid "Enter your license key to activate this site."
+msgstr "इस साइट को सक्रिय करने के लिए अपनी लाइसेंस Key डालें।"
+
+#: pro/licensorpro-client/licensorpro-client.php:1837
+msgid "Activate"
+msgstr "सक्रिय करें"
+
+#: pro/licensorpro-client/licensorpro-client.php:1840
+msgid "Your key is in your purchase email and in your account."
+msgstr "आपकी Key आपके खरीद वाले ईमेल में और आपके अकाउंट में है।"
+
+#: pro/licensorpro-client/licensorpro-client.php:1848
+msgid "Need a hand?"
+msgstr "मदद चाहिए?"
+
+#: pro/licensorpro-client/licensorpro-client.php:1849
+msgid "Contact support"
+msgstr "सहायता से संपर्क करें"
+
+#: pro/licensorpro-client/licensorpro-client.php:2054
+msgid "Only someone who may install plugins on this site can install Pro."
+msgstr ""
+"Pro सिर्फ़ वही इंस्टॉल कर सकता है जिसे इस साइट पर प्लगइन इंस्टॉल करने की अनुमति है।"
+
+#: pro/licensorpro-client/licensorpro-client.php:2067
+msgid ""
+"That is a free license key, so it keeps this free version updated. Pro needs "
+"the key from your purchase email."
+msgstr ""
+"यह Free लाइसेंस Key है, इसलिए यह इस Free वर्शन को अपडेट रखती है। Pro के लिए आपके "
+"खरीद वाले ईमेल की Key चाहिए।"
+
+#. translators: %s: URL of the customer account
+#: pro/licensorpro-client/licensorpro-client.php:2072
+#, php-format
+msgid ""
+"Your key is active. Download the Pro zip from your account (%s) and upload "
+"it over this plugin instead."
+msgstr ""
+"आपकी Key सक्रिय है। इसके बजाय अपने अकाउंट (%s) से Pro zip डाउनलोड करें और इसे इस "
+"प्लगइन के ऊपर अपलोड करें।"
+
+#: pro/licensorpro-client/licensorpro-client.php:2076
+msgid "This site does not allow installing plugins from the dashboard."
+msgstr "यह साइट डैशबोर्ड से प्लगइन इंस्टॉल करने की अनुमति नहीं देती।"
+
+#: pro/licensorpro-client/licensorpro-client.php:2080
+msgid "The Pro download could not be fetched for this key."
+msgstr "इस Key के लिए Pro डाउनलोड नहीं मिल सका।"
+
+#: pro/licensorpro-client/licensorpro-client.php:2088
+msgid "This site asks for FTP details to install plugins."
+msgstr "प्लगइन इंस्टॉल करने के लिए यह साइट FTP विवरण माँगती है।"
+
+#: pro/licensorpro-client/licensorpro-client.php:2123
+msgid "Installing Pro did not finish."
+msgstr "Pro इंस्टॉल करना पूरा नहीं हुआ।"
+
+#. translators: %s: plugin name
+#: pro/licensorpro-client/licensorpro-client.php:2128
+#, php-format
+msgid "%s Pro is installed and your license is active. Reloading…"
+msgstr "%s Pro इंस्टॉल है और आपका लाइसेंस सक्रिय है। फिर से लोड हो रहा है…"
+
+#: pro/licensorpro-client/licensorpro-client.php:2138
+msgid "License activated."
+msgstr "लाइसेंस सक्रिय हो गया।"
+
+#: pro/licensorpro-client/licensorpro-client.php:2150
+msgid "Site deactivated."
+msgstr "साइट निष्क्रिय हो गई।"
+
+#: pro/licensorpro-client/licensorpro-client.php:2161
+msgid "License is valid. Update info refreshed."
+msgstr "लाइसेंस मान्य है। अपडेट जानकारी ताज़ा की गई।"
+
+#: pro/licensorpro-client/licensorpro-client.php:2168
+msgid "Permission denied."
+msgstr "अनुमति नहीं है।"
+
+#. Plugin Name of the plugin
+#: entryvault.php includes/class-admin-ui.php:81 includes/class-plugin.php:121
+#: includes/class-plugin.php:122 includes/class-plugin.php:133
+#: includes/class-plugin.php:134
+msgid "EntryVault"
+msgstr "EntryVault"
+
+#. Plugin URI of the plugin
+#: entryvault.php
+msgid "https://jnkplugins.com/entryvault/"
+msgstr "https://jnkplugins.com/entryvault/"
+
+#. Description of the plugin
+#: entryvault.php
+msgid "Lightweight CRM & entry manager for WordPress form plugins."
+msgstr "WordPress फ़ॉर्म प्लगइन्स के लिए हल्का CRM और एंट्री मैनेजर।"
+
+#. Author of the plugin
+#: entryvault.php
+msgid "JNK Plugins"
+msgstr "JNK Plugins"
+
+#. Author URI of the plugin
+#: entryvault.php
+msgid "https://jnkplugins.com"
+msgstr "https://jnkplugins.com"
+
+#: admin/views/dashboard.php:9 includes/class-submissions-admin.php:185
+msgid "You do not have permission to view this page."
+msgstr "आपको यह पेज देखने की अनुमति नहीं है।"
+
+#: admin/views/dashboard.php:72 includes/class-admin-ui.php:24
+msgid "Overview"
+msgstr "अवलोकन"
+
+#: admin/views/dashboard.php:73
+msgid "What came in, what is waiting on you, and how your pipeline is doing."
+msgstr "क्या आया, क्या आपका इंतज़ार कर रहा है, और आपकी पाइपलाइन कैसी चल रही है।"
+
+#: admin/views/dashboard.php:74
+msgid "All submissions"
+msgstr "सभी सबमिशन"
+
+#: admin/views/dashboard.php:75 admin/views/dashboard.php:84
+#: includes/class-submissions-admin.php:224
+msgid "Open the board"
+msgstr "बोर्ड खोलें"
+
+#: admin/views/dashboard.php:81
+msgid "Getting started"
+msgstr "शुरुआत करें"
+
+#: admin/views/dashboard.php:82
+msgid ""
+"EntryVault picks up submissions from the form plugins you already use. There "
+"is nothing to change on your forms. Submit one of them once and it appears "
+"on the board within moments."
+msgstr ""
+"EntryVault उन फ़ॉर्म प्लगइन्स से सबमिशन लेता है जो आप पहले से इस्तेमाल करते हैं। आपके फ़ॉर्म "
+"में कुछ बदलने की ज़रूरत नहीं है। किसी एक फ़ॉर्म को एक बार भेजें, वह कुछ ही पलों में बोर्ड पर "
+"दिख जाएगा।"
+
+#: admin/views/dashboard.php:85 admin/assets/kanban/build/index.js:37
+msgid "Import a CSV instead"
+msgstr "इसके बजाय CSV इंपोर्ट करें"
+
+#: admin/views/dashboard.php:92
+msgid "New in the last 7 days"
+msgstr "पिछले 7 दिनों में नई"
+
+#. translators: %s: number of submissions received today.
+#: admin/views/dashboard.php:96
+#, php-format
+msgid "%s today"
+msgstr "आज %s"
+
+#: admin/views/dashboard.php:100
+msgid "Open"
+msgstr "खुली"
+
+#. translators: %s: total number of submissions.
+#: admin/views/dashboard.php:104
+#, php-format
+msgid "Out of %s in total"
+msgstr "कुल %s में से"
+
+#: admin/views/dashboard.php:108
+msgid "Nobody assigned"
+msgstr "कोई ज़िम्मेदार नहीं"
+
+#: admin/views/dashboard.php:110
+msgid "Open entries without an owner"
+msgstr "बिना ज़िम्मेदार वाली खुली एंट्रियाँ"
+
+#: admin/views/dashboard.php:110
+msgid "Every open entry has an owner"
+msgstr "हर खुली एंट्री का कोई ज़िम्मेदार है"
+
+#: admin/views/dashboard.php:113
+msgid "Waiting 3 days or more"
+msgstr "3 दिन या उससे ज़्यादा से इंतज़ार में"
+
+#. translators: %s: number of entries moved to a won stage this week.
+#: admin/views/dashboard.php:117
+#, php-format
+msgid "Open, and nothing changed lately. %s won in the last 7 days."
+msgstr "खुली हैं, और हाल में कुछ नहीं बदला। पिछले 7 दिनों में %s जीती गईं।"
+
+#: admin/views/dashboard.php:125
+msgid "Needs attention"
+msgstr "ध्यान देने की ज़रूरत"
+
+#: admin/views/dashboard.php:126
+msgid ""
+"Open entries with no owner, or that nobody has touched for 3 days. Oldest "
+"first."
+msgstr ""
+"बिना ज़िम्मेदार वाली खुली एंट्रियाँ, या जिन्हें 3 दिन से किसी ने नहीं छुआ। सबसे पुरानी पहले।"
+
+#: admin/views/dashboard.php:129
+msgid "All caught up"
+msgstr "सब निपट गया"
+
+#: admin/views/dashboard.php:129
+msgid "Every open entry has an owner and has been looked at recently."
+msgstr "हर खुली एंट्री का कोई ज़िम्मेदार है और उसे हाल ही में देखा गया है।"
+
+#. translators: %s: relative time, e.g. "3 days ago".
+#: admin/views/dashboard.php:139
+#, php-format
+msgid "last change %s"
+msgstr "आखिरी बदलाव %s"
+
+#: admin/views/dashboard.php:143
+msgid "No owner"
+msgstr "कोई ज़िम्मेदार नहीं"
+
+#: admin/views/dashboard.php:145
+msgid "Waiting"
+msgstr "इंतज़ार में"
+
+#: admin/views/dashboard.php:155
+msgid "Recent activity"
+msgstr "हाल की गतिविधि"
+
+#: admin/views/dashboard.php:156
+msgid "The latest changes across all your entries."
+msgstr "आपकी सभी एंट्रियों में हुए ताज़ा बदलाव।"
+
+#: admin/views/dashboard.php:159
+msgid "No activity yet"
+msgstr "अभी कोई गतिविधि नहीं"
+
+#: admin/views/dashboard.php:159
+msgid "New submissions, stage moves, notes and replies show up here."
+msgstr "नए सबमिशन, चरण में बदलाव, नोट और जवाब यहाँ दिखते हैं।"
+
+#: admin/views/dashboard.php:185
+msgid "Where entries come from"
+msgstr "एंट्रियाँ कहाँ से आती हैं"
+
+#: admin/views/dashboard.php:186
+msgid "The form plugins EntryVault is listening to right now."
+msgstr "वे फ़ॉर्म प्लगइन्स जिन्हें EntryVault अभी सुन रहा है।"
+
+#: admin/views/dashboard.php:187
+msgid "Check health"
+msgstr "हेल्थ जाँचें"
+
+#: admin/views/dashboard.php:195
+msgid "No form plugin found yet"
+msgstr "अभी कोई फ़ॉर्म प्लगइन नहीं मिला"
+
+#: admin/views/dashboard.php:196
+msgid "Activate a form plugin, or import a CSV file."
+msgstr "कोई फ़ॉर्म प्लगइन चालू करें, या CSV फ़ाइल इंपोर्ट करें।"
+
+#: admin/views/dashboard.php:201
+msgid "Reports"
+msgstr "रिपोर्ट"
+
+#: admin/views/dashboard.php:202
+msgid ""
+"Pick a pipeline and a date range. The numbers below update straight away."
+msgstr "एक पाइपलाइन और तारीख की सीमा चुनें। नीचे के आँकड़े तुरंत अपडेट होते हैं।"
+
+#: admin/views/dashboard.php:207 admin/views/import.php:83
+#: includes/class-submissions-list-table.php:57
+#: admin/assets/kanban/build/index.js:37
+msgid "Pipeline"
+msgstr "पाइपलाइन"
+
+#: admin/views/dashboard.php:211 includes/class-submissions-admin.php:340
+msgid "From"
+msgstr "से"
+
+#: admin/views/dashboard.php:215 includes/class-submissions-admin.php:344
+msgid "To"
+msgstr "तक"
+
+#: admin/views/dashboard.php:218
+msgid "Refresh"
+msgstr "रीफ़्रेश करें"
+
+#: admin/views/dashboard.php:226
+msgid "By stage"
+msgstr "चरण के अनुसार"
+
+#: admin/views/dashboard.php:227
+msgid "How many entries sit in each stage."
+msgstr "हर चरण में कितनी एंट्रियाँ हैं।"
+
+#: admin/views/dashboard.php:231
+msgid "Sources"
+msgstr "स्रोत"
+
+#: admin/views/dashboard.php:232
+msgid "Which form plugin each entry came from."
+msgstr "हर एंट्री किस फ़ॉर्म प्लगइन से आई।"
+
+#: admin/views/dashboard.php:238
+msgid "Entries per day"
+msgstr "प्रति दिन एंट्रियाँ"
+
+#: admin/views/dashboard.php:239
+msgid "The last 30 days. Hover a bar for the date."
+msgstr "पिछले 30 दिन। तारीख देखने के लिए किसी बार पर माउस ले जाएँ।"
+
+#: admin/views/dashboard.php:245
+msgid "Funnel"
+msgstr "फ़नल"
+
+#: admin/views/dashboard.php:246
+msgid "How many entries reach each stage, and the share that move on."
+msgstr "हर चरण तक कितनी एंट्रियाँ पहुँचती हैं, और उनमें से कितना हिस्सा आगे बढ़ता है।"
+
+#: admin/views/dashboard.php:250
+msgid "Time in each stage"
+msgstr "हर चरण में समय"
+
+#: admin/views/dashboard.php:251
+msgid "Average hours an entry spends in a stage before it moves."
+msgstr "आगे बढ़ने से पहले एक एंट्री किसी चरण में औसतन कितने घंटे रहती है।"
+
+#: admin/views/dashboard.php:257
+msgid "By owner"
+msgstr "ज़िम्मेदार के अनुसार"
+
+#: admin/views/dashboard.php:258
+msgid "Click a column title to sort."
+msgstr "क्रम से लगाने के लिए कॉलम के शीर्षक पर क्लिक करें।"
+
+#: admin/views/feedback.php:13 admin/views/health.php:16
+#: admin/views/import.php:18 admin/views/settings.php:15
+#: admin/views/upgrade.php:15
+msgid "You do not have permission to access this page."
+msgstr "आपको इस पेज को खोलने की अनुमति नहीं है।"
+
+#: admin/views/feedback.php:23
+msgid "Help and feedback"
+msgstr "सहायता और फ़ीडबैक"
+
+#: admin/views/feedback.php:24
+msgid ""
+"Found a bug, have an idea, or just want to say hello? Send a note straight "
+"to the people who make EntryVault."
+msgstr ""
+"कोई बग मिला, कोई आइडिया है, या बस नमस्ते कहना है? EntryVault बनाने वालों को सीधे एक "
+"नोट भेजें।"
+
+#: admin/views/feedback.php:25
+msgid "Read the guides"
+msgstr "गाइड पढ़ें"
+
+#: admin/views/feedback.php:32
+msgid "Thanks! Your feedback was sent to the EntryVault author."
+msgstr "धन्यवाद! आपका फ़ीडबैक EntryVault के लेखक को भेज दिया गया।"
+
+#: admin/views/feedback.php:36
+msgid ""
+"You’ve sent several messages recently. Please try again in a little while."
+msgstr "आपने हाल ही में कई संदेश भेजे हैं। कृपया थोड़ी देर बाद फिर से कोशिश करें।"
+
+#: admin/views/feedback.php:40
+msgid ""
+"Sorry, your feedback could not be sent. Please check your message and your "
+"site’s email configuration, then try again."
+msgstr ""
+"माफ़ करें, आपका फ़ीडबैक नहीं भेजा जा सका। कृपया अपना संदेश और अपनी साइट की ईमेल सेटिंग "
+"जाँचें, फिर से कोशिश करें।"
+
+#: admin/views/feedback.php:50
+msgid "Website"
+msgstr "वेबसाइट"
+
+#: admin/views/feedback.php:56
+msgid "What is it about?"
+msgstr "यह किस बारे में है?"
+
+#: admin/views/feedback.php:66 includes/class-submissions-list-table.php:56
+#: admin/assets/kanban/build/index.js:26
+msgid "Message"
+msgstr "संदेश"
+
+#: admin/views/feedback.php:72
+msgid "Your email (optional, so we can reply)"
+msgstr "आपका ईमेल (वैकल्पिक, ताकि हम जवाब दे सकें)"
+
+#: admin/views/feedback.php:79
+msgid "Site details"
+msgstr "साइट की जानकारी"
+
+#: admin/views/feedback.php:83
+msgid "Include basic site details to help us find the problem"
+msgstr "समस्या ढूँढने में हमारी मदद के लिए साइट की बुनियादी जानकारी जोड़ें"
+
+#: admin/views/feedback.php:86
+msgid ""
+"Sends: WordPress version, PHP version, EntryVault version, active theme name "
+"and your site URL. No personal data."
+msgstr ""
+"भेजता है: WordPress वर्ज़न, PHP वर्ज़न, EntryVault वर्ज़न, चालू थीम का नाम और आपकी "
+"साइट का URL। कोई निजी डेटा नहीं।"
+
+#: admin/views/feedback.php:93 admin/assets/kanban/build/index.js:27
+msgid "Send"
+msgstr "भेजें"
+
+#: admin/views/feedback.php:94
+msgid "Your message goes out through your site’s own email."
+msgstr "आपका संदेश आपकी साइट के अपने ईमेल से जाता है।"
+
+#: admin/views/health.php:31 includes/class-admin-ui.php:28
+#: includes/class-plugin.php:148
+msgid "Health"
+msgstr "हेल्थ"
+
+#: admin/views/health.php:32
+msgid ""
+"A quick check that EntryVault is set up right and is picking up your forms."
+msgstr "एक झटपट जाँच कि EntryVault सही से सेट है और आपके फ़ॉर्म पकड़ रहा है।"
+
+#: admin/views/health.php:35
+msgid "Check again"
+msgstr "फिर से जाँचें"
+
+#: admin/views/import.php:36 includes/class-admin-ui.php:27
+#: includes/class-plugin.php:147
+msgid "Import"
+msgstr "इंपोर्ट"
+
+#: admin/views/import.php:37
+msgid ""
+"Bring in entries from a spreadsheet. Save it as a CSV file first, with "
+"column names in the first row."
+msgstr ""
+"किसी स्प्रेडशीट से एंट्रियाँ लाएँ। पहले उसे CSV फ़ाइल के रूप में सहेजें, पहली पंक्ति में कॉलम के "
+"नाम हों।"
+
+#: admin/views/import.php:41
+msgid "Choose your file"
+msgstr "अपनी फ़ाइल चुनें"
+
+#: admin/views/import.php:42
+msgid ""
+"The file is read in your browser first, so you can check it before anything "
+"is saved."
+msgstr ""
+"फ़ाइल पहले आपके ब्राउज़र में पढ़ी जाती है, ताकि कुछ भी सेव किए जाने से पहले आप उसे जाँच सकें।"
+
+#: admin/views/import.php:44
+msgid "CSV file"
+msgstr "CSV फ़ाइल"
+
+#: admin/views/import.php:47
+msgid "or"
+msgstr "या"
+
+#: admin/views/import.php:48
+msgid "Paste the CSV text"
+msgstr "CSV टेक्स्ट पेस्ट करें"
+
+#: admin/views/import.php:54
+msgid "Preview"
+msgstr "पूर्वावलोकन"
+
+#: admin/views/import.php:62
+msgid "Match the columns"
+msgstr "कॉलम मिलाएँ"
+
+#: admin/views/import.php:63
+msgid ""
+"Tell EntryVault what each column holds. One column must be the email address."
+msgstr "EntryVault को बताएँ कि हर कॉलम में क्या है। एक कॉलम ईमेल पता होना चाहिए।"
+
+#: admin/views/import.php:68
+msgid "Column"
+msgstr "कॉलम"
+
+#: admin/views/import.php:69
+msgid "First value"
+msgstr "पहला मान"
+
+#: admin/views/import.php:70
+msgid "Use as"
+msgstr "इस रूप में"
+
+#: admin/views/import.php:79
+msgid "Where they go"
+msgstr "ये कहाँ जाएँगी"
+
+#: admin/views/import.php:80
+msgid ""
+"Pick the pipeline and stage for the new entries. Try a test run first: it "
+"checks the file and saves nothing."
+msgstr ""
+"नई एंट्रियों के लिए पाइपलाइन और चरण चुनें। पहले टेस्ट रन करें: यह फ़ाइल जाँचता है और कुछ भी "
+"सेव नहीं करता।"
+
+#: admin/views/import.php:85
+msgid "Use the default pipeline"
+msgstr "डिफ़ॉल्ट पाइपलाइन इस्तेमाल करें"
+
+#: admin/views/import.php:91 includes/class-frontend.php:501
+#: includes/class-submissions-list-table.php:58
+#: admin/assets/js/dashboard.js:140
+#: admin/assets/js/dashboard.js:219 admin/assets/kanban/build/index.js:5
+#: blocks/submissions-table/index.js:26
+msgid "Stage"
+msgstr "चरण"
+
+#: admin/views/import.php:93 includes/class-plugin.php:331
+msgid "First stage of the pipeline"
+msgstr "पाइपलाइन का पहला चरण"
+
+#: admin/views/import.php:100
+msgid "Test run only: check the file but do not save anything"
+msgstr "सिर्फ़ टेस्ट रन: फ़ाइल जाँचें पर कुछ भी न सहेजें"
+
+#: admin/views/import.php:113
+msgid "Run import"
+msgstr "इंपोर्ट चलाएँ"
+
+#: admin/views/kanban.php:5 includes/class-admin-ui.php:23
+msgid "Board"
+msgstr "बोर्ड"
+
+#: admin/views/kanban.php:6
+msgid ""
+"Every form submission as a card. Drag a card to move it to the next stage, "
+"or open it to reply, add notes and tags."
+msgstr ""
+"हर फ़ॉर्म सबमिशन एक कार्ड है। कार्ड को अगले चरण में ले जाने के लिए खींचें, या जवाब देने, नोट "
+"और टैग जोड़ने के लिए उसे खोलें।"
+
+#. translators: 1: number of entries, 2: date of the latest one.
+#: admin/views/kanban.php:25
+#, php-format
+msgid ""
+"%1$d entry in the last 30 days was left out because its form plugin marked "
+"it as spam (latest %2$s). Spam filters are sometimes wrong, so it is worth a "
+"look."
+msgid_plural ""
+"%1$d entries in the last 30 days were left out because their form plugin "
+"marked them as spam (latest %2$s). Spam filters are sometimes wrong, so they "
+"are worth a look."
+msgstr[0] ""
+"पिछले 30 दिनों में %1$d एंट्री छोड़ दी गई क्योंकि उसके फ़ॉर्म प्लगइन ने उसे स्पैम माना (आखिरी "
+"%2$s)। स्पैम फ़िल्टर कभी-कभी गलत होते हैं, इसलिए इसे एक बार देख लेना ठीक रहेगा।"
+msgstr[1] ""
+"पिछले 30 दिनों में %1$d एंट्रियाँ छोड़ दी गईं क्योंकि उनके फ़ॉर्म प्लगइन ने उन्हें स्पैम माना "
+"(आखिरी %2$s)। स्पैम फ़िल्टर कभी-कभी गलत होते हैं, इसलिए इन्हें एक बार देख लेना ठीक रहेगा।"
+
+#: admin/views/kanban.php:36
+msgid "Review them in Trinity Forms"
+msgstr "इन्हें Trinity Forms में देखें"
+
+#: admin/views/kanban.php:37
+msgid "(an entry you restore there comes onto this board)."
+msgstr "(वहाँ से वापस लाई गई एंट्री इस बोर्ड पर आ जाती है)।"
+
+#: admin/views/kanban.php:39
+msgid "Keep spam entries in EntryVault"
+msgstr "स्पैम एंट्रियाँ EntryVault में रखें"
+
+#: admin/views/kanban.php:45 admin/assets/kanban/build/index.js:27
+msgid "Loading the board…"
+msgstr "बोर्ड लोड हो रहा है…"
+
+#: admin/views/kanban.php:47
+msgid "If this message stays, the board files are missing. Run"
+msgstr "अगर यह संदेश बना रहे, तो बोर्ड की फ़ाइलें गायब हैं। प्लगइन फ़ोल्डर में"
+
+#: admin/views/kanban.php:49
+msgid "in the plugin folder."
+msgstr "चलाएँ।"
+
+#: admin/views/settings.php:50 includes/class-admin-ui.php:111
+#: includes/class-plugin.php:82 includes/class-plugin.php:149
+msgid "Settings"
+msgstr "सेटिंग्स"
+
+#: admin/views/settings.php:51
+msgid ""
+"How EntryVault sends replies, who can own entries, and what happens to your "
+"data."
+msgstr ""
+"EntryVault जवाब कैसे भेजता है, कौन एंट्रियों का ज़िम्मेदार हो सकता है, और आपके डेटा का "
+"क्या होता है।"
+
+#: admin/views/settings.php:57
+msgid "License"
+msgstr "लाइसेंस"
+
+#: admin/views/settings.php:61
+msgid "General"
+msgstr "सामान्य"
+
+#: admin/views/settings.php:62
+msgid "Owners"
+msgstr "ज़िम्मेदार"
+
+#: admin/views/settings.php:80
+msgid "Default pipeline"
+msgstr "डिफ़ॉल्ट पाइपलाइन"
+
+#: admin/views/settings.php:83
+#: admin/assets/js/health.js:95
+msgid "None"
+msgstr "कोई नहीं"
+
+#: admin/views/settings.php:85
+msgid ""
+"New entries land here unless something else sends them to another pipeline."
+msgstr "नई एंट्रियाँ यहीं आती हैं, जब तक कोई और चीज़ उन्हें दूसरी पाइपलाइन में न भेजे।"
+
+#: admin/views/settings.php:89
+msgid "Send replies as"
+msgstr "जवाब इस नाम से भेजें"
+
+#: admin/views/settings.php:97
+msgid ""
+"The name and address your replies come from. Leave blank to use the site "
+"name and admin address. Without this, WordPress sends as \"WordPress\", so "
+"someone who wrote to your business gets a reply from a stranger."
+msgstr ""
+"वह नाम और पता जिससे आपके जवाब जाते हैं। साइट का नाम और एडमिन पता इस्तेमाल करने के लिए "
+"खाली छोड़ें। इसके बिना WordPress \"WordPress\" नाम से भेजता है, और आपके बिज़नेस को "
+"लिखने वाले व्यक्ति को किसी अनजान से जवाब मिलता है।"
+
+#: admin/views/settings.php:112
+msgid "Reply address domain"
+msgstr "जवाब पते का डोमेन"
+
+#: admin/views/settings.php:116
+msgid ""
+"Optional. The domain used in the reply-to address of emails you send, so "
+"answers come back to the right entry. Leave blank to use this site's domain."
+msgstr ""
+"वैकल्पिक। आपके भेजे ईमेल के reply-to पते में इस्तेमाल होने वाला डोमेन, ताकि जवाब सही एंट्री "
+"में वापस आएँ। इस साइट का डोमेन इस्तेमाल करने के लिए खाली छोड़ें।"
+
+#: admin/views/settings.php:121
+msgid "Show entries on a page"
+msgstr "एंट्रियाँ किसी पेज पर दिखाएँ"
+
+#: admin/views/settings.php:136
+msgid "No pipelines yet."
+msgstr "अभी कोई पाइपलाइन नहीं।"
+
+#: admin/views/settings.php:152
+msgid ""
+"Paste one of these into a page to show that pipeline's submissions. Anyone "
+"who can open the page can read the table, so treat the token as a password. "
+"By default the table shows the date, name and stage, never the email "
+"address. A submission without a name shows as \"(no name)\" rather than its "
+"address. Add columns=\"submitted_at,name,stage,email\" only if you really "
+"want addresses on a public page. The owner and tags columns are public too "
+"once you add them, so leave out internal tags. The Submissions Table block "
+"uses the same defaults. If EntryVault is ever deactivated, WordPress prints "
+"an unknown shortcode as plain text, token included; the block does not, so "
+"prefer the block on public pages."
+msgstr ""
+"उस पाइपलाइन के सबमिशन दिखाने के लिए इनमें से एक को किसी पेज में पेस्ट करें। जो भी वह पेज "
+"खोल सकता है, वह तालिका पढ़ सकता है, इसलिए टोकन को पासवर्ड की तरह रखें। डिफ़ॉल्ट रूप से "
+"तालिका तारीख, नाम और चरण दिखाती है, ईमेल पता कभी नहीं। बिना नाम वाला सबमिशन अपने "
+"पते के बजाय \"(कोई नाम नहीं)\" दिखता है। columns=\"submitted_at,name,stage,"
+"email\" सिर्फ़ तभी जोड़ें जब आप सच में किसी सार्वजनिक पेज पर पते दिखाना चाहते हों। "
+"ज़िम्मेदार और टैग कॉलम जोड़ने पर वे भी सार्वजनिक हो जाते हैं, इसलिए अंदरूनी टैग न जोड़ें। "
+"सबमिशन तालिका ब्लॉक भी यही डिफ़ॉल्ट इस्तेमाल करता है। अगर EntryVault कभी बंद हो "
+"जाए, तो WordPress अनजान शॉर्टकोड को सादे टेक्स्ट में छाप देता है, टोकन समेत; ब्लॉक ऐसा "
+"नहीं करता, इसलिए सार्वजनिक पेजों पर ब्लॉक ही इस्तेमाल करें।"
+
+#: admin/views/settings.php:158 includes/class-tag-manager.php:135
+msgid "Spam"
+msgstr "स्पैम"
+
+#: admin/views/settings.php:162
+msgid "Leave out entries your form plugin marked as spam"
+msgstr "जिन एंट्रियों को आपके फ़ॉर्म प्लगइन ने स्पैम माना, उन्हें छोड़ दें"
+
+#: admin/views/settings.php:164
+msgid ""
+"On by default. Some form plugins save spam and still pass it on (Gravity "
+"Forms, Fluent Forms, Forminator, Formidable, Ninja Forms with Akismet, "
+"Everest Forms, WS Form, Jetpack). With this on, those never reach your "
+"board. Spam stays in the form plugin, so nothing is lost. Untick to bring "
+"spam in too."
+msgstr ""
+"डिफ़ॉल्ट रूप से चालू। कुछ फ़ॉर्म प्लगइन्स स्पैम सेव करते हैं और फिर भी उसे आगे भेज देते हैं "
+"(Gravity Forms, Fluent Forms, Forminator, Formidable, Akismet के साथ Ninja "
+"Forms, Everest Forms, WS Form, Jetpack)। इसे चालू रखने पर वे कभी आपके बोर्ड तक नहीं "
+"पहुँचतीं। स्पैम फ़ॉर्म प्लगइन में ही रहता है, इसलिए कुछ नहीं खोता। स्पैम भी लाने के लिए टिक "
+"हटाएँ।"
+
+#: admin/views/settings.php:168
+msgid "Data"
+msgstr "डेटा"
+
+#: admin/views/settings.php:173
+msgid "Delete a card when its entry is deleted in Trinity Forms"
+msgstr "Trinity Forms में एंट्री हटने पर उसका कार्ड भी हटाएँ"
+
+#: admin/views/settings.php:175
+msgid ""
+"Off by default, so EntryVault keeps its copy as a backup when an entry is "
+"deleted in Trinity Forms, by hand or by its retention setting. Tick this to "
+"delete the card, its notes and emails too. Privacy erase requests from Tools "
+"> Erase Personal Data clear EntryVault either way."
+msgstr ""
+"डिफ़ॉल्ट रूप से बंद, ताकि Trinity Forms में कोई एंट्री हाथ से या उसकी रिटेंशन सेटिंग से हटने "
+"पर EntryVault अपनी कॉपी बैकअप के तौर पर रखे। कार्ड, उसके नोट और ईमेल भी हटाने के लिए "
+"इस पर टिक करें। टूल्स > व्यक्तिगत डेटा मिटाएं से आए प्राइवेसी मिटाने के अनुरोध EntryVault "
+"को हर हाल में साफ़ करते हैं।"
+
+#: admin/views/settings.php:180
+msgid "Delete all EntryVault data when the plugin is deleted"
+msgstr "प्लगइन हटाने पर EntryVault का सारा डेटा हटाएँ"
+
+#: admin/views/settings.php:182
+msgid ""
+"Off by default. Your submissions, tags and notes are kept if you deactivate "
+"or delete the plugin, or let a Pro license lapse. Tick this only if deleting "
+"the plugin should also remove the data."
+msgstr ""
+"डिफ़ॉल्ट रूप से बंद। प्लगइन को बंद करने या हटाने पर, या Pro लाइसेंस खत्म होने पर भी आपके "
+"सबमिशन, टैग और नोट बने रहते हैं। इस पर टिक सिर्फ़ तभी करें जब प्लगइन हटाने पर डेटा भी "
+"हटना चाहिए।"
+
+#: admin/views/settings.php:187 admin/views/settings.php:216
+msgid "Save changes"
+msgstr "बदलाव सहेजें"
+
+#: admin/views/settings.php:198
+msgid "Who can own entries"
+msgstr "एंट्रियों का ज़िम्मेदार कौन हो सकता है"
+
+#: admin/views/settings.php:201
+msgid "No roles are available."
+msgstr "कोई रोल उपलब्ध नहीं है।"
+
+#: admin/views/settings.php:210
+msgid ""
+"People with a ticked role can be made the owner of an entry. People who can "
+"edit posts are always included."
+msgstr ""
+"टिक किए गए रोल वाले लोगों को किसी एंट्री का ज़िम्मेदार बनाया जा सकता है। जो लोग पोस्ट "
+"संपादित कर सकते हैं, वे हमेशा शामिल होते हैं।"
+
+#: admin/views/tags.php:14 includes/class-admin-ui.php:26
+#: includes/class-frontend.php:503 includes/class-plugin.php:146
+#: includes/class-submissions-list-table.php:62
+#: admin/assets/kanban/build/index.js:5
+msgid "Tags"
+msgstr "टैग"
+
+#: admin/views/tags.php:15
+msgid ""
+"Labels you can put on any entry, like \"Hot lead\" or \"Wholesale\". Use "
+"them to filter the board and the Submissions list."
+msgstr ""
+"लेबल जो आप किसी भी एंट्री पर लगा सकते हैं, जैसे \"Hot lead\" या \"Wholesale\"। इनसे "
+"बोर्ड और सबमिशन सूची को फ़िल्टर करें।"
+
+#: admin/views/tags.php:21
+msgid "Your tags"
+msgstr "आपके टैग"
+
+#: admin/views/tags.php:22
+msgid "Edit a tag to rename it or change its colour. Entries keep their tags."
+msgstr "किसी टैग का नाम या रंग बदलने के लिए उसे संपादित करें। एंट्रियों के टैग बने रहते हैं।"
+
+#: admin/views/tags.php:27 admin/views/tags.php:45
+#: includes/class-frontend.php:499
+#: blocks/submissions-table/index.js:23
+msgid "Name"
+msgstr "नाम"
+
+#: admin/views/tags.php:28
+msgid "Short name"
+msgstr "छोटा नाम"
+
+#: admin/views/tags.php:29 admin/views/tags.php:48
+msgid "Colour"
+msgstr "रंग"
+
+#: admin/views/tags.php:30
+msgid "Actions"
+msgstr "कार्रवाइयाँ"
+
+#: admin/views/tags.php:39 includes/class-plugin.php:276
+msgid "Add a tag"
+msgstr "टैग जोड़ें"
+
+#: admin/views/tags.php:40
+msgid ""
+"Pick a name and a colour. You can also create tags from an entry on the "
+"board."
+msgstr "एक नाम और एक रंग चुनें। आप बोर्ड पर किसी एंट्री से भी टैग बना सकते हैं।"
+
+#: admin/views/tags.php:53
+msgid "Save tag"
+msgstr "टैग सहेजें"
+
+#: admin/views/upgrade.php:29
+msgid "Automation engine"
+msgstr "ऑटोमेशन इंजन"
+
+#: admin/views/upgrade.php:29
+msgid ""
+"Set up rules once: when a form comes in, a stage changes, a tag is added or "
+"someone replies, send an email, move the entry, tag it, assign it or notify "
+"another app."
+msgstr ""
+"नियम एक बार सेट करें: जब कोई फ़ॉर्म आए, चरण बदले, टैग जुड़े या कोई जवाब दे, तब ईमेल भेजें, "
+"एंट्री आगे बढ़ाएँ, टैग लगाएँ, किसी को सौंपें या किसी दूसरे ऐप को सूचना दें।"
+
+#: admin/views/upgrade.php:30
+msgid "Integrations"
+msgstr "इंटीग्रेशन"
+
+#: admin/views/upgrade.php:30
+msgid ""
+"Send people to Mailchimp or MailerLite, notify other apps safely, and tag "
+"entries by form."
+msgstr ""
+"लोगों को Mailchimp या MailerLite में भेजें, दूसरे ऐप्स को सुरक्षित रूप से सूचना दें, और फ़ॉर्म "
+"के हिसाब से एंट्रियों पर टैग लगाएँ।"
+
+#: admin/views/upgrade.php:31
+msgid "Email reply tracking"
+msgstr "ईमेल जवाब ट्रैकिंग"
+
+#: admin/views/upgrade.php:31
+msgid ""
+"Connect a mailbox and replies to your emails are filed under the right "
+"entry, so the whole conversation sits in one place."
+msgstr ""
+"एक मेलबॉक्स जोड़ें और आपके ईमेल के जवाब सही एंट्री के नीचे दर्ज हो जाएँगे, ताकि पूरी बातचीत "
+"एक ही जगह रहे।"
+
+#: admin/views/upgrade.php:32
+msgid "Multiple pipelines"
+msgstr "कई पाइपलाइन"
+
+#: admin/views/upgrade.php:32
+msgid "Run separate Kanban boards for different teams or workflows."
+msgstr "अलग-अलग टीमों या कामकाज के लिए अलग Kanban बोर्ड चलाएँ।"
+
+#: admin/views/upgrade.php:33
+msgid "Historical backfill"
+msgstr "पुरानी एंट्रियाँ लाना"
+
+#: admin/views/upgrade.php:33
+msgid "Pull past form entries into EntryVault in one pass."
+msgstr "पुरानी फ़ॉर्म एंट्रियाँ एक ही बार में EntryVault में लाएँ।"
+
+#: admin/views/upgrade.php:34
+msgid "Public Kanban board"
+msgstr "सार्वजनिक Kanban बोर्ड"
+
+#: admin/views/upgrade.php:34
+msgid ""
+"Show a view-only board on any page, behind a private link. Plus approvals, "
+"quick edits and exports emailed on a schedule."
+msgstr ""
+"किसी भी पेज पर, एक निजी लिंक के पीछे, सिर्फ़ देखने वाला बोर्ड दिखाएँ। साथ में मंज़ूरी, झटपट "
+"बदलाव और तय समय पर ईमेल से भेजे जाने वाले एक्सपोर्ट।"
+
+#: admin/views/upgrade.php:39
+msgid "EntryVault Pro"
+msgstr "EntryVault Pro"
+
+#: admin/views/upgrade.php:40
+msgid ""
+"You are using the free EntryVault: a complete board for one pipeline. Pro "
+"adds the rules, connections, email replies and extra pipelines a growing "
+"team needs."
+msgstr ""
+"आप फ़्री EntryVault इस्तेमाल कर रहे हैं: एक पाइपलाइन के लिए पूरा बोर्ड। Pro में वे नियम, "
+"कनेक्शन, ईमेल जवाब और अतिरिक्त पाइपलाइन जुड़ते हैं जिनकी एक बढ़ती टीम को ज़रूरत होती है।"
+
+#: admin/views/upgrade.php:41
+msgid "See Pro plans"
+msgstr "Pro प्लान देखें"
+
+#: admin/views/upgrade.php:45
+msgid "Upgrading keeps everything."
+msgstr "अपग्रेड करने पर सब कुछ बना रहता है।"
+
+#: admin/views/upgrade.php:46
+msgid ""
+"Install Pro over this version. It is the same plugin with the same database, "
+"so your pipelines, entries, tags and settings carry over untouched."
+msgstr ""
+"इस वर्ज़न के ऊपर Pro इंस्टॉल करें। यह वही प्लगइन है और वही डेटाबेस, इसलिए आपकी "
+"पाइपलाइन, एंट्रियाँ, टैग और सेटिंग्स बिना छेड़े बनी रहती हैं।"
+
+#: admin/views/upgrade.php:59
+msgid "Already bought Pro?"
+msgstr "Pro पहले ही खरीद लिया?"
+
+#: admin/views/upgrade.php:60
+msgid ""
+"Fastest: paste your Pro license key in EntryVault Settings, under License, "
+"and click Install Pro now. Pro is installed over this version for you. Or do "
+"it by hand:"
+msgstr ""
+"सबसे तेज़ तरीका: अपनी Pro लाइसेंस Key EntryVault सेटिंग्स में, लाइसेंस के नीचे पेस्ट करें, और "
+"अभी Pro इंस्टॉल करें पर क्लिक करें। Pro आपके लिए इस वर्ज़न के ऊपर इंस्टॉल हो जाता है। या "
+"इसे हाथ से करें:"
+
+#: admin/views/upgrade.php:60
+msgid "Open the License box"
+msgstr "लाइसेंस बॉक्स खोलें"
+
+#: admin/views/upgrade.php:62 admin/views/upgrade.php:63
+msgid "Download the Pro zip"
+msgstr "Pro zip डाउनलोड करें"
+
+#: admin/views/upgrade.php:62
+msgid "From your account on jnkplugins.com, under your license."
+msgstr "jnkplugins.com पर अपने खाते से, अपने लाइसेंस के नीचे।"
+
+#: admin/views/upgrade.php:64
+msgid "Upload it over this one"
+msgstr "इसे इसके ऊपर अपलोड करें"
+
+#: admin/views/upgrade.php:64
+msgid ""
+"Plugins, Add New, Upload Plugin. WordPress shows this copy as EntryVault and "
+"the upload as EntryVault Pro. Choose \"Replace current with uploaded\"."
+msgstr ""
+"प्लगिन्स, Add Plugin, प्लगिन अपलोड करे। WordPress इस कॉपी को EntryVault और अपलोड "
+"को EntryVault Pro के रूप में दिखाता है। \"वर्तमान को अपलोड के साथ बदलें\" चुनें।"
+
+#: admin/views/upgrade.php:65
+msgid "Enter your license key"
+msgstr "अपनी लाइसेंस Key डालें"
+
+#: admin/views/upgrade.php:65
+msgid ""
+"A notice at the top of the screen takes you to the box, in EntryVault "
+"Settings under License. The key is in your purchase email."
+msgstr ""
+"स्क्रीन के ऊपर एक सूचना आपको EntryVault सेटिंग्स में लाइसेंस के नीचे वाले बॉक्स तक ले जाती "
+"है। Key आपके खरीद वाले ईमेल में है।"
+
+#: admin/views/upgrade.php:68
+msgid ""
+"The Pro zip is a few megabytes. If your host refuses the upload, unzip it "
+"and copy the entryvault folder over the existing one in wp-content/plugins "
+"with SFTP or your host's file manager."
+msgstr ""
+"Pro zip कुछ मेगाबाइट का है। अगर आपका होस्ट अपलोड नहीं लेता, तो उसे अनज़िप करें और "
+"entryvault फ़ोल्डर को SFTP या अपने होस्ट के फ़ाइल मैनेजर से wp-content/plugins में "
+"मौजूदा फ़ोल्डर के ऊपर कॉपी करें।"
+
+#: includes/class-admin-ui.php:25 includes/class-plugin.php:145
+#: includes/class-submissions-admin.php:221
+msgid "Submissions"
+msgstr "सबमिशन"
+
+#: includes/class-admin-ui.php:61
+msgid "Locked"
+msgstr "लॉक है"
+
+#: includes/class-admin-ui.php:92
+msgid "EntryVault sections"
+msgstr "EntryVault सेक्शन"
+
+#: includes/class-admin-ui.php:98
+msgid "More tools"
+msgstr "और टूल"
+
+#: includes/class-admin-ui.php:108
+msgid "Upgrade"
+msgstr "अपग्रेड"
+
+#: includes/class-admin-ui.php:110
+msgid "Help"
+msgstr "सहायता"
+
+#: includes/class-dates.php:61 admin/assets/kanban/build/index.js:2
+#: admin/assets/kanban/build/index.js:20
+msgid "just now"
+msgstr "अभी-अभी"
+
+#: includes/class-email-sender.php:109
+msgid "The mailer did not accept the email."
+msgstr "मेलर ने ईमेल स्वीकार नहीं किया।"
+
+#: includes/class-feedback.php:41
+msgid "You do not have permission to do this."
+msgstr "आपको ऐसा करने की अनुमति नहीं है।"
+
+#: includes/class-feedback.php:115
+msgid "Bug report"
+msgstr "बग रिपोर्ट"
+
+#: includes/class-feedback.php:116
+msgid "Feature request"
+msgstr "फ़ीचर का अनुरोध"
+
+#: includes/class-feedback.php:117
+msgid "Question"
+msgstr "सवाल"
+
+#: includes/class-feedback.php:118
+msgid "Praise"
+msgstr "तारीफ़"
+
+#: includes/class-feedback.php:119
+msgid "Other"
+msgstr "अन्य"
+
+#: includes/class-field-values.php:39 includes/class-field-values.php:101
+#: includes/class-field-values.php:166
+msgid "Yes"
+msgstr "हाँ"
+
+#: includes/class-field-values.php:39
+msgid "No"
+msgstr "नहीं"
+
+#: includes/class-frontend.php:83
+msgid "No pipeline specified."
+msgstr "कोई पाइपलाइन नहीं बताई गई।"
+
+#: includes/class-frontend.php:88 includes/class-rest-public.php:123
+msgid "Pipeline not found."
+msgstr "पाइपलाइन नहीं मिली।"
+
+#: includes/class-frontend.php:98 includes/class-rest-public.php:107
+msgid "Access required."
+msgstr "एक्सेस ज़रूरी है।"
+
+#: includes/class-frontend.php:102
+msgid ""
+"Only editors see this note: visitors cannot read this table because the "
+"access_token is missing or does not match this pipeline. Copy the ready-made "
+"shortcode from EntryVault > Settings > General."
+msgstr ""
+"यह नोट सिर्फ़ एडिटर देखते हैं: विज़िटर यह तालिका नहीं पढ़ सकते क्योंकि access_token नहीं "
+"है या इस पाइपलाइन से मेल नहीं खाता। तैयार शॉर्टकोड EntryVault > सेटिंग्स > सामान्य से "
+"कॉपी करें।"
+
+#: includes/class-frontend.php:448 includes/class-frontend.php:451
+msgid "(no name)"
+msgstr "(कोई नाम नहीं)"
+
+#: includes/class-frontend.php:450
+msgid "(email hidden)"
+msgstr "(ईमेल छिपा है)"
+
+#: includes/class-frontend.php:496 blocks/submissions-table/index.js:30
+msgid "Submitted"
+msgstr "भेजा गया"
+
+#: includes/class-frontend.php:497 includes/class-submissions-list-table.php:65
+#: blocks/submissions-table/index.js:29
+msgid "Created"
+msgstr "बनाया गया"
+
+#: includes/class-frontend.php:498 includes/class-plugin.php:339
+#: includes/class-privacy.php:227 includes/class-submissions-list-table.php:51
+#: blocks/submissions-table/index.js:24
+msgid "Title"
+msgstr "शीर्षक"
+
+#: includes/class-frontend.php:500 includes/class-plugin.php:340
+#: includes/class-privacy.php:228 includes/class-submissions-list-table.php:52
+#: admin/assets/kanban/build/index.js:5
+msgid "Email"
+msgstr "ईमेल"
+
+#: includes/class-frontend.php:502 includes/class-submissions-list-table.php:63
+#: includes/class-submissions-list-table.php:128
+#: admin/assets/js/dashboard.js:156 admin/assets/kanban/build/index.js:5
+#: admin/assets/kanban/build/index.js:37
+msgid "Owner"
+msgstr "ज़िम्मेदार"
+
+#: includes/class-plugin.php:89 includes/class-plugin.php:171
+#: includes/class-plugin.php:172
+msgid "Upgrade to Pro"
+msgstr "Pro में अपग्रेड करें"
+
+#: includes/class-plugin.php:103
+msgid "Docs"
+msgstr "दस्तावेज़"
+
+#: includes/class-plugin.php:108
+msgid "Support"
+msgstr "सपोर्ट"
+
+#: includes/class-plugin.php:143
+msgid "Kanban"
+msgstr "Kanban"
+
+#: includes/class-plugin.php:144
+msgid "Dashboard"
+msgstr "डैशबोर्ड"
+
+#: includes/class-plugin.php:150
+msgid "Feedback"
+msgstr "फ़ीडबैक"
+
+#: includes/class-plugin.php:218 includes/class-plugin.php:272
+msgid "Saved."
+msgstr "सेव किया गया।"
+
+#: includes/class-plugin.php:219
+msgid "Save failed."
+msgstr "सेव नहीं किया जा सका।"
+
+#: includes/class-plugin.php:270
+msgid "Edit"
+msgstr "संपादित करें"
+
+#: includes/class-plugin.php:271 includes/class-submissions-list-table.php:94
+msgid "Delete"
+msgstr "हटाएँ"
+
+#: includes/class-plugin.php:273
+msgid "Error."
+msgstr "त्रुटि।"
+
+#: includes/class-plugin.php:274
+msgid "Delete this tag? It comes off every entry that has it."
+msgstr "यह टैग हटाएँ? यह हर उस एंट्री से हट जाएगा जिस पर लगा है।"
+
+#: includes/class-plugin.php:275
+msgid "No tags yet. Add your first one with the form next to this list."
+msgstr "अभी कोई टैग नहीं। इस सूची के पास वाले फ़ॉर्म से अपना पहला टैग जोड़ें।"
+
+#: includes/class-plugin.php:277
+msgid "Edit tag"
+msgstr "टैग संपादित करें"
+
+#: includes/class-plugin.php:332
+msgid "Please choose a file or paste CSV first."
+msgstr "कृपया पहले कोई फ़ाइल चुनें या CSV पेस्ट करें।"
+
+#: includes/class-plugin.php:333
+msgid "Loading preview…"
+msgstr "पूर्वावलोकन लोड हो रहा है…"
+
+#: includes/class-plugin.php:334
+msgid "Preview failed."
+msgstr "पूर्वावलोकन नहीं बन सका।"
+
+#. translators: %s: number of rows loaded.
+#: includes/class-plugin.php:336
+#, php-format
+msgid "Loaded %s rows."
+msgstr "%s पंक्तियाँ लोड हुईं।"
+
+#: includes/class-plugin.php:337
+msgid "Network error."
+msgstr "नेटवर्क त्रुटि।"
+
+#: includes/class-plugin.php:338
+msgid "Ignore"
+msgstr "अनदेखा करें"
+
+#: includes/class-plugin.php:341 includes/class-privacy.php:226
+#: includes/class-submissions-list-table.php:64
+#: admin/assets/kanban/build/index.js:5
+msgid "Source"
+msgstr "स्रोत"
+
+#: includes/class-plugin.php:342
+msgid "Field"
+msgstr "फ़ील्ड"
+
+#: includes/class-plugin.php:343
+msgid "You must map one column to Email."
+msgstr "एक कॉलम को ईमेल से जोड़ना ज़रूरी है।"
+
+#: includes/class-plugin.php:344
+msgid "Running…"
+msgstr "चल रहा है…"
+
+#: includes/class-plugin.php:345
+msgid "Import failed."
+msgstr "इंपोर्ट नहीं हो सका।"
+
+#: includes/class-plugin.php:346
+msgid "Done."
+msgstr "हो गया।"
+
+#: includes/class-plugin.php:347
+msgid "Results"
+msgstr "नतीजे"
+
+#: includes/class-plugin.php:348
+msgid "Test run: nothing was saved."
+msgstr "टेस्ट रन: कुछ भी सेव नहीं किया गया।"
+
+#: includes/class-plugin.php:349
+msgid "Imported:"
+msgstr "इंपोर्ट हुईं:"
+
+#: includes/class-plugin.php:350
+msgid "Would import:"
+msgstr "इंपोर्ट होतीं:"
+
+#. translators: %s: comma-separated column names.
+#: includes/class-plugin.php:352
+#, php-format
+msgid ""
+"Only one column can be the title, but these are all set to Title: %s. Set "
+"the others to Field so their values are kept."
+msgstr ""
+"सिर्फ़ एक कॉलम शीर्षक हो सकता है, पर ये सभी शीर्षक पर सेट हैं: %s। बाकी को फ़ील्ड पर सेट "
+"करें ताकि उनके मान बने रहें।"
+
+#: includes/class-plugin.php:353
+msgid "Already present:"
+msgstr "पहले से मौजूद:"
+
+#: includes/class-plugin.php:354
+msgid ""
+"Rows already present were recognised from an earlier import and left "
+"untouched, so nothing was duplicated."
+msgstr ""
+"पहले से मौजूद पंक्तियाँ किसी पिछले इंपोर्ट से पहचानी गईं और छोड़ दी गईं, इसलिए कुछ भी "
+"दोहराया नहीं गया।"
+
+#: includes/class-plugin.php:355
+msgid "Skipped:"
+msgstr "छोड़ी गईं:"
+
+#: includes/class-plugin.php:356
+msgid "Errors"
+msgstr "त्रुटियाँ"
+
+#: includes/class-plugin.php:357
+msgid "Row"
+msgstr "पंक्ति"
+
+#: includes/class-privacy.php:36 includes/class-privacy.php:46
+msgid "EntryVault form entries"
+msgstr "EntryVault फ़ॉर्म एंट्रियाँ"
+
+#: includes/class-privacy.php:59
+msgid ""
+"When you send a form on this site, a copy of what you entered (including "
+"your name and email address if the form asks for them) is kept so our team "
+"can follow up. We keep it until it is no longer needed, then delete it. You "
+"can ask for a copy of it, or for it to be deleted, by contacting us."
+msgstr ""
+"जब आप इस साइट पर कोई फ़ॉर्म भेजते हैं, तो आपने जो भरा उसकी एक कॉपी (अगर फ़ॉर्म आपका "
+"नाम और ईमेल पता माँगता है तो वह भी) रखी जाती है ताकि हमारी टीम आगे संपर्क कर सके। हम "
+"इसे तब तक रखते हैं जब तक इसकी ज़रूरत हो, फिर इसे हटा देते हैं। आप हमसे संपर्क करके इसकी "
+"कॉपी माँग सकते हैं, या इसे हटाने के लिए कह सकते हैं।"
+
+#: includes/class-privacy.php:89
+msgid "Emails"
+msgstr "ईमेल"
+
+#. translators: 1: entry id, 2: reason.
+#: includes/class-privacy.php:129
+#, php-format
+msgid "EntryVault entry #%1$d was kept: %2$s"
+msgstr "EntryVault एंट्री #%1$d रखी गई: %2$s"
+
+#: includes/class-privacy.php:225 admin/assets/kanban/build/index.js:5
+msgid "Received"
+msgstr "मिला"
+
+#: includes/class-privacy.php:254
+msgid "Note"
+msgstr "नोट"
+
+#: includes/class-privacy.php:270
+msgid "Form entries"
+msgstr "फ़ॉर्म एंट्रियाँ"
+
+#: includes/class-privacy.php:271
+msgid "Copies of forms you sent on this site, kept by EntryVault."
+msgstr "इस साइट पर आपके भेजे फ़ॉर्म की कॉपियाँ, जो EntryVault ने रखी हैं।"
+
+#: includes/class-privacy.php:279
+msgid "Email sent"
+msgstr "ईमेल भेजा गया"
+
+#: includes/class-privacy.php:279
+msgid "Email received"
+msgstr "ईमेल मिला"
+
+#: includes/class-privacy.php:282
+msgid "Email text"
+msgstr "ईमेल का टेक्स्ट"
+
+#. translators: %s: column name.
+#: includes/class-rest-public.php:140
+#, php-format
+msgid "Unknown column: %s"
+msgstr "अनजान कॉलम: %s"
+
+#: includes/class-rest-public.php:147
+msgid "Column not available without authentication."
+msgstr "यह कॉलम लॉग इन किए बिना उपलब्ध नहीं है।"
+
+#: includes/class-schema-check.php:82
+msgid "EntryVault could not create its database tables."
+msgstr "EntryVault अपनी डेटाबेस तालिकाएँ नहीं बना सका।"
+
+#: includes/class-schema-check.php:83
+msgid ""
+"Submissions cannot reach the board without them. Send the details below to "
+"support (jnkplugins.com/contact) and we will sort it out with you."
+msgstr ""
+"इनके बिना सबमिशन बोर्ड तक नहीं पहुँच सकते। नीचे दी गई जानकारी सपोर्ट (jnkplugins.com/"
+"contact) को भेजें, हम आपके साथ मिलकर इसे ठीक कर देंगे।"
+
+#: includes/class-schema-check.php:92
+msgid "EntryVault database tables"
+msgstr "EntryVault डेटाबेस तालिकाएँ"
+
+#: includes/class-schema-check.php:105
+msgid "EntryVault is missing database tables"
+msgstr "EntryVault की डेटाबेस तालिकाएँ गायब हैं"
+
+#: includes/class-schema-check.php:108
+msgid ""
+"Submissions cannot reach the board without these tables. Send this list to "
+"support (jnkplugins.com/contact):"
+msgstr ""
+"इन तालिकाओं के बिना सबमिशन बोर्ड तक नहीं पहुँच सकते। यह सूची सपोर्ट (jnkplugins.com/"
+"contact) को भेजें:"
+
+#: includes/class-schema-check.php:116
+msgid "EntryVault Pro data is ready"
+msgstr "EntryVault Pro डेटा तैयार है"
+
+#: includes/class-schema-check.php:116
+msgid "EntryVault database tables are ready"
+msgstr "EntryVault डेटाबेस तालिकाएँ तैयार हैं"
+
+#. translators: %d: number of database tables
+#: includes/class-schema-check.php:121
+#, php-format
+msgid "The %d table EntryVault needs is in the database."
+msgid_plural "All %d tables EntryVault needs are in the database."
+msgstr[0] "EntryVault को चाहिए वह %d तालिका डेटाबेस में है।"
+msgstr[1] "EntryVault को चाहिए वे सभी %d तालिकाएँ डेटाबेस में हैं।"
+
+#: includes/class-submissions-admin.php:222
+msgid ""
+"Every entry in one list. Filter it, tick rows to change many at once, or "
+"export what you see to a spreadsheet."
+msgstr ""
+"सारी एंट्रियाँ एक सूची में। इसे फ़िल्टर करें, एक साथ कई बदलने के लिए पंक्तियों पर टिक करें, या "
+"जो दिख रहा है उसे स्प्रेडशीट में एक्सपोर्ट करें।"
+
+#: includes/class-submissions-admin.php:223
+msgid "Export CSV"
+msgstr "CSV एक्सपोर्ट करें"
+
+#: includes/class-submissions-admin.php:238
+msgid "All"
+msgstr "सभी"
+
+#: includes/class-submissions-admin.php:243 includes/class-timeline.php:97
+msgid "Archived"
+msgstr "आर्काइव की गईं"
+
+#: includes/class-submissions-admin.php:262
+msgid "All pipelines"
+msgstr "सभी पाइपलाइन"
+
+#: includes/class-submissions-admin.php:270
+msgid "All stages"
+msgstr "सभी चरण"
+
+#: includes/class-submissions-admin.php:293
+msgid "All sources"
+msgstr "सभी स्रोत"
+
+#: includes/class-submissions-admin.php:312
+msgid "All tags"
+msgstr "सभी टैग"
+
+#: includes/class-submissions-admin.php:321
+msgid "All owners"
+msgstr "सभी ज़िम्मेदार"
+
+#: includes/class-submissions-admin.php:323 includes/class-timeline.php:94
+#: admin/assets/kanban/build/index.js:5 admin/assets/kanban/build/index.js:20
+#: admin/assets/kanban/build/index.js:37
+msgid "Unassigned"
+msgstr "किसी को नहीं सौंपी"
+
+#: includes/class-submissions-admin.php:347
+msgid "Filter"
+msgstr "फ़िल्टर"
+
+#: includes/class-submissions-admin.php:355
+#: public/templates/submissions-table.php:54
+#: public/templates/submissions-table.php:63
+#: admin/assets/kanban/build/index.js:37
+msgid "Search"
+msgstr "खोजें"
+
+#. translators: 1: opening link tag, 2: closing link tag.
+#: includes/class-submissions-admin.php:369
+#, php-format
+msgid ""
+"Tagging, assigning and replying to these by hand? %1$sSee what Pro "
+"automates%2$s."
+msgstr ""
+"इन पर हाथ से टैग लगा रहे हैं, सौंप रहे हैं और जवाब दे रहे हैं? %1$sदेखें Pro क्या अपने आप करता "
+"है%2$s।"
+
+#. translators: %d: count
+#: includes/class-submissions-admin.php:420
+#, php-format
+msgid "Deleted %d submission."
+msgid_plural "Deleted %d submissions."
+msgstr[0] "%d सबमिशन हटाया गया।"
+msgstr[1] "%d सबमिशन हटाए गए।"
+
+#. translators: 1: moved 2: skipped
+#: includes/class-submissions-admin.php:428
+#, php-format
+msgid "Moved %1$d submission(s); %2$d skipped."
+msgstr "%1$d सबमिशन ले जाए गए; %2$d छोड़े गए।"
+
+#. translators: %d: count
+#: includes/class-submissions-admin.php:438
+#, php-format
+msgid "Assigned owner on %d submission."
+msgid_plural "Assigned owner on %d submissions."
+msgstr[0] "%d सबमिशन पर ज़िम्मेदार तय किया गया।"
+msgstr[1] "%d सबमिशन पर ज़िम्मेदार तय किया गया।"
+
+#. translators: %d: count
+#: includes/class-submissions-admin.php:443
+#, php-format
+msgid "Cleared owner on %d submission."
+msgid_plural "Cleared owner on %d submissions."
+msgstr[0] "%d सबमिशन से ज़िम्मेदार हटाया गया।"
+msgstr[1] "%d सबमिशन से ज़िम्मेदार हटाया गया।"
+
+#. translators: %d: count
+#: includes/class-submissions-admin.php:451
+#, php-format
+msgid "Tagged %d submission."
+msgid_plural "Tagged %d submissions."
+msgstr[0] "%d सबमिशन पर टैग लगाया गया।"
+msgstr[1] "%d सबमिशन पर टैग लगाया गया।"
+
+#. translators: %d: count
+#: includes/class-submissions-admin.php:458
+#, php-format
+msgid "Archived %d submission."
+msgid_plural "Archived %d submissions."
+msgstr[0] "%d सबमिशन आर्काइव किया गया।"
+msgstr[1] "%d सबमिशन आर्काइव किए गए।"
+
+#. translators: %d: count
+#: includes/class-submissions-admin.php:465
+#, php-format
+msgid "Restored %d submission."
+msgid_plural "Restored %d submissions."
+msgstr[0] "%d सबमिशन वापस लाया गया।"
+msgstr[1] "%d सबमिशन वापस लाए गए।"
+
+#: includes/class-submissions-admin.php:494
+msgid "Forbidden."
+msgstr "अनुमति नहीं है।"
+
+#. translators: %s: form field label that clashes with a fixed column, e.g. "Email".
+#: includes/class-submissions-admin.php:620
+#, php-format
+msgid "%s (form field)"
+msgstr "%s (फ़ॉर्म फ़ील्ड)"
+
+#: includes/class-submissions-list-table.php:50
+msgid "ID"
+msgstr "ID"
+
+#: includes/class-submissions-list-table.php:66
+msgid "Updated"
+msgstr "अपडेट किया गया"
+
+#. translators: 1: pipeline name, 2: stage name.
+#: includes/class-submissions-list-table.php:99
+#, php-format
+msgid "Move to: %1$s / %2$s"
+msgstr "यहाँ ले जाएँ: %1$s / %2$s"
+
+#. translators: %s: stage name.
+#: includes/class-submissions-list-table.php:101
+#, php-format
+msgid "Move to: %s"
+msgstr "यहाँ ले जाएँ: %s"
+
+#: includes/class-submissions-list-table.php:104
+msgid "Assign owner"
+msgstr "ज़िम्मेदार तय करें"
+
+#: includes/class-submissions-list-table.php:105
+msgid "Add tag"
+msgstr "टैग जोड़ें"
+
+#: includes/class-submissions-list-table.php:106
+msgid "Archive"
+msgstr "आर्काइव करें"
+
+#: includes/class-submissions-list-table.php:107
+msgid "Unarchive"
+msgstr "आर्काइव से निकालें"
+
+#: includes/class-submissions-list-table.php:130
+msgid "(unassign)"
+msgstr "(किसी को नहीं)"
+
+#: includes/class-submissions-list-table.php:139
+msgid "Tag"
+msgstr "टैग"
+
+#: includes/class-submissions-list-table.php:141
+msgid "— Select tag —"
+msgstr "— टैग चुनें —"
+
+#: includes/class-submissions-list-table.php:327
+msgid "No submissions match these filters."
+msgstr "इन फ़िल्टर से कोई सबमिशन मेल नहीं खाता।"
+
+#: includes/class-submissions-list-table.php:331
+msgid "No submissions yet."
+msgstr "अभी कोई सबमिशन नहीं।"
+
+#. translators: 1: opening link tag to the import screen, 2: closing link tag.
+#: includes/class-submissions-list-table.php:334
+#, php-format
+msgid ""
+"Submissions from every supported form plugin land here automatically. You "
+"can also %1$simport a CSV%2$s to bring existing ones in."
+msgstr ""
+"हर समर्थित फ़ॉर्म प्लगइन के सबमिशन अपने आप यहाँ आ जाते हैं। मौजूदा सबमिशन लाने के लिए आप "
+"%1$sCSV इंपोर्ट%2$s भी कर सकते हैं।"
+
+#. translators: 1: previous stage name, 2: new stage name.
+#: includes/class-timeline.php:44 admin/assets/kanban/build/index.js:7
+#, php-format
+msgid "Moved from %1$s to %2$s"
+msgstr "%1$s से %2$s में ले जाया गया"
+
+#. translators: 1: previous pipeline name, 2: new pipeline name.
+#: includes/class-timeline.php:47
+#, php-format
+msgid "(pipeline %1$s → %2$s)"
+msgstr "(पाइपलाइन %1$s → %2$s)"
+
+#: includes/class-timeline.php:52
+msgid "Note deleted"
+msgstr "नोट हटाया गया"
+
+#. translators: 1: event name, 2: source name.
+#: includes/class-timeline.php:59 admin/assets/kanban/build/index.js:9
+#, php-format
+msgid "%1$s from %2$s"
+msgstr "%2$s से %1$s"
+
+#. translators: 1: recipient, 2: subject.
+#: includes/class-timeline.php:64 admin/assets/kanban/build/index.js:11
+#, php-format
+msgid "Email to %1$s: %2$s"
+msgstr "%1$s को ईमेल: %2$s"
+
+#. translators: 1: recipient, 2: why it failed.
+#: includes/class-timeline.php:67
+#, php-format
+msgid "Email to %1$s NOT sent: %2$s"
+msgstr "%1$s को ईमेल नहीं भेजा गया: %2$s"
+
+#. translators: %s: tag name.
+#: includes/class-timeline.php:78 admin/assets/kanban/build/index.js:14
+#, php-format
+msgid "Tagged %s"
+msgstr "टैग लगाया: %s"
+
+#. translators: %s: tag name.
+#: includes/class-timeline.php:80 admin/assets/kanban/build/index.js:16
+#, php-format
+msgid "Removed tag %s"
+msgstr "टैग हटाया: %s"
+
+#. translators: %s: user display name.
+#: includes/class-timeline.php:84 admin/assets/kanban/build/index.js:18
+#, php-format
+msgid "Assigned to %s"
+msgstr "%s को सौंपा गया"
+
+#. translators: %s: user display name.
+#: includes/class-timeline.php:87
+#, php-format
+msgid "(was %s)"
+msgstr "(पहले %s)"
+
+#. translators: %s: user display name.
+#: includes/class-timeline.php:93 admin/assets/kanban/build/index.js:20
+#, php-format
+msgid "Unassigned from %s"
+msgstr "%s से हटाया गया"
+
+#. translators: %s: form plugin name.
+#: includes/class-timeline.php:100
+#, php-format
+msgid "Archived: marked as spam in %s"
+msgstr "आर्काइव की गई: %s में स्पैम मानी गई"
+
+#. translators: %s: form plugin name.
+#: includes/class-timeline.php:103
+#, php-format
+msgid "Archived: moved to the trash in %s"
+msgstr "आर्काइव की गई: %s में ट्रैश में डाली गई"
+
+#: includes/class-timeline.php:107
+msgid "Restored from the archive"
+msgstr "आर्काइव से वापस लाई गई"
+
+#. translators: %d: stage id.
+#: includes/class-timeline.php:134
+#, php-format
+msgid "a deleted stage (#%d)"
+msgstr "एक हटाया गया चरण (#%d)"
+
+#: includes/class-timeline.php:151
+msgid "nobody"
+msgstr "कोई नहीं"
+
+#: admin/assets/kanban/build/index.js:5
+msgid "Close"
+msgstr "बंद करें"
+
+#: admin/assets/js/dashboard.js:140
+msgid "Entries"
+msgstr "एंट्रियाँ"
+
+#: admin/assets/js/dashboard.js:158
+msgid "Won"
+msgstr "जीती"
+
+#: admin/assets/js/dashboard.js:159
+msgid "Lost"
+msgstr "हारी"
+
+#: public/templates/submissions-table.php:59
+msgid "Search…"
+msgstr "खोजें…"
+
+#: public/templates/submissions-table.php:94
+msgid "No submissions found."
+msgstr "कोई सबमिशन नहीं मिला।"
+
+#: public/templates/submissions-table.php:122
+msgid "Pagination"
+msgstr "पेज नेविगेशन"
+
+#: public/templates/submissions-table.php:143
+msgid "« Previous"
+msgstr "« पिछला"
+
+#. translators: 1: current page, 2: total pages
+#: public/templates/submissions-table.php:151
+#, php-format
+msgid "Page %1$d of %2$d"
+msgstr "पेज %1$d / %2$d"
+
+#: public/templates/submissions-table.php:160
+msgid "Next »"
+msgstr "अगला »"
+
+#: admin/assets/js/dashboard.js:52 admin/assets/js/dashboard.js:183
+msgid "Nothing to show for this range yet."
+msgstr "इस सीमा में अभी दिखाने को कुछ नहीं है।"
+
+#: admin/assets/js/dashboard.js:75
+msgid "(none)"
+msgstr "(कोई नहीं)"
+
+#. translators: %d: pipeline ID, shown when the pipeline has no name.
+#: admin/assets/js/dashboard.js:82
+msgid "Pipeline #%d"
+msgstr "पाइपलाइन #%d"
+
+#: admin/assets/js/dashboard.js:92
+msgid "In this date range"
+msgstr "इस तारीख सीमा में"
+
+#: admin/assets/js/dashboard.js:93
+msgid "Today"
+msgstr "आज"
+
+#: admin/assets/js/dashboard.js:94
+msgid "This week"
+msgstr "इस हफ़्ते"
+
+#: admin/assets/js/dashboard.js:95
+msgid "This month"
+msgstr "इस महीने"
+
+#. translators: 1: date (YYYY-MM-DD), 2: number of entries that day.
+#: admin/assets/js/dashboard.js:135
+msgid "%1$s: %2$d entry"
+msgid_plural "%1$s: %2$d entries"
+msgstr[0] "%1$s: %2$d एंट्री"
+msgstr[1] "%1$s: %2$d एंट्रियाँ"
+
+#: admin/assets/js/dashboard.js:140
+msgid "Moved on"
+msgstr "आगे बढ़ीं"
+
+#: admin/assets/js/dashboard.js:157
+msgid "Total"
+msgstr "कुल"
+
+#: admin/assets/js/dashboard.js:160
+msgid "Win rate"
+msgstr "जीत दर"
+
+#: admin/assets/js/dashboard.js:161
+msgid "Avg hours per stage"
+msgstr "प्रति चरण औसत घंटे"
+
+#: admin/assets/js/dashboard.js:188
+msgid "(Unknown)"
+msgstr "(अज्ञात)"
+
+#: admin/assets/js/dashboard.js:219
+msgid "Average hours"
+msgstr "औसत घंटे"
+
+#: admin/assets/js/dashboard.js:219
+msgid "Based on"
+msgstr "आधार"
+
+#: admin/assets/js/health.js:29
+msgid "All good"
+msgstr "सब ठीक"
+
+#: admin/assets/js/health.js:30
+msgid "Check this"
+msgstr "इसे जाँचें"
+
+#: admin/assets/js/health.js:31
+msgid "Needs fixing"
+msgstr "ठीक करना ज़रूरी"
+
+#: admin/assets/js/health.js:57
+msgid "Everything looks good"
+msgstr "सब कुछ ठीक दिख रहा है"
+
+#: admin/assets/js/health.js:57
+msgid "EntryVault is set up and listening to your forms."
+msgstr "EntryVault सेट है और आपके फ़ॉर्म सुन रहा है।"
+
+#: admin/assets/js/health.js:58
+msgid "Working, with one thing to check"
+msgstr "काम कर रहा है, एक चीज़ जाँचनी है"
+
+#: admin/assets/js/health.js:58
+msgid "See the card marked \"Check this\" below."
+msgstr "नीचे \"इसे जाँचें\" वाला कार्ड देखें।"
+
+#: admin/assets/js/health.js:59
+msgid "Something needs fixing"
+msgstr "कुछ ठीक करना ज़रूरी है"
+
+#: admin/assets/js/health.js:59
+msgid ""
+"See the card marked \"Needs fixing\" below. Deactivating and activating "
+"EntryVault once often repairs it."
+msgstr ""
+"नीचे \"ठीक करना ज़रूरी\" वाला कार्ड देखें। EntryVault को एक बार बंद करके फिर चालू करने "
+"से अक्सर यह ठीक हो जाता है।"
+
+#: admin/assets/js/health.js:83
+msgid "Form plugins"
+msgstr "फ़ॉर्म प्लगइन"
+
+#: admin/assets/js/health.js:85
+msgid "Listening to"
+msgstr "इन्हें सुन रहा है"
+
+#: admin/assets/js/health.js:88
+msgid "No form plugin found yet. Activate one, or import a CSV file."
+msgstr "अभी कोई फ़ॉर्म प्लगइन नहीं मिला। कोई एक चालू करें, या CSV फ़ाइल इंपोर्ट करें।"
+
+#: admin/assets/js/health.js:93
+msgid "Database"
+msgstr "डेटाबेस"
+
+#: admin/assets/js/health.js:94
+msgid "Tables"
+msgstr "तालिकाएँ"
+
+#: admin/assets/js/health.js:94
+msgid "All in place"
+msgstr "सभी मौजूद हैं"
+
+#: admin/assets/js/health.js:94
+msgid "Some are missing"
+msgstr "कुछ गायब हैं"
+
+#: admin/assets/js/health.js:95
+msgid "Missing"
+msgstr "गायब"
+
+#: admin/assets/js/health.js:99
+msgid "Plugin files"
+msgstr "प्लगइन फ़ाइलें"
+
+#: admin/assets/js/health.js:100
+msgid "Helper code"
+msgstr "हेल्पर कोड"
+
+#: admin/assets/js/health.js:100
+msgid "Found"
+msgstr "मिला"
+
+#: admin/assets/js/health.js:100
+msgid "Missing. Reinstall EntryVault from a fresh download."
+msgstr "गायब है। EntryVault को नए डाउनलोड से दोबारा इंस्टॉल करें।"
+
+#: admin/assets/js/health.js:103
+msgid "Versions"
+msgstr "वर्ज़न"
+
+#: admin/assets/js/health.js:138
+msgid "Checking…"
+msgstr "जाँच हो रही है…"
+
+#: admin/assets/js/health.js:144 admin/assets/js/health.js:147
+msgid "Could not load the check. Reload the page and try again."
+msgstr "जाँच लोड नहीं हो सकी। पेज फिर से लोड करें और दोबारा कोशिश करें।"
+
+#. translators: %s: owner name, or #user id when the user no longer exists.
+#: admin/assets/kanban/build/index.js:2
+msgid "Owner: %s"
+msgstr "ज़िम्मेदार: %s"
+
+#: admin/assets/kanban/build/index.js:2
+msgid "Unassigned: no owner set"
+msgstr "किसी को नहीं सौंपी: कोई ज़िम्मेदार तय नहीं"
+
+#. translators: %s: form plugin name.
+#: admin/assets/kanban/build/index.js:2
+msgid "Source: %s"
+msgstr "स्रोत: %s"
+
+#: admin/assets/kanban/build/index.js:2
+msgctxt "badge on a card nobody has seen yet"
+msgid "New"
+msgstr "नई"
+
+#. translators: %s: date and time the submission arrived.
+#: admin/assets/kanban/build/index.js:2
+msgid "Arrived %s"
+msgstr "%s को आई"
+
+#. translators: %d: number of minutes, shown in a short card corner.
+#: admin/assets/kanban/build/index.js:3
+msgid "%dm"
+msgstr "%d मि"
+
+#. translators: %d: number of hours, shown in a short card corner.
+#: admin/assets/kanban/build/index.js:4
+msgid "%dh"
+msgstr "%d घं"
+
+#. translators: %d: number of days, shown in a short card corner.
+#: admin/assets/kanban/build/index.js:5
+msgid "%dd"
+msgstr "%d दि"
+
+#: admin/assets/kanban/build/index.js:5
+msgid "Open details"
+msgstr "विवरण खोलें"
+
+#. translators: %s: submission title.
+#: admin/assets/kanban/build/index.js:5
+msgid "Open %s"
+msgstr "%s खोलें"
+
+#: admin/assets/kanban/build/index.js:5
+msgid "this submission"
+msgstr "यह सबमिशन"
+
+#: admin/assets/kanban/build/index.js:5
+msgctxt "button: open a card's details"
+msgid "Open"
+msgstr "खोलें"
+
+#: admin/assets/kanban/build/index.js:5
+msgid "More cards than this stage's limit"
+msgstr "इस चरण की सीमा से ज़्यादा कार्ड"
+
+#: admin/assets/kanban/build/index.js:5
+msgid "No submissions"
+msgstr "कोई सबमिशन नहीं"
+
+#. translators: %d: cards not shown yet.
+#: admin/assets/kanban/build/index.js:5
+msgid "Show more (%d left)"
+msgstr "और दिखाएँ (%d बाकी)"
+
+#: admin/assets/kanban/build/index.js:5
+msgid "Could not save the note."
+msgstr "नोट सेव नहीं किया जा सका।"
+
+#: admin/assets/kanban/build/index.js:5
+msgid "Could not load this submission."
+msgstr "यह सबमिशन लोड नहीं हो सका।"
+
+#: admin/assets/kanban/build/index.js:5
+msgid "Submission details"
+msgstr "सबमिशन का विवरण"
+
+#. translators: %d: submission id.
+#: admin/assets/kanban/build/index.js:5
+msgid "Submission #%d"
+msgstr "सबमिशन #%d"
+
+#: admin/assets/kanban/build/index.js:5
+msgid "Details"
+msgstr "विवरण"
+
+#: admin/assets/kanban/build/index.js:5
+msgid "Timeline"
+msgstr "टाइमलाइन"
+
+#: admin/assets/kanban/build/index.js:5
+msgid "Notes"
+msgstr "नोट"
+
+#: admin/assets/kanban/build/index.js:5
+msgid "Could not add the tag."
+msgstr "टैग जोड़ा नहीं जा सका।"
+
+#: admin/assets/kanban/build/index.js:5
+msgid "Could not remove the tag."
+msgstr "टैग हटाया नहीं जा सका।"
+
+#: admin/assets/kanban/build/index.js:5
+msgid "Could not create the tag."
+msgstr "टैग बनाया नहीं जा सका।"
+
+#: admin/assets/kanban/build/index.js:5
+msgid "Could not delete the note."
+msgstr "नोट हटाया नहीं जा सका।"
+
+#: admin/assets/kanban/build/index.js:5
+msgid "Loading…"
+msgstr "लोड हो रहा है…"
+
+#: admin/assets/kanban/build/index.js:5
+msgid "Click to edit"
+msgstr "संपादित करने के लिए क्लिक करें"
+
+#. translators: %s: form id.
+#: admin/assets/kanban/build/index.js:5
+msgid "form %s"
+msgstr "फ़ॉर्म %s"
+
+#: admin/assets/kanban/build/index.js:5
+msgid "What they sent"
+msgstr "उन्होंने क्या भेजा"
+
+#: admin/assets/kanban/build/index.js:5
+msgid "This field is no longer on the form"
+msgstr "यह फ़ील्ड अब फ़ॉर्म में नहीं है"
+
+#: admin/assets/kanban/build/index.js:5
+msgid "old field"
+msgstr "पुराना फ़ील्ड"
+
+#: admin/assets/kanban/build/index.js:5
+msgid "Remove tag"
+msgstr "टैग हटाएँ"
+
+#. translators: %s: tag name.
+#: admin/assets/kanban/build/index.js:5
+msgid "Remove tag %s"
+msgstr "टैग %s हटाएँ"
+
+#: admin/assets/kanban/build/index.js:5
+msgid "New tag name"
+msgstr "नए टैग का नाम"
+
+#: admin/assets/kanban/build/index.js:5
+msgid "Add"
+msgstr "जोड़ें"
+
+#: admin/assets/kanban/build/index.js:5
+msgid "Add a tag to this submission"
+msgstr "इस सबमिशन में टैग जोड़ें"
+
+#: admin/assets/kanban/build/index.js:5
+msgid "+ Add tag…"
+msgstr "+ टैग जोड़ें…"
+
+#: admin/assets/kanban/build/index.js:5
+msgid "+ Create new tag…"
+msgstr "+ नया टैग बनाएँ…"
+
+#: admin/assets/kanban/build/index.js:7
+msgid "Moved to a new stage"
+msgstr "नए चरण में ले जाया गया"
+
+#: admin/assets/kanban/build/index.js:7
+msgid "(empty note)"
+msgstr "(खाली नोट)"
+
+#: admin/assets/kanban/build/index.js:9
+msgid "created"
+msgstr "बनाया गया"
+
+#: admin/assets/kanban/build/index.js:12
+msgid "Email to %s"
+msgstr "%s को ईमेल"
+
+#. translators: %d: user id.
+#: admin/assets/kanban/build/index.js:18 admin/assets/kanban/build/index.js:20
+msgid "User #%d"
+msgstr "यूज़र #%d"
+
+#: admin/assets/kanban/build/index.js:20
+msgid "No activity yet."
+msgstr "अभी कोई गतिविधि नहीं।"
+
+#: admin/assets/kanban/build/index.js:20
+msgid "Posting as %s"
+msgstr "%s के रूप में लिख रहे हैं"
+
+#: admin/assets/kanban/build/index.js:20
+msgid "Add a note for your team. The customer never sees it."
+msgstr "अपनी टीम के लिए नोट जोड़ें। ग्राहक इसे कभी नहीं देखता।"
+
+#: admin/assets/kanban/build/index.js:20
+msgid "Tip: **bold**, *italic*, lists and links work."
+msgstr "सुझाव: **bold**, *italic*, सूचियाँ और लिंक काम करते हैं।"
+
+#: admin/assets/kanban/build/index.js:20 admin/assets/kanban/build/index.js:26
+msgid "Saving…"
+msgstr "सेव किया जा रहा है…"
+
+#: admin/assets/kanban/build/index.js:20
+msgid "Add note"
+msgstr "नोट जोड़ें"
+
+#: admin/assets/kanban/build/index.js:20
+msgid "No notes yet."
+msgstr "अभी कोई नोट नहीं।"
+
+#: admin/assets/kanban/build/index.js:20
+msgid "Unknown"
+msgstr "अज्ञात"
+
+#. translators: %d: number of minutes.
+#: admin/assets/kanban/build/index.js:22
+msgid "%dm ago"
+msgstr "%d मि पहले"
+
+#. translators: %d: number of hours.
+#: admin/assets/kanban/build/index.js:24
+msgid "%dh ago"
+msgstr "%d घं पहले"
+
+#. translators: %d: number of days.
+#: admin/assets/kanban/build/index.js:26
+msgid "%dd ago"
+msgstr "%d दि पहले"
+
+#: admin/assets/kanban/build/index.js:26
+msgid "Delete note"
+msgstr "नोट हटाएँ"
+
+#: admin/assets/kanban/build/index.js:26
+msgid "[deleted]"
+msgstr "[हटाया गया]"
+
+#: admin/assets/kanban/build/index.js:26
+msgid "Reply…"
+msgstr "जवाब…"
+
+#: admin/assets/kanban/build/index.js:26
+msgid "Post reply"
+msgstr "जवाब भेजें"
+
+#: admin/assets/kanban/build/index.js:26
+msgid "Reply"
+msgstr "जवाब दें"
+
+#: admin/assets/kanban/build/index.js:26
+msgctxt "email recipient"
+msgid "To"
+msgstr "किसे"
+
+#: admin/assets/kanban/build/index.js:26
+msgid "Subject"
+msgstr "विषय"
+
+#: admin/assets/kanban/build/index.js:26
+msgid "Sent."
+msgstr "भेज दिया।"
+
+#: admin/assets/kanban/build/index.js:27
+msgid "Could not send the email: %s"
+msgstr "ईमेल नहीं भेजा जा सका: %s"
+
+#: admin/assets/kanban/build/index.js:27
+msgid "Could not send the email."
+msgstr "ईमेल नहीं भेजा जा सका।"
+
+#: admin/assets/kanban/build/index.js:27
+msgid "Sending…"
+msgstr "भेजा जा रहा है…"
+
+#: admin/assets/kanban/build/index.js:27
+msgid "Conversation"
+msgstr "बातचीत"
+
+#: admin/assets/kanban/build/index.js:27
+msgid "No emails yet."
+msgstr "अभी कोई ईमेल नहीं।"
+
+#. translators: %s: sender address.
+#: admin/assets/kanban/build/index.js:27
+msgid "From %s"
+msgstr "भेजने वाला %s"
+
+#. translators: %s: recipient address.
+#: admin/assets/kanban/build/index.js:27
+msgid "To %s"
+msgstr "पाने वाला %s"
+
+#. translators: %s: the mail server's reason.
+#: admin/assets/kanban/build/index.js:27
+msgid "Not sent: %s"
+msgstr "नहीं भेजा गया: %s"
+
+#: admin/assets/kanban/build/index.js:27
+msgid "(no subject)"
+msgstr "(कोई विषय नहीं)"
+
+#: admin/assets/kanban/build/index.js:27
+msgctxt "submission status"
+msgid "Open"
+msgstr "खुली"
+
+#: admin/assets/kanban/build/index.js:27
+msgctxt "submission status"
+msgid "Archived"
+msgstr "आर्काइव की गई"
+
+#: admin/assets/kanban/build/index.js:27
+msgctxt "submission status"
+msgid "Won"
+msgstr "जीती"
+
+#: admin/assets/kanban/build/index.js:27
+msgctxt "submission status"
+msgid "Lost"
+msgstr "हारी"
+
+#: admin/assets/kanban/build/index.js:27
+msgid "Failed to load board"
+msgstr "बोर्ड लोड नहीं हो सका"
+
+#: admin/assets/kanban/build/index.js:27
+msgid "this card"
+msgstr "यह कार्ड"
+
+#: admin/assets/kanban/build/index.js:27
+msgid "a stage"
+msgstr "एक चरण"
+
+#: admin/assets/kanban/build/index.js:27
+msgid ""
+"To pick up a card, press space or enter. Use the arrow keys to move it, then "
+"press space or enter to drop it, or escape to cancel."
+msgstr ""
+"कार्ड उठाने के लिए स्पेस या एंटर दबाएँ। उसे खिसकाने के लिए एरो कीज़ इस्तेमाल करें, फिर छोड़ने "
+"के लिए स्पेस या एंटर दबाएँ, या रद्द करने के लिए एस्केप।"
+
+#. translators: %s: card title.
+#: admin/assets/kanban/build/index.js:29
+msgid "Picked up %s."
+msgstr "%s उठाया गया।"
+
+#: admin/assets/kanban/build/index.js:30
+msgid "%1$s is over %2$s."
+msgstr "%1$s, %2$s के ऊपर है।"
+
+#: admin/assets/kanban/build/index.js:31
+msgid "%s is not over a stage."
+msgstr "%s किसी चरण के ऊपर नहीं है।"
+
+#: admin/assets/kanban/build/index.js:32
+msgid "%1$s was dropped in %2$s."
+msgstr "%1$s को %2$s में छोड़ा गया।"
+
+#: admin/assets/kanban/build/index.js:33
+msgid "%s was dropped."
+msgstr "%s छोड़ा गया।"
+
+#. translators: %s: card title.
+#: admin/assets/kanban/build/index.js:35
+msgid "Moving %s was cancelled."
+msgstr "%s को ले जाना रद्द किया गया।"
+
+#: admin/assets/kanban/build/index.js:36
+msgid "%1$d of %2$d cards"
+msgstr "%2$d में से %1$d कार्ड"
+
+#: admin/assets/kanban/build/index.js:37
+msgid "%d card"
+msgid_plural "%d cards"
+msgstr[0] "%d कार्ड"
+msgstr[1] "%d कार्ड"
+
+#: admin/assets/kanban/build/index.js:37
+msgid "Search name or email…"
+msgstr "नाम या ईमेल खोजें…"
+
+#: admin/assets/kanban/build/index.js:37
+msgid "Could not mark all cards as seen"
+msgstr "सभी कार्ड देखे गए के रूप में चिह्नित नहीं हो सके"
+
+#: admin/assets/kanban/build/index.js:37
+msgid "Clear the New badge from every card"
+msgstr "हर कार्ड से \"नई\" बैज हटाएँ"
+
+#: admin/assets/kanban/build/index.js:37
+msgid "Mark all seen"
+msgstr "सभी देखे गए"
+
+#: admin/assets/kanban/build/index.js:37
+msgid "Show only cards owned by"
+msgstr "सिर्फ़ इनके कार्ड दिखाएँ"
+
+#: admin/assets/kanban/build/index.js:37
+msgid "Clear"
+msgstr "साफ़ करें"
+
+#: admin/assets/kanban/build/index.js:37
+msgid "The move failed, so the card went back."
+msgstr "कार्ड ले जाना विफल रहा, इसलिए कार्ड वापस आ गया।"
+
+#: admin/assets/kanban/build/index.js:37
+msgid "No cards on this pipeline."
+msgstr "इस पाइपलाइन पर कोई कार्ड नहीं।"
+
+#: admin/assets/kanban/build/index.js:37
+msgid ""
+"Your entries are on other pipelines. Open one below, or pick it in the "
+"Pipeline menu above."
+msgstr ""
+"आपकी एंट्रियाँ दूसरी पाइपलाइन पर हैं। नीचे से कोई एक खोलें, या ऊपर पाइपलाइन मेन्यू में उसे "
+"चुनें।"
+
+#. translators: 1: pipeline name, 2: number of cards on it.
+#: admin/assets/kanban/build/index.js:37
+msgid "%1$s: %2$d card"
+msgid_plural "%1$s: %2$d cards"
+msgstr[0] "%1$s: %2$d कार्ड"
+msgstr[1] "%1$s: %2$d कार्ड"
+
+#: admin/assets/kanban/build/index.js:37
+msgid "Nothing here yet. That is expected."
+msgstr "यहाँ अभी कुछ नहीं है। ऐसा होना स्वाभाविक है।"
+
+#: admin/assets/kanban/build/index.js:37
+msgid ""
+"EntryVault picks up submissions from the form plugins you already use. There "
+"is nothing to add to your forms: submit one of them once and it appears on "
+"this board within moments."
+msgstr ""
+"EntryVault उन फ़ॉर्म प्लगइन्स से सबमिशन लेता है जो आप पहले से इस्तेमाल करते हैं। आपके फ़ॉर्म "
+"में कुछ जोड़ने की ज़रूरत नहीं है: किसी एक फ़ॉर्म को एक बार भेजें, वह कुछ ही पलों में इस बोर्ड "
+"पर दिख जाएगा।"
+
+#: admin/assets/kanban/build/index.js:37
+msgid "Check which form plugins were found"
+msgstr "देखें कौन से फ़ॉर्म प्लगइन मिले"
+
+#: admin/assets/kanban/build/index.js:37
+msgid ""
+"No pipeline is set up yet. Deactivate and activate EntryVault once to create "
+"the default one."
+msgstr ""
+"अभी कोई पाइपलाइन सेट नहीं है। डिफ़ॉल्ट पाइपलाइन बनाने के लिए EntryVault को एक बार "
+"बंद करके फिर चालू करें।"
+
+#: blocks/submissions-table/index.js:25
+msgid "Email (shown publicly)"
+msgstr "ईमेल (सार्वजनिक रूप से दिखता है)"
+
+#: blocks/submissions-table/index.js:27
+msgid "Owner (staff name, shown publicly)"
+msgstr "ज़िम्मेदार (स्टाफ़ का नाम, सार्वजनिक रूप से दिखता है)"
+
+#: blocks/submissions-table/index.js:28
+msgid "Tags (shown publicly)"
+msgstr "टैग (सार्वजनिक रूप से दिखते हैं)"
+
+#: blocks/submissions-table/index.js:70
+msgid "Submissions Table"
+msgstr "सबमिशन तालिका"
+
+#: blocks/submissions-table/index.js:72
+msgid "Pipeline slug"
+msgstr "पाइपलाइन स्लग"
+
+#: blocks/submissions-table/index.js:77
+msgid "Stage slug (optional)"
+msgstr "चरण स्लग (वैकल्पिक)"
+
+#: blocks/submissions-table/index.js:82
+msgid "Access token (optional)"
+msgstr "एक्सेस टोकन (वैकल्पिक)"
+
+#: blocks/submissions-table/index.js:89
+msgid "Columns"
+msgstr "कॉलम"
+
+#: blocks/submissions-table/index.js:103
+msgid "EntryVault Submissions Table"
+msgstr "EntryVault सबमिशन तालिका"
+
+#: blocks/submissions-table/index.js:108
+msgid "pipeline: "
+msgstr "पाइपलाइन: "
+
+#: blocks/submissions-table/index.js:109
+msgid "(no pipeline set)"
+msgstr "(कोई पाइपलाइन सेट नहीं)"
+
+#: blocks/submissions-table/index.js:114
+msgid "columns: "
+msgstr "कॉलम: "
+
+#: blocks/submissions-table/block.json
+msgctxt "block title"
+msgid "EntryVault Submissions Table"
+msgstr "EntryVault सबमिशन तालिका"
