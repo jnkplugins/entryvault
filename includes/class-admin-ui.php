@@ -24,6 +24,7 @@ class Admin_UI {
             'entryvault-dashboard'   => __( 'Overview', 'entryvault' ),
             'entryvault-submissions' => __( 'Submissions', 'entryvault' ),
             'entryvault-tags'        => __( 'Tags', 'entryvault' ),
+            'entryvault-backfill'    => __( 'Past entries', 'entryvault' ),
             'entryvault-import'      => __( 'Import', 'entryvault' ),
             'entryvault-health'      => __( 'Health', 'entryvault' ),
         ];

@@ -194,8 +194,8 @@ class Submissions_Admin {
         $table->prepare_items();
 
         global $wpdb;
-        $pipelines = $wpdb->get_results( "SELECT id, name FROM {$wpdb->prefix}entryvault_pipelines ORDER BY name ASC", ARRAY_A );
-        $stages    = $wpdb->get_results( "SELECT id, name, pipeline_id FROM {$wpdb->prefix}entryvault_stages ORDER BY pipeline_id ASC, position ASC, name ASC", ARRAY_A );
+        $pipelines = Default_Names::label_rows( $wpdb->get_results( "SELECT id, name FROM {$wpdb->prefix}entryvault_pipelines ORDER BY name ASC", ARRAY_A ) );
+        $stages    = Default_Names::label_rows( $wpdb->get_results( "SELECT id, name, pipeline_id FROM {$wpdb->prefix}entryvault_stages ORDER BY pipeline_id ASC, position ASC, name ASC", ARRAY_A ) );
         $sources   = $wpdb->get_results( "SELECT DISTINCT source_plugin FROM {$wpdb->prefix}entryvault_submissions ORDER BY source_plugin ASC", ARRAY_A );
 
         // Restrict the pipeline filter dropdown to pipelines the user may view.
@@ -657,11 +657,11 @@ class Submissions_Admin {
         $out = [ 'pipelines' => [], 'stages' => [] ];
         // phpcs:ignore WordPress.DB.DirectDatabaseQuery -- small lookup tables.
         foreach ( (array) $wpdb->get_results( "SELECT id, name FROM {$p}", ARRAY_A ) as $row ) {
-            $out['pipelines'][ (int) $row['id'] ] = (string) $row['name'];
+            $out['pipelines'][ (int) $row['id'] ] = Default_Names::label( $row['name'] );
         }
         // phpcs:ignore WordPress.DB.DirectDatabaseQuery -- small lookup tables.
         foreach ( (array) $wpdb->get_results( "SELECT id, name FROM {$s}", ARRAY_A ) as $row ) {
-            $out['stages'][ (int) $row['id'] ] = (string) $row['name'];
+            $out['stages'][ (int) $row['id'] ] = Default_Names::label( $row['name'] );
         }
         return $out;
     }

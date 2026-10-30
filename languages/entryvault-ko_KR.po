@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: EntryVault\n"
 "Report-Msgid-Bugs-To: https://jnkplugins.com/entryvault/\n"
-"POT-Creation-Date: 2026-10-29T03:45:35+00:00\n"
+"POT-Creation-Date: 2026-10-30T08:58:52+00:00\n"
 "PO-Revision-Date: 2026-10-10 16:40+0000\n"
 "Last-Translator: JNK Plugins\n"
 "Language-Team: Korean\n"
@@ -203,25 +203,25 @@ msgid "Unexpected response from license server."
 msgstr "라이선스 서버에서 예상하지 못한 응답이 왔습니다."
 
 #. translators: %s: human-readable time difference, e.g. "3 hours".
-#: pro/licensorpro-client/licensorpro-client.php:1699
+#: pro/licensorpro-client/licensorpro-client.php:1700
 #: includes/class-dates.php:65
 #, php-format
 msgid "in %s"
 msgstr "%s 후"
 
 #. translators: %s: human-readable time difference, e.g. "3 hours".
-#: pro/licensorpro-client/licensorpro-client.php:1700
-#: includes/class-dates.php:67
+#: pro/licensorpro-client/licensorpro-client.php:1701
+#: includes/class-dates.php:73
 #, php-format
 msgid "%s ago"
 msgstr "%s 전"
 
-#: pro/licensorpro-client/licensorpro-client.php:1725
+#: pro/licensorpro-client/licensorpro-client.php:1726
 #, php-format
 msgid "%s License"
 msgstr "%s 라이선스"
 
-#: pro/licensorpro-client/licensorpro-client.php:1735
+#: pro/licensorpro-client/licensorpro-client.php:1736
 msgid ""
 "This site was deactivated, so its seat is free for another site. Enter the "
 "key again here to switch the Pro tools back on."
@@ -229,40 +229,40 @@ msgstr ""
 "이 사이트가 비활성화되어 다른 사이트에서 이 자리를 쓸 수 있습니다. Pro 도구"
 "를 다시 켜려면 여기에 키를 다시 입력하세요."
 
-#: pro/licensorpro-client/licensorpro-client.php:1745
-#: pro/licensorpro-client/licensorpro-client.php:1776
-#: pro/licensorpro-client/licensorpro-client.php:1833
+#: pro/licensorpro-client/licensorpro-client.php:1746
+#: pro/licensorpro-client/licensorpro-client.php:1777
+#: pro/licensorpro-client/licensorpro-client.php:1841
 msgid "License key"
 msgstr "라이선스 키"
 
-#: pro/licensorpro-client/licensorpro-client.php:1746
+#: pro/licensorpro-client/licensorpro-client.php:1747
 msgid "Type"
 msgstr "유형"
 
-#: pro/licensorpro-client/licensorpro-client.php:1748
+#: pro/licensorpro-client/licensorpro-client.php:1749
 msgid ""
 "Free license: updates of the free version only. It does not switch on Pro."
 msgstr "무료 라이선스: 무료 버전 업데이트만 받습니다. Pro를 켜지 않습니다."
 
-#: pro/licensorpro-client/licensorpro-client.php:1749
+#: pro/licensorpro-client/licensorpro-client.php:1750
 msgid "Free license: updates arrive in your dashboard like any other plugin."
 msgstr "무료 라이선스: 다른 플러그인처럼 대시보드에서 업데이트를 받습니다."
 
-#: pro/licensorpro-client/licensorpro-client.php:1751
-#: pro/licensorpro-client/licensorpro-client.php:1801
+#: pro/licensorpro-client/licensorpro-client.php:1752
+#: pro/licensorpro-client/licensorpro-client.php:1809
 msgid "Last checked"
 msgstr "마지막 확인"
 
-#: pro/licensorpro-client/licensorpro-client.php:1755
-#: pro/licensorpro-client/licensorpro-client.php:1807
+#: pro/licensorpro-client/licensorpro-client.php:1756
+#: pro/licensorpro-client/licensorpro-client.php:1815
 msgid "Check for updates now"
 msgstr "지금 업데이트 확인"
 
-#: pro/licensorpro-client/licensorpro-client.php:1758
+#: pro/licensorpro-client/licensorpro-client.php:1759
 msgid "Bought Pro?"
 msgstr "Pro를 구매하셨나요?"
 
-#: pro/licensorpro-client/licensorpro-client.php:1759
+#: pro/licensorpro-client/licensorpro-client.php:1760
 msgid ""
 "Enter your Pro license key and Pro is installed over this version. "
 "Everything you set up stays."
@@ -270,16 +270,16 @@ msgstr ""
 "Pro 라이선스 키를 입력하면 Pro가 이 버전 위에 설치됩니다. 설정한 내용은 모두 "
 "그대로 유지됩니다."
 
-#: pro/licensorpro-client/licensorpro-client.php:1761
+#: pro/licensorpro-client/licensorpro-client.php:1762
 msgid "Pro license key"
 msgstr "Pro 라이선스 키"
 
-#: pro/licensorpro-client/licensorpro-client.php:1764
-#: pro/licensorpro-client/licensorpro-client.php:1814
+#: pro/licensorpro-client/licensorpro-client.php:1765
+#: pro/licensorpro-client/licensorpro-client.php:1822
 msgid "Install Pro now"
 msgstr "지금 Pro 설치"
 
-#: pro/licensorpro-client/licensorpro-client.php:1766
+#: pro/licensorpro-client/licensorpro-client.php:1767
 msgid ""
 "Rather do it by hand? Download the Pro zip from your account and upload it "
 "over this plugin."
@@ -287,76 +287,97 @@ msgstr ""
 "직접 하시겠어요? 계정에서 Pro zip 파일을 내려받아 이 플러그인 위에 업로드하세"
 "요."
 
-#: pro/licensorpro-client/licensorpro-client.php:1767
-#: pro/licensorpro-client/licensorpro-client.php:1841
+#: pro/licensorpro-client/licensorpro-client.php:1768
+#: pro/licensorpro-client/licensorpro-client.php:1849
 msgid "Go to your account"
 msgstr "계정으로 이동"
 
-#: pro/licensorpro-client/licensorpro-client.php:1778
+#: pro/licensorpro-client/licensorpro-client.php:1780
 msgid "active"
 msgstr "활성"
 
 #. translators: %s: date the Pro tools lock
-#: pro/licensorpro-client/licensorpro-client.php:1780
+#: pro/licensorpro-client/licensorpro-client.php:1782
 #, php-format
 msgid "expired, Pro tools stay on until %s"
 msgstr "만료됨, %s까지 Pro 도구 사용 가능"
 
-#: pro/licensorpro-client/licensorpro-client.php:1781
+#: pro/licensorpro-client/licensorpro-client.php:1783
 msgid "expired, Pro tools locked"
 msgstr "만료됨, Pro 도구 잠김"
 
-#: pro/licensorpro-client/licensorpro-client.php:1783
+#: pro/licensorpro-client/licensorpro-client.php:1785
 msgid "this site is not activated"
 msgstr "이 사이트는 활성화되지 않았습니다"
 
-#: pro/licensorpro-client/licensorpro-client.php:1784
+#: pro/licensorpro-client/licensorpro-client.php:1786
 msgid "no longer active (refunded or cancelled)"
 msgstr "더 이상 활성 상태가 아님(환불 또는 취소됨)"
 
-#: pro/licensorpro-client/licensorpro-client.php:1786
+#: pro/licensorpro-client/licensorpro-client.php:1788
+#: admin/views/past-entries.php:91
 #: admin/assets/kanban/build/index.js:5
 msgid "Status"
 msgstr "상태"
 
-#: pro/licensorpro-client/licensorpro-client.php:1788
+#: pro/licensorpro-client/licensorpro-client.php:1790
 msgid "Renew"
 msgstr "갱신"
 
-#: pro/licensorpro-client/licensorpro-client.php:1792
+#: pro/licensorpro-client/licensorpro-client.php:1794
 msgid "Offline mode"
 msgstr "오프라인 모드"
 
-#: pro/licensorpro-client/licensorpro-client.php:1794
+#: pro/licensorpro-client/licensorpro-client.php:1796
 #, php-format
 msgid "cached license valid until %s"
 msgstr "캐시된 라이선스, %s까지 유효"
 
-#: pro/licensorpro-client/licensorpro-client.php:1798
+#: pro/licensorpro-client/licensorpro-client.php:1801
+msgctxt "update channel"
+msgid "stable"
+msgstr "안정"
+
+#: pro/licensorpro-client/licensorpro-client.php:1802
+msgctxt "update channel"
+msgid "beta"
+msgstr "베타"
+
+#: pro/licensorpro-client/licensorpro-client.php:1803
+msgctxt "update channel"
+msgid "release candidate"
+msgstr "릴리스 후보"
+
+#: pro/licensorpro-client/licensorpro-client.php:1804
+msgctxt "update channel"
+msgid "development"
+msgstr "개발"
+
+#: pro/licensorpro-client/licensorpro-client.php:1806
 msgid "Update channel"
 msgstr "업데이트 채널"
 
-#: pro/licensorpro-client/licensorpro-client.php:1799
+#: pro/licensorpro-client/licensorpro-client.php:1807
 msgid "Site limit"
 msgstr "사이트 한도"
 
-#: pro/licensorpro-client/licensorpro-client.php:1800
+#: pro/licensorpro-client/licensorpro-client.php:1808
 msgid "Expires"
 msgstr "만료일"
 
-#: pro/licensorpro-client/licensorpro-client.php:1800
+#: pro/licensorpro-client/licensorpro-client.php:1808
 msgid "Never"
 msgstr "없음"
 
-#: pro/licensorpro-client/licensorpro-client.php:1805
+#: pro/licensorpro-client/licensorpro-client.php:1813
 msgid "Deactivate this site"
 msgstr "이 사이트 비활성화"
 
-#: pro/licensorpro-client/licensorpro-client.php:1812
+#: pro/licensorpro-client/licensorpro-client.php:1820
 msgid "This is the free version, running on your Pro license."
 msgstr "Pro 라이선스로 실행 중인 무료 버전입니다."
 
-#: pro/licensorpro-client/licensorpro-client.php:1829
+#: pro/licensorpro-client/licensorpro-client.php:1837
 msgid ""
 "Have a Pro license key? Enter it here to switch on the Pro tools. It "
 "replaces the free license on this site."
@@ -364,32 +385,32 @@ msgstr ""
 "Pro 라이선스 키가 있나요? 여기에 입력하면 Pro 도구가 켜집니다. 이 사이트의 무"
 "료 라이선스를 대신합니다."
 
-#: pro/licensorpro-client/licensorpro-client.php:1830
+#: pro/licensorpro-client/licensorpro-client.php:1838
 msgid "Enter your license key to activate this site."
 msgstr "이 사이트를 활성화하려면 라이선스 키를 입력하세요."
 
-#: pro/licensorpro-client/licensorpro-client.php:1837
+#: pro/licensorpro-client/licensorpro-client.php:1845
 msgid "Activate"
 msgstr "활성화"
 
-#: pro/licensorpro-client/licensorpro-client.php:1840
+#: pro/licensorpro-client/licensorpro-client.php:1848
 msgid "Your key is in your purchase email and in your account."
 msgstr "키는 구매 확인 이메일과 계정에 있습니다."
 
-#: pro/licensorpro-client/licensorpro-client.php:1848
+#: pro/licensorpro-client/licensorpro-client.php:1856
 msgid "Need a hand?"
 msgstr "도움이 필요하신가요?"
 
-#: pro/licensorpro-client/licensorpro-client.php:1849
+#: pro/licensorpro-client/licensorpro-client.php:1857
 msgid "Contact support"
 msgstr "지원팀에 문의"
 
-#: pro/licensorpro-client/licensorpro-client.php:2054
+#: pro/licensorpro-client/licensorpro-client.php:2062
 msgid "Only someone who may install plugins on this site can install Pro."
 msgstr ""
 "이 사이트에 플러그인을 설치할 수 있는 사용자만 Pro를 설치할 수 있습니다."
 
-#: pro/licensorpro-client/licensorpro-client.php:2067
+#: pro/licensorpro-client/licensorpro-client.php:2075
 msgid ""
 "That is a free license key, so it keeps this free version updated. Pro needs "
 "the key from your purchase email."
@@ -398,7 +419,7 @@ msgstr ""
 "매 확인 이메일에 있는 키가 필요합니다."
 
 #. translators: %s: URL of the customer account
-#: pro/licensorpro-client/licensorpro-client.php:2072
+#: pro/licensorpro-client/licensorpro-client.php:2080
 #, php-format
 msgid ""
 "Your key is active. Download the Pro zip from your account (%s) and upload "
@@ -407,48 +428,48 @@ msgstr ""
 "키가 활성화되었습니다. 계정(%s)에서 Pro zip 파일을 내려받아 이 플러그인 위에 "
 "업로드하세요."
 
-#: pro/licensorpro-client/licensorpro-client.php:2076
+#: pro/licensorpro-client/licensorpro-client.php:2084
 msgid "This site does not allow installing plugins from the dashboard."
 msgstr "이 사이트는 대시보드에서 플러그인 설치를 허용하지 않습니다."
 
-#: pro/licensorpro-client/licensorpro-client.php:2080
+#: pro/licensorpro-client/licensorpro-client.php:2088
 msgid "The Pro download could not be fetched for this key."
 msgstr "이 키로 Pro 다운로드를 가져오지 못했습니다."
 
-#: pro/licensorpro-client/licensorpro-client.php:2088
+#: pro/licensorpro-client/licensorpro-client.php:2096
 msgid "This site asks for FTP details to install plugins."
 msgstr "이 사이트는 플러그인을 설치할 때 FTP 정보를 요구합니다."
 
-#: pro/licensorpro-client/licensorpro-client.php:2123
+#: pro/licensorpro-client/licensorpro-client.php:2131
 msgid "Installing Pro did not finish."
 msgstr "Pro 설치가 끝나지 않았습니다."
 
 #. translators: %s: plugin name
-#: pro/licensorpro-client/licensorpro-client.php:2128
+#: pro/licensorpro-client/licensorpro-client.php:2136
 #, php-format
 msgid "%s Pro is installed and your license is active. Reloading…"
 msgstr "%s Pro가 설치되었고 라이선스가 활성화되었습니다. 새로 고치는 중…"
 
-#: pro/licensorpro-client/licensorpro-client.php:2138
+#: pro/licensorpro-client/licensorpro-client.php:2146
 msgid "License activated."
 msgstr "라이선스가 활성화되었습니다."
 
-#: pro/licensorpro-client/licensorpro-client.php:2150
+#: pro/licensorpro-client/licensorpro-client.php:2158
 msgid "Site deactivated."
 msgstr "사이트가 비활성화되었습니다."
 
-#: pro/licensorpro-client/licensorpro-client.php:2161
+#: pro/licensorpro-client/licensorpro-client.php:2169
 msgid "License is valid. Update info refreshed."
 msgstr "라이선스가 유효합니다. 업데이트 정보를 새로 고쳤습니다."
 
-#: pro/licensorpro-client/licensorpro-client.php:2168
+#: pro/licensorpro-client/licensorpro-client.php:2176
 msgid "Permission denied."
 msgstr "권한이 없습니다."
 
 #. Plugin Name of the plugin
-#: entryvault.php includes/class-admin-ui.php:81 includes/class-plugin.php:121
-#: includes/class-plugin.php:122 includes/class-plugin.php:133
-#: includes/class-plugin.php:134
+#: entryvault.php includes/class-admin-ui.php:82 includes/class-plugin.php:126
+#: includes/class-plugin.php:127 includes/class-plugin.php:138
+#: includes/class-plugin.php:139
 msgid "EntryVault"
 msgstr "EntryVault"
 
@@ -489,7 +510,7 @@ msgid "All submissions"
 msgstr "모든 제출"
 
 #: admin/views/dashboard.php:75 admin/views/dashboard.php:84
-#: includes/class-submissions-admin.php:224
+#: includes/class-plugin.php:359 includes/class-submissions-admin.php:224
 msgid "Open the board"
 msgstr "보드 열기"
 
@@ -632,7 +653,7 @@ msgid ""
 msgstr "파이프라인과 기간을 선택하세요. 아래 숫자가 바로 업데이트됩니다."
 
 #: admin/views/dashboard.php:207 admin/views/import.php:83
-#: includes/class-submissions-list-table.php:57
+#: includes/class-submissions-list-table.php:59
 #: admin/assets/kanban/build/index.js:37
 msgid "Pipeline"
 msgstr "파이프라인"
@@ -698,8 +719,8 @@ msgid "Click a column title to sort."
 msgstr "열 제목을 클릭하면 정렬됩니다."
 
 #: admin/views/feedback.php:13 admin/views/health.php:16
-#: admin/views/import.php:18 admin/views/settings.php:15
-#: admin/views/upgrade.php:15
+#: admin/views/import.php:18 admin/views/past-entries.php:15
+#: admin/views/settings.php:15 admin/views/upgrade.php:15
 msgid "You do not have permission to access this page."
 msgstr "이 페이지에 접근할 권한이 없습니다."
 
@@ -744,7 +765,7 @@ msgstr "웹사이트"
 msgid "What is it about?"
 msgstr "어떤 내용인가요?"
 
-#: admin/views/feedback.php:66 includes/class-submissions-list-table.php:56
+#: admin/views/feedback.php:66 includes/class-submissions-list-table.php:58
 #: admin/assets/kanban/build/index.js:26
 msgid "Message"
 msgstr "메시지"
@@ -777,8 +798,8 @@ msgstr "보내기"
 msgid "Your message goes out through your site’s own email."
 msgstr "메시지는 사이트 자체 이메일로 발송됩니다."
 
-#: admin/views/health.php:31 includes/class-admin-ui.php:28
-#: includes/class-plugin.php:148
+#: admin/views/health.php:31 includes/class-admin-ui.php:29
+#: includes/class-plugin.php:154
 msgid "Health"
 msgstr "상태"
 
@@ -792,8 +813,8 @@ msgstr ""
 msgid "Check again"
 msgstr "다시 확인"
 
-#: admin/views/import.php:36 includes/class-admin-ui.php:27
-#: includes/class-plugin.php:147
+#: admin/views/import.php:36 includes/class-admin-ui.php:28
+#: includes/class-plugin.php:153
 msgid "Import"
 msgstr "가져오기"
 
@@ -870,15 +891,15 @@ msgstr ""
 msgid "Use the default pipeline"
 msgstr "기본 파이프라인 사용"
 
-#: admin/views/import.php:91 includes/class-frontend.php:501
-#: includes/class-submissions-list-table.php:58
+#: admin/views/import.php:91 includes/class-frontend.php:504
+#: includes/class-submissions-list-table.php:60
 #: admin/assets/js/dashboard.js:140
 #: admin/assets/js/dashboard.js:219 admin/assets/kanban/build/index.js:5
 #: blocks/submissions-table/index.js:26
 msgid "Stage"
 msgstr "단계"
 
-#: admin/views/import.php:93 includes/class-plugin.php:331
+#: admin/views/import.php:93 includes/class-plugin.php:344
 msgid "First stage of the pipeline"
 msgstr "파이프라인의 첫 단계"
 
@@ -929,20 +950,282 @@ msgstr "(거기서 복원한 항목은 이 보드에 들어옵니다)."
 msgid "Keep spam entries in EntryVault"
 msgstr "스팸 항목도 EntryVault에 보관하기"
 
-#: admin/views/kanban.php:45 admin/assets/kanban/build/index.js:27
+#: admin/views/kanban.php:61
+msgid "Past entries found"
+msgstr "이전 항목을 찾았습니다"
+
+#. translators: 1: form plugin name, 2: number of entries.
+#: admin/views/kanban.php:80
+#, php-format
+msgid "%1$s: %2$s past entry"
+msgid_plural "%1$s: %2$s past entries"
+msgstr[0] "%1$s: 이전 항목 %2$s개"
+
+#. translators: %s: form plugin name.
+#: admin/views/kanban.php:82
+#, php-format
+msgid "%s: past entries found"
+msgstr "%s: 이전 항목을 찾았습니다"
+
+#: admin/views/kanban.php:88 admin/views/past-entries.php:41
+msgid "Experimental"
+msgstr "실험적"
+
+#. translators: %s: form plugin name.
+#: admin/views/kanban.php:91 admin/views/past-entries.php:53
+#, php-format
+msgid ""
+"%s offers no public way to read its entries, so EntryVault reads its "
+"database directly. This can stop working when the form plugin changes its "
+"database."
+msgstr ""
+"%s에는 항목을 읽는 공개 방법이 없어 EntryVault가 데이터베이스를 직접 읽습니"
+"다. 폼 플러그인이 데이터베이스를 바꾸면 작동하지 않을 수 있습니다."
+
+#: admin/views/kanban.php:97
+msgid ""
+"They stay where they are. EntryVault copies them onto this board with their "
+"original dates. No emails or automations run for them."
+msgstr ""
+"원래 위치에 그대로 남습니다. EntryVault가 원래 날짜 그대로 이 보드에 복사합니"
+"다. 이 항목에는 이메일이나 자동화가 실행되지 않습니다."
+
+#: admin/views/kanban.php:99
+msgid "Bring them in"
+msgstr "가져오기"
+
+#: admin/views/kanban.php:100
+msgid "Not now"
+msgstr "나중에"
+
+#. translators: %s: form plugin name.
+#: admin/views/kanban.php:107 admin/views/past-entries.php:71
+#, php-format
+msgid ""
+"%s does not keep entries on this site (its free version only emails them), "
+"so there are no past entries to bring in. New submissions are captured from "
+"now on."
+msgstr ""
+"%s는 이 사이트에 항목을 저장하지 않으므로(무료 버전은 이메일로만 보냄) 가져"
+"올 이전 항목이 없습니다. 지금부터 새 제출이 수집됩니다."
+
+#. translators: 1: entries brought in so far, 2: entries found.
+#: admin/views/kanban.php:121
+#, php-format
+msgid "Bringing them in: %1$s of %2$s"
+msgstr "가져오는 중: %2$s개 중 %1$s개"
+
+#. translators: %s: number of entries.
+#: admin/views/kanban.php:123
+#, php-format
+msgid "Done: %s entries brought in. Loading the board…"
+msgstr "완료: 항목 %s개를 가져왔습니다. 보드를 불러오는 중…"
+
+#: admin/views/kanban.php:124
+msgid "Something went wrong. Open Past entries for the details."
+msgstr "문제가 발생했습니다. 자세한 내용은 이전 항목을 여세요."
+
+#: admin/views/kanban.php:125
+msgid "You can bring them in later from Past entries."
+msgstr "나중에 이전 항목에서 가져올 수 있습니다."
+
+#: admin/views/kanban.php:181 admin/assets/kanban/build/index.js:27
 msgid "Loading the board…"
 msgstr "보드를 불러오는 중…"
 
-#: admin/views/kanban.php:47
+#: admin/views/kanban.php:183
 msgid "If this message stays, the board files are missing. Run"
 msgstr "이 메시지가 계속 보이면 보드 파일이 없는 것입니다. 다음 명령을"
 
-#: admin/views/kanban.php:49
+#: admin/views/kanban.php:185
 msgid "in the plugin folder."
 msgstr "플러그인 폴더에서 실행하세요."
 
-#: admin/views/settings.php:50 includes/class-admin-ui.php:111
-#: includes/class-plugin.php:82 includes/class-plugin.php:149
+#: admin/views/past-entries.php:28 includes/class-admin-ui.php:27
+#: includes/class-plugin.php:152
+msgid "Past entries"
+msgstr "이전 항목"
+
+#: admin/views/past-entries.php:29
+msgid ""
+"Bring in the entries your forms collected before EntryVault was installed. "
+"Run it as often as you like: entries already here are skipped, never copied "
+"twice."
+msgstr ""
+"EntryVault를 설치하기 전에 양식이 받은 항목을 가져옵니다. 원하는 만큼 실행해"
+"도 됩니다. 이미 있는 항목은 건너뛰며 두 번 복사되지 않습니다."
+
+#: admin/views/past-entries.php:34
+msgid "Nothing to bring in"
+msgstr "가져올 항목이 없습니다"
+
+#: admin/views/past-entries.php:34
+msgid ""
+"No past entries found that EntryVault can read. It can bring in entries from "
+"Gravity Forms, WPForms (not WPForms Lite, which keeps none), Fluent Forms, "
+"Forminator, SureForms, Trinity Forms, Formidable, Ninja Forms, Everest "
+"Forms, MetForm, and Contact Form 7 messages saved by Flamingo or CFDB7."
+msgstr ""
+"EntryVault가 읽을 수 있는 이전 항목이 없습니다. Gravity Forms, WPForms(항목"
+"을 저장하지 않는 WPForms Lite 제외), Fluent Forms, Forminator, SureForms, "
+"Trinity Forms, Formidable, Ninja Forms, Everest Forms, MetForm, 그리고 "
+"Flamingo 또는 CFDB7에 저장된 Contact Form 7 메시지를 가져올 수 있습니다."
+
+#. translators: %s: form plugin name.
+#: admin/views/past-entries.php:48
+#, php-format
+msgid "%s offers a public way to read its entries, and EntryVault uses it."
+msgstr "%s는 항목을 읽는 공개 방법을 제공하며 EntryVault는 이를 사용합니다."
+
+#: admin/views/past-entries.php:50
+msgid ""
+"Made by the same team as EntryVault, which reads its entries directly and is "
+"kept in step with it."
+msgstr ""
+"EntryVault와 같은 팀이 만들었으며, EntryVault가 항목을 직접 읽고 함께 업데이"
+"트됩니다."
+
+#: admin/views/past-entries.php:57
+msgid "Report a problem"
+msgstr "문제 신고"
+
+#: admin/views/past-entries.php:62
+msgid "What \"Report a problem\" sends"
+msgstr "\"문제 신고\"가 보내는 내용"
+
+#: admin/views/past-entries.php:63
+msgid ""
+"Sent by your site's email to the EntryVault team, only when you click: the "
+"form plugin and its version, the EntryVault, WordPress and PHP versions, and "
+"the database check. No entries, names or email addresses, and not your site "
+"address."
+msgstr ""
+"클릭할 때만 사이트의 이메일로 EntryVault 팀에 보냅니다: 폼 플러그인과 그 버"
+"전, EntryVault·WordPress·PHP 버전, 데이터베이스 확인 결과. 항목, 이름, 이메"
+"일 주소와 사이트 주소는 보내지 않습니다."
+
+#: admin/views/past-entries.php:76
+msgid "Cannot read"
+msgstr "읽을 수 없음"
+
+#. translators: 1: form plugin name, 2: list of missing tables or columns.
+#: admin/views/past-entries.php:79
+#, php-format
+msgid ""
+"EntryVault checked the %1$s database first and did not find what it expects "
+"(missing: %2$s). Nothing was read. This usually means %1$s changed its "
+"database in an update. Please use \"Report a problem\" so EntryVault can be "
+"fixed."
+msgstr ""
+"EntryVault가 먼저 %1$s 데이터베이스를 확인했지만 예상한 내용을 찾지 못했습니"
+"다(없음: %2$s). 아무것도 읽지 않았습니다. 보통 %1$s가 업데이트에서 데이터베이"
+"스를 바꿨다는 뜻입니다. EntryVault를 고칠 수 있도록 \"문제 신고\"를 눌러 주세"
+"요."
+
+#: admin/views/past-entries.php:84
+msgid "No forms found in this plugin."
+msgstr "이 플러그인에서 양식을 찾지 못했습니다."
+
+#: admin/views/past-entries.php:90
+msgid "Form"
+msgstr "양식"
+
+#: admin/views/past-entries.php:92
+msgid "Progress"
+msgstr "진행 상황"
+
+#: admin/views/past-entries.php:93 admin/views/tags.php:30
+msgid "Actions"
+msgstr "작업"
+
+#. translators: %d: form ID.
+#: admin/views/past-entries.php:103
+#, php-format
+msgid "Form ID %d"
+msgstr "양식 ID %d"
+
+#. translators: %s: number of entries.
+#: admin/views/past-entries.php:106
+#, php-format
+msgid "%s entry"
+msgid_plural "%s entries"
+msgstr[0] "항목 %s개"
+
+#: admin/views/past-entries.php:110 admin/views/past-entries.php:159
+msgid "Not run yet"
+msgstr "아직 실행 안 함"
+
+#: admin/views/past-entries.php:114
+msgid "Bring in entries"
+msgstr "항목 가져오기"
+
+#: admin/views/past-entries.php:117
+msgid "Stop"
+msgstr "중지"
+
+#: admin/views/past-entries.php:160
+msgid "Running"
+msgstr "실행 중"
+
+#: admin/views/past-entries.php:161
+msgid "Done"
+msgstr "완료"
+
+#: admin/views/past-entries.php:162
+msgid "Stopped"
+msgstr "중지됨"
+
+#: admin/views/past-entries.php:163
+msgid "Paused"
+msgstr "일시 중지됨"
+
+#: admin/views/past-entries.php:164
+msgid "Failed"
+msgstr "실패"
+
+#: admin/views/past-entries.php:165
+msgid ""
+"Stopped: the form plugin database does not look as expected. Nothing was "
+"read."
+msgstr ""
+"중지됨: 폼 플러그인 데이터베이스가 예상과 다릅니다. 아무것도 읽지 않았습니다."
+
+#. translators: %s: number of entries.
+#: admin/views/past-entries.php:167
+#, php-format
+msgid "%s brought in"
+msgstr "%s개 가져옴"
+
+#. translators: %s: number of entries.
+#: admin/views/past-entries.php:169
+#, php-format
+msgid "%s already here"
+msgstr "%s개 이미 있음"
+
+#. translators: %s: number of entries.
+#: admin/views/past-entries.php:171
+#, php-format
+msgid "%s left out (spam or unreadable)"
+msgstr "%s개 제외(스팸 또는 읽을 수 없음)"
+
+#: admin/views/past-entries.php:268
+msgid "Thanks, the report was sent."
+msgstr "감사합니다. 신고를 보냈습니다."
+
+#: admin/views/past-entries.php:269
+msgid "A report for this form plugin was already sent in the last hour."
+msgstr "이 폼 플러그인에 대한 신고를 지난 1시간 안에 이미 보냈습니다."
+
+#: admin/views/past-entries.php:270
+msgid ""
+"The report could not be sent. Your site may not be able to send email; the "
+"Help and feedback page has other ways to reach us."
+msgstr ""
+"신고를 보내지 못했습니다. 사이트에서 이메일을 보낼 수 없을 수 있습니다. 도움"
+"말 및 의견 페이지에서 다른 연락 방법을 확인하세요."
+
+#: admin/views/settings.php:50 includes/class-admin-ui.php:112
+#: includes/class-plugin.php:87 includes/class-plugin.php:155
 msgid "Settings"
 msgstr "설정"
 
@@ -954,37 +1237,45 @@ msgstr ""
 "EntryVault가 답장을 보내는 방식, 항목 담당자가 될 수 있는 사람, 데이터 처리 "
 "방식을 설정합니다."
 
-#: admin/views/settings.php:57
+#: admin/views/settings.php:55
+msgid "Entries your form plugins collected before EntryVault was installed:"
+msgstr "EntryVault 설치 전에 폼 플러그인이 수집한 항목:"
+
+#: admin/views/settings.php:56
+msgid "Bring in past entries"
+msgstr "이전 항목 가져오기"
+
+#: admin/views/settings.php:59
 msgid "License"
 msgstr "라이선스"
 
-#: admin/views/settings.php:61
+#: admin/views/settings.php:63 includes/class-plugin.php:230
 msgid "General"
 msgstr "일반"
 
-#: admin/views/settings.php:62
+#: admin/views/settings.php:64 includes/class-plugin.php:231
 msgid "Owners"
 msgstr "담당자"
 
-#: admin/views/settings.php:80
+#: admin/views/settings.php:82
 msgid "Default pipeline"
 msgstr "기본 파이프라인"
 
-#: admin/views/settings.php:83
+#: admin/views/settings.php:85
 #: admin/assets/js/health.js:95
 msgid "None"
 msgstr "없음"
 
-#: admin/views/settings.php:85
+#: admin/views/settings.php:87
 msgid ""
 "New entries land here unless something else sends them to another pipeline."
 msgstr "다른 설정이 없으면 새 항목은 이 파이프라인으로 들어옵니다."
 
-#: admin/views/settings.php:89
+#: admin/views/settings.php:91
 msgid "Send replies as"
 msgstr "답장 보내는 사람"
 
-#: admin/views/settings.php:97
+#: admin/views/settings.php:99
 msgid ""
 "The name and address your replies come from. Leave blank to use the site "
 "name and admin address. Without this, WordPress sends as \"WordPress\", so "
@@ -994,11 +1285,11 @@ msgstr ""
 "합니다. 이 설정이 없으면 WordPress가 \"WordPress\"라는 이름으로 보내므로, 회"
 "사에 문의한 사람이 모르는 사람에게서 답장을 받게 됩니다."
 
-#: admin/views/settings.php:112
+#: admin/views/settings.php:114
 msgid "Reply address domain"
 msgstr "답장 주소 도메인"
 
-#: admin/views/settings.php:116
+#: admin/views/settings.php:118
 msgid ""
 "Optional. The domain used in the reply-to address of emails you send, so "
 "answers come back to the right entry. Leave blank to use this site's domain."
@@ -1006,15 +1297,15 @@ msgstr ""
 "선택 사항입니다. 보내는 이메일의 회신 주소에 쓰이는 도메인으로, 답장이 올바"
 "른 항목으로 돌아오게 합니다. 비워 두면 이 사이트의 도메인을 사용합니다."
 
-#: admin/views/settings.php:121
+#: admin/views/settings.php:123
 msgid "Show entries on a page"
 msgstr "페이지에 항목 표시"
 
-#: admin/views/settings.php:136
+#: admin/views/settings.php:138
 msgid "No pipelines yet."
 msgstr "아직 파이프라인이 없습니다."
 
-#: admin/views/settings.php:152
+#: admin/views/settings.php:154
 msgid ""
 "Paste one of these into a page to show that pipeline's submissions. Anyone "
 "who can open the page can read the table, so treat the token as a password. "
@@ -1037,15 +1328,15 @@ msgstr ""
 "알 수 없는 쇼트코드를 토큰까지 포함해 일반 텍스트로 출력합니다. 블록은 그렇"
 "지 않으므로 공개 페이지에는 블록을 사용하세요."
 
-#: admin/views/settings.php:158 includes/class-tag-manager.php:135
+#: admin/views/settings.php:160 includes/class-tag-manager.php:135
 msgid "Spam"
 msgstr "스팸"
 
-#: admin/views/settings.php:162
+#: admin/views/settings.php:164
 msgid "Leave out entries your form plugin marked as spam"
 msgstr "폼 플러그인이 스팸으로 표시한 항목은 가져오지 않기"
 
-#: admin/views/settings.php:164
+#: admin/views/settings.php:166
 msgid ""
 "On by default. Some form plugins save spam and still pass it on (Gravity "
 "Forms, Fluent Forms, Forminator, Formidable, Ninja Forms with Akismet, "
@@ -1059,15 +1350,15 @@ msgstr ""
 "드에 오지 않습니다. 스팸은 폼 플러그인에 남아 있으니 잃는 것은 없습니다. 스팸"
 "도 가져오려면 체크를 해제하세요."
 
-#: admin/views/settings.php:168
+#: admin/views/settings.php:170
 msgid "Data"
 msgstr "데이터"
 
-#: admin/views/settings.php:173
+#: admin/views/settings.php:175
 msgid "Delete a card when its entry is deleted in Trinity Forms"
 msgstr "Trinity Forms에서 항목이 삭제되면 카드도 삭제"
 
-#: admin/views/settings.php:175
+#: admin/views/settings.php:177
 msgid ""
 "Off by default, so EntryVault keeps its copy as a backup when an entry is "
 "deleted in Trinity Forms, by hand or by its retention setting. Tick this to "
@@ -1079,11 +1370,11 @@ msgstr ""
 "이메일까지 삭제하려면 선택하세요. 도구 > 개인 데이터 지우기의 삭제 요청은 어"
 "느 경우에나 EntryVault 데이터도 지웁니다."
 
-#: admin/views/settings.php:180
+#: admin/views/settings.php:182
 msgid "Delete all EntryVault data when the plugin is deleted"
 msgstr "플러그인을 삭제할 때 EntryVault 데이터도 모두 삭제"
 
-#: admin/views/settings.php:182
+#: admin/views/settings.php:184
 msgid ""
 "Off by default. Your submissions, tags and notes are kept if you deactivate "
 "or delete the plugin, or let a Pro license lapse. Tick this only if deleting "
@@ -1093,19 +1384,19 @@ msgstr ""
 "되어도 제출, 태그, 메모는 유지됩니다. 플러그인을 삭제할 때 데이터도 지워야 하"
 "는 경우에만 선택하세요."
 
-#: admin/views/settings.php:187 admin/views/settings.php:216
+#: admin/views/settings.php:189 admin/views/settings.php:218
 msgid "Save changes"
 msgstr "변경 사항 저장"
 
-#: admin/views/settings.php:198
+#: admin/views/settings.php:200
 msgid "Who can own entries"
 msgstr "항목 담당자가 될 수 있는 사람"
 
-#: admin/views/settings.php:201
+#: admin/views/settings.php:203
 msgid "No roles are available."
 msgstr "사용할 수 있는 역할이 없습니다."
 
-#: admin/views/settings.php:210
+#: admin/views/settings.php:212
 msgid ""
 "People with a ticked role can be made the owner of an entry. People who can "
 "edit posts are always included."
@@ -1114,8 +1405,8 @@ msgstr ""
 "사용자는 항상 포함됩니다."
 
 #: admin/views/tags.php:14 includes/class-admin-ui.php:26
-#: includes/class-frontend.php:503 includes/class-plugin.php:146
-#: includes/class-submissions-list-table.php:62
+#: includes/class-frontend.php:506 includes/class-plugin.php:151
+#: includes/class-submissions-list-table.php:64
 #: admin/assets/kanban/build/index.js:5
 msgid "Tags"
 msgstr "태그"
@@ -1139,7 +1430,7 @@ msgstr ""
 "지됩니다."
 
 #: admin/views/tags.php:27 admin/views/tags.php:45
-#: includes/class-frontend.php:499
+#: includes/class-frontend.php:502
 #: blocks/submissions-table/index.js:23
 msgid "Name"
 msgstr "이름"
@@ -1152,11 +1443,7 @@ msgstr "짧은 이름"
 msgid "Colour"
 msgstr "색상"
 
-#: admin/views/tags.php:30
-msgid "Actions"
-msgstr "작업"
-
-#: admin/views/tags.php:39 includes/class-plugin.php:276
+#: admin/views/tags.php:39 includes/class-plugin.php:288
 msgid "Add a tag"
 msgstr "태그 추가"
 
@@ -1217,12 +1504,14 @@ msgid "Run separate Kanban boards for different teams or workflows."
 msgstr "팀이나 업무 흐름별로 칸반 보드를 따로 운영하세요."
 
 #: admin/views/upgrade.php:33
-msgid "Historical backfill"
-msgstr "과거 항목 가져오기"
+msgid "Routing and owners"
+msgstr "라우팅과 담당자"
 
 #: admin/views/upgrade.php:33
-msgid "Pull past form entries into EntryVault in one pass."
-msgstr "지난 양식 항목을 한 번에 EntryVault로 가져옵니다."
+msgid ""
+"Send each form to its own pipeline, and share new entries between your team "
+"in turn."
+msgstr "폼마다 자체 파이프라인으로 보내고, 새 항목을 팀원에게 차례로 나눕니다."
 
 #: admin/views/upgrade.php:34
 msgid "Public Kanban board"
@@ -1242,13 +1531,13 @@ msgstr "EntryVault Pro"
 
 #: admin/views/upgrade.php:40
 msgid ""
-"You are using the free EntryVault: a complete board for one pipeline. Pro "
-"adds the rules, connections, email replies and extra pipelines a growing "
-"team needs."
+"You are using the free EntryVault: a complete board for one pipeline, with "
+"the entries your forms already hold brought in. Pro adds the rules, "
+"connections, email replies and extra pipelines a growing team needs."
 msgstr ""
-"지금 사용 중인 무료 EntryVault는 파이프라인 하나를 위한 완전한 보드입니다. "
-"Pro는 성장하는 팀에 필요한 규칙, 연동, 이메일 답장, 추가 파이프라인을 더합니"
-"다."
+"무료 EntryVault를 사용 중입니다: 파이프라인 하나를 위한 완전한 보드이며, 폼"
+"에 이미 있는 항목도 가져옵니다. Pro는 성장하는 팀에 필요한 규칙, 연결, 이메"
+"일 답장, 추가 파이프라인을 더합니다."
 
 #: admin/views/upgrade.php:41
 msgid "See Pro plans"
@@ -1327,28 +1616,28 @@ msgstr ""
 "풀고 SFTP나 호스팅의 파일 관리자로 entryvault 폴더를 wp-content/plugins의 기"
 "존 폴더 위에 복사하세요."
 
-#: includes/class-admin-ui.php:25 includes/class-plugin.php:145
+#: includes/class-admin-ui.php:25 includes/class-plugin.php:150
 #: includes/class-submissions-admin.php:221
 msgid "Submissions"
 msgstr "제출"
 
-#: includes/class-admin-ui.php:61
+#: includes/class-admin-ui.php:62
 msgid "Locked"
 msgstr "잠김"
 
-#: includes/class-admin-ui.php:92
+#: includes/class-admin-ui.php:93
 msgid "EntryVault sections"
 msgstr "EntryVault 메뉴"
 
-#: includes/class-admin-ui.php:98
+#: includes/class-admin-ui.php:99
 msgid "More tools"
 msgstr "추가 도구"
 
-#: includes/class-admin-ui.php:108
+#: includes/class-admin-ui.php:109
 msgid "Upgrade"
 msgstr "업그레이드"
 
-#: includes/class-admin-ui.php:110
+#: includes/class-admin-ui.php:111
 msgid "Help"
 msgstr "도움말"
 
@@ -1356,6 +1645,32 @@ msgstr "도움말"
 #: admin/assets/kanban/build/index.js:20
 msgid "just now"
 msgstr "방금"
+
+#: includes/class-default-names.php:33
+msgctxt "default pipeline name"
+msgid "Inbox"
+msgstr "수신함"
+
+#: includes/class-default-names.php:35
+msgid "New"
+msgstr "신규"
+
+#: includes/class-default-names.php:37
+msgid "Contacted"
+msgstr "연락함"
+
+#: includes/class-default-names.php:39
+msgid "Qualified"
+msgstr "검증됨"
+
+#: includes/class-default-names.php:41
+#: admin/assets/js/dashboard.js:158
+msgid "Won"
+msgstr "성사"
+
+#: includes/class-default-names.php:43 admin/assets/js/dashboard.js:159
+msgid "Lost"
+msgstr "실패"
 
 #: includes/class-email-sender.php:109
 msgid "The mailer did not accept the email."
@@ -1394,19 +1709,19 @@ msgstr "예"
 msgid "No"
 msgstr "아니요"
 
-#: includes/class-frontend.php:83
+#: includes/class-frontend.php:85
 msgid "No pipeline specified."
 msgstr "파이프라인이 지정되지 않았습니다."
 
-#: includes/class-frontend.php:88 includes/class-rest-public.php:123
+#: includes/class-frontend.php:90 includes/class-rest-public.php:123
 msgid "Pipeline not found."
 msgstr "파이프라인을 찾을 수 없습니다."
 
-#: includes/class-frontend.php:98 includes/class-rest-public.php:107
+#: includes/class-frontend.php:100 includes/class-rest-public.php:107
 msgid "Access required."
 msgstr "접근 권한이 필요합니다."
 
-#: includes/class-frontend.php:102
+#: includes/class-frontend.php:104
 msgid ""
 "Only editors see this note: visitors cannot read this table because the "
 "access_token is missing or does not match this pipeline. Copy the ready-made "
@@ -1416,169 +1731,192 @@ msgstr ""
 "않아 방문자는 이 표를 볼 수 없습니다. EntryVault > 설정 > 일반에서 준비된 쇼"
 "트코드를 복사하세요."
 
-#: includes/class-frontend.php:448 includes/class-frontend.php:451
+#: includes/class-frontend.php:451 includes/class-frontend.php:454
 msgid "(no name)"
 msgstr "(이름 없음)"
 
-#: includes/class-frontend.php:450
+#: includes/class-frontend.php:453
 msgid "(email hidden)"
 msgstr "(이메일 숨김)"
 
-#: includes/class-frontend.php:496 blocks/submissions-table/index.js:30
+#: includes/class-frontend.php:499 blocks/submissions-table/index.js:30
 msgid "Submitted"
 msgstr "제출일"
 
-#: includes/class-frontend.php:497 includes/class-submissions-list-table.php:65
+#: includes/class-frontend.php:500 includes/class-submissions-list-table.php:67
 #: blocks/submissions-table/index.js:29
 msgid "Created"
 msgstr "생성일"
 
-#: includes/class-frontend.php:498 includes/class-plugin.php:339
-#: includes/class-privacy.php:227 includes/class-submissions-list-table.php:51
+#: includes/class-frontend.php:501 includes/class-plugin.php:352
+#: includes/class-privacy.php:227 includes/class-submissions-list-table.php:53
 #: blocks/submissions-table/index.js:24
 msgid "Title"
 msgstr "제목"
 
-#: includes/class-frontend.php:500 includes/class-plugin.php:340
-#: includes/class-privacy.php:228 includes/class-submissions-list-table.php:52
+#: includes/class-frontend.php:503 includes/class-plugin.php:353
+#: includes/class-privacy.php:228 includes/class-submissions-list-table.php:54
 #: admin/assets/kanban/build/index.js:5
 msgid "Email"
 msgstr "이메일"
 
-#: includes/class-frontend.php:502 includes/class-submissions-list-table.php:63
-#: includes/class-submissions-list-table.php:128
+#: includes/class-frontend.php:505 includes/class-submissions-list-table.php:65
+#: includes/class-submissions-list-table.php:130
 #: admin/assets/js/dashboard.js:156 admin/assets/kanban/build/index.js:5
 #: admin/assets/kanban/build/index.js:37
 msgid "Owner"
 msgstr "담당자"
 
-#: includes/class-plugin.php:89 includes/class-plugin.php:171
-#: includes/class-plugin.php:172
+#: includes/class-plugin.php:94 includes/class-plugin.php:177
+#: includes/class-plugin.php:178
 msgid "Upgrade to Pro"
 msgstr "Pro로 업그레이드"
 
-#: includes/class-plugin.php:103
+#: includes/class-plugin.php:108
 msgid "Docs"
 msgstr "문서"
 
-#: includes/class-plugin.php:108
+#: includes/class-plugin.php:113
 msgid "Support"
 msgstr "지원"
 
-#: includes/class-plugin.php:143
+#: includes/class-plugin.php:148
 msgid "Kanban"
 msgstr "칸반"
 
-#: includes/class-plugin.php:144
+#: includes/class-plugin.php:149
 msgid "Dashboard"
 msgstr "대시보드"
 
-#: includes/class-plugin.php:150
+#: includes/class-plugin.php:156
 msgid "Feedback"
 msgstr "의견 보내기"
 
-#: includes/class-plugin.php:218 includes/class-plugin.php:272
+#: includes/class-plugin.php:224 includes/class-plugin.php:284
 msgid "Saved."
 msgstr "저장했습니다."
 
-#: includes/class-plugin.php:219
+#: includes/class-plugin.php:225
 msgid "Save failed."
 msgstr "저장하지 못했습니다."
 
-#: includes/class-plugin.php:270
+#. translators: %s: the settings section, e.g. "Mailchimp".
+#: includes/class-plugin.php:227
+#, php-format
+msgid "%s saved."
+msgstr "%s 저장됨."
+
+#. translators: 1: the settings section, 2: the error message.
+#: includes/class-plugin.php:229
+#, php-format
+msgid "%1$s save failed: %2$s"
+msgstr "%1$s 저장 실패: %2$s"
+
+#: includes/class-plugin.php:282
 msgid "Edit"
 msgstr "편집"
 
-#: includes/class-plugin.php:271 includes/class-submissions-list-table.php:94
+#: includes/class-plugin.php:283 includes/class-submissions-list-table.php:96
 msgid "Delete"
 msgstr "삭제"
 
-#: includes/class-plugin.php:273
+#: includes/class-plugin.php:285
 msgid "Error."
 msgstr "오류가 발생했습니다."
 
-#: includes/class-plugin.php:274
+#: includes/class-plugin.php:286
 msgid "Delete this tag? It comes off every entry that has it."
 msgstr "이 태그를 삭제할까요? 이 태그가 붙은 모든 항목에서 제거됩니다."
 
-#: includes/class-plugin.php:275
+#: includes/class-plugin.php:287
 msgid "No tags yet. Add your first one with the form next to this list."
 msgstr "아직 태그가 없습니다. 이 목록 옆의 양식에서 첫 태그를 추가하세요."
 
-#: includes/class-plugin.php:277
+#: includes/class-plugin.php:289
 msgid "Edit tag"
 msgstr "태그 편집"
 
-#: includes/class-plugin.php:332
+#: includes/class-plugin.php:345
 msgid "Please choose a file or paste CSV first."
 msgstr "먼저 파일을 선택하거나 CSV를 붙여 넣으세요."
 
-#: includes/class-plugin.php:333
+#: includes/class-plugin.php:346
 msgid "Loading preview…"
 msgstr "미리보기를 불러오는 중…"
 
-#: includes/class-plugin.php:334
+#: includes/class-plugin.php:347
 msgid "Preview failed."
 msgstr "미리보기에 실패했습니다."
 
 #. translators: %s: number of rows loaded.
-#: includes/class-plugin.php:336
+#: includes/class-plugin.php:349
 #, php-format
 msgid "Loaded %s rows."
 msgstr "%s개 행을 불러왔습니다."
 
-#: includes/class-plugin.php:337
+#: includes/class-plugin.php:350
 msgid "Network error."
 msgstr "네트워크 오류입니다."
 
-#: includes/class-plugin.php:338
+#: includes/class-plugin.php:351
 msgid "Ignore"
 msgstr "무시"
 
-#: includes/class-plugin.php:341 includes/class-privacy.php:226
-#: includes/class-submissions-list-table.php:64
+#: includes/class-plugin.php:354 includes/class-privacy.php:226
+#: includes/class-submissions-list-table.php:66
 #: admin/assets/kanban/build/index.js:5
 msgid "Source"
 msgstr "출처"
 
-#: includes/class-plugin.php:342
+#: includes/class-plugin.php:355
 msgid "Field"
 msgstr "필드"
 
-#: includes/class-plugin.php:343
+#: includes/class-plugin.php:356
+msgid "Date received"
+msgstr "받은 날짜"
+
+#. translators: %s: number of rows.
+#: includes/class-plugin.php:358
+#, php-format
+msgid ""
+"The date in %s rows could not be read, so those entries got today's date."
+msgstr "%s개 행의 날짜를 읽을 수 없어 해당 항목에 오늘 날짜를 넣었습니다."
+
+#: includes/class-plugin.php:360
 msgid "You must map one column to Email."
 msgstr "한 열을 이메일로 지정해야 합니다."
 
-#: includes/class-plugin.php:344
+#: includes/class-plugin.php:361
 msgid "Running…"
 msgstr "실행 중…"
 
-#: includes/class-plugin.php:345
+#: includes/class-plugin.php:362
 msgid "Import failed."
 msgstr "가져오기에 실패했습니다."
 
-#: includes/class-plugin.php:346
+#: includes/class-plugin.php:363
 msgid "Done."
 msgstr "완료했습니다."
 
-#: includes/class-plugin.php:347
+#: includes/class-plugin.php:364
 msgid "Results"
 msgstr "결과"
 
-#: includes/class-plugin.php:348
+#: includes/class-plugin.php:365
 msgid "Test run: nothing was saved."
 msgstr "테스트 실행: 아무것도 저장하지 않았습니다."
 
-#: includes/class-plugin.php:349
+#: includes/class-plugin.php:366
 msgid "Imported:"
 msgstr "가져옴:"
 
-#: includes/class-plugin.php:350
+#: includes/class-plugin.php:367
 msgid "Would import:"
 msgstr "가져올 항목:"
 
 #. translators: %s: comma-separated column names.
-#: includes/class-plugin.php:352
+#: includes/class-plugin.php:369
 #, php-format
 msgid ""
 "Only one column can be the title, but these are all set to Title: %s. Set "
@@ -1587,27 +1925,27 @@ msgstr ""
 "제목으로 지정할 수 있는 열은 하나뿐인데, 다음 열이 모두 제목으로 설정되어 있"
 "습니다: %s. 나머지는 필드로 바꾸면 값이 유지됩니다."
 
-#: includes/class-plugin.php:353
+#: includes/class-plugin.php:370
 msgid "Already present:"
 msgstr "이미 있음:"
 
-#: includes/class-plugin.php:354
+#: includes/class-plugin.php:371
 msgid ""
-"Rows already present were recognised from an earlier import and left "
-"untouched, so nothing was duplicated."
+"These rows were already on the board, from an earlier import or from the "
+"form plugin itself, and were left as they are. Nothing was copied twice."
 msgstr ""
-"이미 있는 행은 이전 가져오기에서 들어온 것으로 확인되어 그대로 두었으므로 중"
-"복된 항목은 없습니다."
+"이 행들은 이전 가져오기나 폼 플러그인 자체에서 이미 보드에 있었으므로 그대로 "
+"두었습니다. 중복으로 복사된 것은 없습니다."
 
-#: includes/class-plugin.php:355
+#: includes/class-plugin.php:372
 msgid "Skipped:"
 msgstr "건너뜀:"
 
-#: includes/class-plugin.php:356
+#: includes/class-plugin.php:373
 msgid "Errors"
 msgstr "오류"
 
-#: includes/class-plugin.php:357
+#: includes/class-plugin.php:374
 msgid "Row"
 msgstr "행"
 
@@ -1663,6 +2001,22 @@ msgstr "받은 이메일"
 #: includes/class-privacy.php:282
 msgid "Email text"
 msgstr "이메일 내용"
+
+#. translators: %s: plugin name.
+#: includes/class-ready-notice.php:65
+#, php-format
+msgid "%s is ready."
+msgstr "%s 준비가 끝났습니다."
+
+#: includes/class-ready-notice.php:67
+msgid "Start here"
+msgstr "여기서 시작하세요"
+
+#: includes/class-reporting.php:459 includes/class-submissions-admin.php:323
+#: includes/class-timeline.php:94 admin/assets/kanban/build/index.js:5
+#: admin/assets/kanban/build/index.js:20 admin/assets/kanban/build/index.js:37
+msgid "Unassigned"
+msgstr "미지정"
 
 #. translators: %s: column name.
 #: includes/class-rest-public.php:140
@@ -1757,12 +2111,6 @@ msgstr "모든 태그"
 msgid "All owners"
 msgstr "모든 담당자"
 
-#: includes/class-submissions-admin.php:323 includes/class-timeline.php:94
-#: admin/assets/kanban/build/index.js:5 admin/assets/kanban/build/index.js:20
-#: admin/assets/kanban/build/index.js:37
-msgid "Unassigned"
-msgstr "미지정"
-
 #: includes/class-submissions-admin.php:347
 msgid "Filter"
 msgstr "필터"
@@ -1842,64 +2190,64 @@ msgstr "금지되었습니다."
 msgid "%s (form field)"
 msgstr "%s (양식 필드)"
 
-#: includes/class-submissions-list-table.php:50
+#: includes/class-submissions-list-table.php:52
 msgid "ID"
 msgstr "ID"
 
-#: includes/class-submissions-list-table.php:66
+#: includes/class-submissions-list-table.php:68
 msgid "Updated"
 msgstr "수정일"
 
 #. translators: 1: pipeline name, 2: stage name.
-#: includes/class-submissions-list-table.php:99
+#: includes/class-submissions-list-table.php:101
 #, php-format
 msgid "Move to: %1$s / %2$s"
 msgstr "이동: %1$s / %2$s"
 
 #. translators: %s: stage name.
-#: includes/class-submissions-list-table.php:101
+#: includes/class-submissions-list-table.php:103
 #, php-format
 msgid "Move to: %s"
 msgstr "이동: %s"
 
-#: includes/class-submissions-list-table.php:104
+#: includes/class-submissions-list-table.php:106
 msgid "Assign owner"
 msgstr "담당자 지정"
 
-#: includes/class-submissions-list-table.php:105
+#: includes/class-submissions-list-table.php:107
 msgid "Add tag"
 msgstr "태그 추가"
 
-#: includes/class-submissions-list-table.php:106
+#: includes/class-submissions-list-table.php:108
 msgid "Archive"
 msgstr "보관"
 
-#: includes/class-submissions-list-table.php:107
+#: includes/class-submissions-list-table.php:109
 msgid "Unarchive"
 msgstr "보관 해제"
 
-#: includes/class-submissions-list-table.php:130
+#: includes/class-submissions-list-table.php:132
 msgid "(unassign)"
 msgstr "(지정 해제)"
 
-#: includes/class-submissions-list-table.php:139
+#: includes/class-submissions-list-table.php:141
 msgid "Tag"
 msgstr "태그"
 
-#: includes/class-submissions-list-table.php:141
+#: includes/class-submissions-list-table.php:143
 msgid "— Select tag —"
 msgstr "— 태그 선택 —"
 
-#: includes/class-submissions-list-table.php:327
+#: includes/class-submissions-list-table.php:329
 msgid "No submissions match these filters."
 msgstr "이 필터에 맞는 제출이 없습니다."
 
-#: includes/class-submissions-list-table.php:331
+#: includes/class-submissions-list-table.php:333
 msgid "No submissions yet."
 msgstr "아직 제출이 없습니다."
 
 #. translators: 1: opening link tag to the import screen, 2: closing link tag.
-#: includes/class-submissions-list-table.php:334
+#: includes/class-submissions-list-table.php:336
 #, php-format
 msgid ""
 "Submissions from every supported form plugin land here automatically. You "
@@ -1924,7 +2272,7 @@ msgstr "(파이프라인 %1$s → %2$s)"
 msgid "Note deleted"
 msgstr "메모 삭제됨"
 
-#. translators: 1: event name, 2: source name.
+#. translators: 1: what happened ("Created", "Updated"), 2: form plugin name.
 #: includes/class-timeline.php:59 admin/assets/kanban/build/index.js:9
 #, php-format
 msgid "%1$s from %2$s"
@@ -1988,13 +2336,23 @@ msgstr "보관됨: %s에서 휴지통으로 이동됨"
 msgid "Restored from the archive"
 msgstr "보관함에서 복원됨"
 
+#: includes/class-timeline.php:135 admin/assets/kanban/build/index.js:27
+msgctxt "timeline event: an entry arrived"
+msgid "Created"
+msgstr "생성됨"
+
+#: includes/class-timeline.php:137 admin/assets/kanban/build/index.js:27
+msgctxt "timeline event: the form plugin changed an entry"
+msgid "Updated"
+msgstr "수정됨"
+
 #. translators: %d: stage id.
-#: includes/class-timeline.php:134
+#: includes/class-timeline.php:149
 #, php-format
 msgid "a deleted stage (#%d)"
 msgstr "삭제된 단계 (#%d)"
 
-#: includes/class-timeline.php:151
+#: includes/class-timeline.php:166
 msgid "nobody"
 msgstr "없음"
 
@@ -2002,17 +2360,18 @@ msgstr "없음"
 msgid "Close"
 msgstr "닫기"
 
+#: admin/assets/kanban/build/index.js:26
+msgctxt "email recipient"
+msgid "To"
+msgstr "받는 사람"
+
+#: admin/assets/kanban/build/index.js:26
+msgid "Subject"
+msgstr "제목"
+
 #: admin/assets/js/dashboard.js:140
 msgid "Entries"
 msgstr "항목"
-
-#: admin/assets/js/dashboard.js:158
-msgid "Won"
-msgstr "성사"
-
-#: admin/assets/js/dashboard.js:159
-msgid "Lost"
-msgstr "실패"
 
 #: public/templates/submissions-table.php:59
 msgid "Search…"
@@ -2383,10 +2742,6 @@ msgstr "새 단계로 이동"
 msgid "(empty note)"
 msgstr "(빈 메모)"
 
-#: admin/assets/kanban/build/index.js:9
-msgid "created"
-msgstr "생성됨"
-
 #: admin/assets/kanban/build/index.js:12
 msgid "Email to %s"
 msgstr "%s에게 보낸 이메일"
@@ -2462,15 +2817,6 @@ msgstr "답글 게시"
 #: admin/assets/kanban/build/index.js:26
 msgid "Reply"
 msgstr "답글"
-
-#: admin/assets/kanban/build/index.js:26
-msgctxt "email recipient"
-msgid "To"
-msgstr "받는 사람"
-
-#: admin/assets/kanban/build/index.js:26
-msgid "Subject"
-msgstr "제목"
 
 #: admin/assets/kanban/build/index.js:26
 msgid "Sent."

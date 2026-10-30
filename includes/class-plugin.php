@@ -28,8 +28,12 @@ final class Plugin {
         REST_Settings::register();
         REST_Health::register();
         add_action( 'rest_api_init', [ new REST_Import(), 'register_routes' ] );
+        // Past entries (free since 1.20.0): the REST routes, and the batch handler
+        // WP-Cron runs between the page's polls.
+        add_action( 'rest_api_init', [ new REST_Backfill(), 'register_routes' ] );
+        add_action( Backfill::HOOK, [ Backfill::class, 'run' ] );
 
-        // Premium REST controllers (pipelines/automations/owners/backfill) live in
+        // Premium REST controllers (pipelines/automations/owners) live in
         // pro/ and self-register on this action; in the free build nothing listens.
         do_action( 'entryvault_register_rest_routes' );
 
@@ -50,13 +54,14 @@ final class Plugin {
             Schema_Check::register();
             Submissions_Admin::register();
             Feedback::register();
+            Ready_Notice::register();
             add_action( 'admin_menu', [ $this, 'register_admin_menu' ] );
             add_action( 'admin_enqueue_scripts', [ $this, 'enqueue_admin_assets' ] );
             add_filter( 'plugin_action_links_' . plugin_basename( ENTRYVAULT_FILE ), [ $this, 'plugin_action_links' ] );
             add_filter( 'plugin_row_meta', [ $this, 'plugin_row_meta' ], 10, 2 );
         }
 
-        // Premium engine + listeners (automations, IMAP, backfill) plug in here (pro/ only).
+        // Premium engine + listeners (automations, IMAP) plug in here (pro/ only).
         do_action( 'entryvault_boot' );
     }
 
@@ -144,6 +149,7 @@ final class Plugin {
             [ 'entryvault-dashboard',   __( 'Dashboard', 'entryvault' ),   'render_view_dashboard' ],
             [ 'entryvault-submissions', __( 'Submissions', 'entryvault' ), 'render_view_submissions' ],
             [ 'entryvault-tags',        __( 'Tags', 'entryvault' ),        'render_view_tags' ],
+            [ 'entryvault-backfill',    __( 'Past entries', 'entryvault' ), 'render_view_past_entries' ],
             [ 'entryvault-import',      __( 'Import', 'entryvault' ),      'render_view_import' ],
             [ 'entryvault-health',      __( 'Health', 'entryvault' ),      'render_view_health' ],
             [ 'entryvault-settings',    __( 'Settings', 'entryvault' ),    'render_view_settings' ],
@@ -157,7 +163,7 @@ final class Plugin {
             }
         }
 
-        // Premium submenus (Pipelines/Owners/Automations/Inboxes/Backfill) register
+        // Premium submenus (Pipelines/Owners/Automations/Inboxes) register
         // here from pro/; the free build adds nothing further.
         do_action( 'entryvault_register_admin_menu', $cap );
 
@@ -217,6 +223,12 @@ final class Plugin {
                 'i18n'            => [
                     'saved'      => __( 'Saved.', 'entryvault' ),
                     'saveFailed' => __( 'Save failed.', 'entryvault' ),
+                    /* translators: %s: the settings section, e.g. "Mailchimp". */
+                    'labelSaved' => __( '%s saved.', 'entryvault' ),
+                    /* translators: 1: the settings section, 2: the error message. */
+                    'labelFail'  => __( '%1$s save failed: %2$s', 'entryvault' ),
+                    'general'    => __( 'General', 'entryvault' ),
+                    'owners'     => __( 'Owners', 'entryvault' ),
                 ],
             ] );
         }
@@ -321,12 +333,13 @@ final class Plugin {
             // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- reading the plugin's own custom table to populate the import stage dropdown.
             $ev_stage_rows = (array) $wpdb->get_results( "SELECT id, name, pipeline_id FROM {$wpdb->prefix}entryvault_stages ORDER BY pipeline_id ASC, position ASC, name ASC", ARRAY_A );
             $entryvault_stages = array_values( array_map( static function ( $s ) {
-                return [ 'id' => (int) $s['id'], 'name' => (string) $s['name'], 'pipeline_id' => (int) $s['pipeline_id'] ];
+                return [ 'id' => (int) $s['id'], 'name' => Default_Names::label( $s['name'] ), 'pipeline_id' => (int) $s['pipeline_id'] ];
             }, $ev_stage_rows ) );
             wp_localize_script( 'entryvault-import', 'EntryVaultImportBoot', [
                 'restRoot'  => esc_url_raw( rest_url( 'entryvault/v1' ) ),
                 'restNonce' => wp_create_nonce( 'wp_rest' ),
                 'stages'    => $entryvault_stages,
+                'boardUrl'  => admin_url( 'admin.php?page=entryvault' ),
                 'i18n'      => [
                     'firstStage'      => __( 'First stage of the pipeline', 'entryvault' ),
                     'please_choose_a' => __( 'Please choose a file or paste CSV first.', 'entryvault' ),
@@ -340,6 +353,10 @@ final class Plugin {
                     'email'           => __( 'Email', 'entryvault' ),
                     'source'          => __( 'Source', 'entryvault' ),
                     'field'           => __( 'Field', 'entryvault' ),
+                    'date'            => __( 'Date received', 'entryvault' ),
+                    /* translators: %s: number of rows. */
+                    'bad_dates'       => __( 'The date in %s rows could not be read, so those entries got today\'s date.', 'entryvault' ),
+                    'open_board'      => __( 'Open the board', 'entryvault' ),
                     'you_must_map'    => __( 'You must map one column to Email.', 'entryvault' ),
                     'running'         => __( 'Running…', 'entryvault' ),
                     'import_failed'   => __( 'Import failed.', 'entryvault' ),
@@ -351,7 +368,7 @@ final class Plugin {
                     /* translators: %s: comma-separated column names. */
                     'one_title_only'  => __( 'Only one column can be the title, but these are all set to Title: %s. Set the others to Field so their values are kept.', 'entryvault' ),
                     'duplicates'      => __( 'Already present:', 'entryvault' ),
-                    'duplicates_hint' => __( 'Rows already present were recognised from an earlier import and left untouched, so nothing was duplicated.', 'entryvault' ),
+                    'duplicates_hint' => __( 'These rows were already on the board, from an earlier import or from the form plugin itself, and were left as they are. Nothing was copied twice.', 'entryvault' ),
                     'skipped'         => __( 'Skipped:', 'entryvault' ),
                     'errors'          => __( 'Errors', 'entryvault' ),
                     'row'             => __( 'Row', 'entryvault' ),
@@ -389,6 +406,9 @@ final class Plugin {
             'restUrl'         => esc_url_raw( rest_url( 'entryvault/v1/' ) ),
             'nonce'           => wp_create_nonce( 'wp_rest' ),
             'defaultPipeline' => self::default_pipeline_for_current_user(),
+            // The page shows the "past entries found" box above the board, which
+            // then leaves out its own "Nothing here yet" box (admin/views/kanban.php).
+            'pastEntriesBox'  => ! empty( Past_Entries::board_box()['offer'] ),
             // ?submission=<id> deep links open that entry on its own pipeline.
             'linkedPipeline'  => self::linked_pipeline_id(),
             // The Kanban app reads currentUser to decide note ownership (who may
@@ -422,11 +442,12 @@ final class Plugin {
         }
     }
 
-    public function render_view_kanban():       void { include ENTRYVAULT_PATH . 'admin/views/kanban.php'; }
+    public function render_view_kanban():       void { Ready_Notice::done(); include ENTRYVAULT_PATH . 'admin/views/kanban.php'; }
     public function render_view_dashboard():    void { include ENTRYVAULT_PATH . 'admin/views/dashboard.php'; }
     public function render_view_submissions():  void { include ENTRYVAULT_PATH . 'admin/views/submissions-list.php'; }
     public function render_view_tags():         void { include ENTRYVAULT_PATH . 'admin/views/tags.php'; }
     public function render_view_import():       void { include ENTRYVAULT_PATH . 'admin/views/import.php'; }
+    public function render_view_past_entries(): void { include ENTRYVAULT_PATH . 'admin/views/past-entries.php'; }
     public function render_view_health():       void { include ENTRYVAULT_PATH . 'admin/views/health.php'; }
     public function render_view_settings():     void { include ENTRYVAULT_PATH . 'admin/views/settings.php'; }
     public function render_view_feedback():     void { include ENTRYVAULT_PATH . 'admin/views/feedback.php'; }

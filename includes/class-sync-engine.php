@@ -64,6 +64,24 @@ class Sync_Engine {
 
     public function ingest_result( array $normalized ): array {
         $normalized = apply_filters( 'entryvault_normalize_submission', $normalized );
+        // Decomposed text (a macOS paste of "Hằng") is stored composed, so the
+        // board, the lists and the front-end table find it.
+        foreach ( [ 'title', 'email' ] as $k ) {
+            if ( isset( $normalized[ $k ] ) ) {
+                $normalized[ $k ] = Submission_Store::nfc( $normalized[ $k ] );
+            }
+        }
+        if ( isset( $normalized['fields'] ) && is_array( $normalized['fields'] ) ) {
+            foreach ( $normalized['fields'] as $i => $f ) {
+                if ( is_array( $f ) ) {
+                    foreach ( [ 'label', 'value' ] as $k ) {
+                        if ( isset( $f[ $k ] ) ) {
+                            $normalized['fields'][ $i ][ $k ] = Submission_Store::nfc( $f[ $k ] );
+                        }
+                    }
+                }
+            }
+        }
 
         $existing = Submission_Store::find_by_source(
             (string) ( $normalized['source_plugin']   ?? '' ),

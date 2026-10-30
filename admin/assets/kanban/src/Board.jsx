@@ -21,8 +21,14 @@ function unwrap( res ) {
 
 // Lower case without accents, the way the server's search compares ("jose"
 // finds "José"). The server found the card and this filter hid it again.
+// Same forgiveness as the server search (Submission_Store::search_like): accents,
+// Turkish dotless ı, Vietnamese đ, Persian ی/ک typed as Arabic ي/ك/ى, and the
+// Persian zero-width non-joiner, which people often leave out ("میخواهم").
+// Capitals need nothing extra: "IŞIK" and "Işık" both fold to "isik".
 function fold( v ) {
-    return String( v || "" ).toLowerCase().normalize( "NFD" ).replace( /[\u0300-\u036f]/g, "" );
+    return String( v || "" ).toLowerCase().normalize( "NFD" ).replace( /[\u0300-\u036f\u200c]/g, "" )
+        .replace( /\u0131/g, "i" ).replace( /\u0111/g, "d" )
+        .replace( /[\u064A\u0649]/g, "\u06CC" ).replace( /\u0643/g, "\u06A9" );
 }
 
 export default function Board( { pipelineId, onPipelineChange, initialOpenId = null } ) {
@@ -346,7 +352,7 @@ export default function Board( { pipelineId, onPipelineChange, initialOpenId = n
             { error && <div className="ev-board-msg is-error">{ error }</div> }
             { boardIsEmpty && pipelinesLoaded && ( otherBoards.length
                 ? <OtherBoards boards={ otherBoards } onPick={ onPipelineChange } />
-                : <GettingStarted /> ) }
+                : ( ( window.EntryVaultBoot || {} ).pastEntriesBox ? null : <GettingStarted /> ) ) }
             <DndContext sensors={ sensors } onDragStart={ handleDragStart } onDragEnd={ handleDragEnd } accessibility={ dragA11y }>
                 <div className="ev-board">
                     { stagesView.map( ( s ) => <Column key={ s.id } stage={ s } onOpenCard={ setOpenId } onLoadMore={ loadMore } /> ) }

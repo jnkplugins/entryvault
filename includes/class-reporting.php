@@ -64,7 +64,7 @@ class Reporting {
         foreach ( $rows as $r ) {
             $out[] = [
                 'stage_id'   => (int) ( $r['stage_id'] ?? 0 ),
-                'stage_name' => (string) ( $r['stage_name'] ?? '' ),
+                'stage_name' => Default_Names::label( $r['stage_name'] ?? '' ),
                 'color'      => (string) ( $r['color'] ?? '' ),
                 'count'      => (int) ( $r['cnt'] ?? 0 ),
             ];
@@ -321,7 +321,7 @@ class Reporting {
             $avg_h  = $bucket[1] > 0 ? round( ( $bucket[0] / $bucket[1] ) / 3600, 2 ) : 0.0;
             $out[]  = [
                 'stage_id'    => $sid,
-                'stage_name'  => (string) ( $sr['name'] ?? '' ),
+                'stage_name'  => Default_Names::label( $sr['name'] ?? '' ),
                 'avg_hours'   => $avg_h,
                 'sample_size' => (int) $bucket[1],
             ];
@@ -384,7 +384,7 @@ class Reporting {
 
         // Map stage_id => [name, pipeline_id] so we can resolve won/lost stages
         // per pipeline using their (case-insensitive) names.
-        $stage_rows = (array) $wpdb->get_results( $wpdb->prepare( 'SELECT id, name, pipeline_id FROM %i', $stage_t ), ARRAY_A );
+        $stage_rows = (array) $wpdb->get_results( $wpdb->prepare( 'SELECT * FROM %i', $stage_t ), ARRAY_A );
         $stage_info = [];
         $won_stages_by_pl  = [];
         $lost_stages_by_pl = [];
@@ -392,10 +392,15 @@ class Reporting {
             $sid = (int) ( $sr['id'] ?? 0 );
             $pid = (int) ( $sr['pipeline_id'] ?? 0 );
             $nm  = strtolower( trim( (string) ( $sr['name'] ?? '' ) ) );
-            $stage_info[ $sid ] = [ 'name' => (string) ( $sr['name'] ?? '' ), 'pipeline_id' => $pid ];
-            if ( $nm === 'won' ) {
+            $stage_info[ $sid ] = [ 'name' => Default_Names::label( $sr['name'] ?? '' ), 'pipeline_id' => $pid ];
+            // The stage flags decide, since stages are now named in the site
+            // language ("مكسوب", "Ganada"); the English names stay a fallback
+            // for stages saved without flags.
+            $is_won  = ! empty( $sr['is_won'] );
+            $is_lost = ! $is_won && ! empty( $sr['is_terminal'] );
+            if ( $is_won || $nm === 'won' ) {
                 $won_stages_by_pl[ $pid ][] = $sid;
-            } elseif ( $nm === 'lost' ) {
+            } elseif ( $is_lost || $nm === 'lost' ) {
                 $lost_stages_by_pl[ $pid ][] = $sid;
             }
         }
@@ -451,7 +456,7 @@ class Reporting {
                 }
             }
             if ( $oid === 0 ) {
-                $name = 'Unassigned';
+                $name = __( 'Unassigned', 'entryvault' );
             }
             $denom    = $b['won'] + $b['lost'];
             $win_rate = $denom > 0 ? round( $b['won'] / $denom, 4 ) : null;

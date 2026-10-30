@@ -60,11 +60,36 @@ class Dates {
         if ( $ts > $now && $ts - $now <= MINUTE_IN_SECONDS ) {
             return __( 'just now', 'entryvault' );
         }
-        return $ts >= $now
+        if ( $ts >= $now ) {
             /* translators: %s: human-readable time difference, e.g. "3 hours". */
-            ? sprintf( __( 'in %s', 'entryvault' ), human_time_diff( $now, $ts ) )
-            /* translators: %s: human-readable time difference, e.g. "3 hours". */
-            : sprintf( __( '%s ago', 'entryvault' ), human_time_diff( $ts, $now ) );
+            $phrase = __( 'in %s', 'entryvault' );
+            if ( 'in %s' === $phrase ) {
+                // phpcs:ignore WordPress.WP.I18n.TextDomainMismatch -- WordPress's own string, on purpose (see below).
+                $phrase = self::core_phrase( 'in %s', __( '%s from now', 'default' ), '%s from now' );
+            }
+            return sprintf( $phrase, human_time_diff( $now, $ts ) );
+        }
+        /* translators: %s: human-readable time difference, e.g. "3 hours". */
+        $phrase = __( '%s ago', 'entryvault' );
+        if ( '%s ago' === $phrase ) {
+            // phpcs:ignore WordPress.WP.I18n.TextDomainMismatch -- WordPress's own string, on purpose (see below).
+            $phrase = self::core_phrase( '%s ago', __( '%s ago', 'default' ), '%s ago' );
+        }
+        return sprintf( $phrase, human_time_diff( $ts, $now ) );
+    }
+
+    /**
+     * EntryVault has no translation for this language, so use WordPress's own
+     * phrase when WordPress has one. human_time_diff() is translated by
+     * WordPress, so the Persian Health screen said "(2 دقیقه ago)": half
+     * Persian, half English. English sites keep EntryVault's wording.
+     */
+    private static function core_phrase( string $ours, string $core, string $core_msgid ): string {
+        $locale = function_exists( 'determine_locale' ) ? determine_locale() : get_locale();
+        if ( 0 === strpos( (string) $locale, 'en' ) || $core === $core_msgid || false === strpos( $core, '%s' ) ) {
+            return $ours;
+        }
+        return $core;
     }
 
     /**

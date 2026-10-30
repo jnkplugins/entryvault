@@ -5,7 +5,9 @@ defined( "ABSPATH" ) || exit;
 
 class Deactivator {
     public static function deactivate(): void {
-        // Free core schedules no cron events; premium modules register their
-        // own deactivation cleanup. Kept as the deactivation-hook target.
+        // A past-entries run in progress schedules its next batch; leave none
+        // behind. Premium modules register their own deactivation cleanup.
+        wp_clear_scheduled_hook( 'entryvault_backfill_run' );
+        delete_option( 'entryvault_ready_notice' );
     }
 }

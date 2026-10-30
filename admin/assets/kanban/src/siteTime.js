@@ -69,7 +69,12 @@ const DEFAULT_OPTS = { year: "numeric", month: "short", day: "numeric", hour: "n
  * A stored UTC time as a date and clock time in the site's zone, e.g.
  * "Oct 27, 2026, 9:05 AM". Returns the input unchanged when it cannot be read.
  */
-export function formatSiteTime( stored, opts = DEFAULT_OPTS ) {
+export function formatSiteTime( stored, options = DEFAULT_OPTS ) {
+    // Always the Gregorian calendar, as WordPress, the lists and the CSV use: the
+    // th and fa locales default to the Buddhist (2569) and Solar Hijri (1405)
+    // years, so the same entry showed two different dates on one site. Month
+    // names and digits still follow the language.
+    const opts = { calendar: "gregory", ...options };
     const t = utcMs( stored );
     if ( isNaN( t ) ) return stored ? String( stored ) : "";
     const zone = siteZone();
@@ -84,5 +89,22 @@ export function formatSiteTime( stored, opts = DEFAULT_OPTS ) {
         return new Intl.DateTimeFormat( locale, { ...opts, timeZone: zone } ).format( new Date( t ) );
     } catch ( e ) {
         return new Intl.DateTimeFormat( locale, { ...opts, timeZone: "UTC" } ).format( new Date( t ) ) + " UTC";
+    }
+}
+
+/**
+ * "just now" in the user's language. Pass the translated string; when
+ * EntryVault has no translation for this language (it is still the English
+ * text on a non-English site), Intl's own word for "now" is used ("şimdi",
+ * "اکنون"), so a Turkish or Persian board is not left with English.
+ */
+export function justNow( translated ) {
+    if ( translated !== "just now" ) return translated;
+    const locale = siteLocale();
+    if ( ! locale || /^en(-|$)/i.test( locale ) || typeof Intl === "undefined" || ! Intl.RelativeTimeFormat ) return translated;
+    try {
+        return new Intl.RelativeTimeFormat( locale, { numeric: "auto" } ).format( 0, "second" );
+    } catch ( e ) {
+        return translated;
     }
 }

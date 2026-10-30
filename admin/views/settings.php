@@ -52,6 +52,8 @@ if ( function_exists( 'wp_roles' ) ) {
 );
 ?>
 <div class="entryvault-settings">
+    <p class="jnkui-muted" style="margin:0 0 8px"><?php esc_html_e( 'Entries your form plugins collected before EntryVault was installed:', 'entryvault' ); ?>
+        <a href="<?php echo esc_url( admin_url( 'admin.php?page=entryvault-backfill' ) ); ?>"><?php esc_html_e( 'Bring in past entries', 'entryvault' ); ?></a></p>
     <?php if ( has_action( 'entryvault_settings_after' ) ) : ?>
         <?php // The license card sits under the tabs; the same jump link as in every JnK plugin. ?>
         <p style="margin:0 0 8px;text-align:end"><a href="#lp-entryvault-license"><?php esc_html_e( 'License', 'entryvault' ); ?> &darr;</a></p>
@@ -138,7 +140,7 @@ if ( function_exists( 'wp_roles' ) ) {
                             <?php foreach ( (array) $ev_pipelines as $ev_p ) : ?>
                                 <?php $ev_token = \EntryVault\Frontend::ensure_token( (string) $ev_p['slug'] ); ?>
                                 <p style="margin:0 0 10px;">
-                                    <strong><?php echo esc_html( (string) $ev_p['name'] ); ?></strong>
+                                    <strong><?php echo esc_html( \EntryVault\Default_Names::label( $ev_p['name'] ) ); ?></strong>
                                     <code style="margin-inline-start:6px;"><?php echo esc_html( (string) $ev_p['slug'] ); ?></code>
                                     <input type="text" class="large-text code" style="margin-top:6px" readonly onclick="this.select();"
                                            value="<?php echo esc_attr( sprintf(

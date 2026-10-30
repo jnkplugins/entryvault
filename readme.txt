@@ -4,7 +4,7 @@ Tags: form entries, contact form, crm, leads, csv export
 Requires at least: 6.2
 Tested up to: 7.0
 Requires PHP: 8.2
-Stable tag: 1.19.0
+Stable tag: 1.20.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -31,7 +31,8 @@ It's built for agencies, freelancers, and small teams who outgrew "submissions l
 * **Reply from the card** — send an email to a lead from inside their card, with the thread kept alongside the submission.
 * **Dashboard reports** — submissions by stage, by source, daily volume, funnel conversion, time-in-stage, and a per-owner breakdown.
 * **Unlimited entries** — no caps on how many submissions you store or manage.
-* **CSV import and export** — backfill from another tool and export your data any time. Re-importing the same file never creates duplicates.
+* **Bring in your past entries** — on day one the board shows what your form plugin already holds ("Fluent Forms: 30 past entries") and brings them in with one click, with their original dates. Works with Gravity Forms, WPForms (Pro; WPForms Lite keeps no entries), Fluent Forms, Forminator, Formidable, Trinity Forms and Contact Form 7 messages saved by Flamingo through the form plugin's own API, and with SureForms, Ninja Forms, Everest Forms, MetForm and CFDB7 by reading their database directly (marked Experimental). Running it again never duplicates.
+* **CSV import and export** — bring entries in from another tool, keeping their dates, and export your data any time and export your data any time. Re-importing the same file never creates duplicates.
 * **Public submissions table** — the `[entryvault_table]` shortcode and a matching Gutenberg block, with columns configurable per page and access gated by capability or a per-pipeline token.
 * **Health screen** — system status for database schema and environment, plus a JSON endpoint for monitoring.
 * **Spam stays out**: entries your form plugin already marked as spam (Gravity Forms, Fluent Forms, Forminator, Formidable, Ninja Forms with Akismet, Everest Forms, WS Form, Jetpack) never reach your board. You can switch this off.
@@ -48,7 +49,6 @@ EntryVault Pro is available today at https://jnkplugins.com/entryvault/ — not 
 * Auto-delete entries after a number of days.
 * Multiple pipelines with per-pipeline access control.
 * Auto-tag rules (form → tag) and round-robin owner assignment.
-* Historical backfill of past entries (Gravity Forms, WPForms, Fluent Forms, Forminator, SureForms, Trinity Forms, Formidable, Ninja Forms, Everest Forms, MetForm, and Contact Form 7 messages saved by Flamingo or CFDB7).
 * Public Kanban board block for the front end.
 
 Pricing is flat and by site count (Personal / Freelancer / Agency / Unlimited) — every paid tier includes every Pro feature; the tiers differ only by how many sites you run and your support level. See https://jnkplugins.com/entryvault/pricing.php.
@@ -71,14 +71,14 @@ See the full feature comparison at https://jnkplugins.com/entryvault/features.ph
 1. In your WordPress admin, go to Plugins → Add New, or upload the `entryvault` folder to `/wp-content/plugins/`.
 2. Activate **EntryVault**. Activation creates EntryVault's own tables and seeds a default Inbox pipeline.
 3. Go to **EntryVault → Kanban** to see your board.
-4. Submit one of your existing forms (or import a CSV) and the entry appears on the board within moments.
+4. If your form plugin already holds entries, the board offers to bring them in. New submissions appear on the board within moments.
 5. Drag cards between stages, add notes, assign owners, and reply — all from the board.
 
 == Frequently Asked Questions ==
 
 = Is this really free? =
 
-Yes. The free version is a complete single-site CRM — capture, Kanban, tags, notes, owners, bulk actions, dashboard reports, email out, and CSV in/out — and it stays free. Pro is available at jnkplugins.com if you need automation, IMAP reply tracking, multiple pipelines, integrations, or historical backfill.
+Yes. The free version is a complete single-site CRM — capture, Kanban, tags, notes, owners, bulk actions, dashboard reports, email out, and CSV in/out — and it stays free. Pro is available at jnkplugins.com if you need automation, IMAP reply tracking, multiple pipelines, routing, scheduled exports or integrations. Bringing in your past entries is free.
 
 = What happens if I stop renewing Pro? =
 
@@ -94,7 +94,7 @@ No. EntryVault loads zero adapters by default and adds whichever ones detect the
 
 = I use Gravity Flow / GravityView. How do I migrate? =
 
-Export your entries to CSV and import them into EntryVault. The importer previews the mapping and never creates duplicates on re-import. On Pro, historical backfill can pull past entries directly from Gravity Forms (and WPForms, Fluent Forms, Forminator, SureForms, Trinity Forms, Formidable, Ninja Forms, Everest Forms, MetForm, and Contact Form 7 messages saved by Flamingo or CFDB7) without a CSV round-trip.
+Export your entries to CSV and import them into EntryVault. The importer previews the mapping, keeps each entry's date and never creates duplicates on re-import. Or skip the CSV: EntryVault > Past entries brings entries in straight from Gravity Forms and the other supported form plugins, free.
 
 = Does EntryVault modify my form plugin's data? =
 
@@ -137,6 +137,25 @@ Use the contact page at https://jnkplugins.com/entryvault/, or Feedback & Suppor
 7. Pro: automations that tag, assign, move or email entries for you.
 
 == Changelog ==
+
+= 1.20.0 =
+* Fixed: the licence box shows its status, update channel and dates in your site language.
+* New: Arabic translation (review pending).
+* Fixed: the default pipeline and its stages (Inbox, New, Contacted, Qualified, Won, Lost), timeline events and "Unassigned" stayed in English on translated sites. New sites get them in the site language; existing default names are shown translated.
+* Fixed: Fluent Forms and WPForms cards are titled with the visitor's name, and Fluent's own hidden fields no longer show as answers.
+* Fixed: search on the board and lists finds Persian ی/ک written as ي/ك, Turkish ı/İ in any case, words with or without the Persian ZWNJ, and text pasted from a Mac.
+* Fixed: on Thai and Persian sites the board showed Buddhist and Solar Hijri years. Dates use the Gregorian calendar in your language.
+* New: bringing in past entries is free. On day one the board says what your form plugin already holds ("Fluent Forms: 30 past entries") and brings them in with one click, with their original dates.
+* New: form plugins without a public way to read their entries (SureForms, Ninja Forms, Everest Forms, MetForm, CFDB7) are read from their database, marked Experimental, checked first, with a "Report a problem" button.
+* New: CSV import can use a Date column, so imported entries keep their own dates. The results link to the board.
+* Fixed: importing a newer export of the same form duplicated every row.
+* Fixed: the same entry brought in by CSV and from its form plugin landed twice.
+* Fixed: past Fluent Forms entries could not be read on Fluent Forms 6.2.
+* New: after activation the Plugins screen says "EntryVault is ready. Start here", once, with a link to the board. No redirect.
+* New: Formidable past entries are read through Formidable's own API, so they are no longer Experimental.
+* Fixed: the board's "Past entries found" box counted entries already on the board, for example after a CSV import of the same entries.
+* Fixed: with Trinity Forms, entries Trinity imported from another form plugin (Fluent Forms, WPForms, Gravity Forms and others) are no longer offered or brought in a second time when the original is already on the board, in either order.
+* Fixed: on a site in a language EntryVault is not translated into, times said "2 minutes ago" with "ago" left in English. Card ages no longer use one-letter units that could be misread (Turkish "41d" meant minutes).
 
 = 1.19.0 =
 * New: Hindi translation.

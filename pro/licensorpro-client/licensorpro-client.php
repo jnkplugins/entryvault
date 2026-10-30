@@ -60,7 +60,7 @@ class LicensorPro_Client {
      * change and re-propagate to every plugin's pro/licensorpro-client/.
      * Audit sync with: LicensorPro_Client::SDK_VERSION.
      */
-    const SDK_VERSION = '1.8.0';
+    const SDK_VERSION = '1.8.1';
 
     /** @var array */
     private $opts;
@@ -1688,9 +1688,10 @@ class LicensorPro_Client {
         if (!$ts) {
             return (string) $value;
         }
-        $abs = function_exists('wp_date')
-            ? wp_date('M j, Y g:i A', $ts)
-            : date_i18n('M j, Y g:i A', $ts);
+        // The site's own date and time format, so the order and month names read right
+        // in every language (a fixed 'M j, Y' gave "أغسطس 14, 2027" on an Arabic site).
+        $fmt = trim(get_option('date_format', 'F j, Y') . ' ' . get_option('time_format', 'g:i a'));
+        $abs = function_exists('wp_date') ? wp_date($fmt, $ts) : date_i18n($fmt, $ts);
         if (!$relative) {
             return $abs;
         }
@@ -1775,7 +1776,8 @@ class LicensorPro_Client {
             echo '<table class="form-table"><tbody>';
             echo '<tr><th>' . esc_html__('License key', $td) . '</th><td><code>' . esc_html($masked) . '</code></td></tr>';
             $labels = [
-                'active'  => $status ?: __('active', $td),
+                // The server's raw status word is English; show our own translated label.
+                'active'  => __('active', $td),
                 /* translators: %s: date the Pro tools lock */
                 'grace'   => sprintf(__('expired, Pro tools stay on until %s', $td), date_i18n(get_option('date_format'), $st['grace_ends'])),
                 'locked'  => __('expired, Pro tools locked', $td),
@@ -1795,7 +1797,13 @@ class LicensorPro_Client {
                 }
             }
             echo '</td></tr>';
-            echo '<tr><th>' . esc_html__('Update channel', $td) . '</th><td><code>' . esc_html($this->channel) . '</code></td></tr>';
+            $channels = [
+                'stable' => _x('stable', 'update channel', $td),
+                'beta'   => _x('beta', 'update channel', $td),
+                'rc'     => _x('release candidate', 'update channel', $td),
+                'dev'    => _x('development', 'update channel', $td),
+            ];
+            echo '<tr><th>' . esc_html__('Update channel', $td) . '</th><td>' . esc_html($channels[$this->channel] ?? $this->channel) . '</td></tr>';
             echo '<tr><th>' . esc_html__('Site limit', $td) . '</th><td>' . esc_html((string) $site_limit) . '</td></tr>';
             echo '<tr><th>' . esc_html__('Expires', $td) . '</th><td>' . esc_html($expires_at ? $this->human_dt($expires_at) : __('Never', $td)) . '</td></tr>';
             echo '<tr><th>' . esc_html__('Last checked', $td) . '</th><td>' . esc_html($checkedStr) . '</td></tr>';

@@ -6,6 +6,17 @@ defined( 'ABSPATH' ) || exit;
 
 class Activator {
 
+    /**
+     * The activation hook: set up, then (single activation from the Plugins
+     * screen only) ask the Plugins screen to point at the board once.
+     *
+     * @param bool $network_wide
+     */
+    public static function on_activate( $network_wide = false ): void {
+        self::activate();
+        Ready_Notice::on_activate( $network_wide );
+    }
+
     public static function activate(): void {
         require_once ABSPATH . 'wp-admin/includes/upgrade.php';
 
@@ -301,8 +312,15 @@ class Activator {
             return;
         }
 
+        // Named in the site language, so a Spanish or Arabic site does not start
+        // with an English board. Default_Names translates rows seeded in English
+        // by older versions when they are shown. Activation runs after
+        // plugins_loaded, so the bundled translations may not be loaded yet.
+        if ( ! is_textdomain_loaded( 'entryvault' ) && defined( 'ENTRYVAULT_FILE' ) ) {
+            load_plugin_textdomain( 'entryvault', false, dirname( plugin_basename( ENTRYVAULT_FILE ) ) . '/languages' );
+        }
         $wpdb->insert( $pipelines, [
-            'name'       => 'Inbox',
+            'name'       => Default_Names::translate( Default_Names::PIPELINE ),
             'slug'       => 'inbox',
             'color'      => '#2E86AB',
             'is_default' => 1,
@@ -310,19 +328,13 @@ class Activator {
         ] );
         $pipeline_id = (int) $wpdb->insert_id;
 
-        $defaults = [
-            [ 'New',       '#3B82F6', 0, 0, 0 ],
-            [ 'Contacted', '#F59E0B', 1, 0, 0 ],
-            [ 'Qualified', '#10B981', 2, 0, 0 ],
-            [ 'Won',       '#16A34A', 3, 1, 1 ],
-            [ 'Lost',      '#EF4444', 4, 1, 0 ],
-        ];
-        foreach ( $defaults as [ $name, $color, $pos, $terminal, $won ] ) {
+        $pos = 0;
+        foreach ( Default_Names::STAGES as $english => [ $color, $terminal, $won ] ) {
             $wpdb->insert( $stages, [
                 'pipeline_id' => $pipeline_id,
-                'name'        => $name,
+                'name'        => Default_Names::translate( $english ),
                 'color'       => $color,
-                'position'    => $pos,
+                'position'    => $pos++,
                 'is_terminal' => $terminal,
                 'is_won'      => $won,
             ] );

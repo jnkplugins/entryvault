@@ -187,10 +187,11 @@ class REST_API {
         }
         foreach ( $pipelines as &$p ) {
             $p['open_count'] = $counts[ (int) $p['id'] ] ?? 0;
-            $p['stages']     = $wpdb->get_results( $wpdb->prepare(
+            $p['name']       = Default_Names::label( $p['name'] ?? '' );
+            $p['stages']     = Default_Names::label_rows( $wpdb->get_results( $wpdb->prepare(
                 "SELECT * FROM {$wpdb->prefix}entryvault_stages WHERE pipeline_id = %d ORDER BY position ASC, id ASC",
                 $p['id']
-            ), ARRAY_A );
+            ), ARRAY_A ) );
         }
         return self::envelope( $pipelines );
     }
@@ -206,11 +207,12 @@ class REST_API {
         if ( ! $pipeline ) {
             return self::envelope( null, [ 'pipeline_not_found' ], 404 );
         }
+        $pipeline['name'] = Default_Names::label( $pipeline['name'] ?? '' );
 
-        $stages = $wpdb->get_results( $wpdb->prepare(
+        $stages = Default_Names::label_rows( $wpdb->get_results( $wpdb->prepare(
             "SELECT * FROM {$wpdb->prefix}entryvault_stages WHERE pipeline_id = %d ORDER BY position ASC, id ASC",
             $pipeline_id
-        ), ARRAY_A );
+        ), ARRAY_A ) );
 
         // Optional owner filter (single id or array via ?owner_id[]=).
         $owner_filter = self::parse_owner_filter( $req );
@@ -245,10 +247,10 @@ class REST_API {
             $extra_sql = ' AND (' . implode( ' OR ', $clauses ) . ')';
         }
         if ( '' !== $search ) {
-            $like           = '%' . $wpdb->esc_like( substr( $search, 0, 200 ) ) . '%';
-            $extra_sql     .= ' AND (title LIKE %s OR email LIKE %s)';
-            $extra_params[] = $like;
-            $extra_params[] = $like;
+            [ $t_sql, $t_params ] = Submission_Store::search_match( 'title', $search );
+            [ $e_sql, $e_params ] = Submission_Store::search_match( 'email', $search );
+            $extra_sql .= " AND ({$t_sql} OR {$e_sql})";
+            array_push( $extra_params, ...$t_params, ...$e_params );
         }
 
         foreach ( $stages as &$stage ) {
@@ -435,6 +437,9 @@ class REST_API {
             "SELECT id, name, color, position FROM {$wpdb->prefix}entryvault_stages WHERE id = %d",
             (int) $row['stage_id']
         ), ARRAY_A );
+        if ( is_array( $stage ) ) {
+            $stage['name'] = Default_Names::label( $stage['name'] ?? '' );
+        }
 
         $tags = Tag_Manager::for_submission( $id );
 

@@ -98,7 +98,19 @@
         });
     });
 
+    /**
+     * The column that says when an entry was sent ("created_at", "Date",
+     * "Submitted on"...). Mapped as Date, the entries keep their own dates
+     * instead of all landing as "just now".
+     */
+    function isDateHeader(lower) {
+        if (/updated|modified|last|birth|due|expir/.test(lower)) { return false; }
+        return /(^|[^a-z])(date|created|submitted|submission time|time|timestamp)([^a-z]|$)/.test(lower)
+            || lower === 'created_at' || lower === 'date_created';
+    }
+
     function renderMapping(data) {
+        var dateTaken = false;
         mappingTbody.innerHTML = '';
         var headers = data.headers || [];
         var rows = data.rows || [];
@@ -123,6 +135,7 @@
                 ['title',  I18N.title],
                 ['email',  I18N.email],
                 ['source', I18N.source],
+                ['date',   I18N.date],
                 ['field',  I18N.field]
             ].forEach(function (pair) {
                 var opt = document.createElement('option');
@@ -135,6 +148,7 @@
             if (lower.indexOf('email') !== -1) sel.value = 'email';
             else if (lower === 'title' || lower === 'name' || lower === 'subject') sel.value = 'title';
             else if (lower === 'source') sel.value = 'source';
+            else if (!dateTaken && isDateHeader(lower)) { sel.value = 'date'; dateTaken = true; }
             else sel.value = 'field';
             tdMap.appendChild(sel);
             tr.appendChild(tdMap);
@@ -192,6 +206,7 @@
                 case 'title':  mapping.title_col = col; break;
                 case 'email':  mapping.email_col = col; break;
                 case 'source': mapping.source_col = col; break;
+                case 'date':   if (!mapping.date_col) { mapping.date_col = col; } else { mapping.fields_cols.push(col); } break;
                 case 'field':  mapping.fields_cols.push(col); break;
                 default: break;
             }
@@ -241,6 +256,13 @@
         html += '</p>';
         if (dupes && !data.dry_run) {
             html += '<p class="description">' + escapeHtml(I18N.duplicates_hint) + '</p>';
+        }
+        var badDates = parseInt(data.bad_dates, 10) || 0;
+        if (badDates) {
+            html += '<p class="description">' + escapeHtml(I18N.bad_dates.replace('%s', String(badDates))) + '</p>';
+        }
+        if (!data.dry_run && (parseInt(data.imported, 10) || 0) > 0 && boot.boardUrl) {
+            html += '<p><a class="button button-primary" href="' + escapeHtml(boot.boardUrl) + '">' + escapeHtml(I18N.open_board) + '</a></p>';
         }
         var errs = (data.errors && data.errors.length) ? data.errors : [];
         if (errs.length) {

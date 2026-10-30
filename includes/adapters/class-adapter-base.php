@@ -167,8 +167,22 @@ abstract class Adapter_Base {
         return null;
     }
 
-    /** The card title an entry's fields give: a name field, else the email. */
+    /** Field types form plugins use for a person's name (WPForms, Gravity Forms, Fluent, Forminator). */
+    private const NAME_TYPES = [ 'name', 'input_name' ];
+
+    /**
+     * The card title an entry's fields give: a name field, else the email.
+     *
+     * The field type is checked first: on a non-English site the label is
+     * "الاسم" or "Nombre" and the key a number, so a WPForms card was titled with
+     * the email.
+     */
     public static function title_from_fields( array $fields, ?string $email ): string {
+        foreach ( $fields as $f ) {
+            if ( in_array( strtolower( (string) ( $f['type'] ?? '' ) ), self::NAME_TYPES, true ) && is_string( $f['value'] ?? null ) && '' !== trim( $f['value'] ) ) {
+                return trim( $f['value'] );
+            }
+        }
         foreach ( $fields as $f ) {
             $key = strtolower( (string) ( $f['key']   ?? '' ) );
             $lab = strtolower( (string) ( $f['label'] ?? '' ) );

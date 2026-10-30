@@ -54,12 +54,19 @@ class Adapter_WPForms extends Adapter_Base {
             if ( ! is_array( $field ) ) {
                 continue;
             }
-            $key = isset( $field['id'] ) ? (string) $field['id'] : sanitize_key( (string) ( $field['name'] ?? '' ) );
+            $key   = isset( $field['id'] ) ? (string) $field['id'] : sanitize_key( (string) ( $field['name'] ?? '' ) );
+            $type  = (string) ( $field['type'] ?? 'text' );
+            $value = $field['value'] ?? '';
+            // A Name field (Simple, First Last or First Middle Last) also carries
+            // its parts; build the full name from them when "value" is empty.
+            if ( 'name' === $type && ( ! is_string( $value ) || '' === trim( $value ) ) ) {
+                $value = self::join_name( $field );
+            }
             $fields[] = [
                 'key'   => $key !== '' ? $key : 'field',
                 'label' => (string) ( $field['name'] ?? '' ),
-                'type'  => (string) ( $field['type'] ?? 'text' ),
-                'value' => $field['value'] ?? '',
+                'type'  => $type,
+                'value' => $value,
             ];
         }
 
@@ -75,5 +82,16 @@ class Adapter_WPForms extends Adapter_Base {
             'fields'          => $fields,
             'created_at'      => $created_at ?: current_time( 'mysql', true ),
         ];
+    }
+
+    /** [ first => Layla, middle => '', last => Haddad ] -> "Layla Haddad". */
+    private static function join_name( array $field ): string {
+        $parts = [];
+        foreach ( [ 'first', 'middle', 'last' ] as $part ) {
+            if ( isset( $field[ $part ] ) && is_scalar( $field[ $part ] ) && '' !== trim( (string) $field[ $part ] ) ) {
+                $parts[] = trim( (string) $field[ $part ] );
+            }
+        }
+        return implode( ' ', $parts );
     }
 }

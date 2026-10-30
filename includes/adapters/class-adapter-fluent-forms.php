@@ -65,9 +65,20 @@ class Adapter_Fluent_Forms extends Adapter_Base {
         $fields = [];
         foreach ( $response as $key => $value ) {
             $key = (string) $key;
+            // Fluent hands over its own nonce, referer and embed post id with the
+            // visitor's answers; they mean nothing on a card.
+            if ( self::is_internal_key( $key ) ) {
+                continue;
+            }
             $meta = $labels[ $key ] ?? null;
             $label = $meta['label'] ?? $this->humanize( $key );
             $type  = $meta['type']  ?? $this->guess_type( $label, $value );
+            // A Name field arrives as first/middle/last parts: keep it as one
+            // string so the card can be titled with it.
+            if ( is_array( $value ) && ( 'input_name' === $type || array_intersect_key( $value, array_flip( self::NAME_PARTS ) ) ) ) {
+                $value = self::join_name( $value );
+                $type  = 'input_name';
+            }
             $fields[] = [
                 'key'   => sanitize_key( $key ) ?: 'field_' . count( $fields ),
                 'label' => $label,
@@ -131,7 +142,8 @@ class Adapter_Fluent_Forms extends Adapter_Base {
             if ( $name !== '' ) {
                 $settings = (array) ( $node['settings'] ?? [] );
                 $map[ $name ] = [
-                    'label' => (string) ( $settings['label'] ?? $attrs['placeholder'] ?? $name ),
+                    // A Name container has no "label", only "admin_field_label".
+                    'label' => (string) ( ( $settings['label'] ?? '' ) ?: ( $settings['admin_field_label'] ?? '' ) ?: ( $attrs['placeholder'] ?? '' ) ?: $name ),
                     'type'  => (string) ( $node['element'] ?? 'text' ),
                 ];
             }
@@ -146,6 +158,26 @@ class Adapter_Fluent_Forms extends Adapter_Base {
                 }
             }
         }
+    }
+
+    private const NAME_PARTS = [ 'first_name', 'middle_name', 'last_name' ];
+
+    /** Keys Fluent adds itself: _fluentform_N_fluentformnonce, _wp_http_referer, __fluent_form_embded_post_id, captcha tokens. */
+    private static function is_internal_key( string $key ): bool {
+        return '' === $key
+            || '_' === $key[0]
+            || in_array( $key, [ 'g-recaptcha-response', 'h-captcha-response', 'cf-turnstile-response' ], true );
+    }
+
+    /** [ first_name => Sofia, last_name => Bergström ] -> "Sofia Bergström". */
+    private static function join_name( array $value ): string {
+        $parts = [];
+        foreach ( self::NAME_PARTS as $part ) {
+            if ( isset( $value[ $part ] ) && is_scalar( $value[ $part ] ) && '' !== trim( (string) $value[ $part ] ) ) {
+                $parts[] = trim( (string) $value[ $part ] );
+            }
+        }
+        return implode( ' ', $parts );
     }
 
     private function humanize( string $slug ): string {

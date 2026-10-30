@@ -290,7 +290,7 @@ class Submission_Store {
         $update = [];
 
         if ( array_key_exists( 'title', $args ) ) {
-            $title = is_string( $args['title'] ) ? trim( $args['title'] ) : '';
+            $title = is_string( $args['title'] ) ? trim( (string) self::nfc( $args['title'] ) ) : '';
             $update['title'] = substr( $title, 0, 255 );
         }
 
@@ -456,10 +456,10 @@ class Submission_Store {
             $params[] = substr( (string) $args['source'], 0, 40 );
         }
         if ( $args['search'] !== '' ) {
-            $like     = '%' . self::esc_like( (string) $args['search'] ) . '%';
-            $where[]  = '(title LIKE %s OR email LIKE %s)';
-            $params[] = $like;
-            $params[] = $like;
+            [ $t_sql, $t_params ] = self::search_match( 'title', (string) $args['search'] );
+            [ $e_sql, $e_params ] = self::search_match( 'email', (string) $args['search'] );
+            $where[] = "({$t_sql} OR {$e_sql})";
+            array_push( $params, ...$t_params, ...$e_params );
         }
         // The owner picks days on the site's clock; stored times are UTC.
         if ( $args['date_from'] !== '' ) {
@@ -600,6 +600,88 @@ class Submission_Store {
             $args['paged']++;
         } while ( count( $rows ) === self::MAX_PER_PAGE && count( $out ) < (int) $page['total'] );
         return $out;
+    }
+
+    /**
+     * The LIKE pattern for a name/email search, forgiving the spellings a reader sees as one.
+     *
+     * The collation ignores case and Latin accents but not Persian ی/ک against
+     * Arabic ي/ك/ى (the same word typed on an Arabic keyboard), nor Turkish dotless
+     * ı, which MySQL treats as its own letter: "علی" missed "علي" and the natural
+     * lowercase "ışık" missed "Işık". Those letters match any single character;
+     * when the search has ı or İ, so does every i. All-caps Turkish ("IŞIK" for
+     * "Işık") has no ı to give it away, so ş/ğ, or a Turkish site language, count too.
+     * The Persian zero-width non-joiner (می‌خواهم) is dropped here and from the
+     * stored title by search_column(), since people often type the word without it.
+     */
+    public static function search_like( string $search ): string {
+        $search  = str_replace( "\u{200C}", '', mb_substr( $search, 0, 200 ) );
+        $turkish = (bool) preg_match( '/[\x{0131}\x{0130}\x{015E}\x{015F}\x{011E}\x{011F}]/u', $search )
+            || ( 0 === strpos( (string) get_locale(), 'tr' ) && false !== stripos( $search, 'i' ) );
+        $out     = '';
+        foreach ( preg_split( '//u', $search, -1, PREG_SPLIT_NO_EMPTY ) as $ch ) {
+            if ( preg_match( '/[\x{064A}\x{06CC}\x{0649}\x{0643}\x{06A9}]/u', $ch ) || ( $turkish && preg_match( '/[\x{0131}\x{0130}Ii]/u', $ch ) ) ) {
+                $out .= '_';
+            } else {
+                $out .= self::esc_like( $ch );
+            }
+        }
+        return '%' . $out . '%';
+    }
+
+    /**
+     * The column to match search_like() against: as is, or, for a search in Arabic
+     * script, with its zero-width non-joiners removed so "میخواهم" finds
+     * "می‌خواهم" and the other way round. Other searches compare the bare column.
+     */
+    public static function search_column( string $column, string $search ): string {
+        if ( ! preg_match( '/[\x{0600}-\x{06FF}\x{200C}]/u', $search ) ) {
+            return $column;
+        }
+        return "REPLACE({$column}, _utf8mb4 0xE2808C, '')";
+    }
+
+    /**
+     * "( col LIKE %s [OR col LIKE %s] )" and its parameters for a search.
+     *
+     * The second pattern is the decomposed (NFD) spelling of an accented search:
+     * rows captured before answers were stored composed (a macOS paste of
+     * "Hằng") are not migrated, and this is how "Hằng" still finds them. An
+     * unaccented "hang" finds only rows stored composed. ASCII searches get the
+     * single pattern they always had.
+     *
+     * @return array{0:string,1:string[]}
+     */
+    public static function search_match( string $column, string $search ): array {
+        $likes = [ self::search_like( $search ) ];
+        if ( class_exists( '\\Normalizer' ) && preg_match( '/[^\x00-\x7F]/', $search ) ) {
+            $nfd = \Normalizer::normalize( $search, \Normalizer::FORM_D );
+            if ( false !== $nfd && $nfd !== $search ) {
+                $likes[] = self::search_like( $nfd );
+            }
+        }
+        $col = self::search_column( $column, $search );
+        return [ '(' . implode( ' OR ', array_fill( 0, count( $likes ), "{$col} LIKE %s" ) ) . ')', $likes ];
+    }
+
+    /**
+     * Text in composed Unicode form (NFC), arrays walked; anything else as is.
+     *
+     * A macOS paste sends decomposed text ("Hằng" = a + two combining marks), and
+     * stored like that it never matches a search for "Hằng" or "hang".
+     *
+     * @param mixed $value
+     * @return mixed
+     */
+    public static function nfc( $value ) {
+        if ( is_array( $value ) ) {
+            return array_map( [ self::class, 'nfc' ], $value );
+        }
+        if ( ! is_string( $value ) || '' === $value || ! class_exists( '\\Normalizer' ) || ! preg_match( '/[^\x00-\x7F]/', $value ) ) {
+            return $value;
+        }
+        $n = \Normalizer::normalize( $value, \Normalizer::FORM_C );
+        return false === $n ? $value : $n;
     }
 
     private static function esc_like( string $text ): string {

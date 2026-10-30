@@ -26,9 +26,11 @@ class Submissions_List_Table extends \WP_List_Table {
         ] );
         global $wpdb;
         foreach ( (array) $wpdb->get_results( "SELECT id, name FROM {$wpdb->prefix}entryvault_pipelines", ARRAY_A ) as $p ) {
+            $p['name']                         = Default_Names::label( $p['name'] ?? '' );
             $this->pipelines[ (int) $p['id'] ] = $p;
         }
         foreach ( (array) $wpdb->get_results( "SELECT id, name, pipeline_id FROM {$wpdb->prefix}entryvault_stages ORDER BY pipeline_id ASC, position ASC", ARRAY_A ) as $s ) {
+            $s['name']                      = Default_Names::label( $s['name'] ?? '' );
             $this->stages[ (int) $s['id'] ] = $s;
         }
         foreach ( (array) $wpdb->get_results( "SELECT id, name FROM {$wpdb->prefix}entryvault_tags ORDER BY name ASC", ARRAY_A ) as $t ) {

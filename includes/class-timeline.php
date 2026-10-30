@@ -53,11 +53,11 @@ class Timeline {
                     : (string) ( $d['body'] ?? '' );
                 break;
             case 'status':
-                $event = (string) ( $d['event'] ?? 'created' );
+                $event = self::event_label( (string) ( $d['event'] ?? 'created' ) );
                 $s     = ! empty( $d['source'] )
-                    /* translators: 1: event name, 2: source name. */
-                    ? sprintf( __( '%1$s from %2$s', 'entryvault' ), ucfirst( $event ), Sources::label( (string) $d['source'] ) )
-                    : ucfirst( $event );
+                    /* translators: 1: what happened ("Created", "Updated"), 2: form plugin name. */
+                    ? sprintf( __( '%1$s from %2$s', 'entryvault' ), $event, Sources::label( (string) $d['source'] ) )
+                    : $event;
                 break;
             case 'email_sent':
                 /* translators: 1: recipient, 2: subject. */
@@ -124,6 +124,21 @@ class Timeline {
         return $s;
     }
 
+    /**
+     * The words for a stored status event key. The key stays in the database
+     * ("created", "updated"); printing it raw gave "Created من WPForms" on an
+     * Arabic site.
+     */
+    public static function event_label( string $event ): string {
+        switch ( $event ) {
+            case 'created':
+                return _x( 'Created', 'timeline event: an entry arrived', 'entryvault' );
+            case 'updated':
+                return _x( 'Updated', 'timeline event: the form plugin changed an entry', 'entryvault' );
+        }
+        return ucfirst( str_replace( '_', ' ', $event ) );
+    }
+
     private static function stage_name( int $id ): string {
         global $wpdb;
         if ( $id <= 0 ) {
@@ -131,13 +146,13 @@ class Timeline {
         }
         $name = $wpdb->get_var( $wpdb->prepare( "SELECT name FROM {$wpdb->prefix}entryvault_stages WHERE id = %d", $id ) );
         /* translators: %d: stage id. */
-        return $name ? (string) $name : sprintf( __( 'a deleted stage (#%d)', 'entryvault' ), $id );
+        return $name ? Default_Names::label( $name ) : sprintf( __( 'a deleted stage (#%d)', 'entryvault' ), $id );
     }
 
     private static function pipeline_name( int $id ): string {
         global $wpdb;
         $name = $id > 0 ? $wpdb->get_var( $wpdb->prepare( "SELECT name FROM {$wpdb->prefix}entryvault_pipelines WHERE id = %d", $id ) ) : '';
-        return $name ? (string) $name : '#' . $id;
+        return $name ? Default_Names::label( $name ) : '#' . $id;
     }
 
     private static function tag_name( int $id ): string {

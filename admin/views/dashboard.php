@@ -134,7 +134,7 @@ Admin_UI::open(
                         <span class="ev-ui-row-main">
                             <a href="<?php echo esc_url( $board( (int) $a['id'] ) ); ?>"><?php echo esc_html( $entry_title( $a ) ); ?></a>
                             <span class="jnkui-sub"><?php
-                                echo esc_html( (string) ( $a['stage_name'] ?? '' ) ) . ' &middot; ';
+                                echo esc_html( \EntryVault\Default_Names::label( $a['stage_name'] ?? '' ) ) . ' &middot; ';
                                 /* translators: %s: relative time, e.g. "3 days ago". */
                                 printf( esc_html__( 'last change %s', 'entryvault' ), esc_html( \EntryVault\Dates::relative( (string) $a['updated_at'] ) ) );
                             ?></span>

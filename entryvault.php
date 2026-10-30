@@ -4,7 +4,7 @@
  * Plugin URI:        https://jnkplugins.com/entryvault/
  * Update URI:        https://api.jnkplugins.com/
  * Description:       Lightweight CRM & entry manager for WordPress form plugins.
- * Version:           1.19.0
+ * Version:           1.20.0
  * Requires at least: 6.2
  * Requires PHP:      8.2
  * Author:            JNK Plugins
@@ -17,7 +17,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'ENTRYVAULT_VERSION', '1.19.0' );
+define( 'ENTRYVAULT_VERSION', '1.20.0' );
 define( 'ENTRYVAULT_FILE', __FILE__ );
 define( 'ENTRYVAULT_PATH', plugin_dir_path( __FILE__ ) );
 define( 'ENTRYVAULT_URL',  plugin_dir_url( __FILE__ ) );
@@ -54,7 +54,7 @@ if ( file_exists( ENTRYVAULT_PATH . 'pro/bootstrap.php' ) ) {
     require_once ENTRYVAULT_PATH . 'pro/bootstrap.php';
 }
 
-register_activation_hook(   __FILE__, [ 'EntryVault\\Activator', 'activate' ] );
+register_activation_hook(   __FILE__, [ 'EntryVault\\Activator', 'on_activate' ] );
 register_deactivation_hook( __FILE__, [ 'EntryVault\\Deactivator', 'deactivate' ] );
 
 add_action( 'plugins_loaded', static function () {

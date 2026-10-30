@@ -168,9 +168,16 @@ class Adapter_Trinity_Forms extends Adapter_Base {
 
     public function on_entry_created( $entry_id, $form_id = 0 ): void {
         $normalized = $this->build_normalized( (int) $entry_id );
-        if ( $normalized !== null ) {
-            $this->dispatch( $normalized );
+        if ( $normalized === null ) {
+            return;
         }
+        // An entry Trinity imported from another plugin whose original is on the
+        // board already (restored from spam, re-saved) is not a new lead.
+        if ( ! \EntryVault\Submission_Store::find_by_source_entry( $this->slug(), (string) (int) $entry_id )
+            && \EntryVault\Import_Dedupe::origin_copy_of( $normalized ) ) {
+            return;
+        }
+        $this->dispatch( $normalized );
     }
 
     /**
@@ -247,8 +254,14 @@ class Adapter_Trinity_Forms extends Adapter_Base {
         $labels = $this->choice_labels( (int) $entry["form_id"] );
 
         $fields = [];
+        $origin = [];
         foreach ( (array) $meta as $m ) {
             $key = (string) $m["field_id"];
+            // Trinity's importer notes where an imported entry came from.
+            if ( "_imported_from" === $key || "_imported_entry_id" === $key ) {
+                $origin[ "_imported_from" === $key ? "source" : "entry_id" ] = (string) $m["value"];
+                continue;
+            }
             // Trinity's own bookkeeping rows (_quiz_score, _quiz_max, …) are
             // not answers the person gave.
             if ( $key === "" || $key[0] === "_" ) {
@@ -275,6 +288,9 @@ class Adapter_Trinity_Forms extends Adapter_Base {
             "fields"          => $fields,
             "created_at"      => self::created_at_utc( (string) ( $entry["submitted_at"] ?? "" ) ),
         ];
+        if ( isset( $origin["source"], $origin["entry_id"] ) ) {
+            $out["imported_from"] = $origin;
+        }
         // Kept spam ("Keep entries marked as spam") is tagged Spam and no
         // automation answers it (Sync_Engine, Pro_Boot).
         if ( "spam" === (string) ( $entry["status"] ?? "" ) ) {

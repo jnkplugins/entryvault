@@ -141,6 +141,11 @@ class CSV_Importer {
      *   - pipeline_id (int)    forced pipeline id (optional)
      *   - stage_id    (int)    forced stage id (optional)
      *   - fields_cols (string[]) headers to copy as entryvault_submission_data fields
+     *   - date_col    (string) optional header holding when the entry was sent;
+     *                 read in the site's time zone (or the offset it carries) and
+     *                 kept as the entry's date, so old leads keep their dates
+     *   - id_col      (string) optional header with the form plugin's entry id
+     *                 (found by its name when not given)
      *
      * Options:
      *   - dry_run (bool) skip Sync_Engine::ingest() but still validate rows
@@ -161,13 +166,23 @@ class CSV_Importer {
         $pipeline_id = (int)    ( $mapping['pipeline_id'] ?? 0 );
         $stage_id    = (int)    ( $mapping['stage_id']    ?? 0 );
         $fields_cols = (array)  ( $mapping['fields_cols'] ?? [] );
+        $date_col    = (string) ( $mapping['date_col'] ?? '' );
 
         $dry_run        = ! empty( $opts['dry_run'] );
         $default_source = (string) ( $opts['default_source'] ?? 'csv_import' );
 
+        // The form plugin's entry id column, when the file has one (a Fluent Forms
+        // export has "entry_id"). Named in the mapping, or found by its header.
+        $id_col = (string) ( $mapping['id_col'] ?? '' );
+        if ( '' === $id_col && $rows ) {
+            $id_col = self::detect_id_column( array_keys( (array) reset( $rows ) ) );
+        }
+        $seen = [];
+
         $imported   = 0;
         $skipped    = 0;
         $duplicates = 0;
+        $bad_dates  = 0;
         $errors   = [];
 
         $engine = new Sync_Engine();
@@ -223,11 +238,29 @@ class CSV_Importer {
                 ? (string) $row[ $source_col ]
                 : $default_source;
 
-            // Build a stable source_entry_id so re-imports are idempotent
-            // through Submission_Store::find_by_source(). We use a hash of
-            // (email + title + row_index) so duplicate rows in the same file
-            // don't all collapse onto one submission.
-            $entry_id = substr( md5( $email . '|' . $title . '|' . $row_num . '|' . self::serialize_row( $row ) ), 0, 32 );
+            // A stable source_entry_id, so importing the file again (or a newer
+            // export of the same form) recognises rows already here. It used to
+            // hash the row number: Fluent Forms exports newest first, so every
+            // new entry shifted the others down and a second export duplicated
+            // every row. Now: the form plugin's own entry id when the file has
+            // one, else the email + the row's values. Identical rows in one file
+            // still count separately (the 2nd copy gets "#2").
+            // When the entry was sent, as the file says. Without it every old lead
+            // landed as "just now" and the board read "32 new today".
+            $created = '';
+            if ( '' !== $date_col && '' !== (string) ( $row[ $date_col ] ?? '' ) ) {
+                $created = self::parse_date( (string) $row[ $date_col ] );
+                if ( '' === $created ) {
+                    $bad_dates++;
+                }
+            }
+
+            $identity = self::row_identity( $row, $email, $title . '|' . $created, $fields_cols, $id_col );
+            $seen[ $identity ] = ( $seen[ $identity ] ?? 0 ) + 1;
+            if ( $seen[ $identity ] > 1 ) {
+                $identity .= '#' . $seen[ $identity ];
+            }
+            $entry_id = substr( md5( $identity ), 0, 32 );
 
             $fields = [];
             foreach ( $fields_cols as $key ) {
@@ -251,6 +284,17 @@ class CSV_Importer {
                 'email'           => $email,
                 'fields'          => $fields,
             ];
+            if ( '' !== $created ) {
+                $payload['created_at'] = $created;
+            }
+
+            // Already on the board from the form plugin itself (captured live,
+            // or brought in from it directly)? Same person, same moment or the
+            // same entry id: a different route to the same entry.
+            if ( Import_Dedupe::source_copy_of( $email, $created, '' !== $id_col ? (string) ( $row[ $id_col ] ?? '' ) : '' ) ) {
+                $duplicates++;
+                continue;
+            }
 
             if ( $dry_run ) {
                 $imported++;
@@ -281,6 +325,9 @@ class CSV_Importer {
             if ( ! $dry_run ) {
                 /** Fires after an import finishes (always paired with entryvault_import_begin). */
                 do_action( 'entryvault_import_end' );
+                // The board's "Past entries found" box counts what is not on
+                // the board yet; these rows may be some of those entries.
+                Past_Entries::flush();
             }
             if ( $pipeline_id > 0 && function_exists( 'update_option' ) ) {
                 update_option( 'entryvault_settings', $prev_settings );
@@ -294,6 +341,7 @@ class CSV_Importer {
             'imported'   => $imported,
             'skipped'    => $skipped,
             'duplicates' => $duplicates,
+            'bad_dates'  => $bad_dates,
             'errors'     => $errors,
         ];
     }
@@ -318,9 +366,74 @@ class CSV_Importer {
         return $out;
     }
 
-    private static function serialize_row( array $row ): string {
-        ksort( $row );
-        return implode( '|', array_map( static fn( $v ) => (string) $v, $row ) );
+    /**
+     * What makes a row the same row on the next import.
+     *
+     * @param array<string,string> $row
+     * @param array<int,string>    $fields_cols
+     */
+    private static function row_identity( array $row, string $email, string $title, array $fields_cols, string $id_col ): string {
+        $email = strtolower( $email );
+        if ( '' !== $id_col && '' !== (string) ( $row[ $id_col ] ?? '' ) ) {
+            return 'id|' . $row[ $id_col ] . '|' . $email;
+        }
+        $values = [];
+        foreach ( $fields_cols as $col ) {
+            $col = (string) $col;
+            if ( '' !== $col && array_key_exists( $col, $row ) && ! self::is_status_header( $col ) ) {
+                $values[ $col ] = (string) $row[ $col ];
+            }
+        }
+        ksort( $values );
+        return 'row|' . $email . '|' . $title . '|' . implode( '|', $values );
+    }
+
+    /**
+     * The header of an entry-id column, or ''. Matches the exports of the common
+     * form plugins ("entry_id", "Entry ID", "Submission ID", "ID").
+     *
+     * @param array<int,string> $headers
+     */
+    public static function detect_id_column( array $headers ): string {
+        foreach ( $headers as $h ) {
+            $norm = strtolower( trim( preg_replace( '/[^a-z0-9]+/i', ' ', (string) $h ) ) );
+            if ( in_array( $norm, [ 'entry id', 'entryid', 'submission id', 'id', 'entry', 'lead id' ], true ) ) {
+                return (string) $h;
+            }
+        }
+        return '';
+    }
+
+    /**
+     * A date from the file as a stored (UTC) "Y-m-d H:i:s", or '' when it cannot
+     * be read. Read in the site's time zone unless the value carries an offset
+     * ("2026-10-29T06:18:59Z", "+02:00"), which is how form plugins export.
+     */
+    public static function parse_date( string $value ): string {
+        $value = trim( $value );
+        if ( '' === $value || ! preg_match( '/\d/', $value ) ) {
+            return '';
+        }
+        // A bare number is a Unix timestamp only when it is long enough to be one.
+        if ( preg_match( '/^\d{9,10}$/', $value ) ) {
+            return gmdate( 'Y-m-d H:i:s', (int) $value );
+        }
+        try {
+            $dt = new \DateTimeImmutable( $value, function_exists( 'wp_timezone' ) ? wp_timezone() : new \DateTimeZone( 'UTC' ) );
+        } catch ( \Throwable $e ) {
+            return '';
+        }
+        $year = (int) $dt->format( 'Y' );
+        if ( $year < 1990 || $year > (int) gmdate( 'Y' ) + 1 ) {
+            return '';
+        }
+        return $dt->setTimezone( new \DateTimeZone( 'UTC' ) )->format( 'Y-m-d H:i:s' );
+    }
+
+    /** A read/unread status column changes between exports; it is not part of who sent what. */
+    private static function is_status_header( string $h ): bool {
+        $norm = strtolower( trim( preg_replace( '/[^a-z0-9]+/i', ' ', $h ) ) );
+        return in_array( $norm, [ 'status', 'entry status', 'read', 'is read', 'starred', 'is favourite', 'is favorite' ], true );
     }
 
     /**

@@ -33,6 +33,7 @@ delete_option( "entryvault_spam_skips" );
 delete_option( "entryvault_spam_skip_days" );
 delete_option( "entryvault_times_utc" );
 delete_option( "entryvault_times_utc_marks" );
+delete_option( "entryvault_ready_notice" );
 delete_option( "entryvault_times_utc_done" );
 wp_clear_scheduled_hook( "entryvault_retention_run" );
 delete_option( "ev_version" ); // pre-1.0.7 name

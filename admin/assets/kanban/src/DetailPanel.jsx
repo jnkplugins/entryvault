@@ -1,6 +1,6 @@
 import { useEffect, useState } from "@wordpress/element";
 import { __, _x, sprintf } from "@wordpress/i18n";
-import { utcMs, formatSiteTime, isolate } from "./siteTime";
+import { utcMs, formatSiteTime, isolate, siteLocale, justNow } from "./siteTime";
 import {
     fetchSubmission,
     addNote,
@@ -723,12 +723,37 @@ function When( { iso } ) {
     return text ? <bdi className="ev-when">{ text }</bdi> : null;
 }
 
+let rtfCache = null;
+function relativeFormat() {
+    if ( rtfCache !== null ) return rtfCache || null;
+    rtfCache = false;
+    const locale = siteLocale();
+    if ( locale && typeof Intl !== "undefined" && Intl.RelativeTimeFormat ) {
+        try {
+            rtfCache = new Intl.RelativeTimeFormat( locale, { numeric: "always", style: "short" } );
+        } catch ( e ) {
+            rtfCache = false;
+        }
+    }
+    return rtfCache || null;
+}
+
 function formatRelative( iso ) {
     if ( ! iso ) return "";
     const t = utcMs( iso );
     if ( isNaN( t ) ) return iso;
     const delta = ( Date.now() - t ) / 1000;
-    if ( delta < 60 ) return __( "just now", "entryvault" );
+    // "5 min ago" / "5 dk. önce" / "۵ دقیقه پیش" from Intl in the user's
+    // WordPress language, so "ago" is never left in English. The translated
+    // strings below are for browsers without Intl.RelativeTimeFormat.
+    const rtf = relativeFormat();
+    if ( rtf && delta < 604800 ) {
+        if ( delta < 60 ) return justNow( __( "just now", "entryvault" ) );
+        if ( delta < 3600 ) return rtf.format( -Math.floor( delta / 60 ), "minute" );
+        if ( delta < 86400 ) return rtf.format( -Math.floor( delta / 3600 ), "hour" );
+        return rtf.format( -Math.floor( delta / 86400 ), "day" );
+    }
+    if ( delta < 60 ) return justNow( __( "just now", "entryvault" ) );
     /* translators: %d: number of minutes. */
     if ( delta < 3600 ) return sprintf( __( "%dm ago", "entryvault" ), Math.floor( delta / 60 ) );
     /* translators: %d: number of hours. */
@@ -930,6 +955,15 @@ function statusLabel( status ) {
     }
 }
 
+// Stored status keys stay English in the database; show them in the site language.
+function eventLabel( event ) {
+    switch ( event || "created" ) {
+        case "created": return _x( "Created", "timeline event: an entry arrived", "entryvault" );
+        case "updated": return _x( "Updated", "timeline event: the form plugin changed an entry", "entryvault" );
+        default: return event;
+    }
+}
+
 function formatValue( v ) {
     if ( v == null ) return "—";
     if ( typeof v === "object" ) return JSON.stringify( v );
@@ -952,8 +986,8 @@ function formatTimelineData( e ) {
         case "note":
             return d.body || __( "(empty note)", "entryvault" );
         case "status":
-            /* translators: 1: event name, 2: source name. */
-            return d.source ? sprintf( __( "%1$s from %2$s", "entryvault" ), d.event || __( "created", "entryvault" ), d.source ) : ( d.event || "status" );
+            /* translators: 1: what happened ("Created", "Updated"), 2: form plugin name. */
+            return d.source ? sprintf( __( "%1$s from %2$s", "entryvault" ), eventLabel( d.event ), d.source ) : eventLabel( d.event );
         case "email_sent":
             /* translators: 1: recipient, 2: subject. */
             return d.subject ? sprintf( __( "Email to %1$s: %2$s", "entryvault" ), d.to, d.subject )

@@ -30,14 +30,14 @@ $ev_pro_features = [
     [ __( 'Integrations', 'entryvault' ), __( 'Send people to Mailchimp or MailerLite, notify other apps safely, and tag entries by form.', 'entryvault' ) ],
     [ __( 'Email reply tracking', 'entryvault' ), __( 'Connect a mailbox and replies to your emails are filed under the right entry, so the whole conversation sits in one place.', 'entryvault' ) ],
     [ __( 'Multiple pipelines', 'entryvault' ), __( 'Run separate Kanban boards for different teams or workflows.', 'entryvault' ) ],
-    [ __( 'Historical backfill', 'entryvault' ), __( 'Pull past form entries into EntryVault in one pass.', 'entryvault' ) ],
+    [ __( 'Routing and owners', 'entryvault' ), __( 'Send each form to its own pipeline, and share new entries between your team in turn.', 'entryvault' ) ],
     [ __( 'Public Kanban board', 'entryvault' ), __( 'Show a view-only board on any page, behind a private link. Plus approvals, quick edits and exports emailed on a schedule.', 'entryvault' ) ],
 ];
 ?>
 <?php
 \EntryVault\Admin_UI::open(
     __( 'EntryVault Pro', 'entryvault' ),
-    __( 'You are using the free EntryVault: a complete board for one pipeline. Pro adds the rules, connections, email replies and extra pipelines a growing team needs.', 'entryvault' ),
+    __( 'You are using the free EntryVault: a complete board for one pipeline, with the entries your forms already hold brought in. Pro adds the rules, connections, email replies and extra pipelines a growing team needs.', 'entryvault' ),
     '<a href="' . esc_url( $ev_pricing_url ) . '" target="_blank" rel="noopener noreferrer" class="button jnkui-btn-brand">' . esc_html__( 'See Pro plans', 'entryvault' ) . '</a>'
 );
 ?>

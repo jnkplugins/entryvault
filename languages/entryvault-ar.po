@@ -1,0 +1,3124 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: EntryVault\n"
+"Report-Msgid-Bugs-To: https://jnkplugins.com/entryvault/\n"
+"POT-Creation-Date: 2026-10-30T08:58:52+00:00\n"
+"PO-Revision-Date: 2026-10-29 18:00+0000\n"
+"Last-Translator: JNK Plugins\n"
+"Language-Team: Arabic\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=(n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
+"&& n%100<=10 ? 3 : n%100>=11 ? 4 : 5);\n"
+"X-Domain: entryvault\n"
+"X-Generator: WP-CLI 2.12.0\n"
+
+#: pro/licensorpro-client/licensorpro-client.php:750
+msgid "Manage license"
+msgstr "إدارة الترخيص"
+
+#: pro/licensorpro-client/licensorpro-client.php:753
+msgid "Renew license"
+msgstr "تجديد الترخيص"
+
+#: pro/licensorpro-client/licensorpro-client.php:754
+msgid "Activate license"
+msgstr "تفعيل الترخيص"
+
+#. translators: %s: plugin name
+#: pro/licensorpro-client/licensorpro-client.php:781
+#, php-format
+msgid ""
+"<strong>%s Pro is on.</strong> Thank you! Every Pro tool is switched on for "
+"this site, and updates come to your dashboard."
+msgstr ""
+"<strong>%s Pro مُفعّل.</strong> شكرًا لك! كل أدوات Pro تعمل على هذا الموقع، "
+"والتحديثات تصل إلى لوحة التحكم."
+
+#. translators: %s: plugin name
+#: pro/licensorpro-client/licensorpro-client.php:830
+#, php-format
+msgid ""
+"<strong>%s Pro is installed, but no Pro license is active on this site.</"
+"strong> Enter your license key to switch on the Pro tools."
+msgstr ""
+"<strong>%s Pro مثبّت، لكن لا يوجد ترخيص Pro نشط على هذا الموقع.</strong> أدخل "
+"مفتاح الترخيص لتشغيل أدوات Pro."
+
+#: pro/licensorpro-client/licensorpro-client.php:836
+msgid "Enter license key"
+msgstr "أدخل مفتاح الترخيص"
+
+#: pro/licensorpro-client/licensorpro-client.php:839
+msgid "Find your key in your account"
+msgstr "تجد المفتاح في حسابك"
+
+#: pro/licensorpro-client/licensorpro-client.php:865
+msgid "Renew your license"
+msgstr "جدّد ترخيصك"
+
+#. translators: 1: plugin name, 2: expiry date, 3: lock date, 4: days left
+#: pro/licensorpro-client/licensorpro-client.php:871
+#, php-format
+msgid ""
+"<strong>Your %1$s Pro license expired on %2$s.</strong> Pro keeps working as "
+"normal until %3$s (%4$d days left). Updates, including security fixes, and "
+"email support have stopped. After %3$s, everything you already set up keeps "
+"working and your visitors won't notice a thing, but the Pro tools in your "
+"dashboard will lock."
+msgstr ""
+"<strong>انتهى ترخيص %1$s Pro في %2$s.</strong> يستمر Pro بالعمل كالمعتاد حتى "
+"%3$s (بقي %4$d يومًا). توقفت التحديثات، ومنها إصلاحات الأمان، وتوقف الدعم عبر "
+"البريد الإلكتروني. بعد %3$s يبقى كل ما أعددته يعمل ولن يلاحظ زوارك أي شيء، "
+"لكن أدوات Pro في لوحة التحكم ستُقفل."
+
+#. translators: 1: plugin name, 2: expiry date
+#: pro/licensorpro-client/licensorpro-client.php:881
+#, php-format
+msgid ""
+"<strong>%1$s Pro tools are locked because your license expired on %2$s.</"
+"strong> Your site, and everything visitors see, still works. Renew to unlock "
+"the Pro tools and get updates, including security fixes, again."
+msgstr ""
+"<strong>أدوات %1$s Pro مقفلة لأن ترخيصك انتهى في %2$s.</strong> موقعك وكل ما "
+"يراه الزوار ما زال يعمل. جدّد الترخيص لفتح أدوات Pro والحصول على التحديثات "
+"مجددًا، ومنها إصلاحات الأمان."
+
+#. translators: %s: plugin name
+#: pro/licensorpro-client/licensorpro-client.php:889
+#, php-format
+msgid ""
+"<strong>This site is no longer activated on your %s Pro license.</strong> "
+"The Pro tools in your dashboard are locked until you activate it again. "
+"Everything visitors see keeps working."
+msgstr ""
+"<strong>هذا الموقع لم يعد مُفعّلًا على ترخيص %s Pro.</strong> أدوات Pro في لوحة "
+"التحكم مقفلة حتى تفعّله مجددًا. كل ما يراه الزوار يستمر بالعمل."
+
+#. translators: %s: plugin name
+#: pro/licensorpro-client/licensorpro-client.php:896
+#, php-format
+msgid ""
+"<strong>Your %s Pro license is no longer active.</strong> It was refunded or "
+"cancelled, so the Pro tools in your dashboard are locked and updates have "
+"stopped. Everything visitors see keeps working."
+msgstr ""
+"<strong>ترخيص %s Pro لم يعد نشطًا.</strong> تم استرداد المبلغ أو إلغاء "
+"الاشتراك، لذا أُقفلت أدوات Pro في لوحة التحكم وتوقفت التحديثات. كل ما يراه "
+"الزوار يستمر بالعمل."
+
+#: pro/licensorpro-client/licensorpro-client.php:998
+msgid "Please enter a license key."
+msgstr "الرجاء إدخال مفتاح ترخيص."
+
+#: pro/licensorpro-client/licensorpro-client.php:1010
+#: pro/licensorpro-client/licensorpro-client.php:1069
+msgid "License response failed signature verification."
+msgstr "فشل التحقق من توقيع رد الترخيص."
+
+#: pro/licensorpro-client/licensorpro-client.php:1052
+msgid "No license key set."
+msgstr "لم يتم تعيين مفتاح ترخيص."
+
+#: pro/licensorpro-client/licensorpro-client.php:1184
+msgid "Only deactivating temporarily"
+msgstr "أعطّلها مؤقتًا فقط"
+
+#: pro/licensorpro-client/licensorpro-client.php:1185
+msgid "I could not work out how to use it"
+msgstr "لم أعرف كيف أستخدمها"
+
+#: pro/licensorpro-client/licensorpro-client.php:1186
+msgid "It is missing a feature I need"
+msgstr "تنقصها ميزة أحتاجها"
+
+#: pro/licensorpro-client/licensorpro-client.php:1187
+msgid "It did not work"
+msgstr "لم تعمل"
+
+#: pro/licensorpro-client/licensorpro-client.php:1188
+msgid "It broke something on my site"
+msgstr "تسببت في عطل في موقعي"
+
+#: pro/licensorpro-client/licensorpro-client.php:1189
+msgid "I found a better plugin"
+msgstr "وجدت إضافة أفضل"
+
+#: pro/licensorpro-client/licensorpro-client.php:1190
+msgid "I no longer need it"
+msgstr "لم أعد بحاجة إليها"
+
+#: pro/licensorpro-client/licensorpro-client.php:1191
+msgid "Something else"
+msgstr "سبب آخر"
+
+#. translators: %s: plugin name.
+#: pro/licensorpro-client/licensorpro-client.php:1218
+#, php-format
+msgid "Before you turn %s off"
+msgstr "قبل أن تعطّل %s"
+
+#: pro/licensorpro-client/licensorpro-client.php:1222
+msgid ""
+"If you have a moment, what went wrong? It is the only way we hear about it."
+msgstr "إن كان لديك دقيقة، ما الذي لم يعمل؟ هذه هي الطريقة الوحيدة لنعرف بذلك."
+
+#: pro/licensorpro-client/licensorpro-client.php:1233
+msgid "Anything else? (optional)"
+msgstr "هل من شيء آخر؟ (اختياري)"
+
+#: pro/licensorpro-client/licensorpro-client.php:1235
+msgid ""
+"Sends your answer, the plugin version and your site address. Nothing else, "
+"and nothing from your site content."
+msgstr ""
+"يُرسل إجابتك وإصدار الإضافة وعنوان موقعك. لا شيء غير ذلك، ولا شيء من محتوى "
+"موقعك."
+
+#: pro/licensorpro-client/licensorpro-client.php:1239
+msgid "Send and deactivate"
+msgstr "أرسل وعطّل"
+
+#: pro/licensorpro-client/licensorpro-client.php:1242
+msgid "Skip and deactivate"
+msgstr "تخطَّ وعطّل"
+
+#: pro/licensorpro-client/licensorpro-client.php:1245 admin/views/tags.php:54
+#: admin/assets/kanban/build/index.js:5 admin/assets/kanban/build/index.js:26
+msgid "Cancel"
+msgstr "إلغاء"
+
+#: pro/licensorpro-client/licensorpro-client.php:1366
+#: pro/licensorpro-client/licensorpro-client.php:1382
+msgid "API URL not configured."
+msgstr "لم يتم إعداد عنوان API URL."
+
+#: pro/licensorpro-client/licensorpro-client.php:1401
+msgid "Unexpected response from license server."
+msgstr "رد غير متوقع من خادم التراخيص."
+
+#. translators: %s: human-readable time difference, e.g. "3 hours".
+#: pro/licensorpro-client/licensorpro-client.php:1700
+#: includes/class-dates.php:65
+#, php-format
+msgid "in %s"
+msgstr "خلال %s"
+
+#. translators: %s: human-readable time difference, e.g. "3 hours".
+#: pro/licensorpro-client/licensorpro-client.php:1701
+#: includes/class-dates.php:73
+#, php-format
+msgid "%s ago"
+msgstr "قبل %s"
+
+#: pro/licensorpro-client/licensorpro-client.php:1726
+#, php-format
+msgid "%s License"
+msgstr "ترخيص %s"
+
+#: pro/licensorpro-client/licensorpro-client.php:1736
+msgid ""
+"This site was deactivated, so its seat is free for another site. Enter the "
+"key again here to switch the Pro tools back on."
+msgstr ""
+"تم تعطيل هذا الموقع، لذا أصبح مقعده متاحًا لموقع آخر. أدخل المفتاح مجددًا هنا "
+"لإعادة تشغيل أدوات Pro."
+
+#: pro/licensorpro-client/licensorpro-client.php:1746
+#: pro/licensorpro-client/licensorpro-client.php:1777
+#: pro/licensorpro-client/licensorpro-client.php:1841
+msgid "License key"
+msgstr "مفتاح الترخيص"
+
+#: pro/licensorpro-client/licensorpro-client.php:1747
+msgid "Type"
+msgstr "النوع"
+
+#: pro/licensorpro-client/licensorpro-client.php:1749
+msgid ""
+"Free license: updates of the free version only. It does not switch on Pro."
+msgstr "ترخيص Free: تحديثات النسخة المجانية فقط. لا يشغّل Pro."
+
+#: pro/licensorpro-client/licensorpro-client.php:1750
+msgid "Free license: updates arrive in your dashboard like any other plugin."
+msgstr "ترخيص Free: تصل التحديثات إلى لوحة التحكم مثل أي إضافة أخرى."
+
+#: pro/licensorpro-client/licensorpro-client.php:1752
+#: pro/licensorpro-client/licensorpro-client.php:1809
+msgid "Last checked"
+msgstr "آخر فحص"
+
+#: pro/licensorpro-client/licensorpro-client.php:1756
+#: pro/licensorpro-client/licensorpro-client.php:1815
+msgid "Check for updates now"
+msgstr "تحقق من التحديثات الآن"
+
+#: pro/licensorpro-client/licensorpro-client.php:1759
+msgid "Bought Pro?"
+msgstr "اشتريت Pro؟"
+
+#: pro/licensorpro-client/licensorpro-client.php:1760
+msgid ""
+"Enter your Pro license key and Pro is installed over this version. "
+"Everything you set up stays."
+msgstr ""
+"أدخل مفتاح ترخيص Pro وسيُثبَّت Pro فوق هذا الإصدار. كل ما أعددته يبقى كما هو."
+
+#: pro/licensorpro-client/licensorpro-client.php:1762
+msgid "Pro license key"
+msgstr "مفتاح ترخيص Pro"
+
+#: pro/licensorpro-client/licensorpro-client.php:1765
+#: pro/licensorpro-client/licensorpro-client.php:1822
+msgid "Install Pro now"
+msgstr "ثبّت Pro الآن"
+
+#: pro/licensorpro-client/licensorpro-client.php:1767
+msgid ""
+"Rather do it by hand? Download the Pro zip from your account and upload it "
+"over this plugin."
+msgstr ""
+"تفضّل القيام بذلك يدويًا؟ نزّل ملف Pro المضغوط (zip) من حسابك وارفعه فوق هذه "
+"الإضافة."
+
+#: pro/licensorpro-client/licensorpro-client.php:1768
+#: pro/licensorpro-client/licensorpro-client.php:1849
+msgid "Go to your account"
+msgstr "اذهب إلى حسابك"
+
+#: pro/licensorpro-client/licensorpro-client.php:1780
+msgid "active"
+msgstr "نشط"
+
+#. translators: %s: date the Pro tools lock
+#: pro/licensorpro-client/licensorpro-client.php:1782
+#, php-format
+msgid "expired, Pro tools stay on until %s"
+msgstr "منتهٍ، تبقى أدوات Pro تعمل حتى %s"
+
+#: pro/licensorpro-client/licensorpro-client.php:1783
+msgid "expired, Pro tools locked"
+msgstr "منتهٍ، أدوات Pro مقفلة"
+
+#: pro/licensorpro-client/licensorpro-client.php:1785
+msgid "this site is not activated"
+msgstr "هذا الموقع غير مُفعّل"
+
+#: pro/licensorpro-client/licensorpro-client.php:1786
+msgid "no longer active (refunded or cancelled)"
+msgstr "لم يعد نشطًا (تم الاسترداد أو الإلغاء)"
+
+#: pro/licensorpro-client/licensorpro-client.php:1788
+#: admin/views/past-entries.php:91
+#: admin/assets/kanban/build/index.js:5
+msgid "Status"
+msgstr "الحالة"
+
+#: pro/licensorpro-client/licensorpro-client.php:1790
+msgid "Renew"
+msgstr "تجديد"
+
+#: pro/licensorpro-client/licensorpro-client.php:1794
+msgid "Offline mode"
+msgstr "وضع عدم الاتصال"
+
+#: pro/licensorpro-client/licensorpro-client.php:1796
+#, php-format
+msgid "cached license valid until %s"
+msgstr "الترخيص المخزّن مؤقتًا صالح حتى %s"
+
+#: pro/licensorpro-client/licensorpro-client.php:1801
+msgctxt "update channel"
+msgid "stable"
+msgstr "مستقر"
+
+#: pro/licensorpro-client/licensorpro-client.php:1802
+msgctxt "update channel"
+msgid "beta"
+msgstr "بيتا"
+
+#: pro/licensorpro-client/licensorpro-client.php:1803
+msgctxt "update channel"
+msgid "release candidate"
+msgstr "إصدار مرشّح"
+
+#: pro/licensorpro-client/licensorpro-client.php:1804
+msgctxt "update channel"
+msgid "development"
+msgstr "تطوير"
+
+#: pro/licensorpro-client/licensorpro-client.php:1806
+msgid "Update channel"
+msgstr "قناة التحديث"
+
+#: pro/licensorpro-client/licensorpro-client.php:1807
+msgid "Site limit"
+msgstr "حد المواقع"
+
+#: pro/licensorpro-client/licensorpro-client.php:1808
+msgid "Expires"
+msgstr "ينتهي في"
+
+#: pro/licensorpro-client/licensorpro-client.php:1808
+msgid "Never"
+msgstr "أبدًا"
+
+#: pro/licensorpro-client/licensorpro-client.php:1813
+msgid "Deactivate this site"
+msgstr "تعطيل هذا الموقع"
+
+#: pro/licensorpro-client/licensorpro-client.php:1820
+msgid "This is the free version, running on your Pro license."
+msgstr "هذه هي النسخة المجانية، تعمل على ترخيص Pro الخاص بك."
+
+#: pro/licensorpro-client/licensorpro-client.php:1837
+msgid ""
+"Have a Pro license key? Enter it here to switch on the Pro tools. It "
+"replaces the free license on this site."
+msgstr ""
+"لديك مفتاح ترخيص Pro؟ أدخله هنا لتشغيل أدوات Pro. سيحل محل الترخيص المجاني "
+"على هذا الموقع."
+
+#: pro/licensorpro-client/licensorpro-client.php:1838
+msgid "Enter your license key to activate this site."
+msgstr "أدخل مفتاح الترخيص لتفعيل هذا الموقع."
+
+#: pro/licensorpro-client/licensorpro-client.php:1845
+msgid "Activate"
+msgstr "تفعيل"
+
+#: pro/licensorpro-client/licensorpro-client.php:1848
+msgid "Your key is in your purchase email and in your account."
+msgstr "تجد مفتاحك في رسالة الشراء وفي حسابك."
+
+#: pro/licensorpro-client/licensorpro-client.php:1856
+msgid "Need a hand?"
+msgstr "تحتاج مساعدة؟"
+
+#: pro/licensorpro-client/licensorpro-client.php:1857
+msgid "Contact support"
+msgstr "تواصل مع الدعم"
+
+#: pro/licensorpro-client/licensorpro-client.php:2062
+msgid "Only someone who may install plugins on this site can install Pro."
+msgstr "فقط من يملك صلاحية تثبيت الإضافات على هذا الموقع يمكنه تثبيت Pro."
+
+#: pro/licensorpro-client/licensorpro-client.php:2075
+msgid ""
+"That is a free license key, so it keeps this free version updated. Pro needs "
+"the key from your purchase email."
+msgstr ""
+"هذا مفتاح ترخيص مجاني، لذا يبقي هذه النسخة المجانية محدّثة. يحتاج Pro إلى "
+"المفتاح الموجود في رسالة الشراء."
+
+#. translators: %s: URL of the customer account
+#: pro/licensorpro-client/licensorpro-client.php:2080
+#, php-format
+msgid ""
+"Your key is active. Download the Pro zip from your account (%s) and upload "
+"it over this plugin instead."
+msgstr ""
+"مفتاحك نشط. نزّل ملف Pro المضغوط من حسابك (%s) وارفعه فوق هذه الإضافة بدلًا من "
+"ذلك."
+
+#: pro/licensorpro-client/licensorpro-client.php:2084
+msgid "This site does not allow installing plugins from the dashboard."
+msgstr "هذا الموقع لا يسمح بتثبيت الإضافات من لوحة التحكم."
+
+#: pro/licensorpro-client/licensorpro-client.php:2088
+msgid "The Pro download could not be fetched for this key."
+msgstr "تعذّر جلب تنزيل Pro لهذا المفتاح."
+
+#: pro/licensorpro-client/licensorpro-client.php:2096
+msgid "This site asks for FTP details to install plugins."
+msgstr "يطلب هذا الموقع بيانات FTP لتثبيت الإضافات."
+
+#: pro/licensorpro-client/licensorpro-client.php:2131
+msgid "Installing Pro did not finish."
+msgstr "لم يكتمل تثبيت Pro."
+
+#. translators: %s: plugin name
+#: pro/licensorpro-client/licensorpro-client.php:2136
+#, php-format
+msgid "%s Pro is installed and your license is active. Reloading…"
+msgstr "تم تثبيت %s Pro وترخيصك نشط. جارٍ إعادة التحميل…"
+
+#: pro/licensorpro-client/licensorpro-client.php:2146
+msgid "License activated."
+msgstr "تم تفعيل الترخيص."
+
+#: pro/licensorpro-client/licensorpro-client.php:2158
+msgid "Site deactivated."
+msgstr "تم تعطيل الموقع."
+
+#: pro/licensorpro-client/licensorpro-client.php:2169
+msgid "License is valid. Update info refreshed."
+msgstr "الترخيص صالح. تم تحديث معلومات التحديث."
+
+#: pro/licensorpro-client/licensorpro-client.php:2176
+msgid "Permission denied."
+msgstr "تم رفض الإذن."
+
+#. Plugin Name of the plugin
+#: entryvault.php includes/class-admin-ui.php:82 includes/class-plugin.php:126
+#: includes/class-plugin.php:127 includes/class-plugin.php:138
+#: includes/class-plugin.php:139
+msgid "EntryVault"
+msgstr "EntryVault"
+
+#. Plugin URI of the plugin
+#: entryvault.php
+msgid "https://jnkplugins.com/entryvault/"
+msgstr "https://jnkplugins.com/entryvault/"
+
+#. Description of the plugin
+#: entryvault.php
+msgid "Lightweight CRM & entry manager for WordPress form plugins."
+msgstr "مدير إدخالات ونظام CRM خفيف لإضافات النماذج في WordPress."
+
+#. Author of the plugin
+#: entryvault.php
+msgid "JNK Plugins"
+msgstr "JNK Plugins"
+
+#. Author URI of the plugin
+#: entryvault.php
+msgid "https://jnkplugins.com"
+msgstr "https://jnkplugins.com"
+
+#: admin/views/dashboard.php:9 includes/class-submissions-admin.php:185
+msgid "You do not have permission to view this page."
+msgstr "ليست لديك صلاحية لعرض هذه الصفحة."
+
+#: admin/views/dashboard.php:72 includes/class-admin-ui.php:24
+msgid "Overview"
+msgstr "نظرة عامة"
+
+#: admin/views/dashboard.php:73
+msgid "What came in, what is waiting on you, and how your pipeline is doing."
+msgstr "ما الذي وصل، وما الذي ينتظرك، وكيف يسير مسارك."
+
+#: admin/views/dashboard.php:74
+msgid "All submissions"
+msgstr "كل الإرسالات"
+
+#: admin/views/dashboard.php:75 admin/views/dashboard.php:84
+#: includes/class-plugin.php:359 includes/class-submissions-admin.php:224
+msgid "Open the board"
+msgstr "افتح اللوحة"
+
+#: admin/views/dashboard.php:81
+msgid "Getting started"
+msgstr "البدء"
+
+#: admin/views/dashboard.php:82
+msgid ""
+"EntryVault picks up submissions from the form plugins you already use. There "
+"is nothing to change on your forms. Submit one of them once and it appears "
+"on the board within moments."
+msgstr ""
+"يلتقط EntryVault الإرسالات من إضافات النماذج التي تستخدمها بالفعل. لا حاجة "
+"لتغيير أي شيء في نماذجك. أرسل أحدها مرة واحدة وسيظهر على اللوحة خلال لحظات."
+
+#: admin/views/dashboard.php:85 admin/assets/kanban/build/index.js:37
+msgid "Import a CSV instead"
+msgstr "استورد ملف CSV بدلًا من ذلك"
+
+#: admin/views/dashboard.php:92
+msgid "New in the last 7 days"
+msgstr "الجديد في آخر 7 أيام"
+
+#. translators: %s: number of submissions received today.
+#: admin/views/dashboard.php:96
+#, php-format
+msgid "%s today"
+msgstr "%s اليوم"
+
+#: admin/views/dashboard.php:100
+msgid "Open"
+msgstr "مفتوح"
+
+#. translators: %s: total number of submissions.
+#: admin/views/dashboard.php:104
+#, php-format
+msgid "Out of %s in total"
+msgstr "من أصل %s إجمالًا"
+
+#: admin/views/dashboard.php:108
+msgid "Nobody assigned"
+msgstr "لا أحد مُعيَّن"
+
+#: admin/views/dashboard.php:110
+msgid "Open entries without an owner"
+msgstr "إدخالات مفتوحة بلا مسؤول"
+
+#: admin/views/dashboard.php:110
+msgid "Every open entry has an owner"
+msgstr "كل إدخال مفتوح له مسؤول"
+
+#: admin/views/dashboard.php:113
+msgid "Waiting 3 days or more"
+msgstr "تنتظر 3 أيام أو أكثر"
+
+#. translators: %s: number of entries moved to a won stage this week.
+#: admin/views/dashboard.php:117
+#, php-format
+msgid "Open, and nothing changed lately. %s won in the last 7 days."
+msgstr "مفتوحة، ولم يتغير شيء مؤخرًا. %s تم كسبها في آخر 7 أيام."
+
+#: admin/views/dashboard.php:125
+msgid "Needs attention"
+msgstr "تحتاج إلى انتباه"
+
+#: admin/views/dashboard.php:126
+msgid ""
+"Open entries with no owner, or that nobody has touched for 3 days. Oldest "
+"first."
+msgstr "إدخالات مفتوحة بلا مسؤول، أو لم يلمسها أحد منذ 3 أيام. الأقدم أولًا."
+
+#: admin/views/dashboard.php:129
+msgid "All caught up"
+msgstr "لا شيء متأخر"
+
+#: admin/views/dashboard.php:129
+msgid "Every open entry has an owner and has been looked at recently."
+msgstr "كل إدخال مفتوح له مسؤول وتمت مراجعته مؤخرًا."
+
+#. translators: %s: relative time, e.g. "3 days ago".
+#: admin/views/dashboard.php:139
+#, php-format
+msgid "last change %s"
+msgstr "آخر تغيير %s"
+
+#: admin/views/dashboard.php:143
+msgid "No owner"
+msgstr "بلا مسؤول"
+
+#: admin/views/dashboard.php:145
+msgid "Waiting"
+msgstr "قيد الانتظار"
+
+#: admin/views/dashboard.php:155
+msgid "Recent activity"
+msgstr "النشاط الأخير"
+
+#: admin/views/dashboard.php:156
+msgid "The latest changes across all your entries."
+msgstr "أحدث التغييرات في كل إدخالاتك."
+
+#: admin/views/dashboard.php:159
+msgid "No activity yet"
+msgstr "لا يوجد نشاط بعد"
+
+#: admin/views/dashboard.php:159
+msgid "New submissions, stage moves, notes and replies show up here."
+msgstr "الإرسالات الجديدة ونقل المراحل والملاحظات والردود تظهر هنا."
+
+#: admin/views/dashboard.php:185
+msgid "Where entries come from"
+msgstr "من أين تأتي الإدخالات"
+
+#: admin/views/dashboard.php:186
+msgid "The form plugins EntryVault is listening to right now."
+msgstr "إضافات النماذج التي يستمع إليها EntryVault الآن."
+
+#: admin/views/dashboard.php:187
+msgid "Check health"
+msgstr "افحص الصحّة"
+
+#: admin/views/dashboard.php:195
+msgid "No form plugin found yet"
+msgstr "لم يتم العثور على إضافة نماذج بعد"
+
+#: admin/views/dashboard.php:196
+msgid "Activate a form plugin, or import a CSV file."
+msgstr "فعّل إضافة نماذج، أو استورد ملف CSV."
+
+#: admin/views/dashboard.php:201
+msgid "Reports"
+msgstr "التقارير"
+
+#: admin/views/dashboard.php:202
+msgid ""
+"Pick a pipeline and a date range. The numbers below update straight away."
+msgstr "اختر مسارًا ونطاقًا زمنيًا. تتحدّث الأرقام أدناه فورًا."
+
+#: admin/views/dashboard.php:207 admin/views/import.php:83
+#: includes/class-submissions-list-table.php:59
+#: admin/assets/kanban/build/index.js:37
+msgid "Pipeline"
+msgstr "المسار"
+
+#: admin/views/dashboard.php:211 includes/class-submissions-admin.php:340
+msgid "From"
+msgstr "من"
+
+#: admin/views/dashboard.php:215 includes/class-submissions-admin.php:344
+msgid "To"
+msgstr "إلى"
+
+#: admin/views/dashboard.php:218
+msgid "Refresh"
+msgstr "تحديث"
+
+#: admin/views/dashboard.php:226
+msgid "By stage"
+msgstr "حسب المرحلة"
+
+#: admin/views/dashboard.php:227
+msgid "How many entries sit in each stage."
+msgstr "عدد الإدخالات في كل مرحلة."
+
+#: admin/views/dashboard.php:231
+msgid "Sources"
+msgstr "المصادر"
+
+#: admin/views/dashboard.php:232
+msgid "Which form plugin each entry came from."
+msgstr "إضافة النماذج التي جاء منها كل إدخال."
+
+#: admin/views/dashboard.php:238
+msgid "Entries per day"
+msgstr "الإدخالات في اليوم"
+
+#: admin/views/dashboard.php:239
+msgid "The last 30 days. Hover a bar for the date."
+msgstr "آخر 30 يومًا. مرّر المؤشر فوق عمود لرؤية التاريخ."
+
+#: admin/views/dashboard.php:245
+msgid "Funnel"
+msgstr "القمع"
+
+#: admin/views/dashboard.php:246
+msgid "How many entries reach each stage, and the share that move on."
+msgstr "عدد الإدخالات التي تصل إلى كل مرحلة، ونسبة التي تنتقل إلى ما بعدها."
+
+#: admin/views/dashboard.php:250
+msgid "Time in each stage"
+msgstr "الوقت في كل مرحلة"
+
+#: admin/views/dashboard.php:251
+msgid "Average hours an entry spends in a stage before it moves."
+msgstr "متوسط الساعات التي يقضيها الإدخال في مرحلة قبل أن ينتقل."
+
+#: admin/views/dashboard.php:257
+msgid "By owner"
+msgstr "حسب المسؤول"
+
+#: admin/views/dashboard.php:258
+msgid "Click a column title to sort."
+msgstr "انقر على عنوان عمود للترتيب."
+
+#: admin/views/feedback.php:13 admin/views/health.php:16
+#: admin/views/import.php:18 admin/views/past-entries.php:15
+#: admin/views/settings.php:15 admin/views/upgrade.php:15
+msgid "You do not have permission to access this page."
+msgstr "ليست لديك صلاحية للوصول إلى هذه الصفحة."
+
+#: admin/views/feedback.php:23
+msgid "Help and feedback"
+msgstr "المساعدة والآراء"
+
+#: admin/views/feedback.php:24
+msgid ""
+"Found a bug, have an idea, or just want to say hello? Send a note straight "
+"to the people who make EntryVault."
+msgstr ""
+"وجدت خطأ، أو لديك فكرة، أو تريد فقط إلقاء التحية؟ أرسل رسالة مباشرة إلى من "
+"يصنعون EntryVault."
+
+#: admin/views/feedback.php:25
+msgid "Read the guides"
+msgstr "اقرأ الأدلة"
+
+#: admin/views/feedback.php:32
+msgid "Thanks! Your feedback was sent to the EntryVault author."
+msgstr "شكرًا! تم إرسال ملاحظاتك إلى مطوّر EntryVault."
+
+#: admin/views/feedback.php:36
+msgid ""
+"You’ve sent several messages recently. Please try again in a little while."
+msgstr "أرسلت عدة رسائل مؤخرًا. الرجاء المحاولة مجددًا بعد قليل."
+
+#: admin/views/feedback.php:40
+msgid ""
+"Sorry, your feedback could not be sent. Please check your message and your "
+"site’s email configuration, then try again."
+msgstr ""
+"عذرًا، تعذّر إرسال ملاحظاتك. الرجاء التحقق من رسالتك ومن إعدادات البريد في "
+"موقعك، ثم المحاولة مجددًا."
+
+#: admin/views/feedback.php:50
+msgid "Website"
+msgstr "الموقع الإلكتروني"
+
+#: admin/views/feedback.php:56
+msgid "What is it about?"
+msgstr "ما الموضوع؟"
+
+#: admin/views/feedback.php:66 includes/class-submissions-list-table.php:58
+#: admin/assets/kanban/build/index.js:26
+msgid "Message"
+msgstr "الرسالة"
+
+#: admin/views/feedback.php:72
+msgid "Your email (optional, so we can reply)"
+msgstr "بريدك الإلكتروني (اختياري، لنتمكن من الرد)"
+
+#: admin/views/feedback.php:79
+msgid "Site details"
+msgstr "تفاصيل الموقع"
+
+#: admin/views/feedback.php:83
+msgid "Include basic site details to help us find the problem"
+msgstr "أرفق تفاصيل أساسية عن الموقع لمساعدتنا في إيجاد المشكلة"
+
+#: admin/views/feedback.php:86
+msgid ""
+"Sends: WordPress version, PHP version, EntryVault version, active theme name "
+"and your site URL. No personal data."
+msgstr ""
+"يُرسل: إصدار WordPress وإصدار PHP وإصدار EntryVault واسم القالب النشط وعنوان "
+"URL لموقعك. لا بيانات شخصية."
+
+#: admin/views/feedback.php:93 admin/assets/kanban/build/index.js:27
+msgid "Send"
+msgstr "إرسال"
+
+#: admin/views/feedback.php:94
+msgid "Your message goes out through your site’s own email."
+msgstr "تُرسل رسالتك عبر بريد موقعك نفسه."
+
+#: admin/views/health.php:31 includes/class-admin-ui.php:29
+#: includes/class-plugin.php:154
+msgid "Health"
+msgstr "الصحّة"
+
+#: admin/views/health.php:32
+msgid ""
+"A quick check that EntryVault is set up right and is picking up your forms."
+msgstr "فحص سريع للتأكد من أن EntryVault مُعدّ بشكل صحيح ويلتقط نماذجك."
+
+#: admin/views/health.php:35
+msgid "Check again"
+msgstr "افحص مجددًا"
+
+#: admin/views/import.php:36 includes/class-admin-ui.php:28
+#: includes/class-plugin.php:153
+msgid "Import"
+msgstr "استيراد"
+
+#: admin/views/import.php:37
+msgid ""
+"Bring in entries from a spreadsheet. Save it as a CSV file first, with "
+"column names in the first row."
+msgstr ""
+"استورد إدخالات من جدول بيانات. احفظه أولًا كملف CSV، مع أسماء الأعمدة في الصف "
+"الأول."
+
+#: admin/views/import.php:41
+msgid "Choose your file"
+msgstr "اختر ملفك"
+
+#: admin/views/import.php:42
+msgid ""
+"The file is read in your browser first, so you can check it before anything "
+"is saved."
+msgstr "يُقرأ الملف في متصفحك أولًا، لتتمكن من مراجعته قبل حفظ أي شيء."
+
+#: admin/views/import.php:44
+msgid "CSV file"
+msgstr "ملف CSV"
+
+#: admin/views/import.php:47
+msgid "or"
+msgstr "أو"
+
+#: admin/views/import.php:48
+msgid "Paste the CSV text"
+msgstr "الصق نص CSV"
+
+#: admin/views/import.php:54
+msgid "Preview"
+msgstr "معاينة"
+
+#: admin/views/import.php:62
+msgid "Match the columns"
+msgstr "طابق الأعمدة"
+
+#: admin/views/import.php:63
+msgid ""
+"Tell EntryVault what each column holds. One column must be the email address."
+msgstr ""
+"أخبر EntryVault بما يحويه كل عمود. يجب أن يكون أحد الأعمدة عنوان البريد "
+"الإلكتروني."
+
+#: admin/views/import.php:68
+msgid "Column"
+msgstr "العمود"
+
+#: admin/views/import.php:69
+msgid "First value"
+msgstr "القيمة الأولى"
+
+#: admin/views/import.php:70
+msgid "Use as"
+msgstr "استخدمه كـ"
+
+#: admin/views/import.php:79
+msgid "Where they go"
+msgstr "إلى أين تذهب"
+
+#: admin/views/import.php:80
+msgid ""
+"Pick the pipeline and stage for the new entries. Try a test run first: it "
+"checks the file and saves nothing."
+msgstr ""
+"اختر المسار والمرحلة للإدخالات الجديدة. جرّب تشغيلًا تجريبيًا أولًا: يفحص الملف "
+"ولا يحفظ شيئًا."
+
+#: admin/views/import.php:85
+msgid "Use the default pipeline"
+msgstr "استخدم المسار الافتراضي"
+
+#: admin/views/import.php:91 includes/class-frontend.php:504
+#: includes/class-submissions-list-table.php:60
+#: admin/assets/js/dashboard.js:140
+#: admin/assets/js/dashboard.js:219 admin/assets/kanban/build/index.js:5
+#: blocks/submissions-table/index.js:26
+msgid "Stage"
+msgstr "المرحلة"
+
+#: admin/views/import.php:93 includes/class-plugin.php:344
+msgid "First stage of the pipeline"
+msgstr "المرحلة الأولى في المسار"
+
+#: admin/views/import.php:100
+msgid "Test run only: check the file but do not save anything"
+msgstr "تشغيل تجريبي فقط: افحص الملف دون حفظ أي شيء"
+
+#: admin/views/import.php:113
+msgid "Run import"
+msgstr "شغّل الاستيراد"
+
+#: admin/views/kanban.php:5 includes/class-admin-ui.php:23
+msgid "Board"
+msgstr "اللوحة"
+
+#: admin/views/kanban.php:6
+msgid ""
+"Every form submission as a card. Drag a card to move it to the next stage, "
+"or open it to reply, add notes and tags."
+msgstr ""
+"كل إرسال نموذج يظهر كبطاقة. اسحب البطاقة لنقلها إلى المرحلة التالية، أو "
+"افتحها للرد وإضافة ملاحظات ووسوم."
+
+#. translators: 1: number of entries, 2: date of the latest one.
+#: admin/views/kanban.php:25
+#, php-format
+msgid ""
+"%1$d entry in the last 30 days was left out because its form plugin marked "
+"it as spam (latest %2$s). Spam filters are sometimes wrong, so it is worth a "
+"look."
+msgid_plural ""
+"%1$d entries in the last 30 days were left out because their form plugin "
+"marked them as spam (latest %2$s). Spam filters are sometimes wrong, so they "
+"are worth a look."
+msgstr[0] ""
+"%1$d إدخال في آخر 30 يومًا تم استبعاده لأن إضافة النماذج صنّفته كمزعج (آخرها "
+"%2$s). عوامل تصفية الرسائل المزعجة تخطئ أحيانًا، لذا يستحق نظرة."
+msgstr[1] ""
+"%1$d إدخال في آخر 30 يومًا تم استبعاده لأن إضافة النماذج صنّفته كمزعج (آخرها "
+"%2$s). عوامل تصفية الرسائل المزعجة تخطئ أحيانًا، لذا يستحق نظرة."
+msgstr[2] ""
+"%1$d إدخالان في آخر 30 يومًا تم استبعادهما لأن إضافة النماذج صنّفتهما كمزعجين "
+"(آخرها %2$s). عوامل تصفية الرسائل المزعجة تخطئ أحيانًا، لذا يستحقان نظرة."
+msgstr[3] ""
+"%1$d إدخالات في آخر 30 يومًا تم استبعادها لأن إضافة النماذج صنّفتها كمزعجة "
+"(آخرها %2$s). عوامل تصفية الرسائل المزعجة تخطئ أحيانًا، لذا تستحق نظرة."
+msgstr[4] ""
+"%1$d إدخالًا في آخر 30 يومًا تم استبعادها لأن إضافة النماذج صنّفتها كمزعجة "
+"(آخرها %2$s). عوامل تصفية الرسائل المزعجة تخطئ أحيانًا، لذا تستحق نظرة."
+msgstr[5] ""
+"%1$d إدخال في آخر 30 يومًا تم استبعادها لأن إضافة النماذج صنّفتها كمزعجة "
+"(آخرها %2$s). عوامل تصفية الرسائل المزعجة تخطئ أحيانًا، لذا تستحق نظرة."
+
+#: admin/views/kanban.php:36
+msgid "Review them in Trinity Forms"
+msgstr "راجعها في Trinity Forms"
+
+#: admin/views/kanban.php:37
+msgid "(an entry you restore there comes onto this board)."
+msgstr "(أي إدخال تستعيده هناك يظهر على هذه اللوحة)."
+
+#: admin/views/kanban.php:39
+msgid "Keep spam entries in EntryVault"
+msgstr "احتفظ بالإدخالات المزعجة في EntryVault"
+
+#: admin/views/kanban.php:61
+msgid "Past entries found"
+msgstr "تم العثور على إدخالات سابقة"
+
+#. translators: 1: form plugin name, 2: number of entries.
+#: admin/views/kanban.php:80
+#, php-format
+msgid "%1$s: %2$s past entry"
+msgid_plural "%1$s: %2$s past entries"
+msgstr[0] "%1$s: %2$s إدخال سابق"
+msgstr[1] "%1$s: %2$s إدخال سابق"
+msgstr[2] "%1$s: %2$s إدخالان سابقان"
+msgstr[3] "%1$s: %2$s إدخالات سابقة"
+msgstr[4] "%1$s: %2$s إدخالًا سابقًا"
+msgstr[5] "%1$s: %2$s إدخال سابق"
+
+#. translators: %s: form plugin name.
+#: admin/views/kanban.php:82
+#, php-format
+msgid "%s: past entries found"
+msgstr "%s: تم العثور على إدخالات سابقة"
+
+#: admin/views/kanban.php:88 admin/views/past-entries.php:41
+msgid "Experimental"
+msgstr "تجريبي"
+
+#. translators: %s: form plugin name.
+#: admin/views/kanban.php:91 admin/views/past-entries.php:53
+#, php-format
+msgid ""
+"%s offers no public way to read its entries, so EntryVault reads its "
+"database directly. This can stop working when the form plugin changes its "
+"database."
+msgstr ""
+"لا توفر %s طريقة عامة لقراءة إدخالاتها، لذا يقرأ EntryVault قاعدة بياناتها "
+"مباشرة. قد يتوقف هذا عن العمل عندما تغيّر إضافة النماذج قاعدة بياناتها."
+
+#: admin/views/kanban.php:97
+msgid ""
+"They stay where they are. EntryVault copies them onto this board with their "
+"original dates. No emails or automations run for them."
+msgstr ""
+"تبقى في مكانها. ينسخها EntryVault إلى هذه اللوحة بتواريخها الأصلية. لا تُرسل "
+"أي رسائل بريد ولا تعمل أي أتمتة لها."
+
+#: admin/views/kanban.php:99
+msgid "Bring them in"
+msgstr "اجلبها"
+
+#: admin/views/kanban.php:100
+msgid "Not now"
+msgstr "ليس الآن"
+
+#. translators: %s: form plugin name.
+#: admin/views/kanban.php:107 admin/views/past-entries.php:71
+#, php-format
+msgid ""
+"%s does not keep entries on this site (its free version only emails them), "
+"so there are no past entries to bring in. New submissions are captured from "
+"now on."
+msgstr ""
+"لا تحتفظ %s بالإدخالات على هذا الموقع (نسختها المجانية ترسلها بالبريد فقط)، "
+"لذا لا توجد إدخالات سابقة لجلبها. الإرسالات الجديدة تُلتقط من الآن فصاعدًا."
+
+#. translators: 1: entries brought in so far, 2: entries found.
+#: admin/views/kanban.php:121
+#, php-format
+msgid "Bringing them in: %1$s of %2$s"
+msgstr "جارٍ جلبها: %1$s من %2$s"
+
+#. translators: %s: number of entries.
+#: admin/views/kanban.php:123
+#, php-format
+msgid "Done: %s entries brought in. Loading the board…"
+msgstr "تم: جُلب %s إدخال. جارٍ تحميل اللوحة…"
+
+#: admin/views/kanban.php:124
+msgid "Something went wrong. Open Past entries for the details."
+msgstr "حدث خطأ ما. افتح الإدخالات السابقة لرؤية التفاصيل."
+
+#: admin/views/kanban.php:125
+msgid "You can bring them in later from Past entries."
+msgstr "يمكنك جلبها لاحقًا من الإدخالات السابقة."
+
+#: admin/views/kanban.php:181 admin/assets/kanban/build/index.js:27
+msgid "Loading the board…"
+msgstr "جارٍ تحميل اللوحة…"
+
+#: admin/views/kanban.php:183
+msgid "If this message stays, the board files are missing. Run"
+msgstr "إن بقيت هذه الرسالة، فملفات اللوحة مفقودة. شغّل"
+
+#: admin/views/kanban.php:185
+msgid "in the plugin folder."
+msgstr "في مجلد الإضافة."
+
+#: admin/views/past-entries.php:28 includes/class-admin-ui.php:27
+#: includes/class-plugin.php:152
+msgid "Past entries"
+msgstr "الإدخالات السابقة"
+
+#: admin/views/past-entries.php:29
+msgid ""
+"Bring in the entries your forms collected before EntryVault was installed. "
+"Run it as often as you like: entries already here are skipped, never copied "
+"twice."
+msgstr ""
+"اجلب الإدخالات التي جمعتها نماذجك قبل تثبيت EntryVault. شغّل ذلك كلما أردت: "
+"الإدخالات الموجودة هنا تُتخطّى ولا تُنسخ مرتين أبدًا."
+
+#: admin/views/past-entries.php:34
+msgid "Nothing to bring in"
+msgstr "لا شيء لجلبه"
+
+#: admin/views/past-entries.php:34
+msgid ""
+"No past entries found that EntryVault can read. It can bring in entries from "
+"Gravity Forms, WPForms (not WPForms Lite, which keeps none), Fluent Forms, "
+"Forminator, SureForms, Trinity Forms, Formidable, Ninja Forms, Everest "
+"Forms, MetForm, and Contact Form 7 messages saved by Flamingo or CFDB7."
+msgstr ""
+"لم يتم العثور على إدخالات سابقة يستطيع EntryVault قراءتها. يمكنه جلب "
+"الإدخالات من Gravity Forms وWPForms (وليس WPForms Lite، التي لا تحتفظ بأي "
+"إدخال) وFluent Forms وForminator وSureForms وTrinity Forms وFormidable "
+"وNinja Forms وEverest Forms وMetForm، ورسائل Contact Form 7 المحفوظة عبر "
+"Flamingo أو CFDB7."
+
+#. translators: %s: form plugin name.
+#: admin/views/past-entries.php:48
+#, php-format
+msgid "%s offers a public way to read its entries, and EntryVault uses it."
+msgstr "توفر %s طريقة عامة لقراءة إدخالاتها، ويستخدمها EntryVault."
+
+#: admin/views/past-entries.php:50
+msgid ""
+"Made by the same team as EntryVault, which reads its entries directly and is "
+"kept in step with it."
+msgstr ""
+"من صنع فريق EntryVault نفسه، الذي يقرأ إدخالاتها مباشرة ويبقيها متوافقة معه."
+
+#: admin/views/past-entries.php:57
+msgid "Report a problem"
+msgstr "أبلغ عن مشكلة"
+
+#: admin/views/past-entries.php:62
+msgid "What \"Report a problem\" sends"
+msgstr "ما الذي يرسله \"أبلغ عن مشكلة\""
+
+#: admin/views/past-entries.php:63
+msgid ""
+"Sent by your site's email to the EntryVault team, only when you click: the "
+"form plugin and its version, the EntryVault, WordPress and PHP versions, and "
+"the database check. No entries, names or email addresses, and not your site "
+"address."
+msgstr ""
+"يُرسل عبر بريد موقعك إلى فريق EntryVault، فقط عند النقر: إضافة النماذج "
+"وإصدارها، وإصدارات EntryVault وWordPress وPHP، وفحص قاعدة البيانات. لا "
+"إدخالات ولا أسماء ولا عناوين بريد إلكتروني، ولا عنوان موقعك."
+
+#: admin/views/past-entries.php:76
+msgid "Cannot read"
+msgstr "تتعذّر القراءة"
+
+#. translators: 1: form plugin name, 2: list of missing tables or columns.
+#: admin/views/past-entries.php:79
+#, php-format
+msgid ""
+"EntryVault checked the %1$s database first and did not find what it expects "
+"(missing: %2$s). Nothing was read. This usually means %1$s changed its "
+"database in an update. Please use \"Report a problem\" so EntryVault can be "
+"fixed."
+msgstr ""
+"فحص EntryVault قاعدة بيانات %1$s أولًا ولم يجد ما يتوقعه (المفقود: %2$s). لم "
+"تتم قراءة أي شيء. هذا يعني عادةً أن %1$s غيّرت قاعدة بياناتها في تحديث. الرجاء "
+"استخدام \"أبلغ عن مشكلة\" ليتم إصلاح EntryVault."
+
+#: admin/views/past-entries.php:84
+msgid "No forms found in this plugin."
+msgstr "لم يتم العثور على نماذج في هذه الإضافة."
+
+#: admin/views/past-entries.php:90
+msgid "Form"
+msgstr "النموذج"
+
+#: admin/views/past-entries.php:92
+msgid "Progress"
+msgstr "التقدّم"
+
+#: admin/views/past-entries.php:93 admin/views/tags.php:30
+msgid "Actions"
+msgstr "إجراءات"
+
+#. translators: %d: form ID.
+#: admin/views/past-entries.php:103
+#, php-format
+msgid "Form ID %d"
+msgstr "معرّف النموذج %d"
+
+#. translators: %s: number of entries.
+#: admin/views/past-entries.php:106
+#, php-format
+msgid "%s entry"
+msgid_plural "%s entries"
+msgstr[0] "%s إدخال"
+msgstr[1] "%s إدخال"
+msgstr[2] "%s إدخالان"
+msgstr[3] "%s إدخالات"
+msgstr[4] "%s إدخالًا"
+msgstr[5] "%s إدخال"
+
+#: admin/views/past-entries.php:110 admin/views/past-entries.php:159
+msgid "Not run yet"
+msgstr "لم يُشغَّل بعد"
+
+#: admin/views/past-entries.php:114
+msgid "Bring in entries"
+msgstr "اجلب الإدخالات"
+
+#: admin/views/past-entries.php:117
+msgid "Stop"
+msgstr "إيقاف"
+
+#: admin/views/past-entries.php:160
+msgid "Running"
+msgstr "قيد التشغيل"
+
+#: admin/views/past-entries.php:161
+msgid "Done"
+msgstr "تم"
+
+#: admin/views/past-entries.php:162
+msgid "Stopped"
+msgstr "متوقف"
+
+#: admin/views/past-entries.php:163
+msgid "Paused"
+msgstr "متوقف مؤقتًا"
+
+#: admin/views/past-entries.php:164
+msgid "Failed"
+msgstr "فشل"
+
+#: admin/views/past-entries.php:165
+msgid ""
+"Stopped: the form plugin database does not look as expected. Nothing was "
+"read."
+msgstr ""
+"تم الإيقاف: قاعدة بيانات إضافة النماذج لا تبدو كما هو متوقع. لم تتم قراءة أي "
+"شيء."
+
+#. translators: %s: number of entries.
+#: admin/views/past-entries.php:167
+#, php-format
+msgid "%s brought in"
+msgstr "تم جلب %s"
+
+#. translators: %s: number of entries.
+#: admin/views/past-entries.php:169
+#, php-format
+msgid "%s already here"
+msgstr "%s موجود هنا مسبقًا"
+
+#. translators: %s: number of entries.
+#: admin/views/past-entries.php:171
+#, php-format
+msgid "%s left out (spam or unreadable)"
+msgstr "تم استبعاد %s (مزعج أو غير مقروء)"
+
+#: admin/views/past-entries.php:268
+msgid "Thanks, the report was sent."
+msgstr "شكرًا، تم إرسال البلاغ."
+
+#: admin/views/past-entries.php:269
+msgid "A report for this form plugin was already sent in the last hour."
+msgstr "تم إرسال بلاغ عن إضافة النماذج هذه خلال الساعة الماضية."
+
+#: admin/views/past-entries.php:270
+msgid ""
+"The report could not be sent. Your site may not be able to send email; the "
+"Help and feedback page has other ways to reach us."
+msgstr ""
+"تعذّر إرسال البلاغ. ربما لا يستطيع موقعك إرسال البريد؛ صفحة المساعدة والآراء "
+"فيها طرق أخرى للتواصل معنا."
+
+#: admin/views/settings.php:50 includes/class-admin-ui.php:112
+#: includes/class-plugin.php:87 includes/class-plugin.php:155
+msgid "Settings"
+msgstr "الإعدادات"
+
+#: admin/views/settings.php:51
+msgid ""
+"How EntryVault sends replies, who can own entries, and what happens to your "
+"data."
+msgstr ""
+"كيف يرسل EntryVault الردود، ومن يمكنه أن يكون مسؤولًا عن الإدخالات، وما يحدث "
+"لبياناتك."
+
+#: admin/views/settings.php:55
+msgid "Entries your form plugins collected before EntryVault was installed:"
+msgstr "الإدخالات التي جمعتها إضافات النماذج قبل تثبيت EntryVault:"
+
+#: admin/views/settings.php:56
+msgid "Bring in past entries"
+msgstr "اجلب الإدخالات السابقة"
+
+#: admin/views/settings.php:59
+msgid "License"
+msgstr "الترخيص"
+
+#: admin/views/settings.php:63 includes/class-plugin.php:230
+msgid "General"
+msgstr "عام"
+
+#: admin/views/settings.php:64 includes/class-plugin.php:231
+msgid "Owners"
+msgstr "المسؤولون"
+
+#: admin/views/settings.php:82
+msgid "Default pipeline"
+msgstr "المسار الافتراضي"
+
+#: admin/views/settings.php:85
+#: admin/assets/js/health.js:95
+msgid "None"
+msgstr "لا شيء"
+
+#: admin/views/settings.php:87
+msgid ""
+"New entries land here unless something else sends them to another pipeline."
+msgstr "تصل الإدخالات الجديدة إلى هنا ما لم يرسلها شيء آخر إلى مسار آخر."
+
+#: admin/views/settings.php:91
+msgid "Send replies as"
+msgstr "أرسل الردود باسم"
+
+#: admin/views/settings.php:99
+msgid ""
+"The name and address your replies come from. Leave blank to use the site "
+"name and admin address. Without this, WordPress sends as \"WordPress\", so "
+"someone who wrote to your business gets a reply from a stranger."
+msgstr ""
+"الاسم والعنوان اللذان تصل منهما ردودك. اتركه فارغًا لاستخدام اسم الموقع "
+"وعنوان المدير. بدون هذا، يرسل WordPress باسم \"WordPress\"، فيصل الرد إلى من "
+"راسل نشاطك التجاري من شخص غريب."
+
+#: admin/views/settings.php:114
+msgid "Reply address domain"
+msgstr "نطاق عنوان الرد"
+
+#: admin/views/settings.php:118
+msgid ""
+"Optional. The domain used in the reply-to address of emails you send, so "
+"answers come back to the right entry. Leave blank to use this site's domain."
+msgstr ""
+"اختياري. النطاق المستخدم في عنوان الرد (reply-to) للرسائل التي ترسلها، لتعود "
+"الإجابات إلى الإدخال الصحيح. اتركه فارغًا لاستخدام نطاق هذا الموقع."
+
+#: admin/views/settings.php:123
+msgid "Show entries on a page"
+msgstr "اعرض الإدخالات في صفحة"
+
+#: admin/views/settings.php:138
+msgid "No pipelines yet."
+msgstr "لا توجد مسارات بعد."
+
+#: admin/views/settings.php:154
+msgid ""
+"Paste one of these into a page to show that pipeline's submissions. Anyone "
+"who can open the page can read the table, so treat the token as a password. "
+"By default the table shows the date, name and stage, never the email "
+"address. A submission without a name shows as \"(no name)\" rather than its "
+"address. Add columns=\"submitted_at,name,stage,email\" only if you really "
+"want addresses on a public page. The owner and tags columns are public too "
+"once you add them, so leave out internal tags. The Submissions Table block "
+"uses the same defaults. If EntryVault is ever deactivated, WordPress prints "
+"an unknown shortcode as plain text, token included; the block does not, so "
+"prefer the block on public pages."
+msgstr ""
+"الصق أحد هذه في صفحة لعرض إرسالات ذلك المسار. أي شخص يستطيع فتح الصفحة يمكنه "
+"قراءة الجدول، لذا تعامل مع الرمز (token) ككلمة مرور. افتراضيًا يعرض الجدول "
+"التاريخ والاسم والمرحلة، ولا يعرض عنوان البريد الإلكتروني أبدًا. الإرسال الذي "
+"لا يحمل اسمًا يظهر كـ \"(بلا اسم)\" بدلًا من عنوانه. أضف "
+"columns=\"submitted_at,name,stage,email\" فقط إن كنت تريد فعلًا عرض العناوين "
+"في صفحة عامة. عمودا المسؤول والوسوم عامّان أيضًا بمجرد إضافتهما، لذا لا تُدرج "
+"الوسوم الداخلية. مكوّن جدول الإرسالات يستخدم الإعدادات الافتراضية نفسها. إن "
+"تم تعطيل EntryVault يومًا، يطبع WordPress الرمز القصير غير المعروف كنص عادي، "
+"بما فيه الرمز (token)؛ المكوّن لا يفعل ذلك، لذا فضّل المكوّن في الصفحات العامة."
+
+#: admin/views/settings.php:160 includes/class-tag-manager.php:135
+msgid "Spam"
+msgstr "مزعج"
+
+#: admin/views/settings.php:164
+msgid "Leave out entries your form plugin marked as spam"
+msgstr "استبعد الإدخالات التي صنّفتها إضافة النماذج كمزعجة"
+
+#: admin/views/settings.php:166
+msgid ""
+"On by default. Some form plugins save spam and still pass it on (Gravity "
+"Forms, Fluent Forms, Forminator, Formidable, Ninja Forms with Akismet, "
+"Everest Forms, WS Form, Jetpack). With this on, those never reach your "
+"board. Spam stays in the form plugin, so nothing is lost. Untick to bring "
+"spam in too."
+msgstr ""
+"مُفعّل افتراضيًا. بعض إضافات النماذج تحفظ الرسائل المزعجة وتمرّرها مع ذلك "
+"(Gravity Forms وFluent Forms وForminator وFormidable وNinja Forms مع Akismet "
+"وEverest Forms وWS Form وJetpack). مع تفعيل هذا الخيار لا تصل تلك أبدًا إلى "
+"لوحتك. تبقى الرسائل المزعجة في إضافة النماذج، فلا يضيع شيء. أزل التحديد لجلب "
+"الرسائل المزعجة أيضًا."
+
+#: admin/views/settings.php:170
+msgid "Data"
+msgstr "البيانات"
+
+#: admin/views/settings.php:175
+msgid "Delete a card when its entry is deleted in Trinity Forms"
+msgstr "احذف البطاقة عند حذف إدخالها في Trinity Forms"
+
+#: admin/views/settings.php:177
+msgid ""
+"Off by default, so EntryVault keeps its copy as a backup when an entry is "
+"deleted in Trinity Forms, by hand or by its retention setting. Tick this to "
+"delete the card, its notes and emails too. Privacy erase requests from Tools "
+"> Erase Personal Data clear EntryVault either way."
+msgstr ""
+"مُعطّل افتراضيًا، لذا يحتفظ EntryVault بنسخته كنسخة احتياطية عند حذف إدخال في "
+"Trinity Forms، يدويًا أو عبر إعداد الاحتفاظ فيها. حدّد هذا لحذف البطاقة "
+"وملاحظاتها ورسائلها أيضًا. طلبات مسح الخصوصية من أدوات > مسح البيانات الشخصية "
+"تمسح بيانات EntryVault في كل الأحوال."
+
+#: admin/views/settings.php:182
+msgid "Delete all EntryVault data when the plugin is deleted"
+msgstr "احذف كل بيانات EntryVault عند حذف الإضافة"
+
+#: admin/views/settings.php:184
+msgid ""
+"Off by default. Your submissions, tags and notes are kept if you deactivate "
+"or delete the plugin, or let a Pro license lapse. Tick this only if deleting "
+"the plugin should also remove the data."
+msgstr ""
+"مُعطّل افتراضيًا. تبقى إرسالاتك ووسومك وملاحظاتك محفوظة إن عطّلت الإضافة أو "
+"حذفتها، أو تركت ترخيص Pro ينتهي. حدّد هذا فقط إن كان حذف الإضافة يجب أن يزيل "
+"البيانات أيضًا."
+
+#: admin/views/settings.php:189 admin/views/settings.php:218
+msgid "Save changes"
+msgstr "حفظ التغييرات"
+
+#: admin/views/settings.php:200
+msgid "Who can own entries"
+msgstr "من يمكنه أن يكون مسؤولًا عن الإدخالات"
+
+#: admin/views/settings.php:203
+msgid "No roles are available."
+msgstr "لا توجد أدوار متاحة."
+
+#: admin/views/settings.php:212
+msgid ""
+"People with a ticked role can be made the owner of an entry. People who can "
+"edit posts are always included."
+msgstr ""
+"يمكن تعيين أصحاب الأدوار المحددة مسؤولين عن إدخال. من يستطيعون تحرير "
+"المقالات مشمولون دائمًا."
+
+#: admin/views/tags.php:14 includes/class-admin-ui.php:26
+#: includes/class-frontend.php:506 includes/class-plugin.php:151
+#: includes/class-submissions-list-table.php:64
+#: admin/assets/kanban/build/index.js:5
+msgid "Tags"
+msgstr "الوسوم"
+
+#: admin/views/tags.php:15
+msgid ""
+"Labels you can put on any entry, like \"Hot lead\" or \"Wholesale\". Use "
+"them to filter the board and the Submissions list."
+msgstr ""
+"تسميات يمكنك وضعها على أي إدخال، مثل \"عميل محتمل ساخن\" أو \"بيع بالجملة\". "
+"استخدمها لتصفية اللوحة وقائمة الإرسالات."
+
+#: admin/views/tags.php:21
+msgid "Your tags"
+msgstr "وسومك"
+
+#: admin/views/tags.php:22
+msgid "Edit a tag to rename it or change its colour. Entries keep their tags."
+msgstr "حرّر وسمًا لإعادة تسميته أو تغيير لونه. تحتفظ الإدخالات بوسومها."
+
+#: admin/views/tags.php:27 admin/views/tags.php:45
+#: includes/class-frontend.php:502
+#: blocks/submissions-table/index.js:23
+msgid "Name"
+msgstr "الاسم"
+
+#: admin/views/tags.php:28
+msgid "Short name"
+msgstr "الاسم المختصر"
+
+#: admin/views/tags.php:29 admin/views/tags.php:48
+msgid "Colour"
+msgstr "اللون"
+
+#: admin/views/tags.php:39 includes/class-plugin.php:288
+msgid "Add a tag"
+msgstr "أضف وسمًا"
+
+#: admin/views/tags.php:40
+msgid ""
+"Pick a name and a colour. You can also create tags from an entry on the "
+"board."
+msgstr "اختر اسمًا ولونًا. يمكنك أيضًا إنشاء وسوم من إدخال على اللوحة."
+
+#: admin/views/tags.php:53
+msgid "Save tag"
+msgstr "احفظ الوسم"
+
+#: admin/views/upgrade.php:29
+msgid "Automation engine"
+msgstr "محرّك الأتمتة"
+
+#: admin/views/upgrade.php:29
+msgid ""
+"Set up rules once: when a form comes in, a stage changes, a tag is added or "
+"someone replies, send an email, move the entry, tag it, assign it or notify "
+"another app."
+msgstr ""
+"أعدّ القواعد مرة واحدة: عندما يصل نموذج، أو تتغير مرحلة، أو يُضاف وسم، أو يرد "
+"أحدهم، أرسل بريدًا، أو انقل الإدخال، أو ضع عليه وسمًا، أو عيّنه لمسؤول، أو أبلغ "
+"تطبيقًا آخر."
+
+#: admin/views/upgrade.php:30
+msgid "Integrations"
+msgstr "التكاملات"
+
+#: admin/views/upgrade.php:30
+msgid ""
+"Send people to Mailchimp or MailerLite, notify other apps safely, and tag "
+"entries by form."
+msgstr ""
+"أرسل الأشخاص إلى Mailchimp أو MailerLite، وأبلغ التطبيقات الأخرى بأمان، وضع "
+"وسومًا على الإدخالات حسب النموذج."
+
+#: admin/views/upgrade.php:31
+msgid "Email reply tracking"
+msgstr "تتبّع الردود بالبريد"
+
+#: admin/views/upgrade.php:31
+msgid ""
+"Connect a mailbox and replies to your emails are filed under the right "
+"entry, so the whole conversation sits in one place."
+msgstr ""
+"اربط صندوق بريد فتُحفظ الردود على رسائلك تحت الإدخال الصحيح، لتبقى المحادثة "
+"كلها في مكان واحد."
+
+#: admin/views/upgrade.php:32
+msgid "Multiple pipelines"
+msgstr "مسارات متعددة"
+
+#: admin/views/upgrade.php:32
+msgid "Run separate Kanban boards for different teams or workflows."
+msgstr "شغّل لوحات Kanban منفصلة لفرق أو سير عمل مختلفة."
+
+#: admin/views/upgrade.php:33
+msgid "Routing and owners"
+msgstr "التوجيه والمسؤولون"
+
+#: admin/views/upgrade.php:33
+msgid ""
+"Send each form to its own pipeline, and share new entries between your team "
+"in turn."
+msgstr ""
+"أرسل كل نموذج إلى مساره الخاص، ووزّع الإدخالات الجديدة على فريقك بالتناوب."
+
+#: admin/views/upgrade.php:34
+msgid "Public Kanban board"
+msgstr "لوحة Kanban عامة"
+
+#: admin/views/upgrade.php:34
+msgid ""
+"Show a view-only board on any page, behind a private link. Plus approvals, "
+"quick edits and exports emailed on a schedule."
+msgstr ""
+"اعرض لوحة للقراءة فقط في أي صفحة، خلف رابط خاص. إضافة إلى الموافقات "
+"والتعديلات السريعة والتصديرات المرسلة بالبريد وفق جدول."
+
+#: admin/views/upgrade.php:39
+msgid "EntryVault Pro"
+msgstr "EntryVault Pro"
+
+#: admin/views/upgrade.php:40
+msgid ""
+"You are using the free EntryVault: a complete board for one pipeline, with "
+"the entries your forms already hold brought in. Pro adds the rules, "
+"connections, email replies and extra pipelines a growing team needs."
+msgstr ""
+"أنت تستخدم EntryVault المجاني: لوحة كاملة لمسار واحد، مع جلب الإدخالات "
+"الموجودة في نماذجك. يضيف Pro القواعد والاتصالات والردود بالبريد والمسارات "
+"الإضافية التي يحتاجها فريق ينمو."
+
+#: admin/views/upgrade.php:41
+msgid "See Pro plans"
+msgstr "اطّلع على خطط Pro"
+
+#: admin/views/upgrade.php:45
+msgid "Upgrading keeps everything."
+msgstr "الترقية تحتفظ بكل شيء."
+
+#: admin/views/upgrade.php:46
+msgid ""
+"Install Pro over this version. It is the same plugin with the same database, "
+"so your pipelines, entries, tags and settings carry over untouched."
+msgstr ""
+"ثبّت Pro فوق هذا الإصدار. إنها الإضافة نفسها بقاعدة البيانات نفسها، لذا تنتقل "
+"مساراتك وإدخالاتك ووسومك وإعداداتك كما هي."
+
+#: admin/views/upgrade.php:59
+msgid "Already bought Pro?"
+msgstr "اشتريت Pro بالفعل؟"
+
+#: admin/views/upgrade.php:60
+msgid ""
+"Fastest: paste your Pro license key in EntryVault Settings, under License, "
+"and click Install Pro now. Pro is installed over this version for you. Or do "
+"it by hand:"
+msgstr ""
+"الأسرع: الصق مفتاح ترخيص Pro في إعدادات EntryVault، تحت الترخيص، وانقر ثبّت "
+"Pro الآن. سيُثبَّت Pro فوق هذا الإصدار نيابةً عنك. أو افعل ذلك يدويًا:"
+
+#: admin/views/upgrade.php:60
+msgid "Open the License box"
+msgstr "افتح مربع الترخيص"
+
+#: admin/views/upgrade.php:62 admin/views/upgrade.php:63
+msgid "Download the Pro zip"
+msgstr "نزّل ملف Pro المضغوط"
+
+#: admin/views/upgrade.php:62
+msgid "From your account on jnkplugins.com, under your license."
+msgstr "من حسابك على jnkplugins.com، تحت ترخيصك."
+
+#: admin/views/upgrade.php:64
+msgid "Upload it over this one"
+msgstr "ارفعه فوق هذه النسخة"
+
+#: admin/views/upgrade.php:64
+msgid ""
+"Plugins, Add New, Upload Plugin. WordPress shows this copy as EntryVault and "
+"the upload as EntryVault Pro. Choose \"Replace current with uploaded\"."
+msgstr ""
+"إضافات، أضف جديدًا، رفع إضافة. يعرض WordPress هذه النسخة باسم EntryVault "
+"والملف المرفوع باسم EntryVault Pro. اختر \"استبدال الحالي بالمرفوع\"."
+
+#: admin/views/upgrade.php:65
+msgid "Enter your license key"
+msgstr "أدخل مفتاح الترخيص"
+
+#: admin/views/upgrade.php:65
+msgid ""
+"A notice at the top of the screen takes you to the box, in EntryVault "
+"Settings under License. The key is in your purchase email."
+msgstr ""
+"إشعار في أعلى الشاشة يأخذك إلى المربع، في إعدادات EntryVault تحت الترخيص. "
+"المفتاح موجود في رسالة الشراء."
+
+#: admin/views/upgrade.php:68
+msgid ""
+"The Pro zip is a few megabytes. If your host refuses the upload, unzip it "
+"and copy the entryvault folder over the existing one in wp-content/plugins "
+"with SFTP or your host's file manager."
+msgstr ""
+"ملف Pro المضغوط بحجم بضعة ميغابايت. إن رفضت الاستضافة الرفع، فك ضغطه وانسخ "
+"مجلد entryvault فوق المجلد الموجود في wp-content/plugins عبر SFTP أو مدير "
+"الملفات في استضافتك."
+
+#: includes/class-admin-ui.php:25 includes/class-plugin.php:150
+#: includes/class-submissions-admin.php:221
+msgid "Submissions"
+msgstr "الإرسالات"
+
+#: includes/class-admin-ui.php:62
+msgid "Locked"
+msgstr "مقفل"
+
+#: includes/class-admin-ui.php:93
+msgid "EntryVault sections"
+msgstr "أقسام EntryVault"
+
+#: includes/class-admin-ui.php:99
+msgid "More tools"
+msgstr "أدوات أخرى"
+
+#: includes/class-admin-ui.php:109
+msgid "Upgrade"
+msgstr "ترقية"
+
+#: includes/class-admin-ui.php:111
+msgid "Help"
+msgstr "مساعدة"
+
+#: includes/class-dates.php:61 admin/assets/kanban/build/index.js:2
+#: admin/assets/kanban/build/index.js:20
+msgid "just now"
+msgstr "الآن"
+
+#: includes/class-default-names.php:33
+msgctxt "default pipeline name"
+msgid "Inbox"
+msgstr "الوارد"
+
+#: includes/class-default-names.php:35
+msgid "New"
+msgstr "جديد"
+
+#: includes/class-default-names.php:37
+msgid "Contacted"
+msgstr "تم التواصل"
+
+#: includes/class-default-names.php:39
+msgid "Qualified"
+msgstr "مؤهَّل"
+
+#: includes/class-default-names.php:41
+#: admin/assets/js/dashboard.js:158
+msgid "Won"
+msgstr "مكسوب"
+
+#: includes/class-default-names.php:43 admin/assets/js/dashboard.js:159
+msgid "Lost"
+msgstr "خاسر"
+
+#: includes/class-email-sender.php:109
+msgid "The mailer did not accept the email."
+msgstr "لم يقبل برنامج البريد الرسالة."
+
+#: includes/class-feedback.php:41
+msgid "You do not have permission to do this."
+msgstr "ليست لديك صلاحية للقيام بهذا."
+
+#: includes/class-feedback.php:115
+msgid "Bug report"
+msgstr "بلاغ عن خطأ"
+
+#: includes/class-feedback.php:116
+msgid "Feature request"
+msgstr "طلب ميزة"
+
+#: includes/class-feedback.php:117
+msgid "Question"
+msgstr "سؤال"
+
+#: includes/class-feedback.php:118
+msgid "Praise"
+msgstr "إشادة"
+
+#: includes/class-feedback.php:119
+msgid "Other"
+msgstr "أخرى"
+
+#: includes/class-field-values.php:39 includes/class-field-values.php:101
+#: includes/class-field-values.php:166
+msgid "Yes"
+msgstr "نعم"
+
+#: includes/class-field-values.php:39
+msgid "No"
+msgstr "لا"
+
+#: includes/class-frontend.php:85
+msgid "No pipeline specified."
+msgstr "لم يتم تحديد مسار."
+
+#: includes/class-frontend.php:90 includes/class-rest-public.php:123
+msgid "Pipeline not found."
+msgstr "المسار غير موجود."
+
+#: includes/class-frontend.php:100 includes/class-rest-public.php:107
+msgid "Access required."
+msgstr "الوصول مطلوب."
+
+#: includes/class-frontend.php:104
+msgid ""
+"Only editors see this note: visitors cannot read this table because the "
+"access_token is missing or does not match this pipeline. Copy the ready-made "
+"shortcode from EntryVault > Settings > General."
+msgstr ""
+"يرى المحررون فقط هذه الملاحظة: لا يستطيع الزوار قراءة هذا الجدول لأن "
+"access_token مفقود أو لا يطابق هذا المسار. انسخ الرمز القصير الجاهز من "
+"EntryVault > الإعدادات > عام."
+
+#: includes/class-frontend.php:451 includes/class-frontend.php:454
+msgid "(no name)"
+msgstr "(بلا اسم)"
+
+#: includes/class-frontend.php:453
+msgid "(email hidden)"
+msgstr "(البريد مخفي)"
+
+#: includes/class-frontend.php:499 blocks/submissions-table/index.js:30
+msgid "Submitted"
+msgstr "تاريخ الإرسال"
+
+#: includes/class-frontend.php:500 includes/class-submissions-list-table.php:67
+#: blocks/submissions-table/index.js:29
+msgid "Created"
+msgstr "تاريخ الإنشاء"
+
+#: includes/class-frontend.php:501 includes/class-plugin.php:352
+#: includes/class-privacy.php:227 includes/class-submissions-list-table.php:53
+#: blocks/submissions-table/index.js:24
+msgid "Title"
+msgstr "العنوان"
+
+#: includes/class-frontend.php:503 includes/class-plugin.php:353
+#: includes/class-privacy.php:228 includes/class-submissions-list-table.php:54
+#: admin/assets/kanban/build/index.js:5
+msgid "Email"
+msgstr "البريد الإلكتروني"
+
+#: includes/class-frontend.php:505 includes/class-submissions-list-table.php:65
+#: includes/class-submissions-list-table.php:130
+#: admin/assets/js/dashboard.js:156 admin/assets/kanban/build/index.js:5
+#: admin/assets/kanban/build/index.js:37
+msgid "Owner"
+msgstr "المسؤول"
+
+#: includes/class-plugin.php:94 includes/class-plugin.php:177
+#: includes/class-plugin.php:178
+msgid "Upgrade to Pro"
+msgstr "الترقية إلى Pro"
+
+#: includes/class-plugin.php:108
+msgid "Docs"
+msgstr "التوثيق"
+
+#: includes/class-plugin.php:113
+msgid "Support"
+msgstr "الدعم"
+
+#: includes/class-plugin.php:148
+msgid "Kanban"
+msgstr "اللوحة"
+
+#: includes/class-plugin.php:149
+msgid "Dashboard"
+msgstr "نظرة عامة"
+
+#: includes/class-plugin.php:156
+msgid "Feedback"
+msgstr "الآراء"
+
+#: includes/class-plugin.php:224 includes/class-plugin.php:284
+msgid "Saved."
+msgstr "تمّ الحفظ."
+
+#: includes/class-plugin.php:225
+msgid "Save failed."
+msgstr "فشل الحفظ."
+
+#. translators: %s: the settings section, e.g. "Mailchimp".
+#: includes/class-plugin.php:227
+#, php-format
+msgid "%s saved."
+msgstr "تمّ حفظ %s."
+
+#. translators: 1: the settings section, 2: the error message.
+#: includes/class-plugin.php:229
+#, php-format
+msgid "%1$s save failed: %2$s"
+msgstr "تعذّر حفظ %1$s: %2$s"
+
+#: includes/class-plugin.php:282
+msgid "Edit"
+msgstr "تحرير"
+
+#: includes/class-plugin.php:283 includes/class-submissions-list-table.php:96
+msgid "Delete"
+msgstr "حذف"
+
+#: includes/class-plugin.php:285
+msgid "Error."
+msgstr "خطأ."
+
+#: includes/class-plugin.php:286
+msgid "Delete this tag? It comes off every entry that has it."
+msgstr "حذف هذا الوسم؟ سيُزال من كل إدخال يحمله."
+
+#: includes/class-plugin.php:287
+msgid "No tags yet. Add your first one with the form next to this list."
+msgstr "لا توجد وسوم بعد. أضف أول وسم من النموذج بجانب هذه القائمة."
+
+#: includes/class-plugin.php:289
+msgid "Edit tag"
+msgstr "تحرير الوسم"
+
+#: includes/class-plugin.php:345
+msgid "Please choose a file or paste CSV first."
+msgstr "الرجاء اختيار ملف أو لصق نص CSV أولًا."
+
+#: includes/class-plugin.php:346
+msgid "Loading preview…"
+msgstr "جارٍ تحميل المعاينة…"
+
+#: includes/class-plugin.php:347
+msgid "Preview failed."
+msgstr "فشلت المعاينة."
+
+#. translators: %s: number of rows loaded.
+#: includes/class-plugin.php:349
+#, php-format
+msgid "Loaded %s rows."
+msgstr "تم تحميل %s صف."
+
+#: includes/class-plugin.php:350
+msgid "Network error."
+msgstr "خطأ في الشبكة."
+
+#: includes/class-plugin.php:351
+msgid "Ignore"
+msgstr "تجاهل"
+
+#: includes/class-plugin.php:354 includes/class-privacy.php:226
+#: includes/class-submissions-list-table.php:66
+#: admin/assets/kanban/build/index.js:5
+msgid "Source"
+msgstr "المصدر"
+
+#: includes/class-plugin.php:355
+msgid "Field"
+msgstr "حقل"
+
+#: includes/class-plugin.php:356
+msgid "Date received"
+msgstr "تاريخ الاستلام"
+
+#. translators: %s: number of rows.
+#: includes/class-plugin.php:358
+#, php-format
+msgid ""
+"The date in %s rows could not be read, so those entries got today's date."
+msgstr "تعذّرت قراءة التاريخ في %s صف، لذا أخذت تلك الإدخالات تاريخ اليوم."
+
+#: includes/class-plugin.php:360
+msgid "You must map one column to Email."
+msgstr "يجب ربط عمود واحد بالبريد الإلكتروني."
+
+#: includes/class-plugin.php:361
+msgid "Running…"
+msgstr "جارٍ التشغيل…"
+
+#: includes/class-plugin.php:362
+msgid "Import failed."
+msgstr "فشل الاستيراد."
+
+#: includes/class-plugin.php:363
+msgid "Done."
+msgstr "تم."
+
+#: includes/class-plugin.php:364
+msgid "Results"
+msgstr "النتائج"
+
+#: includes/class-plugin.php:365
+msgid "Test run: nothing was saved."
+msgstr "تشغيل تجريبي: لم يُحفظ أي شيء."
+
+#: includes/class-plugin.php:366
+msgid "Imported:"
+msgstr "تم استيراده:"
+
+#: includes/class-plugin.php:367
+msgid "Would import:"
+msgstr "سيتم استيراده:"
+
+#. translators: %s: comma-separated column names.
+#: includes/class-plugin.php:369
+#, php-format
+msgid ""
+"Only one column can be the title, but these are all set to Title: %s. Set "
+"the others to Field so their values are kept."
+msgstr ""
+"يمكن لعمود واحد فقط أن يكون العنوان، لكن هذه الأعمدة كلها مضبوطة على "
+"العنوان: %s. اضبط الباقي على حقل لتُحفظ قيمها."
+
+#: includes/class-plugin.php:370
+msgid "Already present:"
+msgstr "موجود مسبقًا:"
+
+#: includes/class-plugin.php:371
+msgid ""
+"These rows were already on the board, from an earlier import or from the "
+"form plugin itself, and were left as they are. Nothing was copied twice."
+msgstr ""
+"هذه الصفوف كانت موجودة على اللوحة، من استيراد سابق أو من إضافة النماذج "
+"نفسها، وتُركت كما هي. لم يُنسخ شيء مرتين."
+
+#: includes/class-plugin.php:372
+msgid "Skipped:"
+msgstr "تم تخطيه:"
+
+#: includes/class-plugin.php:373
+msgid "Errors"
+msgstr "الأخطاء"
+
+#: includes/class-plugin.php:374
+msgid "Row"
+msgstr "الصف"
+
+#: includes/class-privacy.php:36 includes/class-privacy.php:46
+msgid "EntryVault form entries"
+msgstr "إدخالات نماذج EntryVault"
+
+#: includes/class-privacy.php:59
+msgid ""
+"When you send a form on this site, a copy of what you entered (including "
+"your name and email address if the form asks for them) is kept so our team "
+"can follow up. We keep it until it is no longer needed, then delete it. You "
+"can ask for a copy of it, or for it to be deleted, by contacting us."
+msgstr ""
+"عندما ترسل نموذجًا على هذا الموقع، نحتفظ بنسخة مما أدخلته (بما في ذلك اسمك "
+"وبريدك الإلكتروني إن طلبهما النموذج) ليتمكن فريقنا من المتابعة. نحتفظ بها "
+"حتى لا تعود هناك حاجة إليها، ثم نحذفها. يمكنك طلب نسخة منها، أو طلب حذفها، "
+"بالتواصل معنا."
+
+#: includes/class-privacy.php:89
+msgid "Emails"
+msgstr "رسائل البريد"
+
+#. translators: 1: entry id, 2: reason.
+#: includes/class-privacy.php:129
+#, php-format
+msgid "EntryVault entry #%1$d was kept: %2$s"
+msgstr "تم الاحتفاظ بإدخال EntryVault رقم #%1$d: %2$s"
+
+#: includes/class-privacy.php:225 admin/assets/kanban/build/index.js:5
+msgid "Received"
+msgstr "تاريخ الاستلام"
+
+#: includes/class-privacy.php:254
+msgid "Note"
+msgstr "ملاحظة"
+
+#: includes/class-privacy.php:270
+msgid "Form entries"
+msgstr "إدخالات النماذج"
+
+#: includes/class-privacy.php:271
+msgid "Copies of forms you sent on this site, kept by EntryVault."
+msgstr "نسخ من النماذج التي أرسلتها على هذا الموقع، يحتفظ بها EntryVault."
+
+#: includes/class-privacy.php:279
+msgid "Email sent"
+msgstr "بريد مُرسل"
+
+#: includes/class-privacy.php:279
+msgid "Email received"
+msgstr "بريد مُستلم"
+
+#: includes/class-privacy.php:282
+msgid "Email text"
+msgstr "نص البريد"
+
+#. translators: %s: plugin name.
+#: includes/class-ready-notice.php:65
+#, php-format
+msgid "%s is ready."
+msgstr "%s جاهز."
+
+#: includes/class-ready-notice.php:67
+msgid "Start here"
+msgstr "ابدأ من هنا"
+
+#: includes/class-reporting.php:459 includes/class-submissions-admin.php:323
+#: includes/class-timeline.php:94 admin/assets/kanban/build/index.js:5
+#: admin/assets/kanban/build/index.js:20 admin/assets/kanban/build/index.js:37
+msgid "Unassigned"
+msgstr "غير مُعيَّن"
+
+#. translators: %s: column name.
+#: includes/class-rest-public.php:140
+#, php-format
+msgid "Unknown column: %s"
+msgstr "عمود غير معروف: %s"
+
+#: includes/class-rest-public.php:147
+msgid "Column not available without authentication."
+msgstr "العمود غير متاح بدون مصادقة."
+
+#: includes/class-schema-check.php:82
+msgid "EntryVault could not create its database tables."
+msgstr "تعذّر على EntryVault إنشاء جداول قاعدة البيانات الخاصة به."
+
+#: includes/class-schema-check.php:83
+msgid ""
+"Submissions cannot reach the board without them. Send the details below to "
+"support (jnkplugins.com/contact) and we will sort it out with you."
+msgstr ""
+"لا يمكن أن تصل الإرسالات إلى اللوحة بدونها. أرسل التفاصيل أدناه إلى الدعم "
+"(jnkplugins.com/contact) وسنحل المشكلة معك."
+
+#: includes/class-schema-check.php:92
+msgid "EntryVault database tables"
+msgstr "جداول قاعدة بيانات EntryVault"
+
+#: includes/class-schema-check.php:105
+msgid "EntryVault is missing database tables"
+msgstr "جداول قاعدة بيانات EntryVault ناقصة"
+
+#: includes/class-schema-check.php:108
+msgid ""
+"Submissions cannot reach the board without these tables. Send this list to "
+"support (jnkplugins.com/contact):"
+msgstr ""
+"لا يمكن أن تصل الإرسالات إلى اللوحة بدون هذه الجداول. أرسل هذه القائمة إلى "
+"الدعم (jnkplugins.com/contact):"
+
+#: includes/class-schema-check.php:116
+msgid "EntryVault Pro data is ready"
+msgstr "بيانات EntryVault Pro جاهزة"
+
+#: includes/class-schema-check.php:116
+msgid "EntryVault database tables are ready"
+msgstr "جداول قاعدة بيانات EntryVault جاهزة"
+
+#. translators: %d: number of database tables
+#: includes/class-schema-check.php:121
+#, php-format
+msgid "The %d table EntryVault needs is in the database."
+msgid_plural "All %d tables EntryVault needs are in the database."
+msgstr[0] "كل الجداول التي يحتاجها EntryVault (%d) موجودة في قاعدة البيانات."
+msgstr[1] "الجدول الذي يحتاجه EntryVault (%d) موجود في قاعدة البيانات."
+msgstr[2] "الجدولان اللذان يحتاجهما EntryVault (%d) موجودان في قاعدة البيانات."
+msgstr[3] "كل الجداول التي يحتاجها EntryVault (%d) موجودة في قاعدة البيانات."
+msgstr[4] "كل الجداول التي يحتاجها EntryVault (%d) موجودة في قاعدة البيانات."
+msgstr[5] "كل الجداول التي يحتاجها EntryVault (%d) موجودة في قاعدة البيانات."
+
+#: includes/class-submissions-admin.php:222
+msgid ""
+"Every entry in one list. Filter it, tick rows to change many at once, or "
+"export what you see to a spreadsheet."
+msgstr ""
+"كل الإدخالات في قائمة واحدة. صفِّها، أو حدّد صفوفًا لتغيير الكثير منها دفعة "
+"واحدة، أو صدّر ما تراه إلى جدول بيانات."
+
+#: includes/class-submissions-admin.php:223
+msgid "Export CSV"
+msgstr "تصدير CSV"
+
+#: includes/class-submissions-admin.php:238
+msgid "All"
+msgstr "الكل"
+
+#: includes/class-submissions-admin.php:243 includes/class-timeline.php:97
+msgid "Archived"
+msgstr "مؤرشف"
+
+#: includes/class-submissions-admin.php:262
+msgid "All pipelines"
+msgstr "كل المسارات"
+
+#: includes/class-submissions-admin.php:270
+msgid "All stages"
+msgstr "كل المراحل"
+
+#: includes/class-submissions-admin.php:293
+msgid "All sources"
+msgstr "كل المصادر"
+
+#: includes/class-submissions-admin.php:312
+msgid "All tags"
+msgstr "كل الوسوم"
+
+#: includes/class-submissions-admin.php:321
+msgid "All owners"
+msgstr "كل المسؤولين"
+
+#: includes/class-submissions-admin.php:347
+msgid "Filter"
+msgstr "تصفية"
+
+#: includes/class-submissions-admin.php:355
+#: public/templates/submissions-table.php:54
+#: public/templates/submissions-table.php:63
+#: admin/assets/kanban/build/index.js:37
+msgid "Search"
+msgstr "البحث"
+
+#. translators: 1: opening link tag, 2: closing link tag.
+#: includes/class-submissions-admin.php:369
+#, php-format
+msgid ""
+"Tagging, assigning and replying to these by hand? %1$sSee what Pro "
+"automates%2$s."
+msgstr ""
+"تضع الوسوم وتعيّن المسؤولين وترد على هذه يدويًا؟ %1$sاطّلع على ما يؤتمته "
+"Pro%2$s."
+
+#. translators: %d: count
+#: includes/class-submissions-admin.php:420
+#, php-format
+msgid "Deleted %d submission."
+msgid_plural "Deleted %d submissions."
+msgstr[0] "تم حذف %d إرسال."
+msgstr[1] "تم حذف %d إرسال."
+msgstr[2] "تم حذف %d إرسالان."
+msgstr[3] "تم حذف %d إرسالات."
+msgstr[4] "تم حذف %d إرسالًا."
+msgstr[5] "تم حذف %d إرسال."
+
+#. translators: 1: moved 2: skipped
+#: includes/class-submissions-admin.php:428
+#, php-format
+msgid "Moved %1$d submission(s); %2$d skipped."
+msgstr "تم نقل %1$d إرسال؛ وتخطي %2$d."
+
+#. translators: %d: count
+#: includes/class-submissions-admin.php:438
+#, php-format
+msgid "Assigned owner on %d submission."
+msgid_plural "Assigned owner on %d submissions."
+msgstr[0] "تم تعيين مسؤول لـ %d إرسال."
+msgstr[1] "تم تعيين مسؤول لـ %d إرسال."
+msgstr[2] "تم تعيين مسؤول لـ %d إرسالان."
+msgstr[3] "تم تعيين مسؤول لـ %d إرسالات."
+msgstr[4] "تم تعيين مسؤول لـ %d إرسالًا."
+msgstr[5] "تم تعيين مسؤول لـ %d إرسال."
+
+#. translators: %d: count
+#: includes/class-submissions-admin.php:443
+#, php-format
+msgid "Cleared owner on %d submission."
+msgid_plural "Cleared owner on %d submissions."
+msgstr[0] "تمت إزالة المسؤول من %d إرسال."
+msgstr[1] "تمت إزالة المسؤول من %d إرسال."
+msgstr[2] "تمت إزالة المسؤول من %d إرسالان."
+msgstr[3] "تمت إزالة المسؤول من %d إرسالات."
+msgstr[4] "تمت إزالة المسؤول من %d إرسالًا."
+msgstr[5] "تمت إزالة المسؤول من %d إرسال."
+
+#. translators: %d: count
+#: includes/class-submissions-admin.php:451
+#, php-format
+msgid "Tagged %d submission."
+msgid_plural "Tagged %d submissions."
+msgstr[0] "تم وضع وسم على %d إرسال."
+msgstr[1] "تم وضع وسم على %d إرسال."
+msgstr[2] "تم وضع وسم على %d إرسالان."
+msgstr[3] "تم وضع وسم على %d إرسالات."
+msgstr[4] "تم وضع وسم على %d إرسالًا."
+msgstr[5] "تم وضع وسم على %d إرسال."
+
+#. translators: %d: count
+#: includes/class-submissions-admin.php:458
+#, php-format
+msgid "Archived %d submission."
+msgid_plural "Archived %d submissions."
+msgstr[0] "تمت أرشفة %d إرسال."
+msgstr[1] "تمت أرشفة %d إرسال."
+msgstr[2] "تمت أرشفة %d إرسالان."
+msgstr[3] "تمت أرشفة %d إرسالات."
+msgstr[4] "تمت أرشفة %d إرسالًا."
+msgstr[5] "تمت أرشفة %d إرسال."
+
+#. translators: %d: count
+#: includes/class-submissions-admin.php:465
+#, php-format
+msgid "Restored %d submission."
+msgid_plural "Restored %d submissions."
+msgstr[0] "تمت استعادة %d إرسال."
+msgstr[1] "تمت استعادة %d إرسال."
+msgstr[2] "تمت استعادة %d إرسالان."
+msgstr[3] "تمت استعادة %d إرسالات."
+msgstr[4] "تمت استعادة %d إرسالًا."
+msgstr[5] "تمت استعادة %d إرسال."
+
+#: includes/class-submissions-admin.php:494
+msgid "Forbidden."
+msgstr "ممنوع."
+
+#. translators: %s: form field label that clashes with a fixed column, e.g. "Email".
+#: includes/class-submissions-admin.php:620
+#, php-format
+msgid "%s (form field)"
+msgstr "%s (حقل النموذج)"
+
+#: includes/class-submissions-list-table.php:52
+msgid "ID"
+msgstr "ID"
+
+#: includes/class-submissions-list-table.php:68
+msgid "Updated"
+msgstr "تاريخ التحديث"
+
+#. translators: 1: pipeline name, 2: stage name.
+#: includes/class-submissions-list-table.php:101
+#, php-format
+msgid "Move to: %1$s / %2$s"
+msgstr "نقل إلى: %1$s / %2$s"
+
+#. translators: %s: stage name.
+#: includes/class-submissions-list-table.php:103
+#, php-format
+msgid "Move to: %s"
+msgstr "نقل إلى: %s"
+
+#: includes/class-submissions-list-table.php:106
+msgid "Assign owner"
+msgstr "تعيين مسؤول"
+
+#: includes/class-submissions-list-table.php:107
+msgid "Add tag"
+msgstr "إضافة وسم"
+
+#: includes/class-submissions-list-table.php:108
+msgid "Archive"
+msgstr "أرشفة"
+
+#: includes/class-submissions-list-table.php:109
+msgid "Unarchive"
+msgstr "إلغاء الأرشفة"
+
+#: includes/class-submissions-list-table.php:132
+msgid "(unassign)"
+msgstr "(إلغاء التعيين)"
+
+#: includes/class-submissions-list-table.php:141
+msgid "Tag"
+msgstr "الوسم"
+
+#: includes/class-submissions-list-table.php:143
+msgid "— Select tag —"
+msgstr "— اختر وسمًا —"
+
+#: includes/class-submissions-list-table.php:329
+msgid "No submissions match these filters."
+msgstr "لا توجد إرسالات تطابق عوامل التصفية هذه."
+
+#: includes/class-submissions-list-table.php:333
+msgid "No submissions yet."
+msgstr "لا توجد إرسالات بعد."
+
+#. translators: 1: opening link tag to the import screen, 2: closing link tag.
+#: includes/class-submissions-list-table.php:336
+#, php-format
+msgid ""
+"Submissions from every supported form plugin land here automatically. You "
+"can also %1$simport a CSV%2$s to bring existing ones in."
+msgstr ""
+"تصل الإرسالات من كل إضافات النماذج المدعومة إلى هنا تلقائيًا. يمكنك أيضًا "
+"%1$sاستيراد ملف CSV%2$s لجلب الإرسالات الموجودة."
+
+#. translators: 1: previous stage name, 2: new stage name.
+#: includes/class-timeline.php:44 admin/assets/kanban/build/index.js:7
+#, php-format
+msgid "Moved from %1$s to %2$s"
+msgstr "نُقل من %1$s إلى %2$s"
+
+#. translators: 1: previous pipeline name, 2: new pipeline name.
+#: includes/class-timeline.php:47
+#, php-format
+msgid "(pipeline %1$s → %2$s)"
+msgstr "(المسار %1$s ← %2$s)"
+
+#: includes/class-timeline.php:52
+msgid "Note deleted"
+msgstr "تم حذف ملاحظة"
+
+#. translators: 1: what happened ("Created", "Updated"), 2: form plugin name.
+#: includes/class-timeline.php:59 admin/assets/kanban/build/index.js:9
+#, php-format
+msgid "%1$s from %2$s"
+msgstr "%1$s من %2$s"
+
+#. translators: 1: recipient, 2: subject.
+#: includes/class-timeline.php:64 admin/assets/kanban/build/index.js:11
+#, php-format
+msgid "Email to %1$s: %2$s"
+msgstr "بريد إلى %1$s: %2$s"
+
+#. translators: 1: recipient, 2: why it failed.
+#: includes/class-timeline.php:67
+#, php-format
+msgid "Email to %1$s NOT sent: %2$s"
+msgstr "لم يتم إرسال البريد إلى %1$s: %2$s"
+
+#. translators: %s: tag name.
+#: includes/class-timeline.php:78 admin/assets/kanban/build/index.js:14
+#, php-format
+msgid "Tagged %s"
+msgstr "أُضيف الوسم %s"
+
+#. translators: %s: tag name.
+#: includes/class-timeline.php:80 admin/assets/kanban/build/index.js:16
+#, php-format
+msgid "Removed tag %s"
+msgstr "أُزيل الوسم %s"
+
+#. translators: %s: user display name.
+#: includes/class-timeline.php:84 admin/assets/kanban/build/index.js:18
+#, php-format
+msgid "Assigned to %s"
+msgstr "تم التعيين إلى %s"
+
+#. translators: %s: user display name.
+#: includes/class-timeline.php:87
+#, php-format
+msgid "(was %s)"
+msgstr "(كان %s)"
+
+#. translators: %s: user display name.
+#: includes/class-timeline.php:93 admin/assets/kanban/build/index.js:20
+#, php-format
+msgid "Unassigned from %s"
+msgstr "أُلغي التعيين من %s"
+
+#. translators: %s: form plugin name.
+#: includes/class-timeline.php:100
+#, php-format
+msgid "Archived: marked as spam in %s"
+msgstr "مؤرشف: صُنّف كمزعج في %s"
+
+#. translators: %s: form plugin name.
+#: includes/class-timeline.php:103
+#, php-format
+msgid "Archived: moved to the trash in %s"
+msgstr "مؤرشف: نُقل إلى سلة المهملات في %s"
+
+#: includes/class-timeline.php:107
+msgid "Restored from the archive"
+msgstr "تمت الاستعادة من الأرشيف"
+
+#: includes/class-timeline.php:135 admin/assets/kanban/build/index.js:27
+msgctxt "timeline event: an entry arrived"
+msgid "Created"
+msgstr "أُنشئ"
+
+#: includes/class-timeline.php:137 admin/assets/kanban/build/index.js:27
+msgctxt "timeline event: the form plugin changed an entry"
+msgid "Updated"
+msgstr "حُدِّث"
+
+#. translators: %d: stage id.
+#: includes/class-timeline.php:149
+#, php-format
+msgid "a deleted stage (#%d)"
+msgstr "مرحلة محذوفة (#%d)"
+
+#: includes/class-timeline.php:166
+msgid "nobody"
+msgstr "لا أحد"
+
+#: admin/assets/kanban/build/index.js:5
+msgid "Close"
+msgstr "إغلاق"
+
+#: admin/assets/kanban/build/index.js:26
+msgctxt "email recipient"
+msgid "To"
+msgstr "إلى"
+
+#: admin/assets/kanban/build/index.js:26
+msgid "Subject"
+msgstr "الموضوع"
+
+#: admin/assets/js/dashboard.js:140
+msgid "Entries"
+msgstr "الإدخالات"
+
+#: public/templates/submissions-table.php:59
+msgid "Search…"
+msgstr "البحث…"
+
+#: public/templates/submissions-table.php:94
+msgid "No submissions found."
+msgstr "لم يتم العثور على إرسالات."
+
+#: public/templates/submissions-table.php:122
+msgid "Pagination"
+msgstr "التنقل بين الصفحات"
+
+#: public/templates/submissions-table.php:143
+msgid "« Previous"
+msgstr "« السابق"
+
+#. translators: 1: current page, 2: total pages
+#: public/templates/submissions-table.php:151
+#, php-format
+msgid "Page %1$d of %2$d"
+msgstr "الصفحة %1$d من %2$d"
+
+#: public/templates/submissions-table.php:160
+msgid "Next »"
+msgstr "التالي »"
+
+#: admin/assets/js/dashboard.js:52 admin/assets/js/dashboard.js:183
+msgid "Nothing to show for this range yet."
+msgstr "لا شيء لعرضه في هذا النطاق بعد."
+
+#: admin/assets/js/dashboard.js:75
+msgid "(none)"
+msgstr "(لا شيء)"
+
+#. translators: %d: pipeline ID, shown when the pipeline has no name.
+#: admin/assets/js/dashboard.js:82
+msgid "Pipeline #%d"
+msgstr "المسار #%d"
+
+#: admin/assets/js/dashboard.js:92
+msgid "In this date range"
+msgstr "في هذا النطاق الزمني"
+
+#: admin/assets/js/dashboard.js:93
+msgid "Today"
+msgstr "اليوم"
+
+#: admin/assets/js/dashboard.js:94
+msgid "This week"
+msgstr "هذا الأسبوع"
+
+#: admin/assets/js/dashboard.js:95
+msgid "This month"
+msgstr "هذا الشهر"
+
+#. translators: 1: date (YYYY-MM-DD), 2: number of entries that day.
+#: admin/assets/js/dashboard.js:135
+msgid "%1$s: %2$d entry"
+msgid_plural "%1$s: %2$d entries"
+msgstr[0] "%1$s: %2$d إدخال"
+msgstr[1] "%1$s: %2$d إدخال"
+msgstr[2] "%1$s: %2$d إدخالان"
+msgstr[3] "%1$s: %2$d إدخالات"
+msgstr[4] "%1$s: %2$d إدخالًا"
+msgstr[5] "%1$s: %2$d إدخال"
+
+#: admin/assets/js/dashboard.js:140
+msgid "Moved on"
+msgstr "انتقل"
+
+#: admin/assets/js/dashboard.js:157
+msgid "Total"
+msgstr "الإجمالي"
+
+#: admin/assets/js/dashboard.js:160
+msgid "Win rate"
+msgstr "نسبة الكسب"
+
+#: admin/assets/js/dashboard.js:161
+msgid "Avg hours per stage"
+msgstr "متوسط الساعات لكل مرحلة"
+
+#: admin/assets/js/dashboard.js:188
+msgid "(Unknown)"
+msgstr "(غير معروف)"
+
+#: admin/assets/js/dashboard.js:219
+msgid "Average hours"
+msgstr "متوسط الساعات"
+
+#: admin/assets/js/dashboard.js:219
+msgid "Based on"
+msgstr "بناءً على"
+
+#: admin/assets/js/health.js:29
+msgid "All good"
+msgstr "كل شيء سليم"
+
+#: admin/assets/js/health.js:30
+msgid "Check this"
+msgstr "تحقق من هذا"
+
+#: admin/assets/js/health.js:31
+msgid "Needs fixing"
+msgstr "يحتاج إصلاحًا"
+
+#: admin/assets/js/health.js:57
+msgid "Everything looks good"
+msgstr "كل شيء يبدو جيدًا"
+
+#: admin/assets/js/health.js:57
+msgid "EntryVault is set up and listening to your forms."
+msgstr "EntryVault مُعدّ ويستمع إلى نماذجك."
+
+#: admin/assets/js/health.js:58
+msgid "Working, with one thing to check"
+msgstr "يعمل، مع أمر واحد للتحقق منه"
+
+#: admin/assets/js/health.js:58
+msgid "See the card marked \"Check this\" below."
+msgstr "انظر البطاقة المعلَّمة بـ \"تحقق من هذا\" أدناه."
+
+#: admin/assets/js/health.js:59
+msgid "Something needs fixing"
+msgstr "هناك ما يحتاج إصلاحًا"
+
+#: admin/assets/js/health.js:59
+msgid ""
+"See the card marked \"Needs fixing\" below. Deactivating and activating "
+"EntryVault once often repairs it."
+msgstr ""
+"انظر البطاقة المعلَّمة بـ \"يحتاج إصلاحًا\" أدناه. تعطيل EntryVault ثم تفعيله "
+"مرة واحدة يصلح ذلك غالبًا."
+
+#: admin/assets/js/health.js:83
+msgid "Form plugins"
+msgstr "إضافات النماذج"
+
+#: admin/assets/js/health.js:85
+msgid "Listening to"
+msgstr "يستمع إلى"
+
+#: admin/assets/js/health.js:88
+msgid "No form plugin found yet. Activate one, or import a CSV file."
+msgstr "لم يتم العثور على إضافة نماذج بعد. فعّل واحدة، أو استورد ملف CSV."
+
+#: admin/assets/js/health.js:93
+msgid "Database"
+msgstr "قاعدة البيانات"
+
+#: admin/assets/js/health.js:94
+msgid "Tables"
+msgstr "الجداول"
+
+#: admin/assets/js/health.js:94
+msgid "All in place"
+msgstr "كلها موجودة"
+
+#: admin/assets/js/health.js:94
+msgid "Some are missing"
+msgstr "بعضها مفقود"
+
+#: admin/assets/js/health.js:95
+msgid "Missing"
+msgstr "مفقود"
+
+#: admin/assets/js/health.js:99
+msgid "Plugin files"
+msgstr "ملفات الإضافة"
+
+#: admin/assets/js/health.js:100
+msgid "Helper code"
+msgstr "الشيفرة المساعدة"
+
+#: admin/assets/js/health.js:100
+msgid "Found"
+msgstr "موجود"
+
+#: admin/assets/js/health.js:100
+msgid "Missing. Reinstall EntryVault from a fresh download."
+msgstr "مفقود. أعد تثبيت EntryVault من تنزيل جديد."
+
+#: admin/assets/js/health.js:103
+msgid "Versions"
+msgstr "الإصدارات"
+
+#: admin/assets/js/health.js:138
+msgid "Checking…"
+msgstr "جارٍ الفحص…"
+
+#: admin/assets/js/health.js:144 admin/assets/js/health.js:147
+msgid "Could not load the check. Reload the page and try again."
+msgstr "تعذّر تحميل الفحص. أعد تحميل الصفحة وحاول مجددًا."
+
+#. translators: %s: owner name, or #user id when the user no longer exists.
+#: admin/assets/kanban/build/index.js:2
+msgid "Owner: %s"
+msgstr "المسؤول: %s"
+
+#: admin/assets/kanban/build/index.js:2
+msgid "Unassigned: no owner set"
+msgstr "غير مُعيَّن: لا يوجد مسؤول"
+
+#. translators: %s: form plugin name.
+#: admin/assets/kanban/build/index.js:2
+msgid "Source: %s"
+msgstr "المصدر: %s"
+
+#: admin/assets/kanban/build/index.js:2
+msgctxt "badge on a card nobody has seen yet"
+msgid "New"
+msgstr "جديد"
+
+#. translators: %s: date and time the submission arrived.
+#: admin/assets/kanban/build/index.js:2
+msgid "Arrived %s"
+msgstr "وصل %s"
+
+#. translators: %d: number of minutes, shown in a short card corner.
+#: admin/assets/kanban/build/index.js:3
+msgid "%dm"
+msgstr "%d د"
+
+#. translators: %d: number of hours, shown in a short card corner.
+#: admin/assets/kanban/build/index.js:4
+msgid "%dh"
+msgstr "%d س"
+
+#. translators: %d: number of days, shown in a short card corner.
+#: admin/assets/kanban/build/index.js:5
+msgid "%dd"
+msgstr "%d ي"
+
+#: admin/assets/kanban/build/index.js:5
+msgid "Open details"
+msgstr "افتح التفاصيل"
+
+#. translators: %s: submission title.
+#: admin/assets/kanban/build/index.js:5
+msgid "Open %s"
+msgstr "افتح %s"
+
+#: admin/assets/kanban/build/index.js:5
+msgid "this submission"
+msgstr "هذا الإرسال"
+
+#: admin/assets/kanban/build/index.js:5
+msgctxt "button: open a card's details"
+msgid "Open"
+msgstr "افتح"
+
+#: admin/assets/kanban/build/index.js:5
+msgid "More cards than this stage's limit"
+msgstr "بطاقات أكثر من حد هذه المرحلة"
+
+#: admin/assets/kanban/build/index.js:5
+msgid "No submissions"
+msgstr "لا توجد إرسالات"
+
+#. translators: %d: cards not shown yet.
+#: admin/assets/kanban/build/index.js:5
+msgid "Show more (%d left)"
+msgstr "اعرض المزيد (بقي %d)"
+
+#: admin/assets/kanban/build/index.js:5
+msgid "Could not save the note."
+msgstr "تعذّر حفظ الملاحظة."
+
+#: admin/assets/kanban/build/index.js:5
+msgid "Could not load this submission."
+msgstr "تعذّر تحميل هذا الإرسال."
+
+#: admin/assets/kanban/build/index.js:5
+msgid "Submission details"
+msgstr "تفاصيل الإرسال"
+
+#. translators: %d: submission id.
+#: admin/assets/kanban/build/index.js:5
+msgid "Submission #%d"
+msgstr "الإرسال #%d"
+
+#: admin/assets/kanban/build/index.js:5
+msgid "Details"
+msgstr "التفاصيل"
+
+#: admin/assets/kanban/build/index.js:5
+msgid "Timeline"
+msgstr "السجل الزمني"
+
+#: admin/assets/kanban/build/index.js:5
+msgid "Notes"
+msgstr "الملاحظات"
+
+#: admin/assets/kanban/build/index.js:5
+msgid "Could not add the tag."
+msgstr "تعذّرت إضافة الوسم."
+
+#: admin/assets/kanban/build/index.js:5
+msgid "Could not remove the tag."
+msgstr "تعذّرت إزالة الوسم."
+
+#: admin/assets/kanban/build/index.js:5
+msgid "Could not create the tag."
+msgstr "تعذّر إنشاء الوسم."
+
+#: admin/assets/kanban/build/index.js:5
+msgid "Could not delete the note."
+msgstr "تعذّر حذف الملاحظة."
+
+#: admin/assets/kanban/build/index.js:5
+msgid "Loading…"
+msgstr "جارٍ التحميل…"
+
+#: admin/assets/kanban/build/index.js:5
+msgid "Click to edit"
+msgstr "انقر للتحرير"
+
+#. translators: %s: form id.
+#: admin/assets/kanban/build/index.js:5
+msgid "form %s"
+msgstr "النموذج %s"
+
+#: admin/assets/kanban/build/index.js:5
+msgid "What they sent"
+msgstr "ما أرسلوه"
+
+#: admin/assets/kanban/build/index.js:5
+msgid "This field is no longer on the form"
+msgstr "هذا الحقل لم يعد موجودًا في النموذج"
+
+#: admin/assets/kanban/build/index.js:5
+msgid "old field"
+msgstr "حقل قديم"
+
+#: admin/assets/kanban/build/index.js:5
+msgid "Remove tag"
+msgstr "إزالة الوسم"
+
+#. translators: %s: tag name.
+#: admin/assets/kanban/build/index.js:5
+msgid "Remove tag %s"
+msgstr "إزالة الوسم %s"
+
+#: admin/assets/kanban/build/index.js:5
+msgid "New tag name"
+msgstr "اسم الوسم الجديد"
+
+#: admin/assets/kanban/build/index.js:5
+msgid "Add"
+msgstr "إضافة"
+
+#: admin/assets/kanban/build/index.js:5
+msgid "Add a tag to this submission"
+msgstr "أضف وسمًا لهذا الإرسال"
+
+#: admin/assets/kanban/build/index.js:5
+msgid "+ Add tag…"
+msgstr "+ أضف وسمًا…"
+
+#: admin/assets/kanban/build/index.js:5
+msgid "+ Create new tag…"
+msgstr "+ أنشئ وسمًا جديدًا…"
+
+#: admin/assets/kanban/build/index.js:7
+msgid "Moved to a new stage"
+msgstr "نُقل إلى مرحلة جديدة"
+
+#: admin/assets/kanban/build/index.js:7
+msgid "(empty note)"
+msgstr "(ملاحظة فارغة)"
+
+#: admin/assets/kanban/build/index.js:12
+msgid "Email to %s"
+msgstr "بريد إلى %s"
+
+#. translators: %d: user id.
+#: admin/assets/kanban/build/index.js:18 admin/assets/kanban/build/index.js:20
+msgid "User #%d"
+msgstr "المستخدم #%d"
+
+#: admin/assets/kanban/build/index.js:20
+msgid "No activity yet."
+msgstr "لا يوجد نشاط بعد."
+
+#: admin/assets/kanban/build/index.js:20
+msgid "Posting as %s"
+msgstr "تنشر باسم %s"
+
+#: admin/assets/kanban/build/index.js:20
+msgid "Add a note for your team. The customer never sees it."
+msgstr "أضف ملاحظة لفريقك. العميل لا يراها أبدًا."
+
+#: admin/assets/kanban/build/index.js:20
+msgid "Tip: **bold**, *italic*, lists and links work."
+msgstr "نصيحة: **غامق** و*مائل* والقوائم والروابط تعمل."
+
+#: admin/assets/kanban/build/index.js:20 admin/assets/kanban/build/index.js:26
+msgid "Saving…"
+msgstr "جارٍ الحفظ…"
+
+#: admin/assets/kanban/build/index.js:20
+msgid "Add note"
+msgstr "أضف الملاحظة"
+
+#: admin/assets/kanban/build/index.js:20
+msgid "No notes yet."
+msgstr "لا توجد ملاحظات بعد."
+
+#: admin/assets/kanban/build/index.js:20
+msgid "Unknown"
+msgstr "غير معروف"
+
+#. translators: %d: number of minutes.
+#: admin/assets/kanban/build/index.js:22
+msgid "%dm ago"
+msgstr "قبل %d د"
+
+#. translators: %d: number of hours.
+#: admin/assets/kanban/build/index.js:24
+msgid "%dh ago"
+msgstr "قبل %d س"
+
+#. translators: %d: number of days.
+#: admin/assets/kanban/build/index.js:26
+msgid "%dd ago"
+msgstr "قبل %d ي"
+
+#: admin/assets/kanban/build/index.js:26
+msgid "Delete note"
+msgstr "احذف الملاحظة"
+
+#: admin/assets/kanban/build/index.js:26
+msgid "[deleted]"
+msgstr "[محذوف]"
+
+#: admin/assets/kanban/build/index.js:26
+msgid "Reply…"
+msgstr "رد…"
+
+#: admin/assets/kanban/build/index.js:26
+msgid "Post reply"
+msgstr "انشر الرد"
+
+#: admin/assets/kanban/build/index.js:26
+msgid "Reply"
+msgstr "رد"
+
+#: admin/assets/kanban/build/index.js:26
+msgid "Sent."
+msgstr "تم الإرسال."
+
+#: admin/assets/kanban/build/index.js:27
+msgid "Could not send the email: %s"
+msgstr "تعذّر إرسال البريد: %s"
+
+#: admin/assets/kanban/build/index.js:27
+msgid "Could not send the email."
+msgstr "تعذّر إرسال البريد."
+
+#: admin/assets/kanban/build/index.js:27
+msgid "Sending…"
+msgstr "جارٍ الإرسال…"
+
+#: admin/assets/kanban/build/index.js:27
+msgid "Conversation"
+msgstr "المحادثة"
+
+#: admin/assets/kanban/build/index.js:27
+msgid "No emails yet."
+msgstr "لا توجد رسائل بريد بعد."
+
+#. translators: %s: sender address.
+#: admin/assets/kanban/build/index.js:27
+msgid "From %s"
+msgstr "من %s"
+
+#. translators: %s: recipient address.
+#: admin/assets/kanban/build/index.js:27
+msgid "To %s"
+msgstr "إلى %s"
+
+#. translators: %s: the mail server's reason.
+#: admin/assets/kanban/build/index.js:27
+msgid "Not sent: %s"
+msgstr "لم يُرسل: %s"
+
+#: admin/assets/kanban/build/index.js:27
+msgid "(no subject)"
+msgstr "(بلا موضوع)"
+
+#: admin/assets/kanban/build/index.js:27
+msgctxt "submission status"
+msgid "Open"
+msgstr "مفتوح"
+
+#: admin/assets/kanban/build/index.js:27
+msgctxt "submission status"
+msgid "Archived"
+msgstr "مؤرشف"
+
+#: admin/assets/kanban/build/index.js:27
+msgctxt "submission status"
+msgid "Won"
+msgstr "مكسوب"
+
+#: admin/assets/kanban/build/index.js:27
+msgctxt "submission status"
+msgid "Lost"
+msgstr "خاسر"
+
+#: admin/assets/kanban/build/index.js:27
+msgid "Failed to load board"
+msgstr "فشل تحميل اللوحة"
+
+#: admin/assets/kanban/build/index.js:27
+msgid "this card"
+msgstr "هذه البطاقة"
+
+#: admin/assets/kanban/build/index.js:27
+msgid "a stage"
+msgstr "مرحلة"
+
+#: admin/assets/kanban/build/index.js:27
+msgid ""
+"To pick up a card, press space or enter. Use the arrow keys to move it, then "
+"press space or enter to drop it, or escape to cancel."
+msgstr ""
+"لالتقاط بطاقة، اضغط مسافة أو Enter. استخدم مفاتيح الأسهم لتحريكها، ثم اضغط "
+"مسافة أو Enter لإفلاتها، أو Escape للإلغاء."
+
+#. translators: %s: card title.
+#: admin/assets/kanban/build/index.js:29
+msgid "Picked up %s."
+msgstr "تم التقاط %s."
+
+#: admin/assets/kanban/build/index.js:30
+msgid "%1$s is over %2$s."
+msgstr "%1$s فوق %2$s."
+
+#: admin/assets/kanban/build/index.js:31
+msgid "%s is not over a stage."
+msgstr "%s ليست فوق مرحلة."
+
+#: admin/assets/kanban/build/index.js:32
+msgid "%1$s was dropped in %2$s."
+msgstr "تم إفلات %1$s في %2$s."
+
+#: admin/assets/kanban/build/index.js:33
+msgid "%s was dropped."
+msgstr "تم إفلات %s."
+
+#. translators: %s: card title.
+#: admin/assets/kanban/build/index.js:35
+msgid "Moving %s was cancelled."
+msgstr "أُلغي نقل %s."
+
+#: admin/assets/kanban/build/index.js:36
+msgid "%1$d of %2$d cards"
+msgstr "%1$d من %2$d بطاقة"
+
+#: admin/assets/kanban/build/index.js:37
+msgid "%d card"
+msgid_plural "%d cards"
+msgstr[0] "%d بطاقة"
+msgstr[1] "%d بطاقة"
+msgstr[2] "%d بطاقتان"
+msgstr[3] "%d بطاقات"
+msgstr[4] "%d بطاقةً"
+msgstr[5] "%d بطاقة"
+
+#: admin/assets/kanban/build/index.js:37
+msgid "Search name or email…"
+msgstr "ابحث بالاسم أو البريد…"
+
+#: admin/assets/kanban/build/index.js:37
+msgid "Could not mark all cards as seen"
+msgstr "تعذّر تعليم كل البطاقات كمقروءة"
+
+#: admin/assets/kanban/build/index.js:37
+msgid "Clear the New badge from every card"
+msgstr "أزل شارة جديد من كل البطاقات"
+
+#: admin/assets/kanban/build/index.js:37
+msgid "Mark all seen"
+msgstr "علّم الكل كمقروء"
+
+#: admin/assets/kanban/build/index.js:37
+msgid "Show only cards owned by"
+msgstr "اعرض فقط البطاقات التي مسؤولها"
+
+#: admin/assets/kanban/build/index.js:37
+msgid "Clear"
+msgstr "مسح"
+
+#: admin/assets/kanban/build/index.js:37
+msgid "The move failed, so the card went back."
+msgstr "فشل النقل، لذا عادت البطاقة."
+
+#: admin/assets/kanban/build/index.js:37
+msgid "No cards on this pipeline."
+msgstr "لا توجد بطاقات في هذا المسار."
+
+#: admin/assets/kanban/build/index.js:37
+msgid ""
+"Your entries are on other pipelines. Open one below, or pick it in the "
+"Pipeline menu above."
+msgstr ""
+"إدخالاتك في مسارات أخرى. افتح أحدها أدناه، أو اختره من قائمة المسار في "
+"الأعلى."
+
+#. translators: 1: pipeline name, 2: number of cards on it.
+#: admin/assets/kanban/build/index.js:37
+msgid "%1$s: %2$d card"
+msgid_plural "%1$s: %2$d cards"
+msgstr[0] "%1$s: %2$d بطاقة"
+msgstr[1] "%1$s: %2$d بطاقة"
+msgstr[2] "%1$s: %2$d بطاقتان"
+msgstr[3] "%1$s: %2$d بطاقات"
+msgstr[4] "%1$s: %2$d بطاقةً"
+msgstr[5] "%1$s: %2$d بطاقة"
+
+#: admin/assets/kanban/build/index.js:37
+msgid "Nothing here yet. That is expected."
+msgstr "لا شيء هنا بعد. وهذا متوقع."
+
+#: admin/assets/kanban/build/index.js:37
+msgid ""
+"EntryVault picks up submissions from the form plugins you already use. There "
+"is nothing to add to your forms: submit one of them once and it appears on "
+"this board within moments."
+msgstr ""
+"يلتقط EntryVault الإرسالات من إضافات النماذج التي تستخدمها بالفعل. لا شيء "
+"لإضافته إلى نماذجك: أرسل أحدها مرة واحدة وسيظهر على هذه اللوحة خلال لحظات."
+
+#: admin/assets/kanban/build/index.js:37
+msgid "Check which form plugins were found"
+msgstr "تحقق من إضافات النماذج التي تم العثور عليها"
+
+#: admin/assets/kanban/build/index.js:37
+msgid ""
+"No pipeline is set up yet. Deactivate and activate EntryVault once to create "
+"the default one."
+msgstr ""
+"لم يتم إعداد أي مسار بعد. عطّل EntryVault ثم فعّله مرة واحدة لإنشاء المسار "
+"الافتراضي."
+
+#: blocks/submissions-table/index.js:25
+msgid "Email (shown publicly)"
+msgstr "البريد الإلكتروني (يظهر للعامة)"
+
+#: blocks/submissions-table/index.js:27
+msgid "Owner (staff name, shown publicly)"
+msgstr "المسؤول (اسم الموظف، يظهر للعامة)"
+
+#: blocks/submissions-table/index.js:28
+msgid "Tags (shown publicly)"
+msgstr "الوسوم (تظهر للعامة)"
+
+#: blocks/submissions-table/index.js:70
+msgid "Submissions Table"
+msgstr "جدول الإرسالات"
+
+#: blocks/submissions-table/index.js:72
+msgid "Pipeline slug"
+msgstr "الاسم المختصر للمسار (slug)"
+
+#: blocks/submissions-table/index.js:77
+msgid "Stage slug (optional)"
+msgstr "الاسم المختصر للمرحلة (slug) (اختياري)"
+
+#: blocks/submissions-table/index.js:82
+msgid "Access token (optional)"
+msgstr "رمز الوصول (access token) (اختياري)"
+
+#: blocks/submissions-table/index.js:89
+msgid "Columns"
+msgstr "الأعمدة"
+
+#: blocks/submissions-table/index.js:103
+msgid "EntryVault Submissions Table"
+msgstr "جدول إرسالات EntryVault"
+
+#: blocks/submissions-table/index.js:108
+msgid "pipeline: "
+msgstr "المسار: "
+
+#: blocks/submissions-table/index.js:109
+msgid "(no pipeline set)"
+msgstr "(لم يُحدَّد مسار)"
+
+#: blocks/submissions-table/index.js:114
+msgid "columns: "
+msgstr "الأعمدة: "
+
+#: blocks/submissions-table/block.json
+msgctxt "block title"
+msgid "EntryVault Submissions Table"
+msgstr "جدول إرسالات EntryVault"

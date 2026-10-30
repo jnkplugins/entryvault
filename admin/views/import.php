@@ -22,14 +22,14 @@ $ev_rest_root  = esc_url_raw( rest_url( 'entryvault/v1' ) );
 $ev_rest_nonce = wp_create_nonce( 'wp_rest' );
 
 global $wpdb;
-$entryvault_pipelines = (array) $wpdb->get_results(
+$entryvault_pipelines = \EntryVault\Default_Names::label_rows( (array) $wpdb->get_results(
     "SELECT id, name FROM {$wpdb->prefix}entryvault_pipelines ORDER BY is_default DESC, name ASC",
     ARRAY_A
-);
-$entryvault_stages = (array) $wpdb->get_results(
+) );
+$entryvault_stages = \EntryVault\Default_Names::label_rows( (array) $wpdb->get_results(
     "SELECT id, name, pipeline_id FROM {$wpdb->prefix}entryvault_stages ORDER BY pipeline_id ASC, position ASC, name ASC",
     ARRAY_A
-);
+) );
 ?>
 <?php
 \EntryVault\Admin_UI::open(

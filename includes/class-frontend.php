@@ -76,7 +76,9 @@ class Frontend {
 	 */
 	public static function render_table( array $attrs ): string {
 		$pipeline_slug = sanitize_key( (string) ( $attrs['pipeline'] ?? '' ) );
-		$stage_slug    = sanitize_key( (string) ( $attrs['stage'] ?? '' ) );
+		// The stage is matched by name, so keep spaces and non-Latin letters
+		// (sanitize_key emptied "مكسوب" and "In progress"); it is bound below.
+		$stage_slug    = sanitize_text_field( (string) ( $attrs['stage'] ?? '' ) );
 		$token         = sanitize_text_field( (string) ( $attrs['access_token'] ?? '' ) );
 
 		if ( ! $pipeline_slug ) {
@@ -258,24 +260,25 @@ class Frontend {
 		$where  = [ 's.pipeline_id = %d', "s.status <> 'archived'" ];
 		$params = [ $pipeline_id ];
 
-		if ( $stage_slug !== '' ) {
-			$where[]  = 'st.name = %s';
-			$params[] = $stage_slug;
+		$stage_names = Default_Names::stage_aliases( $stage_slug );
+		if ( $stage_names ) {
+			$where[] = 'st.name IN (' . implode( ', ', array_fill( 0, count( $stage_names ), '%s' ) ) . ')';
+			array_push( $params, ...$stage_names );
 		}
 
 		if ( $search !== '' ) {
-			$like     = '%' . $wpdb->esc_like( $search ) . '%';
+			[ $t_sql, $t_params ] = Submission_Store::search_match( 's.title', $search );
 			if ( $search_email ) {
-				$where[]  = '( s.title LIKE %s OR s.email LIKE %s )';
-				$params[] = $like;
-				$params[] = $like;
+				[ $e_sql, $e_params ] = Submission_Store::search_match( 's.email', $search );
+				$where[] = "( {$t_sql} OR {$e_sql} )";
+				array_push( $params, ...$t_params, ...$e_params );
 			} else {
 				// Searching addresses would let a visitor test whether an email
 				// is in the CRM, even with the email column hidden. A title that
 				// is (or contains) an address is masked on output, so it is not
 				// searchable here either.
-				$where[]  = "( s.title LIKE %s AND s.title NOT LIKE '%%@%%' AND ( s.email IS NULL OR s.title <> s.email ) )";
-				$params[] = $like;
+				$where[] = "( {$t_sql} AND s.title NOT LIKE '%%@%%' AND ( s.email IS NULL OR s.title <> s.email ) )";
+				array_push( $params, ...$t_params );
 			}
 		}
 
@@ -413,7 +416,7 @@ class Frontend {
 			case 'email':
 				return $show_email ? (string) ( $row['email'] ?? '' ) : '';
 			case 'stage':
-				return (string) ( $row['stage_name'] ?? '' );
+				return Default_Names::label( $row['stage_name'] ?? '' );
 			case 'owner':
 				$uid = (int) ( $row['owner_user_id'] ?? 0 );
 				if ( $uid <= 0 ) {

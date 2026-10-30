@@ -39,19 +39,26 @@
         return 'HTTP ' + ( res && res.status );
     }
 
+    function savedMsg( label ) {
+        return ( I18N.labelSaved || '%s saved.' ).replace( '%s', label );
+    }
+    function failMsg( label, err ) {
+        return ( I18N.labelFail || '%1$s save failed: %2$s' ).replace( '%1$s', label ).replace( '%2$s', err );
+    }
+
     function saveSettings( payload, label ) {
         return api( '/settings', {
             method: 'POST',
             body: JSON.stringify( payload )
         } ).then( function ( res ) {
             if ( res.status >= 200 && res.status < 300 && res.body && res.body.success ) {
-                notice( 'success', label + ' saved.' );
+                notice( 'success', savedMsg( label ) );
                 return true;
             }
-            notice( 'error', label + ' save failed: ' + envelopeError( res ) );
+            notice( 'error', failMsg( label, envelopeError( res ) ) );
             return false;
         } ).catch( function ( err ) {
-            notice( 'error', label + ' save failed: ' + ( err && err.message ? err.message : err ) );
+            notice( 'error', failMsg( label, err && err.message ? err.message : String( err ) ) );
             return false;
         } );
     }
@@ -160,7 +167,7 @@
                 if ( document.getElementById( 'ev-reply-to-host' ) ) {
                     payload.reply_to_host = valueOf( 'ev-reply-to-host' );
                 }
-                saveSettings( payload, 'General' ).then( function ( ok ) {
+                saveSettings( payload, I18N.general || 'General' ).then( function ( ok ) {
                     inlineMsg( 'ev-general-msg', ok ? 'success' : 'error',
                         ok ? ( I18N.saved || 'Saved.' ) : ( I18N.saveFailed || 'Save failed.' ) );
                 } );
@@ -175,7 +182,7 @@
                 document.querySelectorAll( '#ev-owner-roles input[name="owner_roles[]"]:checked' ).forEach( function ( cb ) {
                     roles.push( cb.value );
                 } );
-                saveSettings( { owner_roles: roles }, 'Owners' );
+                saveSettings( { owner_roles: roles }, I18N.owners || 'Owners' );
             } );
         }
     }

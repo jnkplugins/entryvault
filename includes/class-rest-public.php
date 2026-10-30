@@ -57,7 +57,7 @@ class REST_Public {
 					],
 					'stage' => [
 						'type'              => 'string',
-						'sanitize_callback' => 'sanitize_key',
+						'sanitize_callback' => 'sanitize_text_field',
 					],
 					'columns' => [
 						'type'              => 'string',
