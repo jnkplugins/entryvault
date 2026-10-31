@@ -34,6 +34,8 @@ class Activator {
         self::migrate_columns();
         self::seed_defaults();
         self::ensure_settings();
+        // Before the tokens: they are stored under the slug.
+        Pipeline_Slug::migrate();
         self::ensure_pipeline_tokens();
 
         if ( ! defined( 'ENTRYVAULT_PRO' ) ) {

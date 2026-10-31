@@ -11,6 +11,17 @@ import { utcMs, formatSiteTime, isolate, siteLocale, justNow } from "./siteTime"
  * (older browsers): the caller then uses the translated text as before.
  */
 const unitFormats = {};
+const longFormats = {};
+
+/**
+ * Whether a formatted age uses a one-letter unit ("3 د" in Arabic, "3 h" in
+ * Spanish). A single CJK or Hangul character ("3분") is a whole word.
+ */
+export function oneLetterUnit( text ) {
+    const unitPart = String( text ).replace( /[\d\s\u00a0\u202f\u200e\u200f\u061c.,\u0660-\u0669\u06f0-\u06f9]/g, "" );
+    return Array.from( unitPart ).length === 1 && ! /[\u3040-\u30ff\u3400-\u9fff\uac00-\ud7af]/.test( unitPart );
+}
+
 function shortUnit( n, unit ) {
     const locale = siteLocale();
     if ( ! locale ) return null;
@@ -18,7 +29,13 @@ function shortUnit( n, unit ) {
         if ( ! unitFormats[ unit ] ) {
             unitFormats[ unit ] = new Intl.NumberFormat( locale, { style: "unit", unit, unitDisplay: "short" } );
         }
-        return unitFormats[ unit ].format( n );
+        const out = unitFormats[ unit ].format( n );
+        if ( ! oneLetterUnit( out ) ) return out;
+        // The short style is one letter here (Arabic "د" for minutes): spell it out.
+        if ( ! longFormats[ unit ] ) {
+            longFormats[ unit ] = new Intl.NumberFormat( locale, { style: "unit", unit, unitDisplay: "long" } );
+        }
+        return longFormats[ unit ].format( n );
     } catch ( e ) {
         return null;
     }

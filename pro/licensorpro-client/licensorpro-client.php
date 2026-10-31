@@ -60,7 +60,7 @@ class LicensorPro_Client {
      * change and re-propagate to every plugin's pro/licensorpro-client/.
      * Audit sync with: LicensorPro_Client::SDK_VERSION.
      */
-    const SDK_VERSION = '1.8.2';
+    const SDK_VERSION = '1.8.3';
 
     /** @var array */
     private $opts;
@@ -1260,6 +1260,7 @@ class LicensorPro_Client {
             var overlay  = document.getElementById(<?php echo wp_json_encode($modal_id); ?>);
             if (!overlay) { return; }
             var target = null;
+            var opener = null;
 
             // The deactivate link is the only thing we intercept, and only for
             // this plugin's own row. Anything else on the screen behaves normally.
@@ -1270,15 +1271,24 @@ class LicensorPro_Client {
                 if (link.href.indexOf(encodeURIComponent(basename)) === -1) { return; }
                 e.preventDefault();
                 target = link.href;
+                opener = link;
                 overlay.style.display = 'flex';
+                var first = overlay.querySelector('input[type=radio]');
+                if (first) { first.focus(); }
+            });
+
+            function close() {
+                overlay.style.display = 'none';
+                target = null;
+                if (opener) { opener.focus(); }
+            }
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape' && overlay.style.display !== 'none') { close(); }
             });
 
             function go() { if (target) { window.location.href = target; } }
 
-            overlay.querySelector('.licensorpro-fb-cancel').addEventListener('click', function () {
-                overlay.style.display = 'none';
-                target = null;
-            });
+            overlay.querySelector('.licensorpro-fb-cancel').addEventListener('click', close);
             overlay.querySelector('.licensorpro-fb-skip').addEventListener('click', go);
 
             overlay.querySelector('.licensorpro-fb-send').addEventListener('click', function () {
@@ -1609,7 +1619,27 @@ class LicensorPro_Client {
      * these files existed.
      */
     public function drop_stale_update($transient) {
-        if (!is_object($transient) || empty($transient->response[$this->plugin_basename])) {
+        if (!is_object($transient)) {
+            return $transient;
+        }
+        // Core's last update check may predate this plugin's activation, and the
+        // Plugins screen only offers "View details" for an entry it knows. Until
+        // the next check (up to 12 hours), say it is up to date.
+        if (empty($transient->response[$this->plugin_basename]) && empty($transient->no_update[$this->plugin_basename])) {
+            if (!isset($transient->no_update) || !is_array($transient->no_update)) {
+                $transient->no_update = [];
+            }
+            $transient->no_update[$this->plugin_basename] = (object) [
+                'id'          => $this->plugin_basename,
+                'slug'        => $this->slug,
+                'plugin'      => $this->plugin_basename,
+                'new_version' => $this->installed_version(),
+                'url'         => '',
+                'package'     => '',
+            ];
+            return $transient;
+        }
+        if (empty($transient->response[$this->plugin_basename])) {
             return $transient;
         }
         $entry = $transient->response[$this->plugin_basename];
@@ -1810,7 +1840,7 @@ class LicensorPro_Client {
                 'dev'    => _x('development', 'update channel', $td),
             ];
             echo '<tr><th>' . esc_html__('Update channel', $td) . '</th><td>' . esc_html($channels[$this->channel] ?? $this->channel) . '</td></tr>';
-            echo '<tr><th>' . esc_html__('Site limit', $td) . '</th><td>' . esc_html((string) $site_limit) . '</td></tr>';
+            echo '<tr><th>' . esc_html__('Site limit', $td) . '</th><td>' . esc_html((int) $site_limit > 0 ? number_format_i18n((int) $site_limit) : __('Unlimited', $td)) . '</td></tr>';
             echo '<tr><th>' . esc_html__('Expires', $td) . '</th><td>' . esc_html($expires_at ? $this->human_dt($expires_at) : __('Never', $td)) . '</td></tr>';
             echo '<tr><th>' . esc_html__('Last checked', $td) . '</th><td>' . esc_html($checkedStr) . '</td></tr>';
             echo '</tbody></table>';
@@ -1863,8 +1893,27 @@ class LicensorPro_Client {
                  . ' <a href="' . esc_url($support) . '" target="_blank" rel="noopener">' . esc_html__('Contact support', $td) . '</a></p>';
         }
 
-        // Inline JS for AJAX flow.
+        // Inline JS for AJAX flow. Its messages come from here so they are
+        // translated like the rest of the card.
         $slug_js = esc_js($this->slug);
+        $js_text = [
+            'site_limit_reached' => __('Every seat on this license is in use. Deactivate one of your other sites from your account, then try again.', $td),
+            'expired'            => __('This license has expired. Renewing it from your account reactivates this site immediately. Your settings and data are untouched.', $td),
+            'invalid_license'    => __('That key was not recognised. Check for a missing character, or copy it again from your purchase email.', $td),
+            'blocklisted'        => __('This key has been revoked. If you believe that is a mistake, reply to your purchase email and we will sort it out.', $td),
+            'http_error'         => __('Could not reach the licensing server. Your site may be blocking outbound requests. This is usually temporary, so try again in a minute.', $td),
+            'too_many_requests'  => __('Too many attempts in a short window. Wait a minute and try again.', $td),
+            'server_error'       => __('The licensing server had a problem on its side. Your key was not rejected. Try again in a few minutes, and if it keeps happening, reply to your purchase email.', $td),
+            'no_key'             => __('Enter your license key first.', $td),
+            'installing'         => __('Installing Pro. This takes a few seconds, keep this page open…', $td),
+            'reload_pro'         => __('Reloading to switch on the Pro tools…', $td),
+            'reload'             => __('Reload now', $td),
+            'offline'            => __('Could not reach the licensing server. Check your connection and try again.', $td),
+            'confirm_deactivate' => __('Deactivate this license on this site? Premium features switch off here and the seat is freed for another site.', $td),
+            'done'               => __('Done.', $td),
+            'deactivated'        => __('Deactivated.', $td),
+            'checked'            => __('Checked.', $td),
+        ];
         ?>
         <script>
         (function(){
@@ -1872,6 +1921,7 @@ class LicensorPro_Client {
             var ajaxUrl = '<?php echo esc_url($ajax_url); ?>';
             var nonce   = '<?php echo esc_js($nonce); ?>';
             var $msg    = document.getElementById('lp-' + slug + '-msg');
+            var T       = <?php echo wp_json_encode($js_text); ?>;
             function setMsg(text, ok){
                 if (!$msg) return;
                 var div = document.createElement('div');
@@ -1902,25 +1952,8 @@ class LicensorPro_Client {
             // fall back to the server message for anything unrecognised so a new code
             // is never swallowed.
             function recoveryFor(code){
-                switch (code) {
-                    case 'site_limit_reached':
-                        return 'Every seat on this license is in use. Deactivate one of your other sites from your account, then try again.';
-                    case 'expired':
-                        return 'This license has expired. Renewing it from your account reactivates this site immediately — your settings and data are untouched.';
-                    case 'invalid_license':
-                        return 'That key was not recognised. Check for a missing character, or copy it again from your purchase email.';
-                    case 'blocklisted':
-                        return 'This key has been revoked. If you believe that is a mistake, reply to your purchase email and we will sort it out.';
-                    case 'http_error':
-                    case 'bad_response':
-                        return 'Could not reach the licensing server. Your site may be blocking outbound requests — this is usually temporary, so try again in a minute.';
-                    case 'too_many_requests':
-                        return 'Too many attempts in a short window. Wait a minute and try again.';
-                    case 'server_error':
-                        return 'The licensing server had a problem on its side. Your key was not rejected. Try again in a few minutes, and if it keeps happening, reply to your purchase email.';
-                    default:
-                        return '';
-                }
+                if (code === 'bad_response') { code = 'http_error'; }
+                return Object.prototype.hasOwnProperty.call(T, code) ? T[code] : '';
             }
             function setResult(d, fallback){
                 var ok   = !!(d && d.ok);
@@ -1942,12 +1975,12 @@ class LicensorPro_Client {
                     var key = keyEl ? String(keyEl.value).replace(/\s+/g, '') : '';
                     if (keyEl) { keyEl.value = key; }
                     var install = actBtn.getAttribute('data-install') === '1';
-                    if (!key && actBtn.getAttribute('data-nokey') !== '1') { setMsg('Enter your license key first.', false); return; }
+                    if (!key && actBtn.getAttribute('data-nokey') !== '1') { setMsg(T.no_key, false); return; }
                     actBtn.disabled = true;
-                    if (install) { setMsg('Installing Pro. This takes a few seconds, keep this page open…', true); }
+                    if (install) { setMsg(T.installing, true); }
                     post('licensorpro_' + slug + (install ? '_install_pro' : '_activate'), {license_key: key}).then(function(d){
                         actBtn.disabled = false;
-                        setResult(d, 'Done.');
+                        setResult(d, T.done);
                         // Reloading 800ms after success threw away the confirmation
                         // before it could be read — the one moment the plugin has the
                         // user's full attention. Show the result, and let them move on
@@ -1974,7 +2007,9 @@ class LicensorPro_Client {
                             var a = document.createElement('a');
                             a.href = location.href;
                             a.className = 'button button-primary';
-                            a.textContent = 'Reloading to switch on the Pro tools…';
+                            // The install message already says it is reloading, and a free
+                            // key switches nothing on: a plain link for both.
+                            a.textContent = (d.free || install) ? T.reload : T.reload_pro;
                             again.appendChild(a);
                             if ($msg) { $msg.appendChild(again); }
                             actBtn.disabled = true;
@@ -1982,7 +2017,7 @@ class LicensorPro_Client {
                         }
                     }).catch(function(){
                         actBtn.disabled = false;
-                        setMsg('Could not reach the licensing server. Check your connection and try again.', false);
+                        setMsg(T.offline, false);
                     });
                 });
             }
@@ -1992,17 +2027,17 @@ class LicensorPro_Client {
                     e.preventDefault();
                     // Deactivation frees a seat and turns premium features off. It is
                     // one click next to buttons that do not, so confirm it.
-                    if (!window.confirm('Deactivate this license on this site? Premium features switch off here and the seat is freed for another site.')) {
+                    if (!window.confirm(T.confirm_deactivate)) {
                         return;
                     }
                     deBtn.disabled = true;
                     post('licensorpro_' + slug + '_deactivate', {}).then(function(d){
                         deBtn.disabled = false;
-                        setResult(d, 'Deactivated.');
+                        setResult(d, T.deactivated);
                         setTimeout(function(){ location.reload(); }, 1500);
                     }).catch(function(){
                         deBtn.disabled = false;
-                        setMsg('Could not reach the licensing server. Check your connection and try again.', false);
+                        setMsg(T.offline, false);
                     });
                 });
             }
@@ -2013,7 +2048,7 @@ class LicensorPro_Client {
                     chkBtn.disabled = true;
                     post('licensorpro_' + slug + '_check', {}).then(function(d){
                         chkBtn.disabled = false;
-                        setMsg(d && d.message ? d.message : 'Checked.', !!(d && d.ok));
+                        setMsg(d && d.message ? d.message : T.checked, !!(d && d.ok));
                     });
                 });
             }
@@ -2077,7 +2112,7 @@ class LicensorPro_Client {
             wp_send_json($resp);
         }
         if (self::verdict_is_free($resp)) {
-            wp_send_json(['ok' => true, 'reload' => true,
+            wp_send_json(['ok' => true, 'reload' => true, 'free' => true,
                 'message' => __('That is a free license key, so it keeps this free version updated. Pro needs the key from your purchase email.', $td)]);
         }
 
@@ -2150,6 +2185,9 @@ class LicensorPro_Client {
         $resp = $this->activate($key);
         if (!empty($resp['ok']) && empty($resp['message'])) {
             $resp['message'] = __('License activated.', $this->text_domain);
+        }
+        if (!empty($resp['ok']) && self::verdict_is_free($resp)) {
+            $resp['free'] = true;
         }
         wp_send_json($resp);
     }

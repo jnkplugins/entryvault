@@ -209,11 +209,11 @@ msgid "Unexpected response from license server."
 msgstr "Respuesta inesperada del servidor de licencias."
 
 #. translators: %s: human-readable time difference, e.g. "3 hours".
-#: pro/licensorpro-client/licensorpro-client.php:1700
+#: pro/licensorpro-client/licensorpro-client.php:1716
 #: includes/class-dates.php:65
 #, php-format
 msgid "in %s"
-msgstr "en %s"
+msgstr "dentro de %s"
 
 #. translators: %s: human-readable time difference, e.g. "3 hours".
 #: pro/licensorpro-client/licensorpro-client.php:1701
@@ -371,6 +371,10 @@ msgstr "Canal de actualizaciones"
 msgid "Site limit"
 msgstr "Límite de sitios"
 
+#: pro/licensorpro-client/licensorpro-client.php:1823
+msgid "Unlimited"
+msgstr "Ilimitado"
+
 #: pro/licensorpro-client/licensorpro-client.php:1808
 msgid "Expires"
 msgstr "Caduca"
@@ -414,6 +418,105 @@ msgstr "¿Necesitas ayuda?"
 #: pro/licensorpro-client/licensorpro-client.php:1857
 msgid "Contact support"
 msgstr "Contactar con soporte"
+
+#: pro/licensorpro-client/licensorpro-client.php:1880
+msgid ""
+"Every seat on this license is in use. Deactivate one of your other sites "
+"from your account, then try again."
+msgstr ""
+"Todos los sitios de esta licencia están en uso. Desactiva uno de tus otros "
+"sitios desde tu cuenta y vuelve a intentarlo."
+
+#: pro/licensorpro-client/licensorpro-client.php:1881
+msgid ""
+"This license has expired. Renewing it from your account reactivates this "
+"site immediately. Your settings and data are untouched."
+msgstr ""
+"Esta licencia ha caducado. Al renovarla desde tu cuenta, este sitio se "
+"reactiva al momento. Tus ajustes y datos no se tocan."
+
+#: pro/licensorpro-client/licensorpro-client.php:1882
+msgid ""
+"That key was not recognised. Check for a missing character, or copy it again "
+"from your purchase email."
+msgstr ""
+"No reconocemos esa clave. Comprueba que no falte ningún carácter o vuelve a "
+"copiarla del correo de tu compra."
+
+#: pro/licensorpro-client/licensorpro-client.php:1883
+msgid ""
+"This key has been revoked. If you believe that is a mistake, reply to your "
+"purchase email and we will sort it out."
+msgstr ""
+"Esta clave se ha revocado. Si crees que es un error, responde al correo de "
+"tu compra y lo solucionamos."
+
+#: pro/licensorpro-client/licensorpro-client.php:1884
+msgid ""
+"Could not reach the licensing server. Your site may be blocking outbound "
+"requests. This is usually temporary, so try again in a minute."
+msgstr ""
+"No se pudo conectar con el servidor de licencias. Puede que tu sitio bloquee "
+"las conexiones salientes. Suele ser temporal, así que vuelve a intentarlo en "
+"un minuto."
+
+#: pro/licensorpro-client/licensorpro-client.php:1885
+msgid "Too many attempts in a short window. Wait a minute and try again."
+msgstr ""
+"Demasiados intentos en poco tiempo. Espera un minuto y vuelve a intentarlo."
+
+#: pro/licensorpro-client/licensorpro-client.php:1886
+msgid ""
+"The licensing server had a problem on its side. Your key was not rejected. "
+"Try again in a few minutes, and if it keeps happening, reply to your "
+"purchase email."
+msgstr ""
+"El servidor de licencias tuvo un problema por su parte. Tu clave no se ha "
+"rechazado. Vuelve a intentarlo en unos minutos y, si sigue pasando, responde "
+"al correo de tu compra."
+
+#: pro/licensorpro-client/licensorpro-client.php:1887
+msgid "Enter your license key first."
+msgstr "Primero introduce tu clave de licencia."
+
+#: pro/licensorpro-client/licensorpro-client.php:1888
+msgid "Installing Pro. This takes a few seconds, keep this page open…"
+msgstr "Instalando Pro. Tarda unos segundos, mantén esta página abierta…"
+
+#: pro/licensorpro-client/licensorpro-client.php:1889
+msgid "Reloading to switch on the Pro tools…"
+msgstr "Recargando para activar las herramientas Pro…"
+
+#: pro/licensorpro-client/licensorpro-client.php:1890
+msgid "Reload now"
+msgstr "Recargar ahora"
+
+#: pro/licensorpro-client/licensorpro-client.php:1891
+msgid ""
+"Could not reach the licensing server. Check your connection and try again."
+msgstr ""
+"No se pudo conectar con el servidor de licencias. Comprueba tu conexión y "
+"vuelve a intentarlo."
+
+#: pro/licensorpro-client/licensorpro-client.php:1892
+msgid ""
+"Deactivate this license on this site? Premium features switch off here and "
+"the seat is freed for another site."
+msgstr ""
+"¿Desactivar esta licencia en este sitio? Las funciones premium se apagan "
+"aquí y el hueco queda libre para otro sitio."
+
+#: includes/class-plugin.php:363
+msgid "Done."
+msgstr "Hecho."
+
+#: pro/licensorpro-client/licensorpro-client.php:1894
+msgid "Deactivated."
+msgstr "Desactivado."
+
+#: pro/licensorpro-client/licensorpro-client.php:1895
+msgid "Checked."
+msgstr "Comprobado."
 
 #: pro/licensorpro-client/licensorpro-client.php:2062
 msgid "Only someone who may install plugins on this site can install Pro."
@@ -496,8 +599,8 @@ msgstr ""
 
 #. Author of the plugin
 #: entryvault.php
-msgid "JNK Plugins"
-msgstr "JNK Plugins"
+msgid "JnK Plugins"
+msgstr "JnK Plugins"
 
 #. Author URI of the plugin
 #: entryvault.php
@@ -1429,6 +1532,20 @@ msgstr ""
 "desactivas o borras el plugin, o si dejas caducar una licencia Pro. Marca "
 "esto solo si al borrar el plugin también deben eliminarse los datos."
 
+#: admin/views/settings.php:185
+msgid ""
+"Deleting EntryVault will then permanently remove all your pipelines, cards, "
+"notes, tags and settings. This cannot be undone, so export anything you want "
+"to keep first."
+msgstr ""
+"Al eliminar EntryVault se borrarán para siempre todos tus pipelines, "
+"tarjetas, notas, etiquetas y ajustes. No se puede deshacer, así que exporta "
+"antes lo que quieras conservar."
+
+#: admin/views/settings.php:186
+msgid "Tick this anyway?"
+msgstr "¿Marcarlo de todos modos?"
+
 #: admin/views/settings.php:189 admin/views/settings.php:218
 msgid "Save changes"
 msgstr "Guardar cambios"
@@ -1820,6 +1937,16 @@ msgstr "Correo electrónico"
 msgid "Owner"
 msgstr "Responsable"
 
+#: includes/class-past-entries.php:86
+msgid ""
+"Contact Form 7 does not keep entries on this site (it only emails them), so "
+"there are no past entries to bring in. New submissions are captured from now "
+"on."
+msgstr ""
+"Contact Form 7 no guarda entradas en este sitio (solo las envía por correo), "
+"así que no hay entradas anteriores que traer. Los nuevos envíos se capturan "
+"a partir de ahora."
+
 #: includes/class-plugin.php:94 includes/class-plugin.php:177
 #: includes/class-plugin.php:178
 msgid "Upgrade to Pro"
@@ -1951,10 +2078,6 @@ msgstr "Ejecutando…"
 #: includes/class-plugin.php:362
 msgid "Import failed."
 msgstr "Ha fallado la importación."
-
-#: includes/class-plugin.php:363
-msgid "Done."
-msgstr "Hecho."
 
 #: includes/class-plugin.php:364
 msgid "Results"
@@ -2424,6 +2547,13 @@ msgstr "una etapa borrada (#%d)"
 #: includes/class-timeline.php:166
 msgid "nobody"
 msgstr "nadie"
+
+#. translators: %s: the plugin that saved the Contact Form 7 messages (Flamingo or CFDB7).
+#: includes/historical/class-historical-cfdb7.php:27
+#: includes/historical/class-historical-flamingo.php:31
+#, php-format
+msgid "Contact Form 7 (saved by %s)"
+msgstr "Contact Form 7 (guardado por %s)"
 
 #: admin/assets/kanban/build/index.js:5
 msgid "Close"

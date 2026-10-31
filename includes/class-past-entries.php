@@ -46,8 +46,49 @@ class Past_Entries {
                 $out[] = $row;
             }
         }
+        $cf7 = self::cf7_without_store( $out );
+        if ( $cf7 ) {
+            $out[] = $cf7;
+        }
         set_transient( self::CACHE, [ 'key' => self::cache_key(), 'rows' => $out ], 10 * MINUTE_IN_SECONDS );
         return $out;
+    }
+
+    /**
+     * Contact Form 7 on its own keeps no entries (it only emails them); only
+     * Flamingo or CFDB7 store them. Say so, like WPForms Lite, when CF7 is
+     * active and neither of them has anything.
+     *
+     * @param array<int,array<string,mixed>> $rows
+     * @return array<string,mixed>|null
+     */
+    private static function cf7_without_store( array $rows ): ?array {
+        $active = defined( 'WPCF7_VERSION' ) || class_exists( '\\WPCF7' );
+        /**
+         * Filter whether Contact Form 7 counts as active for the Past entries notes.
+         *
+         * @param bool $active
+         */
+        if ( ! apply_filters( 'entryvault_cf7_active', $active ) ) {
+            return null;
+        }
+        foreach ( $rows as $r ) {
+            if ( in_array( (string) ( $r['key'] ?? '' ), [ 'flamingo', 'cfdb7' ], true ) ) {
+                return null;
+            }
+        }
+        return [
+            'key'           => 'cf7',
+            'label'         => 'Contact Form 7',
+            'access'        => Provider_Base::ACCESS_API,
+            'experimental'  => false,
+            'keeps_entries' => false,
+            'note'          => __( 'Contact Form 7 does not keep entries on this site (it only emails them), so there are no past entries to bring in. New submissions are captured from now on.', 'entryvault' ),
+            'schema'        => [ 'ok' => true, 'missing' => [] ],
+            'forms'         => [],
+            'total'         => 0,
+            'pending'       => 0,
+        ];
     }
 
     /** What a cached count must match to be used. */

@@ -2,9 +2,9 @@
 Contributors: suresh1986
 Tags: form entries, contact form, crm, leads, csv export
 Requires at least: 6.2
-Tested up to: 7.0
+Tested up to: 7.1
 Requires PHP: 8.2
-Stable tag: 1.20.2
+Stable tag: 1.21.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -68,7 +68,7 @@ See the full feature comparison at https://jnkplugins.com/entryvault/features.ph
 
 == Installation ==
 
-1. In your WordPress admin, go to Plugins → Add New, or upload the `entryvault` folder to `/wp-content/plugins/`.
+1. Download the free EntryVault zip from https://jnkplugins.com/entryvault/, then in your WordPress admin go to Plugins → Add New → Upload Plugin and upload it. Or unzip it and copy the `entryvault` folder to `/wp-content/plugins/`.
 2. Activate **EntryVault**. Activation creates EntryVault's own tables and seeds a default Inbox pipeline.
 3. Go to **EntryVault → Kanban** to see your board.
 4. If your form plugin already holds entries, the board offers to bring them in. New submissions appear on the board within moments.
@@ -137,6 +137,26 @@ Use the contact page at https://jnkplugins.com/entryvault/, or Feedback & Suppor
 7. Pro: automations that tag, assign, move or email entries for you.
 
 == Changelog ==
+
+= 1.21.0 =
+* New: ticking "Delete all EntryVault data" asks you to confirm and shows what deleting the plugin will remove.
+* Changed: deleting the plugin frees this site's licence seat, so you can use it on another site straight away. Your data stays unless you ticked the delete box; if you install the plugin again, enter your key again.
+* Fixed: SureForms on Past entries shows how many entries each form has, and bringing them in reads only that form's entries. Before, it read every form's entries, trash included, under the form you picked.
+* Fixed: messages after saving or checking something on the EntryVault screens (Settings, Tags, Health, Import, Past entries) come in your own language when it differs from the site's.
+* Fixed: Forminator entries show the field names from the form (they were guessed from codes such as Textarea), and the visitor's IP address is no longer saved as a field.
+* Fixed: the licence box answers in your language (a wrong key, Install Pro, deactivating), an unlimited licence shows Unlimited instead of a site limit of 0, and a free key is no longer told it switches on Pro.
+* Fixed: View details on the Plugins screen is there right after you activate the plugin, and its tabs keep WordPress's order.
+* Fixed: the question shown when you deactivate the plugin closes with Esc.
+* Fixed: past Forminator entries were not found with current Forminator. They are now counted and brought in, and forms show their name instead of their slug.
+* Fixed: the default pipeline and stage names show in your language even when they were created in another one (an Arabic install used in Spanish shows "Ganada", not "مكسوب"), and a table filtered by stage finds them in any language.
+* Fixed: past SureForms entries show the field names from the form instead of garbled codes, and share columns with new entries in exports.
+* Fixed: the Contact Form 7 sources on Past entries (saved by Flamingo or CFDB7) are named in your language.
+* Fixed: deleting the plugin with "Delete all data on uninstall" ticked now removes everything it kept: the approvals table, pipeline links, past-entries progress, licence state, per-user settings, scheduled tasks and the EntryVault capability on user roles.
+* Changed: tested with WordPress 7.1, and the installation steps say where to download the free zip and how to upload it.
+* Fixed: entries brought in from Past entries no longer get the NEW badge on the board.
+* Fixed: card ages never use a one-letter unit (Arabic minutes and hours, Spanish hours and days are spelled out).
+* Fixed: with Contact Form 7 alone (no Flamingo or CFDB7), Past entries and the board say that it keeps no entries, as for WPForms Lite.
+* Fixed: the problem report for CFDB7 shows its version instead of "unknown".
 
 = 1.20.2 =
 * Fixed: View details on a free install shows the full description, changelog and FAQ, with the video, instead of raw text.

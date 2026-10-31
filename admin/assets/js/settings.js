@@ -11,6 +11,9 @@
     var INITIAL = { default_pipeline: parseInt( boot.defaultPipeline, 10 ) || 0 };
     var I18N    = boot.i18n || {};
 
+    // Messages come back in the user's language, not the site's (as wp.apiFetch does).
+    function evLocale( u ) { return u + ( u.indexOf( '?' ) === -1 ? '?' : '&' ) + '_locale=user'; }
+
     function api( path, opts ) {
         opts = opts || {};
         opts.headers = opts.headers || {};
@@ -18,7 +21,7 @@
         opts.headers['Content-Type'] = 'application/json';
         opts.headers['Accept']       = 'application/json';
         opts.credentials = 'same-origin';
-        return fetch( REST + path, opts ).then( function ( r ) {
+        return fetch( evLocale( REST + path ), opts ).then( function ( r ) {
             return r.json().then( function ( j ) { return { status: r.status, body: j }; } );
         } );
     }

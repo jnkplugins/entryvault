@@ -117,7 +117,7 @@ add_filter( 'plugins_api', static function ( $result, $action, $args ) {
                 $flush();
             } elseif ( preg_match( '~^<?https?://(?:(?:www\.|m\.)?youtube(?:-nocookie)?\.com/(?:watch\?(?:[^\s>]*&)?v=|embed/|shorts/)|youtu\.be/)([A-Za-z0-9_-]{11})(?:[?&#/][^\s>]*)?>?$~i', $line, $vm ) ) {
                 $flush();
-                $html[] = '<p><a href="https://www.youtube.com/watch?v=' . esc_attr( $vm[1] ) . '" target="_blank"><img src="https://i.ytimg.com/vi/' . esc_attr( $vm[1] ) . '/hqdefault.jpg" alt="Watch the video on YouTube"></a></p>';
+                $html[] = '<p><a href="https://www.youtube.com/watch?v=' . esc_attr( $vm[1] ) . '" target="_blank"><img src="https://i.ytimg.com/vi/' . esc_attr( $vm[1] ) . '/mqdefault.jpg" alt="Watch the video on YouTube"></a><br><a href="https://www.youtube.com/watch?v=' . esc_attr( $vm[1] ) . '" target="_blank">&#9654; Watch the video on YouTube</a></p>';
             } elseif ( preg_match( '/^=\s*([^=].*?)\s*=$/', $line, $hm ) ) {
                 $flush();
                 $html[] = '<h4>' . $inline( $hm[1] ) . '</h4>';
@@ -167,6 +167,12 @@ add_filter( 'plugins_api', static function ( $result, $action, $args ) {
             $sections[ $key ] = $html;
         }
     }
+    // A filled-in gap went to the end, after Screenshots: keep wordpress.org's tab order.
+    $order    = array_flip( [ 'description', 'installation', 'faq', 'screenshots', 'changelog', 'reviews', 'other_notes' ] );
+    $position = array_flip( array_keys( $sections ) );
+    uksort( $sections, static function ( $a, $b ) use ( $order, $position ) {
+        return ( $order[ $a ] ?? 50 + $position[ $a ] ) <=> ( $order[ $b ] ?? 50 + $position[ $b ] );
+    } );
     $result->sections = $sections;
 
     // The short description: the first line after the header block, before any "== Section ==".

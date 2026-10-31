@@ -361,6 +361,10 @@ msgstr "업데이트 채널"
 msgid "Site limit"
 msgstr "사이트 한도"
 
+#: pro/licensorpro-client/licensorpro-client.php:1823
+msgid "Unlimited"
+msgstr "무제한"
+
 #: pro/licensorpro-client/licensorpro-client.php:1808
 msgid "Expires"
 msgstr "만료일"
@@ -404,6 +408,100 @@ msgstr "도움이 필요하신가요?"
 #: pro/licensorpro-client/licensorpro-client.php:1857
 msgid "Contact support"
 msgstr "지원팀에 문의"
+
+#: pro/licensorpro-client/licensorpro-client.php:1880
+msgid ""
+"Every seat on this license is in use. Deactivate one of your other sites "
+"from your account, then try again."
+msgstr ""
+"이 라이선스의 모든 사이트 자리가 사용 중입니다. 계정에서 다른 사이트 하나를 "
+"비활성화한 뒤 다시 시도하세요."
+
+#: pro/licensorpro-client/licensorpro-client.php:1881
+msgid ""
+"This license has expired. Renewing it from your account reactivates this "
+"site immediately. Your settings and data are untouched."
+msgstr ""
+"이 라이선스는 만료되었습니다. 계정에서 갱신하면 이 사이트가 바로 다시 활성화"
+"됩니다. 설정과 데이터는 그대로 유지됩니다."
+
+#: pro/licensorpro-client/licensorpro-client.php:1882
+msgid ""
+"That key was not recognised. Check for a missing character, or copy it again "
+"from your purchase email."
+msgstr ""
+"인식할 수 없는 키입니다. 빠진 글자가 없는지 확인하거나 구매 이메일에서 다시 "
+"복사하세요."
+
+#: pro/licensorpro-client/licensorpro-client.php:1883
+msgid ""
+"This key has been revoked. If you believe that is a mistake, reply to your "
+"purchase email and we will sort it out."
+msgstr ""
+"이 키는 취소되었습니다. 잘못된 것 같다면 구매 이메일에 회신해 주세요. 바로 해"
+"결해 드리겠습니다."
+
+#: pro/licensorpro-client/licensorpro-client.php:1884
+msgid ""
+"Could not reach the licensing server. Your site may be blocking outbound "
+"requests. This is usually temporary, so try again in a minute."
+msgstr ""
+"라이선스 서버에 연결하지 못했습니다. 사이트가 외부 요청을 막고 있을 수 있습니"
+"다. 보통 일시적이니 1분 뒤 다시 시도하세요."
+
+#: pro/licensorpro-client/licensorpro-client.php:1885
+msgid "Too many attempts in a short window. Wait a minute and try again."
+msgstr "짧은 시간에 너무 많이 시도했습니다. 1분 기다린 뒤 다시 시도하세요."
+
+#: pro/licensorpro-client/licensorpro-client.php:1886
+msgid ""
+"The licensing server had a problem on its side. Your key was not rejected. "
+"Try again in a few minutes, and if it keeps happening, reply to your "
+"purchase email."
+msgstr ""
+"라이선스 서버 쪽에 문제가 있었습니다. 키가 거부된 것은 아닙니다. 몇 분 뒤 다"
+"시 시도하고, 계속되면 구매 이메일에 회신해 주세요."
+
+#: pro/licensorpro-client/licensorpro-client.php:1887
+msgid "Enter your license key first."
+msgstr "먼저 라이선스 키를 입력하세요."
+
+#: pro/licensorpro-client/licensorpro-client.php:1888
+msgid "Installing Pro. This takes a few seconds, keep this page open…"
+msgstr "Pro를 설치하는 중입니다. 몇 초 걸리니 이 페이지를 열어 두세요…"
+
+#: pro/licensorpro-client/licensorpro-client.php:1889
+msgid "Reloading to switch on the Pro tools…"
+msgstr "Pro 도구를 켜기 위해 다시 불러오는 중…"
+
+#: pro/licensorpro-client/licensorpro-client.php:1890
+msgid "Reload now"
+msgstr "지금 새로 고침"
+
+#: pro/licensorpro-client/licensorpro-client.php:1891
+msgid ""
+"Could not reach the licensing server. Check your connection and try again."
+msgstr "라이선스 서버에 연결하지 못했습니다. 연결을 확인하고 다시 시도하세요."
+
+#: pro/licensorpro-client/licensorpro-client.php:1892
+msgid ""
+"Deactivate this license on this site? Premium features switch off here and "
+"the seat is freed for another site."
+msgstr ""
+"이 사이트에서 라이선스를 비활성화할까요? 이 사이트의 프리미엄 기능이 꺼지고 "
+"자리는 다른 사이트에서 쓸 수 있게 됩니다."
+
+#: includes/class-plugin.php:363
+msgid "Done."
+msgstr "완료했습니다."
+
+#: pro/licensorpro-client/licensorpro-client.php:1894
+msgid "Deactivated."
+msgstr "비활성화했습니다."
+
+#: pro/licensorpro-client/licensorpro-client.php:1895
+msgid "Checked."
+msgstr "확인했습니다."
 
 #: pro/licensorpro-client/licensorpro-client.php:2062
 msgid "Only someone who may install plugins on this site can install Pro."
@@ -485,8 +583,8 @@ msgstr "WordPress 양식 플러그인을 위한 가벼운 CRM 및 항목 관리�
 
 #. Author of the plugin
 #: entryvault.php
-msgid "JNK Plugins"
-msgstr "JNK Plugins"
+msgid "JnK Plugins"
+msgstr "JnK Plugins"
 
 #. Author URI of the plugin
 #: entryvault.php
@@ -1384,6 +1482,19 @@ msgstr ""
 "되어도 제출, 태그, 메모는 유지됩니다. 플러그인을 삭제할 때 데이터도 지워야 하"
 "는 경우에만 선택하세요."
 
+#: admin/views/settings.php:185
+msgid ""
+"Deleting EntryVault will then permanently remove all your pipelines, cards, "
+"notes, tags and settings. This cannot be undone, so export anything you want "
+"to keep first."
+msgstr ""
+"EntryVault를 삭제하면 모든 파이프라인, 카드, 메모, 태그와 설정이 영구히 삭제"
+"됩니다. 되돌릴 수 없으니 보관할 내용은 먼저 내보내세요."
+
+#: admin/views/settings.php:186
+msgid "Tick this anyway?"
+msgstr "그래도 선택할까요?"
+
 #: admin/views/settings.php:189 admin/views/settings.php:218
 msgid "Save changes"
 msgstr "변경 사항 저장"
@@ -1767,6 +1878,15 @@ msgstr "이메일"
 msgid "Owner"
 msgstr "담당자"
 
+#: includes/class-past-entries.php:86
+msgid ""
+"Contact Form 7 does not keep entries on this site (it only emails them), so "
+"there are no past entries to bring in. New submissions are captured from now "
+"on."
+msgstr ""
+"Contact Form 7은 이 사이트에 항목을 저장하지 않으므로(이메일로만 보냄) 가져"
+"올 이전 항목이 없습니다. 지금부터 새 제출이 수집됩니다."
+
 #: includes/class-plugin.php:94 includes/class-plugin.php:177
 #: includes/class-plugin.php:178
 msgid "Upgrade to Pro"
@@ -1894,10 +2014,6 @@ msgstr "실행 중…"
 #: includes/class-plugin.php:362
 msgid "Import failed."
 msgstr "가져오기에 실패했습니다."
-
-#: includes/class-plugin.php:363
-msgid "Done."
-msgstr "완료했습니다."
 
 #: includes/class-plugin.php:364
 msgid "Results"
@@ -2355,6 +2471,13 @@ msgstr "삭제된 단계 (#%d)"
 #: includes/class-timeline.php:166
 msgid "nobody"
 msgstr "없음"
+
+#. translators: %s: the plugin that saved the Contact Form 7 messages (Flamingo or CFDB7).
+#: includes/historical/class-historical-cfdb7.php:27
+#: includes/historical/class-historical-flamingo.php:31
+#, php-format
+msgid "Contact Form 7 (saved by %s)"
+msgstr "Contact Form 7 (%s에 저장됨)"
 
 #: admin/assets/kanban/build/index.js:5
 msgid "Close"

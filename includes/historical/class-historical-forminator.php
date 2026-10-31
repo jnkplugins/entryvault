@@ -27,27 +27,97 @@ class Historical_Forminator extends Provider_Base {
         return Adapter_Forminator::class;
     }
 
+    /**
+     * The Forminator classes EntryVault reads through. Filterable so tests can
+     * hand in stand-ins with the same static methods.
+     *
+     * @return array{entry:string,api:string}
+     */
+    protected function api(): array {
+        $api = [ 'entry' => '\\Forminator_Form_Entry_Model', 'api' => '\\Forminator_API' ];
+        /**
+         * Filter the Forminator classes EntryVault reads past entries with.
+         *
+         * @param array{entry:string,api:string} $api Class names.
+         */
+        $api = apply_filters( 'entryvault_forminator_api', $api );
+        return [
+            'entry' => (string) ( $api['entry'] ?? '' ),
+            'api'   => (string) ( $api['api'] ?? '' ),
+        ];
+    }
+
     public function available(): bool {
-        return class_exists( '\\Forminator_Form_Entry_Model' );
+        $class = $this->api()['entry'];
+        return '' !== $class && class_exists( $class );
     }
 
     public function forms(): array {
-        if ( ! class_exists( '\\Forminator_API' ) ) {
+        $api = $this->api()['api'];
+        if ( '' === $api || ! class_exists( $api ) ) {
             return [];
         }
-        $forms = \Forminator_API::get_forms( null, 1, -1 );
-        $out   = [];
-        foreach ( (array) $forms as $form ) {
-            $id    = is_object( $form ) ? ( $form->id ?? 0 ) : ( $form['id'] ?? 0 );
-            $title = '';
-            if ( is_object( $form ) ) {
-                $title = (string) ( $form->name ?? ( isset( $form->settings['formName'] ) ? $form->settings['formName'] : '' ) );
-            } elseif ( is_array( $form ) ) {
-                $title = (string) ( $form['name'] ?? ( $form['settings']['formName'] ?? '' ) );
+        $forms = $api::get_forms( null, 1, -1 );
+        if ( ! is_array( $forms ) ) {
+            return [];
+        }
+        $out = [];
+        foreach ( $forms as $form ) {
+            $form = is_object( $form ) ? $form : (object) (array) $form;
+            $id   = (int) ( $form->id ?? 0 );
+            if ( ! $id ) {
+                continue;
             }
-            $out[] = [ 'id' => (int) $id, 'title' => $title ];
+            // The form's name as the owner typed it lives in settings['formName'];
+            // $form->name is the post slug.
+            $settings = (array) ( $form->settings ?? [] );
+            $raw      = isset( $form->raw ) ? (object) $form->raw : null;
+            $title    = trim( (string) ( $settings['formName'] ?? '' ) );
+            if ( '' === $title && $raw ) {
+                $title = trim( (string) ( $raw->post_title ?? '' ) );
+            }
+            if ( '' === $title ) {
+                $title = (string) ( $form->name ?? '' );
+            }
+            $out[] = [ 'id' => $id, 'title' => $title ];
         }
         return $out;
+    }
+
+    /** Entry statuses that are real submissions (not drafts, abandoned, failed payments or spam). */
+    private const STATUSES = [ 'active', 'pending' ];
+
+    /**
+     * Whether query_entries() still has the old ( $form_id, $args ) signature
+     * (Forminator before the args-array API).
+     */
+    private function old_query_signature( string $class ): bool {
+        try {
+            $params = ( new \ReflectionMethod( $class, 'query_entries' ) )->getParameters();
+        } catch ( \ReflectionException $e ) {
+            return false;
+        }
+        return isset( $params[0] ) && 'args' !== $params[0]->getName() && isset( $params[1] ) && 'get_count' !== $params[1]->getName();
+    }
+
+    public function count( int $form_id ): ?int {
+        $class = $this->api()['entry'];
+        if ( ! $this->available() ) {
+            return null;
+        }
+        try {
+            if ( method_exists( $class, 'count_entries' ) ) {
+                // Counts active and pending entries: the same ones entries() reads.
+                return (int) $class::count_entries( (int) $form_id );
+            }
+            if ( method_exists( $class, 'query_entries' ) && ! $this->old_query_signature( $class ) ) {
+                $res = $class::query_entries( [ 'form_id' => (int) $form_id, 'status' => self::STATUSES ], true );
+                return is_array( $res ) && isset( $res['count'] ) ? (int) $res['count'] : null;
+            }
+        } catch ( \Throwable $e ) {
+            return null;
+        }
+        return null;
     }
 
     public function entries( int $form_id, int $offset, int $limit ): array {
@@ -55,14 +125,27 @@ class Historical_Forminator extends Provider_Base {
         if ( ! $adapter || ! $this->available() ) {
             return [];
         }
+        $class   = $this->api()['entry'];
         $form_id = (int) $form_id;
         $limit   = max( 1, (int) $limit );
-        $page    = (int) floor( max( 0, (int) $offset ) / $limit ) + 1;
-        $entries = \Forminator_Form_Entry_Model::query_entries( $form_id, [
-            'per_page' => $limit,
-            'page'     => $page,
-            'order'    => 'ASC',
-        ] );
+        $offset  = max( 0, (int) $offset );
+        if ( $this->old_query_signature( $class ) ) {
+            $entries = $class::query_entries( $form_id, [
+                'per_page' => $limit,
+                'page'     => (int) floor( $offset / $limit ) + 1,
+                'order'    => 'ASC',
+            ] );
+        } else {
+            // order is only honoured together with order_by.
+            $entries = $class::query_entries( [
+                'form_id'  => $form_id,
+                'per_page' => $limit,
+                'offset'   => $offset,
+                'order_by' => 'entries.entry_id',
+                'order'    => 'ASC',
+                'status'   => self::STATUSES,
+            ] );
+        }
         if ( ! is_array( $entries ) || empty( $entries ) ) {
             return [];
         }
@@ -72,11 +155,16 @@ class Historical_Forminator extends Provider_Base {
             if ( ! $entry_id ) {
                 continue;
             }
-            $entry = new \Forminator_Form_Entry_Model( $entry_id );
+            $entry = is_object( $row ) && isset( $row->meta_data ) ? $row : new $class( $entry_id );
             if ( empty( $entry->entry_id ) ) {
                 continue;
             }
-            $meta  = is_array( $entry->meta_data ) ? $entry->meta_data : [];
+            // meta_data is [ slug => [ 'id' => meta id, 'value' => value ] ];
+            // the adapter wants [ slug => value ], as the submit hook hands it.
+            $meta = [];
+            foreach ( (array) ( $entry->meta_data ?? [] ) as $slug => $m ) {
+                $meta[ (string) $slug ] = is_array( $m ) && array_key_exists( 'value', $m ) ? $m['value'] : $m;
+            }
             $out[] = [
                 'source_entry_id' => (string) $entry_id,
                 'payload'         => $adapter->build_normalized(

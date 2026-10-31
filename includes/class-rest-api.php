@@ -273,10 +273,13 @@ class REST_API {
             // phpcs:enable WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.PreparedSQLPlaceholders.ReplacementsWrongNumber, PluginCheck.Security.DirectDB.UnescapedDBParameter
 
             if ( is_array( $cards ) ) {
+                $past = self::past_entry_ids( array_map( 'intval', array_column( $cards, 'id' ) ) );
                 foreach ( $cards as &$card ) {
                     // Site time in created_at / updated_at as before; the board
                     // reads the *_gmt twins.
                     $card                 = Dates::outward( $card, [ 'created_at', 'updated_at' ] );
+                    // Past entries are old news: the board gives them no NEW badge.
+                    $card['is_past']      = isset( $past[ (int) $card['id'] ] );
                     $card['tags']         = Tag_Manager::for_submission( (int) $card['id'] );
                     $card['source_label'] = Sources::label( (string) ( $card['source_plugin'] ?? '' ) );
                 }
@@ -303,6 +306,29 @@ class REST_API {
             'last_seen'     => '' === $last_seen ? '' : Dates::to_site( $last_seen ),
             'last_seen_gmt' => $last_seen,
         ] );
+    }
+
+    /**
+     * Which of these entries came in through Past entries (their "created"
+     * timeline event carries past: 1).
+     *
+     * @param int[] $ids
+     * @return array<int,true>
+     */
+    public static function past_entry_ids( array $ids ): array {
+        global $wpdb;
+        $ids = array_values( array_filter( array_map( 'intval', $ids ) ) );
+        if ( ! $ids ) {
+            return [];
+        }
+        $in = implode( ',', array_fill( 0, count( $ids ), '%d' ) );
+        // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.DirectDatabaseQuery -- $in holds only %d placeholders; custom table.
+        $rows = $wpdb->get_col( $wpdb->prepare(
+            "SELECT DISTINCT submission_id FROM {$wpdb->prefix}entryvault_timeline
+              WHERE type = 'status' AND submission_id IN ($in) AND data LIKE %s",
+            array_merge( $ids, [ '%' . $wpdb->esc_like( '"past":1' ) . '%' ] )
+        ) );
+        return array_fill_keys( array_map( 'intval', (array) $rows ), true );
     }
 
     public function mark_pipeline_seen( WP_REST_Request $req ): WP_REST_Response {

@@ -182,6 +182,21 @@ if ( function_exists( 'wp_roles' ) ) {
                             <?php esc_html_e( 'Delete all EntryVault data when the plugin is deleted', 'entryvault' ); ?>
                         </label>
                         <p class="description"><?php esc_html_e( 'Off by default. Your submissions, tags and notes are kept if you deactivate or delete the plugin, or let a Pro license lapse. Tick this only if deleting the plugin should also remove the data.', 'entryvault' ); ?></p>
+                        <?php $ev_delete_warning = __( 'Deleting EntryVault will then permanently remove all your pipelines, cards, notes, tags and settings. This cannot be undone, so export anything you want to keep first.', 'entryvault' ); ?>
+                        <div id="ev-delete-data-warning" class="notice notice-warning inline" data-confirm="<?php echo esc_attr( $ev_delete_warning . "\n\n" . __( 'Tick this anyway?', 'entryvault' ) ); ?>"<?php echo $ev_delete_on_uninstall ? '' : ' style="display:none"'; ?>><p><?php echo esc_html( $ev_delete_warning ); ?></p></div>
+                        <script>
+                        ( function () {
+                            // Ticking it is one click; what it does on delete cannot be undone, so ask once and keep the warning in view.
+                            var box = document.querySelector( '#ev-delete-data-on-uninstall' ), warn = document.getElementById( 'ev-delete-data-warning' );
+                            if ( ! box || ! warn ) { return; }
+                            function show() { warn.style.display = box.checked ? "" : "none"; }
+                            box.addEventListener( "change", function () {
+                                if ( box.checked && ! window.confirm( warn.getAttribute( "data-confirm" ) ) ) { box.checked = false; }
+                                show();
+                            } );
+                            show();
+                        } )();
+                        </script>
                     </td>
                 </tr>
             </tbody></table>

@@ -360,6 +360,10 @@ msgstr "अपडेट चैनल"
 msgid "Site limit"
 msgstr "साइट सीमा"
 
+#: pro/licensorpro-client/licensorpro-client.php:1823
+msgid "Unlimited"
+msgstr "असीमित"
+
 #: pro/licensorpro-client/licensorpro-client.php:1808
 msgid "Expires"
 msgstr "समाप्त होता है"
@@ -403,6 +407,100 @@ msgstr "मदद चाहिए?"
 #: pro/licensorpro-client/licensorpro-client.php:1857
 msgid "Contact support"
 msgstr "सहायता से संपर्क करें"
+
+#: pro/licensorpro-client/licensorpro-client.php:1880
+msgid ""
+"Every seat on this license is in use. Deactivate one of your other sites "
+"from your account, then try again."
+msgstr ""
+"इस लाइसेंस की सभी साइटें इस्तेमाल में हैं। अपने अकाउंट से कोई दूसरी साइट निष्क्रिय करें, फिर "
+"दोबारा कोशिश करें।"
+
+#: pro/licensorpro-client/licensorpro-client.php:1881
+msgid ""
+"This license has expired. Renewing it from your account reactivates this "
+"site immediately. Your settings and data are untouched."
+msgstr ""
+"इस लाइसेंस की अवधि खत्म हो गई है। अपने अकाउंट से रिन्यू करते ही यह साइट फिर से सक्रिय हो "
+"जाएगी। आपकी सेटिंग्स और डेटा जैसे हैं वैसे रहेंगे।"
+
+#: pro/licensorpro-client/licensorpro-client.php:1882
+msgid ""
+"That key was not recognised. Check for a missing character, or copy it again "
+"from your purchase email."
+msgstr ""
+"यह Key पहचानी नहीं गई। देखें कि कोई अक्षर छूटा तो नहीं, या खरीद वाले ईमेल से इसे फिर से "
+"कॉपी करें।"
+
+#: pro/licensorpro-client/licensorpro-client.php:1883
+msgid ""
+"This key has been revoked. If you believe that is a mistake, reply to your "
+"purchase email and we will sort it out."
+msgstr ""
+"यह Key रद्द कर दी गई है। अगर आपको लगता है कि यह गलती है, तो खरीद वाले ईमेल का जवाब "
+"दें, हम इसे ठीक कर देंगे।"
+
+#: pro/licensorpro-client/licensorpro-client.php:1884
+msgid ""
+"Could not reach the licensing server. Your site may be blocking outbound "
+"requests. This is usually temporary, so try again in a minute."
+msgstr ""
+"लाइसेंस सर्वर तक नहीं पहुँच सके। हो सकता है आपकी साइट बाहर जाने वाले अनुरोध रोक रही हो। "
+"यह अक्सर कुछ देर के लिए होता है, इसलिए एक मिनट बाद फिर कोशिश करें।"
+
+#: pro/licensorpro-client/licensorpro-client.php:1885
+msgid "Too many attempts in a short window. Wait a minute and try again."
+msgstr "थोड़े समय में बहुत ज़्यादा कोशिशें हो गईं। एक मिनट रुकें और फिर कोशिश करें।"
+
+#: pro/licensorpro-client/licensorpro-client.php:1886
+msgid ""
+"The licensing server had a problem on its side. Your key was not rejected. "
+"Try again in a few minutes, and if it keeps happening, reply to your "
+"purchase email."
+msgstr ""
+"लाइसेंस सर्वर की तरफ से कोई दिक्कत आई। आपकी Key अस्वीकार नहीं हुई है। कुछ मिनट बाद फिर "
+"कोशिश करें, और अगर यह बार-बार हो तो खरीद वाले ईमेल का जवाब दें।"
+
+#: pro/licensorpro-client/licensorpro-client.php:1887
+msgid "Enter your license key first."
+msgstr "पहले अपनी लाइसेंस Key डालें।"
+
+#: pro/licensorpro-client/licensorpro-client.php:1888
+msgid "Installing Pro. This takes a few seconds, keep this page open…"
+msgstr "Pro इंस्टॉल हो रहा है। इसमें कुछ सेकंड लगेंगे, यह पेज खुला रखें…"
+
+#: pro/licensorpro-client/licensorpro-client.php:1889
+msgid "Reloading to switch on the Pro tools…"
+msgstr "Pro टूल चालू करने के लिए पेज फिर से लोड हो रहा है…"
+
+#: pro/licensorpro-client/licensorpro-client.php:1890
+msgid "Reload now"
+msgstr "अभी फिर से लोड करें"
+
+#: pro/licensorpro-client/licensorpro-client.php:1891
+msgid ""
+"Could not reach the licensing server. Check your connection and try again."
+msgstr "लाइसेंस सर्वर तक नहीं पहुँच सके। अपना कनेक्शन जाँचें और फिर कोशिश करें।"
+
+#: pro/licensorpro-client/licensorpro-client.php:1892
+msgid ""
+"Deactivate this license on this site? Premium features switch off here and "
+"the seat is freed for another site."
+msgstr ""
+"इस साइट पर यह लाइसेंस निष्क्रिय करें? यहाँ प्रीमियम फ़ीचर बंद हो जाएँगे और यह जगह किसी "
+"दूसरी साइट के लिए खाली हो जाएगी।"
+
+#: includes/class-plugin.php:363
+msgid "Done."
+msgstr "हो गया।"
+
+#: pro/licensorpro-client/licensorpro-client.php:1894
+msgid "Deactivated."
+msgstr "निष्क्रिय हो गया।"
+
+#: pro/licensorpro-client/licensorpro-client.php:1895
+msgid "Checked."
+msgstr "जाँच हो गई।"
 
 #: pro/licensorpro-client/licensorpro-client.php:2062
 msgid "Only someone who may install plugins on this site can install Pro."
@@ -484,8 +582,8 @@ msgstr "WordPress फ़ॉर्म प्लगइन्स के लिए �
 
 #. Author of the plugin
 #: entryvault.php
-msgid "JNK Plugins"
-msgstr "JNK Plugins"
+msgid "JnK Plugins"
+msgstr "JnK Plugins"
 
 #. Author URI of the plugin
 #: entryvault.php
@@ -1387,6 +1485,20 @@ msgstr ""
 "सबमिशन, टैग और नोट बने रहते हैं। इस पर टिक सिर्फ़ तभी करें जब प्लगइन हटाने पर डेटा भी "
 "हटना चाहिए।"
 
+#: admin/views/settings.php:185
+msgid ""
+"Deleting EntryVault will then permanently remove all your pipelines, cards, "
+"notes, tags and settings. This cannot be undone, so export anything you want "
+"to keep first."
+msgstr ""
+"इसके बाद EntryVault डिलीट करने पर आपकी सारी पाइपलाइन, कार्ड, नोट, टैग और सेटिंग्स "
+"हमेशा के लिए हट जाएँगी। इसे वापस नहीं किया जा सकता, इसलिए जो रखना है उसे पहले "
+"एक्सपोर्ट कर लें।"
+
+#: admin/views/settings.php:186
+msgid "Tick this anyway?"
+msgstr "फिर भी इसे चुनें?"
+
 #: admin/views/settings.php:189 admin/views/settings.php:218
 msgid "Save changes"
 msgstr "बदलाव सहेजें"
@@ -1767,6 +1879,15 @@ msgstr "ईमेल"
 msgid "Owner"
 msgstr "ज़िम्मेदार"
 
+#: includes/class-past-entries.php:86
+msgid ""
+"Contact Form 7 does not keep entries on this site (it only emails them), so "
+"there are no past entries to bring in. New submissions are captured from now "
+"on."
+msgstr ""
+"Contact Form 7 इस साइट पर एंट्रियाँ नहीं रखता (उन्हें सिर्फ़ ईमेल करता है), इसलिए लाने के "
+"लिए कोई पुरानी एंट्री नहीं है। अब से नए सबमिशन यहाँ आएँगे।"
+
 #: includes/class-plugin.php:94 includes/class-plugin.php:177
 #: includes/class-plugin.php:178
 msgid "Upgrade to Pro"
@@ -1895,10 +2016,6 @@ msgstr "चल रहा है…"
 #: includes/class-plugin.php:362
 msgid "Import failed."
 msgstr "इंपोर्ट नहीं हो सका।"
-
-#: includes/class-plugin.php:363
-msgid "Done."
-msgstr "हो गया।"
 
 #: includes/class-plugin.php:364
 msgid "Results"
@@ -2364,6 +2481,13 @@ msgstr "एक हटाया गया चरण (#%d)"
 #: includes/class-timeline.php:166
 msgid "nobody"
 msgstr "कोई नहीं"
+
+#. translators: %s: the plugin that saved the Contact Form 7 messages (Flamingo or CFDB7).
+#: includes/historical/class-historical-cfdb7.php:27
+#: includes/historical/class-historical-flamingo.php:31
+#, php-format
+msgid "Contact Form 7 (saved by %s)"
+msgstr "Contact Form 7 (%s द्वारा सेव किया गया)"
 
 #: admin/assets/kanban/build/index.js:5
 msgid "Close"

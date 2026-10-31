@@ -104,7 +104,7 @@ if ( $ev_box['offer'] || $ev_box['none'] ) :
         <?php foreach ( $ev_box['none'] as $ev_src ) : ?>
             <p><?php
                 /* translators: %s: form plugin name. */
-                echo esc_html( sprintf( __( '%s does not keep entries on this site (its free version only emails them), so there are no past entries to bring in. New submissions are captured from now on.', 'entryvault' ), $ev_src['label'] ) );
+                echo esc_html( ! empty( $ev_src['note'] ) ? (string) $ev_src['note'] : sprintf( __( '%s does not keep entries on this site (its free version only emails them), so there are no past entries to bring in. New submissions are captured from now on.', 'entryvault' ), $ev_src['label'] ) );
             ?></p>
         <?php endforeach; ?>
         </div>
@@ -132,10 +132,13 @@ if ( $ev_box['offer'] || $ev_box['none'] ) :
             if (q !== -1 && root.indexOf('?') !== -1) { return root + path.slice(0, q) + '&' + path.slice(q + 1); }
             return root + path;
         }
+        // Messages come back in the user's language, not the site's (as wp.apiFetch does).
+        function evLocale( u ) { return u + ( u.indexOf( '?' ) === -1 ? '?' : '&' ) + '_locale=user'; }
+
         function call(method, path, body) {
-            var o = { method: method, credentials: 'same-origin', headers: { 'X-WP-Nonce': nonce } };
+            var o = { method: method, credentials: 'same-origin', headers: { 'X-WP-Nonce': nonce, 'Accept': 'application/json' } };
             if (body) { o.headers['Content-Type'] = 'application/json'; o.body = JSON.stringify(body); }
-            return fetch(url(path), o).then(function (r) { return r.json(); });
+            return fetch(evLocale(url(path)), o).then(function (r) { return r.json(); });
         }
         var brought = 0, failed = false;
         function say(n) { st.textContent = L.progress.replace('%1$s', n).replace('%2$s', total || '?'); }

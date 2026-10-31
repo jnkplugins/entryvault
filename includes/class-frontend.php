@@ -201,10 +201,13 @@ class Frontend {
 		if ( $pipeline_slug === '' || $token === '' ) {
 			return false;
 		}
-		if ( ! self::get_pipeline_by_slug( $pipeline_slug ) ) {
+		$pipeline = self::get_pipeline_by_slug( $pipeline_slug );
+		if ( ! $pipeline ) {
 			return false;
 		}
-		$stored = (string) get_option( 'entryvault_pipeline_token_' . $pipeline_slug, '' );
+		// The token is stored under the pipeline's current slug, which differs
+		// when an old slug was looked up through its alias.
+		$stored = (string) get_option( 'entryvault_pipeline_token_' . (string) $pipeline['slug'], '' );
 		if ( $stored === '' ) {
 			return false;
 		}
@@ -219,10 +222,11 @@ class Frontend {
 	 */
 	public static function ensure_token( string $pipeline_slug ): string {
 		$pipeline_slug = sanitize_key( $pipeline_slug );
-		if ( $pipeline_slug === '' || ! self::get_pipeline_by_slug( $pipeline_slug ) ) {
+		$pipeline      = $pipeline_slug === '' ? null : self::get_pipeline_by_slug( $pipeline_slug );
+		if ( ! $pipeline ) {
 			return '';
 		}
-		$option_key = 'entryvault_pipeline_token_' . $pipeline_slug;
+		$option_key = 'entryvault_pipeline_token_' . (string) $pipeline['slug'];
 		$stored     = (string) get_option( $option_key, '' );
 		if ( $stored === '' ) {
 			$stored = wp_generate_password( 32, false );
@@ -246,6 +250,17 @@ class Frontend {
 			$wpdb->prepare( "SELECT * FROM {$wpdb->prefix}entryvault_pipelines WHERE slug = %s", $slug ),
 			ARRAY_A
 		);
+		if ( ! $row ) {
+			// A shortcode or block saved before 1.21.0 may carry a slug that was
+			// replaced because it was percent-encoded; follow it to the new one.
+			$alias = Pipeline_Slug::alias( $slug );
+			if ( $alias !== '' && $alias !== $slug ) {
+				$row = $wpdb->get_row(
+					$wpdb->prepare( "SELECT * FROM {$wpdb->prefix}entryvault_pipelines WHERE slug = %s", $alias ),
+					ARRAY_A
+				);
+			}
+		}
 		return $row ?: null;
 	}
 

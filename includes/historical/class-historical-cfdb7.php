@@ -23,7 +23,8 @@ class Historical_CFDB7 extends Historical_CF7_Base {
     }
 
     public function label(): string {
-        return 'Contact Form 7 (saved by CFDB7)';
+        /* translators: %s: the plugin that saved the Contact Form 7 messages (Flamingo or CFDB7). */
+        return sprintf( __( 'Contact Form 7 (saved by %s)', 'entryvault' ), 'CFDB7' );
     }
 
     protected function expected_schema(): array {
@@ -31,7 +32,30 @@ class Historical_CFDB7 extends Historical_CF7_Base {
     }
 
     public function source_version(): string {
-        return defined( 'CFDB7_VERSION' ) ? (string) CFDB7_VERSION : '';
+        if ( defined( 'CFDB7_VERSION' ) ) {
+            return (string) CFDB7_VERSION;
+        }
+        // CFDB7 1.4.x defines no version constant: read its plugin header.
+        $file = '';
+        if ( defined( 'WP_PLUGIN_DIR' ) ) {
+            foreach ( [ 'contact-form-cfdb7/contact-form-cfdb-7.php', 'contact-form-cfdb-7/contact-form-cfdb-7.php' ] as $rel ) {
+                if ( is_readable( WP_PLUGIN_DIR . '/' . $rel ) ) {
+                    $file = WP_PLUGIN_DIR . '/' . $rel;
+                    break;
+                }
+            }
+        }
+        /**
+         * Filter the CFDB7 main plugin file EntryVault reads the version from.
+         *
+         * @param string $file Absolute path, '' when not found.
+         */
+        $file = (string) apply_filters( 'entryvault_cfdb7_plugin_file', $file );
+        if ( '' === $file || ! is_readable( $file ) ) {
+            return '';
+        }
+        $data = get_file_data( $file, [ 'Version' => 'Version' ] );
+        return trim( (string) ( $data['Version'] ?? '' ) );
     }
 
     private static function table(): string {

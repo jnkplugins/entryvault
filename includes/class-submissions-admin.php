@@ -619,6 +619,12 @@ class Submissions_Admin {
                 /* translators: %s: form field label that clashes with a fixed column, e.g. "Email". */
                 $heading = sprintf( __( '%s (form field)', 'entryvault' ), $heading );
             }
+            // Never two columns with one heading (two "Email" fields both
+            // renamed to "Email (form field)").
+            $base = $heading;
+            for ( $n = 2; in_array( strtolower( $heading ), $taken, true ); $n++ ) {
+                $heading = $base . ' ' . $n;
+            }
             $taken[] = strtolower( $heading );
             $out[]   = $heading;
         }

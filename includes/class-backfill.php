@@ -186,7 +186,9 @@ class Backfill {
                 // second time used to report "2 / 2" brought in while the engine
                 // had matched both to entries already on the board.
                 try {
-                    $result = $engine->ingest_result( $payload );
+                    // Marked so the board does not badge old entries as NEW.
+                    $payload['past_entry'] = true;
+                    $result                = $engine->ingest_result( $payload );
                     if ( ! empty( $result['created'] ) ) {
                         $processed++;
                     } else {

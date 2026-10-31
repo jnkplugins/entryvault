@@ -68,7 +68,7 @@ $ev_view_data = $ev_found;
         <?php if ( empty( $a['keeps_entries'] ) ) : ?>
             <div class="jnkui-card-body"><?php
                 /* translators: %s: form plugin name. */
-                echo esc_html( sprintf( __( '%s does not keep entries on this site (its free version only emails them), so there are no past entries to bring in. New submissions are captured from now on.', 'entryvault' ), $a['label'] ) );
+                echo esc_html( ! empty( $a['note'] ) ? (string) $a['note'] : sprintf( __( '%s does not keep entries on this site (its free version only emails them), so there are no past entries to bring in. New submissions are captured from now on.', 'entryvault' ), $a['label'] ) );
             ?></div>
         </div>
         <?php continue; endif; ?>
@@ -132,11 +132,14 @@ $ev_view_data = $ev_found;
     var REST_ROOT  = <?php echo wp_json_encode( $ev_rest_root ); ?>;
     var REST_NONCE = <?php echo wp_json_encode( $ev_rest_nonce ); ?>;
 
+    // Messages come back in the user's language, not the site's (as wp.apiFetch does).
+    function evLocale( u ) { return u + ( u.indexOf( '?' ) === -1 ? '?' : '&' ) + '_locale=user'; }
+
     function api(method, path, body) {
         var opts = {
             method: method,
             credentials: 'same-origin',
-            headers: { 'X-WP-Nonce': REST_NONCE }
+            headers: { 'X-WP-Nonce': REST_NONCE, 'Accept': 'application/json' }
         };
         if ( body ) {
             opts.headers['Content-Type'] = 'application/json';
@@ -150,7 +153,7 @@ $ev_view_data = $ev_found;
         if ( qpos !== -1 && REST_ROOT.indexOf('?') !== -1 ) {
             url = REST_ROOT + path.slice(0, qpos) + '&' + path.slice(qpos + 1);
         }
-        return fetch(url, opts).then(function (r) {
+        return fetch(evLocale(url), opts).then(function (r) {
             return r.json().then(function (j) { return { status: r.status, body: j }; });
         });
     }

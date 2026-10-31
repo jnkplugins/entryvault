@@ -27,7 +27,8 @@ class Historical_Flamingo extends Historical_CF7_Base {
     }
 
     public function label(): string {
-        return 'Contact Form 7 (saved by Flamingo)';
+        /* translators: %s: the plugin that saved the Contact Form 7 messages (Flamingo or CFDB7). */
+        return sprintf( __( 'Contact Form 7 (saved by %s)', 'entryvault' ), 'Flamingo' );
     }
 
     /**

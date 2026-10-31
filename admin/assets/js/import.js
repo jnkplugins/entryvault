@@ -35,13 +35,17 @@
             .replace(/"/g, '&quot;').replace(/'/g, '&#039;');
     }
 
+    // Messages come back in the user's language, not the site's (as wp.apiFetch does).
+    function evLocale( u ) { return u + ( u.indexOf( '?' ) === -1 ? '?' : '&' ) + '_locale=user'; }
+
     function api(path, body) {
-        return fetch(REST_ROOT + path, {
+        return fetch(evLocale(REST_ROOT + path), {
             method: 'POST',
             credentials: 'same-origin',
             headers: {
                 'Content-Type': 'application/json',
-                'X-WP-Nonce': REST_NONCE
+                'X-WP-Nonce': REST_NONCE,
+                'Accept': 'application/json'
             },
             body: JSON.stringify(body || {})
         }).then(function (r) {

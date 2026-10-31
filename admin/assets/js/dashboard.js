@@ -40,9 +40,12 @@
         return url;
     }
 
+    // Messages come back in the user's language, not the site's (as wp.apiFetch does).
+    function evLocale( u ) { return u + ( u.indexOf( '?' ) === -1 ? '?' : '&' ) + '_locale=user'; }
+
     function get(path, params) {
         var url = evUrl(path, params);
-        return fetch(url, { headers: { 'X-WP-Nonce': NONCE }, credentials: 'same-origin' })
+        return fetch(evLocale(url), { headers: { 'X-WP-Nonce': NONCE, 'accept': 'application/json' }, credentials: 'same-origin' })
             .then(function (r) { return r.json(); })
             .then(function (j) { return (j && j.success) ? j.data : []; })
             .catch(function () { return []; });

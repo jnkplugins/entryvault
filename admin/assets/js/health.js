@@ -124,12 +124,17 @@
         statusEl.style.color = level === 'fail' ? 'var(--jnk-bad, #b91c1c)' : ( level === 'ok' ? 'var(--jnk-ok, #047857)' : '' );
     }
 
+    // Messages come back in the user's language, not the site's (as wp.apiFetch does).
+    function evLocale( u ) { return u + ( u.indexOf( '?' ) === -1 ? '?' : '&' ) + '_locale=user'; }
+
     function api( path, opts ) {
         opts = opts || {};
         opts.headers = opts.headers || {};
         opts.headers[ 'X-WP-Nonce' ] = NONCE;
+        // WordPress honours _locale=user only on a request that asks for JSON.
+        opts.headers[ 'accept' ] = 'application/json';
         opts.credentials = 'same-origin';
-        return fetch( REST_ROOT + path, opts ).then( function ( r ) {
+        return fetch( evLocale( REST_ROOT + path ), opts ).then( function ( r ) {
             return r.json().then( function ( body ) { return { status: r.status, body: body }; } );
         } );
     }

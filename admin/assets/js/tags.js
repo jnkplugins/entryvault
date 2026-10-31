@@ -8,13 +8,17 @@
     var NONCE = boot.nonce || '';
     var I18N  = boot.i18n || {};
 
+    // Messages come back in the user's language, not the site's (as wp.apiFetch does).
+    function evLocale( u ) { return u + ( u.indexOf( '?' ) === -1 ? '?' : '&' ) + '_locale=user'; }
+
     function api( path, method, body ) {
-        return fetch( REST + path, {
+        return fetch( evLocale( REST + path ), {
             method: method,
             credentials: 'same-origin',
             headers: {
                 'Content-Type': 'application/json',
                 'X-WP-Nonce': NONCE,
+                'Accept': 'application/json',
             },
             body: body ? JSON.stringify( body ) : undefined,
         } ).then( function ( r ) { return r.json(); } );

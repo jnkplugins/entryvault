@@ -132,7 +132,10 @@ export default function Board( { pipelineId, onPipelineChange, initialOpenId = n
 
             cards = cards.map( ( c ) => {
                 let isNew = false;
-                if ( seenTs && c.created_at_gmt ) {
+                if ( c.is_past ) {
+                    // Brought in from Past entries: not news.
+                    isNew = false;
+                } else if ( seenTs && c.created_at_gmt ) {
                     const ts = utcMs( c.created_at_gmt );
                     if ( ts && ts > seenTs ) isNew = true;
                 } else if ( ! seenTs && c.created_at_gmt ) {

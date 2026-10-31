@@ -145,7 +145,12 @@ class Sync_Engine {
             Submission_Store::insert_field( $submission_id, $field );
         }
 
-        Timeline::log( $submission_id, 'status', null, [ 'event' => 'created', 'source' => $normalized['source_plugin'] ?? '' ] );
+        $created = [ 'event' => 'created', 'source' => $normalized['source_plugin'] ?? '' ];
+        if ( ! empty( $normalized['past_entry'] ) ) {
+            // Brought in from the form plugin's past entries (Backfill).
+            $created['past'] = 1;
+        }
+        Timeline::log( $submission_id, 'status', null, $created );
 
         // Spam its form plugin flagged, kept because "Keep entries marked as
         // spam" is ticked: say so on the card. Automations skip it (Pro_Boot).
