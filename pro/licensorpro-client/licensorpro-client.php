@@ -60,7 +60,7 @@ class LicensorPro_Client {
      * change and re-propagate to every plugin's pro/licensorpro-client/.
      * Audit sync with: LicensorPro_Client::SDK_VERSION.
      */
-    const SDK_VERSION = '1.8.1';
+    const SDK_VERSION = '1.8.2';
 
     /** @var array */
     private $opts;
@@ -1646,7 +1646,13 @@ class LicensorPro_Client {
             'requires_php'  => $info['requires_php'] ?? '',
             'homepage'      => $info['homepage'] ?? '',
             'download_link' => $info['download_link'] ?? '',
+            // Every section the server sends, screenshots included: WordPress shows
+            // one tab per section and runs each through wp_kses itself.
             'sections'      => isset($info['sections']) && is_array($info['sections']) ? $info['sections'] : [],
+            // Banner on top of the popup and the icon, by URL from the server
+            // (1.8.2); the copies bundled in assets/ are the fallback.
+            'banners'       => $this->plugin_banners($info),
+            'icons'         => $this->plugin_icons($info),
         ];
         return $out;
     }
