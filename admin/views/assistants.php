@@ -185,6 +185,10 @@ if ( isset( $notices[ $notice ] ) ) {
         <h3><?php esc_html_e( 'Claude Code', 'entryvault' ); ?></h3>
         <textarea class="large-text code" rows="3" readonly onclick="this.select()" dir="ltr"><?php echo esc_textarea( $cli ); ?></textarea>
 
+        <h3><?php esc_html_e( 'Guide for your assistant', 'entryvault' ); ?></h3>
+        <p><?php esc_html_e( 'A short file that tells your assistant how to use these abilities safely: preview first, ask before saving, undo when needed. In Claude, add it as a skill; in other apps, paste it into the instructions.', 'entryvault' ); ?>
+        <a class="button" href="<?php echo esc_url( wp_nonce_url( admin_url( 'admin-post.php?action=entryvault_skill' ), 'entryvault_skill' ) ); ?>"><?php esc_html_e( 'Download the guide', 'entryvault' ); ?></a></p>
+
         <?php $oauth = Assistants::oauth_endpoint(); ?>
         <?php if ( '' !== $oauth ) : ?>
             <p class="jnkui-sub"><?php

@@ -4,7 +4,7 @@ Tags: form entries, contact form, crm, leads, csv export
 Requires at least: 6.2
 Tested up to: 7.1
 Requires PHP: 8.2
-Stable tag: 1.22.0
+Stable tag: 1.23.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -139,6 +139,9 @@ Use the contact page at https://jnkplugins.com/entryvault/, or Feedback & Suppor
 7. Pro: automations that tag, assign, move or email entries for you.
 
 == Changelog ==
+
+= 1.23.0 =
+* New: the AI assistants screen has a "Guide for your assistant" download, a short file that tells Claude or another AI app how to use the EntryVault abilities safely: preview first, ask before changing anything, leave masked contact details alone.
 
 = 1.22.0 =
 * New: an AI assistants screen (EntryVault > More tools > AI assistants). Connect Claude Desktop, Claude Code, Cursor or another MCP app and ask it about your form entries, from every form plugin at once. It shows ready-to-paste settings, installs the free MCP Adapter plugin in one click, and lists every request an assistant made.

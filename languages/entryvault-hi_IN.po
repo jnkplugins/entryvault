@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: EntryVault\n"
 "Report-Msgid-Bugs-To: https://jnkplugins.com/entryvault/\n"
-"POT-Creation-Date: 2026-10-31T16:10:47+00:00\n"
+"POT-Creation-Date: 2026-10-31T17:07:35+00:00\n"
 "PO-Revision-Date: 2026-10-29 12:00+0000\n"
 "Last-Translator: JNK Plugins\n"
 "Language-Team: Hindi\n"
@@ -841,8 +841,26 @@ msgstr ""
 msgid "Claude Code"
 msgstr "Claude Code"
 
+#: admin/views/assistants.php:188
+msgid "Guide for your assistant"
+msgstr "आपके असिस्टेंट के लिए गाइड"
+
+#: admin/views/assistants.php:189
+msgid ""
+"A short file that tells your assistant how to use these abilities safely: "
+"preview first, ask before saving, undo when needed. In Claude, add it as a "
+"skill; in other apps, paste it into the instructions."
+msgstr ""
+"एक छोटी फ़ाइल जो आपके असिस्टेंट को बताती है कि इन क्षमताओं का सुरक्षित इस्तेमाल कैसे करें: "
+"पहले पूर्वावलोकन, सेव करने से पहले पूछना, और ज़रूरत हो तो पहले जैसा करना। Claude में इसे "
+"skill के रूप में जोड़ें; दूसरे ऐप में इसे निर्देशों में पेस्ट करें।"
+
+#: admin/views/assistants.php:190
+msgid "Download the guide"
+msgstr "गाइड डाउनलोड करें"
+
 #. translators: %s: web address of the other MCP server.
-#: admin/views/assistants.php:193
+#: admin/views/assistants.php:197
 #, php-format
 msgid ""
 "Another plugin on this site (for example Rank Math) added an MCP server that "
@@ -856,7 +874,7 @@ msgstr ""
 "सकें; उस प्लगइन के निर्देशों का पालन करें। वह वही EntryVault क्षमताएँ देता है जिनकी अनुमति "
 "आपने ऊपर दी है, उन्हीं प्राइवेसी सेटिंग्स के साथ।"
 
-#: admin/views/assistants.php:198
+#: admin/views/assistants.php:202
 msgid ""
 "ChatGPT and Claude in a web browser cannot connect to a WordPress site this "
 "way yet: they need a sign-in method (OAuth) that WordPress does not offer "
@@ -865,90 +883,90 @@ msgstr ""
 "वेब ब्राउज़र में ChatGPT और Claude अभी इस तरह WordPress साइट से कनेक्ट नहीं हो सकते: "
 "उन्हें साइन इन का एक तरीका (OAuth) चाहिए जो WordPress अभी नहीं देता।"
 
-#: admin/views/assistants.php:200
+#: admin/views/assistants.php:204
 msgid ""
 "Try asking: “Which contact form entries from this week are still in the "
 "first stage?”"
 msgstr "पूछकर देखें: “इस हफ़्ते की कौन-सी संपर्क फ़ॉर्म एंट्रियाँ अभी भी पहले चरण में हैं?”"
 
-#: admin/views/assistants.php:206
+#: admin/views/assistants.php:210
 msgid "4. What an assistant can use"
 msgstr "4. असिस्टेंट क्या इस्तेमाल कर सकता है"
 
-#: admin/views/assistants.php:207
+#: admin/views/assistants.php:211
 msgid ""
 "Every EntryVault ability on this site and whether assistants can use it now."
 msgstr "इस साइट की हर EntryVault क्षमता, और क्या असिस्टेंट अभी उसे इस्तेमाल कर सकते हैं।"
 
-#: admin/views/assistants.php:209 admin/views/assistants.php:240
+#: admin/views/assistants.php:213 admin/views/assistants.php:244
 msgid "Ability"
 msgstr "क्षमता"
 
-#: admin/views/assistants.php:209
+#: admin/views/assistants.php:213
 msgid "What it does"
 msgstr "यह क्या करती है"
 
-#: admin/views/assistants.php:209
+#: admin/views/assistants.php:213
 msgid "Kind"
 msgstr "प्रकार"
 
-#: admin/views/assistants.php:209
+#: admin/views/assistants.php:213
 msgid "Assistants"
 msgstr "असिस्टेंट"
 
-#: admin/views/assistants.php:214
+#: admin/views/assistants.php:218
 msgid "Reads"
 msgstr "पढ़ता है"
 
-#: admin/views/assistants.php:215
+#: admin/views/assistants.php:219
 msgid "Changes entries"
 msgstr "एंट्रियाँ बदलता है"
 
-#: admin/views/assistants.php:216
+#: admin/views/assistants.php:220
 msgid "Sends email"
 msgstr "ईमेल भेजता है"
 
-#: admin/views/assistants.php:225
+#: admin/views/assistants.php:229
 msgid "Allowed"
 msgstr "अनुमति है"
 
-#: admin/views/assistants.php:225
+#: admin/views/assistants.php:229
 msgid "Off"
 msgstr "बंद"
 
-#: admin/views/assistants.php:234
+#: admin/views/assistants.php:238
 msgid "5. What assistants did"
 msgstr "5. असिस्टेंट ने क्या किया"
 
-#: admin/views/assistants.php:235
+#: admin/views/assistants.php:239
 msgid "The last 50 requests. EntryVault keeps the newest 200."
 msgstr "पिछले 50 अनुरोध। EntryVault सबसे नए 200 रखता है।"
 
-#: admin/views/assistants.php:237
+#: admin/views/assistants.php:241
 msgid "No requests yet."
 msgstr "अभी तक कोई अनुरोध नहीं।"
 
-#: admin/views/assistants.php:240
+#: admin/views/assistants.php:244
 msgid "When"
 msgstr "जब"
 
-#: admin/views/assistants.php:240
+#: admin/views/assistants.php:244
 msgid "User"
 msgstr "यूज़र"
 
-#: admin/views/assistants.php:240
+#: admin/views/assistants.php:244
 msgid "Asked"
 msgstr "क्या माँगा"
 
-#: admin/views/assistants.php:240
+#: admin/views/assistants.php:244
 msgid "Result"
 msgstr "नतीजा"
 
-#: admin/views/assistants.php:250 admin/views/past-entries.php:164
+#: admin/views/assistants.php:254 admin/views/past-entries.php:164
 msgid "Done"
 msgstr "हो गया"
 
-#: admin/views/assistants.php:250 admin/views/past-entries.php:167
+#: admin/views/assistants.php:254 admin/views/past-entries.php:167
 msgid "Failed"
 msgstr "विफल"
 
@@ -2179,11 +2197,11 @@ msgstr "सहायता"
 msgid "hidden"
 msgstr "छिपा हुआ"
 
-#: includes/class-assistants.php:70
+#: includes/class-assistants.php:102 includes/class-assistants.php:114
 msgid "Sorry, you are not allowed to do that."
 msgstr "माफ़ करें, आपको ऐसा करने की अनुमति नहीं है।"
 
-#: includes/class-assistants.php:99
+#: includes/class-assistants.php:143
 msgid "Sorry, you are not allowed to install plugins on this site."
 msgstr "माफ़ करें, आपको इस साइट पर प्लगइन इंस्टॉल करने की अनुमति नहीं है।"
 

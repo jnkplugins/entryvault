@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: EntryVault\n"
 "Report-Msgid-Bugs-To: https://jnkplugins.com/entryvault/\n"
-"POT-Creation-Date: 2026-10-31T16:10:47+00:00\n"
+"POT-Creation-Date: 2026-10-31T17:07:35+00:00\n"
 "PO-Revision-Date: 2026-10-10 16:40+0000\n"
 "Last-Translator: JNK Plugins\n"
 "Language-Team: Spanish (Spain)\n"
@@ -866,8 +866,27 @@ msgstr ""
 msgid "Claude Code"
 msgstr "Claude Code"
 
+#: admin/views/assistants.php:188
+msgid "Guide for your assistant"
+msgstr "Guía para tu asistente"
+
+#: admin/views/assistants.php:189
+msgid ""
+"A short file that tells your assistant how to use these abilities safely: "
+"preview first, ask before saving, undo when needed. In Claude, add it as a "
+"skill; in other apps, paste it into the instructions."
+msgstr ""
+"Un archivo breve que le explica a tu asistente cómo usar estas funciones con "
+"seguridad: primero vista previa, preguntar antes de guardar y deshacer "
+"cuando haga falta. En Claude, añádelo como skill; en otras apps, pégalo en "
+"las instrucciones."
+
+#: admin/views/assistants.php:190
+msgid "Download the guide"
+msgstr "Descarga la guía"
+
 #. translators: %s: web address of the other MCP server.
-#: admin/views/assistants.php:193
+#: admin/views/assistants.php:197
 #, php-format
 msgid ""
 "Another plugin on this site (for example Rank Math) added an MCP server that "
@@ -882,7 +901,7 @@ msgstr ""
 "ese plugin. Ofrece las mismas habilidades de EntryVault que permites arriba, "
 "con los mismos ajustes de privacidad."
 
-#: admin/views/assistants.php:198
+#: admin/views/assistants.php:202
 msgid ""
 "ChatGPT and Claude in a web browser cannot connect to a WordPress site this "
 "way yet: they need a sign-in method (OAuth) that WordPress does not offer "
@@ -892,7 +911,7 @@ msgstr ""
 "WordPress: necesitan un método de inicio de sesión (OAuth) que WordPress "
 "todavía no ofrece."
 
-#: admin/views/assistants.php:200
+#: admin/views/assistants.php:204
 msgid ""
 "Try asking: “Which contact form entries from this week are still in the "
 "first stage?”"
@@ -900,86 +919,86 @@ msgstr ""
 "Prueba a preguntar: “¿Qué entradas del formulario de contacto de esta semana "
 "siguen en la primera etapa?”"
 
-#: admin/views/assistants.php:206
+#: admin/views/assistants.php:210
 msgid "4. What an assistant can use"
 msgstr "4. Qué puede usar un asistente"
 
-#: admin/views/assistants.php:207
+#: admin/views/assistants.php:211
 msgid ""
 "Every EntryVault ability on this site and whether assistants can use it now."
 msgstr ""
 "Todas las habilidades de EntryVault en este sitio y si los asistentes pueden "
 "usarlas ahora."
 
-#: admin/views/assistants.php:209 admin/views/assistants.php:240
+#: admin/views/assistants.php:213 admin/views/assistants.php:244
 msgid "Ability"
 msgstr "Habilidad"
 
-#: admin/views/assistants.php:209
+#: admin/views/assistants.php:213
 msgid "What it does"
 msgstr "Qué hace"
 
-#: admin/views/assistants.php:209
+#: admin/views/assistants.php:213
 msgid "Kind"
 msgstr "Tipo"
 
-#: admin/views/assistants.php:209
+#: admin/views/assistants.php:213
 msgid "Assistants"
 msgstr "Asistentes"
 
-#: admin/views/assistants.php:214
+#: admin/views/assistants.php:218
 msgid "Reads"
 msgstr "Lee"
 
-#: admin/views/assistants.php:215
+#: admin/views/assistants.php:219
 msgid "Changes entries"
 msgstr "Cambia entradas"
 
-#: admin/views/assistants.php:216
+#: admin/views/assistants.php:220
 msgid "Sends email"
 msgstr "Envía correos"
 
-#: admin/views/assistants.php:225
+#: admin/views/assistants.php:229
 msgid "Allowed"
 msgstr "Permitido"
 
-#: admin/views/assistants.php:225
+#: admin/views/assistants.php:229
 msgid "Off"
 msgstr "Desactivada"
 
-#: admin/views/assistants.php:234
+#: admin/views/assistants.php:238
 msgid "5. What assistants did"
 msgstr "5. Qué hicieron los asistentes"
 
-#: admin/views/assistants.php:235
+#: admin/views/assistants.php:239
 msgid "The last 50 requests. EntryVault keeps the newest 200."
 msgstr "Las últimas 50 peticiones. EntryVault guarda las 200 más recientes."
 
-#: admin/views/assistants.php:237
+#: admin/views/assistants.php:241
 msgid "No requests yet."
 msgstr "Aún no hay peticiones."
 
-#: admin/views/assistants.php:240
+#: admin/views/assistants.php:244
 msgid "When"
 msgstr "Cuando"
 
-#: admin/views/assistants.php:240
+#: admin/views/assistants.php:244
 msgid "User"
 msgstr "Usuario"
 
-#: admin/views/assistants.php:240
+#: admin/views/assistants.php:244
 msgid "Asked"
 msgstr "Petición"
 
-#: admin/views/assistants.php:240
+#: admin/views/assistants.php:244
 msgid "Result"
 msgstr "Resultado"
 
-#: admin/views/assistants.php:250 admin/views/past-entries.php:164
+#: admin/views/assistants.php:254 admin/views/past-entries.php:164
 msgid "Done"
 msgstr "Hecho"
 
-#: admin/views/assistants.php:250 admin/views/past-entries.php:167
+#: admin/views/assistants.php:254 admin/views/past-entries.php:167
 msgid "Failed"
 msgstr "Fallido"
 
@@ -2255,11 +2274,11 @@ msgstr "Ayuda"
 msgid "hidden"
 msgstr "oculta"
 
-#: includes/class-assistants.php:70
+#: includes/class-assistants.php:102 includes/class-assistants.php:114
 msgid "Sorry, you are not allowed to do that."
 msgstr "Lo siento, no tienes permiso para hacer eso."
 
-#: includes/class-assistants.php:99
+#: includes/class-assistants.php:143
 msgid "Sorry, you are not allowed to install plugins on this site."
 msgstr "Lo siento, no tienes permiso para instalar plugins en este sitio."
 
