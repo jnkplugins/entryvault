@@ -47,33 +47,133 @@ if ( ! method_exists( $lp_client, 'is_free_licence' ) ) {
 }
 
 /**
- * "View details" on the Plugins screen: the licence server describes the paid
- * product, so the free build showed the Pro description and changelog. Show what
- * this zip's own readme.txt says instead.
+ * "View details" on the Plugins screen, when the licence server cannot describe
+ * this build. The server renders the popup from the readme.txt of the zip this
+ * site would be served (the free zip for a free licence), so its text wins and
+ * this only fills what it left empty, or everything when it was unreachable.
+ *
+ * The local readme goes through the same small, safe subset the server uses:
+ * every character escaped first, then = headings =, * lists, **bold**, *italic*,
+ * `code`, [links](https://...) and bare URLs; a YouTube URL alone on a line is a
+ * linked thumbnail (the popup's wp_kses allows no iframe).
  */
 add_filter( 'plugins_api', static function ( $result, $action, $args ) {
-    if ( 'plugin_information' !== $action || ! is_object( $args ) || 'entryvault' !== ( $args->slug ?? '' ) || ! is_object( $result ) ) {
+    if ( 'plugin_information' !== $action || ! is_object( $args ) || 'entryvault' !== ( $args->slug ?? '' ) ) {
+        return $result;
+    }
+    if ( ! is_object( $result ) && false !== $result ) {
         return $result;
     }
     $readme = dirname( __DIR__ ) . '/readme.txt';
     if ( ! is_readable( $readme ) ) {
         return $result;
     }
-    $text     = (string) file_get_contents( $readme );
-    $sections = [];
-    foreach ( [ 'description' => 'Description', 'changelog' => 'Changelog', 'faq' => 'Frequently Asked Questions' ] as $key => $heading ) {
-        if ( preg_match( '/^==\s*' . preg_quote( $heading, '/' ) . '\s*==\s*$(.*?)(?=^==\s|\z)/ms', $text, $m ) ) {
-            $body = trim( $m[1] );
-            $body = preg_replace( '/^=\s*(.+?)\s*=\s*$/m', '<h4>$1</h4>', esc_html( $body ) );
-            $body = preg_replace( '/^\*\s+(.+)$/m', '<li>$1</li>', $body );
-            $sections[ $key ] = wpautop( $body );
+    $text = str_replace( [ "\r\n", "\r" ], "\n", (string) file_get_contents( $readme ) );
+
+    $inline = static function ( $s ) {
+        $slots = [];
+        $put   = static function ( $html ) use ( &$slots ) {
+            $slots[] = $html;
+            return "\x1A" . ( count( $slots ) - 1 ) . "\x1A";
+        };
+        $s = str_replace( "\x1A", '', $s );
+        $s = preg_replace_callback( '/`([^`]+)`/', static function ( $m ) use ( $put ) {
+            return $put( '<code>' . esc_html( $m[1] ) . '</code>' );
+        }, $s );
+        $s = preg_replace_callback( '/\[([^\]\x1A]+)\]\(\s*(https?:\/\/[^\s)]+)\s*\)/i', static function ( $m ) use ( $put ) {
+            return $put( '<a href="' . esc_url( $m[2] ) . '" target="_blank">' . esc_html( $m[1] ) . '</a>' );
+        }, $s );
+        $s = preg_replace_callback( '/\bhttps?:\/\/[^\s<>"\x1A]+/i', static function ( $m ) use ( $put ) {
+            $url  = rtrim( $m[0], '.,;:!?)\'' );
+            $tail = substr( $m[0], strlen( $url ) );
+            return $put( '<a href="' . esc_url( $url ) . '" target="_blank">' . esc_html( $url ) . '</a>' ) . $tail;
+        }, $s );
+        $s = esc_html( $s );
+        $s = preg_replace( '/\*\*(?=\S)(.+?)(?<=\S)\*\*/u', '<strong>$1</strong>', $s );
+        $s = preg_replace( '/(?<![\w*])\*(?=[^\s*])(.+?)(?<=[^\s*])\*(?![\w*])/u', '<em>$1</em>', $s );
+        return preg_replace_callback( '/\x1A(\d+)\x1A/', static function ( $m ) use ( $slots ) {
+            return $slots[ (int) $m[1] ] ?? '';
+        }, $s );
+    };
+
+    $render = static function ( $body ) use ( $inline ) {
+        $html = [];
+        $para = [];
+        $list = false;
+        $flush = static function () use ( &$para, &$html, $inline ) {
+            if ( $para ) {
+                $html[] = '<p>' . $inline( implode( ' ', $para ) ) . '</p>';
+                $para   = [];
+            }
+        };
+        foreach ( explode( "\n", $body ) as $line ) {
+            $line = trim( $line );
+            $item = preg_match( '/^[*+-]\s+(\S.*)$/', $line, $im );
+            if ( $list && ! $item ) {
+                $html[] = '</ul>';
+                $list   = false;
+            }
+            if ( '' === $line ) {
+                $flush();
+            } elseif ( preg_match( '~^<?https?://(?:(?:www\.|m\.)?youtube(?:-nocookie)?\.com/(?:watch\?(?:[^\s>]*&)?v=|embed/|shorts/)|youtu\.be/)([A-Za-z0-9_-]{11})(?:[?&#/][^\s>]*)?>?$~i', $line, $vm ) ) {
+                $flush();
+                $html[] = '<p><a href="https://www.youtube.com/watch?v=' . esc_attr( $vm[1] ) . '" target="_blank"><img src="https://i.ytimg.com/vi/' . esc_attr( $vm[1] ) . '/hqdefault.jpg" alt="Watch the video on YouTube"></a></p>';
+            } elseif ( preg_match( '/^=\s*([^=].*?)\s*=$/', $line, $hm ) ) {
+                $flush();
+                $html[] = '<h4>' . $inline( $hm[1] ) . '</h4>';
+            } elseif ( $item ) {
+                $flush();
+                if ( ! $list ) {
+                    $html[] = '<ul>';
+                    $list   = true;
+                }
+                $html[] = '<li>' . $inline( $im[1] ) . '</li>';
+            } else {
+                $para[] = $line;
+            }
+        }
+        $flush();
+        if ( $list ) {
+            $html[] = '</ul>';
+        }
+        return implode( "\n", $html );
+    };
+
+    $local = [];
+    foreach ( [ 'description' => 'Description', 'installation' => 'Installation', 'faq' => 'Frequently Asked Questions', 'changelog' => 'Changelog' ] as $key => $heading ) {
+        if ( preg_match( '/^==\s*' . preg_quote( $heading, '/' ) . '\s*==\s*$(.*?)(?=^==\s|\z)/ms', $text, $m ) && '' !== trim( $m[1] ) ) {
+            $local[ $key ] = $render( trim( $m[1] ) );
         }
     }
-    if ( $sections ) {
-        $result->sections = array_merge( (array) ( $result->sections ?? [] ), $sections );
+
+    if ( false === $result ) {
+        // The licence server did not answer: describe this build from its own files.
+        $result = (object) [
+            'name'     => 'EntryVault',
+            'slug'     => 'entryvault',
+            'version'  => defined( 'ENTRYVAULT_VERSION' ) ? ENTRYVAULT_VERSION : '',
+            'sections' => [],
+        ];
+        foreach ( [ 'requires' => 'Requires at least', 'tested' => 'Tested up to', 'requires_php' => 'Requires PHP' ] as $field => $label ) {
+            if ( preg_match( '/^' . $label . ':\s*([0-9.]+)\s*$/mi', $text, $fm ) ) {
+                $result->$field = $fm[1];
+            }
+        }
     }
-    if ( preg_match( '/^\s*(.+?)\s*$/m', (string) preg_replace( '/^===.*===\s*$|^[A-Za-z ]+:.*$/m', '', explode( '==', $text )[0] ?? '' ), $short ) ) {
-        $result->short_description = trim( $short[1] );
+
+    $sections = (array) ( $result->sections ?? [] );
+    foreach ( $local as $key => $html ) {
+        if ( '' === trim( wp_strip_all_tags( (string) ( $sections[ $key ] ?? '' ) ) ) && false === strpos( (string) ( $sections[ $key ] ?? '' ), '<img' ) ) {
+            $sections[ $key ] = $html;
+        }
+    }
+    $result->sections = $sections;
+
+    // The short description: the first line after the header block, before any "== Section ==".
+    $head = (string) preg_split( '/^==\s/m', $text, 2 )[0];
+    $head = (string) preg_replace( '/^===.*===\s*$|^[A-Za-z ]+:.*$/m', '', $head );
+    if ( '' === trim( (string) ( $result->short_description ?? '' ) ) && preg_match( '/^\s*(\S.*?)\s*$/m', $head, $short ) ) {
+        $result->short_description = wp_strip_all_tags( $short[1] );
     }
     return $result;
 }, 20, 3 );
