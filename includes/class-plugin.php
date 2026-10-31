@@ -44,6 +44,8 @@ final class Plugin {
         Frontend::register();
         // Tools > Export / Erase Personal Data.
         Privacy::register();
+        // Entries for AI assistants (WordPress 6.9+ Abilities API).
+        Abilities::register();
         REST_Public::register();
         Public_Front::register();
 
@@ -55,6 +57,8 @@ final class Plugin {
             Submissions_Admin::register();
             Feedback::register();
             Ready_Notice::register();
+            Assistants::register();
+            add_filter( 'entryvault_ui_more_tabs', [ $this, 'assistants_tab' ], 5 );
             add_action( 'admin_menu', [ $this, 'register_admin_menu' ] );
             add_action( 'admin_enqueue_scripts', [ $this, 'enqueue_admin_assets' ] );
             add_filter( 'plugin_action_links_' . plugin_basename( ENTRYVAULT_FILE ), [ $this, 'plugin_action_links' ] );
@@ -154,6 +158,7 @@ final class Plugin {
             [ 'entryvault-health',      __( 'Health', 'entryvault' ),      'render_view_health' ],
             [ 'entryvault-settings',    __( 'Settings', 'entryvault' ),    'render_view_settings' ],
             [ 'entryvault-feedback',    __( 'Feedback', 'entryvault' ),    'render_view_feedback' ],
+            [ 'entryvault-assistants',  __( 'AI assistants', 'entryvault' ), 'render_view_assistants' ],
         ];
 
         foreach ( $items as [ $slug, $label, $cb ] ) {
@@ -452,6 +457,14 @@ final class Plugin {
     public function render_view_settings():     void { include ENTRYVAULT_PATH . 'admin/views/settings.php'; }
     public function render_view_feedback():     void { include ENTRYVAULT_PATH . 'admin/views/feedback.php'; }
     public function render_view_upgrade():      void { include ENTRYVAULT_PATH . 'admin/views/upgrade.php'; }
+    public function render_view_assistants():   void { ( new Assistants() )->render(); }
+
+    /** The AI assistants screen under "More tools". */
+    public function assistants_tab( $tabs ): array {
+        $tabs                          = (array) $tabs;
+        $tabs['entryvault-assistants'] = [ 'label' => __( 'AI assistants', 'entryvault' ) ];
+        return $tabs;
+    }
 
     /**
      * The pipeline the board opens on: the configured default, or, for a user

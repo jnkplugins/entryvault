@@ -28,6 +28,7 @@ $ev_pricing_url = apply_filters( 'entryvault_upgrade_url', 'https://jnkplugins.c
 $ev_pro_features = [
     [ __( 'Automation engine', 'entryvault' ), __( 'Set up rules once: when a form comes in, a stage changes, a tag is added or someone replies, send an email, move the entry, tag it, assign it or notify another app.', 'entryvault' ) ],
     [ __( 'Integrations', 'entryvault' ), __( 'Send people to Mailchimp or MailerLite, notify other apps safely, and tag entries by form.', 'entryvault' ) ],
+    [ __( 'AI assistants that work your inbox', 'entryvault' ), __( 'Your AI assistant can move, tag, assign, approve and note entries, and email people back, showing you each change first. Every change except an email can be undone. Reading entries is free. Needs WordPress 6.9 or newer.', 'entryvault' ) ],
     [ __( 'Email reply tracking', 'entryvault' ), __( 'Connect a mailbox and replies to your emails are filed under the right entry, so the whole conversation sits in one place.', 'entryvault' ) ],
     [ __( 'Multiple pipelines', 'entryvault' ), __( 'Run separate Kanban boards for different teams or workflows.', 'entryvault' ) ],
     [ __( 'Routing and owners', 'entryvault' ), __( 'Send each form to its own pipeline, and share new entries between your team in turn.', 'entryvault' ) ],

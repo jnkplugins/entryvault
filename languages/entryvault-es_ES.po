@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: EntryVault\n"
 "Report-Msgid-Bugs-To: https://jnkplugins.com/entryvault/\n"
-"POT-Creation-Date: 2026-10-30T08:58:52+00:00\n"
+"POT-Creation-Date: 2026-10-31T16:10:47+00:00\n"
 "PO-Revision-Date: 2026-10-10 16:40+0000\n"
 "Last-Translator: JNK Plugins\n"
 "Language-Team: Spanish (Spain)\n"
@@ -199,35 +199,35 @@ msgstr "Omitir y desactivar"
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: pro/licensorpro-client/licensorpro-client.php:1366
-#: pro/licensorpro-client/licensorpro-client.php:1382
+#: pro/licensorpro-client/licensorpro-client.php:1376
+#: pro/licensorpro-client/licensorpro-client.php:1392
 msgid "API URL not configured."
 msgstr "La URL de la API no está configurada."
 
-#: pro/licensorpro-client/licensorpro-client.php:1401
+#: pro/licensorpro-client/licensorpro-client.php:1411
 msgid "Unexpected response from license server."
 msgstr "Respuesta inesperada del servidor de licencias."
 
 #. translators: %s: human-readable time difference, e.g. "3 hours".
-#: pro/licensorpro-client/licensorpro-client.php:1716
+#: pro/licensorpro-client/licensorpro-client.php:1736
 #: includes/class-dates.php:65
 #, php-format
 msgid "in %s"
 msgstr "dentro de %s"
 
 #. translators: %s: human-readable time difference, e.g. "3 hours".
-#: pro/licensorpro-client/licensorpro-client.php:1701
+#: pro/licensorpro-client/licensorpro-client.php:1737
 #: includes/class-dates.php:73
 #, php-format
 msgid "%s ago"
 msgstr "hace %s"
 
-#: pro/licensorpro-client/licensorpro-client.php:1726
+#: pro/licensorpro-client/licensorpro-client.php:1762
 #, php-format
 msgid "%s License"
 msgstr "Licencia de %s"
 
-#: pro/licensorpro-client/licensorpro-client.php:1736
+#: pro/licensorpro-client/licensorpro-client.php:1772
 msgid ""
 "This site was deactivated, so its seat is free for another site. Enter the "
 "key again here to switch the Pro tools back on."
@@ -235,44 +235,44 @@ msgstr ""
 "Este sitio se desactivó, así que su plaza queda libre para otro sitio. "
 "Vuelve a introducir la clave aquí para activar de nuevo las herramientas Pro."
 
-#: pro/licensorpro-client/licensorpro-client.php:1746
-#: pro/licensorpro-client/licensorpro-client.php:1777
-#: pro/licensorpro-client/licensorpro-client.php:1841
+#: pro/licensorpro-client/licensorpro-client.php:1782
+#: pro/licensorpro-client/licensorpro-client.php:1813
+#: pro/licensorpro-client/licensorpro-client.php:1877
 msgid "License key"
 msgstr "Clave de licencia"
 
-#: pro/licensorpro-client/licensorpro-client.php:1747
+#: pro/licensorpro-client/licensorpro-client.php:1783
 msgid "Type"
 msgstr "Tipo"
 
-#: pro/licensorpro-client/licensorpro-client.php:1749
+#: pro/licensorpro-client/licensorpro-client.php:1785
 msgid ""
 "Free license: updates of the free version only. It does not switch on Pro."
 msgstr ""
 "Licencia gratuita: solo actualizaciones de la versión gratuita. No activa "
 "Pro."
 
-#: pro/licensorpro-client/licensorpro-client.php:1750
+#: pro/licensorpro-client/licensorpro-client.php:1786
 msgid "Free license: updates arrive in your dashboard like any other plugin."
 msgstr ""
 "Licencia gratuita: las actualizaciones llegan a tu escritorio como las de "
 "cualquier otro plugin."
 
-#: pro/licensorpro-client/licensorpro-client.php:1752
-#: pro/licensorpro-client/licensorpro-client.php:1809
+#: pro/licensorpro-client/licensorpro-client.php:1788
+#: pro/licensorpro-client/licensorpro-client.php:1845
 msgid "Last checked"
 msgstr "Última comprobación"
 
-#: pro/licensorpro-client/licensorpro-client.php:1756
-#: pro/licensorpro-client/licensorpro-client.php:1815
+#: pro/licensorpro-client/licensorpro-client.php:1792
+#: pro/licensorpro-client/licensorpro-client.php:1851
 msgid "Check for updates now"
 msgstr "Buscar actualizaciones ahora"
 
-#: pro/licensorpro-client/licensorpro-client.php:1759
+#: pro/licensorpro-client/licensorpro-client.php:1795
 msgid "Bought Pro?"
 msgstr "¿Compraste Pro?"
 
-#: pro/licensorpro-client/licensorpro-client.php:1760
+#: pro/licensorpro-client/licensorpro-client.php:1796
 msgid ""
 "Enter your Pro license key and Pro is installed over this version. "
 "Everything you set up stays."
@@ -280,16 +280,16 @@ msgstr ""
 "Introduce tu clave de licencia Pro y Pro se instala sobre esta versión. Todo "
 "lo que configuraste se mantiene."
 
-#: pro/licensorpro-client/licensorpro-client.php:1762
+#: pro/licensorpro-client/licensorpro-client.php:1798
 msgid "Pro license key"
 msgstr "Clave de licencia Pro"
 
-#: pro/licensorpro-client/licensorpro-client.php:1765
-#: pro/licensorpro-client/licensorpro-client.php:1822
+#: pro/licensorpro-client/licensorpro-client.php:1801
+#: pro/licensorpro-client/licensorpro-client.php:1858
 msgid "Install Pro now"
 msgstr "Instalar Pro ahora"
 
-#: pro/licensorpro-client/licensorpro-client.php:1767
+#: pro/licensorpro-client/licensorpro-client.php:1803
 msgid ""
 "Rather do it by hand? Download the Pro zip from your account and upload it "
 "over this plugin."
@@ -297,101 +297,101 @@ msgstr ""
 "¿Prefieres hacerlo a mano? Descarga el zip de Pro desde tu cuenta y súbelo "
 "sobre este plugin."
 
-#: pro/licensorpro-client/licensorpro-client.php:1768
-#: pro/licensorpro-client/licensorpro-client.php:1849
+#: pro/licensorpro-client/licensorpro-client.php:1804
+#: pro/licensorpro-client/licensorpro-client.php:1885
 msgid "Go to your account"
 msgstr "Ir a tu cuenta"
 
-#: pro/licensorpro-client/licensorpro-client.php:1780
+#: pro/licensorpro-client/licensorpro-client.php:1816
 msgid "active"
 msgstr "activa"
 
 #. translators: %s: date the Pro tools lock
-#: pro/licensorpro-client/licensorpro-client.php:1782
+#: pro/licensorpro-client/licensorpro-client.php:1818
 #, php-format
 msgid "expired, Pro tools stay on until %s"
 msgstr "caducada, las herramientas Pro siguen activas hasta el %s"
 
-#: pro/licensorpro-client/licensorpro-client.php:1783
+#: pro/licensorpro-client/licensorpro-client.php:1819
 msgid "expired, Pro tools locked"
 msgstr "caducada, herramientas Pro bloqueadas"
 
-#: pro/licensorpro-client/licensorpro-client.php:1785
+#: pro/licensorpro-client/licensorpro-client.php:1821
 msgid "this site is not activated"
 msgstr "este sitio no está activado"
 
-#: pro/licensorpro-client/licensorpro-client.php:1786
+#: pro/licensorpro-client/licensorpro-client.php:1822
 msgid "no longer active (refunded or cancelled)"
 msgstr "ya no está activa (reembolsada o cancelada)"
 
-#: pro/licensorpro-client/licensorpro-client.php:1788
+#: pro/licensorpro-client/licensorpro-client.php:1824
 #: admin/views/past-entries.php:91
 #: admin/assets/kanban/build/index.js:5
 msgid "Status"
 msgstr "Estado"
 
-#: pro/licensorpro-client/licensorpro-client.php:1790
+#: pro/licensorpro-client/licensorpro-client.php:1826
 msgid "Renew"
 msgstr "Renovar"
 
-#: pro/licensorpro-client/licensorpro-client.php:1794
+#: pro/licensorpro-client/licensorpro-client.php:1830
 msgid "Offline mode"
 msgstr "Modo sin conexión"
 
-#: pro/licensorpro-client/licensorpro-client.php:1796
+#: pro/licensorpro-client/licensorpro-client.php:1832
 #, php-format
 msgid "cached license valid until %s"
 msgstr "licencia en caché válida hasta el %s"
 
-#: pro/licensorpro-client/licensorpro-client.php:1801
+#: pro/licensorpro-client/licensorpro-client.php:1837
 msgctxt "update channel"
 msgid "stable"
 msgstr "estable"
 
-#: pro/licensorpro-client/licensorpro-client.php:1802
+#: pro/licensorpro-client/licensorpro-client.php:1838
 msgctxt "update channel"
 msgid "beta"
 msgstr "beta"
 
-#: pro/licensorpro-client/licensorpro-client.php:1803
+#: pro/licensorpro-client/licensorpro-client.php:1839
 msgctxt "update channel"
 msgid "release candidate"
 msgstr "versión candidata"
 
-#: pro/licensorpro-client/licensorpro-client.php:1804
+#: pro/licensorpro-client/licensorpro-client.php:1840
 msgctxt "update channel"
 msgid "development"
 msgstr "desarrollo"
 
-#: pro/licensorpro-client/licensorpro-client.php:1806
+#: pro/licensorpro-client/licensorpro-client.php:1842
 msgid "Update channel"
 msgstr "Canal de actualizaciones"
 
-#: pro/licensorpro-client/licensorpro-client.php:1807
+#: pro/licensorpro-client/licensorpro-client.php:1843
 msgid "Site limit"
 msgstr "Límite de sitios"
 
-#: pro/licensorpro-client/licensorpro-client.php:1823
+#: pro/licensorpro-client/licensorpro-client.php:1843
 msgid "Unlimited"
 msgstr "Ilimitado"
 
-#: pro/licensorpro-client/licensorpro-client.php:1808
+#: pro/licensorpro-client/licensorpro-client.php:1844
 msgid "Expires"
 msgstr "Caduca"
 
-#: pro/licensorpro-client/licensorpro-client.php:1808
+#: pro/licensorpro-client/licensorpro-client.php:1844
 msgid "Never"
 msgstr "Nunca"
 
-#: pro/licensorpro-client/licensorpro-client.php:1813
+#: pro/licensorpro-client/licensorpro-client.php:1849
 msgid "Deactivate this site"
 msgstr "Desactivar este sitio"
 
-#: pro/licensorpro-client/licensorpro-client.php:1820
+#: pro/licensorpro-client/licensorpro-client.php:1856
 msgid "This is the free version, running on your Pro license."
 msgstr "Esta es la versión gratuita, funcionando con tu licencia Pro."
 
-#: pro/licensorpro-client/licensorpro-client.php:1837
+#: pro/licensorpro-client/licensorpro-client.php:1873
 msgid ""
 "Have a Pro license key? Enter it here to switch on the Pro tools. It "
 "replaces the free license on this site."
@@ -399,27 +399,27 @@ msgstr ""
 "¿Tienes una clave de licencia Pro? Introdúcela aquí para activar las "
 "herramientas Pro. Sustituye a la licencia gratuita en este sitio."
 
-#: pro/licensorpro-client/licensorpro-client.php:1838
+#: pro/licensorpro-client/licensorpro-client.php:1874
 msgid "Enter your license key to activate this site."
 msgstr "Introduce tu clave de licencia para activar este sitio."
 
-#: pro/licensorpro-client/licensorpro-client.php:1845
+#: pro/licensorpro-client/licensorpro-client.php:1881
 msgid "Activate"
 msgstr "Activar"
 
-#: pro/licensorpro-client/licensorpro-client.php:1848
+#: pro/licensorpro-client/licensorpro-client.php:1884
 msgid "Your key is in your purchase email and in your account."
 msgstr "Tu clave está en el correo de tu compra y en tu cuenta."
 
-#: pro/licensorpro-client/licensorpro-client.php:1856
+#: pro/licensorpro-client/licensorpro-client.php:1892
 msgid "Need a hand?"
 msgstr "¿Necesitas ayuda?"
 
-#: pro/licensorpro-client/licensorpro-client.php:1857
+#: pro/licensorpro-client/licensorpro-client.php:1893
 msgid "Contact support"
 msgstr "Contactar con soporte"
 
-#: pro/licensorpro-client/licensorpro-client.php:1880
+#: pro/licensorpro-client/licensorpro-client.php:1900
 msgid ""
 "Every seat on this license is in use. Deactivate one of your other sites "
 "from your account, then try again."
@@ -427,7 +427,7 @@ msgstr ""
 "Todos los sitios de esta licencia están en uso. Desactiva uno de tus otros "
 "sitios desde tu cuenta y vuelve a intentarlo."
 
-#: pro/licensorpro-client/licensorpro-client.php:1881
+#: pro/licensorpro-client/licensorpro-client.php:1901
 msgid ""
 "This license has expired. Renewing it from your account reactivates this "
 "site immediately. Your settings and data are untouched."
@@ -435,7 +435,7 @@ msgstr ""
 "Esta licencia ha caducado. Al renovarla desde tu cuenta, este sitio se "
 "reactiva al momento. Tus ajustes y datos no se tocan."
 
-#: pro/licensorpro-client/licensorpro-client.php:1882
+#: pro/licensorpro-client/licensorpro-client.php:1902
 msgid ""
 "That key was not recognised. Check for a missing character, or copy it again "
 "from your purchase email."
@@ -443,7 +443,7 @@ msgstr ""
 "No reconocemos esa clave. Comprueba que no falte ningún carácter o vuelve a "
 "copiarla del correo de tu compra."
 
-#: pro/licensorpro-client/licensorpro-client.php:1883
+#: pro/licensorpro-client/licensorpro-client.php:1903
 msgid ""
 "This key has been revoked. If you believe that is a mistake, reply to your "
 "purchase email and we will sort it out."
@@ -451,7 +451,7 @@ msgstr ""
 "Esta clave se ha revocado. Si crees que es un error, responde al correo de "
 "tu compra y lo solucionamos."
 
-#: pro/licensorpro-client/licensorpro-client.php:1884
+#: pro/licensorpro-client/licensorpro-client.php:1904
 msgid ""
 "Could not reach the licensing server. Your site may be blocking outbound "
 "requests. This is usually temporary, so try again in a minute."
@@ -460,12 +460,12 @@ msgstr ""
 "las conexiones salientes. Suele ser temporal, así que vuelve a intentarlo en "
 "un minuto."
 
-#: pro/licensorpro-client/licensorpro-client.php:1885
+#: pro/licensorpro-client/licensorpro-client.php:1905
 msgid "Too many attempts in a short window. Wait a minute and try again."
 msgstr ""
 "Demasiados intentos en poco tiempo. Espera un minuto y vuelve a intentarlo."
 
-#: pro/licensorpro-client/licensorpro-client.php:1886
+#: pro/licensorpro-client/licensorpro-client.php:1906
 msgid ""
 "The licensing server had a problem on its side. Your key was not rejected. "
 "Try again in a few minutes, and if it keeps happening, reply to your "
@@ -475,30 +475,30 @@ msgstr ""
 "rechazado. Vuelve a intentarlo en unos minutos y, si sigue pasando, responde "
 "al correo de tu compra."
 
-#: pro/licensorpro-client/licensorpro-client.php:1887
+#: pro/licensorpro-client/licensorpro-client.php:1907
 msgid "Enter your license key first."
 msgstr "Primero introduce tu clave de licencia."
 
-#: pro/licensorpro-client/licensorpro-client.php:1888
+#: pro/licensorpro-client/licensorpro-client.php:1908
 msgid "Installing Pro. This takes a few seconds, keep this page open…"
 msgstr "Instalando Pro. Tarda unos segundos, mantén esta página abierta…"
 
-#: pro/licensorpro-client/licensorpro-client.php:1889
+#: pro/licensorpro-client/licensorpro-client.php:1909
 msgid "Reloading to switch on the Pro tools…"
 msgstr "Recargando para activar las herramientas Pro…"
 
-#: pro/licensorpro-client/licensorpro-client.php:1890
+#: pro/licensorpro-client/licensorpro-client.php:1910
 msgid "Reload now"
 msgstr "Recargar ahora"
 
-#: pro/licensorpro-client/licensorpro-client.php:1891
+#: pro/licensorpro-client/licensorpro-client.php:1911
 msgid ""
 "Could not reach the licensing server. Check your connection and try again."
 msgstr ""
 "No se pudo conectar con el servidor de licencias. Comprueba tu conexión y "
 "vuelve a intentarlo."
 
-#: pro/licensorpro-client/licensorpro-client.php:1892
+#: pro/licensorpro-client/licensorpro-client.php:1912
 msgid ""
 "Deactivate this license on this site? Premium features switch off here and "
 "the seat is freed for another site."
@@ -506,24 +506,25 @@ msgstr ""
 "¿Desactivar esta licencia en este sitio? Las funciones premium se apagan "
 "aquí y el hueco queda libre para otro sitio."
 
-#: includes/class-plugin.php:363
+#: pro/licensorpro-client/licensorpro-client.php:1913
+#: includes/class-plugin.php:368
 msgid "Done."
 msgstr "Hecho."
 
-#: pro/licensorpro-client/licensorpro-client.php:1894
+#: pro/licensorpro-client/licensorpro-client.php:1914
 msgid "Deactivated."
 msgstr "Desactivado."
 
-#: pro/licensorpro-client/licensorpro-client.php:1895
+#: pro/licensorpro-client/licensorpro-client.php:1915
 msgid "Checked."
 msgstr "Comprobado."
 
-#: pro/licensorpro-client/licensorpro-client.php:2062
+#: pro/licensorpro-client/licensorpro-client.php:2103
 msgid "Only someone who may install plugins on this site can install Pro."
 msgstr ""
 "Solo alguien que pueda instalar plugins en este sitio puede instalar Pro."
 
-#: pro/licensorpro-client/licensorpro-client.php:2075
+#: pro/licensorpro-client/licensorpro-client.php:2116
 msgid ""
 "That is a free license key, so it keeps this free version updated. Pro needs "
 "the key from your purchase email."
@@ -532,7 +533,7 @@ msgstr ""
 "versión gratuita. Pro necesita la clave del correo de tu compra."
 
 #. translators: %s: URL of the customer account
-#: pro/licensorpro-client/licensorpro-client.php:2080
+#: pro/licensorpro-client/licensorpro-client.php:2121
 #, php-format
 msgid ""
 "Your key is active. Download the Pro zip from your account (%s) and upload "
@@ -541,48 +542,49 @@ msgstr ""
 "Tu clave está activa. Descarga el zip de Pro desde tu cuenta (%s) y súbelo "
 "sobre este plugin."
 
-#: pro/licensorpro-client/licensorpro-client.php:2084
+#: pro/licensorpro-client/licensorpro-client.php:2125
 msgid "This site does not allow installing plugins from the dashboard."
 msgstr "Este sitio no permite instalar plugins desde el escritorio."
 
-#: pro/licensorpro-client/licensorpro-client.php:2088
+#: pro/licensorpro-client/licensorpro-client.php:2129
 msgid "The Pro download could not be fetched for this key."
 msgstr "No se pudo obtener la descarga de Pro para esta clave."
 
-#: pro/licensorpro-client/licensorpro-client.php:2096
+#: pro/licensorpro-client/licensorpro-client.php:2137
 msgid "This site asks for FTP details to install plugins."
 msgstr "Este sitio pide datos de FTP para instalar plugins."
 
-#: pro/licensorpro-client/licensorpro-client.php:2131
+#: pro/licensorpro-client/licensorpro-client.php:2172
 msgid "Installing Pro did not finish."
 msgstr "La instalación de Pro no terminó."
 
 #. translators: %s: plugin name
-#: pro/licensorpro-client/licensorpro-client.php:2136
+#: pro/licensorpro-client/licensorpro-client.php:2177
 #, php-format
 msgid "%s Pro is installed and your license is active. Reloading…"
 msgstr "%s Pro está instalado y tu licencia está activa. Recargando…"
 
-#: pro/licensorpro-client/licensorpro-client.php:2146
+#: pro/licensorpro-client/licensorpro-client.php:2187
 msgid "License activated."
 msgstr "Licencia activada."
 
-#: pro/licensorpro-client/licensorpro-client.php:2158
+#: pro/licensorpro-client/licensorpro-client.php:2202
 msgid "Site deactivated."
 msgstr "Sitio desactivado."
 
-#: pro/licensorpro-client/licensorpro-client.php:2169
+#: pro/licensorpro-client/licensorpro-client.php:2213
 msgid "License is valid. Update info refreshed."
 msgstr "La licencia es válida. Información de actualizaciones renovada."
 
-#: pro/licensorpro-client/licensorpro-client.php:2176
+#: pro/licensorpro-client/licensorpro-client.php:2220
 msgid "Permission denied."
 msgstr "Permiso denegado."
 
 #. Plugin Name of the plugin
-#: entryvault.php includes/class-admin-ui.php:82 includes/class-plugin.php:126
-#: includes/class-plugin.php:127 includes/class-plugin.php:138
-#: includes/class-plugin.php:139
+#: entryvault.php includes/class-abilities.php:58
+#: includes/class-admin-ui.php:82 includes/class-plugin.php:130
+#: includes/class-plugin.php:131 includes/class-plugin.php:142
+#: includes/class-plugin.php:143
 msgid "EntryVault"
 msgstr "EntryVault"
 
@@ -607,6 +609,380 @@ msgstr "JnK Plugins"
 msgid "https://jnkplugins.com"
 msgstr "https://jnkplugins.com"
 
+#: admin/views/assistants.php:23
+msgid "Read entries"
+msgstr "Leer entradas"
+
+#: admin/views/assistants.php:24
+msgid ""
+"Search and open entries from every form plugin, and read your boards and "
+"numbers. Nothing is changed. What an assistant sees of each entry is set "
+"below."
+msgstr ""
+"Buscar y abrir entradas de todos los plugins de formularios, y leer tus "
+"tableros y cifras. No se cambia nada. Lo que un asistente ve de cada entrada "
+"se configura más abajo."
+
+#: admin/views/assistants.php:29 includes/class-plugin.php:229
+#: includes/class-plugin.php:289
+msgid "Saved."
+msgstr "Guardado."
+
+#: admin/views/assistants.php:30
+msgid "The MCP Adapter plugin is installed and active."
+msgstr "El plugin MCP Adapter está instalado y activo."
+
+#: admin/views/assistants.php:31
+msgid ""
+"WordPress could not install the MCP Adapter plugin here (it may not be "
+"allowed to write files). Install it from Plugins > Add New: search for “MCP "
+"Adapter”."
+msgstr ""
+"WordPress no ha podido instalar aquí el plugin MCP Adapter (puede que no "
+"tenga permiso para escribir archivos). Instálalo desde Plugins > Añadir "
+"nuevo: busca “MCP Adapter”."
+
+#: admin/views/assistants.php:32
+msgid ""
+"The MCP Adapter plugin is installed but could not be activated. Activate it "
+"on the Plugins screen."
+msgstr ""
+"El plugin MCP Adapter está instalado, pero no se ha podido activar. Actívalo "
+"en la pantalla de Plugins."
+
+#: admin/views/assistants.php:44 includes/class-plugin.php:161
+#: includes/class-plugin.php:465
+msgid "AI assistants"
+msgstr "Asistentes de IA"
+
+#: admin/views/assistants.php:45
+msgid ""
+"Let an AI assistant such as Claude or Cursor work with your form entries. "
+"You choose what it may do and what it may see."
+msgstr ""
+"Deja que un asistente de IA como Claude o Cursor trabaje con tus entradas de "
+"formularios. Tú eliges qué puede hacer y qué puede ver."
+
+#: admin/views/assistants.php:55
+msgid ""
+"This needs WordPress 6.9 or newer, which added the Abilities API that AI "
+"tools use. Update WordPress to use it."
+msgstr ""
+"Necesita WordPress 6.9 o posterior, que añadió la Abilities API que usan las "
+"herramientas de IA. Actualiza WordPress para usarlo."
+
+#: admin/views/assistants.php:64
+msgid "1. What assistants may do"
+msgstr "1. Qué pueden hacer los asistentes"
+
+#: admin/views/assistants.php:65
+msgid ""
+"Off by default. An assistant only ever acts as the user it signs in as, so "
+"it never sees a board that user cannot see."
+msgstr ""
+"Desactivado por defecto. Un asistente siempre actúa como el usuario con el "
+"que inicia sesión, así que nunca ve un tablero que ese usuario no pueda ver."
+
+#: admin/views/assistants.php:87
+msgid "2. What assistants may see"
+msgstr "2. Qué pueden ver los asistentes"
+
+#: admin/views/assistants.php:88
+msgid ""
+"Your entries hold other people’s personal details. Decide how much of them "
+"reaches an AI service."
+msgstr ""
+"Tus entradas contienen datos personales de otras personas. Decide cuánto de "
+"ellos llega a un servicio de IA."
+
+#: admin/views/assistants.php:92
+msgid "Show contact details"
+msgstr "Mostrar datos de contacto"
+
+#: admin/views/assistants.php:93
+msgid ""
+"Off by default: emails become j***@example.com, phone numbers ***42, names "
+"their initials, and addresses are left out, also inside messages and notes. "
+"Turn it on only if your assistant needs to write to people."
+msgstr ""
+"Desactivado por defecto: los correos pasan a ser j***@example.com, los "
+"teléfonos ***42, los nombres sus iniciales y las direcciones se omiten, "
+"también dentro de mensajes y notas. Actívalo solo si tu asistente necesita "
+"escribir a la gente."
+
+#: admin/views/assistants.php:95
+msgid ""
+"Always left out, whatever you choose: uploaded files, passwords, card "
+"numbers and signatures."
+msgstr ""
+"Siempre se omiten, elijas lo que elijas: archivos subidos, contraseñas, "
+"números de tarjeta y firmas."
+
+#: admin/views/assistants.php:97
+msgid "Never show to assistants"
+msgstr "No mostrar nunca a los asistentes"
+
+#: admin/views/assistants.php:98
+msgid ""
+"Entries from the forms you tick are not listed and cannot be opened by an "
+"assistant, for example a job application or a medical form."
+msgstr ""
+"Las entradas de los formularios que marques no aparecen en las listas y un "
+"asistente no puede abrirlas, por ejemplo una solicitud de empleo o un "
+"formulario médico."
+
+#. translators: %s: number of entries.
+#: admin/views/assistants.php:108 admin/views/past-entries.php:106
+#, php-format
+msgid "%s entry"
+msgid_plural "%s entries"
+msgstr[0] "%s entrada"
+msgstr[1] "%s entradas"
+
+#: admin/views/assistants.php:114
+msgid ""
+"Every entry an assistant opens gets a line in its history, so you can see "
+"what was read."
+msgstr ""
+"Cada entrada que abre un asistente recibe una línea en su historial, para "
+"que veas qué se ha leído."
+
+#: admin/views/assistants.php:115
+msgid "Save"
+msgstr "Guardar"
+
+#: admin/views/assistants.php:121
+msgid "3. Connect your assistant"
+msgstr "3. Conecta tu asistente"
+
+#: admin/views/assistants.php:122
+msgid ""
+"Assistants reach WordPress through the free MCP Adapter plugin, made by the "
+"WordPress AI team."
+msgstr ""
+"Los asistentes llegan a WordPress a través del plugin gratuito MCP Adapter, "
+"creado por el equipo de IA de WordPress."
+
+#: admin/views/assistants.php:124
+msgid "MCP Adapter plugin"
+msgstr "Plugin MCP Adapter"
+
+#: admin/views/assistants.php:126
+msgid "Active"
+msgstr "Activo"
+
+#: admin/views/assistants.php:128
+msgid "Installed, not active"
+msgstr "Instalado, no activo"
+
+#: admin/views/assistants.php:130
+msgid "Not installed"
+msgstr "No instalado"
+
+#: admin/views/assistants.php:139
+msgid "Install and activate MCP Adapter"
+msgstr "Instalar y activar MCP Adapter"
+
+#: admin/views/assistants.php:139
+msgid "Activate MCP Adapter"
+msgstr "Activar MCP Adapter"
+
+#: admin/views/assistants.php:141
+msgid "From wordpress.org. You can remove it any time on the Plugins screen."
+msgstr ""
+"Desde wordpress.org. Puedes quitarlo cuando quieras en la pantalla de "
+"Plugins."
+
+#: admin/views/assistants.php:144
+msgid ""
+"Ask the site administrator to install and activate the MCP Adapter plugin "
+"from wordpress.org."
+msgstr ""
+"Pide al administrador del sitio que instale y active el plugin MCP Adapter "
+"desde wordpress.org."
+
+#: admin/views/assistants.php:148
+msgid "Application password"
+msgstr "Contraseña de aplicación"
+
+#: admin/views/assistants.php:151
+msgid "Not available"
+msgstr "No disponible"
+
+#: admin/views/assistants.php:152
+msgid ""
+"WordPress only offers application passwords on sites served over HTTPS. "
+"Switch the site to HTTPS first."
+msgstr ""
+"WordPress solo ofrece contraseñas de aplicación en sitios servidos por "
+"HTTPS. Pasa primero el sitio a HTTPS."
+
+#: admin/views/assistants.php:153
+msgid ""
+"On a site on your own computer with WP-CLI, an assistant can connect without "
+"one. Use this as the command in its MCP settings:"
+msgstr ""
+"En un sitio en tu propio ordenador con WP-CLI, un asistente puede conectarse "
+"sin ella. Usa esto como comando en sus ajustes de MCP:"
+
+#: admin/views/assistants.php:156
+msgid ""
+"Your assistant signs in with an application password: a separate password "
+"you can revoke without changing your own. Name it after the assistant, for "
+"example “Claude”."
+msgstr ""
+"Tu asistente inicia sesión con una contraseña de aplicación: una contraseña "
+"aparte que puedes revocar sin cambiar la tuya. Ponle el nombre del "
+"asistente, por ejemplo “Claude”."
+
+#: admin/views/assistants.php:157
+msgid "Create an application password"
+msgstr "Crear una contraseña de aplicación"
+
+#: admin/views/assistants.php:158
+msgid ""
+"Tip: an assistant can do whatever the user it signs in as can do. A separate "
+"user who can see only the boards it needs is the safest choice."
+msgstr ""
+"Consejo: un asistente puede hacer todo lo que puede hacer el usuario con el "
+"que inicia sesión. Lo más seguro es un usuario aparte que solo vea los "
+"tableros que necesita."
+
+#: admin/views/assistants.php:181
+msgid "Claude Desktop, Cursor and other desktop apps"
+msgstr "Claude Desktop, Cursor y otras aplicaciones de escritorio"
+
+#: admin/views/assistants.php:182
+msgid ""
+"Add this to the app’s MCP settings file (in Claude Desktop: Settings > "
+"Developer > Edit Config), put your application password in, and restart the "
+"app. It needs Node.js on your computer."
+msgstr ""
+"Añade esto al archivo de ajustes de MCP de la aplicación (en Claude Desktop: "
+"Settings > Developer > Edit Config), pon tu contraseña de aplicación y "
+"reinicia la aplicación. Necesita Node.js en tu ordenador."
+
+#: admin/views/assistants.php:185
+msgid "Claude Code"
+msgstr "Claude Code"
+
+#. translators: %s: web address of the other MCP server.
+#: admin/views/assistants.php:193
+#, php-format
+msgid ""
+"Another plugin on this site (for example Rank Math) added an MCP server that "
+"signs in with OAuth, at %s. Apps in a web browser, such as ChatGPT or "
+"Claude, may be able to connect there; follow that plugin’s instructions. It "
+"offers the same EntryVault abilities you allow above, with the same privacy "
+"settings."
+msgstr ""
+"Otro plugin de este sitio (por ejemplo Rank Math) ha añadido un servidor MCP "
+"que inicia sesión con OAuth, en %s. Las aplicaciones en el navegador, como "
+"ChatGPT o Claude, quizá puedan conectarse ahí; sigue las instrucciones de "
+"ese plugin. Ofrece las mismas habilidades de EntryVault que permites arriba, "
+"con los mismos ajustes de privacidad."
+
+#: admin/views/assistants.php:198
+msgid ""
+"ChatGPT and Claude in a web browser cannot connect to a WordPress site this "
+"way yet: they need a sign-in method (OAuth) that WordPress does not offer "
+"yet."
+msgstr ""
+"ChatGPT y Claude en el navegador aún no pueden conectarse así a un sitio "
+"WordPress: necesitan un método de inicio de sesión (OAuth) que WordPress "
+"todavía no ofrece."
+
+#: admin/views/assistants.php:200
+msgid ""
+"Try asking: “Which contact form entries from this week are still in the "
+"first stage?”"
+msgstr ""
+"Prueba a preguntar: “¿Qué entradas del formulario de contacto de esta semana "
+"siguen en la primera etapa?”"
+
+#: admin/views/assistants.php:206
+msgid "4. What an assistant can use"
+msgstr "4. Qué puede usar un asistente"
+
+#: admin/views/assistants.php:207
+msgid ""
+"Every EntryVault ability on this site and whether assistants can use it now."
+msgstr ""
+"Todas las habilidades de EntryVault en este sitio y si los asistentes pueden "
+"usarlas ahora."
+
+#: admin/views/assistants.php:209 admin/views/assistants.php:240
+msgid "Ability"
+msgstr "Habilidad"
+
+#: admin/views/assistants.php:209
+msgid "What it does"
+msgstr "Qué hace"
+
+#: admin/views/assistants.php:209
+msgid "Kind"
+msgstr "Tipo"
+
+#: admin/views/assistants.php:209
+msgid "Assistants"
+msgstr "Asistentes"
+
+#: admin/views/assistants.php:214
+msgid "Reads"
+msgstr "Lee"
+
+#: admin/views/assistants.php:215
+msgid "Changes entries"
+msgstr "Cambia entradas"
+
+#: admin/views/assistants.php:216
+msgid "Sends email"
+msgstr "Envía correos"
+
+#: admin/views/assistants.php:225
+msgid "Allowed"
+msgstr "Permitido"
+
+#: admin/views/assistants.php:225
+msgid "Off"
+msgstr "Desactivada"
+
+#: admin/views/assistants.php:234
+msgid "5. What assistants did"
+msgstr "5. Qué hicieron los asistentes"
+
+#: admin/views/assistants.php:235
+msgid "The last 50 requests. EntryVault keeps the newest 200."
+msgstr "Las últimas 50 peticiones. EntryVault guarda las 200 más recientes."
+
+#: admin/views/assistants.php:237
+msgid "No requests yet."
+msgstr "Aún no hay peticiones."
+
+#: admin/views/assistants.php:240
+msgid "When"
+msgstr "Cuando"
+
+#: admin/views/assistants.php:240
+msgid "User"
+msgstr "Usuario"
+
+#: admin/views/assistants.php:240
+msgid "Asked"
+msgstr "Petición"
+
+#: admin/views/assistants.php:240
+msgid "Result"
+msgstr "Resultado"
+
+#: admin/views/assistants.php:250 admin/views/past-entries.php:164
+msgid "Done"
+msgstr "Hecho"
+
+#: admin/views/assistants.php:250 admin/views/past-entries.php:167
+msgid "Failed"
+msgstr "Fallido"
+
 #: admin/views/dashboard.php:9 includes/class-submissions-admin.php:185
 msgid "You do not have permission to view this page."
 msgstr "No tienes permiso para ver esta página."
@@ -624,7 +1000,7 @@ msgid "All submissions"
 msgstr "Todos los envíos"
 
 #: admin/views/dashboard.php:75 admin/views/dashboard.php:84
-#: includes/class-plugin.php:359 includes/class-submissions-admin.php:224
+#: includes/class-plugin.php:364 includes/class-submissions-admin.php:224
 msgid "Open the board"
 msgstr "Abrir el tablero"
 
@@ -919,7 +1295,7 @@ msgstr ""
 "Tu mensaje se envía a través del correo electrónico de tu propio sitio."
 
 #: admin/views/health.php:31 includes/class-admin-ui.php:29
-#: includes/class-plugin.php:154
+#: includes/class-plugin.php:158
 msgid "Health"
 msgstr "Estado"
 
@@ -935,7 +1311,7 @@ msgid "Check again"
 msgstr "Comprobar de nuevo"
 
 #: admin/views/import.php:36 includes/class-admin-ui.php:28
-#: includes/class-plugin.php:153
+#: includes/class-plugin.php:157
 msgid "Import"
 msgstr "Importar"
 
@@ -1014,15 +1390,15 @@ msgstr ""
 msgid "Use the default pipeline"
 msgstr "Usar el pipeline predeterminado"
 
-#: admin/views/import.php:91 includes/class-frontend.php:504
+#: admin/views/import.php:91 includes/class-frontend.php:519
 #: includes/class-submissions-list-table.php:60
-#: admin/assets/js/dashboard.js:140
-#: admin/assets/js/dashboard.js:219 admin/assets/kanban/build/index.js:5
+#: admin/assets/js/dashboard.js:143
+#: admin/assets/js/dashboard.js:222 admin/assets/kanban/build/index.js:5
 #: blocks/submissions-table/index.js:26
 msgid "Stage"
 msgstr "Etapa"
 
-#: admin/views/import.php:93 includes/class-plugin.php:344
+#: admin/views/import.php:93 includes/class-plugin.php:349
 msgid "First stage of the pipeline"
 msgstr "Primera etapa del pipeline"
 
@@ -1160,21 +1536,21 @@ msgstr "Algo salió mal. Abre Entradas anteriores para ver los detalles."
 msgid "You can bring them in later from Past entries."
 msgstr "Puedes traerlas más tarde desde Entradas anteriores."
 
-#: admin/views/kanban.php:181 admin/assets/kanban/build/index.js:27
+#: admin/views/kanban.php:184 admin/assets/kanban/build/index.js:27
 msgid "Loading the board…"
 msgstr "Cargando el tablero…"
 
-#: admin/views/kanban.php:183
+#: admin/views/kanban.php:186
 msgid "If this message stays, the board files are missing. Run"
 msgstr ""
 "Si este mensaje no desaparece, faltan los archivos del tablero. Ejecuta"
 
-#: admin/views/kanban.php:185
+#: admin/views/kanban.php:188
 msgid "in the plugin folder."
 msgstr "en la carpeta del plugin."
 
 #: admin/views/past-entries.php:28 includes/class-admin-ui.php:27
-#: includes/class-plugin.php:152
+#: includes/class-plugin.php:156
 msgid "Past entries"
 msgstr "Entradas anteriores"
 
@@ -1279,15 +1655,7 @@ msgstr "Acciones"
 msgid "Form ID %d"
 msgstr "Formulario ID %d"
 
-#. translators: %s: number of entries.
-#: admin/views/past-entries.php:106
-#, php-format
-msgid "%s entry"
-msgid_plural "%s entries"
-msgstr[0] "%s entrada"
-msgstr[1] "%s entradas"
-
-#: admin/views/past-entries.php:110 admin/views/past-entries.php:159
+#: admin/views/past-entries.php:110 admin/views/past-entries.php:162
 msgid "Not run yet"
 msgstr "Todavía no ejecutado"
 
@@ -1299,27 +1667,19 @@ msgstr "Traer entradas"
 msgid "Stop"
 msgstr "Detener"
 
-#: admin/views/past-entries.php:160
+#: admin/views/past-entries.php:163
 msgid "Running"
 msgstr "En curso"
 
-#: admin/views/past-entries.php:161
-msgid "Done"
-msgstr "Hecho"
-
-#: admin/views/past-entries.php:162
+#: admin/views/past-entries.php:165
 msgid "Stopped"
 msgstr "Detenido"
 
-#: admin/views/past-entries.php:163
+#: admin/views/past-entries.php:166
 msgid "Paused"
 msgstr "En pausa"
 
-#: admin/views/past-entries.php:164
-msgid "Failed"
-msgstr "Fallido"
-
-#: admin/views/past-entries.php:165
+#: admin/views/past-entries.php:168
 msgid ""
 "Stopped: the form plugin database does not look as expected. Nothing was "
 "read."
@@ -1328,33 +1688,33 @@ msgstr ""
 "No se leyó nada."
 
 #. translators: %s: number of entries.
-#: admin/views/past-entries.php:167
+#: admin/views/past-entries.php:170
 #, php-format
 msgid "%s brought in"
 msgstr "%s importadas"
 
 #. translators: %s: number of entries.
-#: admin/views/past-entries.php:169
+#: admin/views/past-entries.php:172
 #, php-format
 msgid "%s already here"
 msgstr "%s ya estaban aquí"
 
 #. translators: %s: number of entries.
-#: admin/views/past-entries.php:171
+#: admin/views/past-entries.php:174
 #, php-format
 msgid "%s left out (spam or unreadable)"
 msgstr "%s dejadas fuera (spam o ilegibles)"
 
-#: admin/views/past-entries.php:268
+#: admin/views/past-entries.php:271
 msgid "Thanks, the report was sent."
 msgstr "Gracias, se envió el informe."
 
-#: admin/views/past-entries.php:269
+#: admin/views/past-entries.php:272
 msgid "A report for this form plugin was already sent in the last hour."
 msgstr ""
 "Ya se envió un informe de este plugin de formularios en la última hora."
 
-#: admin/views/past-entries.php:270
+#: admin/views/past-entries.php:273
 msgid ""
 "The report could not be sent. Your site may not be able to send email; the "
 "Help and feedback page has other ways to reach us."
@@ -1363,7 +1723,7 @@ msgstr ""
 "página Ayuda y comentarios tiene otras formas de contactarnos."
 
 #: admin/views/settings.php:50 includes/class-admin-ui.php:112
-#: includes/class-plugin.php:87 includes/class-plugin.php:155
+#: includes/class-plugin.php:91 includes/class-plugin.php:159
 msgid "Settings"
 msgstr "Ajustes"
 
@@ -1389,11 +1749,11 @@ msgstr "Traer entradas anteriores"
 msgid "License"
 msgstr "Licencia"
 
-#: admin/views/settings.php:63 includes/class-plugin.php:230
+#: admin/views/settings.php:63 includes/class-plugin.php:235
 msgid "General"
 msgstr "General"
 
-#: admin/views/settings.php:64 includes/class-plugin.php:231
+#: admin/views/settings.php:64 includes/class-plugin.php:236
 msgid "Owners"
 msgstr "Responsables"
 
@@ -1546,19 +1906,19 @@ msgstr ""
 msgid "Tick this anyway?"
 msgstr "¿Marcarlo de todos modos?"
 
-#: admin/views/settings.php:189 admin/views/settings.php:218
+#: admin/views/settings.php:204 admin/views/settings.php:233
 msgid "Save changes"
 msgstr "Guardar cambios"
 
-#: admin/views/settings.php:200
+#: admin/views/settings.php:215
 msgid "Who can own entries"
 msgstr "Quién puede ser responsable de las entradas"
 
-#: admin/views/settings.php:203
+#: admin/views/settings.php:218
 msgid "No roles are available."
 msgstr "No hay perfiles disponibles."
 
-#: admin/views/settings.php:212
+#: admin/views/settings.php:227
 msgid ""
 "People with a ticked role can be made the owner of an entry. People who can "
 "edit posts are always included."
@@ -1567,7 +1927,7 @@ msgstr ""
 "Quienes pueden editar entradas del blog siempre están incluidos."
 
 #: admin/views/tags.php:14 includes/class-admin-ui.php:26
-#: includes/class-frontend.php:506 includes/class-plugin.php:151
+#: includes/class-frontend.php:521 includes/class-plugin.php:155
 #: includes/class-submissions-list-table.php:64
 #: admin/assets/kanban/build/index.js:5
 msgid "Tags"
@@ -1592,7 +1952,7 @@ msgstr ""
 "conservan sus etiquetas."
 
 #: admin/views/tags.php:27 admin/views/tags.php:45
-#: includes/class-frontend.php:502
+#: includes/class-frontend.php:517
 #: blocks/submissions-table/index.js:23
 msgid "Name"
 msgstr "Nombre"
@@ -1605,7 +1965,7 @@ msgstr "Nombre corto"
 msgid "Colour"
 msgstr "Color"
 
-#: admin/views/tags.php:39 includes/class-plugin.php:288
+#: admin/views/tags.php:39 includes/class-plugin.php:293
 msgid "Add a tag"
 msgstr "Añadir una etiqueta"
 
@@ -1648,10 +2008,25 @@ msgstr ""
 "forma segura y etiqueta entradas por formulario."
 
 #: admin/views/upgrade.php:31
+msgid "AI assistants that work your inbox"
+msgstr "Asistentes de IA que trabajan tu bandeja de entrada"
+
+#: admin/views/upgrade.php:31
+msgid ""
+"Your AI assistant can move, tag, assign, approve and note entries, and email "
+"people back, showing you each change first. Every change except an email can "
+"be undone. Reading entries is free. Needs WordPress 6.9 or newer."
+msgstr ""
+"Tu asistente de IA puede mover, etiquetar, asignar, aprobar y anotar "
+"entradas, y responder a la gente por correo, mostrándote antes cada cambio. "
+"Todo cambio salvo un correo se puede deshacer. Leer entradas es gratis. "
+"Necesita WordPress 6.9 o posterior."
+
+#: admin/views/upgrade.php:32
 msgid "Email reply tracking"
 msgstr "Seguimiento de respuestas por correo"
 
-#: admin/views/upgrade.php:31
+#: admin/views/upgrade.php:32
 msgid ""
 "Connect a mailbox and replies to your emails are filed under the right "
 "entry, so the whole conversation sits in one place."
@@ -1659,20 +2034,20 @@ msgstr ""
 "Conecta un buzón y las respuestas a tus correos se archivan en la entrada "
 "correcta, así toda la conversación queda en un solo lugar."
 
-#: admin/views/upgrade.php:32
+#: admin/views/upgrade.php:33
 msgid "Multiple pipelines"
 msgstr "Varios pipelines"
 
-#: admin/views/upgrade.php:32
+#: admin/views/upgrade.php:33
 msgid "Run separate Kanban boards for different teams or workflows."
 msgstr ""
 "Usa tableros Kanban separados para distintos equipos o flujos de trabajo."
 
-#: admin/views/upgrade.php:33
+#: admin/views/upgrade.php:34
 msgid "Routing and owners"
 msgstr "Enrutamiento y responsables"
 
-#: admin/views/upgrade.php:33
+#: admin/views/upgrade.php:34
 msgid ""
 "Send each form to its own pipeline, and share new entries between your team "
 "in turn."
@@ -1680,11 +2055,11 @@ msgstr ""
 "Envía cada formulario a su propio pipeline y reparte las nuevas entradas "
 "entre tu equipo por turnos."
 
-#: admin/views/upgrade.php:34
+#: admin/views/upgrade.php:35
 msgid "Public Kanban board"
 msgstr "Tablero Kanban público"
 
-#: admin/views/upgrade.php:34
+#: admin/views/upgrade.php:35
 msgid ""
 "Show a view-only board on any page, behind a private link. Plus approvals, "
 "quick edits and exports emailed on a schedule."
@@ -1693,11 +2068,11 @@ msgstr ""
 "privado. Además, aprobaciones, ediciones rápidas y exportaciones enviadas "
 "por correo de forma programada."
 
-#: admin/views/upgrade.php:39
+#: admin/views/upgrade.php:40
 msgid "EntryVault Pro"
 msgstr "EntryVault Pro"
 
-#: admin/views/upgrade.php:40
+#: admin/views/upgrade.php:41
 msgid ""
 "You are using the free EntryVault: a complete board for one pipeline, with "
 "the entries your forms already hold brought in. Pro adds the rules, "
@@ -1708,15 +2083,15 @@ msgstr ""
 "reglas, conexiones, respuestas por correo y pipelines extra que necesita un "
 "equipo en crecimiento."
 
-#: admin/views/upgrade.php:41
+#: admin/views/upgrade.php:42
 msgid "See Pro plans"
 msgstr "Ver los planes Pro"
 
-#: admin/views/upgrade.php:45
+#: admin/views/upgrade.php:46
 msgid "Upgrading keeps everything."
 msgstr "Al pasar a Pro lo conservas todo."
 
-#: admin/views/upgrade.php:46
+#: admin/views/upgrade.php:47
 msgid ""
 "Install Pro over this version. It is the same plugin with the same database, "
 "so your pipelines, entries, tags and settings carry over untouched."
@@ -1725,11 +2100,11 @@ msgstr ""
 "datos, así que tus pipelines, entradas, etiquetas y ajustes se mantienen "
 "intactos."
 
-#: admin/views/upgrade.php:59
+#: admin/views/upgrade.php:60
 msgid "Already bought Pro?"
 msgstr "¿Ya has comprado Pro?"
 
-#: admin/views/upgrade.php:60
+#: admin/views/upgrade.php:61
 msgid ""
 "Fastest: paste your Pro license key in EntryVault Settings, under License, "
 "and click Install Pro now. Pro is installed over this version for you. Or do "
@@ -1739,23 +2114,23 @@ msgstr ""
 "Licencia, y haz clic en Instalar Pro ahora. Pro se instala sobre esta "
 "versión por ti. O hazlo a mano:"
 
-#: admin/views/upgrade.php:60
+#: admin/views/upgrade.php:61
 msgid "Open the License box"
 msgstr "Abrir el cuadro de licencia"
 
-#: admin/views/upgrade.php:62 admin/views/upgrade.php:63
+#: admin/views/upgrade.php:63 admin/views/upgrade.php:64
 msgid "Download the Pro zip"
 msgstr "Descarga el zip de Pro"
 
-#: admin/views/upgrade.php:62
+#: admin/views/upgrade.php:63
 msgid "From your account on jnkplugins.com, under your license."
 msgstr "Desde tu cuenta en jnkplugins.com, en tu licencia."
 
-#: admin/views/upgrade.php:64
+#: admin/views/upgrade.php:65
 msgid "Upload it over this one"
 msgstr "Súbelo sobre este"
 
-#: admin/views/upgrade.php:64
+#: admin/views/upgrade.php:65
 msgid ""
 "Plugins, Add New, Upload Plugin. WordPress shows this copy as EntryVault and "
 "the upload as EntryVault Pro. Choose \"Replace current with uploaded\"."
@@ -1764,11 +2139,11 @@ msgstr ""
 "EntryVault y la subida como EntryVault Pro. Elige «Reemplazar el actual con "
 "el subido»."
 
-#: admin/views/upgrade.php:65
+#: admin/views/upgrade.php:66
 msgid "Enter your license key"
 msgstr "Introduce tu clave de licencia"
 
-#: admin/views/upgrade.php:65
+#: admin/views/upgrade.php:66
 msgid ""
 "A notice at the top of the screen takes you to the box, in EntryVault "
 "Settings under License. The key is in your purchase email."
@@ -1776,7 +2151,7 @@ msgstr ""
 "Un aviso en la parte superior de la pantalla te lleva al cuadro, en Ajustes "
 "de EntryVault, en Licencia. La clave está en el correo de tu compra."
 
-#: admin/views/upgrade.php:68
+#: admin/views/upgrade.php:69
 msgid ""
 "The Pro zip is a few megabytes. If your host refuses the upload, unzip it "
 "and copy the entryvault folder over the existing one in wp-content/plugins "
@@ -1786,7 +2161,72 @@ msgstr ""
 "subida, descomprímelo y copia la carpeta entryvault sobre la existente en wp-"
 "content/plugins por SFTP o con el gestor de archivos de tu alojamiento."
 
-#: includes/class-admin-ui.php:25 includes/class-plugin.php:150
+#: includes/class-abilities.php:59
+msgid ""
+"Form entries collected by EntryVault from every form plugin on the site."
+msgstr ""
+"Entradas de formularios recogidas por EntryVault de todos los plugins de "
+"formularios del sitio."
+
+#: includes/class-abilities.php:107
+msgid "List form entries"
+msgstr "Listar entradas de formularios"
+
+#: includes/class-abilities.php:108
+msgid ""
+"Entries from every form plugin on the site, newest first. Filter by "
+"pipeline, stage, form plugin, tag, status, dates or words in the title or "
+"email. Contact details are masked unless the site owner allows them."
+msgstr ""
+"Entradas de todos los plugins de formularios del sitio, las más recientes "
+"primero. Filtra por pipeline, etapa, plugin de formularios, etiqueta, "
+"estado, fechas o palabras del título o el correo. Los datos de contacto se "
+"ocultan salvo que el propietario del sitio los permita."
+
+#: includes/class-abilities.php:139
+msgid "Open a form entry"
+msgstr "Abrir una entrada de formulario"
+
+#: includes/class-abilities.php:140
+msgid ""
+"One entry with its fields, stage, tags, owner and notes. Contact details are "
+"masked unless the site owner allows them; files and passwords are never "
+"included. Opening an entry is noted on its history."
+msgstr ""
+"Una entrada con sus campos, etapa, etiquetas, responsable y notas. Los datos "
+"de contacto se ocultan salvo que el propietario del sitio los permita; nunca "
+"se incluyen archivos ni contraseñas. Abrir una entrada queda anotado en su "
+"historial."
+
+#: includes/class-abilities.php:155
+msgid "List boards, stages and tags"
+msgstr "Listar tableros, etapas y etiquetas"
+
+#: includes/class-abilities.php:156
+msgid ""
+"The pipelines (boards) with their stages and ids, the tags, and the forms "
+"entries come from. Use the ids with list-entries."
+msgstr ""
+"Los pipelines (tableros) con sus etapas e ids, las etiquetas y los "
+"formularios de los que vienen las entradas. Usa los ids con list-entries."
+
+#: includes/class-abilities.php:164
+msgid "Get entry numbers"
+msgstr "Obtener cifras de entradas"
+
+#: includes/class-abilities.php:165
+msgid ""
+"How many entries arrived per day, per form plugin and per stage, for one "
+"pipeline or all of them."
+msgstr ""
+"Cuántas entradas llegaron por día, por plugin de formularios y por etapa, "
+"para un pipeline o para todos."
+
+#: includes/class-abilities.php:282
+msgid "Entry not found."
+msgstr "No se ha encontrado la entrada."
+
+#: includes/class-admin-ui.php:25 includes/class-plugin.php:154
 #: includes/class-submissions-admin.php:221
 msgid "Submissions"
 msgstr "Envíos"
@@ -1811,6 +2251,18 @@ msgstr "Mejorar"
 msgid "Help"
 msgstr "Ayuda"
 
+#: includes/class-ai-privacy.php:117
+msgid "hidden"
+msgstr "oculta"
+
+#: includes/class-assistants.php:70
+msgid "Sorry, you are not allowed to do that."
+msgstr "Lo siento, no tienes permiso para hacer eso."
+
+#: includes/class-assistants.php:99
+msgid "Sorry, you are not allowed to install plugins on this site."
+msgstr "Lo siento, no tienes permiso para instalar plugins en este sitio."
+
 #: includes/class-dates.php:61 admin/assets/kanban/build/index.js:2
 #: admin/assets/kanban/build/index.js:20
 msgid "just now"
@@ -1834,11 +2286,11 @@ msgid "Qualified"
 msgstr "Cualificada"
 
 #: includes/class-default-names.php:41
-#: admin/assets/js/dashboard.js:158
+#: admin/assets/js/dashboard.js:161
 msgid "Won"
 msgstr "Ganada"
 
-#: includes/class-default-names.php:43 admin/assets/js/dashboard.js:159
+#: includes/class-default-names.php:43 admin/assets/js/dashboard.js:162
 msgid "Lost"
 msgstr "Perdida"
 
@@ -1901,38 +2353,38 @@ msgstr ""
 "porque falta el access_token o no coincide con este pipeline. Copia el "
 "shortcode ya preparado desde EntryVault > Ajustes > General."
 
-#: includes/class-frontend.php:451 includes/class-frontend.php:454
+#: includes/class-frontend.php:466 includes/class-frontend.php:469
 msgid "(no name)"
 msgstr "(sin nombre)"
 
-#: includes/class-frontend.php:453
+#: includes/class-frontend.php:468
 msgid "(email hidden)"
 msgstr "(correo oculto)"
 
-#: includes/class-frontend.php:499 blocks/submissions-table/index.js:30
+#: includes/class-frontend.php:514 blocks/submissions-table/index.js:30
 msgid "Submitted"
 msgstr "Enviado"
 
-#: includes/class-frontend.php:500 includes/class-submissions-list-table.php:67
+#: includes/class-frontend.php:515 includes/class-submissions-list-table.php:67
 #: blocks/submissions-table/index.js:29
 msgid "Created"
 msgstr "Creado"
 
-#: includes/class-frontend.php:501 includes/class-plugin.php:352
+#: includes/class-frontend.php:516 includes/class-plugin.php:357
 #: includes/class-privacy.php:227 includes/class-submissions-list-table.php:53
 #: blocks/submissions-table/index.js:24
 msgid "Title"
 msgstr "Título"
 
-#: includes/class-frontend.php:503 includes/class-plugin.php:353
+#: includes/class-frontend.php:518 includes/class-plugin.php:358
 #: includes/class-privacy.php:228 includes/class-submissions-list-table.php:54
 #: admin/assets/kanban/build/index.js:5
 msgid "Email"
 msgstr "Correo electrónico"
 
-#: includes/class-frontend.php:505 includes/class-submissions-list-table.php:65
+#: includes/class-frontend.php:520 includes/class-submissions-list-table.php:65
 #: includes/class-submissions-list-table.php:130
-#: admin/assets/js/dashboard.js:156 admin/assets/kanban/build/index.js:5
+#: admin/assets/js/dashboard.js:159 admin/assets/kanban/build/index.js:5
 #: admin/assets/kanban/build/index.js:37
 msgid "Owner"
 msgstr "Responsable"
@@ -1947,119 +2399,115 @@ msgstr ""
 "así que no hay entradas anteriores que traer. Los nuevos envíos se capturan "
 "a partir de ahora."
 
-#: includes/class-plugin.php:94 includes/class-plugin.php:177
-#: includes/class-plugin.php:178
+#: includes/class-plugin.php:98 includes/class-plugin.php:182
+#: includes/class-plugin.php:183
 msgid "Upgrade to Pro"
 msgstr "Mejorar a Pro"
 
-#: includes/class-plugin.php:108
+#: includes/class-plugin.php:112
 msgid "Docs"
 msgstr "Documentación"
 
-#: includes/class-plugin.php:113
+#: includes/class-plugin.php:117
 msgid "Support"
 msgstr "Soporte"
 
-#: includes/class-plugin.php:148
+#: includes/class-plugin.php:152
 msgid "Kanban"
 msgstr "Kanban"
 
-#: includes/class-plugin.php:149
+#: includes/class-plugin.php:153
 msgid "Dashboard"
 msgstr "Escritorio"
 
-#: includes/class-plugin.php:156
+#: includes/class-plugin.php:160
 msgid "Feedback"
 msgstr "Comentarios"
 
-#: includes/class-plugin.php:224 includes/class-plugin.php:284
-msgid "Saved."
-msgstr "Guardado."
-
-#: includes/class-plugin.php:225
+#: includes/class-plugin.php:230
 msgid "Save failed."
 msgstr "No se ha podido guardar."
 
 #. translators: %s: the settings section, e.g. "Mailchimp".
-#: includes/class-plugin.php:227
+#: includes/class-plugin.php:232
 #, php-format
 msgid "%s saved."
 msgstr "%s: guardado."
 
 #. translators: 1: the settings section, 2: the error message.
-#: includes/class-plugin.php:229
+#: includes/class-plugin.php:234
 #, php-format
 msgid "%1$s save failed: %2$s"
 msgstr "%1$s: no se ha podido guardar: %2$s"
 
-#: includes/class-plugin.php:282
+#: includes/class-plugin.php:287
 msgid "Edit"
 msgstr "Editar"
 
-#: includes/class-plugin.php:283 includes/class-submissions-list-table.php:96
+#: includes/class-plugin.php:288 includes/class-submissions-list-table.php:96
 msgid "Delete"
 msgstr "Borrar"
 
-#: includes/class-plugin.php:285
+#: includes/class-plugin.php:290
 msgid "Error."
 msgstr "Error."
 
-#: includes/class-plugin.php:286
+#: includes/class-plugin.php:291
 msgid "Delete this tag? It comes off every entry that has it."
 msgstr "¿Borrar esta etiqueta? Se quitará de todas las entradas que la tengan."
 
-#: includes/class-plugin.php:287
+#: includes/class-plugin.php:292
 msgid "No tags yet. Add your first one with the form next to this list."
 msgstr ""
 "Todavía no hay etiquetas. Añade la primera con el formulario junto a esta "
 "lista."
 
-#: includes/class-plugin.php:289
+#: includes/class-plugin.php:294
 msgid "Edit tag"
 msgstr "Editar etiqueta"
 
-#: includes/class-plugin.php:345
+#: includes/class-plugin.php:350
 msgid "Please choose a file or paste CSV first."
 msgstr "Elige primero un archivo o pega el CSV."
 
-#: includes/class-plugin.php:346
+#: includes/class-plugin.php:351
 msgid "Loading preview…"
 msgstr "Cargando la vista previa…"
 
-#: includes/class-plugin.php:347
+#: includes/class-plugin.php:352
 msgid "Preview failed."
 msgstr "Ha fallado la vista previa."
 
 #. translators: %s: number of rows loaded.
-#: includes/class-plugin.php:349
+#: includes/class-plugin.php:354
 #, php-format
 msgid "Loaded %s rows."
 msgstr "Se han cargado %s filas."
 
-#: includes/class-plugin.php:350
+#: includes/class-plugin.php:355
 msgid "Network error."
 msgstr "Error de red."
 
-#: includes/class-plugin.php:351
+#: includes/class-plugin.php:356
 msgid "Ignore"
 msgstr "Ignorar"
 
-#: includes/class-plugin.php:354 includes/class-privacy.php:226
+#: includes/class-plugin.php:359 includes/class-privacy.php:226
 #: includes/class-submissions-list-table.php:66
 #: admin/assets/kanban/build/index.js:5
 msgid "Source"
 msgstr "Origen"
 
-#: includes/class-plugin.php:355
+#: includes/class-plugin.php:360
 msgid "Field"
 msgstr "Campo"
 
-#: includes/class-plugin.php:356
+#: includes/class-plugin.php:361
 msgid "Date received"
 msgstr "Fecha de recepción"
 
 #. translators: %s: number of rows.
-#: includes/class-plugin.php:358
+#: includes/class-plugin.php:363
 #, php-format
 msgid ""
 "The date in %s rows could not be read, so those entries got today's date."
@@ -2067,36 +2515,36 @@ msgstr ""
 "No se pudo leer la fecha de %s filas, así que esas entradas tienen la fecha "
 "de hoy."
 
-#: includes/class-plugin.php:360
+#: includes/class-plugin.php:365
 msgid "You must map one column to Email."
 msgstr "Debes asignar una columna al correo electrónico."
 
-#: includes/class-plugin.php:361
+#: includes/class-plugin.php:366
 msgid "Running…"
 msgstr "Ejecutando…"
 
-#: includes/class-plugin.php:362
+#: includes/class-plugin.php:367
 msgid "Import failed."
 msgstr "Ha fallado la importación."
 
-#: includes/class-plugin.php:364
+#: includes/class-plugin.php:369
 msgid "Results"
 msgstr "Resultados"
 
-#: includes/class-plugin.php:365
+#: includes/class-plugin.php:370
 msgid "Test run: nothing was saved."
 msgstr "Prueba: no se ha guardado nada."
 
-#: includes/class-plugin.php:366
+#: includes/class-plugin.php:371
 msgid "Imported:"
 msgstr "Importadas:"
 
-#: includes/class-plugin.php:367
+#: includes/class-plugin.php:372
 msgid "Would import:"
 msgstr "Se importarían:"
 
 #. translators: %s: comma-separated column names.
-#: includes/class-plugin.php:369
+#: includes/class-plugin.php:374
 #, php-format
 msgid ""
 "Only one column can be the title, but these are all set to Title: %s. Set "
@@ -2105,11 +2553,11 @@ msgstr ""
 "Solo una columna puede ser el título, pero todas estas están como Título: "
 "%s. Pon las demás como Campo para conservar sus valores."
 
-#: includes/class-plugin.php:370
+#: includes/class-plugin.php:375
 msgid "Already present:"
 msgstr "Ya existentes:"
 
-#: includes/class-plugin.php:371
+#: includes/class-plugin.php:376
 msgid ""
 "These rows were already on the board, from an earlier import or from the "
 "form plugin itself, and were left as they are. Nothing was copied twice."
@@ -2118,15 +2566,15 @@ msgstr ""
 "propio plugin de formularios, y se dejaron como estaban. No se copió nada "
 "dos veces."
 
-#: includes/class-plugin.php:372
+#: includes/class-plugin.php:377
 msgid "Skipped:"
 msgstr "Omitidas:"
 
-#: includes/class-plugin.php:373
+#: includes/class-plugin.php:378
 msgid "Errors"
 msgstr "Errores"
 
-#: includes/class-plugin.php:374
+#: includes/class-plugin.php:379
 msgid "Row"
 msgstr "Fila"
 
@@ -2528,23 +2976,35 @@ msgstr "Archivada: movida a la papelera en %s"
 msgid "Restored from the archive"
 msgstr "Restaurada desde el archivo"
 
-#: includes/class-timeline.php:135 admin/assets/kanban/build/index.js:27
+#. translators: %s: user display name the assistant signed in as.
+#: includes/class-timeline.php:111
+#, php-format
+msgid "Opened by an AI assistant signed in as %s"
+msgstr "Abierta por un asistente de IA con la sesión de %s"
+
+#. translators: %s: what the assistant changed.
+#: includes/class-timeline.php:115
+#, php-format
+msgid "Changed by an AI assistant: %s"
+msgstr "Cambiada por un asistente de IA: %s"
+
+#: includes/class-timeline.php:143 admin/assets/kanban/build/index.js:27
 msgctxt "timeline event: an entry arrived"
 msgid "Created"
 msgstr "Creada"
 
-#: includes/class-timeline.php:137 admin/assets/kanban/build/index.js:27
+#: includes/class-timeline.php:145 admin/assets/kanban/build/index.js:27
 msgctxt "timeline event: the form plugin changed an entry"
 msgid "Updated"
 msgstr "Actualizada"
 
 #. translators: %d: stage id.
-#: includes/class-timeline.php:149
+#: includes/class-timeline.php:157
 #, php-format
 msgid "a deleted stage (#%d)"
 msgstr "una etapa borrada (#%d)"
 
-#: includes/class-timeline.php:166
+#: includes/class-timeline.php:174
 msgid "nobody"
 msgstr "nadie"
 
@@ -2568,7 +3028,7 @@ msgstr "Para"
 msgid "Subject"
 msgstr "Asunto"
 
-#: admin/assets/js/dashboard.js:140
+#: admin/assets/js/dashboard.js:143
 msgid "Entries"
 msgstr "Entradas"
 
@@ -2598,67 +3058,67 @@ msgstr "Página %1$d de %2$d"
 msgid "Next »"
 msgstr "Siguiente »"
 
-#: admin/assets/js/dashboard.js:52 admin/assets/js/dashboard.js:183
+#: admin/assets/js/dashboard.js:55 admin/assets/js/dashboard.js:186
 msgid "Nothing to show for this range yet."
 msgstr "Todavía no hay nada que mostrar en este rango."
 
-#: admin/assets/js/dashboard.js:75
+#: admin/assets/js/dashboard.js:78
 msgid "(none)"
 msgstr "(ninguno)"
 
 #. translators: %d: pipeline ID, shown when the pipeline has no name.
-#: admin/assets/js/dashboard.js:82
+#: admin/assets/js/dashboard.js:85
 msgid "Pipeline #%d"
 msgstr "Pipeline n.º %d"
 
-#: admin/assets/js/dashboard.js:92
+#: admin/assets/js/dashboard.js:95
 msgid "In this date range"
 msgstr "En este rango de fechas"
 
-#: admin/assets/js/dashboard.js:93
+#: admin/assets/js/dashboard.js:96
 msgid "Today"
 msgstr "Hoy"
 
-#: admin/assets/js/dashboard.js:94
+#: admin/assets/js/dashboard.js:97
 msgid "This week"
 msgstr "Esta semana"
 
-#: admin/assets/js/dashboard.js:95
+#: admin/assets/js/dashboard.js:98
 msgid "This month"
 msgstr "Este mes"
 
 #. translators: 1: date (YYYY-MM-DD), 2: number of entries that day.
-#: admin/assets/js/dashboard.js:135
+#: admin/assets/js/dashboard.js:138
 msgid "%1$s: %2$d entry"
 msgid_plural "%1$s: %2$d entries"
 msgstr[0] "%1$s: %2$d entrada"
 msgstr[1] "%1$s: %2$d entradas"
 
-#: admin/assets/js/dashboard.js:140
+#: admin/assets/js/dashboard.js:143
 msgid "Moved on"
 msgstr "Avanzaron"
 
-#: admin/assets/js/dashboard.js:157
+#: admin/assets/js/dashboard.js:160
 msgid "Total"
 msgstr "Total"
 
-#: admin/assets/js/dashboard.js:160
+#: admin/assets/js/dashboard.js:163
 msgid "Win rate"
 msgstr "Tasa de éxito"
 
-#: admin/assets/js/dashboard.js:161
+#: admin/assets/js/dashboard.js:164
 msgid "Avg hours per stage"
 msgstr "Media de horas por etapa"
 
-#: admin/assets/js/dashboard.js:188
+#: admin/assets/js/dashboard.js:191
 msgid "(Unknown)"
 msgstr "(Desconocido)"
 
-#: admin/assets/js/dashboard.js:219
+#: admin/assets/js/dashboard.js:222
 msgid "Average hours"
 msgstr "Horas de media"
 
-#: admin/assets/js/dashboard.js:219
+#: admin/assets/js/dashboard.js:222
 msgid "Based on"
 msgstr "Basado en"
 
@@ -2756,11 +3216,11 @@ msgstr "Falta. Vuelve a instalar EntryVault desde una descarga nueva."
 msgid "Versions"
 msgstr "Versiones"
 
-#: admin/assets/js/health.js:138
+#: admin/assets/js/health.js:143
 msgid "Checking…"
 msgstr "Comprobando…"
 
-#: admin/assets/js/health.js:144 admin/assets/js/health.js:147
+#: admin/assets/js/health.js:149 admin/assets/js/health.js:152
 msgid "Could not load the check. Reload the page and try again."
 msgstr ""
 "No se pudo cargar la comprobación. Recarga la página e inténtalo de nuevo."

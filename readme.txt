@@ -4,7 +4,7 @@ Tags: form entries, contact form, crm, leads, csv export
 Requires at least: 6.2
 Tested up to: 7.1
 Requires PHP: 8.2
-Stable tag: 1.21.0
+Stable tag: 1.22.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -37,6 +37,7 @@ It's built for agencies, freelancers, and small teams who outgrew "submissions l
 * **Health screen** — system status for database schema and environment, plus a JSON endpoint for monitoring.
 * **Spam stays out**: entries your form plugin already marked as spam (Gravity Forms, Fluent Forms, Forminator, Formidable, Ninja Forms with Akismet, Everest Forms, WS Form, Jetpack) never reach your board. You can switch this off.
 * **Privacy tools**: Tools > Export Personal Data and Erase Personal Data include EntryVault entries, found by email address.
+* **AI assistants**: let Claude, Cursor or another MCP app search and read your entries from every form plugin (WordPress 6.9 or newer). Contact details are masked by default, files and passwords are never shown, and you can keep whole forms away from assistants.
 
 = Get Pro =
 
@@ -50,6 +51,7 @@ EntryVault Pro is available today at https://jnkplugins.com/entryvault/ — not 
 * Multiple pipelines with per-pipeline access control.
 * Auto-tag rules (form → tag) and round-robin owner assignment.
 * Public Kanban board block for the front end.
+* AI assistants that work your inbox: move, tag, note, assign, approve and archive entries, and email people back, with every change shown first and undoable.
 
 Pricing is flat and by site count (Personal / Freelancer / Agency / Unlimited) — every paid tier includes every Pro feature; the tiers differ only by how many sites you run and your support level. See https://jnkplugins.com/entryvault/pricing.php.
 
@@ -102,7 +104,7 @@ No. Submissions are copied into EntryVault's own tables (`wp_entryvault_submissi
 
 = Where does my data live? =
 
-Everything stays in your own WordPress database. No SaaS, no telemetry, no external dashboards. The free zip from jnkplugins.com includes a small update client: it asks our license server on jnkplugins.com whether a newer EntryVault is out, sending your site address, the license key the zip came with and the installed version, so WordPress can offer the update. Your submissions are never sent anywhere.
+Everything stays in your own WordPress database. No SaaS, no telemetry, no external dashboards. The free zip from jnkplugins.com includes a small update client: it asks our license server on jnkplugins.com whether a newer EntryVault is out, sending your site address, the license key the zip came with and the installed version, so WordPress can offer the update. Your submissions are never sent anywhere by EntryVault. If you connect an AI assistant on the AI assistants screen, the assistant reads what you allow there (contact details masked by default), the same way you would on your board.
 
 = Does it run on multisite? =
 
@@ -137,6 +139,12 @@ Use the contact page at https://jnkplugins.com/entryvault/, or Feedback & Suppor
 7. Pro: automations that tag, assign, move or email entries for you.
 
 == Changelog ==
+
+= 1.22.0 =
+* New: an AI assistants screen (EntryVault > More tools > AI assistants). Connect Claude Desktop, Claude Code, Cursor or another MCP app and ask it about your form entries, from every form plugin at once. It shows ready-to-paste settings, installs the free MCP Adapter plugin in one click, and lists every request an assistant made.
+* New: reading entries is free. An assistant can search and open entries and read your boards and numbers. It stays off until you switch it on.
+* New: privacy comes first. Emails, phone numbers, names and addresses are masked by default, also inside messages and notes; uploaded files, passwords, card numbers and signatures are never shown; forms you tick are kept from assistants entirely; and every entry an assistant opens gets a line in its history.
+* New (Pro): assistants can work your inbox. Move entries between stages, tag them, add notes, assign an owner, approve or reject, and archive, and (behind a separate "Send emails" switch) email the person back. Each change is shown first and saved only when the assistant asks again, appears in the entry's history, and can be undone unless the entry was changed since. Emails cannot be undone.
 
 = 1.21.0 =
 * New: ticking "Delete all EntryVault data" asks you to confirm and shows what deleting the plugin will remove.
