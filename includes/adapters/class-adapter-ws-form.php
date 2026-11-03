@@ -47,11 +47,21 @@ class Adapter_WS_Form extends Adapter_Base {
         if ( 'spam' === (string) $this->prop( $submit, 'status' ) && $this->skip_as_spam( (string) $form_id ) ) {
             return;
         }
-        $entry_id = $this->resolve_entry_id( $submit, $form_id );
-        $raw      = $this->extract_fields( $submit, $this->field_labels( $submit, $form_id ) );
+        $this->dispatch( $this->payload_for_submit( $submit, current_time( 'mysql', true ) ) );
+    }
 
-        $normalized = $this->build_normalized( $form_id, $entry_id, $raw, current_time( 'mysql', true ) );
-        $this->dispatch( $normalized );
+    /**
+     * The normalized payload for one submit object, live or read back later
+     * (Past entries), so both produce the same keys and entry id.
+     *
+     * @param object|array $submit
+     * @param array<string,array{label:string}>|null $labels Labels by field ref, when already known.
+     */
+    public function payload_for_submit( $submit, ?string $created_at, ?array $labels = null ): array {
+        $form_id  = (int) $this->prop( $submit, 'form_id' );
+        $entry_id = $this->resolve_entry_id( $submit, $form_id );
+        $raw      = $this->extract_fields( $submit, $labels ?? $this->field_labels( $submit, $form_id ) );
+        return $this->build_normalized( $form_id, $entry_id, $raw, $created_at );
     }
 
     /**

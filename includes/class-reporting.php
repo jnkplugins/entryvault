@@ -33,7 +33,7 @@ class Reporting {
 
         // Date constraints attach to the LEFT JOIN's ON clause so stages
         // with zero matching submissions still appear.
-        $join_extra = '';
+        $join_extra = " AND sub.status <> 'spam' ";
         $params     = [];
         if ( $date_from ) {
             $join_extra .= ' AND sub.created_at >= %s ';
@@ -84,7 +84,7 @@ class Reporting {
         global $wpdb;
         $subs_t = $wpdb->prefix . 'entryvault_submissions';
 
-        $where  = ' WHERE 1=1 ';
+        $where  = " WHERE status <> 'spam' ";
         $params = [];
         if ( $pipeline_id !== null && (int) $pipeline_id > 0 ) {
             $where   .= ' AND pipeline_id = %d ';
@@ -148,7 +148,7 @@ class Reporting {
         $lo     = Dates::site_day_bounds_utc( $start )[0];
         $hi     = Dates::site_day_bounds_utc( $end )[1];
         $shift  = Dates::offset_case_sql( 'created_at', Dates::timestamp( $lo ) - DAY_IN_SECONDS, Dates::timestamp( $hi ) + DAY_IN_SECONDS );
-        $where  = ' WHERE created_at >= %s AND created_at <= %s ';
+        $where  = " WHERE created_at >= %s AND created_at <= %s AND status <> 'spam' ";
         $params = [ $lo, $hi ];
         if ( $pipeline_id ) {
             $where   .= ' AND pipeline_id = %d ';
@@ -233,7 +233,7 @@ class Reporting {
                 "SELECT t.submission_id, t.data, t.created_at, s.created_at AS sub_created_at
                  FROM %i t
                  INNER JOIN %i s ON s.id = t.submission_id
-                 WHERE s.pipeline_id = %d AND t.type = %s
+                 WHERE s.pipeline_id = %d AND t.type = %s AND s.status <> 'spam'
                  ORDER BY t.submission_id ASC, t.created_at ASC",
                 $tl_t,
                 $subs_t,
@@ -353,7 +353,7 @@ class Reporting {
         $subs_t  = $wpdb->prefix . 'entryvault_submissions';
         $stage_t = $wpdb->prefix . 'entryvault_stages';
 
-        $where  = [ '1=1' ];
+        $where  = [ "status <> 'spam'" ];
         $params = [];
         if ( $pipeline_id ) {
             $where[]  = 'pipeline_id = %d';

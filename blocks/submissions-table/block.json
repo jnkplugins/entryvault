@@ -10,7 +10,8 @@
         "pipeline":     { "type": "string", "default": "" },
         "stage":        { "type": "string", "default": "" },
         "access_token": { "type": "string", "default": "" },
-        "columns":      { "type": "array",  "default": [ "submitted_at", "name", "stage" ], "items": { "type": "string" } }
+        "columns":      { "type": "array",  "default": [ "submitted_at", "name", "stage" ], "items": { "type": "string" } },
+        "filters":      { "type": "string", "default": "" }
     },
     "editorScript": "file:./index.js",
     "render": "file:./render.php"

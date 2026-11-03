@@ -1,6 +1,7 @@
 import { useDraggable } from "@dnd-kit/core";
 import { __, _x, sprintf } from "@wordpress/i18n";
 import { utcMs, formatSiteTime, isolate, siteLocale, justNow } from "./siteTime";
+import { StarButton } from "./DetailPanel";
 
 /**
  * A short unit in the user's WordPress language ("12 min", "12 dk.", "12분",
@@ -108,7 +109,7 @@ function sourceColor( source ) {
     return SOURCE_COLORS[ key ] || "#9ca3af";
 }
 
-export default function Card( { card, overlay = false, onOpen } ) {
+export default function Card( { card, overlay = false, onOpen, onStar } ) {
     const { attributes, listeners, setNodeRef, transform, isDragging } = useDraggable( {
         id: String( card.id ),
         disabled: overlay,
@@ -121,6 +122,7 @@ export default function Card( { card, overlay = false, onOpen } ) {
     const cls = [ "ev-card" ];
     if ( overlay ) cls.push( "is-overlay" );
     if ( isDragging && ! overlay ) cls.push( "is-dragging" );
+    if ( card.is_read === false ) cls.push( "is-unread" );
 
     // Stop drag listeners from blocking clicks on the open button.
     const stop = ( e ) => e.stopPropagation();
@@ -140,10 +142,22 @@ export default function Card( { card, overlay = false, onOpen } ) {
                         style={ { background: sourceColor( card.source_plugin ) } }
                     />
                 ) }
+                { card.is_read === false && <span className="screen-reader-text">{ __( "Unread", "entryvault" ) }</span> }
                 <strong className="ev-card-title">{ card.title || `#${ card.id }` }</strong>
+                { ! overlay && onStar && (
+                    <StarButton small on={ !! card.is_starred } title={ card.title } onToggle={ () => onStar( card ) } />
+                ) }
                 { card.is_new && <span className="ev-card-new">{ _x( "New", "badge on a card nobody has seen yet", "entryvault" ) }</span> }
             </div>
             { card.email && <div className="ev-card-email">{ card.email }</div> }
+            { /* Badges added server side (entryvault_board_card), e.g. a due date. */ }
+            { Array.isArray( card.badges ) && card.badges.length > 0 && (
+                <div className="ev-card-badges">
+                    { card.badges.map( ( b, i ) => (
+                        <span key={ i } className={ "ev-card-badge is-" + ( b.tone || "info" ) } title={ b.title || undefined }>{ b.label }</span>
+                    ) ) }
+                </div>
+            ) }
             { Array.isArray( card.tags ) && card.tags.length > 0 && (
                 <div className="ev-card-tags">
                     { card.tags.map( ( t ) => (

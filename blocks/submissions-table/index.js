@@ -42,6 +42,7 @@
 				default: [ 'submitted_at', 'name', 'stage' ],
 				items: { type: 'string' },
 			},
+			filters: { type: 'string', default: '' },
 		},
 
 		edit: function ( props ) {
@@ -51,6 +52,19 @@
 			var stage = attributes.stage || '';
 			var accessToken = attributes.access_token || '';
 			var columns = attributes.columns || [ 'submitted_at', 'name', 'stage' ];
+
+			var filters = ( attributes.filters || '' ).split( ',' ).map( function ( f ) { return f.trim(); } ).filter( Boolean );
+			var builtIn = [ 'stage', 'tag', 'date' ];
+			// Typed text kept as is, so a trailing comma survives while typing.
+			var fieldState = wp.element.useState( filters.filter( function ( f ) { return builtIn.indexOf( f ) === -1; } ).join( ',' ) );
+			var fieldText = fieldState[ 0 ];
+			var setFieldText = fieldState[ 1 ];
+			function toggleFilter( value ) {
+				var next = filters.indexOf( value ) > -1
+					? filters.filter( function ( f ) { return f !== value; } )
+					: filters.concat( [ value ] );
+				setAttributes( { filters: next.join( ',' ) } );
+			}
 
 			function toggleColumn( value ) {
 				var next = columns.indexOf( value ) > -1
@@ -94,6 +108,34 @@
 								checked: columns.indexOf( opt.value ) > -1,
 								onChange: function () { toggleColumn( opt.value ); },
 							} );
+						} )
+					),
+					el(
+						PanelBody,
+						{ title: __( 'Visitor filters', 'entryvault' ), initialOpen: false },
+						el( 'p', { className: 'components-base-control__help' }, __( 'Filters show above the table and only for what the table shows: the stage filter needs the Stage column, the tag filter the Tags column.', 'entryvault' ) ),
+						[
+							{ value: 'stage', label: __( 'Stage', 'entryvault' ) },
+							{ value: 'tag', label: __( 'Tag', 'entryvault' ) },
+							{ value: 'date', label: __( 'Submitted date', 'entryvault' ) },
+						].map( function ( opt ) {
+							return el( CheckboxControl, {
+								key: opt.value,
+								label: opt.label,
+								checked: filters.indexOf( opt.value ) > -1,
+								onChange: function () { toggleFilter( opt.value ); },
+							} );
+						} ),
+						el( TextControl, {
+							label: __( 'Field filters (field keys, comma-separated)', 'entryvault' ),
+							help: __( 'A field filter shows only for a field the table has as a column.', 'entryvault' ),
+							value: fieldText,
+							onChange: function ( v ) {
+								setFieldText( v );
+								var keep = filters.filter( function ( f ) { return builtIn.indexOf( f ) > -1; } );
+								var extra = String( v || '' ).split( ',' ).map( function ( f ) { return f.trim(); } ).filter( Boolean );
+								setAttributes( { filters: keep.concat( extra ).join( ',' ) } );
+							},
 						} )
 					)
 				),

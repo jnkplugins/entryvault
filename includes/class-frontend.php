@@ -62,6 +62,7 @@ class Frontend {
 				'stage'        => '',
 				'access_token' => '',
 				'columns'      => '',
+				'filters'      => '',
 			],
 			is_array( $atts ) ? $atts : [],
 			'entryvault_table'
@@ -119,22 +120,138 @@ class Frontend {
 		$search   = isset( $_GET['evq'] ) ? sanitize_text_field( wp_unslash( (string) $_GET['evq'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- read-only list/UI parameter from GET; no state change.
 		$sort_raw = isset( $_GET['evs'] ) ? sanitize_key( (string) $_GET['evs'] ) : 'submitted_at'; // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- read-only list/UI parameter from GET; no state change.
 		$sort     = in_array( $sort_raw, $columns, true ) ? $sort_raw : 'submitted_at';
+		$order    = isset( $_GET['evo'] ) && 'asc' === sanitize_key( (string) $_GET['evo'] ) ? 'asc' : 'desc'; // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- read-only list/UI parameter from GET; no state change.
 
 		$with_tags = in_array( 'tags', $columns, true );
-		$query = self::query_submissions( (int) $pipeline['id'], $stage_slug, $search, $sort, $page, $with_tags, $show_email );
+
+		// Visitor filters the page author switched on (filters="stage,tag,date,<field>"),
+		// read from the URL so a filtered view can be linked.
+		$filter_ui = self::resolve_filters( $attrs['filters'] ?? '', $columns, '' !== $stage_slug, $show_email );
+		$filters   = self::read_filters( $filter_ui, (int) $pipeline['id'], $_GET ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- read-only list/UI parameters from GET; no state change.
+
+		$ctx = [
+			'attrs'      => $attrs,
+			'pipeline'   => $pipeline,
+			'stage_slug' => $stage_slug,
+			'columns'    => $columns,
+			'show_email' => $show_email,
+			'with_tags'  => $with_tags,
+			'base_url'   => self::table_base_url(),
+			'filters'    => $filters,
+			'search'     => $search,
+			'sort'       => $sort,
+			'order'      => $order,
+			'filter_ui'  => $filter_ui,
+		];
+
+		/**
+		 * Rows per page of the public table.
+		 *
+		 * @param int   $per_page Default 25.
+		 * @param array $ctx      Table context.
+		 */
+		$per_page = max( 1, min( 1000, (int) apply_filters( 'entryvault_public_per_page', self::PER_PAGE, $ctx ) ) );
+		$ctx['per_page'] = $per_page;
+
+		// One entry on its own (?eve=<id>), for layouts that offer it. The entry
+		// goes through the same public query, so it must be one the table lists.
+		$entry_id = isset( $_GET['eve'] ) ? (int) $_GET['eve'] : 0; // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- read-only UI parameter.
+		/**
+		 * The entry requested on its own (for layouts with profile pages that
+		 * carry the id somewhere other than ?eve).
+		 *
+		 * @param int   $entry_id From ?eve, or 0.
+		 * @param array $ctx      Table context.
+		 */
+		$entry_id = (int) apply_filters( 'entryvault_public_entry_id', $entry_id, $ctx );
+		if ( $entry_id > 0 ) {
+			/**
+			 * Render one published entry on its own. Return HTML to replace the
+			 * table, or null to ignore ?eve.
+			 *
+			 * @param string|null $html Null by default.
+			 * @param int         $id   Requested entry id.
+			 * @param array       $ctx  Table context (attrs, pipeline, columns, …).
+			 */
+			$entry_html = apply_filters( 'entryvault_public_entry_html', null, $entry_id, $ctx );
+			if ( is_string( $entry_html ) ) {
+				return $entry_html;
+			}
+		}
+
+		/**
+		 * Replace the whole table (search form and paging included) with another
+		 * view, e.g. a calendar that pages by month. Null keeps the table.
+		 *
+		 * @param string|null $html Null by default.
+		 * @param array       $ctx  Table context.
+		 */
+		$whole = apply_filters( 'entryvault_public_table_html', null, $ctx );
+		if ( is_string( $whole ) ) {
+			return $whole;
+		}
+
+		$query = self::query_submissions( (int) $pipeline['id'], $stage_slug, $search, $sort, $page, $with_tags, $show_email, [ 'context' => $attrs, 'filters' => $filters, 'per_page' => $per_page, 'order' => $order ] );
 
 		$submissions = $query['rows'];
 		$total       = $query['total'];
 
 		$pagination = [
 			'page'     => $page,
-			'per_page' => self::PER_PAGE,
+			'per_page' => $per_page,
 			'total'    => $total,
-			'pages'    => (int) max( 1, ceil( $total / self::PER_PAGE ) ),
+			'pages'    => (int) max( 1, ceil( $total / $per_page ) ),
 			'search'   => $search,
 			'sort'     => $sort,
+			'filters'  => self::filter_query_args( $filters ),
 		];
+		$filter_options = self::filter_options( $filter_ui, (int) $pipeline['id'], $stage_slug, $show_email, $attrs );
 
+		/**
+		 * Replace the table body (search, filters and paging stay) with another
+		 * layout. Return HTML, or null for the table.
+		 *
+		 * @param string|null $html Null by default.
+		 * @param array       $rows This page's entries.
+		 * @param array       $ctx  Table context.
+		 */
+		$ctx['total'] = $total;
+		$ctx['page']  = $page;
+		$body_html = apply_filters( 'entryvault_public_body_html', null, $submissions, $ctx );
+
+		ob_start();
+		include ENTRYVAULT_PATH . 'public/templates/submissions-table.php';
+		return (string) ob_get_clean();
+	}
+
+	/**
+	 * The table's search and visitor-filter form around another view's HTML,
+	 * for views that replace the whole table (entryvault_public_table_html)
+	 * but keep the visitor filters. No sort headers, no paging.
+	 *
+	 * @param array  $ctx       Table context from render_table().
+	 * @param string $body_html Escaped HTML of the view.
+	 * @param int    $total        Entries the view shows.
+	 * @param array  $extra_hidden Hidden fields the form keeps (name => value).
+	 * @param bool   $hide_count   The view prints its own count.
+	 */
+	public static function wrap_with_filters( array $ctx, string $body_html, int $total, array $extra_hidden = [], bool $hide_count = false ): string {
+		$attrs          = (array) ( $ctx['attrs'] ?? [] );
+		$columns        = (array) ( $ctx['columns'] ?? [] );
+		$show_email     = ! empty( $ctx['show_email'] );
+		$filter_ui      = (array) ( $ctx['filter_ui'] ?? [] );
+		$filters        = (array) ( $ctx['filters'] ?? [] );
+		$submissions    = [];
+		$pagination     = [
+			'page'     => 1,
+			'per_page' => max( 1, $total ),
+			'total'    => $total,
+			'pages'    => 1,
+			'search'   => (string) ( $ctx['search'] ?? '' ),
+			'sort'     => (string) ( $ctx['sort'] ?? 'submitted_at' ),
+			'filters'  => self::filter_query_args( $filters ),
+		];
+		$filter_options = self::filter_options( $filter_ui, (int) ( $ctx['pipeline']['id'] ?? 0 ), (string) ( $ctx['stage_slug'] ?? '' ), $show_email, $attrs );
 		ob_start();
 		include ENTRYVAULT_PATH . 'public/templates/submissions-table.php';
 		return (string) ob_get_clean();
@@ -267,12 +384,14 @@ class Frontend {
 	/**
 	 * Query paged submissions for the public table.
 	 *
+	 * @param array $opts 'context' => the shortcode/block attributes, handed to
+	 *                    the entryvault_public_query_where filter.
 	 * @return array{rows: array<int,array<string,mixed>>, total: int}
 	 */
-	public static function query_submissions( int $pipeline_id, string $stage_slug, string $search, string $sort, int $page, bool $with_tags = false, bool $search_email = true ): array {
+	public static function query_submissions( int $pipeline_id, string $stage_slug, string $search, string $sort, int $page, bool $with_tags = false, bool $search_email = true, array $opts = [] ): array {
 		global $wpdb;
 
-		$where  = [ 's.pipeline_id = %d', "s.status <> 'archived'" ];
+		$where  = [ 's.pipeline_id = %d', "s.status NOT IN ( 'archived', 'spam' )" ];
 		$params = [ $pipeline_id ];
 
 		$stage_names = Default_Names::stage_aliases( $stage_slug );
@@ -297,6 +416,33 @@ class Frontend {
 			}
 		}
 
+		$f = (array) ( $opts['filters'] ?? [] );
+		if ( ! empty( $f['id'] ) ) {
+			$where[]  = 's.id = %d';
+			$params[] = (int) $f['id'];
+		}
+		if ( ! empty( $f['stage_id'] ) ) {
+			$where[]  = 's.stage_id = %d';
+			$params[] = (int) $f['stage_id'];
+		}
+		if ( ! empty( $f['tag_id'] ) ) {
+			$where[]  = "EXISTS ( SELECT 1 FROM {$wpdb->prefix}entryvault_submission_tags ft WHERE ft.submission_id = s.id AND ft.tag_id = %d )";
+			$params[] = (int) $f['tag_id'];
+		}
+		if ( ! empty( $f['from'] ) ) {
+			$where[]  = 's.created_at >= %s';
+			$params[] = Dates::site_day_bounds_utc( (string) $f['from'] )[0];
+		}
+		if ( ! empty( $f['to'] ) ) {
+			$where[]  = 's.created_at <= %s';
+			$params[] = Dates::site_day_bounds_utc( (string) $f['to'] )[1];
+		}
+		foreach ( (array) ( $f['fields'] ?? [] ) as $key => $text ) {
+			$where[]  = "EXISTS ( SELECT 1 FROM {$wpdb->prefix}entryvault_submission_data fd WHERE fd.submission_id = s.id AND fd.field_key = %s AND fd.is_stale = 0 AND fd.value LIKE %s )";
+			$params[] = (string) $key;
+			$params[] = '%' . $wpdb->esc_like( (string) $text ) . '%';
+		}
+
 		/**
 		 * Extra WHERE fragments for public output (table + public board). Each
 		 * entry is [ 'sql' => 's.col = %s', 'params' => [ ... ] ], using the `s`
@@ -304,8 +450,9 @@ class Frontend {
 		 *
 		 * @param array $extra       Empty by default.
 		 * @param int   $pipeline_id Pipeline being published.
+		 * @param array $context     Shortcode / block attributes of this table.
 		 */
-		foreach ( (array) apply_filters( 'entryvault_public_query_where', [], $pipeline_id ) as $fragment ) {
+		foreach ( (array) apply_filters( 'entryvault_public_query_where', [], $pipeline_id, (array) ( $opts['context'] ?? [] ) ) as $fragment ) {
 			if ( empty( $fragment['sql'] ) || ! is_string( $fragment['sql'] ) ) {
 				continue;
 			}
@@ -338,8 +485,9 @@ class Frontend {
 				break;
 		}
 
-		$per_page = self::PER_PAGE;
+		$per_page = max( 1, min( 1000, (int) ( $opts['per_page'] ?? self::PER_PAGE ) ) );
 		$offset   = max( 0, ( $page - 1 ) * $per_page );
+		$dir      = 'asc' === strtolower( (string) ( $opts['order'] ?? '' ) ) ? 'ASC' : 'DESC';
 
 		$subs_t   = $wpdb->prefix . 'entryvault_submissions';
 		$stages_t = $wpdb->prefix . 'entryvault_stages';
@@ -348,6 +496,14 @@ class Frontend {
 			WHERE {$where_sql}";
 
 		// phpcs:disable WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.PreparedSQLPlaceholders.ReplacementsWrongNumber, WordPress.DB.PreparedSQLPlaceholders.UnfinishedPrepare, PluginCheck.Security.DirectDB.UnescapedDBParameter -- $base is a static SQL fragment with %i identifiers, a whitelisted ORDER BY column and %s/%d placeholders; all values are bound via prepare().
+		if ( ! empty( $opts['ids_only'] ) ) {
+			// Every published id (capped), for the filter choices.
+			$rows = (array) $wpdb->get_results( $wpdb->prepare(
+				"SELECT s.id {$base} ORDER BY s.created_at DESC LIMIT 1000",
+				array_merge( [ $subs_t, $stages_t ], $params )
+			), ARRAY_A );
+			return [ 'rows' => $rows, 'total' => count( $rows ) ];
+		}
 		$total = (int) $wpdb->get_var( $wpdb->prepare(
 			"SELECT COUNT(*) {$base}",
 			array_merge( [ $subs_t, $stages_t ], $params )
@@ -357,7 +513,7 @@ class Frontend {
 			"SELECT s.id, s.title, s.email, s.created_at, s.stage_id, s.owner_user_id,
 				st.name AS stage_name, st.color AS stage_color
 			 {$base}
-			 ORDER BY {$order_col} DESC
+			 ORDER BY {$order_col} {$dir}, s.id {$dir}
 			 LIMIT %d OFFSET %d",
 			array_merge( [ $subs_t, $stages_t ], $params, [ $per_page, $offset ] )
 		), ARRAY_A );
@@ -409,6 +565,166 @@ class Frontend {
 			'rows'  => $rows,
 			'total' => $total,
 		];
+	}
+
+	/**
+	 * Which visitor filters a table shows: the page author lists them in the
+	 * filters attribute. A filter only exists for something the table already
+	 * shows (the stage column, the tags column, a field column), so filtering
+	 * never reveals a value the table hides. "date" is the submitted date.
+	 *
+	 * @param string|array $raw
+	 * @param string[]     $columns
+	 * @return string[] Subset of stage, tag, date and field keys.
+	 */
+	public static function resolve_filters( $raw, array $columns, bool $stage_fixed = false, bool $show_email = false ): array {
+		$list = is_array( $raw ) ? $raw : explode( ',', (string) $raw );
+		$out  = [];
+		foreach ( $list as $item ) {
+			$item = sanitize_key( trim( (string) $item ) );
+			if ( '' === $item || in_array( $item, $out, true ) ) {
+				continue;
+			}
+			if ( 'stage' === $item ) {
+				if ( ! $stage_fixed && in_array( 'stage', $columns, true ) ) {
+					$out[] = 'stage';
+				}
+			} elseif ( 'tag' === $item || 'tags' === $item ) {
+				if ( in_array( 'tags', $columns, true ) && ! in_array( 'tag', $out, true ) ) {
+					$out[] = 'tag';
+				}
+			} elseif ( 'date' === $item ) {
+				$out[] = 'date';
+			} elseif ( in_array( $item, $columns, true ) && ! in_array( $item, self::ALLOWED_COLUMNS, true ) ) {
+				// A form field the page shows as a column.
+				$out[] = $item;
+			}
+		}
+		return $out;
+	}
+
+	/**
+	 * Read the visitor's filter values from the query string.
+	 *
+	 * @param string[] $ui
+	 * @param array    $get
+	 * @return array{stage_id?:int,tag_id?:int,from?:string,to?:string,fields?:array<string,string>}
+	 */
+	public static function read_filters( array $ui, int $pipeline_id, array $get ): array {
+		global $wpdb;
+		$out = [];
+		if ( in_array( 'stage', $ui, true ) && ! empty( $get['evst'] ) ) {
+			$stage = (int) $get['evst'];
+			$ok    = (int) $wpdb->get_var( $wpdb->prepare( "SELECT id FROM {$wpdb->prefix}entryvault_stages WHERE id = %d AND pipeline_id = %d", $stage, $pipeline_id ) );
+			if ( $ok > 0 ) {
+				$out['stage_id'] = $ok;
+			}
+		}
+		if ( in_array( 'tag', $ui, true ) && ! empty( $get['evtag'] ) ) {
+			$out['tag_id'] = max( 0, (int) $get['evtag'] );
+		}
+		if ( in_array( 'date', $ui, true ) ) {
+			foreach ( [ 'evfrom' => 'from', 'evto' => 'to' ] as $param => $key ) {
+				$val = isset( $get[ $param ] ) ? sanitize_text_field( wp_unslash( (string) $get[ $param ] ) ) : '';
+				if ( preg_match( '/^\d{4}-\d{2}-\d{2}$/', $val ) && checkdate( (int) substr( $val, 5, 2 ), (int) substr( $val, 8, 2 ), (int) substr( $val, 0, 4 ) ) ) {
+					$out[ $key ] = $val;
+				}
+			}
+		}
+		$raw_fields = isset( $get['evf'] ) && is_array( $get['evf'] ) ? wp_unslash( $get['evf'] ) : [];
+		foreach ( $ui as $key ) {
+			if ( in_array( $key, [ 'stage', 'tag', 'date' ], true ) || ! isset( $raw_fields[ $key ] ) || ! is_scalar( $raw_fields[ $key ] ) ) {
+				continue;
+			}
+			$text = trim( sanitize_text_field( (string) $raw_fields[ $key ] ) );
+			if ( '' !== $text ) {
+				$out['fields'][ $key ] = mb_substr( $text, 0, 100 );
+			}
+		}
+		return $out;
+	}
+
+	/**
+	 * The filters as query args, for every sort, page and form link.
+	 *
+	 * @return array<string,mixed>
+	 */
+	public static function filter_query_args( array $filters ): array {
+		$args = [];
+		if ( ! empty( $filters['stage_id'] ) ) {
+			$args['evst'] = (int) $filters['stage_id'];
+		}
+		if ( ! empty( $filters['tag_id'] ) ) {
+			$args['evtag'] = (int) $filters['tag_id'];
+		}
+		if ( ! empty( $filters['from'] ) ) {
+			$args['evfrom'] = (string) $filters['from'];
+		}
+		if ( ! empty( $filters['to'] ) ) {
+			$args['evto'] = (string) $filters['to'];
+		}
+		foreach ( (array) ( $filters['fields'] ?? [] ) as $key => $text ) {
+			$args[ 'evf[' . $key . ']' ] = (string) $text;
+		}
+		return $args;
+	}
+
+	/** Query arg names the filters use, for remove_query_arg(). */
+	public const FILTER_PARAMS = [ 'evst', 'evtag', 'evfrom', 'evto', 'evf' ];
+
+	/** Paging, search, sort (and its direction), page size, month and entry. */
+	public const VIEW_PARAMS = [ 'evp', 'evq', 'evs', 'evo', 'evn', 'evm', 'eve' ];
+
+	/**
+	 * Choices for the filter form: the pipeline's stages, and the tags that are
+	 * on entries this table publishes (never a tag only a hidden entry has).
+	 *
+	 * @param string[] $ui
+	 * @return array{stages:array<int,array{id:int,name:string}>,tags:array<int,array{id:int,name:string}>,fields:array<string,string>}
+	 */
+	public static function filter_options( array $ui, int $pipeline_id, string $stage_slug, bool $show_email, array $attrs ): array {
+		global $wpdb;
+		$out = [ 'stages' => [], 'tags' => [], 'fields' => [] ];
+		if ( in_array( 'stage', $ui, true ) ) {
+			foreach ( (array) Default_Names::label_rows( $wpdb->get_results( $wpdb->prepare(
+				"SELECT id, name FROM {$wpdb->prefix}entryvault_stages WHERE pipeline_id = %d ORDER BY position ASC, id ASC",
+				$pipeline_id
+			), ARRAY_A ) ) as $st ) {
+				$out['stages'][] = [ 'id' => (int) $st['id'], 'name' => (string) $st['name'] ];
+			}
+		}
+		if ( in_array( 'tag', $ui, true ) ) {
+			// Every published entry (no paging) and the tags on them.
+			$ids = self::public_ids( $pipeline_id, $stage_slug, $show_email, $attrs );
+			if ( $ids ) {
+				$in = implode( ',', array_fill( 0, count( $ids ), '%d' ) );
+				// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.PreparedSQLPlaceholders.ReplacementsWrongNumber -- $in holds %d placeholders.
+				foreach ( (array) $wpdb->get_results( $wpdb->prepare(
+					"SELECT DISTINCT t.id, t.name FROM {$wpdb->prefix}entryvault_tags t
+					   INNER JOIN {$wpdb->prefix}entryvault_submission_tags st ON st.tag_id = t.id
+					  WHERE st.submission_id IN ({$in}) ORDER BY t.name ASC",
+					$ids
+				), ARRAY_A ) as $t ) {
+					$out['tags'][] = [ 'id' => (int) $t['id'], 'name' => (string) $t['name'] ];
+				}
+			}
+		}
+		foreach ( $ui as $key ) {
+			if ( ! in_array( $key, [ 'stage', 'tag', 'date' ], true ) ) {
+				$out['fields'][ $key ] = self::column_label( $key );
+			}
+		}
+		return $out;
+	}
+
+	/**
+	 * Ids of every entry the table publishes, capped. Same rules as the table.
+	 *
+	 * @return int[]
+	 */
+	private static function public_ids( int $pipeline_id, string $stage_slug, bool $show_email, array $attrs ): array {
+		$res = self::query_submissions( $pipeline_id, $stage_slug, '', 'submitted_at', 1, false, $show_email, [ 'context' => $attrs, 'ids_only' => true ] );
+		return array_map( 'intval', array_column( $res['rows'], 'id' ) );
 	}
 
 	/**
@@ -484,13 +800,13 @@ class Frontend {
 		if ( $post_id > 0 ) {
 			$link = get_permalink( $post_id );
 			if ( is_string( $link ) && '' !== $link ) {
-				return remove_query_arg( [ 'evp', 'evq', 'evs' ], $link );
+				return remove_query_arg( array_merge( self::VIEW_PARAMS, self::FILTER_PARAMS ), $link );
 			}
 		}
 		if ( wp_doing_cron() || wp_doing_ajax() || ( defined( 'REST_REQUEST' ) && REST_REQUEST ) || is_admin() ) {
 			return '';
 		}
-		return remove_query_arg( [ 'evp', 'evq', 'evs' ] );
+		return remove_query_arg( array_merge( self::VIEW_PARAMS, self::FILTER_PARAMS ) );
 	}
 
 	/**
@@ -520,7 +836,14 @@ class Frontend {
 			'owner'        => __( 'Owner', 'entryvault' ),
 			'tags'         => __( 'Tags', 'entryvault' ),
 		];
-		return $map[ $column ] ?? ucwords( str_replace( [ '_', '-' ], ' ', $column ) );
+		$label = $map[ $column ] ?? ucwords( str_replace( [ '_', '-' ], ' ', $column ) );
+		/**
+		 * Heading of a public table column (e.g. a form field's own label).
+		 *
+		 * @param string $label  Default heading.
+		 * @param string $column Column key.
+		 */
+		return (string) apply_filters( 'entryvault_public_column_label', $label, $column );
 	}
 
 	/**

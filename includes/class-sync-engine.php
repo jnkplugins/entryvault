@@ -125,7 +125,13 @@ class Sync_Engine {
 
         $owner = $this->resolve_owner( $normalized );
 
+        // Spam its form plugin flagged, kept because "Leave out entries your form
+        // plugin marked as spam" is unticked: it waits in the Spam folder with the
+        // pipeline and stage it would have gone to (Spam_Folder). Automations skip it.
+        $is_spam = ! empty( $normalized['is_spam'] );
+
         $submission_id = Submission_Store::insert( [
+            'status'          => $is_spam ? Spam_Folder::STATUS : 'open',
             'source_plugin'   => substr( (string) $normalized['source_plugin'], 0, 40 ),
             'source_form_id'  => substr( (string) $normalized['source_form_id'], 0, 100 ),
             'source_entry_id' => substr( (string) $normalized['source_entry_id'], 0, 100 ),
@@ -135,6 +141,10 @@ class Sync_Engine {
             'title'           => substr( (string) ( $normalized['title'] ?? '' ), 0, 500 ),
             'email'           => $normalized['email'] ?? null,
             'created_at'      => $normalized['created_at'] ?? current_time( 'mysql', true ),
+            // Past entries and CSV imports are history, not news: they arrive read.
+            'read_at'         => ( ! empty( $normalized['past_entry'] ) || ! empty( $normalized['imported_read'] ) )
+                ? ( $normalized['created_at'] ?? current_time( 'mysql', true ) )
+                : null,
         ] );
 
         if ( ! $submission_id ) {
@@ -151,15 +161,6 @@ class Sync_Engine {
             $created['past'] = 1;
         }
         Timeline::log( $submission_id, 'status', null, $created );
-
-        // Spam its form plugin flagged, kept because "Keep entries marked as
-        // spam" is ticked: say so on the card. Automations skip it (Pro_Boot).
-        if ( ! empty( $normalized['is_spam'] ) ) {
-            $spam_tag = Tag_Manager::spam_tag_id();
-            if ( $spam_tag > 0 ) {
-                Tag_Manager::attach( $submission_id, $spam_tag );
-            }
-        }
 
         do_action( 'entryvault_submission_synced', $submission_id, $normalized['source_plugin'] ?? '' );
         // Premium automations subscribe to this action (pro/ only); free core just fires it.

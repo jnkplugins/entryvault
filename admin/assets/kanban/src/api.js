@@ -11,6 +11,9 @@ export async function fetchBoard( pipelineId, params = {} ) {
     if ( params.q ) qs.push( `q=${ encodeURIComponent( params.q ) }` );
     if ( params.stageId ) qs.push( `stage_id=${ encodeURIComponent( params.stageId ) }` );
     if ( params.offset ) qs.push( `offset=${ encodeURIComponent( params.offset ) }` );
+    if ( params.starred ) qs.push( "starred=1" );
+    if ( params.unread ) qs.push( "unread=1" );
+    if ( params.view ) qs.push( `view=${ encodeURIComponent( params.view ) }` );
     const path = qs.length
         ? `/entryvault/v1/board/${ pipelineId }?${ qs.join( "&" ) }`
         : `/entryvault/v1/board/${ pipelineId }`;
@@ -113,5 +116,14 @@ export async function sendEmail( submissionId, payload ) {
         path: `/entryvault/v1/submissions/${ submissionId }/email`,
         method: "POST",
         data: payload,
+    } );
+}
+
+// Star / read state, shared by everyone on the site.
+export async function setFlags( submissionId, flags ) {
+    return apiFetch( {
+        path: `/entryvault/v1/submissions/${ submissionId }/flags`,
+        method: "POST",
+        data: flags,
     } );
 }

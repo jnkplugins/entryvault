@@ -54,9 +54,24 @@ class AI_Privacy {
         return in_array( self::form_key( $plugin, $form_id ), self::hidden_forms(), true );
     }
 
+    /** Consent-only mode: assistants see only entries from forms marked as having AI consent. */
+    public static function consent_only(): bool {
+        return ! empty( self::settings()['ai_consent_only'] );
+    }
+
+    /** "plugin:form" keys the owner marked as asking visitors for AI consent. */
+    public static function consent_forms(): array {
+        return array_values( array_filter( array_map( 'strval', (array) ( self::settings()['ai_consent_forms'] ?? [] ) ) ) );
+    }
+
     /** May an assistant see this entry at all? */
     public static function entry_visible( array $row ): bool {
-        return ! self::form_hidden( (string) ( $row['source_plugin'] ?? '' ), (string) ( $row['source_form_id'] ?? '' ) );
+        $plugin = (string) ( $row['source_plugin'] ?? '' );
+        $form   = (string) ( $row['source_form_id'] ?? '' );
+        if ( self::form_hidden( $plugin, $form ) ) {
+            return false;
+        }
+        return ! self::consent_only() || in_array( self::form_key( $plugin, $form ), self::consent_forms(), true );
     }
 
     /** What kind of field this is for privacy: "never", "email", "phone", "name", "address" or "". */
@@ -123,6 +138,9 @@ class AI_Privacy {
      * Take email addresses and phone numbers out of free text (a message, a
      * note, a title), after the exact contact values of the entry last passed
      * to prepare() (so "Jane Smith" in a message becomes "J. S.").
+     *
+     * Names are matched as names, not as letters (QA 2 Nov: "Team photo" became
+     * "Team P." for a sender called Priya Photo). See name_rules().
      */
     public static function scrub( string $text ): string {
         if ( ! self::masking() || '' === $text ) {
@@ -135,11 +153,78 @@ class AI_Privacy {
         }
         $text = (string) preg_replace_callback( '/[\p{L}\p{N}._%+-]+@[\p{L}\p{N}.-]+\.\p{L}{2,}/u', static fn( $m ) => self::mask_email( $m[0] ), $text );
         $text = (string) preg_replace_callback( '/(?<![\p{L}\p{N}])\+?\d[\d\s().-]{6,}\d(?![\p{L}\p{N}])/u', static fn( $m ) => self::mask_phone( $m[0] ), $text );
+        foreach ( self::$name_rules as $rule ) {
+            $text = (string) preg_replace_callback( $rule[0], static fn( $m ) => ( $m['pre'] ?? '' ) . $rule[1], $text );
+        }
         return $text;
+    }
+
+    /** Scripts written without a space before particles/honorifics (김민준님, 王伟先生). */
+    private const ATTACHED_SCRIPTS = '/[\p{Hangul}\p{Han}\p{Hiragana}\p{Katakana}\p{Thai}]/u';
+
+    /** Honorifics that mark a short attached-script given name as a name. */
+    private const HONORIFICS = '(?:님|씨|선생님|さん|様|さま|くん|君|ちゃん|先生|女士)';
+
+    /** Letters, marks and digits: what may not touch a name for it to be a whole word. */
+    private const WORD = '[\p{L}\p{M}\p{N}]';
+
+    /**
+     * Patterns that find one name value in free text, longest first.
+     *
+     * - The whole name ("Priya Photo", any case, any spacing) is always masked.
+     * - One part on its own ("Photo") only as a whole word written as a name:
+     *   capitalised in scripts with capitals, so "team photo" stays and
+     *   "Photography" stays. One-letter parts (initials) are left alone.
+     * - Scripts without capitals: a whole word (Devanagari "राम" stays inside
+     *   "आराम"); Arabic may carry a one-letter prefix (و، ب، ل، ك، ف).
+     * - Korean, Chinese, Japanese and Thai attach particles: a part matches at
+     *   its start; a two-letter part only before an honorific (지원님), since
+     *   short words like 지원 ("support") are also given names.
+     *
+     * @return array<int,array{0:string,1:string}> [ regex, replacement ]
+     */
+    public static function name_rules( string $name ): array {
+        $parts = preg_split( '/\s+/u', trim( $name ), -1, PREG_SPLIT_NO_EMPTY );
+        $parts = is_array( $parts ) ? $parts : [];
+        $rules = [];
+        $lead  = '(?<!' . self::WORD . ')';
+        $tail  = static fn( string $p ): string => preg_match( self::ATTACHED_SCRIPTS, $p ) ? '' : '(?!' . self::WORD . ')';
+        if ( count( $parts ) > 1 ) {
+            $body    = implode( '\s+', array_map( static fn( $p ) => preg_quote( $p, '/' ), $parts ) );
+            $rules[] = [ '/' . $lead . $body . $tail( (string) end( $parts ) ) . '/iu', self::mask_name( $name ) ];
+        }
+        foreach ( $parts as $part ) {
+            $len = mb_strlen( $part );
+            if ( $len < 2 ) {
+                continue;
+            }
+            $masked = mb_substr( $part, 0, 1 ) . '.';
+            $q      = preg_quote( $part, '/' );
+            if ( mb_strtolower( $part ) !== mb_strtoupper( $part ) ) {
+                // Cased script: as the person wrote it (if capitalised) or in title case.
+                $forms = [ mb_convert_case( $part, MB_CASE_TITLE, 'UTF-8' ) ];
+                if ( mb_substr( $part, 0, 1 ) !== mb_strtolower( mb_substr( $part, 0, 1 ) ) ) {
+                    $forms[] = $part;
+                }
+                $alt     = implode( '|', array_map( static fn( $f ) => preg_quote( $f, '/' ), array_unique( $forms ) ) );
+                $rules[] = [ '/' . $lead . '(?:' . $alt . ')(?!' . self::WORD . ')/u', $masked ];
+            } elseif ( preg_match( self::ATTACHED_SCRIPTS, $part ) ) {
+                $after   = 1 === count( $parts ) || $len >= 3 ? '' : '(?=\s?' . self::HONORIFICS . ')';
+                $rules[] = [ '/' . $lead . $q . $after . '/u', $masked ];
+            } elseif ( preg_match( '/\p{Arabic}/u', $part ) ) {
+                $rules[] = [ '/(?<!' . self::WORD . ')(?<pre>[وبلكف]?)' . $q . '(?!' . self::WORD . ')/u', $masked ];
+            } else {
+                $rules[] = [ '/' . $lead . $q . '(?!' . self::WORD . ')/u', $masked ];
+            }
+        }
+        return $rules;
     }
 
     /** raw contact value => masked form, for the entry being prepared. */
     private static array $known_pairs = [];
+
+    /** @var array<int,array{0:string,1:string}> name patterns for the entry being prepared */
+    private static array $name_rules = [];
 
     /**
      * An entry's fields as an assistant may see them, plus the title and email
@@ -162,20 +247,19 @@ class AI_Privacy {
         }, $fields );
         $mask              = self::masking();
         self::$known_pairs = [];
+        self::$name_rules  = [];
         $out               = [];
         $left_out          = 0;
+        $names             = [];
         // First pass: learn the contact values so free text can be scrubbed.
         foreach ( $fields as $f ) {
             $kind  = self::field_kind( (string) ( $f['field_type'] ?? '' ), (string) ( $f['field_label'] ?? '' ) );
             $value = (string) ( $f['value'] ?? '' );
             if ( $mask && in_array( $kind, [ 'email', 'phone', 'name', 'address' ], true ) && '' !== trim( $value ) ) {
-                self::$known_pairs[ trim( $value ) ] = self::mask_value( $kind, $value );
                 if ( 'name' === $kind ) {
-                    foreach ( preg_split( '/\s+/u', trim( $value ), -1, PREG_SPLIT_NO_EMPTY ) as $part ) {
-                        if ( mb_strlen( $part ) >= 3 ) {
-                            self::$known_pairs[ $part ] = mb_substr( $part, 0, 1 ) . '.';
-                        }
-                    }
+                    $names[] = trim( $value );
+                } else {
+                    self::$known_pairs[ trim( $value ) ] = self::mask_value( $kind, $value );
                 }
             }
         }
@@ -184,6 +268,20 @@ class AI_Privacy {
             self::$known_pairs[ $email ] = self::mask_email( $email );
         }
         uksort( self::$known_pairs, static fn( $a, $b ) => mb_strlen( (string) $b ) <=> mb_strlen( (string) $a ) );
+        // Whole names before single parts, longest first ("Ana Lima" before "Ana").
+        usort( $names, static fn( $a, $b ) => mb_strlen( $b ) <=> mb_strlen( $a ) );
+        $whole = [];
+        $parts = [];
+        foreach ( $names as $n ) {
+            foreach ( self::name_rules( $n ) as $rule ) {
+                if ( str_ends_with( $rule[0], '/iu' ) ) {
+                    $whole[] = $rule;
+                } else {
+                    $parts[] = $rule;
+                }
+            }
+        }
+        self::$name_rules = array_merge( $whole, $parts );
 
         foreach ( $fields as $f ) {
             $label = (string) ( $f['field_label'] ?? '' );

@@ -21,9 +21,11 @@ class Sources {
         'formidable'     => 'Formidable Forms',
         'forminator'     => 'Forminator',
         'gravity-forms'  => 'Gravity Forms',
+        'jetformbuilder' => 'JetFormBuilder',
         'jetpack-forms'  => 'Jetpack Forms',
         'kadence-forms'  => 'Kadence Forms',
         'metform'        => 'MetForm',
+        'mw-wp-form'     => 'MW WP Form',
         'ninja-forms'    => 'Ninja Forms',
         'otter-forms'    => 'Otter Forms',
         'spectra-forms'  => 'Spectra Forms',
@@ -74,6 +76,8 @@ class Sources {
             // Only Kadence's Advanced Form has a numeric id (a kadence_form post);
             // the simple block's id is not a number and never gets here as one.
             'kadence-forms'  => 'kadence_form',
+            'jetformbuilder' => 'jet-form-builder',
+            'mw-wp-form'     => 'mw-wp-form',
         ];
         if ( isset( $post_types[ $slug ] ) && function_exists( 'get_post' ) ) {
             $post = get_post( $form_id );

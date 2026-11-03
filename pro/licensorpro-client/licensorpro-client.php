@@ -60,7 +60,7 @@ class LicensorPro_Client {
      * change and re-propagate to every plugin's pro/licensorpro-client/.
      * Audit sync with: LicensorPro_Client::SDK_VERSION.
      */
-    const SDK_VERSION = '1.8.3';
+    const SDK_VERSION = '1.8.5';
 
     /** @var array */
     private $opts;
@@ -280,7 +280,7 @@ class LicensorPro_Client {
                         if (!empty($r['ok'])) {
                             \WP_CLI::success('activated');
                         } else {
-                            \WP_CLI::error($r['message'] ?? ($r['code'] ?? 'activation failed'));
+                            \WP_CLI::error($self->with_message($r)['message']);
                         }
                         return;
                     case 'deactivate':
@@ -602,6 +602,7 @@ class LicensorPro_Client {
             case 'blocklisted':
             case 'site_not_activated':
             case 'invalid_license':
+            case 'product_mismatch':
                 return 'revoked';
         }
         return '';
@@ -889,15 +890,26 @@ class LicensorPro_Client {
                 __('<strong>This site is no longer activated on your %s Pro license.</strong> The Pro tools in your dashboard are locked until you activate it again. Everything visitors see keeps working.', $td),
                 esc_html($name)
             );
-        } else {
+        } elseif (in_array($st['code'], ['license_cancelled', 'license_refunded', ''], true)) {
             $class = 'notice-error';
             $msg   = sprintf(
                 /* translators: %s: plugin name */
                 __('<strong>Your %s Pro license is no longer active.</strong> It was refunded or cancelled, so the Pro tools in your dashboard are locked and updates have stopped. Everything visitors see keeps working.', $td),
                 esc_html($name)
             );
+        } else {
+            // A wrong-product key, an unknown key or a revoked one is not "refunded
+            // or cancelled" (1.8.5): say what the server said.
+            $class = 'notice-error';
+            $msg   = '<strong>' . esc_html(sprintf(
+                /* translators: %s: plugin name */
+                __('Your %s Pro license is no longer active on this site.', $td),
+                $name
+            )) . '</strong> ' . esc_html($this->message_for($st['code']));
         }
-        echo '<div class="notice ' . esc_attr($class) . '"><p>' . wp_kses($msg, ['strong' => []]) . ' ' . $renew . '</p></div>';
+        // Tagged so the license card can take it away once a check says the
+        // license is fine again (1.8.5), instead of after the next page load.
+        echo '<div class="notice ' . esc_attr($class) . ' licensorpro-licence-notice" data-licensorpro="' . esc_attr($this->slug) . '"><p>' . wp_kses($msg, ['strong' => []]) . ' ' . $renew . '</p></div>';
     }
 
     /**
@@ -1000,6 +1012,9 @@ class LicensorPro_Client {
         $resp = $this->post('/api/v1/license/activate', [
             'license_key'    => $key,
             'site_url'       => home_url('/'),
+            // One key unlocks one product (1.8.4): the server refuses a key
+            // bought for a different plugin.
+            'product_slug'   => $this->slug,
             'plugin_version' => $this->version,
             'wp_version'     => get_bloginfo('version'),
             'php_version'    => PHP_VERSION,
@@ -1054,6 +1069,7 @@ class LicensorPro_Client {
         $resp = $this->post('/api/v1/license/validate', [
             'license_key' => $key,
             'site_url'    => home_url('/'),
+            'product_slug' => $this->slug,
             // Sent on every validate, not only at activation. Without these the
             // server's record of what a site runs freezes at install time, and
             // the operator's Site Activations table answers "which version is
@@ -1410,6 +1426,12 @@ class LicensorPro_Client {
             return ['ok' => false, 'code' => 'bad_response',
                     'message' => __('Unexpected response from license server.', $this->text_domain)];
         }
+        // The API's rate limiter answers {"error": "rate_limit_exceeded"} with no
+        // `code`, so the card had nothing to map and showed "Too Many Requests"
+        // in English (1.8.5).
+        if (empty($data['ok']) && !isset($data['code']) && isset($data['error']) && is_string($data['error'])) {
+            $data['code'] = $data['error'];
+        }
         return $data;
     }
 
@@ -1743,19 +1765,10 @@ class LicensorPro_Client {
             return;
         }
         $st       = $this->status();
-        $free     = !empty($st['free']);
         $licensed = $st['state'] !== 'unlicensed';
-        $info     = $this->get_license();
-        $key      = (string) get_option($this->opt_key, '');
-        $masked   = $key !== '' ? $this->mask_key($key) : '';
         $nonce    = wp_create_nonce('licensorpro_' . $this->slug);
         $ajax_url = admin_url('admin-ajax.php');
         $td       = $this->text_domain;
-
-        $license = is_array($info) && isset($info['license']) ? $info['license'] : [];
-        $status     = isset($license['status']) ? (string) $license['status'] : '';
-        $site_limit = isset($license['site_limit']) ? (int) $license['site_limit'] : 0;
-        $expires_at = isset($license['expires_at']) ? (string) $license['expires_at'] : '';
 
         // Rendered inline within the plugin's own settings screen (not a standalone
         // wrap/page), so emit a section heading rather than an <h1> + .wrap.
@@ -1773,6 +1786,193 @@ class LicensorPro_Client {
                     . '</p></div>';
             }
         }
+
+        // The status table, the buttons and the key box. In a wrapper the check
+        // button can swap in place (1.8.5): until then a check, or one after a
+        // renewal, said "License is valid" over a table that still read
+        // "expired" until the page was reloaded.
+        echo '<div id="lp-' . esc_attr($this->slug) . '-card">';
+        $this->render_card();
+        echo '</div>';
+
+        // Inline JS for AJAX flow. Its messages come from here so they are
+        // translated like the rest of the card. What a server refusal means is
+        // decided in PHP (message_for()), so every answer arrives with its text.
+        $slug_js = esc_js($this->slug);
+        $js_text = [
+            'no_key'             => __('Enter your license key first.', $td),
+            'installing'         => __('Installing Pro. This takes a few seconds, keep this page open…', $td),
+            'reload_pro'         => __('Reloading to switch on the Pro tools…', $td),
+            'reload'             => __('Reload now', $td),
+            'offline'            => __('Could not reach the licensing server. Check your connection and try again.', $td),
+            'confirm_deactivate' => __('Deactivate this license on this site? Premium features switch off here and the seat is freed for another site.', $td),
+            'done'               => __('Done.', $td),
+            'deactivated'        => __('Deactivated.', $td),
+            'checked'            => __('Checked.', $td),
+        ];
+        ?>
+        <script>
+        (function(){
+            var slug = '<?php echo $slug_js; ?>';
+            var ajaxUrl = '<?php echo esc_url($ajax_url); ?>';
+            var nonce   = '<?php echo esc_js($nonce); ?>';
+            var $msg    = document.getElementById('lp-' + slug + '-msg');
+            var card    = document.getElementById('lp-' + slug + '-card');
+            var T       = <?php echo wp_json_encode($js_text); ?>;
+            function setMsg(text, ok, kind){
+                if (!$msg) return;
+                var div = document.createElement('div');
+                div.className = 'notice notice-' + (kind || (ok ? 'success' : 'error'));
+                var p = document.createElement('p');
+                p.textContent = text || '';
+                div.appendChild(p);
+                $msg.textContent = '';
+                $msg.appendChild(div);
+            }
+            function post(action, extra){
+                var body = 'action=' + encodeURIComponent(action) +
+                           '&_wpnonce=' + encodeURIComponent(nonce);
+                if (extra) {
+                    Object.keys(extra).forEach(function(k){
+                        body += '&' + encodeURIComponent(k) + '=' + encodeURIComponent(extra[k]);
+                    });
+                }
+                return fetch(ajaxUrl, {
+                    method: 'POST',
+                    credentials: 'same-origin',
+                    headers: {'Content-Type':'application/x-www-form-urlencoded'},
+                    body: body
+                }).then(function(r){ return r.json(); });
+            }
+            // The PHP side puts a translated next step in every answer, refusals
+            // included (message_for()), so the raw server code never reaches the
+            // screen. A free key in a Pro build is accepted but switches nothing
+            // on: shown as a warning, not a success.
+            function setResult(d, fallback){
+                var ok = !!(d && d.ok);
+                setMsg((d && d.message) ? d.message : fallback, ok, (d && d.warn) ? 'warning' : '');
+            }
+            function byId(name){ return document.getElementById('lp-' + slug + '-' + name); }
+            // One listener for the whole card, so the buttons still work after a
+            // check swaps the card's contents in place.
+            document.addEventListener('click', function(e){
+                var t = e.target && e.target.closest ? e.target.closest('button') : null;
+                if (!t || !card || !card.contains(t)) return;
+                if (t.id === 'lp-' + slug + '-activate') { e.preventDefault(); activate(t); }
+                else if (t.id === 'lp-' + slug + '-deactivate') { e.preventDefault(); deactivate(t); }
+                else if (t.id === 'lp-' + slug + '-check') { e.preventDefault(); check(t); }
+            });
+            function activate(actBtn){
+                var keyEl = byId('key');
+                // A key copied out of an email routinely carries a trailing newline
+                // or a stray space, which the server rejects as invalid. Normalise
+                // it here and write it back so the field shows what was sent.
+                var key = keyEl ? String(keyEl.value).replace(/\s+/g, '') : '';
+                if (keyEl) { keyEl.value = key; }
+                var install = actBtn.getAttribute('data-install') === '1';
+                if (!key && actBtn.getAttribute('data-nokey') !== '1') { setMsg(T.no_key, false); return; }
+                actBtn.disabled = true;
+                if (install) { setMsg(T.installing, true); }
+                post('licensorpro_' + slug + (install ? '_install_pro' : '_activate'), {license_key: key}).then(function(d){
+                    actBtn.disabled = false;
+                    setResult(d, T.done);
+                    // Reloading 800ms after success threw away the confirmation
+                    // before it could be read — the one moment the plugin has the
+                    // user's full attention. Show the result, and let them move on
+                    // when they are ready.
+                    if (d && d.ok) {
+                        // Take the key prompt away: under "License activated." it
+                        // read as if the key had not been accepted. style.display,
+                        // not el.hidden, because wp-admin styles can override
+                        // [hidden] on form tables.
+                        var unlicensed = byId('unlicensed');
+                        if (unlicensed) { unlicensed.style.display = 'none'; }
+                        // Plugins print their own "no license key yet" notices outside
+                        // this box; this lets them hide those without a reload.
+                        try {
+                            document.dispatchEvent(new CustomEvent('licensorpro:activated', {detail: {slug: slug}}));
+                        } catch (err) { /* very old browsers: the reload link still works */ }
+                        document.querySelectorAll('.licensorpro-unlicensed-notice[data-licensorpro="' + slug + '"]').forEach(function(n){
+                            n.style.display = 'none';
+                        });
+                        // The Pro screens only appear after a reload. Do it for
+                        // them, after long enough to read "License activated.";
+                        // the button stays for a browser that blocks it.
+                        var again = document.createElement('p');
+                        var a = document.createElement('a');
+                        a.href = location.href;
+                        a.className = 'button button-primary';
+                        // The install message already says it is reloading, and a free
+                        // key switches nothing on: a plain link for both.
+                        a.textContent = (d.free || install) ? T.reload : T.reload_pro;
+                        again.appendChild(a);
+                        if ($msg) { $msg.appendChild(again); }
+                        actBtn.disabled = true;
+                        // A free key in a Pro build: give them time to read why.
+                        setTimeout(function(){ location.reload(); }, d.warn ? 6000 : 1500);
+                    }
+                }).catch(function(){
+                    actBtn.disabled = false;
+                    setMsg(T.offline, false);
+                });
+            }
+            function deactivate(deBtn){
+                // Deactivation frees a seat and turns premium features off. It is
+                // one click next to buttons that do not, so confirm it.
+                if (!window.confirm(T.confirm_deactivate)) {
+                    return;
+                }
+                deBtn.disabled = true;
+                post('licensorpro_' + slug + '_deactivate', {}).then(function(d){
+                    deBtn.disabled = false;
+                    setResult(d, T.deactivated);
+                    setTimeout(function(){ location.reload(); }, 1500);
+                }).catch(function(){
+                    deBtn.disabled = false;
+                    setMsg(T.offline, false);
+                });
+            }
+            function check(chkBtn){
+                chkBtn.disabled = true;
+                post('licensorpro_' + slug + '_check', {}).then(function(d){
+                    chkBtn.disabled = false;
+                    setResult(d, T.checked);
+                    // The card as it stands after this check (1.8.5).
+                    if (d && typeof d.card === 'string' && card) { card.innerHTML = d.card; }
+                    // A renewal ended the lapse: the expiry notice at the top goes too.
+                    if (d && d.state === 'active') {
+                        document.querySelectorAll('.licensorpro-licence-notice[data-licensorpro="' + slug + '"]').forEach(function(n){
+                            n.style.display = 'none';
+                        });
+                    }
+                }).catch(function(){
+                    chkBtn.disabled = false;
+                    setMsg(T.offline, false);
+                });
+            }
+        })();
+        </script>
+        <?php
+    }
+
+    /**
+     * The part of the license card that shows state: the status table, its
+     * buttons and the key box. Also sent back by the "Check for updates now"
+     * request, so the card reflects the answer without a page reload.
+     */
+    public function render_card() {
+        $st       = $this->status();
+        $free     = !empty($st['free']);
+        $licensed = $st['state'] !== 'unlicensed';
+        $info     = $this->get_license();
+        $key      = (string) get_option($this->opt_key, '');
+        $masked   = $key !== '' ? $this->mask_key($key) : '';
+        $td       = $this->text_domain;
+
+        $license = is_array($info) && isset($info['license']) ? $info['license'] : [];
+        $status     = isset($license['status']) ? (string) $license['status'] : '';
+        $site_limit = isset($license['site_limit']) ? (int) $license['site_limit'] : 0;
+        $expires_at = isset($license['expires_at']) ? (string) $license['expires_at'] : '';
 
         if ($free) {
             // A free licence: it came stamped into the free zip. There is nothing
@@ -1811,16 +2011,27 @@ class LicensorPro_Client {
             $graceUntil = $checkedAt ? date_i18n(get_option('date_format'), $checkedAt + ($this->grace_days * DAY_IN_SECONDS)) : '';
             echo '<table class="form-table"><tbody>';
             echo '<tr><th>' . esc_html__('License key', $td) . '</th><td><code>' . esc_html($masked) . '</code></td></tr>';
+            // Revoked has several causes; "refunded or cancelled" was shown for all
+            // of them, including a key for another plugin (1.8.5).
+            $revoked = [
+                'site_not_activated' => __('this site is not activated', $td),
+                'product_mismatch'   => __('this key is for a different plugin', $td),
+                'invalid_license'    => __('key not recognised', $td),
+                'blocklisted'        => __('revoked', $td),
+                'license_revoked'    => __('revoked', $td),
+            ];
             $labels = [
                 // The server's raw status word is English; show our own translated label.
                 'active'  => __('active', $td),
                 /* translators: %s: date the Pro tools lock */
                 'grace'   => sprintf(__('expired, Pro tools stay on until %s', $td), date_i18n(get_option('date_format'), $st['grace_ends'])),
                 'locked'  => __('expired, Pro tools locked', $td),
-                'revoked' => $st['code'] === 'site_not_activated'
-                    ? __('this site is not activated', $td)
-                    : __('no longer active (refunded or cancelled)', $td),
+                'revoked' => $revoked[$st['code']] ?? __('no longer active (refunded or cancelled)', $td),
             ];
+            if ($st['state'] === 'grace' && $st['code'] === 'license_suspended') {
+                /* translators: %s: date the Pro tools lock */
+                $labels['grace'] = sprintf(__('renewal payment failed, Pro tools stay on until %s', $td), date_i18n(get_option('date_format'), $st['grace_ends']));
+            }
             echo '<tr><th>' . esc_html__('Status', $td) . '</th><td>' . esc_html($labels[$st['state']] ?? $status);
             if ($st['state'] !== 'active') {
                 echo ' <a href="' . esc_url($this->renew_url()) . '" target="_blank" rel="noopener">' . esc_html__('Renew', $td) . '</a>';
@@ -1892,169 +2103,6 @@ class LicensorPro_Client {
             echo '<p class="description">' . esc_html__('Need a hand?', $td)
                  . ' <a href="' . esc_url($support) . '" target="_blank" rel="noopener">' . esc_html__('Contact support', $td) . '</a></p>';
         }
-
-        // Inline JS for AJAX flow. Its messages come from here so they are
-        // translated like the rest of the card.
-        $slug_js = esc_js($this->slug);
-        $js_text = [
-            'site_limit_reached' => __('Every seat on this license is in use. Deactivate one of your other sites from your account, then try again.', $td),
-            'expired'            => __('This license has expired. Renewing it from your account reactivates this site immediately. Your settings and data are untouched.', $td),
-            'invalid_license'    => __('That key was not recognised. Check for a missing character, or copy it again from your purchase email.', $td),
-            'blocklisted'        => __('This key has been revoked. If you believe that is a mistake, reply to your purchase email and we will sort it out.', $td),
-            'http_error'         => __('Could not reach the licensing server. Your site may be blocking outbound requests. This is usually temporary, so try again in a minute.', $td),
-            'too_many_requests'  => __('Too many attempts in a short window. Wait a minute and try again.', $td),
-            'server_error'       => __('The licensing server had a problem on its side. Your key was not rejected. Try again in a few minutes, and if it keeps happening, reply to your purchase email.', $td),
-            'no_key'             => __('Enter your license key first.', $td),
-            'installing'         => __('Installing Pro. This takes a few seconds, keep this page open…', $td),
-            'reload_pro'         => __('Reloading to switch on the Pro tools…', $td),
-            'reload'             => __('Reload now', $td),
-            'offline'            => __('Could not reach the licensing server. Check your connection and try again.', $td),
-            'confirm_deactivate' => __('Deactivate this license on this site? Premium features switch off here and the seat is freed for another site.', $td),
-            'done'               => __('Done.', $td),
-            'deactivated'        => __('Deactivated.', $td),
-            'checked'            => __('Checked.', $td),
-        ];
-        ?>
-        <script>
-        (function(){
-            var slug = '<?php echo $slug_js; ?>';
-            var ajaxUrl = '<?php echo esc_url($ajax_url); ?>';
-            var nonce   = '<?php echo esc_js($nonce); ?>';
-            var $msg    = document.getElementById('lp-' + slug + '-msg');
-            var T       = <?php echo wp_json_encode($js_text); ?>;
-            function setMsg(text, ok){
-                if (!$msg) return;
-                var div = document.createElement('div');
-                div.className = 'notice notice-' + (ok ? 'success' : 'error');
-                var p = document.createElement('p');
-                p.textContent = text || '';
-                div.appendChild(p);
-                $msg.textContent = '';
-                $msg.appendChild(div);
-            }
-            function post(action, extra){
-                var body = 'action=' + encodeURIComponent(action) +
-                           '&_wpnonce=' + encodeURIComponent(nonce);
-                if (extra) {
-                    Object.keys(extra).forEach(function(k){
-                        body += '&' + encodeURIComponent(k) + '=' + encodeURIComponent(extra[k]);
-                    });
-                }
-                return fetch(ajaxUrl, {
-                    method: 'POST',
-                    credentials: 'same-origin',
-                    headers: {'Content-Type':'application/x-www-form-urlencoded'},
-                    body: body
-                }).then(function(r){ return r.json(); });
-            }
-            // Raw server strings tell a user WHAT happened but never what to DO about
-            // it. Map the codes the licensing API actually returns to a next step, and
-            // fall back to the server message for anything unrecognised so a new code
-            // is never swallowed.
-            function recoveryFor(code){
-                if (code === 'bad_response') { code = 'http_error'; }
-                return Object.prototype.hasOwnProperty.call(T, code) ? T[code] : '';
-            }
-            function setResult(d, fallback){
-                var ok   = !!(d && d.ok);
-                var text = (d && d.message) ? d.message : fallback;
-                if (!ok) {
-                    var hint = recoveryFor(d && d.code ? String(d.code) : '');
-                    if (hint) { text = hint; }
-                }
-                setMsg(text, ok);
-            }
-            var actBtn = document.getElementById('lp-' + slug + '-activate');
-            if (actBtn) {
-                actBtn.addEventListener('click', function(e){
-                    e.preventDefault();
-                    var keyEl = document.getElementById('lp-' + slug + '-key');
-                    // A key copied out of an email routinely carries a trailing newline
-                    // or a stray space, which the server rejects as invalid. Normalise
-                    // it here and write it back so the field shows what was sent.
-                    var key = keyEl ? String(keyEl.value).replace(/\s+/g, '') : '';
-                    if (keyEl) { keyEl.value = key; }
-                    var install = actBtn.getAttribute('data-install') === '1';
-                    if (!key && actBtn.getAttribute('data-nokey') !== '1') { setMsg(T.no_key, false); return; }
-                    actBtn.disabled = true;
-                    if (install) { setMsg(T.installing, true); }
-                    post('licensorpro_' + slug + (install ? '_install_pro' : '_activate'), {license_key: key}).then(function(d){
-                        actBtn.disabled = false;
-                        setResult(d, T.done);
-                        // Reloading 800ms after success threw away the confirmation
-                        // before it could be read — the one moment the plugin has the
-                        // user's full attention. Show the result, and let them move on
-                        // when they are ready.
-                        if (d && d.ok) {
-                            // Take the key prompt away: under "License activated." it
-                            // read as if the key had not been accepted. style.display,
-                            // not el.hidden, because wp-admin styles can override
-                            // [hidden] on form tables.
-                            var unlicensed = document.getElementById('lp-' + slug + '-unlicensed');
-                            if (unlicensed) { unlicensed.style.display = 'none'; }
-                            // Plugins print their own "no license key yet" notices outside
-                            // this box; this lets them hide those without a reload.
-                            try {
-                                document.dispatchEvent(new CustomEvent('licensorpro:activated', {detail: {slug: slug}}));
-                            } catch (err) { /* very old browsers: the reload link still works */ }
-                            document.querySelectorAll('.licensorpro-unlicensed-notice[data-licensorpro="' + slug + '"]').forEach(function(n){
-                                n.style.display = 'none';
-                            });
-                            // The Pro screens only appear after a reload. Do it for
-                            // them, after long enough to read "License activated.";
-                            // the button stays for a browser that blocks it.
-                            var again = document.createElement('p');
-                            var a = document.createElement('a');
-                            a.href = location.href;
-                            a.className = 'button button-primary';
-                            // The install message already says it is reloading, and a free
-                            // key switches nothing on: a plain link for both.
-                            a.textContent = (d.free || install) ? T.reload : T.reload_pro;
-                            again.appendChild(a);
-                            if ($msg) { $msg.appendChild(again); }
-                            actBtn.disabled = true;
-                            setTimeout(function(){ location.reload(); }, 1500);
-                        }
-                    }).catch(function(){
-                        actBtn.disabled = false;
-                        setMsg(T.offline, false);
-                    });
-                });
-            }
-            var deBtn = document.getElementById('lp-' + slug + '-deactivate');
-            if (deBtn) {
-                deBtn.addEventListener('click', function(e){
-                    e.preventDefault();
-                    // Deactivation frees a seat and turns premium features off. It is
-                    // one click next to buttons that do not, so confirm it.
-                    if (!window.confirm(T.confirm_deactivate)) {
-                        return;
-                    }
-                    deBtn.disabled = true;
-                    post('licensorpro_' + slug + '_deactivate', {}).then(function(d){
-                        deBtn.disabled = false;
-                        setResult(d, T.deactivated);
-                        setTimeout(function(){ location.reload(); }, 1500);
-                    }).catch(function(){
-                        deBtn.disabled = false;
-                        setMsg(T.offline, false);
-                    });
-                });
-            }
-            var chkBtn = document.getElementById('lp-' + slug + '-check');
-            if (chkBtn) {
-                chkBtn.addEventListener('click', function(e){
-                    e.preventDefault();
-                    chkBtn.disabled = true;
-                    post('licensorpro_' + slug + '_check', {}).then(function(d){
-                        chkBtn.disabled = false;
-                        setMsg(d && d.message ? d.message : T.checked, !!(d && d.ok));
-                    });
-                });
-            }
-        })();
-        </script>
-        <?php
     }
 
     /**
@@ -2109,7 +2157,7 @@ class LicensorPro_Client {
             ? (array) $this->get_license()
             : $this->activate($key);
         if (empty($resp['ok'])) {
-            wp_send_json($resp);
+            wp_send_json($this->with_message($resp));
         }
         if (self::verdict_is_free($resp)) {
             wp_send_json(['ok' => true, 'reload' => true, 'free' => true,
@@ -2183,13 +2231,19 @@ class LicensorPro_Client {
         $this->verify_ajax();
         $key = isset($_POST['license_key']) ? sanitize_text_field((string) wp_unslash($_POST['license_key'])) : '';
         $resp = $this->activate($key);
+        if (!empty($resp['ok']) && self::verdict_is_free($resp)) {
+            $resp['free'] = true;
+            if ($this->pro_build) {
+                // Accepted (it keeps the free version updated) but it switches
+                // nothing on here. "License activated." read as if Pro were on.
+                $resp['warn']    = true;
+                $resp['message'] = $this->message_for('free_key_on_pro');
+            }
+        }
         if (!empty($resp['ok']) && empty($resp['message'])) {
             $resp['message'] = __('License activated.', $this->text_domain);
         }
-        if (!empty($resp['ok']) && self::verdict_is_free($resp)) {
-            $resp['free'] = true;
-        }
-        wp_send_json($resp);
+        wp_send_json($this->with_message($resp));
     }
 
     public function ajax_deactivate() {
@@ -2201,18 +2255,135 @@ class LicensorPro_Client {
         if (!empty($resp['ok']) && empty($resp['message'])) {
             $resp['message'] = __('Site deactivated.', $this->text_domain);
         }
-        wp_send_json($resp);
+        wp_send_json($this->with_message($resp));
     }
 
     public function ajax_check() {
         $this->verify_ajax();
+        wp_send_json($this->check_now());
+    }
+
+    /**
+     * "Check for updates now": validate, refresh the update info, and answer
+     * with a translated message, the new state and the re-rendered card, so the
+     * status table shows the result at once (1.8.5).
+     *
+     * @return array<string,mixed>
+     */
+    public function check_now() {
         $this->clear_cache();
         $resp = $this->check_license();
         $this->refresh_remote(true);
         if (!empty($resp['ok']) && empty($resp['message'])) {
             $resp['message'] = __('License is valid. Update info refreshed.', $this->text_domain);
         }
-        wp_send_json($resp);
+        // Only what the card needs; the verdict and its signature stay server-side.
+        $out = $this->with_message([
+            'ok'      => !empty($resp['ok']),
+            'code'    => isset($resp['code']) ? (string) $resp['code'] : '',
+            'message' => isset($resp['message']) ? (string) $resp['message'] : '',
+        ]);
+        if (!empty($resp['_offline'])) {
+            $out['offline'] = true;
+        }
+        $out['state'] = (string) $this->status()['state'];
+        ob_start();
+        $this->render_card();
+        $out['card'] = (string) ob_get_clean();
+        return $out;
+    }
+
+    /**
+     * What to tell the site owner about a server answer code, translated (1.8.5).
+     *
+     * The card used to show the server's own `message`, and for most refusals
+     * that is the bare code ("license_expired", "license_cancelled"). Every code
+     * the licensing API can return is listed here; anything else gets a general
+     * message that quotes the code, so support can still tell what happened.
+     *
+     * @param string $code
+     * @return string
+     */
+    public function message_for($code) {
+        $td   = $this->text_domain;
+        $code = (string) $code;
+        switch ($code) {
+            case 'site_limit_reached':
+                return __('Every seat on this license is in use. Deactivate one of your other sites from your account, then try again.', $td);
+            case 'expired':
+            case 'license_expired':
+                return __('This license has expired. Renewing it from your account reactivates this site immediately. Your settings and data are untouched.', $td);
+            case 'license_suspended':
+                return __('The last renewal payment for this license did not go through, so it is paused. Update your payment details in your account and it switches back on. Your settings and data are untouched.', $td);
+            case 'license_cancelled':
+            case 'license_refunded':
+                return __('This license was cancelled or refunded, so it no longer switches on Pro. If that is a mistake, reply to your purchase email.', $td);
+            case 'invalid_license':
+            case 'license_not_found':
+                return __('That key was not recognised. Check for a missing character, or copy it again from your purchase email.', $td);
+            case 'product_mismatch':
+                return __('This key is for a different plugin. Each plugin has its own key: use the one from the purchase email for this plugin.', $td);
+            case 'blocklisted':
+            case 'license_revoked':
+                return __('This key has been revoked. If you believe that is a mistake, reply to your purchase email and we will sort it out.', $td);
+            case 'site_not_activated':
+                return __('This site is not activated on this license any more. Enter the key again to activate it.', $td);
+            case 'free_key_on_pro':
+                return __('That is a free license key. It keeps the free version updated but does not switch on Pro. Enter the Pro key from your purchase email.', $td);
+            case 'no_free_tier':
+            case 'not_available':
+                return __('This plugin has no free license. Use the key from your purchase email.', $td);
+            case 'product_not_found':
+                return __('The licensing server does not know this plugin. Update the plugin, or reply to your purchase email.', $td);
+            case 'unauthorized':
+                return __('This site\'s license session ran out. Check the license again to renew it.', $td);
+            case 'invalid_token':
+            case 'token_expired':
+                return __('The download link has expired. Check for updates again to get a fresh one.', $td);
+            case 'file_not_found':
+                return __('The download is not on the server right now. Try again later, or download the zip from your account.', $td);
+            case 'invalid_email':
+                return __('Enter a valid email address.', $td);
+            case 'missing_params':
+            case 'missing_product':
+                return __('The request to the licensing server was missing details. Reload this page and try again.', $td);
+            case 'no_key':
+                return __('Enter your license key first.', $td);
+            case 'signature_invalid':
+                return __('The answer from the licensing server could not be verified, so it was not trusted. Try again in a few minutes. If it keeps happening, reply to your purchase email.', $td);
+            case 'http_error':
+            case 'bad_response':
+                return __('Could not reach the licensing server. Your site may be blocking outbound requests. This is usually temporary, so try again in a minute.', $td);
+            case 'too_many_requests':
+            case 'rate_limit_exceeded':
+                return __('Too many attempts in a short window. Wait a minute and try again.', $td);
+            case 'server_error':
+                return __('The licensing server had a problem on its side. Your key was not rejected. Try again in a few minutes, and if it keeps happening, reply to your purchase email.', $td);
+        }
+        return sprintf(
+            /* translators: %s: short error code from the licensing server */
+            __('The licensing server could not confirm this license (%s). Try again in a few minutes. If it keeps happening, reply to your purchase email and quote that code.', $td),
+            $code !== '' ? substr((string) preg_replace('/[^a-z0-9_]/', '', strtolower($code)), 0, 40) : '?'
+        );
+    }
+
+    /**
+     * A refusal with its message replaced by message_for() when it carries a
+     * code; a refusal without one keeps its own message (the SDK's own, already
+     * translated), or gets the general one.
+     *
+     * @param array<string,mixed> $resp
+     * @return array<string,mixed>
+     */
+    public function with_message(array $resp) {
+        if (!empty($resp['ok'])) {
+            return $resp;
+        }
+        $code = isset($resp['code']) ? (string) $resp['code'] : '';
+        if ($code !== '' || empty($resp['message'])) {
+            $resp['message'] = $this->message_for($code !== '' ? $code : 'error');
+        }
+        return $resp;
     }
 
     private function verify_ajax() {

@@ -33,6 +33,46 @@ class Submissions_Admin {
         // wp_safe_redirect() (and its success notice) work. Running it from render()
         // happened after the admin header was already sent ("headers already sent").
         add_action( 'admin_init', [ __CLASS__, 'handle_actions' ] );
+        add_action( 'admin_post_entryvault_empty_spam', [ __CLASS__, 'handle_empty_spam' ] );
+        add_action( 'admin_post_entryvault_not_spam', [ __CLASS__, 'handle_not_spam' ] );
+    }
+
+    /** Leave a one-shot notice and go back to the list. */
+    private static function back_with( string $notice, string $fallback ): void {
+        set_transient( self::notice_key( get_current_user_id() ), $notice, 5 * MINUTE_IN_SECONDS );
+        $back = remove_query_arg( [ 'entryvault_notice', 'ev_notice' ], wp_get_referer() ?: $fallback );
+        wp_safe_redirect( add_query_arg( 'ev_notice', '1', $back ) );
+        exit;
+    }
+
+    /** admin-post: delete every entry in the Spam folder. */
+    public static function handle_empty_spam(): void {
+        if ( ! current_user_can( self::CAPABILITY ) ) {
+            wp_die( esc_html__( 'Forbidden.', 'entryvault' ), '', [ 'response' => 403 ] );
+        }
+        check_admin_referer( 'entryvault_empty_spam' );
+        $n = Spam_Folder::delete( null );
+        /* translators: %d: number of entries. */
+        self::back_with( sprintf( _n( 'Deleted %d spam entry.', 'Deleted %d spam entries.', $n, 'entryvault' ), $n ), admin_url( 'admin.php?page=entryvault-submissions&status=spam' ) );
+    }
+
+    /** admin-post: the "Not spam" row action. */
+    public static function handle_not_spam(): void {
+        $id = isset( $_GET['id'] ) ? (int) $_GET['id'] : 0;
+        if ( ! current_user_can( self::CAPABILITY ) ) {
+            wp_die( esc_html__( 'Forbidden.', 'entryvault' ), '', [ 'response' => 403 ] );
+        }
+        check_admin_referer( 'entryvault_not_spam_' . $id );
+        $n = Spam_Folder::release( [ $id ], false, get_current_user_id() ?: null );
+        self::back_with( self::not_spam_notice( $n, false ), admin_url( 'admin.php?page=entryvault-submissions&status=spam' ) );
+    }
+
+    private static function not_spam_notice( int $n, bool $ran ): string {
+        return $ran
+            /* translators: %d: number of entries. */
+            ? sprintf( _n( '%d entry is no longer spam and is on its board again; what it skipped has run.', '%d entries are no longer spam and are on their boards again; what they skipped has run.', $n, 'entryvault' ), $n )
+            /* translators: %d: number of entries. */
+            : sprintf( _n( '%d entry is no longer spam and is on its board again.', '%d entries are no longer spam and are on their boards again.', $n, 'entryvault' ), $n );
     }
 
     /**
@@ -42,7 +82,7 @@ class Submissions_Admin {
      */
     public static function args_from_request( array $request ): array {
         $status_in   = isset( $request['status'] ) ? sanitize_key( wp_unslash( (string) $request['status'] ) ) : '';
-        $status_safe = in_array( $status_in, [ 'archived', 'open', 'closed', 'any', 'all' ], true ) ? $status_in : '';
+        $status_safe = in_array( $status_in, [ 'archived', 'spam', 'open', 'closed', 'any', 'all' ], true ) ? $status_in : '';
 
         $args = [
             'pipeline_id' => isset( $request['pipeline_id'] ) ? (int) $request['pipeline_id'] : 0,
@@ -69,6 +109,8 @@ class Submissions_Admin {
             'owner_id'    => isset( $request['owner_id'] ) && '' !== $request['owner_id']
                 ? (string) (int) $request['owner_id']
                 : '',
+            'starred'     => ! empty( $request['starred'] ),
+            'unread'      => ! empty( $request['unread'] ),
         ];
 
         // Per-pipeline scoping: managers see everything; otherwise restrict
@@ -213,14 +255,12 @@ class Submissions_Admin {
 
         $args = self::args_from_request( $_GET ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- read-only list/UI parameter from GET; no state change.
 
-        $export_url = self::export_url( $_GET ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- read-only list filters from GET; the export link itself is nonced.
-
         ?>
         <?php
         Admin_UI::open(
             __( 'Submissions', 'entryvault' ),
             __( 'Every entry in one list. Filter it, tick rows to change many at once, or export what you see to a spreadsheet.', 'entryvault' ),
-            '<a href="' . esc_url( $export_url ) . '" class="button">' . esc_html__( 'Export CSV', 'entryvault' ) . '</a>'
+            '<a href="#ev-export" class="button" data-ev-export-open>' . esc_html__( 'Export', 'entryvault' ) . '</a>'
             . '<a href="' . esc_url( Admin_UI::url( 'entryvault' ) ) . '" class="button button-primary">' . esc_html__( 'Open the board', 'entryvault' ) . '</a>'
         );
         ?>
@@ -231,19 +271,49 @@ class Submissions_Admin {
             $all_url        = remove_query_arg( 'status', $base_url );
             $archived_url   = add_query_arg( 'status', 'archived', $base_url );
             $is_archived    = ( $current_status === 'archived' );
+            $is_spam        = ( $current_status === Spam_Folder::STATUS );
+            $ev_spam_n      = Spam_Folder::count();
+            $is_unread      = ! empty( $args['unread'] );
+            $is_starred     = ! empty( $args['starred'] );
+            $ev_unread      = Entry_Flags::unread_total();
             ?>
             <ul class="subsubsub">
                 <li class="all">
-                    <a href="<?php echo esc_url( $all_url ); ?>" class="<?php echo $is_archived ? '' : 'current'; ?>">
+                    <a href="<?php echo esc_url( $all_url ); ?>" class="<?php echo ( $is_archived || $is_spam || $is_unread || $is_starred ) ? '' : 'current'; ?>">
                         <?php esc_html_e( 'All', 'entryvault' ); ?>
+                    </a> |
+                </li>
+                <li class="unread">
+                    <a href="<?php echo esc_url( add_query_arg( 'unread', '1', $base_url ) ); ?>" class="<?php echo $is_unread ? 'current' : ''; ?>">
+                        <?php esc_html_e( 'Unread', 'entryvault' ); ?> <span class="count">(<?php echo esc_html( number_format_i18n( $ev_unread ) ); ?>)</span>
+                    </a> |
+                </li>
+                <li class="starred">
+                    <a href="<?php echo esc_url( add_query_arg( 'starred', '1', $base_url ) ); ?>" class="<?php echo $is_starred ? 'current' : ''; ?>">
+                        <?php esc_html_e( 'Starred', 'entryvault' ); ?>
                     </a> |
                 </li>
                 <li class="archived">
                     <a href="<?php echo esc_url( $archived_url ); ?>" class="<?php echo $is_archived ? 'current' : ''; ?>">
                         <?php esc_html_e( 'Archived', 'entryvault' ); ?>
+                    </a> |
+                </li>
+                <li class="spam">
+                    <a href="<?php echo esc_url( add_query_arg( 'status', Spam_Folder::STATUS, $base_url ) ); ?>" class="<?php echo $is_spam ? 'current' : ''; ?>">
+                        <?php esc_html_e( 'Spam', 'entryvault' ); ?> <span class="count">(<?php echo esc_html( number_format_i18n( $ev_spam_n ) ); ?>)</span>
                     </a>
                 </li>
             </ul>
+            <?php if ( $is_spam ) : ?>
+                <p class="jnkui-muted ev-spam-note"><?php
+                    /**
+                     * Filter the note above the Spam folder.
+                     *
+                     * @param string $note Default note.
+                     */
+                    echo esc_html( (string) apply_filters( 'entryvault_spam_folder_note', __( 'Entries a form plugin marked as spam, and the ones you moved here. They stay off the board, the counts and exports. "Not spam" puts one on the board where it would have gone. Spam is kept until you delete it.', 'entryvault' ) ) );
+                ?></p>
+            <?php endif; ?>
             <br class="clear">
 
             <?php $ev_notice = self::take_notice(); ?>
@@ -256,6 +326,11 @@ class Submissions_Admin {
                 <?php if ( $args['status'] !== '' ) : ?>
                     <input type="hidden" name="status" value="<?php echo esc_attr( $args['status'] ); ?>">
                 <?php endif; ?>
+                <?php foreach ( [ 'unread', 'starred' ] as $ev_flag ) : ?>
+                    <?php if ( ! empty( $args[ $ev_flag ] ) ) : ?>
+                        <input type="hidden" name="<?php echo esc_attr( $ev_flag ); ?>" value="1">
+                    <?php endif; ?>
+                <?php endforeach; ?>
                 <div class="tablenav top">
                     <div class="alignleft actions">
                         <select name="pipeline_id">
@@ -349,6 +424,18 @@ class Submissions_Admin {
                 </div>
             </form>
 
+            <?php self::render_export_panel( $_GET, $args ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- read-only filters. ?>
+
+            <?php
+            /**
+             * Fires between the filter bar (and export panel) and the table.
+             *
+             * @param array $request Current $_GET.
+             * @param array $args    Current list args.
+             */
+            do_action( 'entryvault_submissions_before_table', $_GET, $args ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- read-only filters.
+            ?>
+
             <form method="post">
                 <?php
                 wp_nonce_field( 'entryvault_submissions_bulk', 'entryvault_bulk_nonce' );
@@ -375,6 +462,69 @@ class Submissions_Admin {
                 <?php
             endif;
             Admin_UI::close();
+    }
+
+    /**
+     * The export panel: format, columns (tick and order them) and the list's
+     * own filters as hidden fields. Works without JavaScript; the script only
+     * adds the move up / move down buttons.
+     *
+     * @param array<string,mixed> $request
+     * @param array<string,mixed> $args
+     */
+    public static function render_export_panel( array $request, array $args ): void {
+        $prefs   = Export::prefs();
+        $all     = Export::available( Export::field_labels( $args ) );
+        $chosen  = array_values( array_filter( $prefs['cols'], static fn( $k ) => isset( $all[ $k ] ) ) );
+        // Saved order first, then the rest (unticked), in the default order.
+        $ordered = $chosen ? array_merge( array_fill_keys( $chosen, true ), array_fill_keys( array_keys( $all ), false ) ) : array_fill_keys( array_keys( $all ), true );
+        foreach ( $chosen as $k ) {
+            $ordered[ $k ] = true;
+        }
+        $skip = [ 'page', 'paged', 'action', 'action2', 'filter_action', '_wpnonce', '_wp_http_referer', 'entryvault_notice', 'ev_notice', 'format', 'cols' ];
+        ?>
+        <details class="jnkui-card ev-export" id="ev-export">
+            <summary><strong><?php esc_html_e( 'Export what this list shows', 'entryvault' ); ?></strong></summary>
+            <form method="get" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" class="ev-export-form">
+                <input type="hidden" name="action" value="entryvault_export_submissions">
+                <?php wp_nonce_field( 'entryvault_export_submissions', '_wpnonce', false ); ?>
+                <?php foreach ( $request as $key => $value ) :
+                    $key = sanitize_key( (string) $key );
+                    if ( '' === $key || in_array( $key, $skip, true ) || ! is_scalar( $value ) || '' === (string) $value ) {
+                        continue;
+                    }
+                    ?>
+                    <input type="hidden" name="<?php echo esc_attr( $key ); ?>" value="<?php echo esc_attr( sanitize_text_field( wp_unslash( (string) $value ) ) ); ?>">
+                <?php endforeach; ?>
+                <fieldset class="ev-export-formats">
+                    <legend><?php esc_html_e( 'File type', 'entryvault' ); ?></legend>
+                    <?php foreach ( [ 'csv' => __( 'CSV (Excel, Google Sheets, Numbers)', 'entryvault' ), 'xlsx' => __( 'Excel (.xlsx)', 'entryvault' ), 'json' => __( 'JSON (for developers)', 'entryvault' ) ] as $fmt => $label ) : ?>
+                        <label><input type="radio" name="format" value="<?php echo esc_attr( $fmt ); ?>" <?php checked( $prefs['format'], $fmt ); ?>> <?php echo esc_html( $label ); ?></label>
+                    <?php endforeach; ?>
+                </fieldset>
+                <fieldset>
+                    <legend><?php esc_html_e( 'Columns, in this order', 'entryvault' ); ?></legend>
+                    <p class="jnkui-muted"><?php esc_html_e( 'Untick what you do not need. Use the arrows to change the order; the file keeps it, and so does the next export.', 'entryvault' ); ?></p>
+                    <p><button type="button" class="button-link" data-ev-cols="all"><?php esc_html_e( 'Tick all', 'entryvault' ); ?></button> · <button type="button" class="button-link" data-ev-cols="none"><?php esc_html_e( 'Untick all', 'entryvault' ); ?></button></p>
+                    <ol class="ev-export-cols">
+                        <?php foreach ( $ordered as $key => $on ) :
+                            if ( ! isset( $all[ $key ] ) ) {
+                                continue;
+                            }
+                            $fid = 'ev-col-' . substr( md5( (string) $key ), 0, 10 );
+                            ?>
+                            <li>
+                                <input type="checkbox" id="<?php echo esc_attr( $fid ); ?>" name="cols[]" value="<?php echo esc_attr( (string) $key ); ?>" <?php checked( $on ); ?>>
+                                <label for="<?php echo esc_attr( $fid ); ?>"><bdi><?php echo esc_html( $all[ $key ]['label'] ); ?></bdi><?php if ( 0 === strpos( (string) $key, 'f:' ) ) : ?> <span class="jnkui-muted"><?php esc_html_e( '(form field)', 'entryvault' ); ?></span><?php endif; ?></label>
+                            </li>
+                        <?php endforeach; ?>
+                    </ol>
+                </fieldset>
+                <p><button type="submit" class="button button-primary"><?php esc_html_e( 'Download', 'entryvault' ); ?></button>
+                <span class="jnkui-muted"><?php esc_html_e( 'Only the entries the list is filtering, all pages.', 'entryvault' ); ?></span></p>
+            </form>
+        </details>
+        <?php
     }
 
     /**
@@ -451,6 +601,30 @@ class Submissions_Admin {
                 _n( 'Tagged %d submission.', 'Tagged %d submissions.', $count, 'entryvault' ),
                 $count
             );
+        } elseif ( in_array( $action, [ 'bulk_mark_read', 'bulk_mark_unread', 'bulk_star', 'bulk_unstar' ], true ) ) {
+            $flag   = [ 'bulk_mark_read' => 'read', 'bulk_mark_unread' => 'unread', 'bulk_star' => 'star', 'bulk_unstar' => 'unstar' ][ $action ];
+            $count  = Entry_Flags::bulk( $ids, $flag );
+            $notice = [
+                /* translators: %d: number of submissions. */
+                'read'   => sprintf( _n( 'Marked %d submission as read.', 'Marked %d submissions as read.', $count, 'entryvault' ), $count ),
+                /* translators: %d: number of submissions. */
+                'unread' => sprintf( _n( 'Marked %d submission as unread.', 'Marked %d submissions as unread.', $count, 'entryvault' ), $count ),
+                /* translators: %d: number of submissions. */
+                'star'   => sprintf( _n( 'Starred %d submission.', 'Starred %d submissions.', $count, 'entryvault' ), $count ),
+                /* translators: %d: number of submissions. */
+                'unstar' => sprintf( _n( 'Removed the star from %d submission.', 'Removed the star from %d submissions.', $count, 'entryvault' ), $count ),
+            ][ $flag ];
+        } elseif ( $action === 'bulk_spam' ) {
+            $count  = Spam_Folder::mark( $ids, get_current_user_id() ?: null );
+            $notice = sprintf(
+                /* translators: %d: count */
+                _n( 'Moved %d submission to spam.', 'Moved %d submissions to spam.', $count, 'entryvault' ),
+                $count
+            );
+        } elseif ( $action === 'bulk_not_spam' ) {
+            $run    = ! empty( $_POST['ev_spam_run'] ) && '' !== Spam_Folder::release_option_label();
+            $count  = Spam_Folder::release( $ids, $run, get_current_user_id() ?: null );
+            $notice = self::not_spam_notice( $count, $run );
         } elseif ( $action === 'bulk_archive' ) {
             $count  = Submission_Store::bulk_archive( $ids, get_current_user_id() );
             $notice = sprintf(
@@ -495,18 +669,9 @@ class Submissions_Admin {
         }
         check_admin_referer( 'entryvault_export_submissions' );
 
-        $args = self::args_from_request( $_GET );
-
-        nocache_headers();
-        header( 'Content-Type: text/csv; charset=utf-8' );
-        header( 'Content-Disposition: attachment; filename="entryvault-submissions-' . gmdate( 'Ymd-His' ) . '.csv"' );
-
-        // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_fopen -- streaming CSV to php://output; WP_Filesystem has no streaming API.
-        $out = fopen( 'php://output', 'w' );
-        self::write_csv( $out, $args );
-        // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_fclose -- streaming CSV to php://output; WP_Filesystem has no streaming API.
-        fclose( $out );
-        exit;
+        // Format, columns and their order come from the export panel; a bare link
+        // (older bookmarks) still gets the full CSV.
+        Export::stream( $_GET ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- nonce checked above.
     }
 
     /**
@@ -516,91 +681,9 @@ class Submissions_Admin {
      * @return int Rows written.
      */
     public static function write_csv( $out, array $args ): int {
-        // query() returns at most MAX_PER_PAGE rows; asking for 1000 got 200 and
-        // the loop thought it had them all, so the file stopped at 200 rows.
-        $args['per_page'] = Submission_Store::MAX_PER_PAGE;
-        $args['paged']    = 1;
-        $written          = 0;
-
-        // The export used to carry only the envelope — ids, timestamps and numeric
-        // pipeline/stage references — and none of what people had actually
-        // submitted. Exporting form entries without the entries made the file
-        // useless for the thing it exists for: handing leads to someone else.
-        // Resolve names, and append one column per submitted field.
-        $field_labels = self::exportable_field_labels( $args );
-        $names        = self::pipeline_stage_names();
-
-        // Pass an explicit $escape ('' = no escape char, matching WP core) — the
-        // 4-arg/implicit form is deprecated on PHP 8.4 and removed in PHP 9.
-        $header = [ 'ID', 'Title', 'Email', 'Pipeline', 'Stage', 'Owner', 'Tags', 'Source', 'Source Form', 'Source Entry', 'Status', 'Created', 'Updated' ];
-        // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_fwrite -- streaming CSV; WP_Filesystem has no streaming API.
-        fwrite( $out, self::CSV_BOM );
-        fputcsv( $out, array_merge( $header, self::field_headers( $header, $field_labels ) ), ',', '"', '' );
-
-        do {
-            $page = Submission_Store::query( $args );
-            foreach ( $page['rows'] as $row ) {
-                $id     = (int) ( $row['id'] ?? 0 );
-                $fields = self::field_values_by_label( $id );
-
-                $line = [
-                    $row['id']              ?? '',
-                    $row['title']           ?? '',
-                    $row['email']           ?? '',
-                    $names['pipelines'][ (int) ( $row['pipeline_id'] ?? 0 ) ] ?? ( $row['pipeline_id'] ?? '' ),
-                    $names['stages'][ (int) ( $row['stage_id'] ?? 0 ) ]       ?? ( $row['stage_id'] ?? '' ),
-                    self::owner_name( (int) ( $row['owner_user_id'] ?? 0 ) ),
-                    self::tag_names( $id ),
-                    Sources::label( (string) ( $row['source_plugin'] ?? '' ) ),
-                    $row['source_form_id']  ?? '',
-                    $row['source_entry_id'] ?? '',
-                    $row['status']          ?? '',
-                    // Exports keep the site's clock, as before 1.17.0.
-                    Dates::to_site( $row['created_at'] ?? '' ),
-                    Dates::to_site( $row['updated_at'] ?? '' ),
-                ];
-                foreach ( $field_labels as $label ) {
-                    $line[] = $fields[ $label ] ?? '';
-                }
-
-                fputcsv( $out, array_map( [ self::class, 'csv_safe' ], $line ), ',', '"', '' );
-                $written++;
-            }
-            $args['paged']++;
-            $more = ( $args['paged'] - 1 ) * $args['per_page'] < (int) $page['total'];
-        } while ( $more );
-
-        return $written;
+        return Export::write_csv( $out, $args, Export::columns( null, Export::field_labels( $args ) ) );
     }
 
-    /**
-     * Every distinct field label present in the export, in a stable order.
-     *
-     * One column per label keeps the CSV rectangular even though submissions come
-     * from different forms with different fields.
-     *
-     * @return string[]
-     */
-    private static function exportable_field_labels( array $args ): array {
-        global $wpdb;
-        $data = $wpdb->prefix . 'entryvault_submission_data';
-        $subs = $wpdb->prefix . 'entryvault_submissions';
-
-        // Scope to the same filters the export itself uses where we can do so
-        // cheaply; a label list slightly wider than the rows is harmless (empty
-        // column) whereas a missing label would silently drop data.
-        // phpcs:ignore WordPress.DB.DirectDatabaseQuery -- custom tables; export path, uncached by design.
-        $labels = $wpdb->get_col(
-            "SELECT DISTINCT d.field_label
-             FROM {$data} d
-             INNER JOIN {$subs} s ON s.id = d.submission_id
-             WHERE d.field_label <> '' AND d.is_stale = 0
-             ORDER BY d.field_label ASC
-             LIMIT 200"
-        );
-
-        return array_map( 'strval', (array) $labels );
-    }
 
     /**
      * Column headings for the submitted fields, never repeating a fixed heading.
@@ -631,68 +714,9 @@ class Submissions_Admin {
         return $out;
     }
 
-    /** Field values for one submission, keyed by label. @return array<string,string> */
-    private static function field_values_by_label( int $submission_id ): array {
-        global $wpdb;
-        $data = $wpdb->prefix . 'entryvault_submission_data';
-        // phpcs:ignore WordPress.DB.DirectDatabaseQuery -- custom table; export path.
-        $rows = $wpdb->get_results(
-            $wpdb->prepare(
-                "SELECT field_label, field_type, value FROM {$data} WHERE submission_id = %d AND is_stale = 0",
-                $submission_id
-            ),
-            ARRAY_A
-        );
 
-        $out = [];
-        foreach ( (array) $rows as $row ) {
-            $label = (string) $row['field_label'];
-            $value = Field_Values::display( (string) $row['value'], (string) ( $row['field_type'] ?? '' ) );
-            // A repeated label (checkbox groups) joins rather than overwrites.
-            $out[ $label ] = isset( $out[ $label ] ) ? $out[ $label ] . ', ' . $value : $value;
-        }
-        return $out;
-    }
 
-    /** Pipeline and stage names keyed by id, so the CSV never ships raw numbers. */
-    private static function pipeline_stage_names(): array {
-        global $wpdb;
-        $p = $wpdb->prefix . 'entryvault_pipelines';
-        $s = $wpdb->prefix . 'entryvault_stages';
 
-        $out = [ 'pipelines' => [], 'stages' => [] ];
-        // phpcs:ignore WordPress.DB.DirectDatabaseQuery -- small lookup tables.
-        foreach ( (array) $wpdb->get_results( "SELECT id, name FROM {$p}", ARRAY_A ) as $row ) {
-            $out['pipelines'][ (int) $row['id'] ] = Default_Names::label( $row['name'] );
-        }
-        // phpcs:ignore WordPress.DB.DirectDatabaseQuery -- small lookup tables.
-        foreach ( (array) $wpdb->get_results( "SELECT id, name FROM {$s}", ARRAY_A ) as $row ) {
-            $out['stages'][ (int) $row['id'] ] = Default_Names::label( $row['name'] );
-        }
-        return $out;
-    }
-
-    /** Display name for an owner id, or empty when unassigned. */
-    private static function owner_name( int $user_id ): string {
-        if ( $user_id <= 0 ) {
-            return '';
-        }
-        $user = get_userdata( $user_id );
-        return $user ? (string) $user->display_name : sprintf( '#%d', $user_id );
-    }
-
-    /** Comma-separated tag names for a submission. */
-    private static function tag_names( int $submission_id ): string {
-        global $wpdb;
-        $st = $wpdb->prefix . 'entryvault_submission_tags';
-        $t  = $wpdb->prefix . 'entryvault_tags';
-        // phpcs:ignore WordPress.DB.DirectDatabaseQuery -- custom tables; export path.
-        $names = $wpdb->get_col( $wpdb->prepare(
-            "SELECT t.name FROM {$st} st INNER JOIN {$t} t ON t.id = st.tag_id WHERE st.submission_id = %d ORDER BY t.name ASC",
-            $submission_id
-        ) );
-        return implode( ', ', array_map( 'strval', (array) $names ) );
-    }
 
     /**
      * Neutralize CSV/formula injection: prefix a leading apostrophe to any cell

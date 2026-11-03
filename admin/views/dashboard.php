@@ -25,7 +25,7 @@ $new_week = (int) $wpdb->get_var( $wpdb->prepare( 'SELECT COUNT(*) FROM %i WHERE
 $new_day  = (int) $wpdb->get_var( $wpdb->prepare( 'SELECT COUNT(*) FROM %i WHERE created_at >= %s', $t_sub, $day_start ) );
 
 // "Open" = not archived and not sitting in a final stage (Won, Lost and the like).
-$open_where = "s.status <> 'archived' AND COALESCE(st.is_terminal, 0) = 0";
+$open_where = "s.status NOT IN ( 'archived', 'spam' ) AND COALESCE(st.is_terminal, 0) = 0";
 // phpcs:disable WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- $open_where is a fixed SQL fragment with no input.
 $open       = (int) $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM %i s LEFT JOIN %i st ON st.id = s.stage_id WHERE {$open_where}", $t_sub, $t_stage ) );
 $unassigned = (int) $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM %i s LEFT JOIN %i st ON st.id = s.stage_id WHERE {$open_where} AND ( s.owner_user_id IS NULL OR s.owner_user_id = 0 )", $t_sub, $t_stage ) );
@@ -260,6 +260,10 @@ Admin_UI::open(
 </div>
 
 <?php
+/**
+ * Fires after the report cards (add-ons add their own report cards here).
+ */
+do_action( 'entryvault_reports_after' );
 Admin_UI::close();
 // The report fetch/render lives in the enqueued admin/assets/js/dashboard.js
 // (data via EntryVaultDashboardBoot).

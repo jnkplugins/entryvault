@@ -23,6 +23,20 @@ class REST_API {
                 'stage_id'    => [ 'type' => 'integer', 'required' => false ],
                 'offset'      => [ 'type' => 'integer', 'required' => false, 'minimum' => 0 ],
                 'per_stage'   => [ 'type' => 'integer', 'required' => false, 'minimum' => 1, 'maximum' => 200 ],
+                'starred'     => [ 'type' => 'boolean', 'required' => false ],
+                'unread'      => [ 'type' => 'boolean', 'required' => false ],
+            ],
+        ] );
+
+        // Star and read state of one entry (shared by everyone on the site).
+        register_rest_route( self::NS, '/submissions/(?P<id>\d+)/flags', [
+            'methods'             => WP_REST_Server::CREATABLE,
+            'callback'            => [ $this, 'set_flags' ],
+            'permission_callback' => [ Capabilities::class, 'request_can_view_submission' ],
+            'args'                => [
+                'id'      => [ 'type' => 'integer', 'required' => true ],
+                'starred' => [ 'type' => 'boolean', 'required' => false ],
+                'read'    => [ 'type' => 'boolean', 'required' => false ],
             ],
         ] );
 
@@ -185,8 +199,10 @@ class REST_API {
         ), ARRAY_A ) as $row ) {
             $counts[ (int) $row['pipeline_id'] ] = (int) $row['n'];
         }
+        $unread = Entry_Flags::unread_by_pipeline();
         foreach ( $pipelines as &$p ) {
-            $p['open_count'] = $counts[ (int) $p['id'] ] ?? 0;
+            $p['open_count']   = $counts[ (int) $p['id'] ] ?? 0;
+            $p['unread_count'] = $unread[ (int) $p['id'] ] ?? 0;
             $p['name']       = Default_Names::label( $p['name'] ?? '' );
             $p['stages']     = Default_Names::label_rows( $wpdb->get_results( $wpdb->prepare(
                 "SELECT * FROM {$wpdb->prefix}entryvault_stages WHERE pipeline_id = %d ORDER BY position ASC, id ASC",
@@ -252,6 +268,29 @@ class REST_API {
             $extra_sql .= " AND ({$t_sql} OR {$e_sql})";
             array_push( $extra_params, ...$t_params, ...$e_params );
         }
+        if ( rest_sanitize_boolean( $req->get_param( 'starred' ) ) ) {
+            $extra_sql .= ' AND is_starred = 1';
+        }
+        if ( rest_sanitize_boolean( $req->get_param( 'unread' ) ) ) {
+            $extra_sql .= ' AND read_at IS NULL';
+        }
+        /**
+         * Filter extra WHERE fragments for the board's cards (not the unread
+         * header counts). Each entry is [ 'sql' => 'col = %s', 'params' => [ 'v' ] ].
+         *
+         * @param array           $extra       Empty by default.
+         * @param WP_REST_Request $req         The board request.
+         * @param int             $pipeline_id Pipeline id.
+         */
+        foreach ( (array) apply_filters( 'entryvault_board_where', [], $req, $pipeline_id ) as $fragment ) {
+            if ( empty( $fragment['sql'] ) || ! is_string( $fragment['sql'] ) ) {
+                continue;
+            }
+            $extra_sql .= ' AND (' . $fragment['sql'] . ')';
+            foreach ( (array) ( $fragment['params'] ?? [] ) as $value ) {
+                $extra_params[] = $value;
+            }
+        }
 
         foreach ( $stages as &$stage ) {
             $base = [ $wpdb->prefix . 'entryvault_submissions', $pipeline_id, (int) $stage['id'] ];
@@ -262,8 +301,14 @@ class REST_API {
                   WHERE pipeline_id = %d AND stage_id = %d AND status = 'open'{$extra_sql}",
                 array_merge( $base, $extra_params )
             ) );
+            // Unread in this column, whatever the filters (the column header count).
+            $unread = (int) $wpdb->get_var( $wpdb->prepare(
+                "SELECT COUNT(*) FROM %i
+                  WHERE pipeline_id = %d AND stage_id = %d AND status = 'open' AND read_at IS NULL",
+                $base
+            ) );
             $cards = $wpdb->get_results( $wpdb->prepare(
-                "SELECT id, title, email, source_plugin, owner_user_id, created_at, updated_at
+                "SELECT id, title, email, source_plugin, owner_user_id, is_starred, read_at, created_at, updated_at
                    FROM %i
                   WHERE pipeline_id = %d AND stage_id = %d AND status = 'open'{$extra_sql}
                ORDER BY created_at DESC, id DESC
@@ -282,6 +327,14 @@ class REST_API {
                     $card['is_past']      = isset( $past[ (int) $card['id'] ] );
                     $card['tags']         = Tag_Manager::for_submission( (int) $card['id'] );
                     $card['source_label'] = Sources::label( (string) ( $card['source_plugin'] ?? '' ) );
+                    $card                 = array_merge( $card, Entry_Flags::of( $card ) );
+                    unset( $card['read_at'] );
+                    /**
+                     * Filter one board card before it is sent to the board.
+                     *
+                     * @param array $card Card fields.
+                     */
+                    $card = (array) apply_filters( 'entryvault_board_card', $card );
                 }
                 unset( $card );
             } else {
@@ -289,6 +342,7 @@ class REST_API {
             }
             $stage['cards']  = $cards;
             $stage['total']  = $total;
+            $stage['unread'] = $unread;
             $stage['offset'] = $offset;
         }
         unset( $stage );
@@ -425,6 +479,12 @@ class REST_API {
         if ( is_array( $fields ) ) {
             foreach ( $fields as &$f_row ) {
                 $f_row['is_stale'] = (int) ( $f_row['is_stale'] ?? 0 );
+                // Uploads as links and thumbnails; files kept off the public web
+                // go through the authenticated File_Links route.
+                $files = File_Links::for_field( $row, $f_row );
+                if ( $files ) {
+                    $f_row['files'] = $files;
+                }
                 // Stored JSON (checkbox lists, file objects with a server path)
                 // reads as text, and a path is never sent to the browser.
                 $f_row['value'] = Field_Values::display( $f_row['value'] ?? '', (string) ( $f_row['field_type'] ?? '' ) );
@@ -472,6 +532,7 @@ class REST_API {
         $row['source_label']      = Sources::label( (string) ( $row['source_plugin'] ?? '' ) );
         $row['source_form_title'] = Sources::form_title( (string) ( $row['source_plugin'] ?? '' ), (int) ( $row['source_form_id'] ?? 0 ) );
 
+        $row = array_merge( $row, Entry_Flags::of( $row ) );
         $detail = [
             'submission' => Dates::outward( $row, [ 'created_at', 'updated_at' ] ),
             'stage'      => $stage,
@@ -525,6 +586,16 @@ class REST_API {
             $parent_id ?: null,
             [ 'user_id' => $user_id ]
         );
+
+        /**
+         * A team note was added to an entry from the panel.
+         *
+         * @param int    $id       Submission id.
+         * @param int    $entry_id Timeline row id of the note.
+         * @param int    $user_id  Author.
+         * @param string $body     Note text.
+         */
+        do_action( 'entryvault_note_added', $id, $entry_id, $user_id, $body );
 
         $row = Timeline::get( $entry_id );
         return self::envelope( Dates::outward( [
@@ -620,6 +691,28 @@ class REST_API {
             'id'         => $note_id,
             'deleted_at' => $meta['deleted_at'],
         ], [ 'deleted_at' ] ) );
+    }
+
+    /** POST /submissions/{id}/flags {starred?, read?} */
+    public function set_flags( WP_REST_Request $req ): WP_REST_Response {
+        $id  = (int) $req['id'];
+        $row = Submission_Store::get( $id );
+        if ( ! $row ) {
+            return self::envelope( null, [ 'not_found' ], 404 );
+        }
+        $params = self::read_params( $req );
+        if ( array_key_exists( 'starred', $params ) ) {
+            Entry_Flags::set_starred( $id, rest_sanitize_boolean( $params['starred'] ) );
+        }
+        if ( array_key_exists( 'read', $params ) ) {
+            $read = rest_sanitize_boolean( $params['read'] );
+            // Opening an entry again keeps the first read time.
+            if ( ! $read || empty( $row['read_at'] ) ) {
+                Entry_Flags::set_read( $id, $read );
+            }
+        }
+        $row = (array) Submission_Store::get( $id );
+        return self::envelope( array_merge( [ 'id' => $id ], Entry_Flags::of( $row ) ) );
     }
 
     public function move_submission( WP_REST_Request $req ): WP_REST_Response {

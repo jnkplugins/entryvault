@@ -87,12 +87,33 @@ abstract class Provider_Base {
                     continue;
                 }
                 $shared++;
-                if ( trim( (string) $r['value'] ) !== $mine[ $k ] ) {
+                if ( ! self::same_answer( trim( (string) $r['value'] ), $mine[ $k ] ) ) {
                     $same = false;
                     break;
                 }
             }
             if ( $same && $shared > 0 ) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Whether a stored answer and a past entry's answer are the same. Uploads
+     * differ in spelling only: CFDB7 keeps "<time><hex>-<field>-<name>" where
+     * live capture keeps "<name>", and CF7 entries captured before 1.23.x hold
+     * the upload's SHA-256 instead of a name.
+     */
+    protected static function same_answer( string $stored, string $past ): bool {
+        if ( $stored === $past ) {
+            return true;
+        }
+        if ( 1 === preg_match( '/^[0-9a-f]{64}$/', $stored ) ) {
+            return true;
+        }
+        foreach ( [ [ $stored, $past ], [ $past, $stored ] ] as [ $short, $long ] ) {
+            if ( '' !== $short && 1 === preg_match( '/^\d{10}(?:[0-9a-f]{10})?-/', $long ) && str_ends_with( $long, '-' . $short ) ) {
                 return true;
             }
         }

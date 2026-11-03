@@ -110,6 +110,26 @@ if ( isset( $notices[ $notice ] ) ) {
                     </label>
                 <?php endforeach; ?>
             </fieldset>
+            <h3><?php esc_html_e( 'Only entries with AI consent', 'entryvault' ); ?></h3>
+            <p>
+                <label><input type="checkbox" name="ai_consent_only" value="1" <?php checked( AI_Privacy::consent_only() ); ?>>
+                <strong><?php esc_html_e( 'Assistants see only entries from the forms ticked below', 'entryvault' ); ?></strong></label><br>
+                <span class="jnkui-sub" style="margin-inline-start:24px"><?php esc_html_e( 'For forms that tell visitors their message may be read with AI help (for example a consent checkbox or a line in your privacy notice). With this on, every other form is kept from assistants, new forms included.', 'entryvault' ); ?></span>
+            </p>
+            <fieldset>
+                <legend class="screen-reader-text"><?php esc_html_e( 'Forms that ask for AI consent', 'entryvault' ); ?></legend>
+                <?php
+                $consent = AI_Privacy::consent_forms();
+                foreach ( $forms as $f ) :
+                    $form_key = AI_Privacy::form_key( (string) $f->source_plugin, (string) $f->source_form_id );
+                    ?>
+                    <label style="display:block;margin:4px 0">
+                        <input type="checkbox" name="ai_consent_forms[]" value="<?php echo esc_attr( $form_key ); ?>" <?php checked( in_array( $form_key, $consent, true ) ); ?>>
+                        <?php echo esc_html( Sources::form_title( (string) $f->source_plugin, (int) $f->source_form_id ) ); ?>
+                        <span class="jnkui-sub" style="display:inline"><?php echo esc_html( Sources::label( (string) $f->source_plugin ) ); ?></span>
+                    </label>
+                <?php endforeach; ?>
+            </fieldset>
         <?php endif; ?>
         <p class="jnkui-sub"><?php esc_html_e( 'Every entry an assistant opens gets a line in its history, so you can see what was read.', 'entryvault' ); ?></p>
         <p><button type="submit" class="button button-primary"><?php esc_html_e( 'Save', 'entryvault' ); ?></button></p>

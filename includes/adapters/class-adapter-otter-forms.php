@@ -87,6 +87,11 @@ class Adapter_Otter_Forms extends Adapter_Base {
         $this->dispatch( $this->build_payload( $form_key, $entry_id, $fields, $title ) );
     }
 
+    /** The normalized payload for already-built fields (Past entries). */
+    public function build_entry_payload( string $form_id, string $entry_id, array $fields, string $title = '', ?string $created_at = null ): array {
+        return $this->build_payload( $form_id, $entry_id, $fields, $title, $created_at );
+    }
+
     private function payload_value( $form_data, string $key ): string {
         if ( ! method_exists( $form_data, 'get_data_from_payload' ) ) {
             return '';

@@ -49,6 +49,7 @@ class Submissions_List_Table extends \WP_List_Table {
     public function get_columns(): array {
         $columns = [
             'cb'         => '<input type="checkbox" />',
+            'starred'    => '<span class="dashicons dashicons-star-filled" aria-hidden="true"></span><span class="screen-reader-text">' . esc_html__( 'Starred', 'entryvault' ) . '</span>',
             'id'         => __( 'ID', 'entryvault' ),
             'title'      => __( 'Title', 'entryvault' ),
             'email'      => __( 'Email', 'entryvault' ),
@@ -92,7 +93,21 @@ class Submissions_List_Table extends \WP_List_Table {
         ];
     }
 
+    /** The Spam folder is on screen. */
+    private function in_spam(): bool {
+        // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- read-only view switch.
+        return isset( $_GET['status'] ) && Spam_Folder::STATUS === sanitize_key( wp_unslash( (string) $_GET['status'] ) );
+    }
+
     protected function get_bulk_actions(): array {
+        if ( $this->in_spam() ) {
+            // Spam is only ever released or deleted; moving or tagging it would
+            // leave it in the folder anyway.
+            return [
+                'bulk_not_spam' => __( 'Not spam', 'entryvault' ),
+                'delete'        => __( 'Delete permanently', 'entryvault' ),
+            ];
+        }
         $actions = [ 'delete' => __( 'Delete', 'entryvault' ) ];
         foreach ( $this->stages as $id => $s ) {
             $pipeline_name = $this->pipelines[ (int) $s['pipeline_id'] ]['name'] ?? '';
@@ -103,10 +118,15 @@ class Submissions_List_Table extends \WP_List_Table {
                 : sprintf( __( 'Move to: %s', 'entryvault' ), $s['name'] );
             $actions[ 'move-to-stage-' . (int) $id ] = $label;
         }
+        $actions['bulk_mark_read']    = __( 'Mark as read', 'entryvault' );
+        $actions['bulk_mark_unread']  = __( 'Mark as unread', 'entryvault' );
+        $actions['bulk_star']         = __( 'Star', 'entryvault' );
+        $actions['bulk_unstar']       = __( 'Remove star', 'entryvault' );
         $actions['bulk_assign_owner'] = __( 'Assign owner', 'entryvault' );
         $actions['bulk_add_tag']      = __( 'Add tag', 'entryvault' );
         $actions['bulk_archive']      = __( 'Archive', 'entryvault' );
         $actions['bulk_unarchive']    = __( 'Unarchive', 'entryvault' );
+        $actions['bulk_spam']         = __( 'Move to spam', 'entryvault' );
 
         /**
          * Filter the bulk actions offered on the submissions list.
@@ -122,6 +142,20 @@ class Submissions_List_Table extends \WP_List_Table {
      */
     protected function extra_tablenav( $which ): void {
         if ( $which !== 'top' ) {
+            return;
+        }
+        if ( $this->in_spam() ) {
+            $run = Spam_Folder::release_option_label();
+            ?>
+            <div class="alignleft actions entryvault-spam-extras">
+                <?php if ( '' !== $run ) : ?>
+                    <label><input type="checkbox" name="ev_spam_run" value="1"> <?php echo esc_html( $run ); ?></label>
+                <?php endif; ?>
+                <?php if ( $this->has_items() ) : ?>
+                    <a class="button button-link-delete" href="<?php echo esc_url( wp_nonce_url( admin_url( 'admin-post.php?action=entryvault_empty_spam' ), 'entryvault_empty_spam' ) ); ?>" onclick="return window.confirm(<?php echo esc_attr( wp_json_encode( __( 'Delete every entry in the Spam folder for good? This cannot be undone.', 'entryvault' ) ) ); ?>);"><?php esc_html_e( 'Empty spam', 'entryvault' ); ?></a>
+                <?php endif; ?>
+            </div>
+            <?php
             return;
         }
         ?>
@@ -174,6 +208,29 @@ class Submissions_List_Table extends \WP_List_Table {
         return sprintf( '<input type="checkbox" name="submission[]" value="%d" />', (int) $item['id'] );
     }
 
+    /** Unread rows carry a class, so the screen can show them in bold. */
+    public function single_row( $item ) {
+        $unread = empty( $item['read_at'] );
+        echo '<tr' . ( $unread ? ' class="ev-unread"' : '' ) . '>';
+        $this->single_row_columns( $item );
+        echo '</tr>';
+    }
+
+    protected function column_starred( $item ): string {
+        $on    = ! empty( $item['is_starred'] );
+        $title = (string) ( $item['title'] ?? '' );
+        return sprintf(
+            '<button type="button" class="ev-star-toggle%1$s" data-id="%2$d" aria-pressed="%3$s" aria-label="%4$s" title="%5$s"><span class="dashicons %6$s" aria-hidden="true"></span></button>',
+            $on ? ' is-on' : '',
+            (int) $item['id'],
+            $on ? 'true' : 'false',
+            /* translators: %s: submission title. */
+            esc_attr( sprintf( __( 'Star %s', 'entryvault' ), '' !== $title ? $title : '#' . (int) $item['id'] ) ),
+            esc_attr__( 'Star', 'entryvault' ),
+            $on ? 'dashicons-star-filled' : 'dashicons-star-empty'
+        );
+    }
+
     protected function column_id( $item ): string {
         return (string) (int) $item['id'];
     }
@@ -181,11 +238,25 @@ class Submissions_List_Table extends \WP_List_Table {
     protected function column_title( $item ): string {
         $title = $item['title'] !== null && $item['title'] !== '' ? $item['title'] : '(untitled)';
         $url   = admin_url( 'admin.php?page=entryvault&submission=' . (int) $item['id'] );
-        return sprintf(
-            '<strong><a href="%s">%s</a></strong>',
+        $dot   = empty( $item['read_at'] )
+            ? '<span class="ev-unread-dot" title="' . esc_attr__( 'Unread', 'entryvault' ) . '"></span><span class="screen-reader-text">' . esc_html__( 'Unread', 'entryvault' ) . ' </span>'
+            : '';
+        $html = sprintf(
+            '%s<strong><a href="%s">%s</a></strong>',
+            $dot,
             esc_url( $url ),
             esc_html( $title )
         );
+        if ( Spam_Folder::STATUS === (string) ( $item['status'] ?? '' ) ) {
+            $html .= $this->row_actions( [
+                'not_spam' => sprintf(
+                    '<a href="%s">%s</a>',
+                    esc_url( wp_nonce_url( admin_url( 'admin-post.php?action=entryvault_not_spam&id=' . (int) $item['id'] ), 'entryvault_not_spam_' . (int) $item['id'] ) ),
+                    esc_html__( 'Not spam', 'entryvault' )
+                ),
+            ] );
+        }
+        return $html;
     }
 
     protected function column_email( $item ): string {
@@ -220,11 +291,20 @@ class Submissions_List_Table extends \WP_List_Table {
         ), ARRAY_A );
 
         $text = '';
+        $file = '';
         foreach ( (array) $rows as $row ) {
+            // A file name says less than the message: use it only when nothing else is there.
+            if ( File_Links::is_file_type( (string) ( $row['field_type'] ?? '' ) ) ) {
+                $file = '' !== $file ? $file : trim( Field_Values::display( (string) $row['value'], (string) $row['field_type'] ) );
+                continue;
+            }
             $candidate = trim( Field_Values::display( (string) $row['value'], (string) ( $row['field_type'] ?? '' ) ) );
             if ( strlen( $candidate ) > strlen( $text ) ) {
                 $text = $candidate;
             }
+        }
+        if ( '' === $text ) {
+            $text = $file;
         }
         if ( '' === $text ) {
             return '<span aria-hidden="true">—</span>';

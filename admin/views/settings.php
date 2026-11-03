@@ -163,7 +163,7 @@ if ( function_exists( 'wp_roles' ) ) {
                             <input type="checkbox" id="ev-skip-spam" name="skip_spam" value="1" <?php checked( $ev_skip_spam ); ?> />
                             <?php esc_html_e( 'Leave out entries your form plugin marked as spam', 'entryvault' ); ?>
                         </label>
-                        <p class="description"><?php esc_html_e( 'On by default. Some form plugins save spam and still pass it on (Gravity Forms, Fluent Forms, Forminator, Formidable, Ninja Forms with Akismet, Everest Forms, WS Form, Jetpack). With this on, those never reach your board. Spam stays in the form plugin, so nothing is lost. Untick to bring spam in too.', 'entryvault' ); ?></p>
+                        <p class="description"><?php esc_html_e( 'On by default. Some form plugins save spam and still pass it on (Gravity Forms, Fluent Forms, Forminator, Formidable, Ninja Forms with Akismet, Everest Forms, WS Form, Jetpack). With this on, those never reach your board. Spam stays in the form plugin, so nothing is lost. Untick to bring spam into the Spam folder under Submissions, where you can mark a real message as not spam.', 'entryvault' ); ?></p>
                     </td>
                 </tr>
                 <tr>

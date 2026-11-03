@@ -22,6 +22,12 @@ $current_sort = isset( $pagination['sort'] ) ? (string) $pagination['sort'] : 's
 $current_page = isset( $pagination['page'] ) ? (int) $pagination['page'] : 1;
 $total_pages  = isset( $pagination['pages'] ) ? (int) $pagination['pages'] : 1;
 $search       = isset( $pagination['search'] ) ? (string) $pagination['search'] : '';
+// Active visitor filters as query args; every sort and page link keeps them.
+$filter_args  = isset( $pagination['filters'] ) && is_array( $pagination['filters'] ) ? $pagination['filters'] : [];
+$filter_ui    = isset( $filter_ui ) && is_array( $filter_ui ) ? $filter_ui : [];
+$filter_opts  = isset( $filter_options ) && is_array( $filter_options ) ? $filter_options : [ 'stages' => [], 'tags' => [], 'fields' => [] ];
+$active       = isset( $filters ) && is_array( $filters ) ? $filters : [];
+$table_uid    = 'evt-' . substr( md5( (string) ( $attrs['pipeline'] ?? '' ) . wp_json_encode( $columns ) ), 0, 8 );
 ?>
 <div
 	class="evt-wrap"
@@ -37,7 +43,7 @@ $search       = isset( $pagination['search'] ) ? (string) $pagination['search'] 
 		wp_parse_str( (string) wp_parse_url( $base_url, PHP_URL_QUERY ), $base_query );
 		foreach ( $base_query as $k => $v ) {
 			$k = (string) $k;
-			if ( in_array( $k, [ 'evp', 'evq', 'evs' ], true ) || ! is_scalar( $v ) ) {
+			if ( in_array( $k, array_merge( \EntryVault\Frontend::VIEW_PARAMS, \EntryVault\Frontend::FILTER_PARAMS ), true ) || ! is_scalar( $v ) ) {
 				continue;
 			}
 			printf(
@@ -48,6 +54,10 @@ $search       = isset( $pagination['search'] ) ? (string) $pagination['search'] 
 		}
 		if ( $current_sort !== 'submitted_at' ) {
 			printf( '<input type="hidden" name="evs" value="%s" />', esc_attr( $current_sort ) );
+		}
+		// A view around the form can ask to keep its own place (e.g. the month).
+		foreach ( ( isset( $extra_hidden ) && is_array( $extra_hidden ) ? $extra_hidden : [] ) as $k => $v ) {
+			printf( '<input type="hidden" name="%s" value="%s" />', esc_attr( (string) $k ), esc_attr( (string) $v ) );
 		}
 		?>
 		<label class="evt-search-label">
@@ -60,18 +70,96 @@ $search       = isset( $pagination['search'] ) ? (string) $pagination['search'] 
 				class="evt-search-input"
 			/>
 		</label>
-		<button type="submit" class="evt-search-submit"><?php esc_html_e( 'Search', 'entryvault' ); ?></button>
+		<?php if ( $filter_ui ) : ?>
+			<fieldset class="evt-filters">
+				<legend class="screen-reader-text"><?php esc_html_e( 'Filter entries', 'entryvault' ); ?></legend>
+				<?php if ( in_array( 'stage', $filter_ui, true ) ) : ?>
+					<label class="evt-filter" for="<?php echo esc_attr( $table_uid . '-stage' ); ?>">
+						<span class="evt-filter-label"><?php esc_html_e( 'Stage', 'entryvault' ); ?></span>
+						<select name="evst" id="<?php echo esc_attr( $table_uid . '-stage' ); ?>">
+							<option value=""><?php esc_html_e( 'Any stage', 'entryvault' ); ?></option>
+							<?php foreach ( $filter_opts['stages'] as $st ) : ?>
+								<option value="<?php echo esc_attr( (string) $st['id'] ); ?>" <?php selected( (int) ( $active['stage_id'] ?? 0 ), (int) $st['id'] ); ?>><?php echo esc_html( $st['name'] ); ?></option>
+							<?php endforeach; ?>
+						</select>
+					</label>
+				<?php endif; ?>
+				<?php if ( in_array( 'tag', $filter_ui, true ) ) : ?>
+					<label class="evt-filter" for="<?php echo esc_attr( $table_uid . '-tag' ); ?>">
+						<span class="evt-filter-label"><?php esc_html_e( 'Tag', 'entryvault' ); ?></span>
+						<select name="evtag" id="<?php echo esc_attr( $table_uid . '-tag' ); ?>">
+							<option value=""><?php esc_html_e( 'Any tag', 'entryvault' ); ?></option>
+							<?php foreach ( $filter_opts['tags'] as $tg ) : ?>
+								<option value="<?php echo esc_attr( (string) $tg['id'] ); ?>" <?php selected( (int) ( $active['tag_id'] ?? 0 ), (int) $tg['id'] ); ?>><?php echo esc_html( $tg['name'] ); ?></option>
+							<?php endforeach; ?>
+						</select>
+					</label>
+				<?php endif; ?>
+				<?php if ( in_array( 'date', $filter_ui, true ) ) : ?>
+					<label class="evt-filter" for="<?php echo esc_attr( $table_uid . '-from' ); ?>">
+						<span class="evt-filter-label"><?php esc_html_e( 'Submitted from', 'entryvault' ); ?></span>
+						<input type="date" name="evfrom" id="<?php echo esc_attr( $table_uid . '-from' ); ?>" value="<?php echo esc_attr( (string) ( $active['from'] ?? '' ) ); ?>" />
+					</label>
+					<label class="evt-filter" for="<?php echo esc_attr( $table_uid . '-to' ); ?>">
+						<span class="evt-filter-label"><?php esc_html_e( 'to', 'entryvault' ); ?></span>
+						<input type="date" name="evto" id="<?php echo esc_attr( $table_uid . '-to' ); ?>" value="<?php echo esc_attr( (string) ( $active['to'] ?? '' ) ); ?>" />
+					</label>
+				<?php endif; ?>
+				<?php foreach ( $filter_opts['fields'] as $fkey => $flabel ) : ?>
+					<label class="evt-filter" for="<?php echo esc_attr( $table_uid . '-f-' . $fkey ); ?>">
+						<span class="evt-filter-label"><?php echo esc_html( $flabel ); ?></span>
+						<input type="text" name="<?php echo esc_attr( 'evf[' . $fkey . ']' ); ?>" id="<?php echo esc_attr( $table_uid . '-f-' . $fkey ); ?>" value="<?php echo esc_attr( (string) ( $active['fields'][ $fkey ] ?? '' ) ); ?>" />
+					</label>
+				<?php endforeach; ?>
+			</fieldset>
+		<?php endif; ?>
+		<button type="submit" class="evt-search-submit"><?php echo $filter_ui ? esc_html__( 'Apply', 'entryvault' ) : esc_html__( 'Search', 'entryvault' ); ?></button>
+		<?php if ( $filter_args || '' !== $search ) : ?>
+			<a class="evt-filter-clear" href="<?php echo esc_url( \EntryVault\Frontend::table_url( [ 'evs' => $current_sort !== 'submitted_at' ? $current_sort : false ], $base_url ) ); ?>"><?php esc_html_e( 'Clear filters', 'entryvault' ); ?></a>
+		<?php endif; ?>
 	</form>
+	<?php if ( $filter_ui && empty( $hide_count ) ) : ?>
+		<p class="evt-result-count" role="status">
+			<?php
+			$ev_total = isset( $pagination['total'] ) ? (int) $pagination['total'] : 0;
+			/* translators: %s: number of entries matching the filters. */
+			echo esc_html( sprintf( _n( '%s entry', '%s entries', $ev_total, 'entryvault' ), number_format_i18n( $ev_total ) ) );
+			?>
+		</p>
+	<?php endif; ?>
 
+	<?php
+	/**
+	 * Extra tools shown above the entries (add-ons: a download link).
+	 * Return escaped HTML.
+	 *
+	 * @param string $html Empty by default.
+	 * @param array  $info attrs, columns, filters (active), search, sort, order, pipeline.
+	 */
+	$ev_tools = (string) apply_filters( 'entryvault_public_table_tools', '', [
+		'attrs'    => isset( $attrs ) ? (array) $attrs : [],
+		'columns'  => (array) $columns,
+		'filters'  => $active,
+		'search'   => $search,
+		'sort'     => $current_sort,
+		'pipeline' => isset( $pipeline ) ? (array) $pipeline : [],
+	] );
+	if ( '' !== $ev_tools ) {
+		echo '<div class="evt-tools">' . $ev_tools . '</div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped by the add-on that returned it.
+	}
+	?>
+	<?php if ( isset( $body_html ) && is_string( $body_html ) ) : ?>
+		<?php echo $body_html; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- built and escaped by the layout that returned it. ?>
+	<?php else : ?>
 	<table class="evt-table">
 		<thead>
 			<tr>
 				<?php foreach ( $columns as $col ) :
 					$sort_url = \EntryVault\Frontend::table_url(
-						[
+						array_merge( [
 							'evs' => $col,
 							'evq' => $search !== '' ? $search : false,
-						],
+						], $filter_args ),
 						$base_url
 					);
 					$is_active = ( $col === $current_sort );
@@ -117,24 +205,25 @@ $search       = isset( $pagination['search'] ) ? (string) $pagination['search'] 
 			<?php endif; ?>
 		</tbody>
 	</table>
+	<?php endif; ?>
 
 	<?php if ( $total_pages > 1 ) : ?>
 		<nav class="evt-pagination" aria-label="<?php esc_attr_e( 'Pagination', 'entryvault' ); ?>">
 			<?php
 			$prev_url = \EntryVault\Frontend::table_url(
-				[
+				array_merge( [
 					'evp' => max( 1, $current_page - 1 ),
 					'evq' => $search !== '' ? $search : false,
 					'evs' => $current_sort !== 'submitted_at' ? $current_sort : false,
-				],
+				], $filter_args ),
 				$base_url
 			);
 			$next_url = \EntryVault\Frontend::table_url(
-				[
+				array_merge( [
 					'evp' => min( $total_pages, $current_page + 1 ),
 					'evq' => $search !== '' ? $search : false,
 					'evs' => $current_sort !== 'submitted_at' ? $current_sort : false,
-				],
+				], $filter_args ),
 				$base_url
 			);
 			?>

@@ -24,6 +24,10 @@ class Providers {
         'ninja-forms'   => Historical_Ninja_Forms::class,
         'everest-forms' => Historical_Everest_Forms::class,
         'metform'       => Historical_Metform::class,
+        // 2 Nov 2026
+        'ws-form'       => Historical_WS_Form::class,
+        'otter-forms'   => Historical_Otter_Forms::class,
+        'kadence-forms' => Historical_Kadence_Forms::class,
     ];
 
     /** @return array<string,Provider_Base> keyed by source slug */

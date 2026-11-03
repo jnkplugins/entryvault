@@ -51,10 +51,38 @@ class Adapter_CF7 extends Adapter_Base {
         $posted = ( is_object( $submission ) && method_exists( $submission, 'get_posted_data' ) )
             ? (array) $submission->get_posted_data()
             : [];
+        // CF7 5.4+ puts a SHA-256 hash of each upload in the posted data, not
+        // its name; the names come from uploaded_files() (temp paths CF7
+        // deletes after the mail goes out).
+        if ( is_object( $submission ) && method_exists( $submission, 'uploaded_files' ) ) {
+            $posted = self::with_upload_names( $posted, (array) $submission->uploaded_files() );
+        }
 
         $tag_map    = $this->build_tag_map( $contact_form );
         $normalized = $this->build_normalized( $form_id, $form_title, $posted, $tag_map, current_time( 'mysql', true ) );
         $this->dispatch( $normalized );
+    }
+
+    /**
+     * Swap each upload field's value for the uploaded file names.
+     *
+     * @param array $posted   name => value from get_posted_data().
+     * @param array $uploaded name => path or list of paths, from uploaded_files().
+     */
+    public static function with_upload_names( array $posted, array $uploaded ): array {
+        foreach ( $uploaded as $name => $paths ) {
+            $names = [];
+            foreach ( (array) $paths as $path ) {
+                $base = wp_basename( (string) $path );
+                if ( '' !== $base ) {
+                    $names[] = $base;
+                }
+            }
+            if ( array_key_exists( $name, $posted ) || $names ) {
+                $posted[ $name ] = $names;
+            }
+        }
+        return $posted;
     }
 
     /**

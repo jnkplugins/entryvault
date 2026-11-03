@@ -324,3 +324,34 @@
 	.jnkui #ev-tags-table th:nth-child(2), .jnkui #ev-tags-table td:nth-child(2),
 	.jnkui #ev-tags-table th:nth-child(3), .jnkui #ev-tags-table td:nth-child(3) { display: none; }
 }
+
+/* ---------- Star and read state (Entry_Flags) ---------- */
+.jnkui .ev-board-flags { display: inline-flex; gap: 6px; flex-wrap: wrap; }
+.jnkui .ev-col-unread { font-size: 11px; font-weight: 700; color: #fff; background: var(--jnk-brand); border-radius: 999px; padding: 1px 7px; font-variant-numeric: tabular-nums; }
+/* Unread: a tinted card and a bold title (a dot would read as the source dot). */
+.jnkui .ev-card.is-unread { background: color-mix(in srgb, var(--jnk-brand) 7%, #fff); border-color: color-mix(in srgb, var(--jnk-brand) 30%, var(--jnk-line)); }
+.jnkui .ev-card.is-unread .ev-card-title { font-weight: 750; }
+.jnkui .ev-card:not(.is-unread) .ev-card-title { font-weight: 550; }
+.jnkui .ev-star { flex: none; background: none; border: 0; padding: 2px; margin: 0; cursor: pointer; color: #94a3b8; border-radius: 6px; line-height: 1; }
+.jnkui .ev-star .dashicons { width: 20px; height: 20px; font-size: 20px; }
+.jnkui .ev-star.is-small .dashicons { width: 16px; height: 16px; font-size: 16px; }
+.jnkui .ev-star:hover, .jnkui .ev-star.is-on { color: #b45309; }
+.jnkui .ev-star:focus-visible { outline: 2px solid var(--jnk-brand); outline-offset: 1px; }
+.jnkui .ev-panel-unread { font-size: 12px; }
+
+/* ---------- Uploaded files (File_Links) ---------- */
+.jnkui .ev-files { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.jnkui .ev-file { display: flex; align-items: center; gap: 10px; min-width: 0; }
+.jnkui .ev-file-thumb { flex: none; display: block; width: 64px; height: 64px; border-radius: 8px; overflow: hidden; border: 1px solid var(--jnk-line); background: var(--jnk-line-2); }
+.jnkui .ev-file-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.jnkui .ev-file-name { display: inline-flex; align-items: center; gap: 4px; min-width: 0; overflow-wrap: anywhere; color: var(--jnk-brand); text-decoration: none; }
+.jnkui .ev-file-name:hover { text-decoration: underline; }
+.jnkui .ev-file-name:focus-visible { outline: 2px solid var(--jnk-brand); outline-offset: 2px; }
+
+/* ---------- Card badges (entryvault_board_card) ---------- */
+.jnkui .ev-card-badges { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 6px; }
+.jnkui .ev-card-badge { font-size: 11px; font-weight: 650; line-height: 18px; padding: 0 8px; border-radius: 999px; border: 1px solid transparent; white-space: nowrap; }
+.jnkui .ev-card-badge.is-info { background: var(--jnk-info-bg); color: var(--jnk-info); border-color: color-mix(in srgb, var(--jnk-info) 25%, #fff); }
+.jnkui .ev-card-badge.is-bad { background: var(--jnk-bad-bg); color: var(--jnk-bad); border-color: color-mix(in srgb, var(--jnk-bad) 25%, #fff); }
+.jnkui .ev-card-badge.is-warn { background: var(--jnk-warn-bg); color: var(--jnk-warn); }
+.jnkui .ev-card-badge.is-ok { background: var(--jnk-ok-bg); color: var(--jnk-ok); }

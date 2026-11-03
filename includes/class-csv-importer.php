@@ -283,6 +283,8 @@ class CSV_Importer {
                 'title'           => $title !== '' ? $title : $email,
                 'email'           => $email,
                 'fields'          => $fields,
+                // Old leads from a file are not unread news.
+                'imported_read'   => true,
             ];
             if ( '' !== $created ) {
                 $payload['created_at'] = $created;

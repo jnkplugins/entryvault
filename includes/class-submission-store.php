@@ -392,12 +392,15 @@ class Submission_Store {
             // Status filter:
             //   '' or 'active'    => exclude archived (default)
             //   'archived'        => only archived
+            //   'spam'            => only the Spam folder
             //   'open'/'closed'   => exact status match
             //   'any' / 'all'     => no status filter
             'status'             => '',
             'tag_id'             => 0,
             // '' = any owner; '0' = unassigned specifically.
             'owner_id'           => '',
+            'starred'            => false,
+            'unread'             => false,
         ];
         $args = array_merge( $defaults, $args );
 
@@ -451,6 +454,12 @@ class Submission_Store {
                 $params[] = (int) $args['owner_id'];
             }
         }
+        if ( ! empty( $args['starred'] ) ) {
+            $where[] = 'is_starred = 1';
+        }
+        if ( ! empty( $args['unread'] ) ) {
+            $where[] = 'read_at IS NULL';
+        }
         if ( $args['source'] !== '' ) {
             $where[]  = 'source_plugin = %s';
             $params[] = substr( (string) $args['source'], 0, 40 );
@@ -470,18 +479,25 @@ class Submission_Store {
             $where[]  = 'created_at <= %s';
             $params[] = Dates::site_day_bounds_utc( (string) $args['date_to'] )[1];
         }
+        // Entries that came in after a moment (UTC "Y-m-d H:i:s"), e.g. "since the last export".
+        if ( ! empty( $args['created_after'] ) && preg_match( '/^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$/', (string) $args['created_after'] ) ) {
+            $where[]  = 'created_at > %s';
+            $params[] = (string) $args['created_after'];
+        }
         $status_arg = is_string( $args['status'] ) ? strtolower( trim( $args['status'] ) ) : '';
         if ( $status_arg === 'any' || $status_arg === 'all' ) {
             // no filter
-        } elseif ( $status_arg === 'archived' ) {
+        } elseif ( $status_arg === 'archived' || $status_arg === 'spam' ) {
             $where[]  = 'status = %s';
-            $params[] = 'archived';
+            $params[] = $status_arg;
         } elseif ( $status_arg === 'open' || $status_arg === 'closed' ) {
             $where[]  = 'status = %s';
             $params[] = $status_arg;
         } else {
-            $where[]  = "(status IS NULL OR status <> %s)";
+            // Spam waits in its own folder; archived entries in theirs.
+            $where[]  = "(status IS NULL OR status NOT IN ( %s, %s ))";
             $params[] = 'archived';
+            $params[] = 'spam';
         }
 
         /**

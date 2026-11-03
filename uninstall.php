@@ -17,17 +17,17 @@ if ( empty( $settings["delete_data_on_uninstall"] ) ) {
     return;
 }
 
-$tables = [
-    "entryvault_submissions", "entryvault_submission_data", "entryvault_pipelines", "entryvault_stages",
-    "entryvault_tags", "entryvault_submission_tags", "entryvault_timeline", "entryvault_inboxes",
-    "entryvault_emails", "entryvault_automations", "entryvault_approvals",
-    // Pre-1.0.7 table names, in case an install never ran the rename migration.
-    "ev_submissions", "ev_submission_data", "ev_pipelines", "ev_stages",
-    "ev_tags", "ev_submission_tags", "ev_timeline", "ev_inboxes",
-    "ev_emails", "ev_automations",
-];
-foreach ( $tables as $t ) {
-    $wpdb->query( $wpdb->prepare( 'DROP TABLE IF EXISTS %i', $wpdb->prefix . $t ) );
+// Drop every EntryVault table, found by prefix: Pro's too, since a site that
+// ran Pro and went back to the free build still has them, and the free build
+// ships no pro/ (same as Linkweave, QA 31 Oct 2026). Naming Pro's tables here
+// would also put premium names into the free build.
+$entryvault_tables = (array) $wpdb->get_col( $wpdb->prepare( "SHOW TABLES LIKE %s", $wpdb->esc_like( $wpdb->prefix . "entryvault_" ) . "%" ) );
+// Pre-1.0.7 table names, in case an install never ran the rename migration.
+foreach ( [ "ev_submissions", "ev_submission_data", "ev_pipelines", "ev_stages", "ev_tags", "ev_submission_tags", "ev_timeline", "ev_inboxes", "ev_emails", "ev_automations" ] as $entryvault_old ) {
+    $entryvault_tables[] = $wpdb->prefix . $entryvault_old;
+}
+foreach ( array_unique( $entryvault_tables ) as $entryvault_table ) {
+    $wpdb->query( $wpdb->prepare( 'DROP TABLE IF EXISTS %i', (string) $entryvault_table ) );
 }
 
 // Every option and transient EntryVault keeps (settings, pipeline tokens,

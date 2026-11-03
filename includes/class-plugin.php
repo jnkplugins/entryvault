@@ -48,6 +48,11 @@ final class Plugin {
         Abilities::register();
         REST_Public::register();
         Public_Front::register();
+        File_Links::register();
+        // The EntryVault box on the WordPress Dashboard.
+        Dashboard_Widget::register();
+        // wp entryvault … (export, import, backfill, lists). Only under WP-CLI.
+        CLI::register();
 
         if ( is_admin() ) {
             // Apply pending schema migrations on update (the activation hook does
@@ -128,7 +133,7 @@ final class Plugin {
         if ( ! current_user_can( $cap ) && Capabilities::current_user_has_pipeline_access() ) {
             add_menu_page(
                 __( 'EntryVault', 'entryvault' ),
-                __( 'EntryVault', 'entryvault' ),
+                __( 'EntryVault', 'entryvault' ) . self::unread_badge(),
                 'read',
                 'entryvault',
                 [ $this, 'render_view_kanban' ],
@@ -140,7 +145,7 @@ final class Plugin {
 
         add_menu_page(
             __( 'EntryVault', 'entryvault' ),
-            __( 'EntryVault', 'entryvault' ),
+            __( 'EntryVault', 'entryvault' ) . self::unread_badge(),
             $cap,
             'entryvault',
             [ $this, 'render_view_kanban' ],
@@ -186,6 +191,29 @@ final class Plugin {
                 [ $this, 'render_view_upgrade' ]
             );
         }
+    }
+
+    /**
+     * The unread count on the admin menu, WordPress's own bubble (as Comments
+     * and Updates use). Nothing when everything is read.
+     */
+    public static function unread_badge(): string {
+        // Until the read_at column exists (first admin page after an update,
+        // admin_menu runs before admin_init's migration) there is nothing to count.
+        if ( (int) get_option( 'entryvault_db_rev', 0 ) < Activator::DB_REV ) {
+            return '';
+        }
+        $n = Entry_Flags::unread_total();
+        if ( $n <= 0 ) {
+            return '';
+        }
+        return sprintf(
+            ' <span class="awaiting-mod count-%1$d"><span class="pending-count" aria-hidden="true">%2$s</span><span class="screen-reader-text">%3$s</span></span>',
+            $n,
+            esc_html( number_format_i18n( $n ) ),
+            /* translators: %s: number of unread entries. */
+            esc_html( sprintf( _n( '%s unread entry', '%s unread entries', $n, 'entryvault' ), number_format_i18n( $n ) ) )
+        );
     }
 
     public function enqueue_admin_assets( string $hook ): void {
@@ -250,9 +278,16 @@ final class Plugin {
                 'entryvault-submissions',
                 ENTRYVAULT_URL . 'admin/assets/js/submissions.js',
                 [],
-                ENTRYVAULT_VERSION,
+                (string) filemtime( ENTRYVAULT_PATH . 'admin/assets/js/submissions.js' ),
                 true
             );
+            wp_localize_script( 'entryvault-submissions', 'EntryVaultSubmissionsBoot', [
+                'restUrl' => esc_url_raw( rest_url( 'entryvault/v1/' ) ),
+                'nonce'   => wp_create_nonce( 'wp_rest' ),
+                'failed'  => __( 'Could not save. Reload the page and try again.', 'entryvault' ),
+                'moveUp'  => __( 'Move up', 'entryvault' ),
+                'moveDown' => __( 'Move down', 'entryvault' ),
+            ] );
         }
 
         // Health screen: fetches + renders the /health report (was inline).
@@ -436,6 +471,11 @@ final class Plugin {
             // Dates on the board are written in the user's WordPress language
             // (Profile > Language), not the browser's. BCP 47 tag, e.g. "ko-KR".
             'locale'          => self::js_locale(),
+            // Extra tabs for the entry panel, each filled by the add-on that
+            // registered it (the app draws only the tab and an empty slot).
+            'panelTabs'       => self::panel_tabs(),
+            // Named filters an add-on offers on the board: { label, all, views: [ { id, name, pipeline_id } ] }.
+            'boardViews'      => self::board_views(),
         ] );
         if ( file_exists( $build_dir . 'index.css' ) ) {
             wp_enqueue_style(
@@ -445,6 +485,53 @@ final class Plugin {
                 $asset['version'] ?? ENTRYVAULT_VERSION
             );
         }
+    }
+
+    /**
+     * Extra entry-panel tabs: [ [ 'key' => 'slug', 'label' => 'Shown name' ], ... ].
+     *
+     * @return array<int,array{key:string,label:string}>
+     */
+    public static function panel_tabs(): array {
+        /**
+         * Filter the extra tabs of the entry panel on the board.
+         *
+         * @param array $tabs List of [ 'key' => string, 'label' => string ].
+         */
+        $tabs = (array) apply_filters( 'entryvault_panel_tabs', [] );
+        $out  = [];
+        foreach ( $tabs as $t ) {
+            $key = is_array( $t ) ? sanitize_key( (string) ( $t['key'] ?? '' ) ) : '';
+            if ( '' !== $key && '' !== (string) ( $t['label'] ?? '' ) ) {
+                $out[] = [ 'key' => $key, 'label' => (string) $t['label'] ];
+            }
+        }
+        return $out;
+    }
+
+    /**
+     * Board view choices from add-ons, or null when there are none.
+     *
+     * @return array{label:string,all:string,views:array<int,array{id:string,name:string,pipeline_id:int}>}|null
+     */
+    public static function board_views(): ?array {
+        /**
+         * Filter the named views offered above the board.
+         *
+         * @param array|null $data [ 'label' => string, 'all' => string, 'views' => [ [ 'id', 'name', 'pipeline_id' ] ] ].
+         */
+        $data = apply_filters( 'entryvault_board_views', null );
+        if ( ! is_array( $data ) || empty( $data['views'] ) || '' === (string) ( $data['label'] ?? '' ) ) {
+            return null;
+        }
+        $views = [];
+        foreach ( (array) $data['views'] as $v ) {
+            $id = is_array( $v ) ? sanitize_key( (string) ( $v['id'] ?? '' ) ) : '';
+            if ( '' !== $id && '' !== (string) ( $v['name'] ?? '' ) ) {
+                $views[] = [ 'id' => $id, 'name' => (string) $v['name'], 'pipeline_id' => (int) ( $v['pipeline_id'] ?? 0 ) ];
+            }
+        }
+        return $views ? [ 'label' => (string) $data['label'], 'all' => (string) ( $data['all'] ?? '' ), 'views' => $views ] : null;
     }
 
     public function render_view_kanban():       void { Ready_Notice::done(); include ENTRYVAULT_PATH . 'admin/views/kanban.php'; }

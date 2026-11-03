@@ -1,9 +1,8 @@
-#
 msgid ""
 msgstr ""
 "Project-Id-Version: EntryVault\n"
 "Report-Msgid-Bugs-To: https://jnkplugins.com/entryvault/\n"
-"POT-Creation-Date: 2026-10-31T17:07:35+00:00\n"
+"POT-Creation-Date: 2026-11-02T19:56:30+00:00\n"
 "PO-Revision-Date: 2026-10-29 18:00+0000\n"
 "Last-Translator: JNK Plugins\n"
 "Language-Team: Arabic\n"
@@ -16,20 +15,20 @@ msgstr ""
 "X-Domain: entryvault\n"
 "X-Generator: WP-CLI 2.12.0\n"
 
-#: pro/licensorpro-client/licensorpro-client.php:750
+#: pro/licensorpro-client/licensorpro-client.php:751
 msgid "Manage license"
 msgstr "إدارة الترخيص"
 
-#: pro/licensorpro-client/licensorpro-client.php:753
+#: pro/licensorpro-client/licensorpro-client.php:754
 msgid "Renew license"
 msgstr "تجديد الترخيص"
 
-#: pro/licensorpro-client/licensorpro-client.php:754
+#: pro/licensorpro-client/licensorpro-client.php:755
 msgid "Activate license"
 msgstr "تفعيل الترخيص"
 
 #. translators: %s: plugin name
-#: pro/licensorpro-client/licensorpro-client.php:781
+#: pro/licensorpro-client/licensorpro-client.php:782
 #, php-format
 msgid ""
 "<strong>%s Pro is on.</strong> Thank you! Every Pro tool is switched on for "
@@ -39,7 +38,7 @@ msgstr ""
 "والتحديثات تصل إلى لوحة التحكم."
 
 #. translators: %s: plugin name
-#: pro/licensorpro-client/licensorpro-client.php:830
+#: pro/licensorpro-client/licensorpro-client.php:831
 #, php-format
 msgid ""
 "<strong>%s Pro is installed, but no Pro license is active on this site.</"
@@ -48,20 +47,20 @@ msgstr ""
 "<strong>%s Pro مثبّت، لكن لا يوجد ترخيص Pro نشط على هذا الموقع.</strong> أدخل "
 "مفتاح الترخيص لتشغيل أدوات Pro."
 
-#: pro/licensorpro-client/licensorpro-client.php:836
+#: pro/licensorpro-client/licensorpro-client.php:837
 msgid "Enter license key"
 msgstr "أدخل مفتاح الترخيص"
 
-#: pro/licensorpro-client/licensorpro-client.php:839
+#: pro/licensorpro-client/licensorpro-client.php:840
 msgid "Find your key in your account"
 msgstr "تجد المفتاح في حسابك"
 
-#: pro/licensorpro-client/licensorpro-client.php:865
+#: pro/licensorpro-client/licensorpro-client.php:866
 msgid "Renew your license"
 msgstr "جدّد ترخيصك"
 
 #. translators: 1: plugin name, 2: expiry date, 3: lock date, 4: days left
-#: pro/licensorpro-client/licensorpro-client.php:871
+#: pro/licensorpro-client/licensorpro-client.php:872
 #, php-format
 msgid ""
 "<strong>Your %1$s Pro license expired on %2$s.</strong> Pro keeps working as "
@@ -76,7 +75,7 @@ msgstr ""
 "لكن أدوات Pro في لوحة التحكم ستُقفل."
 
 #. translators: 1: plugin name, 2: expiry date
-#: pro/licensorpro-client/licensorpro-client.php:881
+#: pro/licensorpro-client/licensorpro-client.php:882
 #, php-format
 msgid ""
 "<strong>%1$s Pro tools are locked because your license expired on %2$s.</"
@@ -88,7 +87,7 @@ msgstr ""
 "مجددًا، ومنها إصلاحات الأمان."
 
 #. translators: %s: plugin name
-#: pro/licensorpro-client/licensorpro-client.php:889
+#: pro/licensorpro-client/licensorpro-client.php:890
 #, php-format
 msgid ""
 "<strong>This site is no longer activated on your %s Pro license.</strong> "
@@ -99,7 +98,7 @@ msgstr ""
 "التحكم مقفلة حتى تفعّله مجددًا. كل ما يراه الزوار يستمر بالعمل."
 
 #. translators: %s: plugin name
-#: pro/licensorpro-client/licensorpro-client.php:896
+#: pro/licensorpro-client/licensorpro-client.php:897
 #, php-format
 msgid ""
 "<strong>Your %s Pro license is no longer active.</strong> It was refunded or "
@@ -110,67 +109,73 @@ msgstr ""
 "الاشتراك، لذا أُقفلت أدوات Pro في لوحة التحكم وتوقفت التحديثات. كل ما يراه "
 "الزوار يستمر بالعمل."
 
-#: pro/licensorpro-client/licensorpro-client.php:998
+#. translators: %s: plugin name
+#: pro/licensorpro-client/licensorpro-client.php:906
+#, php-format
+msgid "Your %s Pro license is no longer active on this site."
+msgstr "لم يعد ترخيص %s Pro الخاص بك نشطًا على هذا الموقع."
+
+#: pro/licensorpro-client/licensorpro-client.php:1010
 msgid "Please enter a license key."
 msgstr "الرجاء إدخال مفتاح ترخيص."
 
-#: pro/licensorpro-client/licensorpro-client.php:1010
-#: pro/licensorpro-client/licensorpro-client.php:1069
+#: pro/licensorpro-client/licensorpro-client.php:1025
+#: pro/licensorpro-client/licensorpro-client.php:1085
 msgid "License response failed signature verification."
 msgstr "فشل التحقق من توقيع رد الترخيص."
 
-#: pro/licensorpro-client/licensorpro-client.php:1052
+#: pro/licensorpro-client/licensorpro-client.php:1067
 msgid "No license key set."
 msgstr "لم يتم تعيين مفتاح ترخيص."
 
-#: pro/licensorpro-client/licensorpro-client.php:1184
+#: pro/licensorpro-client/licensorpro-client.php:1200
 msgid "Only deactivating temporarily"
 msgstr "أعطّلها مؤقتًا فقط"
 
-#: pro/licensorpro-client/licensorpro-client.php:1185
+#: pro/licensorpro-client/licensorpro-client.php:1201
 msgid "I could not work out how to use it"
 msgstr "لم أعرف كيف أستخدمها"
 
-#: pro/licensorpro-client/licensorpro-client.php:1186
+#: pro/licensorpro-client/licensorpro-client.php:1202
 msgid "It is missing a feature I need"
 msgstr "تنقصها ميزة أحتاجها"
 
-#: pro/licensorpro-client/licensorpro-client.php:1187
+#: pro/licensorpro-client/licensorpro-client.php:1203
 msgid "It did not work"
 msgstr "لم تعمل"
 
-#: pro/licensorpro-client/licensorpro-client.php:1188
+#: pro/licensorpro-client/licensorpro-client.php:1204
 msgid "It broke something on my site"
 msgstr "تسببت في عطل في موقعي"
 
-#: pro/licensorpro-client/licensorpro-client.php:1189
+#: pro/licensorpro-client/licensorpro-client.php:1205
 msgid "I found a better plugin"
 msgstr "وجدت إضافة أفضل"
 
-#: pro/licensorpro-client/licensorpro-client.php:1190
+#: pro/licensorpro-client/licensorpro-client.php:1206
 msgid "I no longer need it"
 msgstr "لم أعد بحاجة إليها"
 
-#: pro/licensorpro-client/licensorpro-client.php:1191
+#: pro/licensorpro-client/licensorpro-client.php:1207
 msgid "Something else"
 msgstr "سبب آخر"
 
 #. translators: %s: plugin name.
-#: pro/licensorpro-client/licensorpro-client.php:1218
+#: pro/licensorpro-client/licensorpro-client.php:1234
 #, php-format
 msgid "Before you turn %s off"
 msgstr "قبل أن تعطّل %s"
 
-#: pro/licensorpro-client/licensorpro-client.php:1222
+#: pro/licensorpro-client/licensorpro-client.php:1238
 msgid ""
 "If you have a moment, what went wrong? It is the only way we hear about it."
 msgstr "إن كان لديك دقيقة، ما الذي لم يعمل؟ هذه هي الطريقة الوحيدة لنعرف بذلك."
 
-#: pro/licensorpro-client/licensorpro-client.php:1233
+#: pro/licensorpro-client/licensorpro-client.php:1249
 msgid "Anything else? (optional)"
 msgstr "هل من شيء آخر؟ (اختياري)"
 
-#: pro/licensorpro-client/licensorpro-client.php:1235
+#: pro/licensorpro-client/licensorpro-client.php:1251
 msgid ""
 "Sends your answer, the plugin version and your site address. Nothing else, "
 "and nothing from your site content."
@@ -178,48 +183,48 @@ msgstr ""
 "يُرسل إجابتك وإصدار الإضافة وعنوان موقعك. لا شيء غير ذلك، ولا شيء من محتوى "
 "موقعك."
 
-#: pro/licensorpro-client/licensorpro-client.php:1239
+#: pro/licensorpro-client/licensorpro-client.php:1255
 msgid "Send and deactivate"
 msgstr "أرسل وعطّل"
 
-#: pro/licensorpro-client/licensorpro-client.php:1242
+#: pro/licensorpro-client/licensorpro-client.php:1258
 msgid "Skip and deactivate"
 msgstr "تخطَّ وعطّل"
 
-#: pro/licensorpro-client/licensorpro-client.php:1245 admin/views/tags.php:54
-#: admin/assets/kanban/build/index.js:5 admin/assets/kanban/build/index.js:26
+#: pro/licensorpro-client/licensorpro-client.php:1261 admin/views/tags.php:54
+#: admin/assets/kanban/build/index.js:3 admin/assets/kanban/build/index.js:24
 msgid "Cancel"
 msgstr "إلغاء"
 
-#: pro/licensorpro-client/licensorpro-client.php:1376
 #: pro/licensorpro-client/licensorpro-client.php:1392
+#: pro/licensorpro-client/licensorpro-client.php:1408
 msgid "API URL not configured."
 msgstr "لم يتم إعداد عنوان API URL."
 
-#: pro/licensorpro-client/licensorpro-client.php:1411
+#: pro/licensorpro-client/licensorpro-client.php:1427
 msgid "Unexpected response from license server."
 msgstr "رد غير متوقع من خادم التراخيص."
 
 #. translators: %s: human-readable time difference, e.g. "3 hours".
-#: pro/licensorpro-client/licensorpro-client.php:1736
+#: pro/licensorpro-client/licensorpro-client.php:1758
 #: includes/class-dates.php:65
 #, php-format
 msgid "in %s"
 msgstr "خلال %s"
 
 #. translators: %s: human-readable time difference, e.g. "3 hours".
-#: pro/licensorpro-client/licensorpro-client.php:1737
+#: pro/licensorpro-client/licensorpro-client.php:1759
 #: includes/class-dates.php:73
 #, php-format
 msgid "%s ago"
 msgstr "قبل %s"
 
-#: pro/licensorpro-client/licensorpro-client.php:1762
+#: pro/licensorpro-client/licensorpro-client.php:1775
 #, php-format
 msgid "%s License"
 msgstr "ترخيص %s"
 
-#: pro/licensorpro-client/licensorpro-client.php:1772
+#: pro/licensorpro-client/licensorpro-client.php:1785
 msgid ""
 "This site was deactivated, so its seat is free for another site. Enter the "
 "key again here to switch the Pro tools back on."
@@ -227,260 +232,29 @@ msgstr ""
 "تم تعطيل هذا الموقع، لذا أصبح مقعده متاحًا لموقع آخر. أدخل المفتاح مجددًا هنا "
 "لإعادة تشغيل أدوات Pro."
 
-#: pro/licensorpro-client/licensorpro-client.php:1782
-#: pro/licensorpro-client/licensorpro-client.php:1813
-#: pro/licensorpro-client/licensorpro-client.php:1877
-msgid "License key"
-msgstr "مفتاح الترخيص"
-
-#: pro/licensorpro-client/licensorpro-client.php:1783
-msgid "Type"
-msgstr "النوع"
-
-#: pro/licensorpro-client/licensorpro-client.php:1785
-msgid ""
-"Free license: updates of the free version only. It does not switch on Pro."
-msgstr "ترخيص Free: تحديثات النسخة المجانية فقط. لا يشغّل Pro."
-
-#: pro/licensorpro-client/licensorpro-client.php:1786
-msgid "Free license: updates arrive in your dashboard like any other plugin."
-msgstr "ترخيص Free: تصل التحديثات إلى لوحة التحكم مثل أي إضافة أخرى."
-
-#: pro/licensorpro-client/licensorpro-client.php:1788
-#: pro/licensorpro-client/licensorpro-client.php:1845
-msgid "Last checked"
-msgstr "آخر فحص"
-
-#: pro/licensorpro-client/licensorpro-client.php:1792
-#: pro/licensorpro-client/licensorpro-client.php:1851
-msgid "Check for updates now"
-msgstr "تحقق من التحديثات الآن"
-
-#: pro/licensorpro-client/licensorpro-client.php:1795
-msgid "Bought Pro?"
-msgstr "اشتريت Pro؟"
-
-#: pro/licensorpro-client/licensorpro-client.php:1796
-msgid ""
-"Enter your Pro license key and Pro is installed over this version. "
-"Everything you set up stays."
-msgstr ""
-"أدخل مفتاح ترخيص Pro وسيُثبَّت Pro فوق هذا الإصدار. كل ما أعددته يبقى كما هو."
-
-#: pro/licensorpro-client/licensorpro-client.php:1798
-msgid "Pro license key"
-msgstr "مفتاح ترخيص Pro"
-
-#: pro/licensorpro-client/licensorpro-client.php:1801
-#: pro/licensorpro-client/licensorpro-client.php:1858
-msgid "Install Pro now"
-msgstr "ثبّت Pro الآن"
-
 #: pro/licensorpro-client/licensorpro-client.php:1803
-msgid ""
-"Rather do it by hand? Download the Pro zip from your account and upload it "
-"over this plugin."
-msgstr ""
-"تفضّل القيام بذلك يدويًا؟ نزّل ملف Pro المضغوط (zip) من حسابك وارفعه فوق هذه "
-"الإضافة."
-
-#: pro/licensorpro-client/licensorpro-client.php:1804
-#: pro/licensorpro-client/licensorpro-client.php:1885
-msgid "Go to your account"
-msgstr "اذهب إلى حسابك"
-
-#: pro/licensorpro-client/licensorpro-client.php:1816
-msgid "active"
-msgstr "نشط"
-
-#. translators: %s: date the Pro tools lock
-#: pro/licensorpro-client/licensorpro-client.php:1818
-#, php-format
-msgid "expired, Pro tools stay on until %s"
-msgstr "منتهٍ، تبقى أدوات Pro تعمل حتى %s"
-
-#: pro/licensorpro-client/licensorpro-client.php:1819
-msgid "expired, Pro tools locked"
-msgstr "منتهٍ، أدوات Pro مقفلة"
-
-#: pro/licensorpro-client/licensorpro-client.php:1821
-msgid "this site is not activated"
-msgstr "هذا الموقع غير مُفعّل"
-
-#: pro/licensorpro-client/licensorpro-client.php:1822
-msgid "no longer active (refunded or cancelled)"
-msgstr "لم يعد نشطًا (تم الاسترداد أو الإلغاء)"
-
-#: pro/licensorpro-client/licensorpro-client.php:1824
-#: admin/views/past-entries.php:91
-#: admin/assets/kanban/build/index.js:5
-msgid "Status"
-msgstr "الحالة"
-
-#: pro/licensorpro-client/licensorpro-client.php:1826
-msgid "Renew"
-msgstr "تجديد"
-
-#: pro/licensorpro-client/licensorpro-client.php:1830
-msgid "Offline mode"
-msgstr "وضع عدم الاتصال"
-
-#: pro/licensorpro-client/licensorpro-client.php:1832
-#, php-format
-msgid "cached license valid until %s"
-msgstr "الترخيص المخزّن مؤقتًا صالح حتى %s"
-
-#: pro/licensorpro-client/licensorpro-client.php:1837
-msgctxt "update channel"
-msgid "stable"
-msgstr "مستقر"
-
-#: pro/licensorpro-client/licensorpro-client.php:1838
-msgctxt "update channel"
-msgid "beta"
-msgstr "بيتا"
-
-#: pro/licensorpro-client/licensorpro-client.php:1839
-msgctxt "update channel"
-msgid "release candidate"
-msgstr "إصدار مرشّح"
-
-#: pro/licensorpro-client/licensorpro-client.php:1840
-msgctxt "update channel"
-msgid "development"
-msgstr "تطوير"
-
-#: pro/licensorpro-client/licensorpro-client.php:1842
-msgid "Update channel"
-msgstr "قناة التحديث"
-
-#: pro/licensorpro-client/licensorpro-client.php:1843
-msgid "Site limit"
-msgstr "حد المواقع"
-
-#: pro/licensorpro-client/licensorpro-client.php:1843
-msgid "Unlimited"
-msgstr "غير محدود"
-
-#: pro/licensorpro-client/licensorpro-client.php:1844
-msgid "Expires"
-msgstr "ينتهي في"
-
-#: pro/licensorpro-client/licensorpro-client.php:1844
-msgid "Never"
-msgstr "أبدًا"
-
-#: pro/licensorpro-client/licensorpro-client.php:1849
-msgid "Deactivate this site"
-msgstr "تعطيل هذا الموقع"
-
-#: pro/licensorpro-client/licensorpro-client.php:1856
-msgid "This is the free version, running on your Pro license."
-msgstr "هذه هي النسخة المجانية، تعمل على ترخيص Pro الخاص بك."
-
-#: pro/licensorpro-client/licensorpro-client.php:1873
-msgid ""
-"Have a Pro license key? Enter it here to switch on the Pro tools. It "
-"replaces the free license on this site."
-msgstr ""
-"لديك مفتاح ترخيص Pro؟ أدخله هنا لتشغيل أدوات Pro. سيحل محل الترخيص المجاني "
-"على هذا الموقع."
-
-#: pro/licensorpro-client/licensorpro-client.php:1874
-msgid "Enter your license key to activate this site."
-msgstr "أدخل مفتاح الترخيص لتفعيل هذا الموقع."
-
-#: pro/licensorpro-client/licensorpro-client.php:1881
-msgid "Activate"
-msgstr "تفعيل"
-
-#: pro/licensorpro-client/licensorpro-client.php:1884
-msgid "Your key is in your purchase email and in your account."
-msgstr "تجد مفتاحك في رسالة الشراء وفي حسابك."
-
-#: pro/licensorpro-client/licensorpro-client.php:1892
-msgid "Need a hand?"
-msgstr "تحتاج مساعدة؟"
-
-#: pro/licensorpro-client/licensorpro-client.php:1893
-msgid "Contact support"
-msgstr "تواصل مع الدعم"
-
-#: pro/licensorpro-client/licensorpro-client.php:1900
-msgid ""
-"Every seat on this license is in use. Deactivate one of your other sites "
-"from your account, then try again."
-msgstr ""
-"كل المواقع المسموح بها في هذا الترخيص مستخدمة. عطّل أحد مواقعك الأخرى من "
-"حسابك ثم حاول مجددًا."
-
-#: pro/licensorpro-client/licensorpro-client.php:1901
-msgid ""
-"This license has expired. Renewing it from your account reactivates this "
-"site immediately. Your settings and data are untouched."
-msgstr ""
-"انتهت صلاحية هذا الترخيص. تجديده من حسابك يعيد تفعيل هذا الموقع فورًا، وتبقى "
-"إعداداتك وبياناتك كما هي."
-
-#: pro/licensorpro-client/licensorpro-client.php:1902
-msgid ""
-"That key was not recognised. Check for a missing character, or copy it again "
-"from your purchase email."
-msgstr ""
-"لم نتعرّف على هذا المفتاح. تأكد من عدم نقص أي حرف، أو انسخه مجددًا من رسالة "
-"الشراء."
-
-#: pro/licensorpro-client/licensorpro-client.php:1903
-msgid ""
-"This key has been revoked. If you believe that is a mistake, reply to your "
-"purchase email and we will sort it out."
-msgstr ""
-"تم إلغاء هذا المفتاح. إن كنت ترى أن ذلك خطأ، فردّ على رسالة الشراء وسنحلّ "
-"الأمر."
-
-#: pro/licensorpro-client/licensorpro-client.php:1904
-msgid ""
-"Could not reach the licensing server. Your site may be blocking outbound "
-"requests. This is usually temporary, so try again in a minute."
-msgstr ""
-"تعذّر الوصول إلى خادم التراخيص. ربما يمنع موقعك الطلبات الخارجية. غالبًا يكون "
-"ذلك مؤقتًا، فحاول مجددًا بعد دقيقة."
-
-#: pro/licensorpro-client/licensorpro-client.php:1905
-msgid "Too many attempts in a short window. Wait a minute and try again."
-msgstr "محاولات كثيرة خلال وقت قصير. انتظر دقيقة ثم حاول مجددًا."
-
-#: pro/licensorpro-client/licensorpro-client.php:1906
-msgid ""
-"The licensing server had a problem on its side. Your key was not rejected. "
-"Try again in a few minutes, and if it keeps happening, reply to your "
-"purchase email."
-msgstr ""
-"حدثت مشكلة في خادم التراخيص من جهته، ولم يُرفض مفتاحك. حاول مجددًا بعد بضع "
-"دقائق، وإن تكرر ذلك فردّ على رسالة الشراء."
-
-#: pro/licensorpro-client/licensorpro-client.php:1907
+#: pro/licensorpro-client/licensorpro-client.php:2351
 msgid "Enter your license key first."
 msgstr "أدخل مفتاح الترخيص أولًا."
 
-#: pro/licensorpro-client/licensorpro-client.php:1908
+#: pro/licensorpro-client/licensorpro-client.php:1804
 msgid "Installing Pro. This takes a few seconds, keep this page open…"
 msgstr "جارٍ تثبيت Pro. يستغرق ذلك بضع ثوانٍ، أبقِ هذه الصفحة مفتوحة…"
 
-#: pro/licensorpro-client/licensorpro-client.php:1909
+#: pro/licensorpro-client/licensorpro-client.php:1805
 msgid "Reloading to switch on the Pro tools…"
 msgstr "جارٍ إعادة التحميل لتشغيل أدوات Pro…"
 
-#: pro/licensorpro-client/licensorpro-client.php:1910
+#: pro/licensorpro-client/licensorpro-client.php:1806
 msgid "Reload now"
 msgstr "أعد التحميل الآن"
 
-#: pro/licensorpro-client/licensorpro-client.php:1911
+#: pro/licensorpro-client/licensorpro-client.php:1807
 msgid ""
 "Could not reach the licensing server. Check your connection and try again."
 msgstr "تعذّر الوصول إلى خادم التراخيص. تحقق من اتصالك وحاول مجددًا."
 
-#: pro/licensorpro-client/licensorpro-client.php:1912
+#: pro/licensorpro-client/licensorpro-client.php:1808
 msgid ""
 "Deactivate this license on this site? Premium features switch off here and "
 "the seat is freed for another site."
@@ -488,24 +262,222 @@ msgstr ""
 "هل تريد تعطيل هذا الترخيص على هذا الموقع؟ ستتوقف الميزات المميزة هنا ويصبح "
 "المكان متاحًا لموقع آخر."
 
-#: pro/licensorpro-client/licensorpro-client.php:1913
-#: includes/class-plugin.php:368
+#: pro/licensorpro-client/licensorpro-client.php:1809
+#: includes/class-plugin.php:403
 msgid "Done."
 msgstr "تم."
 
-#: pro/licensorpro-client/licensorpro-client.php:1914
+#: pro/licensorpro-client/licensorpro-client.php:1810
 msgid "Deactivated."
 msgstr "تم التعطيل."
 
-#: pro/licensorpro-client/licensorpro-client.php:1915
+#: pro/licensorpro-client/licensorpro-client.php:1811
 msgid "Checked."
 msgstr "تم الفحص."
 
+#: pro/licensorpro-client/licensorpro-client.php:1982
+#: pro/licensorpro-client/licensorpro-client.php:2013
+#: pro/licensorpro-client/licensorpro-client.php:2088
+msgid "License key"
+msgstr "مفتاح الترخيص"
+
+#: pro/licensorpro-client/licensorpro-client.php:1983
+msgid "Type"
+msgstr "النوع"
+
+#: pro/licensorpro-client/licensorpro-client.php:1985
+msgid ""
+"Free license: updates of the free version only. It does not switch on Pro."
+msgstr "ترخيص Free: تحديثات النسخة المجانية فقط. لا يشغّل Pro."
+
+#: pro/licensorpro-client/licensorpro-client.php:1986
+msgid "Free license: updates arrive in your dashboard like any other plugin."
+msgstr "ترخيص Free: تصل التحديثات إلى لوحة التحكم مثل أي إضافة أخرى."
+
+#: pro/licensorpro-client/licensorpro-client.php:1988
+#: pro/licensorpro-client/licensorpro-client.php:2056
+msgid "Last checked"
+msgstr "آخر فحص"
+
+#: pro/licensorpro-client/licensorpro-client.php:1992
+#: pro/licensorpro-client/licensorpro-client.php:2062
+msgid "Check for updates now"
+msgstr "تحقق من التحديثات الآن"
+
+#: pro/licensorpro-client/licensorpro-client.php:1995
+msgid "Bought Pro?"
+msgstr "اشتريت Pro؟"
+
+#: pro/licensorpro-client/licensorpro-client.php:1996
+msgid ""
+"Enter your Pro license key and Pro is installed over this version. "
+"Everything you set up stays."
+msgstr ""
+"أدخل مفتاح ترخيص Pro وسيُثبَّت Pro فوق هذا الإصدار. كل ما أعددته يبقى كما هو."
+
+#: pro/licensorpro-client/licensorpro-client.php:1998
+msgid "Pro license key"
+msgstr "مفتاح ترخيص Pro"
+
+#: pro/licensorpro-client/licensorpro-client.php:2001
+#: pro/licensorpro-client/licensorpro-client.php:2069
+msgid "Install Pro now"
+msgstr "ثبّت Pro الآن"
+
+#: pro/licensorpro-client/licensorpro-client.php:2003
+msgid ""
+"Rather do it by hand? Download the Pro zip from your account and upload it "
+"over this plugin."
+msgstr ""
+"تفضّل القيام بذلك يدويًا؟ نزّل ملف Pro المضغوط (zip) من حسابك وارفعه فوق هذه "
+"الإضافة."
+
+#: pro/licensorpro-client/licensorpro-client.php:2004
+#: pro/licensorpro-client/licensorpro-client.php:2096
+msgid "Go to your account"
+msgstr "اذهب إلى حسابك"
+
+#: pro/licensorpro-client/licensorpro-client.php:2017
+msgid "this site is not activated"
+msgstr "هذا الموقع غير مُفعّل"
+
+#: pro/licensorpro-client/licensorpro-client.php:2018
+msgid "this key is for a different plugin"
+msgstr "هذا المفتاح لإضافة أخرى"
+
+#: pro/licensorpro-client/licensorpro-client.php:2019
+msgid "key not recognised"
+msgstr "مفتاح غير معروف"
+
+#: pro/licensorpro-client/licensorpro-client.php:2020
+#: pro/licensorpro-client/licensorpro-client.php:2021
+msgid "revoked"
+msgstr "مُلغى"
+
+#: pro/licensorpro-client/licensorpro-client.php:2025
+msgid "active"
+msgstr "نشط"
+
+#. translators: %s: date the Pro tools lock
+#: pro/licensorpro-client/licensorpro-client.php:2027
+#, php-format
+msgid "expired, Pro tools stay on until %s"
+msgstr "منتهٍ، تبقى أدوات Pro تعمل حتى %s"
+
+#: pro/licensorpro-client/licensorpro-client.php:2028
+msgid "expired, Pro tools locked"
+msgstr "منتهٍ، أدوات Pro مقفلة"
+
+#: pro/licensorpro-client/licensorpro-client.php:2029
+msgid "no longer active (refunded or cancelled)"
+msgstr "لم يعد نشطًا (تم الاسترداد أو الإلغاء)"
+
+#. translators: %s: date the Pro tools lock
+#: pro/licensorpro-client/licensorpro-client.php:2033
+#, php-format
+msgid "renewal payment failed, Pro tools stay on until %s"
+msgstr "فشل دفع التجديد، تبقى أدوات Pro مفعّلة حتى %s"
+
+#: pro/licensorpro-client/licensorpro-client.php:2035
+#: admin/views/past-entries.php:91 includes/class-export.php:51
+#: admin/assets/kanban/build/index.js:3
+msgid "Status"
+msgstr "الحالة"
+
+#: pro/licensorpro-client/licensorpro-client.php:2037
+msgid "Renew"
+msgstr "تجديد"
+
+#: pro/licensorpro-client/licensorpro-client.php:2041
+msgid "Offline mode"
+msgstr "وضع عدم الاتصال"
+
+#: pro/licensorpro-client/licensorpro-client.php:2043
+#, php-format
+msgid "cached license valid until %s"
+msgstr "الترخيص المخزّن مؤقتًا صالح حتى %s"
+
+#: pro/licensorpro-client/licensorpro-client.php:2048
+msgctxt "update channel"
+msgid "stable"
+msgstr "مستقر"
+
+#: pro/licensorpro-client/licensorpro-client.php:2049
+msgctxt "update channel"
+msgid "beta"
+msgstr "بيتا"
+
+#: pro/licensorpro-client/licensorpro-client.php:2050
+msgctxt "update channel"
+msgid "release candidate"
+msgstr "إصدار مرشّح"
+
+#: pro/licensorpro-client/licensorpro-client.php:2051
+msgctxt "update channel"
+msgid "development"
+msgstr "تطوير"
+
+#: pro/licensorpro-client/licensorpro-client.php:2053
+msgid "Update channel"
+msgstr "قناة التحديث"
+
+#: pro/licensorpro-client/licensorpro-client.php:2054
+msgid "Site limit"
+msgstr "حد المواقع"
+
+#: pro/licensorpro-client/licensorpro-client.php:2054
+msgid "Unlimited"
+msgstr "غير محدود"
+
+#: pro/licensorpro-client/licensorpro-client.php:2055
+msgid "Expires"
+msgstr "ينتهي في"
+
+#: pro/licensorpro-client/licensorpro-client.php:2055
+msgid "Never"
+msgstr "أبدًا"
+
+#: pro/licensorpro-client/licensorpro-client.php:2060
+msgid "Deactivate this site"
+msgstr "تعطيل هذا الموقع"
+
+#: pro/licensorpro-client/licensorpro-client.php:2067
+msgid "This is the free version, running on your Pro license."
+msgstr "هذه هي النسخة المجانية، تعمل على ترخيص Pro الخاص بك."
+
+#: pro/licensorpro-client/licensorpro-client.php:2084
+msgid ""
+"Have a Pro license key? Enter it here to switch on the Pro tools. It "
+"replaces the free license on this site."
+msgstr ""
+"لديك مفتاح ترخيص Pro؟ أدخله هنا لتشغيل أدوات Pro. سيحل محل الترخيص المجاني "
+"على هذا الموقع."
+
+#: pro/licensorpro-client/licensorpro-client.php:2085
+msgid "Enter your license key to activate this site."
+msgstr "أدخل مفتاح الترخيص لتفعيل هذا الموقع."
+
+#: pro/licensorpro-client/licensorpro-client.php:2092
+msgid "Activate"
+msgstr "تفعيل"
+
+#: pro/licensorpro-client/licensorpro-client.php:2095
+msgid "Your key is in your purchase email and in your account."
+msgstr "تجد مفتاحك في رسالة الشراء وفي حسابك."
+
 #: pro/licensorpro-client/licensorpro-client.php:2103
+msgid "Need a hand?"
+msgstr "تحتاج مساعدة؟"
+
+#: pro/licensorpro-client/licensorpro-client.php:2104
+msgid "Contact support"
+msgstr "تواصل مع الدعم"
+
+#: pro/licensorpro-client/licensorpro-client.php:2151
 msgid "Only someone who may install plugins on this site can install Pro."
 msgstr "فقط من يملك صلاحية تثبيت الإضافات على هذا الموقع يمكنه تثبيت Pro."
 
-#: pro/licensorpro-client/licensorpro-client.php:2116
+#: pro/licensorpro-client/licensorpro-client.php:2164
 msgid ""
 "That is a free license key, so it keeps this free version updated. Pro needs "
 "the key from your purchase email."
@@ -514,7 +486,7 @@ msgstr ""
 "المفتاح الموجود في رسالة الشراء."
 
 #. translators: %s: URL of the customer account
-#: pro/licensorpro-client/licensorpro-client.php:2121
+#: pro/licensorpro-client/licensorpro-client.php:2169
 #, php-format
 msgid ""
 "Your key is active. Download the Pro zip from your account (%s) and upload "
@@ -523,49 +495,202 @@ msgstr ""
 "مفتاحك نشط. نزّل ملف Pro المضغوط من حسابك (%s) وارفعه فوق هذه الإضافة بدلًا من "
 "ذلك."
 
-#: pro/licensorpro-client/licensorpro-client.php:2125
+#: pro/licensorpro-client/licensorpro-client.php:2173
 msgid "This site does not allow installing plugins from the dashboard."
 msgstr "هذا الموقع لا يسمح بتثبيت الإضافات من لوحة التحكم."
 
-#: pro/licensorpro-client/licensorpro-client.php:2129
+#: pro/licensorpro-client/licensorpro-client.php:2177
 msgid "The Pro download could not be fetched for this key."
 msgstr "تعذّر جلب تنزيل Pro لهذا المفتاح."
 
-#: pro/licensorpro-client/licensorpro-client.php:2137
+#: pro/licensorpro-client/licensorpro-client.php:2185
 msgid "This site asks for FTP details to install plugins."
 msgstr "يطلب هذا الموقع بيانات FTP لتثبيت الإضافات."
 
-#: pro/licensorpro-client/licensorpro-client.php:2172
+#: pro/licensorpro-client/licensorpro-client.php:2220
 msgid "Installing Pro did not finish."
 msgstr "لم يكتمل تثبيت Pro."
 
 #. translators: %s: plugin name
-#: pro/licensorpro-client/licensorpro-client.php:2177
+#: pro/licensorpro-client/licensorpro-client.php:2225
 #, php-format
 msgid "%s Pro is installed and your license is active. Reloading…"
 msgstr "تم تثبيت %s Pro وترخيصك نشط. جارٍ إعادة التحميل…"
 
-#: pro/licensorpro-client/licensorpro-client.php:2187
+#: pro/licensorpro-client/licensorpro-client.php:2244
 msgid "License activated."
 msgstr "تم تفعيل الترخيص."
 
-#: pro/licensorpro-client/licensorpro-client.php:2202
+#: pro/licensorpro-client/licensorpro-client.php:2256
 msgid "Site deactivated."
 msgstr "تم تعطيل الموقع."
 
-#: pro/licensorpro-client/licensorpro-client.php:2213
+#: pro/licensorpro-client/licensorpro-client.php:2278
 msgid "License is valid. Update info refreshed."
 msgstr "الترخيص صالح. تم تحديث معلومات التحديث."
 
-#: pro/licensorpro-client/licensorpro-client.php:2220
+#: pro/licensorpro-client/licensorpro-client.php:2312
+msgid ""
+"Every seat on this license is in use. Deactivate one of your other sites "
+"from your account, then try again."
+msgstr ""
+"كل المواقع المسموح بها في هذا الترخيص مستخدمة. عطّل أحد مواقعك الأخرى من "
+"حسابك ثم حاول مجددًا."
+
+#: pro/licensorpro-client/licensorpro-client.php:2315
+msgid ""
+"This license has expired. Renewing it from your account reactivates this "
+"site immediately. Your settings and data are untouched."
+msgstr ""
+"انتهت صلاحية هذا الترخيص. تجديده من حسابك يعيد تفعيل هذا الموقع فورًا، وتبقى "
+"إعداداتك وبياناتك كما هي."
+
+#: pro/licensorpro-client/licensorpro-client.php:2317
+msgid ""
+"The last renewal payment for this license did not go through, so it is "
+"paused. Update your payment details in your account and it switches back on. "
+"Your settings and data are untouched."
+msgstr ""
+"لم تكتمل آخر دفعة تجديد لهذا الترخيص، لذا تم إيقافه مؤقتًا. حدّث بيانات الدفع "
+"في حسابك وسيعود للعمل. إعداداتك وبياناتك لم تُمس."
+
+#: pro/licensorpro-client/licensorpro-client.php:2320
+msgid ""
+"This license was cancelled or refunded, so it no longer switches on Pro. If "
+"that is a mistake, reply to your purchase email."
+msgstr ""
+"تم إلغاء هذا الترخيص أو استرداد ثمنه، لذا لم يعد يفعّل Pro. إن كان ذلك خطأ، "
+"فرُدّ على رسالة الشراء."
+
+#: pro/licensorpro-client/licensorpro-client.php:2323
+msgid ""
+"That key was not recognised. Check for a missing character, or copy it again "
+"from your purchase email."
+msgstr ""
+"لم نتعرّف على هذا المفتاح. تأكد من عدم نقص أي حرف، أو انسخه مجددًا من رسالة "
+"الشراء."
+
+#: pro/licensorpro-client/licensorpro-client.php:2325
+msgid ""
+"This key is for a different plugin. Each plugin has its own key: use the one "
+"from the purchase email for this plugin."
+msgstr ""
+"هذا المفتاح لإضافة أخرى. لكل إضافة مفتاحها الخاص: استخدم المفتاح الموجود في "
+"رسالة شراء هذه الإضافة."
+
+#: pro/licensorpro-client/licensorpro-client.php:2328
+msgid ""
+"This key has been revoked. If you believe that is a mistake, reply to your "
+"purchase email and we will sort it out."
+msgstr ""
+"تم إلغاء هذا المفتاح. إن كنت ترى أن ذلك خطأ، فردّ على رسالة الشراء وسنحلّ "
+"الأمر."
+
+#: pro/licensorpro-client/licensorpro-client.php:2330
+msgid ""
+"This site is not activated on this license any more. Enter the key again to "
+"activate it."
+msgstr ""
+"لم يعد هذا الموقع مفعّلًا على هذا الترخيص. أدخل المفتاح مرة أخرى لتفعيله."
+
+#: pro/licensorpro-client/licensorpro-client.php:2332
+msgid ""
+"That is a free license key. It keeps the free version updated but does not "
+"switch on Pro. Enter the Pro key from your purchase email."
+msgstr ""
+"هذا مفتاح ترخيص مجاني. يُبقي النسخة المجانية محدّثة لكنه لا يفعّل Pro. أدخل "
+"مفتاح Pro من رسالة الشراء."
+
+#: pro/licensorpro-client/licensorpro-client.php:2335
+msgid "This plugin has no free license. Use the key from your purchase email."
+msgstr "لا يوجد ترخيص مجاني لهذه الإضافة. استخدم المفتاح من رسالة الشراء."
+
+#: pro/licensorpro-client/licensorpro-client.php:2337
+msgid ""
+"The licensing server does not know this plugin. Update the plugin, or reply "
+"to your purchase email."
+msgstr "خادم التراخيص لا يعرف هذه الإضافة. حدّث الإضافة أو رُدّ على رسالة الشراء."
+
+#: pro/licensorpro-client/licensorpro-client.php:2339
+msgid ""
+"This site's license session ran out. Check the license again to renew it."
+msgstr "انتهت جلسة الترخيص لهذا الموقع. تحقّق من الترخيص مرة أخرى لتجديدها."
+
+#: pro/licensorpro-client/licensorpro-client.php:2342
+msgid ""
+"The download link has expired. Check for updates again to get a fresh one."
+msgstr ""
+"انتهت صلاحية رابط التنزيل. ابحث عن التحديثات مرة أخرى للحصول على رابط جديد."
+
+#: pro/licensorpro-client/licensorpro-client.php:2344
+msgid ""
+"The download is not on the server right now. Try again later, or download "
+"the zip from your account."
+msgstr ""
+"التنزيل غير متوفر على الخادم حاليًا. حاول لاحقًا أو نزّل ملف zip من حسابك."
+
+#: pro/licensorpro-client/licensorpro-client.php:2346
+msgid "Enter a valid email address."
+msgstr "أدخل عنوان بريد إلكتروني صالحًا."
+
+#: pro/licensorpro-client/licensorpro-client.php:2349
+msgid ""
+"The request to the licensing server was missing details. Reload this page "
+"and try again."
+msgstr ""
+"كان الطلب المرسل إلى خادم التراخيص ينقصه بعض التفاصيل. أعد تحميل هذه الصفحة "
+"وحاول مجددًا."
+
+#: pro/licensorpro-client/licensorpro-client.php:2353
+msgid ""
+"The answer from the licensing server could not be verified, so it was not "
+"trusted. Try again in a few minutes. If it keeps happening, reply to your "
+"purchase email."
+msgstr ""
+"تعذّر التحقق من رد خادم التراخيص، لذا لم يُعتمد. حاول مجددًا بعد بضع دقائق. إن "
+"تكرر ذلك، فرُدّ على رسالة الشراء."
+
+#: pro/licensorpro-client/licensorpro-client.php:2356
+msgid ""
+"Could not reach the licensing server. Your site may be blocking outbound "
+"requests. This is usually temporary, so try again in a minute."
+msgstr ""
+"تعذّر الوصول إلى خادم التراخيص. ربما يمنع موقعك الطلبات الخارجية. غالبًا يكون "
+"ذلك مؤقتًا، فحاول مجددًا بعد دقيقة."
+
+#: pro/licensorpro-client/licensorpro-client.php:2359
+msgid "Too many attempts in a short window. Wait a minute and try again."
+msgstr "محاولات كثيرة خلال وقت قصير. انتظر دقيقة ثم حاول مجددًا."
+
+#: pro/licensorpro-client/licensorpro-client.php:2361
+msgid ""
+"The licensing server had a problem on its side. Your key was not rejected. "
+"Try again in a few minutes, and if it keeps happening, reply to your "
+"purchase email."
+msgstr ""
+"حدثت مشكلة في خادم التراخيص من جهته، ولم يُرفض مفتاحك. حاول مجددًا بعد بضع "
+"دقائق، وإن تكرر ذلك فردّ على رسالة الشراء."
+
+#. translators: %s: short error code from the licensing server
+#: pro/licensorpro-client/licensorpro-client.php:2365
+#, php-format
+msgid ""
+"The licensing server could not confirm this license (%s). Try again in a few "
+"minutes. If it keeps happening, reply to your purchase email and quote that "
+"code."
+msgstr ""
+"تعذّر على خادم التراخيص تأكيد هذا الترخيص (%s). حاول مجددًا بعد بضع دقائق. إن "
+"تكرر ذلك، فرُدّ على رسالة الشراء واذكر هذا الرمز."
+
+#: pro/licensorpro-client/licensorpro-client.php:2391
 msgid "Permission denied."
 msgstr "تم رفض الإذن."
 
 #. Plugin Name of the plugin
 #: entryvault.php includes/class-abilities.php:58
-#: includes/class-admin-ui.php:82 includes/class-plugin.php:130
-#: includes/class-plugin.php:131 includes/class-plugin.php:142
-#: includes/class-plugin.php:143
+#: includes/class-admin-ui.php:82 includes/class-plugin.php:135
+#: includes/class-plugin.php:136 includes/class-plugin.php:147
+#: includes/class-plugin.php:148
 msgid "EntryVault"
 msgstr "EntryVault"
 
@@ -602,8 +727,8 @@ msgstr ""
 "البحث في الإدخالات من كل إضافات النماذج وفتحها، وقراءة لوحاتك وأرقامك. لا "
 "يتم تغيير أي شيء. ما يراه المساعد من كل إدخال يُحدَّد أدناه."
 
-#: admin/views/assistants.php:29 includes/class-plugin.php:229
-#: includes/class-plugin.php:289
+#: admin/views/assistants.php:29 includes/class-plugin.php:257
+#: includes/class-plugin.php:324
 msgid "Saved."
 msgstr "تمّ الحفظ."
 
@@ -626,8 +751,8 @@ msgid ""
 "on the Plugins screen."
 msgstr "إضافة MCP Adapter مثبّتة لكن تعذّر تفعيلها. فعّلها من شاشة الإضافات."
 
-#: admin/views/assistants.php:44 includes/class-plugin.php:161
-#: includes/class-plugin.php:465
+#: admin/views/assistants.php:44 includes/class-plugin.php:166
+#: includes/class-plugin.php:552
 msgid "AI assistants"
 msgstr "مساعدات الذكاء الاصطناعي"
 
@@ -706,7 +831,9 @@ msgstr ""
 "فتحها، مثل طلب توظيف أو نموذج طبي."
 
 #. translators: %s: number of entries.
+#. translators: %s: number of entries matching the filters.
 #: admin/views/assistants.php:108 admin/views/past-entries.php:106
+#: public/templates/submissions-table.php:126
 #, php-format
 msgid "%s entry"
 msgid_plural "%s entries"
@@ -717,22 +844,44 @@ msgstr[3] "%s إدخالات"
 msgstr[4] "%s إدخالًا"
 msgstr[5] "%s إدخال"
 
-#: admin/views/assistants.php:114
+#: admin/views/assistants.php:113
+msgid "Only entries with AI consent"
+msgstr "الإدخالات التي فيها موافقة على الذكاء الاصطناعي فقط"
+
+#: admin/views/assistants.php:116
+msgid "Assistants see only entries from the forms ticked below"
+msgstr "يرى المساعدون إدخالات النماذج المحددة أدناه فقط"
+
+#: admin/views/assistants.php:117
+msgid ""
+"For forms that tell visitors their message may be read with AI help (for "
+"example a consent checkbox or a line in your privacy notice). With this on, "
+"every other form is kept from assistants, new forms included."
+msgstr ""
+"للنماذج التي تخبر الزوار بأن رسائلهم قد تُقرأ بمساعدة الذكاء الاصطناعي (مثل "
+"مربع موافقة أو سطر في إشعار الخصوصية). عند تفعيل هذا تُحجب كل النماذج الأخرى "
+"عن المساعدين، بما فيها النماذج الجديدة."
+
+#: admin/views/assistants.php:120
+msgid "Forms that ask for AI consent"
+msgstr "النماذج التي تطلب الموافقة على الذكاء الاصطناعي"
+
+#: admin/views/assistants.php:134
 msgid ""
 "Every entry an assistant opens gets a line in its history, so you can see "
 "what was read."
 msgstr ""
 "كل إدخال يفتحه المساعد يُضاف له سطر في سجله الزمني، لتعرف ما تمّت قراءته."
 
-#: admin/views/assistants.php:115
+#: admin/views/assistants.php:135
 msgid "Save"
 msgstr "حفظ"
 
-#: admin/views/assistants.php:121
+#: admin/views/assistants.php:141
 msgid "3. Connect your assistant"
 msgstr "3. اربط مساعدك"
 
-#: admin/views/assistants.php:122
+#: admin/views/assistants.php:142
 msgid ""
 "Assistants reach WordPress through the free MCP Adapter plugin, made by the "
 "WordPress AI team."
@@ -740,49 +889,49 @@ msgstr ""
 "تصل المساعدات إلى WordPress عبر إضافة MCP Adapter المجانية، من تطوير فريق "
 "الذكاء الاصطناعي في WordPress."
 
-#: admin/views/assistants.php:124
+#: admin/views/assistants.php:144
 msgid "MCP Adapter plugin"
 msgstr "إضافة MCP Adapter"
 
-#: admin/views/assistants.php:126
+#: admin/views/assistants.php:146
 msgid "Active"
 msgstr "نشط"
 
-#: admin/views/assistants.php:128
+#: admin/views/assistants.php:148
 msgid "Installed, not active"
 msgstr "مثبّتة، غير نشطة"
 
-#: admin/views/assistants.php:130
+#: admin/views/assistants.php:150
 msgid "Not installed"
 msgstr "غير مثبّتة"
 
-#: admin/views/assistants.php:139
+#: admin/views/assistants.php:159
 msgid "Install and activate MCP Adapter"
 msgstr "تثبيت وتفعيل MCP Adapter"
 
-#: admin/views/assistants.php:139
+#: admin/views/assistants.php:159
 msgid "Activate MCP Adapter"
 msgstr "تفعيل MCP Adapter"
 
-#: admin/views/assistants.php:141
+#: admin/views/assistants.php:161
 msgid "From wordpress.org. You can remove it any time on the Plugins screen."
 msgstr "من wordpress.org. يمكنك إزالتها في أي وقت من شاشة الإضافات."
 
-#: admin/views/assistants.php:144
+#: admin/views/assistants.php:164
 msgid ""
 "Ask the site administrator to install and activate the MCP Adapter plugin "
 "from wordpress.org."
 msgstr "اطلب من مدير الموقع تثبيت وتفعيل إضافة MCP Adapter من wordpress.org."
 
-#: admin/views/assistants.php:148
+#: admin/views/assistants.php:168
 msgid "Application password"
 msgstr "كلمة مرور التطبيق"
 
-#: admin/views/assistants.php:151
+#: admin/views/assistants.php:171
 msgid "Not available"
 msgstr "غير متاح"
 
-#: admin/views/assistants.php:152
+#: admin/views/assistants.php:172
 msgid ""
 "WordPress only offers application passwords on sites served over HTTPS. "
 "Switch the site to HTTPS first."
@@ -790,7 +939,7 @@ msgstr ""
 "لا يوفّر WordPress كلمات مرور التطبيقات إلا على المواقع التي تعمل عبر HTTPS. "
 "انقل الموقع إلى HTTPS أولًا."
 
-#: admin/views/assistants.php:153
+#: admin/views/assistants.php:173
 msgid ""
 "On a site on your own computer with WP-CLI, an assistant can connect without "
 "one. Use this as the command in its MCP settings:"
@@ -798,7 +947,7 @@ msgstr ""
 "على موقع يعمل على حاسوبك مع WP-CLI، يمكن للمساعد الاتصال من دونها. استخدم "
 "هذا كأمر في إعدادات MCP الخاصة به:"
 
-#: admin/views/assistants.php:156
+#: admin/views/assistants.php:176
 msgid ""
 "Your assistant signs in with an application password: a separate password "
 "you can revoke without changing your own. Name it after the assistant, for "
@@ -807,11 +956,11 @@ msgstr ""
 "يسجّل مساعدك الدخول بكلمة مرور تطبيق: كلمة مرور منفصلة يمكنك إلغاؤها دون "
 "تغيير كلمة مرورك. سمّها باسم المساعد، مثلًا «Claude»."
 
-#: admin/views/assistants.php:157
+#: admin/views/assistants.php:177
 msgid "Create an application password"
 msgstr "إنشاء كلمة مرور تطبيق"
 
-#: admin/views/assistants.php:158
+#: admin/views/assistants.php:178
 msgid ""
 "Tip: an assistant can do whatever the user it signs in as can do. A separate "
 "user who can see only the boards it needs is the safest choice."
@@ -819,11 +968,11 @@ msgstr ""
 "نصيحة: يستطيع المساعد فعل كل ما يستطيعه العضو الذي يسجّل الدخول به. العضو "
 "المنفصل الذي لا يرى إلا اللوحات التي يحتاجها هو الخيار الأكثر أمانًا."
 
-#: admin/views/assistants.php:181
+#: admin/views/assistants.php:201
 msgid "Claude Desktop, Cursor and other desktop apps"
 msgstr "Claude Desktop وCursor وتطبيقات سطح المكتب الأخرى"
 
-#: admin/views/assistants.php:182
+#: admin/views/assistants.php:202
 msgid ""
 "Add this to the app’s MCP settings file (in Claude Desktop: Settings > "
 "Developer > Edit Config), put your application password in, and restart the "
@@ -833,15 +982,15 @@ msgstr ""
 "Developer > Edit Config)، وضع فيه كلمة مرور التطبيق، ثم أعد تشغيل التطبيق. "
 "يتطلب ذلك وجود Node.js على حاسوبك."
 
-#: admin/views/assistants.php:185
+#: admin/views/assistants.php:205
 msgid "Claude Code"
 msgstr "Claude Code"
 
-#: admin/views/assistants.php:188
+#: admin/views/assistants.php:208
 msgid "Guide for your assistant"
 msgstr "دليل لمساعدك"
 
-#: admin/views/assistants.php:189
+#: admin/views/assistants.php:209
 msgid ""
 "A short file that tells your assistant how to use these abilities safely: "
 "preview first, ask before saving, undo when needed. In Claude, add it as a "
@@ -851,12 +1000,12 @@ msgstr ""
 "قبل الحفظ، والتراجع عند الحاجة. في Claude أضِفه كمهارة (skill)؛ وفي التطبيقات "
 "الأخرى الصقه في التعليمات."
 
-#: admin/views/assistants.php:190
+#: admin/views/assistants.php:210
 msgid "Download the guide"
 msgstr "نزّل الدليل"
 
 #. translators: %s: web address of the other MCP server.
-#: admin/views/assistants.php:197
+#: admin/views/assistants.php:217
 #, php-format
 msgid ""
 "Another plugin on this site (for example Rank Math) added an MCP server that "
@@ -870,7 +1019,7 @@ msgstr ""
 "Claude، من الاتصال به؛ اتبع تعليمات تلك الإضافة. يوفّر الخادم قدرات "
 "EntryVault نفسها التي تسمح بها أعلاه، مع إعدادات الخصوصية نفسها."
 
-#: admin/views/assistants.php:202
+#: admin/views/assistants.php:222
 msgid ""
 "ChatGPT and Claude in a web browser cannot connect to a WordPress site this "
 "way yet: they need a sign-in method (OAuth) that WordPress does not offer "
@@ -880,7 +1029,7 @@ msgstr ""
 "الطريقة بعد: فهما يحتاجان إلى طريقة تسجيل دخول (OAuth) لا يوفّرها WordPress "
 "حتى الآن."
 
-#: admin/views/assistants.php:204
+#: admin/views/assistants.php:224
 msgid ""
 "Try asking: “Which contact form entries from this week are still in the "
 "first stage?”"
@@ -888,88 +1037,88 @@ msgstr ""
 "جرّب أن تسأل: «ما إدخالات نموذج الاتصال من هذا الأسبوع التي ما زالت في "
 "المرحلة الأولى؟»"
 
-#: admin/views/assistants.php:210
+#: admin/views/assistants.php:230
 msgid "4. What an assistant can use"
 msgstr "4. ما يمكن للمساعد استخدامه"
 
-#: admin/views/assistants.php:211
+#: admin/views/assistants.php:231
 msgid ""
 "Every EntryVault ability on this site and whether assistants can use it now."
 msgstr "كل قدرات EntryVault على هذا الموقع، وهل يمكن للمساعدات استخدامها الآن."
 
-#: admin/views/assistants.php:213 admin/views/assistants.php:244
+#: admin/views/assistants.php:233 admin/views/assistants.php:264
 msgid "Ability"
 msgstr "القدرة"
 
-#: admin/views/assistants.php:213
+#: admin/views/assistants.php:233
 msgid "What it does"
 msgstr "ما تفعله"
 
-#: admin/views/assistants.php:213
+#: admin/views/assistants.php:233
 msgid "Kind"
 msgstr "النوع"
 
-#: admin/views/assistants.php:213
+#: admin/views/assistants.php:233
 msgid "Assistants"
 msgstr "المساعدات"
 
-#: admin/views/assistants.php:218
+#: admin/views/assistants.php:238
 msgid "Reads"
 msgstr "قراءة"
 
-#: admin/views/assistants.php:219
+#: admin/views/assistants.php:239
 msgid "Changes entries"
 msgstr "يغيّر الإدخالات"
 
-#: admin/views/assistants.php:220
+#: admin/views/assistants.php:240
 msgid "Sends email"
 msgstr "يرسل بريدًا إلكترونيًا"
 
-#: admin/views/assistants.php:229
+#: admin/views/assistants.php:249
 msgid "Allowed"
 msgstr "مسموح"
 
-#: admin/views/assistants.php:229
+#: admin/views/assistants.php:249
 msgid "Off"
 msgstr "مُعطّل"
 
-#: admin/views/assistants.php:238
+#: admin/views/assistants.php:258
 msgid "5. What assistants did"
 msgstr "5. ما فعلته المساعدات"
 
-#: admin/views/assistants.php:239
+#: admin/views/assistants.php:259
 msgid "The last 50 requests. EntryVault keeps the newest 200."
 msgstr "آخر 50 طلبًا. يحتفظ EntryVault بأحدث 200."
 
-#: admin/views/assistants.php:241
+#: admin/views/assistants.php:261
 msgid "No requests yet."
 msgstr "لا توجد طلبات بعد."
 
-#: admin/views/assistants.php:244
+#: admin/views/assistants.php:264
 msgid "When"
 msgstr "عندما"
 
-#: admin/views/assistants.php:244
+#: admin/views/assistants.php:264
 msgid "User"
 msgstr "العضو"
 
-#: admin/views/assistants.php:244
+#: admin/views/assistants.php:264
 msgid "Asked"
 msgstr "الطلب"
 
-#: admin/views/assistants.php:244
+#: admin/views/assistants.php:264
 msgid "Result"
 msgstr "النتيجة"
 
-#: admin/views/assistants.php:254 admin/views/past-entries.php:164
+#: admin/views/assistants.php:274 admin/views/past-entries.php:164
 msgid "Done"
 msgstr "تم"
 
-#: admin/views/assistants.php:254 admin/views/past-entries.php:167
+#: admin/views/assistants.php:274 admin/views/past-entries.php:167
 msgid "Failed"
 msgstr "فشل"
 
-#: admin/views/dashboard.php:9 includes/class-submissions-admin.php:185
+#: admin/views/dashboard.php:9 includes/class-submissions-admin.php:227
 msgid "You do not have permission to view this page."
 msgstr "ليست لديك صلاحية لعرض هذه الصفحة."
 
@@ -986,7 +1135,8 @@ msgid "All submissions"
 msgstr "كل الإرسالات"
 
 #: admin/views/dashboard.php:75 admin/views/dashboard.php:84
-#: includes/class-plugin.php:364 includes/class-submissions-admin.php:224
+#: includes/class-dashboard-widget.php:118 includes/class-plugin.php:399
+#: includes/class-submissions-admin.php:264
 msgid "Open the board"
 msgstr "افتح اللوحة"
 
@@ -1003,7 +1153,7 @@ msgstr ""
 "يلتقط EntryVault الإرسالات من إضافات النماذج التي تستخدمها بالفعل. لا حاجة "
 "لتغيير أي شيء في نماذجك. أرسل أحدها مرة واحدة وسيظهر على اللوحة خلال لحظات."
 
-#: admin/views/dashboard.php:85 admin/assets/kanban/build/index.js:37
+#: admin/views/dashboard.php:85 admin/assets/kanban/build/index.js:43
 msgid "Import a CSV instead"
 msgstr "استورد ملف CSV بدلًا من ذلك"
 
@@ -1127,16 +1277,16 @@ msgid ""
 msgstr "اختر مسارًا ونطاقًا زمنيًا. تتحدّث الأرقام أدناه فورًا."
 
 #: admin/views/dashboard.php:207 admin/views/import.php:83
-#: includes/class-submissions-list-table.php:59
-#: admin/assets/kanban/build/index.js:37
+#: includes/class-export.php:44 includes/class-submissions-list-table.php:60
+#: admin/assets/kanban/build/index.js:41
 msgid "Pipeline"
 msgstr "المسار"
 
-#: admin/views/dashboard.php:211 includes/class-submissions-admin.php:340
+#: admin/views/dashboard.php:211 includes/class-submissions-admin.php:415
 msgid "From"
 msgstr "من"
 
-#: admin/views/dashboard.php:215 includes/class-submissions-admin.php:344
+#: admin/views/dashboard.php:215 includes/class-submissions-admin.php:419
 msgid "To"
 msgstr "إلى"
 
@@ -1239,8 +1389,8 @@ msgstr "الموقع الإلكتروني"
 msgid "What is it about?"
 msgstr "ما الموضوع؟"
 
-#: admin/views/feedback.php:66 includes/class-submissions-list-table.php:58
-#: admin/assets/kanban/build/index.js:26
+#: admin/views/feedback.php:66 includes/class-submissions-list-table.php:59
+#: admin/assets/kanban/build/index.js:24
 msgid "Message"
 msgstr "الرسالة"
 
@@ -1264,7 +1414,7 @@ msgstr ""
 "يُرسل: إصدار WordPress وإصدار PHP وإصدار EntryVault واسم القالب النشط وعنوان "
 "URL لموقعك. لا بيانات شخصية."
 
-#: admin/views/feedback.php:93 admin/assets/kanban/build/index.js:27
+#: admin/views/feedback.php:93 admin/assets/kanban/build/index.js:25
 msgid "Send"
 msgstr "إرسال"
 
@@ -1273,7 +1423,7 @@ msgid "Your message goes out through your site’s own email."
 msgstr "تُرسل رسالتك عبر بريد موقعك نفسه."
 
 #: admin/views/health.php:31 includes/class-admin-ui.php:29
-#: includes/class-plugin.php:158
+#: includes/class-plugin.php:163
 msgid "Health"
 msgstr "الصحّة"
 
@@ -1287,7 +1437,7 @@ msgid "Check again"
 msgstr "افحص مجددًا"
 
 #: admin/views/import.php:36 includes/class-admin-ui.php:28
-#: includes/class-plugin.php:157
+#: includes/class-plugin.php:162
 msgid "Import"
 msgstr "استيراد"
 
@@ -1313,6 +1463,7 @@ msgstr "يُقرأ الملف في متصفحك أولًا، لتتمكن من �
 msgid "CSV file"
 msgstr "ملف CSV"
 
+#. translators: joins two groups of conditions where either may hold.
 #: admin/views/import.php:47
 msgid "or"
 msgstr "أو"
@@ -1364,15 +1515,15 @@ msgstr ""
 msgid "Use the default pipeline"
 msgstr "استخدم المسار الافتراضي"
 
-#: admin/views/import.php:91 includes/class-frontend.php:519
-#: includes/class-submissions-list-table.php:60
-#: admin/assets/js/dashboard.js:143
-#: admin/assets/js/dashboard.js:222 admin/assets/kanban/build/index.js:5
-#: blocks/submissions-table/index.js:26
+#: admin/views/import.php:91 includes/class-export.php:45
+#: includes/class-frontend.php:835 includes/class-submissions-list-table.php:61
+#: public/templates/submissions-table.php:78 admin/assets/js/dashboard.js:143
+#: admin/assets/js/dashboard.js:222 admin/assets/kanban/build/index.js:3
+#: blocks/submissions-table/index.js:26 blocks/submissions-table/index.js:118
 msgid "Stage"
 msgstr "المرحلة"
 
-#: admin/views/import.php:93 includes/class-plugin.php:349
+#: admin/views/import.php:93 includes/class-plugin.php:384
 msgid "First stage of the pipeline"
 msgstr "المرحلة الأولى في المسار"
 
@@ -1522,7 +1673,7 @@ msgstr "حدث خطأ ما. افتح الإدخالات السابقة لرؤي�
 msgid "You can bring them in later from Past entries."
 msgstr "يمكنك جلبها لاحقًا من الإدخالات السابقة."
 
-#: admin/views/kanban.php:184 admin/assets/kanban/build/index.js:27
+#: admin/views/kanban.php:184 admin/assets/kanban/build/index.js:31
 msgid "Loading the board…"
 msgstr "جارٍ تحميل اللوحة…"
 
@@ -1535,7 +1686,7 @@ msgid "in the plugin folder."
 msgstr "في مجلد الإضافة."
 
 #: admin/views/past-entries.php:28 includes/class-admin-ui.php:27
-#: includes/class-plugin.php:156
+#: includes/class-plugin.php:161
 msgid "Past entries"
 msgstr "الإدخالات السابقة"
 
@@ -1703,7 +1854,7 @@ msgstr ""
 "فيها طرق أخرى للتواصل معنا."
 
 #: admin/views/settings.php:50 includes/class-admin-ui.php:112
-#: includes/class-plugin.php:91 includes/class-plugin.php:159
+#: includes/class-plugin.php:96 includes/class-plugin.php:164
 msgid "Settings"
 msgstr "الإعدادات"
 
@@ -1727,11 +1878,11 @@ msgstr "اجلب الإدخالات السابقة"
 msgid "License"
 msgstr "الترخيص"
 
-#: admin/views/settings.php:63 includes/class-plugin.php:235
+#: admin/views/settings.php:63 includes/class-plugin.php:263
 msgid "General"
 msgstr "عام"
 
-#: admin/views/settings.php:64 includes/class-plugin.php:236
+#: admin/views/settings.php:64 includes/class-plugin.php:264
 msgid "Owners"
 msgstr "المسؤولون"
 
@@ -1806,7 +1957,8 @@ msgstr ""
 "تم تعطيل EntryVault يومًا، يطبع WordPress الرمز القصير غير المعروف كنص عادي، "
 "بما فيه الرمز (token)؛ المكوّن لا يفعل ذلك، لذا فضّل المكوّن في الصفحات العامة."
 
-#: admin/views/settings.php:160 includes/class-tag-manager.php:135
+#: admin/views/settings.php:160 includes/class-submissions-admin.php:303
+#: includes/class-tag-manager.php:135
 msgid "Spam"
 msgstr "مزعج"
 
@@ -1820,13 +1972,15 @@ msgid ""
 "Forms, Fluent Forms, Forminator, Formidable, Ninja Forms with Akismet, "
 "Everest Forms, WS Form, Jetpack). With this on, those never reach your "
 "board. Spam stays in the form plugin, so nothing is lost. Untick to bring "
-"spam in too."
+"spam into the Spam folder under Submissions, where you can mark a real "
+"message as not spam."
 msgstr ""
-"مُفعّل افتراضيًا. بعض إضافات النماذج تحفظ الرسائل المزعجة وتمرّرها مع ذلك "
+"مفعّل افتراضيًا. بعض إضافات النماذج تحفظ الرسائل المزعجة وتمرّرها مع ذلك "
 "(Gravity Forms وFluent Forms وForminator وFormidable وNinja Forms مع Akismet "
-"وEverest Forms وWS Form وJetpack). مع تفعيل هذا الخيار لا تصل تلك أبدًا إلى "
-"لوحتك. تبقى الرسائل المزعجة في إضافة النماذج، فلا يضيع شيء. أزل التحديد لجلب "
-"الرسائل المزعجة أيضًا."
+"وEverest Forms وWS Form وJetpack). عند تفعيل هذا الخيار لا تصل إلى لوحتك "
+"أبدًا. تبقى الرسائل المزعجة في إضافة النماذج، فلا يضيع شيء. ألغِ التحديد لجلب "
+"الرسائل المزعجة إلى مجلد المزعج ضمن الإرسالات، حيث يمكنك وسم رسالة حقيقية "
+"بأنها ليست مزعجة."
 
 #: admin/views/settings.php:170
 msgid "Data"
@@ -1896,9 +2050,9 @@ msgstr ""
 "المقالات مشمولون دائمًا."
 
 #: admin/views/tags.php:14 includes/class-admin-ui.php:26
-#: includes/class-frontend.php:521 includes/class-plugin.php:155
-#: includes/class-submissions-list-table.php:64
-#: admin/assets/kanban/build/index.js:5
+#: includes/class-export.php:47 includes/class-frontend.php:837
+#: includes/class-plugin.php:160 includes/class-submissions-list-table.php:65
+#: admin/assets/kanban/build/index.js:3
 msgid "Tags"
 msgstr "الوسوم"
 
@@ -1919,7 +2073,7 @@ msgid "Edit a tag to rename it or change its colour. Entries keep their tags."
 msgstr "حرّر وسمًا لإعادة تسميته أو تغيير لونه. تحتفظ الإدخالات بوسومها."
 
 #: admin/views/tags.php:27 admin/views/tags.php:45
-#: includes/class-frontend.php:517
+#: includes/class-frontend.php:833
 #: blocks/submissions-table/index.js:23
 msgid "Name"
 msgstr "الاسم"
@@ -1932,7 +2086,7 @@ msgstr "الاسم المختصر"
 msgid "Colour"
 msgstr "اللون"
 
-#: admin/views/tags.php:39 includes/class-plugin.php:293
+#: admin/views/tags.php:39 includes/class-plugin.php:328
 msgid "Add a tag"
 msgstr "أضف وسمًا"
 
@@ -2178,12 +2332,31 @@ msgstr ""
 "عدد الإدخالات التي وصلت يوميًا، ولكل إضافة نماذج، ولكل مرحلة، لمسار واحد أو "
 "لكل المسارات."
 
-#: includes/class-abilities.php:282
+#: includes/class-abilities.php:181
+msgid "Get everything held about one person"
+msgstr "جلب كل ما هو محفوظ عن شخص واحد"
+
+#: includes/class-abilities.php:182
+msgid ""
+"For a data access request: every entry sent with one email address (any "
+"form, any board), with its fields, notes and the emails exchanged. The "
+"privacy settings still apply: contact details stay masked unless the site "
+"owner allows them, files and passwords are never included, and forms kept "
+"from assistants are only counted. Reading is noted on each entry. Deleting a "
+"person's data stays a human decision in wp-admin."
+msgstr ""
+"لطلب الاطلاع على البيانات: كل إدخال أُرسل بعنوان بريد واحد (أي نموذج، أي "
+"لوحة) مع حقوله وملاحظاته والرسائل المتبادلة. تبقى إعدادات الخصوصية سارية: "
+"تبقى بيانات الاتصال مخفية ما لم يسمح مالك الموقع، ولا تُضمَّن الملفات وكلمات "
+"المرور أبدًا، والنماذج المحجوبة عن المساعدين تُعدّ فقط. تُسجَّل القراءة على كل "
+"إدخال. يبقى حذف بيانات الشخص قرارًا بشريًا في لوحة التحكم."
+
+#: includes/class-abilities.php:296
 msgid "Entry not found."
 msgstr "لم يتم العثور على الإدخال."
 
-#: includes/class-admin-ui.php:25 includes/class-plugin.php:154
-#: includes/class-submissions-admin.php:221
+#: includes/class-admin-ui.php:25 includes/class-dashboard-widget.php:119
+#: includes/class-plugin.php:159 includes/class-submissions-admin.php:261
 msgid "Submissions"
 msgstr "الإرسالات"
 
@@ -2207,20 +2380,51 @@ msgstr "ترقية"
 msgid "Help"
 msgstr "مساعدة"
 
-#: includes/class-ai-privacy.php:117
+#: includes/class-ai-privacy.php:132
 msgid "hidden"
 msgstr "مخفي"
 
-#: includes/class-assistants.php:102 includes/class-assistants.php:114
+#: includes/class-assistants.php:103 includes/class-assistants.php:115
 msgid "Sorry, you are not allowed to do that."
 msgstr "عذرًا، غير مسموح لك بالقيام بذلك."
 
-#: includes/class-assistants.php:143
+#: includes/class-assistants.php:151
 msgid "Sorry, you are not allowed to install plugins on this site."
-msgstr "عذرًا، غير مسموح لك بتثبيت الإضافات على هذا الموقع."
+msgstr "عذرًا، غير مسموح لك بتنصيب الإضافات على هذا الموقع."
 
-#: includes/class-dates.php:61 admin/assets/kanban/build/index.js:2
-#: admin/assets/kanban/build/index.js:20
+#: includes/class-dashboard-widget.php:26
+msgid "EntryVault inbox"
+msgstr "صندوق EntryVault"
+
+#: includes/class-dashboard-widget.php:58
+#: includes/class-submissions-admin.php:288
+#: includes/class-submissions-list-table.php:242
+#: admin/assets/kanban/build/index.js:26 admin/assets/kanban/build/index.js:43
+msgid "Unread"
+msgstr "غير مقروء"
+
+#: includes/class-dashboard-widget.php:59
+msgid "New today"
+msgstr "جديدة اليوم"
+
+#: includes/class-dashboard-widget.php:60
+msgid "No owner yet"
+msgstr "بلا مسؤول بعد"
+
+#: includes/class-dashboard-widget.php:103
+msgid "Latest entries"
+msgstr "أحدث الإدخالات"
+
+#: includes/class-dashboard-widget.php:109
+msgid "(unread)"
+msgstr "(غير مقروء)"
+
+#: includes/class-dashboard-widget.php:115
+msgid "No open entries yet. New form submissions show up here."
+msgstr "لا توجد إدخالات مفتوحة بعد. ستظهر هنا إرسالات النماذج الجديدة."
+
+#: includes/class-dates.php:61 admin/assets/kanban/build/index.js:18
+#: admin/assets/kanban/build/index.js:26
 msgid "just now"
 msgstr "الآن"
 
@@ -2253,6 +2457,65 @@ msgstr "خاسر"
 #: includes/class-email-sender.php:109
 msgid "The mailer did not accept the email."
 msgstr "لم يقبل برنامج البريد الرسالة."
+
+#: includes/class-export.php:41 includes/class-submissions-list-table.php:53
+msgid "ID"
+msgstr "ID"
+
+#: includes/class-export.php:42 includes/class-frontend.php:832
+#: includes/class-plugin.php:392 includes/class-privacy.php:227
+#: includes/class-submissions-list-table.php:54
+#: blocks/submissions-table/index.js:24
+msgid "Title"
+msgstr "العنوان"
+
+#: includes/class-export.php:43 includes/class-frontend.php:834
+#: includes/class-plugin.php:393 includes/class-privacy.php:228
+#: includes/class-submissions-list-table.php:55
+#: admin/assets/kanban/build/index.js:1
+#: admin/assets/kanban/build/index.js:3
+msgid "Email"
+msgstr "البريد الإلكتروني"
+
+#: includes/class-export.php:46 includes/class-frontend.php:836
+#: includes/class-submissions-list-table.php:66
+#: includes/class-submissions-list-table.php:164
+#: admin/assets/js/dashboard.js:159
+#: admin/assets/kanban/build/index.js:3 admin/assets/kanban/build/index.js:43
+msgid "Owner"
+msgstr "المسؤول"
+
+#: includes/class-export.php:48 includes/class-plugin.php:394
+#: includes/class-privacy.php:226 includes/class-submissions-list-table.php:67
+#: admin/assets/kanban/build/index.js:3
+msgid "Source"
+msgstr "المصدر"
+
+#: includes/class-export.php:49
+msgid "Form ID"
+msgstr "ID النموذج"
+
+#: includes/class-export.php:50
+msgid "Entry ID in the form plugin"
+msgstr "معرّف الإدخال في إضافة النماذج"
+
+#: includes/class-export.php:52 includes/class-frontend.php:831
+#: includes/class-submissions-list-table.php:68
+#: blocks/submissions-table/index.js:29
+msgid "Created"
+msgstr "تاريخ الإنشاء"
+
+#: includes/class-export.php:53 includes/class-submissions-list-table.php:69
+msgid "Updated"
+msgstr "تاريخ التحديث"
+
+#: includes/class-export.php:305
+msgid ""
+"Could not build the Excel file on this server (the PHP zip extension is "
+"missing). Choose CSV instead."
+msgstr ""
+"تعذّر إنشاء ملف Excel على هذا الخادم (امتداد zip في PHP غير موجود). اختر CSV "
+"بدلًا منه."
 
 #: includes/class-feedback.php:41
 msgid "You do not have permission to do this."
@@ -2287,19 +2550,27 @@ msgstr "نعم"
 msgid "No"
 msgstr "لا"
 
-#: includes/class-frontend.php:85
+#: includes/class-file-links.php:362
+msgid "You do not have permission to download this file."
+msgstr "ليست لديك صلاحية تنزيل هذا الملف."
+
+#: includes/class-file-links.php:375
+msgid "File not found."
+msgstr "لم يُعثر على الملف."
+
+#: includes/class-frontend.php:86
 msgid "No pipeline specified."
 msgstr "لم يتم تحديد مسار."
 
-#: includes/class-frontend.php:90 includes/class-rest-public.php:123
+#: includes/class-frontend.php:91 includes/class-rest-public.php:123
 msgid "Pipeline not found."
 msgstr "المسار غير موجود."
 
-#: includes/class-frontend.php:100 includes/class-rest-public.php:107
+#: includes/class-frontend.php:101 includes/class-rest-public.php:107
 msgid "Access required."
 msgstr "الوصول مطلوب."
 
-#: includes/class-frontend.php:104
+#: includes/class-frontend.php:105
 msgid ""
 "Only editors see this note: visitors cannot read this table because the "
 "access_token is missing or does not match this pipeline. Copy the ready-made "
@@ -2309,41 +2580,17 @@ msgstr ""
 "access_token مفقود أو لا يطابق هذا المسار. انسخ الرمز القصير الجاهز من "
 "EntryVault > الإعدادات > عام."
 
-#: includes/class-frontend.php:466 includes/class-frontend.php:469
+#: includes/class-frontend.php:782 includes/class-frontend.php:785
 msgid "(no name)"
 msgstr "(بلا اسم)"
 
-#: includes/class-frontend.php:468
+#: includes/class-frontend.php:784
 msgid "(email hidden)"
 msgstr "(البريد مخفي)"
 
-#: includes/class-frontend.php:514 blocks/submissions-table/index.js:30
+#: includes/class-frontend.php:830 blocks/submissions-table/index.js:30
 msgid "Submitted"
 msgstr "تاريخ الإرسال"
-
-#: includes/class-frontend.php:515 includes/class-submissions-list-table.php:67
-#: blocks/submissions-table/index.js:29
-msgid "Created"
-msgstr "تاريخ الإنشاء"
-
-#: includes/class-frontend.php:516 includes/class-plugin.php:357
-#: includes/class-privacy.php:227 includes/class-submissions-list-table.php:53
-#: blocks/submissions-table/index.js:24
-msgid "Title"
-msgstr "العنوان"
-
-#: includes/class-frontend.php:518 includes/class-plugin.php:358
-#: includes/class-privacy.php:228 includes/class-submissions-list-table.php:54
-#: admin/assets/kanban/build/index.js:5
-msgid "Email"
-msgstr "البريد الإلكتروني"
-
-#: includes/class-frontend.php:520 includes/class-submissions-list-table.php:65
-#: includes/class-submissions-list-table.php:130
-#: admin/assets/js/dashboard.js:159 admin/assets/kanban/build/index.js:5
-#: admin/assets/kanban/build/index.js:37
-msgid "Owner"
-msgstr "المسؤول"
 
 #: includes/class-past-entries.php:86
 msgid ""
@@ -2354,148 +2601,167 @@ msgstr ""
 "لا يحتفظ Contact Form 7 بالإدخالات على هذا الموقع (يرسلها بالبريد فقط)، لذا "
 "لا توجد إدخالات سابقة لجلبها. الإرسالات الجديدة تُلتقط من الآن فصاعدًا."
 
-#: includes/class-plugin.php:98 includes/class-plugin.php:182
-#: includes/class-plugin.php:183
+#: includes/class-plugin.php:103 includes/class-plugin.php:187
+#: includes/class-plugin.php:188
 msgid "Upgrade to Pro"
 msgstr "الترقية إلى Pro"
 
-#: includes/class-plugin.php:112
+#: includes/class-plugin.php:117
 msgid "Docs"
 msgstr "التوثيق"
 
-#: includes/class-plugin.php:117
+#: includes/class-plugin.php:122
 msgid "Support"
 msgstr "الدعم"
 
-#: includes/class-plugin.php:152
+#: includes/class-plugin.php:157
 msgid "Kanban"
 msgstr "اللوحة"
 
-#: includes/class-plugin.php:153
+#: includes/class-plugin.php:158
 msgid "Dashboard"
 msgstr "نظرة عامة"
 
-#: includes/class-plugin.php:160
+#: includes/class-plugin.php:165
 msgid "Feedback"
 msgstr "الآراء"
 
-#: includes/class-plugin.php:230
+#. translators: %s: number of unread entries.
+#: includes/class-plugin.php:215
+#, php-format
+msgid "%s unread entry"
+msgid_plural "%s unread entries"
+msgstr[0] "لا إدخالات غير مقروءة (%s)"
+msgstr[1] "إدخال واحد غير مقروء (%s)"
+msgstr[2] "إدخالان غير مقروءين (%s)"
+msgstr[3] "%s إدخالات غير مقروءة"
+msgstr[4] "%s إدخالًا غير مقروء"
+msgstr[5] "%s إدخال غير مقروء"
+
+#: includes/class-plugin.php:258
 msgid "Save failed."
 msgstr "فشل الحفظ."
 
 #. translators: %s: the settings section, e.g. "Mailchimp".
-#: includes/class-plugin.php:232
+#: includes/class-plugin.php:260
 #, php-format
 msgid "%s saved."
 msgstr "تمّ حفظ %s."
 
 #. translators: 1: the settings section, 2: the error message.
-#: includes/class-plugin.php:234
+#: includes/class-plugin.php:262
 #, php-format
 msgid "%1$s save failed: %2$s"
 msgstr "تعذّر حفظ %1$s: %2$s"
 
 #: includes/class-plugin.php:287
+#: admin/assets/kanban/build/index.js:1 admin/assets/kanban/build/index.js:31
+msgid "Could not save. Reload the page and try again."
+msgstr "تعذّر الحفظ. أعد تحميل الصفحة وحاول مرة أخرى."
+
+#: includes/class-plugin.php:288
+msgid "Move up"
+msgstr "انقل لأعلى"
+
+#: includes/class-plugin.php:289
+msgid "Move down"
+msgstr "انقل لأسفل"
+
+#: includes/class-plugin.php:322
 msgid "Edit"
 msgstr "تحرير"
 
-#: includes/class-plugin.php:288 includes/class-submissions-list-table.php:96
+#: includes/class-plugin.php:323 includes/class-submissions-list-table.php:111
 msgid "Delete"
 msgstr "حذف"
 
-#: includes/class-plugin.php:290
+#: includes/class-plugin.php:325
 msgid "Error."
 msgstr "خطأ."
 
-#: includes/class-plugin.php:291
+#: includes/class-plugin.php:326
 msgid "Delete this tag? It comes off every entry that has it."
 msgstr "حذف هذا الوسم؟ سيُزال من كل إدخال يحمله."
 
-#: includes/class-plugin.php:292
+#: includes/class-plugin.php:327
 msgid "No tags yet. Add your first one with the form next to this list."
 msgstr "لا توجد وسوم بعد. أضف أول وسم من النموذج بجانب هذه القائمة."
 
-#: includes/class-plugin.php:294
+#: includes/class-plugin.php:329
 msgid "Edit tag"
 msgstr "تحرير الوسم"
 
-#: includes/class-plugin.php:350
+#: includes/class-plugin.php:385
 msgid "Please choose a file or paste CSV first."
 msgstr "الرجاء اختيار ملف أو لصق نص CSV أولًا."
 
-#: includes/class-plugin.php:351
+#: includes/class-plugin.php:386
 msgid "Loading preview…"
 msgstr "جارٍ تحميل المعاينة…"
 
-#: includes/class-plugin.php:352
+#: includes/class-plugin.php:387
 msgid "Preview failed."
 msgstr "فشلت المعاينة."
 
 #. translators: %s: number of rows loaded.
-#: includes/class-plugin.php:354
+#: includes/class-plugin.php:389
 #, php-format
 msgid "Loaded %s rows."
 msgstr "تم تحميل %s صف."
 
-#: includes/class-plugin.php:355
+#: includes/class-plugin.php:390
 msgid "Network error."
 msgstr "خطأ في الشبكة."
 
-#: includes/class-plugin.php:356
+#: includes/class-plugin.php:391
 msgid "Ignore"
 msgstr "تجاهل"
 
-#: includes/class-plugin.php:359 includes/class-privacy.php:226
-#: includes/class-submissions-list-table.php:66
-#: admin/assets/kanban/build/index.js:5
-msgid "Source"
-msgstr "المصدر"
-
-#: includes/class-plugin.php:360
+#: includes/class-plugin.php:395
 msgid "Field"
 msgstr "حقل"
 
-#: includes/class-plugin.php:361
+#: includes/class-plugin.php:396
 msgid "Date received"
 msgstr "تاريخ الاستلام"
 
 #. translators: %s: number of rows.
-#: includes/class-plugin.php:363
+#: includes/class-plugin.php:398
 #, php-format
 msgid ""
 "The date in %s rows could not be read, so those entries got today's date."
 msgstr "تعذّرت قراءة التاريخ في %s صف، لذا أخذت تلك الإدخالات تاريخ اليوم."
 
-#: includes/class-plugin.php:365
+#: includes/class-plugin.php:400
 msgid "You must map one column to Email."
 msgstr "يجب ربط عمود واحد بالبريد الإلكتروني."
 
-#: includes/class-plugin.php:366
+#: includes/class-plugin.php:401
 msgid "Running…"
 msgstr "جارٍ التشغيل…"
 
-#: includes/class-plugin.php:367
+#: includes/class-plugin.php:402
 msgid "Import failed."
 msgstr "فشل الاستيراد."
 
-#: includes/class-plugin.php:369
+#: includes/class-plugin.php:404
 msgid "Results"
 msgstr "النتائج"
 
-#: includes/class-plugin.php:370
+#: includes/class-plugin.php:405
 msgid "Test run: nothing was saved."
 msgstr "تشغيل تجريبي: لم يُحفظ أي شيء."
 
-#: includes/class-plugin.php:371
+#: includes/class-plugin.php:406
 msgid "Imported:"
 msgstr "تم استيراده:"
 
-#: includes/class-plugin.php:372
+#: includes/class-plugin.php:407
 msgid "Would import:"
 msgstr "سيتم استيراده:"
 
 #. translators: %s: comma-separated column names.
-#: includes/class-plugin.php:374
+#: includes/class-plugin.php:409
 #, php-format
 msgid ""
 "Only one column can be the title, but these are all set to Title: %s. Set "
@@ -2504,11 +2770,11 @@ msgstr ""
 "يمكن لعمود واحد فقط أن يكون العنوان، لكن هذه الأعمدة كلها مضبوطة على "
 "العنوان: %s. اضبط الباقي على حقل لتُحفظ قيمها."
 
-#: includes/class-plugin.php:375
+#: includes/class-plugin.php:410
 msgid "Already present:"
 msgstr "موجود مسبقًا:"
 
-#: includes/class-plugin.php:376
+#: includes/class-plugin.php:411
 msgid ""
 "These rows were already on the board, from an earlier import or from the "
 "form plugin itself, and were left as they are. Nothing was copied twice."
@@ -2516,15 +2782,15 @@ msgstr ""
 "هذه الصفوف كانت موجودة على اللوحة، من استيراد سابق أو من إضافة النماذج "
 "نفسها، وتُركت كما هي. لم يُنسخ شيء مرتين."
 
-#: includes/class-plugin.php:377
+#: includes/class-plugin.php:412
 msgid "Skipped:"
 msgstr "تم تخطيه:"
 
-#: includes/class-plugin.php:378
+#: includes/class-plugin.php:413
 msgid "Errors"
 msgstr "الأخطاء"
 
-#: includes/class-plugin.php:379
+#: includes/class-plugin.php:414
 msgid "Row"
 msgstr "الصف"
 
@@ -2554,7 +2820,8 @@ msgstr "رسائل البريد"
 msgid "EntryVault entry #%1$d was kept: %2$s"
 msgstr "تم الاحتفاظ بإدخال EntryVault رقم #%1$d: %2$s"
 
-#: includes/class-privacy.php:225 admin/assets/kanban/build/index.js:5
+#: includes/class-privacy.php:225
+#: admin/assets/kanban/build/index.js:3
 msgid "Received"
 msgstr "تاريخ الاستلام"
 
@@ -2592,9 +2859,9 @@ msgstr "%s جاهز."
 msgid "Start here"
 msgstr "ابدأ من هنا"
 
-#: includes/class-reporting.php:459 includes/class-submissions-admin.php:323
-#: includes/class-timeline.php:94 admin/assets/kanban/build/index.js:5
-#: admin/assets/kanban/build/index.js:20 admin/assets/kanban/build/index.js:37
+#: includes/class-reporting.php:459 includes/class-submissions-admin.php:398
+#: includes/class-timeline.php:94 admin/assets/kanban/build/index.js:3
+#: admin/assets/kanban/build/index.js:18 admin/assets/kanban/build/index.js:43
 msgid "Unassigned"
 msgstr "غير مُعيَّن"
 
@@ -2656,7 +2923,53 @@ msgstr[3] "كل الجداول التي يحتاجها EntryVault (%d) موجو�
 msgstr[4] "كل الجداول التي يحتاجها EntryVault (%d) موجودة في قاعدة البيانات."
 msgstr[5] "كل الجداول التي يحتاجها EntryVault (%d) موجودة في قاعدة البيانات."
 
-#: includes/class-submissions-admin.php:222
+#: includes/class-submissions-admin.php:51
+#: includes/class-submissions-admin.php:63
+#: includes/class-submissions-admin.php:668
+msgid "Forbidden."
+msgstr "ممنوع."
+
+#. translators: %d: number of entries.
+#: includes/class-submissions-admin.php:56
+#, php-format
+msgid "Deleted %d spam entry."
+msgid_plural "Deleted %d spam entries."
+msgstr[0] "حُذفت %d إدخالات مزعجة."
+msgstr[1] "حُذف إدخال مزعج واحد (%d)."
+msgstr[2] "حُذفت %d إدخالات مزعجة."
+msgstr[3] "حُذفت %d إدخالات مزعجة."
+msgstr[4] "حُذفت %d إدخالات مزعجة."
+msgstr[5] "حُذفت %d إدخالات مزعجة."
+
+#. translators: %d: number of entries.
+#: includes/class-submissions-admin.php:73
+#, php-format
+msgid ""
+"%d entry is no longer spam and is on its board again; what it skipped has "
+"run."
+msgid_plural ""
+"%d entries are no longer spam and are on their boards again; what they "
+"skipped has run."
+msgstr[0] "لم تعد %d إدخالات مزعجة وعادت إلى لوحاتها، وجرى تشغيل ما فاتها."
+msgstr[1] "لم يعد الإدخال (%d) مزعجًا وعاد إلى لوحته، وجرى تشغيل ما فاته."
+msgstr[2] "لم تعد %d إدخالات مزعجة وعادت إلى لوحاتها، وجرى تشغيل ما فاتها."
+msgstr[3] "لم تعد %d إدخالات مزعجة وعادت إلى لوحاتها، وجرى تشغيل ما فاتها."
+msgstr[4] "لم تعد %d إدخالات مزعجة وعادت إلى لوحاتها، وجرى تشغيل ما فاتها."
+msgstr[5] "لم تعد %d إدخالات مزعجة وعادت إلى لوحاتها، وجرى تشغيل ما فاتها."
+
+#. translators: %d: number of entries.
+#: includes/class-submissions-admin.php:75
+#, php-format
+msgid "%d entry is no longer spam and is on its board again."
+msgid_plural "%d entries are no longer spam and are on their boards again."
+msgstr[0] "لم تعد %d إدخالات مزعجة وعادت إلى لوحاتها."
+msgstr[1] "لم يعد الإدخال (%d) مزعجًا وعاد إلى لوحته."
+msgstr[2] "لم تعد %d إدخالات مزعجة وعادت إلى لوحاتها."
+msgstr[3] "لم تعد %d إدخالات مزعجة وعادت إلى لوحاتها."
+msgstr[4] "لم تعد %d إدخالات مزعجة وعادت إلى لوحاتها."
+msgstr[5] "لم تعد %d إدخالات مزعجة وعادت إلى لوحاتها."
+
+#: includes/class-submissions-admin.php:262
 msgid ""
 "Every entry in one list. Filter it, tick rows to change many at once, or "
 "export what you see to a spreadsheet."
@@ -2664,51 +2977,67 @@ msgstr ""
 "كل الإدخالات في قائمة واحدة. صفِّها، أو حدّد صفوفًا لتغيير الكثير منها دفعة "
 "واحدة، أو صدّر ما تراه إلى جدول بيانات."
 
-#: includes/class-submissions-admin.php:223
-msgid "Export CSV"
-msgstr "تصدير CSV"
+#: includes/class-submissions-admin.php:263
+msgid "Export"
+msgstr "تصدير"
 
-#: includes/class-submissions-admin.php:238
+#: includes/class-submissions-admin.php:283
 msgid "All"
 msgstr "الكل"
 
-#: includes/class-submissions-admin.php:243 includes/class-timeline.php:97
+#: includes/class-submissions-admin.php:293
+#: includes/class-submissions-list-table.php:52
+#: admin/assets/kanban/build/index.js:43
+msgid "Starred"
+msgstr "المميّزة بنجمة"
+
+#: includes/class-submissions-admin.php:298 includes/class-timeline.php:97
 msgid "Archived"
 msgstr "مؤرشف"
 
-#: includes/class-submissions-admin.php:262
+#: includes/class-submissions-admin.php:314
+msgid ""
+"Entries a form plugin marked as spam, and the ones you moved here. They stay "
+"off the board, the counts and exports. \"Not spam\" puts one on the board "
+"where it would have gone. Spam is kept until you delete it."
+msgstr ""
+"إدخالات وسمتها إضافة نماذج بأنها مزعجة، والتي نقلتها إلى هنا. تبقى خارج "
+"اللوحة والأعداد والتصدير. «ليست مزعجة» تضعه على اللوحة حيث كان سيذهب. تُحفظ "
+"الرسائل المزعجة حتى تحذفها."
+
+#: includes/class-submissions-admin.php:337
 msgid "All pipelines"
 msgstr "كل المسارات"
 
-#: includes/class-submissions-admin.php:270
+#: includes/class-submissions-admin.php:345
 msgid "All stages"
 msgstr "كل المراحل"
 
-#: includes/class-submissions-admin.php:293
+#: includes/class-submissions-admin.php:368
 msgid "All sources"
 msgstr "كل المصادر"
 
-#: includes/class-submissions-admin.php:312
+#: includes/class-submissions-admin.php:387
 msgid "All tags"
 msgstr "كل الوسوم"
 
-#: includes/class-submissions-admin.php:321
+#: includes/class-submissions-admin.php:396
 msgid "All owners"
 msgstr "كل المسؤولين"
 
-#: includes/class-submissions-admin.php:347
+#: includes/class-submissions-admin.php:422
 msgid "Filter"
 msgstr "تصفية"
 
-#: includes/class-submissions-admin.php:355
-#: public/templates/submissions-table.php:54
-#: public/templates/submissions-table.php:63
-#: admin/assets/kanban/build/index.js:37
+#: includes/class-submissions-admin.php:442
+#: public/templates/submissions-table.php:64
+#: public/templates/submissions-table.php:116
+#: admin/assets/kanban/build/index.js:42
 msgid "Search"
 msgstr "البحث"
 
 #. translators: 1: opening link tag, 2: closing link tag.
-#: includes/class-submissions-admin.php:369
+#: includes/class-submissions-admin.php:456
 #, php-format
 msgid ""
 "Tagging, assigning and replying to these by hand? %1$sSee what Pro "
@@ -2717,8 +3046,60 @@ msgstr ""
 "تضع الوسوم وتعيّن المسؤولين وترد على هذه يدويًا؟ %1$sاطّلع على ما يؤتمته "
 "Pro%2$s."
 
+#: includes/class-submissions-admin.php:487
+msgid "Export what this list shows"
+msgstr "تصدير ما تعرضه هذه القائمة"
+
+#: includes/class-submissions-admin.php:500
+msgid "File type"
+msgstr "نوع الملف"
+
+#: includes/class-submissions-admin.php:501
+msgid "CSV (Excel, Google Sheets, Numbers)"
+msgstr "CSV (Excel وGoogle Sheets وNumbers)"
+
+#: includes/class-submissions-admin.php:501
+msgid "Excel (.xlsx)"
+msgstr "Excel (.xlsx)"
+
+#: includes/class-submissions-admin.php:501
+msgid "JSON (for developers)"
+msgstr "JSON (للمطوّرين)"
+
+#: includes/class-submissions-admin.php:506
+msgid "Columns, in this order"
+msgstr "الأعمدة بهذا الترتيب"
+
+#: includes/class-submissions-admin.php:507
+msgid ""
+"Untick what you do not need. Use the arrows to change the order; the file "
+"keeps it, and so does the next export."
+msgstr ""
+"ألغِ تحديد ما لا تحتاجه. استخدم الأسهم لتغيير الترتيب؛ يحتفظ به الملف، وكذلك "
+"التصدير التالي."
+
+#: includes/class-submissions-admin.php:508
+msgid "Tick all"
+msgstr "تحديد الكل"
+
+#: includes/class-submissions-admin.php:508
+msgid "Untick all"
+msgstr "إلغاء تحديد الكل"
+
+#: includes/class-submissions-admin.php:518
+msgid "(form field)"
+msgstr "(حقل النموذج)"
+
+#: includes/class-submissions-admin.php:523
+msgid "Download"
+msgstr "تنزيل"
+
+#: includes/class-submissions-admin.php:524
+msgid "Only the entries the list is filtering, all pages."
+msgstr "الإدخالات التي تصفّيها القائمة فقط، من كل الصفحات."
+
 #. translators: %d: count
-#: includes/class-submissions-admin.php:420
+#: includes/class-submissions-admin.php:570
 #, php-format
 msgid "Deleted %d submission."
 msgid_plural "Deleted %d submissions."
@@ -2730,13 +3111,13 @@ msgstr[4] "تم حذف %d إرسالًا."
 msgstr[5] "تم حذف %d إرسال."
 
 #. translators: 1: moved 2: skipped
-#: includes/class-submissions-admin.php:428
+#: includes/class-submissions-admin.php:578
 #, php-format
 msgid "Moved %1$d submission(s); %2$d skipped."
 msgstr "تم نقل %1$d إرسال؛ وتخطي %2$d."
 
 #. translators: %d: count
-#: includes/class-submissions-admin.php:438
+#: includes/class-submissions-admin.php:588
 #, php-format
 msgid "Assigned owner on %d submission."
 msgid_plural "Assigned owner on %d submissions."
@@ -2748,7 +3129,7 @@ msgstr[4] "تم تعيين مسؤول لـ %d إرسالًا."
 msgstr[5] "تم تعيين مسؤول لـ %d إرسال."
 
 #. translators: %d: count
-#: includes/class-submissions-admin.php:443
+#: includes/class-submissions-admin.php:593
 #, php-format
 msgid "Cleared owner on %d submission."
 msgid_plural "Cleared owner on %d submissions."
@@ -2760,7 +3141,7 @@ msgstr[4] "تمت إزالة المسؤول من %d إرسالًا."
 msgstr[5] "تمت إزالة المسؤول من %d إرسال."
 
 #. translators: %d: count
-#: includes/class-submissions-admin.php:451
+#: includes/class-submissions-admin.php:601
 #, php-format
 msgid "Tagged %d submission."
 msgid_plural "Tagged %d submissions."
@@ -2771,8 +3152,68 @@ msgstr[3] "تم وضع وسم على %d إرسالات."
 msgstr[4] "تم وضع وسم على %d إرسالًا."
 msgstr[5] "تم وضع وسم على %d إرسال."
 
+#. translators: %d: number of submissions.
+#: includes/class-submissions-admin.php:609
+#, php-format
+msgid "Marked %d submission as read."
+msgid_plural "Marked %d submissions as read."
+msgstr[0] "لم يُعلَّم أي إرسال كمقروء (%d)."
+msgstr[1] "عُلِّم إرسال واحد كمقروء (%d)."
+msgstr[2] "عُلِّم إرسالان كمقروءين (%d)."
+msgstr[3] "عُلِّمت %d إرسالات كمقروءة."
+msgstr[4] "عُلِّم %d إرسالًا كمقروء."
+msgstr[5] "عُلِّم %d إرسال كمقروء."
+
+#. translators: %d: number of submissions.
+#: includes/class-submissions-admin.php:611
+#, php-format
+msgid "Marked %d submission as unread."
+msgid_plural "Marked %d submissions as unread."
+msgstr[0] "لم يُعلَّم أي إرسال كغير مقروء (%d)."
+msgstr[1] "عُلِّم إرسال واحد كغير مقروء (%d)."
+msgstr[2] "عُلِّم إرسالان كغير مقروءين (%d)."
+msgstr[3] "عُلِّمت %d إرسالات كغير مقروءة."
+msgstr[4] "عُلِّم %d إرسالًا كغير مقروء."
+msgstr[5] "عُلِّم %d إرسال كغير مقروء."
+
+#. translators: %d: number of submissions.
+#: includes/class-submissions-admin.php:613
+#, php-format
+msgid "Starred %d submission."
+msgid_plural "Starred %d submissions."
+msgstr[0] "لم يُميَّز أي إرسال بنجمة (%d)."
+msgstr[1] "مُيِّز إرسال واحد بنجمة (%d)."
+msgstr[2] "مُيِّز إرسالان بنجمة (%d)."
+msgstr[3] "مُيِّزت %d إرسالات بنجمة."
+msgstr[4] "مُيِّز %d إرسالًا بنجمة."
+msgstr[5] "مُيِّز %d إرسال بنجمة."
+
+#. translators: %d: number of submissions.
+#: includes/class-submissions-admin.php:615
+#, php-format
+msgid "Removed the star from %d submission."
+msgid_plural "Removed the star from %d submissions."
+msgstr[0] "لم تُزل النجمة من أي إرسال (%d)."
+msgstr[1] "أُزيلت النجمة من إرسال واحد (%d)."
+msgstr[2] "أُزيلت النجمة من إرسالين (%d)."
+msgstr[3] "أُزيلت النجمة من %d إرسالات."
+msgstr[4] "أُزيلت النجمة من %d إرسالًا."
+msgstr[5] "أُزيلت النجمة من %d إرسال."
+
 #. translators: %d: count
-#: includes/class-submissions-admin.php:458
+#: includes/class-submissions-admin.php:621
+#, php-format
+msgid "Moved %d submission to spam."
+msgid_plural "Moved %d submissions to spam."
+msgstr[0] "نُقلت %d إرسالات إلى المزعج."
+msgstr[1] "نُقل إرسال واحد (%d) إلى المزعج."
+msgstr[2] "نُقلت %d إرسالات إلى المزعج."
+msgstr[3] "نُقلت %d إرسالات إلى المزعج."
+msgstr[4] "نُقلت %d إرسالات إلى المزعج."
+msgstr[5] "نُقلت %d إرسالات إلى المزعج."
+
+#. translators: %d: count
+#: includes/class-submissions-admin.php:632
 #, php-format
 msgid "Archived %d submission."
 msgid_plural "Archived %d submissions."
@@ -2784,7 +3225,7 @@ msgstr[4] "تمت أرشفة %d إرسالًا."
 msgstr[5] "تمت أرشفة %d إرسال."
 
 #. translators: %d: count
-#: includes/class-submissions-admin.php:465
+#: includes/class-submissions-admin.php:639
 #, php-format
 msgid "Restored %d submission."
 msgid_plural "Restored %d submissions."
@@ -2795,74 +3236,110 @@ msgstr[3] "تمت استعادة %d إرسالات."
 msgstr[4] "تمت استعادة %d إرسالًا."
 msgstr[5] "تمت استعادة %d إرسال."
 
-#: includes/class-submissions-admin.php:494
-msgid "Forbidden."
-msgstr "ممنوع."
-
 #. translators: %s: form field label that clashes with a fixed column, e.g. "Email".
-#: includes/class-submissions-admin.php:620
+#: includes/class-submissions-admin.php:703
 #, php-format
 msgid "%s (form field)"
 msgstr "%s (حقل النموذج)"
 
-#: includes/class-submissions-list-table.php:52
-msgid "ID"
-msgstr "ID"
+#: includes/class-submissions-list-table.php:107
+#: includes/class-submissions-list-table.php:255
+msgid "Not spam"
+msgstr "ليست مزعجة"
 
-#: includes/class-submissions-list-table.php:68
-msgid "Updated"
-msgstr "تاريخ التحديث"
+#: includes/class-submissions-list-table.php:108
+msgid "Delete permanently"
+msgstr "حذف نهائي"
 
 #. translators: 1: pipeline name, 2: stage name.
-#: includes/class-submissions-list-table.php:101
+#: includes/class-submissions-list-table.php:116
 #, php-format
 msgid "Move to: %1$s / %2$s"
 msgstr "نقل إلى: %1$s / %2$s"
 
 #. translators: %s: stage name.
-#: includes/class-submissions-list-table.php:103
+#: includes/class-submissions-list-table.php:118
 #, php-format
 msgid "Move to: %s"
 msgstr "نقل إلى: %s"
 
-#: includes/class-submissions-list-table.php:106
+#: includes/class-submissions-list-table.php:121
+msgid "Mark as read"
+msgstr "تعليم كمقروء"
+
+#: includes/class-submissions-list-table.php:122
+#: admin/assets/kanban/build/index.js:1
+msgid "Mark as unread"
+msgstr "تعليم كغير مقروء"
+
+#: includes/class-submissions-list-table.php:123
+#: includes/class-submissions-list-table.php:229
+msgid "Star"
+msgstr "تمييز بنجمة"
+
+#: includes/class-submissions-list-table.php:124
+msgid "Remove star"
+msgstr "إزالة النجمة"
+
+#: includes/class-submissions-list-table.php:125
 msgid "Assign owner"
 msgstr "تعيين مسؤول"
 
-#: includes/class-submissions-list-table.php:107
+#: includes/class-submissions-list-table.php:126
 msgid "Add tag"
 msgstr "إضافة وسم"
 
-#: includes/class-submissions-list-table.php:108
+#: includes/class-submissions-list-table.php:127
 msgid "Archive"
 msgstr "أرشفة"
 
-#: includes/class-submissions-list-table.php:109
+#: includes/class-submissions-list-table.php:128
 msgid "Unarchive"
 msgstr "إلغاء الأرشفة"
 
-#: includes/class-submissions-list-table.php:132
+#: includes/class-submissions-list-table.php:129
+msgid "Move to spam"
+msgstr "نقل إلى المزعج"
+
+#: includes/class-submissions-list-table.php:155
+msgid "Delete every entry in the Spam folder for good? This cannot be undone."
+msgstr "حذف كل إدخالات مجلد المزعج نهائيًا؟ لا يمكن التراجع عن ذلك."
+
+#: includes/class-submissions-list-table.php:155
+msgid "Empty spam"
+msgstr "إفراغ المزعج"
+
+#: includes/class-submissions-list-table.php:166
 msgid "(unassign)"
 msgstr "(إلغاء التعيين)"
 
-#: includes/class-submissions-list-table.php:141
+#: includes/class-submissions-list-table.php:175
+#: public/templates/submissions-table.php:89
+#: blocks/submissions-table/index.js:119
 msgid "Tag"
 msgstr "الوسم"
 
-#: includes/class-submissions-list-table.php:143
+#: includes/class-submissions-list-table.php:177
 msgid "— Select tag —"
 msgstr "— اختر وسمًا —"
 
-#: includes/class-submissions-list-table.php:329
+#. translators: %s: submission title.
+#: includes/class-submissions-list-table.php:228
+#: admin/assets/kanban/build/index.js:3
+#, php-format
+msgid "Star %s"
+msgstr "تمييز %s بنجمة"
+
+#: includes/class-submissions-list-table.php:409
 msgid "No submissions match these filters."
 msgstr "لا توجد إرسالات تطابق عوامل التصفية هذه."
 
-#: includes/class-submissions-list-table.php:333
+#: includes/class-submissions-list-table.php:413
 msgid "No submissions yet."
 msgstr "لا توجد إرسالات بعد."
 
 #. translators: 1: opening link tag to the import screen, 2: closing link tag.
-#: includes/class-submissions-list-table.php:336
+#: includes/class-submissions-list-table.php:416
 #, php-format
 msgid ""
 "Submissions from every supported form plugin land here automatically. You "
@@ -2872,7 +3349,7 @@ msgstr ""
 "%1$sاستيراد ملف CSV%2$s لجلب الإرسالات الموجودة."
 
 #. translators: 1: previous stage name, 2: new stage name.
-#: includes/class-timeline.php:44 admin/assets/kanban/build/index.js:7
+#: includes/class-timeline.php:44 admin/assets/kanban/build/index.js:5
 #, php-format
 msgid "Moved from %1$s to %2$s"
 msgstr "نُقل من %1$s إلى %2$s"
@@ -2888,13 +3365,13 @@ msgid "Note deleted"
 msgstr "تم حذف ملاحظة"
 
 #. translators: 1: what happened ("Created", "Updated"), 2: form plugin name.
-#: includes/class-timeline.php:59 admin/assets/kanban/build/index.js:9
+#: includes/class-timeline.php:59 admin/assets/kanban/build/index.js:7
 #, php-format
 msgid "%1$s from %2$s"
 msgstr "%1$s من %2$s"
 
 #. translators: 1: recipient, 2: subject.
-#: includes/class-timeline.php:64 admin/assets/kanban/build/index.js:11
+#: includes/class-timeline.php:64 admin/assets/kanban/build/index.js:9
 #, php-format
 msgid "Email to %1$s: %2$s"
 msgstr "بريد إلى %1$s: %2$s"
@@ -2906,19 +3383,19 @@ msgid "Email to %1$s NOT sent: %2$s"
 msgstr "لم يتم إرسال البريد إلى %1$s: %2$s"
 
 #. translators: %s: tag name.
-#: includes/class-timeline.php:78 admin/assets/kanban/build/index.js:14
+#: includes/class-timeline.php:78 admin/assets/kanban/build/index.js:12
 #, php-format
 msgid "Tagged %s"
 msgstr "أُضيف الوسم %s"
 
 #. translators: %s: tag name.
-#: includes/class-timeline.php:80 admin/assets/kanban/build/index.js:16
+#: includes/class-timeline.php:80 admin/assets/kanban/build/index.js:14
 #, php-format
 msgid "Removed tag %s"
 msgstr "أُزيل الوسم %s"
 
 #. translators: %s: user display name.
-#: includes/class-timeline.php:84 admin/assets/kanban/build/index.js:18
+#: includes/class-timeline.php:84 admin/assets/kanban/build/index.js:16
 #, php-format
 msgid "Assigned to %s"
 msgstr "تم التعيين إلى %s"
@@ -2930,7 +3407,7 @@ msgid "(was %s)"
 msgstr "(كان %s)"
 
 #. translators: %s: user display name.
-#: includes/class-timeline.php:93 admin/assets/kanban/build/index.js:20
+#: includes/class-timeline.php:93 admin/assets/kanban/build/index.js:18
 #, php-format
 msgid "Unassigned from %s"
 msgstr "أُلغي التعيين من %s"
@@ -2951,35 +3428,43 @@ msgstr "مؤرشف: نُقل إلى سلة المهملات في %s"
 msgid "Restored from the archive"
 msgstr "تمت الاستعادة من الأرشيف"
 
+#: includes/class-timeline.php:110
+msgid "Moved to spam"
+msgstr "نُقل إلى المزعج"
+
+#: includes/class-timeline.php:113
+msgid "Marked as not spam"
+msgstr "وُسم بأنه ليس مزعجًا"
+
 #. translators: %s: user display name the assistant signed in as.
-#: includes/class-timeline.php:111
+#: includes/class-timeline.php:117
 #, php-format
 msgid "Opened by an AI assistant signed in as %s"
 msgstr "فتحه مساعد ذكاء اصطناعي مسجّل الدخول باسم %s"
 
 #. translators: %s: what the assistant changed.
-#: includes/class-timeline.php:115
+#: includes/class-timeline.php:121
 #, php-format
 msgid "Changed by an AI assistant: %s"
 msgstr "غيّره مساعد ذكاء اصطناعي: %s"
 
-#: includes/class-timeline.php:143 admin/assets/kanban/build/index.js:27
+#: includes/class-timeline.php:149 admin/assets/kanban/build/index.js:25
 msgctxt "timeline event: an entry arrived"
 msgid "Created"
 msgstr "أُنشئ"
 
-#: includes/class-timeline.php:145 admin/assets/kanban/build/index.js:27
+#: includes/class-timeline.php:151 admin/assets/kanban/build/index.js:25
 msgctxt "timeline event: the form plugin changed an entry"
 msgid "Updated"
 msgstr "حُدِّث"
 
 #. translators: %d: stage id.
-#: includes/class-timeline.php:157
+#: includes/class-timeline.php:163
 #, php-format
 msgid "a deleted stage (#%d)"
 msgstr "مرحلة محذوفة (#%d)"
 
-#: includes/class-timeline.php:174
+#: includes/class-timeline.php:180
 msgid "nobody"
 msgstr "لا أحد"
 
@@ -2990,56 +3475,136 @@ msgstr "لا أحد"
 msgid "Contact Form 7 (saved by %s)"
 msgstr "Contact Form 7 (محفوظ بواسطة %s)"
 
-#: admin/assets/kanban/build/index.js:5
+#. translators: %s: page title.
+#: includes/historical/class-historical-otter-forms.php:87
+#, php-format
+msgid "Form on \"%s\""
+msgstr "نموذج في \"%s\""
+
+#. translators: %s: page title.
+#: includes/historical/class-historical-otter-forms.php:87
+msgid "Forms on an unknown page"
+msgstr "نماذج في صفحة غير معروفة"
+
+#: admin/assets/kanban/build/index.js:1
 msgid "Close"
 msgstr "إغلاق"
 
-#: admin/assets/kanban/build/index.js:26
+#: admin/assets/kanban/build/index.js:24
 msgctxt "email recipient"
 msgid "To"
 msgstr "إلى"
 
-#: admin/assets/kanban/build/index.js:26
+#: admin/assets/kanban/build/index.js:24
 msgid "Subject"
 msgstr "الموضوع"
+
+#: public/templates/submissions-table.php:80
+msgid "Any stage"
+msgstr "أي مرحلة"
+
+#: public/templates/submissions-table.php:91
+msgid "Any tag"
+msgstr "أي وسم كان"
 
 #: admin/assets/js/dashboard.js:143
 msgid "Entries"
 msgstr "الإدخالات"
 
-#: public/templates/submissions-table.php:59
-msgid "Search…"
-msgstr "البحث…"
+#: admin/assets/kanban/build/index.js:25
+msgctxt "submission status"
+msgid "Archived"
+msgstr "مؤرشف"
 
-#: public/templates/submissions-table.php:94
+#: public/templates/submissions-table.php:116
+msgid "Apply"
+msgstr "تطبيق"
+
+#: admin/assets/kanban/build/index.js:1
+msgid "Loading…"
+msgstr "جارٍ التحميل…"
+
+#. translators: %s: form id.
+#: admin/assets/kanban/build/index.js:3
+#, php-format
+msgid "form %s"
+msgstr "النموذج %s"
+
+#: admin/assets/js/dashboard.js:78
+msgid "(none)"
+msgstr "(لا شيء)"
+
+#: admin/assets/kanban/build/index.js:25
+msgid "Sending…"
+msgstr "جارٍ الإرسال…"
+
+#. translators: %s: the mail server's reason.
+#: admin/assets/kanban/build/index.js:25
+#, php-format
+msgid "Could not send the email: %s"
+msgstr "تعذّر إرسال البريد: %s"
+
+#: admin/assets/kanban/build/index.js:25
+msgid "Could not send the email."
+msgstr "تعذّر إرسال البريد."
+
+#: admin/assets/kanban/build/index.js:1
+msgid "Notes"
+msgstr "الملاحظات"
+
+#: admin/assets/kanban/build/index.js:1
+msgid "Timeline"
+msgstr "السجل الزمني"
+
+#: admin/assets/kanban/build/index.js:3
+msgid "What they sent"
+msgstr "ما أرسلوه"
+
+#: public/templates/submissions-table.php:182
 msgid "No submissions found."
 msgstr "لم يتم العثور على إرسالات."
 
-#: public/templates/submissions-table.php:122
+#: public/templates/submissions-table.php:69
+msgid "Search…"
+msgstr "البحث…"
+
+#: public/templates/submissions-table.php:75
+msgid "Filter entries"
+msgstr "تصفية الإدخالات"
+
+#: public/templates/submissions-table.php:100
+msgid "Submitted from"
+msgstr "أُرسل من"
+
+#: public/templates/submissions-table.php:104
+msgid "to"
+msgstr "إلى"
+
+#: public/templates/submissions-table.php:118
+msgid "Clear filters"
+msgstr "مسح عوامل التصفية"
+
+#: public/templates/submissions-table.php:211
 msgid "Pagination"
 msgstr "التنقل بين الصفحات"
 
-#: public/templates/submissions-table.php:143
+#: public/templates/submissions-table.php:232
 msgid "« Previous"
 msgstr "« السابق"
 
 #. translators: 1: current page, 2: total pages
-#: public/templates/submissions-table.php:151
+#: public/templates/submissions-table.php:240
 #, php-format
 msgid "Page %1$d of %2$d"
 msgstr "الصفحة %1$d من %2$d"
 
-#: public/templates/submissions-table.php:160
+#: public/templates/submissions-table.php:249
 msgid "Next »"
 msgstr "التالي »"
 
 #: admin/assets/js/dashboard.js:55 admin/assets/js/dashboard.js:186
 msgid "Nothing to show for this range yet."
 msgstr "لا شيء لعرضه في هذا النطاق بعد."
-
-#: admin/assets/js/dashboard.js:78
-msgid "(none)"
-msgstr "(لا شيء)"
 
 #. translators: %d: pipeline ID, shown when the pipeline has no name.
 #: admin/assets/js/dashboard.js:85
@@ -3201,335 +3766,313 @@ msgstr "جارٍ الفحص…"
 msgid "Could not load the check. Reload the page and try again."
 msgstr "تعذّر تحميل الفحص. أعد تحميل الصفحة وحاول مجددًا."
 
-#. translators: %s: owner name, or #user id when the user no longer exists.
+#: admin/assets/kanban/build/index.js:1
+msgid "Could not save the note."
+msgstr "تعذّر حفظ الملاحظة."
+
+#: admin/assets/kanban/build/index.js:1
+msgid "Could not load this submission."
+msgstr "تعذّر تحميل هذا الإرسال."
+
+#: admin/assets/kanban/build/index.js:1
+msgid "Submission details"
+msgstr "تفاصيل الإرسال"
+
+#. translators: %d: submission id.
+#: admin/assets/kanban/build/index.js:1
+msgid "Submission #%d"
+msgstr "الإرسال #%d"
+
+#: admin/assets/kanban/build/index.js:1
+msgid "Details"
+msgstr "التفاصيل"
+
+#: admin/assets/kanban/build/index.js:1
+msgid "Could not add the tag."
+msgstr "تعذّرت إضافة الوسم."
+
+#: admin/assets/kanban/build/index.js:1
+msgid "Could not remove the tag."
+msgstr "تعذّرت إزالة الوسم."
+
+#: admin/assets/kanban/build/index.js:1
+msgid "Could not create the tag."
+msgstr "تعذّر إنشاء الوسم."
+
+#: admin/assets/kanban/build/index.js:1
+msgid "Could not delete the note."
+msgstr "تعذّر حذف الملاحظة."
+
 #: admin/assets/kanban/build/index.js:2
+msgid "Remove the star from %s"
+msgstr "إزالة النجمة من %s"
+
+#: admin/assets/kanban/build/index.js:2 admin/assets/kanban/build/index.js:3
+#: admin/assets/kanban/build/index.js:29
+msgid "this submission"
+msgstr "هذا الإرسال"
+
+#: admin/assets/kanban/build/index.js:3
+msgid "Click to edit"
+msgstr "انقر للتحرير"
+
+#: admin/assets/kanban/build/index.js:3
+msgid "This field is no longer on the form"
+msgstr "هذا الحقل لم يعد موجودًا في النموذج"
+
+#: admin/assets/kanban/build/index.js:3
+msgid "old field"
+msgstr "حقل قديم"
+
+#: admin/assets/kanban/build/index.js:3
+msgid "Remove tag"
+msgstr "إزالة الوسم"
+
+#. translators: %s: tag name.
+#: admin/assets/kanban/build/index.js:3
+msgid "Remove tag %s"
+msgstr "إزالة الوسم %s"
+
+#: admin/assets/kanban/build/index.js:3
+msgid "New tag name"
+msgstr "اسم الوسم الجديد"
+
+#: admin/assets/kanban/build/index.js:3
+msgid "Add"
+msgstr "إضافة"
+
+#: admin/assets/kanban/build/index.js:3
+msgid "Add a tag to this submission"
+msgstr "أضف وسمًا لهذا الإرسال"
+
+#: admin/assets/kanban/build/index.js:3
+msgid "+ Add tag…"
+msgstr "+ أضف وسمًا…"
+
+#: admin/assets/kanban/build/index.js:3
+msgid "+ Create new tag…"
+msgstr "+ أنشئ وسمًا جديدًا…"
+
+#: admin/assets/kanban/build/index.js:5
+msgid "Moved to a new stage"
+msgstr "نُقل إلى مرحلة جديدة"
+
+#: admin/assets/kanban/build/index.js:5
+msgid "(empty note)"
+msgstr "(ملاحظة فارغة)"
+
+#: admin/assets/kanban/build/index.js:10
+msgid "Email to %s"
+msgstr "بريد إلى %s"
+
+#. translators: %d: user id.
+#: admin/assets/kanban/build/index.js:16 admin/assets/kanban/build/index.js:18
+msgid "User #%d"
+msgstr "المستخدم #%d"
+
+#: admin/assets/kanban/build/index.js:18
+msgid "No activity yet."
+msgstr "لا يوجد نشاط بعد."
+
+#: admin/assets/kanban/build/index.js:18
+msgid "Posting as %s"
+msgstr "تنشر باسم %s"
+
+#: admin/assets/kanban/build/index.js:18
+msgid "Add a note for your team. The customer never sees it."
+msgstr "أضف ملاحظة لفريقك. العميل لا يراها أبدًا."
+
+#: admin/assets/kanban/build/index.js:18
+msgid "Tip: **bold**, *italic*, lists and links work."
+msgstr "نصيحة: **غامق** و*مائل* والقوائم والروابط تعمل."
+
+#: admin/assets/kanban/build/index.js:18 admin/assets/kanban/build/index.js:24
+msgid "Saving…"
+msgstr "جارٍ الحفظ…"
+
+#: admin/assets/kanban/build/index.js:18
+msgid "Add note"
+msgstr "أضف الملاحظة"
+
+#: admin/assets/kanban/build/index.js:18
+msgid "No notes yet."
+msgstr "لا توجد ملاحظات بعد."
+
+#: admin/assets/kanban/build/index.js:18
+msgid "Unknown"
+msgstr "غير معروف"
+
+#. translators: %d: number of minutes.
+#: admin/assets/kanban/build/index.js:20
+msgid "%dm ago"
+msgstr "قبل %d د"
+
+#. translators: %d: number of hours.
+#: admin/assets/kanban/build/index.js:22
+msgid "%dh ago"
+msgstr "قبل %d س"
+
+#. translators: %d: number of days.
+#: admin/assets/kanban/build/index.js:24
+msgid "%dd ago"
+msgstr "قبل %d ي"
+
+#: admin/assets/kanban/build/index.js:24
+msgid "Delete note"
+msgstr "احذف الملاحظة"
+
+#: admin/assets/kanban/build/index.js:24
+msgid "[deleted]"
+msgstr "[محذوف]"
+
+#: admin/assets/kanban/build/index.js:24
+msgid "Reply…"
+msgstr "رد…"
+
+#: admin/assets/kanban/build/index.js:24
+msgid "Post reply"
+msgstr "انشر الرد"
+
+#: admin/assets/kanban/build/index.js:24
+msgid "Reply"
+msgstr "رد"
+
+#: admin/assets/kanban/build/index.js:24
+msgid "Sent."
+msgstr "تم الإرسال."
+
+#: admin/assets/kanban/build/index.js:25
+msgid "Conversation"
+msgstr "المحادثة"
+
+#: admin/assets/kanban/build/index.js:25
+msgid "No emails yet."
+msgstr "لا توجد رسائل بريد بعد."
+
+#. translators: %s: sender address.
+#: admin/assets/kanban/build/index.js:25
+msgid "From %s"
+msgstr "من %s"
+
+#. translators: %s: recipient address.
+#: admin/assets/kanban/build/index.js:25
+msgid "To %s"
+msgstr "إلى %s"
+
+#. translators: %s: the mail server's reason.
+#: admin/assets/kanban/build/index.js:25
+msgid "Not sent: %s"
+msgstr "لم يُرسل: %s"
+
+#: admin/assets/kanban/build/index.js:25
+msgid "(no subject)"
+msgstr "(بلا موضوع)"
+
+#: admin/assets/kanban/build/index.js:25
+msgctxt "submission status"
+msgid "Open"
+msgstr "مفتوح"
+
+#: admin/assets/kanban/build/index.js:25
+msgctxt "submission status"
+msgid "Won"
+msgstr "مكسوب"
+
+#: admin/assets/kanban/build/index.js:25
+msgctxt "submission status"
+msgid "Lost"
+msgstr "خاسر"
+
+#. translators: %s: owner name, or #user id when the user no longer exists.
+#: admin/assets/kanban/build/index.js:26
 msgid "Owner: %s"
 msgstr "المسؤول: %s"
 
-#: admin/assets/kanban/build/index.js:2
+#: admin/assets/kanban/build/index.js:26
 msgid "Unassigned: no owner set"
 msgstr "غير مُعيَّن: لا يوجد مسؤول"
 
 #. translators: %s: form plugin name.
-#: admin/assets/kanban/build/index.js:2
+#: admin/assets/kanban/build/index.js:26
 msgid "Source: %s"
 msgstr "المصدر: %s"
 
-#: admin/assets/kanban/build/index.js:2
+#: admin/assets/kanban/build/index.js:26
 msgctxt "badge on a card nobody has seen yet"
 msgid "New"
 msgstr "جديد"
 
 #. translators: %s: date and time the submission arrived.
-#: admin/assets/kanban/build/index.js:2
+#: admin/assets/kanban/build/index.js:26
 msgid "Arrived %s"
 msgstr "وصل %s"
 
 #. translators: %d: number of minutes, shown in a short card corner.
-#: admin/assets/kanban/build/index.js:3
+#: admin/assets/kanban/build/index.js:27
 msgid "%dm"
 msgstr "%d د"
 
 #. translators: %d: number of hours, shown in a short card corner.
-#: admin/assets/kanban/build/index.js:4
+#: admin/assets/kanban/build/index.js:28
 msgid "%dh"
 msgstr "%d س"
 
 #. translators: %d: number of days, shown in a short card corner.
-#: admin/assets/kanban/build/index.js:5
+#: admin/assets/kanban/build/index.js:29
 msgid "%dd"
 msgstr "%d ي"
 
-#: admin/assets/kanban/build/index.js:5
+#: admin/assets/kanban/build/index.js:29
 msgid "Open details"
 msgstr "افتح التفاصيل"
 
 #. translators: %s: submission title.
-#: admin/assets/kanban/build/index.js:5
+#: admin/assets/kanban/build/index.js:29
 msgid "Open %s"
 msgstr "افتح %s"
 
-#: admin/assets/kanban/build/index.js:5
-msgid "this submission"
-msgstr "هذا الإرسال"
-
-#: admin/assets/kanban/build/index.js:5
+#: admin/assets/kanban/build/index.js:29
 msgctxt "button: open a card's details"
 msgid "Open"
 msgstr "افتح"
 
-#: admin/assets/kanban/build/index.js:5
+#: admin/assets/kanban/build/index.js:29
 msgid "More cards than this stage's limit"
 msgstr "بطاقات أكثر من حد هذه المرحلة"
 
-#: admin/assets/kanban/build/index.js:5
+#. translators: %d: unread entries in this stage.
+#: admin/assets/kanban/build/index.js:31
+msgid "%d unread"
+msgid_plural "%d unread"
+msgstr[0] "%d غير مقروء"
+msgstr[1] "%d غير مقروء"
+msgstr[2] "%d غير مقروءين"
+msgstr[3] "%d غير مقروءة"
+msgstr[4] "%d غير مقروء"
+msgstr[5] "%d غير مقروء"
+
+#: admin/assets/kanban/build/index.js:31
 msgid "No submissions"
 msgstr "لا توجد إرسالات"
 
 #. translators: %d: cards not shown yet.
-#: admin/assets/kanban/build/index.js:5
+#: admin/assets/kanban/build/index.js:31
 msgid "Show more (%d left)"
 msgstr "اعرض المزيد (بقي %d)"
 
-#: admin/assets/kanban/build/index.js:5
-msgid "Could not save the note."
-msgstr "تعذّر حفظ الملاحظة."
-
-#: admin/assets/kanban/build/index.js:5
-msgid "Could not load this submission."
-msgstr "تعذّر تحميل هذا الإرسال."
-
-#: admin/assets/kanban/build/index.js:5
-msgid "Submission details"
-msgstr "تفاصيل الإرسال"
-
-#. translators: %d: submission id.
-#: admin/assets/kanban/build/index.js:5
-msgid "Submission #%d"
-msgstr "الإرسال #%d"
-
-#: admin/assets/kanban/build/index.js:5
-msgid "Details"
-msgstr "التفاصيل"
-
-#: admin/assets/kanban/build/index.js:5
-msgid "Timeline"
-msgstr "السجل الزمني"
-
-#: admin/assets/kanban/build/index.js:5
-msgid "Notes"
-msgstr "الملاحظات"
-
-#: admin/assets/kanban/build/index.js:5
-msgid "Could not add the tag."
-msgstr "تعذّرت إضافة الوسم."
-
-#: admin/assets/kanban/build/index.js:5
-msgid "Could not remove the tag."
-msgstr "تعذّرت إزالة الوسم."
-
-#: admin/assets/kanban/build/index.js:5
-msgid "Could not create the tag."
-msgstr "تعذّر إنشاء الوسم."
-
-#: admin/assets/kanban/build/index.js:5
-msgid "Could not delete the note."
-msgstr "تعذّر حذف الملاحظة."
-
-#: admin/assets/kanban/build/index.js:5
-msgid "Loading…"
-msgstr "جارٍ التحميل…"
-
-#: admin/assets/kanban/build/index.js:5
-msgid "Click to edit"
-msgstr "انقر للتحرير"
-
-#. translators: %s: form id.
-#: admin/assets/kanban/build/index.js:5
-msgid "form %s"
-msgstr "النموذج %s"
-
-#: admin/assets/kanban/build/index.js:5
-msgid "What they sent"
-msgstr "ما أرسلوه"
-
-#: admin/assets/kanban/build/index.js:5
-msgid "This field is no longer on the form"
-msgstr "هذا الحقل لم يعد موجودًا في النموذج"
-
-#: admin/assets/kanban/build/index.js:5
-msgid "old field"
-msgstr "حقل قديم"
-
-#: admin/assets/kanban/build/index.js:5
-msgid "Remove tag"
-msgstr "إزالة الوسم"
-
-#. translators: %s: tag name.
-#: admin/assets/kanban/build/index.js:5
-msgid "Remove tag %s"
-msgstr "إزالة الوسم %s"
-
-#: admin/assets/kanban/build/index.js:5
-msgid "New tag name"
-msgstr "اسم الوسم الجديد"
-
-#: admin/assets/kanban/build/index.js:5
-msgid "Add"
-msgstr "إضافة"
-
-#: admin/assets/kanban/build/index.js:5
-msgid "Add a tag to this submission"
-msgstr "أضف وسمًا لهذا الإرسال"
-
-#: admin/assets/kanban/build/index.js:5
-msgid "+ Add tag…"
-msgstr "+ أضف وسمًا…"
-
-#: admin/assets/kanban/build/index.js:5
-msgid "+ Create new tag…"
-msgstr "+ أنشئ وسمًا جديدًا…"
-
-#: admin/assets/kanban/build/index.js:7
-msgid "Moved to a new stage"
-msgstr "نُقل إلى مرحلة جديدة"
-
-#: admin/assets/kanban/build/index.js:7
-msgid "(empty note)"
-msgstr "(ملاحظة فارغة)"
-
-#: admin/assets/kanban/build/index.js:12
-msgid "Email to %s"
-msgstr "بريد إلى %s"
-
-#. translators: %d: user id.
-#: admin/assets/kanban/build/index.js:18 admin/assets/kanban/build/index.js:20
-msgid "User #%d"
-msgstr "المستخدم #%d"
-
-#: admin/assets/kanban/build/index.js:20
-msgid "No activity yet."
-msgstr "لا يوجد نشاط بعد."
-
-#: admin/assets/kanban/build/index.js:20
-msgid "Posting as %s"
-msgstr "تنشر باسم %s"
-
-#: admin/assets/kanban/build/index.js:20
-msgid "Add a note for your team. The customer never sees it."
-msgstr "أضف ملاحظة لفريقك. العميل لا يراها أبدًا."
-
-#: admin/assets/kanban/build/index.js:20
-msgid "Tip: **bold**, *italic*, lists and links work."
-msgstr "نصيحة: **غامق** و*مائل* والقوائم والروابط تعمل."
-
-#: admin/assets/kanban/build/index.js:20 admin/assets/kanban/build/index.js:26
-msgid "Saving…"
-msgstr "جارٍ الحفظ…"
-
-#: admin/assets/kanban/build/index.js:20
-msgid "Add note"
-msgstr "أضف الملاحظة"
-
-#: admin/assets/kanban/build/index.js:20
-msgid "No notes yet."
-msgstr "لا توجد ملاحظات بعد."
-
-#: admin/assets/kanban/build/index.js:20
-msgid "Unknown"
-msgstr "غير معروف"
-
-#. translators: %d: number of minutes.
-#: admin/assets/kanban/build/index.js:22
-msgid "%dm ago"
-msgstr "قبل %d د"
-
-#. translators: %d: number of hours.
-#: admin/assets/kanban/build/index.js:24
-msgid "%dh ago"
-msgstr "قبل %d س"
-
-#. translators: %d: number of days.
-#: admin/assets/kanban/build/index.js:26
-msgid "%dd ago"
-msgstr "قبل %d ي"
-
-#: admin/assets/kanban/build/index.js:26
-msgid "Delete note"
-msgstr "احذف الملاحظة"
-
-#: admin/assets/kanban/build/index.js:26
-msgid "[deleted]"
-msgstr "[محذوف]"
-
-#: admin/assets/kanban/build/index.js:26
-msgid "Reply…"
-msgstr "رد…"
-
-#: admin/assets/kanban/build/index.js:26
-msgid "Post reply"
-msgstr "انشر الرد"
-
-#: admin/assets/kanban/build/index.js:26
-msgid "Reply"
-msgstr "رد"
-
-#: admin/assets/kanban/build/index.js:26
-msgid "Sent."
-msgstr "تم الإرسال."
-
-#: admin/assets/kanban/build/index.js:27
-msgid "Could not send the email: %s"
-msgstr "تعذّر إرسال البريد: %s"
-
-#: admin/assets/kanban/build/index.js:27
-msgid "Could not send the email."
-msgstr "تعذّر إرسال البريد."
-
-#: admin/assets/kanban/build/index.js:27
-msgid "Sending…"
-msgstr "جارٍ الإرسال…"
-
-#: admin/assets/kanban/build/index.js:27
-msgid "Conversation"
-msgstr "المحادثة"
-
-#: admin/assets/kanban/build/index.js:27
-msgid "No emails yet."
-msgstr "لا توجد رسائل بريد بعد."
-
-#. translators: %s: sender address.
-#: admin/assets/kanban/build/index.js:27
-msgid "From %s"
-msgstr "من %s"
-
-#. translators: %s: recipient address.
-#: admin/assets/kanban/build/index.js:27
-msgid "To %s"
-msgstr "إلى %s"
-
-#. translators: %s: the mail server's reason.
-#: admin/assets/kanban/build/index.js:27
-msgid "Not sent: %s"
-msgstr "لم يُرسل: %s"
-
-#: admin/assets/kanban/build/index.js:27
-msgid "(no subject)"
-msgstr "(بلا موضوع)"
-
-#: admin/assets/kanban/build/index.js:27
-msgctxt "submission status"
-msgid "Open"
-msgstr "مفتوح"
-
-#: admin/assets/kanban/build/index.js:27
-msgctxt "submission status"
-msgid "Archived"
-msgstr "مؤرشف"
-
-#: admin/assets/kanban/build/index.js:27
-msgctxt "submission status"
-msgid "Won"
-msgstr "مكسوب"
-
-#: admin/assets/kanban/build/index.js:27
-msgctxt "submission status"
-msgid "Lost"
-msgstr "خاسر"
-
-#: admin/assets/kanban/build/index.js:27
+#: admin/assets/kanban/build/index.js:31
 msgid "Failed to load board"
 msgstr "فشل تحميل اللوحة"
 
-#: admin/assets/kanban/build/index.js:27
+#: admin/assets/kanban/build/index.js:31
 msgid "this card"
 msgstr "هذه البطاقة"
 
-#: admin/assets/kanban/build/index.js:27
+#: admin/assets/kanban/build/index.js:31
 msgid "a stage"
 msgstr "مرحلة"
 
-#: admin/assets/kanban/build/index.js:27
+#: admin/assets/kanban/build/index.js:31
 msgid ""
 "To pick up a card, press space or enter. Use the arrow keys to move it, then "
 "press space or enter to drop it, or escape to cancel."
@@ -3538,36 +4081,36 @@ msgstr ""
 "مسافة أو Enter لإفلاتها، أو Escape للإلغاء."
 
 #. translators: %s: card title.
-#: admin/assets/kanban/build/index.js:29
+#: admin/assets/kanban/build/index.js:33
 msgid "Picked up %s."
 msgstr "تم التقاط %s."
 
-#: admin/assets/kanban/build/index.js:30
+#: admin/assets/kanban/build/index.js:34
 msgid "%1$s is over %2$s."
 msgstr "%1$s فوق %2$s."
 
-#: admin/assets/kanban/build/index.js:31
+#: admin/assets/kanban/build/index.js:35
 msgid "%s is not over a stage."
 msgstr "%s ليست فوق مرحلة."
 
-#: admin/assets/kanban/build/index.js:32
+#: admin/assets/kanban/build/index.js:36
 msgid "%1$s was dropped in %2$s."
 msgstr "تم إفلات %1$s في %2$s."
 
-#: admin/assets/kanban/build/index.js:33
+#: admin/assets/kanban/build/index.js:37
 msgid "%s was dropped."
 msgstr "تم إفلات %s."
 
 #. translators: %s: card title.
-#: admin/assets/kanban/build/index.js:35
+#: admin/assets/kanban/build/index.js:39
 msgid "Moving %s was cancelled."
 msgstr "أُلغي نقل %s."
 
-#: admin/assets/kanban/build/index.js:36
+#: admin/assets/kanban/build/index.js:40
 msgid "%1$d of %2$d cards"
 msgstr "%1$d من %2$d بطاقة"
 
-#: admin/assets/kanban/build/index.js:37
+#: admin/assets/kanban/build/index.js:41
 msgid "%d card"
 msgid_plural "%d cards"
 msgstr[0] "%d بطاقة"
@@ -3577,39 +4120,51 @@ msgstr[3] "%d بطاقات"
 msgstr[4] "%d بطاقةً"
 msgstr[5] "%d بطاقة"
 
-#: admin/assets/kanban/build/index.js:37
+#: admin/assets/kanban/build/index.js:42
+msgid "%1$s (%2$d unread)"
+msgstr "%1$s (%2$d غير مقروء)"
+
+#: admin/assets/kanban/build/index.js:42
 msgid "Search name or email…"
 msgstr "ابحث بالاسم أو البريد…"
 
-#: admin/assets/kanban/build/index.js:37
+#: admin/assets/kanban/build/index.js:42
+msgid "Show only"
+msgstr "اعرض فقط"
+
+#: admin/assets/kanban/build/index.js:43
+msgid "Unread (%d)"
+msgstr "غير مقروء (%d)"
+
+#: admin/assets/kanban/build/index.js:43
 msgid "Could not mark all cards as seen"
 msgstr "تعذّر تعليم كل البطاقات كمقروءة"
 
-#: admin/assets/kanban/build/index.js:37
+#: admin/assets/kanban/build/index.js:43
 msgid "Clear the New badge from every card"
 msgstr "أزل شارة جديد من كل البطاقات"
 
-#: admin/assets/kanban/build/index.js:37
+#: admin/assets/kanban/build/index.js:43
 msgid "Mark all seen"
 msgstr "علّم الكل كمقروء"
 
-#: admin/assets/kanban/build/index.js:37
+#: admin/assets/kanban/build/index.js:43
 msgid "Show only cards owned by"
 msgstr "اعرض فقط البطاقات التي مسؤولها"
 
-#: admin/assets/kanban/build/index.js:37
+#: admin/assets/kanban/build/index.js:43
 msgid "Clear"
 msgstr "مسح"
 
-#: admin/assets/kanban/build/index.js:37
+#: admin/assets/kanban/build/index.js:43
 msgid "The move failed, so the card went back."
 msgstr "فشل النقل، لذا عادت البطاقة."
 
-#: admin/assets/kanban/build/index.js:37
+#: admin/assets/kanban/build/index.js:43
 msgid "No cards on this pipeline."
 msgstr "لا توجد بطاقات في هذا المسار."
 
-#: admin/assets/kanban/build/index.js:37
+#: admin/assets/kanban/build/index.js:43
 msgid ""
 "Your entries are on other pipelines. Open one below, or pick it in the "
 "Pipeline menu above."
@@ -3618,7 +4173,7 @@ msgstr ""
 "الأعلى."
 
 #. translators: 1: pipeline name, 2: number of cards on it.
-#: admin/assets/kanban/build/index.js:37
+#: admin/assets/kanban/build/index.js:43
 msgid "%1$s: %2$d card"
 msgid_plural "%1$s: %2$d cards"
 msgstr[0] "%1$s: %2$d بطاقة"
@@ -3628,11 +4183,11 @@ msgstr[3] "%1$s: %2$d بطاقات"
 msgstr[4] "%1$s: %2$d بطاقةً"
 msgstr[5] "%1$s: %2$d بطاقة"
 
-#: admin/assets/kanban/build/index.js:37
+#: admin/assets/kanban/build/index.js:43
 msgid "Nothing here yet. That is expected."
 msgstr "لا شيء هنا بعد. وهذا متوقع."
 
-#: admin/assets/kanban/build/index.js:37
+#: admin/assets/kanban/build/index.js:43
 msgid ""
 "EntryVault picks up submissions from the form plugins you already use. There "
 "is nothing to add to your forms: submit one of them once and it appears on "
@@ -3641,11 +4196,11 @@ msgstr ""
 "يلتقط EntryVault الإرسالات من إضافات النماذج التي تستخدمها بالفعل. لا شيء "
 "لإضافته إلى نماذجك: أرسل أحدها مرة واحدة وسيظهر على هذه اللوحة خلال لحظات."
 
-#: admin/assets/kanban/build/index.js:37
+#: admin/assets/kanban/build/index.js:43
 msgid "Check which form plugins were found"
 msgstr "تحقق من إضافات النماذج التي تم العثور عليها"
 
-#: admin/assets/kanban/build/index.js:37
+#: admin/assets/kanban/build/index.js:43
 msgid ""
 "No pipeline is set up yet. Deactivate and activate EntryVault once to create "
 "the default one."
@@ -3665,39 +4220,63 @@ msgstr "المسؤول (اسم الموظف، يظهر للعامة)"
 msgid "Tags (shown publicly)"
 msgstr "الوسوم (تظهر للعامة)"
 
-#: blocks/submissions-table/index.js:70
+#: blocks/submissions-table/index.js:84
 msgid "Submissions Table"
 msgstr "جدول الإرسالات"
 
-#: blocks/submissions-table/index.js:72
+#: blocks/submissions-table/index.js:86
 msgid "Pipeline slug"
 msgstr "الاسم المختصر للمسار (slug)"
 
-#: blocks/submissions-table/index.js:77
+#: blocks/submissions-table/index.js:91
 msgid "Stage slug (optional)"
 msgstr "الاسم المختصر للمرحلة (slug) (اختياري)"
 
-#: blocks/submissions-table/index.js:82
+#: blocks/submissions-table/index.js:96
 msgid "Access token (optional)"
 msgstr "رمز الوصول (access token) (اختياري)"
 
-#: blocks/submissions-table/index.js:89
+#: blocks/submissions-table/index.js:103
 msgid "Columns"
 msgstr "الأعمدة"
 
-#: blocks/submissions-table/index.js:103
+#: blocks/submissions-table/index.js:115
+msgid "Visitor filters"
+msgstr "عوامل تصفية للزوار"
+
+#: blocks/submissions-table/index.js:116
+msgid ""
+"Filters show above the table and only for what the table shows: the stage "
+"filter needs the Stage column, the tag filter the Tags column."
+msgstr ""
+"تظهر عوامل التصفية فوق الجدول ولما يعرضه الجدول فقط: تصفية المرحلة تحتاج "
+"عمود المرحلة، وتصفية الوسوم تحتاج عمود الوسوم."
+
+#: blocks/submissions-table/index.js:120
+msgid "Submitted date"
+msgstr "تاريخ الإرسال"
+
+#: blocks/submissions-table/index.js:130
+msgid "Field filters (field keys, comma-separated)"
+msgstr "عوامل تصفية الحقول (مفاتيح الحقول مفصولة بفواصل)"
+
+#: blocks/submissions-table/index.js:131
+msgid "A field filter shows only for a field the table has as a column."
+msgstr "تظهر تصفية الحقل فقط لحقل موجود عمودًا في الجدول."
+
+#: blocks/submissions-table/index.js:145
 msgid "EntryVault Submissions Table"
 msgstr "جدول إرسالات EntryVault"
 
-#: blocks/submissions-table/index.js:108
+#: blocks/submissions-table/index.js:150
 msgid "pipeline: "
 msgstr "المسار: "
 
-#: blocks/submissions-table/index.js:109
+#: blocks/submissions-table/index.js:151
 msgid "(no pipeline set)"
 msgstr "(لم يُحدَّد مسار)"
 
-#: blocks/submissions-table/index.js:114
+#: blocks/submissions-table/index.js:156
 msgid "columns: "
 msgstr "الأعمدة: "
 

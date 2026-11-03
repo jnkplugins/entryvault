@@ -11,6 +11,7 @@ import {
     fetchOwners,
     moveSubmission,
     markSeen,
+    setFlags,
 } from "./api";
 
 const UNASSIGNED = "unassigned";
@@ -44,17 +45,27 @@ export default function Board( { pipelineId, onPipelineChange, initialOpenId = n
     const [ error, setError ] = useState( null );
     const [ activeCard, setActiveCard ] = useState( null );
     const [ openId, setOpenId ] = useState( initialOpenId );
+    const [ starredOnly, setStarredOnly ] = useState( false );
+    const [ unreadOnly, setUnreadOnly ] = useState( false );
+    // Named views an add-on offers (EntryVaultBoot.boardViews), for this pipeline.
+    const boardViews = ( window.EntryVaultBoot || {} ).boardViews || null;
+    const [ viewId, setViewId ] = useState( "" );
+    const viewChoices = boardViews
+        ? ( boardViews.views || [] ).filter( ( v ) => ! Number( v.pipeline_id ) || String( v.pipeline_id ) === String( pipelineId ) )
+        : [];
 
     const sensors = useSensors( useSensor( PointerSensor, { activationConstraint: { distance: 4 } } ) );
 
     function loadBoard() {
         const ownerIds = selectedOwners; // includes "unassigned" sentinel
-        return fetchBoard( pipelineId, { ownerIds, q: query } )
+        return fetchBoard( pipelineId, { ownerIds, q: query, starred: starredOnly, unread: unreadOnly, view: viewId } )
             .then( ( res ) => {
                 const data = unwrap( res ) || {};
                 setPipeline( data.pipeline || null );
                 setStages( data.stages || [] );
                 setLastSeen( data.last_seen_gmt || "" );
+                // Unread counts in the Pipeline menu follow the board.
+                fetchPipelines().then( ( r ) => setPipelines( unwrap( r ) || [] ) ).catch( () => {} );
             } )
             .catch( ( e ) => setError( e.message || __( "Failed to load board", "entryvault" ) ) );
     }
@@ -72,7 +83,13 @@ export default function Board( { pipelineId, onPipelineChange, initialOpenId = n
     useEffect( () => {
         loadBoard();
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [ pipelineId, selectedOwners.join( "," ), query ] );
+    }, [ pipelineId, selectedOwners.join( "," ), query, starredOnly, unreadOnly, viewId ] );
+
+    // A view kept for another pipeline does not apply here.
+    useEffect( () => {
+        if ( viewId && ! viewChoices.some( ( v ) => v.id === viewId ) ) setViewId( "" );
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [ pipelineId ] );
 
     // Search the whole pipeline, not just the cards on screen: send the text to
     // the server once typing pauses.
@@ -87,6 +104,9 @@ export default function Board( { pipelineId, onPipelineChange, initialOpenId = n
         return fetchBoard( pipelineId, {
             ownerIds: selectedOwners,
             q: query,
+            starred: starredOnly,
+            unread: unreadOnly,
+            view: viewId,
             stageId,
             // Possibly one row too early, never too late: repeats are dropped below.
             offset: Math.max( 0, ( stage.cards || [] ).length - ( stage.dropped || 0 ) ),
@@ -157,6 +177,23 @@ export default function Board( { pipelineId, onPipelineChange, initialOpenId = n
                 ? prev.filter( ( v ) => String( v ) !== String( key ) )
                 : [ ...prev, key ];
         } );
+    }
+
+    // Star from the card, at once on screen; put back if the save fails.
+    async function handleStar( card ) {
+        const on = ! card.is_starred;
+        const patch = ( value ) => setStages( ( prev ) => prev.map( ( s ) => ( {
+            ...s,
+            cards: ( s.cards || [] ).map( ( c ) => ( String( c.id ) === String( card.id ) ? { ...c, is_starred: value } : c ) ),
+        } ) ) );
+        patch( on );
+        try {
+            await setFlags( card.id, { starred: on } );
+        } catch ( e ) {
+            patch( ! on );
+            setError( e.message || __( "Could not save. Reload the page and try again.", "entryvault" ) );
+            setTimeout( () => setError( null ), 3000 );
+        }
     }
 
     async function handleMarkSeen() {
@@ -266,6 +303,9 @@ export default function Board( { pipelineId, onPipelineChange, initialOpenId = n
     // the Dashboard sub-screen that nobody opens before the board.
     const boardIsEmpty =
         ! search &&
+        ! starredOnly &&
+        ! unreadOnly &&
+        ! viewId &&
         selectedOwners.length === 0 &&
         ( stagesView || [] ).every( ( s ) => ! ( s.cards || [] ).length );
 
@@ -276,6 +316,7 @@ export default function Board( { pipelineId, onPipelineChange, initialOpenId = n
         ( p ) => String( p.id ) !== String( pipelineId ) && Number( p.open_count ) > 0
     );
 
+    const unreadTotal = ( stagesView || [] ).reduce( ( n, s ) => n + ( Number( s.unread ) || 0 ), 0 );
     const shownCards = ( stagesView || [] ).reduce( ( n, s ) => n + ( s.cards || [] ).length, 0 );
     const totalCards = ( stagesView || [] ).reduce( ( n, s ) => n + ( s.total || 0 ), 0 );
     const totalLabel = shownCards < totalCards
@@ -300,7 +341,10 @@ export default function Board( { pipelineId, onPipelineChange, initialOpenId = n
                                 <option value={ pipeline.id }>{ pipeline.name }</option>
                             ) }
                             { pipelines.map( ( p ) => (
-                                <option key={ p.id } value={ p.id }>{ p.name }</option>
+                                <option key={ p.id } value={ p.id }>{ Number( p.unread_count ) > 0
+                                    /* translators: 1: pipeline name, 2: unread entries in it. */
+                                    ? sprintf( __( "%1$s (%2$d unread)", "entryvault" ), p.name, Number( p.unread_count ) )
+                                    : p.name }</option>
                             ) ) }
                         </select>
                     </label>
@@ -317,7 +361,40 @@ export default function Board( { pipelineId, onPipelineChange, initialOpenId = n
                         />
                     </label>
 
+                    { viewChoices.length > 0 && (
+                        <label className="ev-board-field ev-board-view">
+                            <span>{ boardViews.label }</span>
+                            <select
+                                id="ev-board-view"
+                                name="ev_board_view"
+                                value={ viewId }
+                                onChange={ ( e ) => setViewId( e.target.value ) }
+                            >
+                                <option value="">{ boardViews.all }</option>
+                                { viewChoices.map( ( v ) => (
+                                    <option key={ v.id } value={ v.id }>{ v.name }</option>
+                                ) ) }
+                            </select>
+                        </label>
+                    ) }
+
                     <span className="ev-board-total">{ totalLabel }</span>
+
+                    <span className="ev-board-flags" role="group" aria-label={ __( "Show only", "entryvault" ) }>
+                        <OwnerChip
+                            label={ unreadTotal > 0
+                                /* translators: %d: unread entries on this board. */
+                                ? sprintf( __( "Unread (%d)", "entryvault" ), unreadTotal )
+                                : __( "Unread", "entryvault" ) }
+                            active={ unreadOnly }
+                            onClick={ () => setUnreadOnly( ( v ) => ! v ) }
+                        />
+                        <OwnerChip
+                            label={ __( "Starred", "entryvault" ) }
+                            active={ starredOnly }
+                            onClick={ () => setStarredOnly( ( v ) => ! v ) }
+                        />
+                    </span>
 
                     <button
                         type="button"
@@ -358,7 +435,7 @@ export default function Board( { pipelineId, onPipelineChange, initialOpenId = n
                 : ( ( window.EntryVaultBoot || {} ).pastEntriesBox ? null : <GettingStarted /> ) ) }
             <DndContext sensors={ sensors } onDragStart={ handleDragStart } onDragEnd={ handleDragEnd } accessibility={ dragA11y }>
                 <div className="ev-board">
-                    { stagesView.map( ( s ) => <Column key={ s.id } stage={ s } onOpenCard={ setOpenId } onLoadMore={ loadMore } /> ) }
+                    { stagesView.map( ( s ) => <Column key={ s.id } stage={ s } onOpenCard={ setOpenId } onLoadMore={ loadMore } onStar={ handleStar } /> ) }
                 </div>
                 <DragOverlay>
                     { activeCard ? <Card card={ activeCard } overlay /> : null }

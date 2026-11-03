@@ -110,7 +110,8 @@ class Past_Entries {
             'key'           => $key,
             'label'         => $provider->label(),
             'access'        => $provider->access(),
-            'experimental'  => $provider->is_experimental(),
+            // A source that keeps no entries is never read, so it is not "experimental".
+            'experimental'  => $provider->keeps_entries() && $provider->is_experimental(),
             'keeps_entries' => $provider->keeps_entries(),
             'schema'        => [ 'ok' => true, 'missing' => [] ],
             'forms'         => [],

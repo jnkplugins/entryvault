@@ -27,11 +27,16 @@ class Activator {
         }
 
         self::migrate_legacy_tables();
+        // Read before dbDelta adds the column (see mark_existing_read()).
+        $had_read_state = self::has_column( 'submissions', 'read_at' );
         self::create_tables();
         // dbDelta() says nothing when the database refuses a table; check, and
         // keep the database's own error for the notice and Site Health.
         Schema_Check::record();
         self::migrate_columns();
+        if ( ! $had_read_state ) {
+            self::mark_existing_read();
+        }
         self::seed_defaults();
         self::ensure_settings();
         // Before the tokens: they are stored under the slug.
@@ -45,7 +50,36 @@ class Activator {
         }
 
         update_option( 'entryvault_version', ENTRYVAULT_VERSION );
+        update_option( 'entryvault_db_rev', self::DB_REV );
         delete_option( 'ev_version' ); // pre-1.0.7 name
+    }
+
+    /**
+     * Schema revision, for columns added between releases (star, read state).
+     * maybe_upgrade() runs activate() when it differs, as it does on a new version.
+     */
+    public const DB_REV = 2;
+
+    private static function has_column( string $table, string $column ): bool {
+        global $wpdb;
+        $t = $wpdb->prefix . 'entryvault_' . $table;
+        if ( ! $wpdb->get_var( $wpdb->prepare( 'SHOW TABLES LIKE %s', $wpdb->esc_like( $t ) ) ) ) {
+            return true; // fresh install: nothing to mark
+        }
+        return (bool) $wpdb->get_row( $wpdb->prepare( 'SHOW COLUMNS FROM %i LIKE %s', $t, $column ) );
+    }
+
+    /**
+     * The read state arrived with every entry already in the database. Count
+     * those as read, so the first unread badge is the entries that arrive from
+     * now on, not the whole history.
+     */
+    private static function mark_existing_read(): void {
+        global $wpdb;
+        $wpdb->query( $wpdb->prepare(
+            'UPDATE %i SET read_at = created_at WHERE read_at IS NULL',
+            $wpdb->prefix . 'entryvault_submissions'
+        ) );
     }
 
     /**
@@ -84,7 +118,7 @@ class Activator {
      * so re-running is safe; the version gate keeps it to once per release.
      */
     public static function maybe_upgrade(): void {
-        if ( get_option( 'entryvault_version' ) !== ENTRYVAULT_VERSION ) {
+        if ( get_option( 'entryvault_version' ) !== ENTRYVAULT_VERSION || (int) get_option( 'entryvault_db_rev', 0 ) < self::DB_REV ) {
             // activate() stamps the new version; it reads the old one first to
             // tell a fresh install (nothing to convert) from an upgrade.
             self::activate();
@@ -195,6 +229,8 @@ class Activator {
                 title VARCHAR(500) DEFAULT NULL,
                 email VARCHAR(254) DEFAULT NULL,
                 reply_token VARCHAR(40) DEFAULT NULL,
+                is_starred TINYINT(1) NOT NULL DEFAULT 0,
+                read_at DATETIME DEFAULT NULL,
                 created_at DATETIME NOT NULL,
                 updated_at DATETIME NOT NULL,
                 PRIMARY KEY  (id),
@@ -203,7 +239,8 @@ class Activator {
                 KEY idx_owner (owner_user_id),
                 KEY idx_email (email),
                 KEY idx_token (reply_token),
-                KEY idx_created (created_at)
+                KEY idx_created (created_at),
+                KEY idx_unread (pipeline_id, read_at)
             ) {$charset};",
 
             "CREATE TABLE {$p}submission_data (

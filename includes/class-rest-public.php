@@ -169,7 +169,13 @@ class REST_Public {
 		}
 
 		$with_tags = in_array( 'tags', $columns, true );
-		$result    = Frontend::query_submissions( (int) $pipeline['id'], $stage, $q, $sort, $page, $with_tags, ! $token_only );
+		// The query string is the context add-ons read (the same keys as the
+		// shortcode attributes), so the API publishes what the shortcode would.
+		// The same visitor filters as the shortcode (evst, evtag, evfrom, evto,
+		// evf[field]), for what this response shows.
+		$filter_ui = Frontend::resolve_filters( array_merge( [ 'stage', 'tag', 'date' ], $columns ), $columns, '' !== $stage, ! $token_only );
+		$filters   = Frontend::read_filters( $filter_ui, (int) $pipeline['id'], (array) $request->get_query_params() );
+		$result    = Frontend::query_submissions( (int) $pipeline['id'], $stage, $q, $sort, $page, $with_tags, ! $token_only, [ 'context' => (array) $request->get_query_params(), 'filters' => $filters ] );
 
 		$data = [];
 		foreach ( $result['rows'] as $row ) {

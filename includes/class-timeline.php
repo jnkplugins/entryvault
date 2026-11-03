@@ -106,6 +106,12 @@ class Timeline {
             case 'unarchived':
                 $s = __( 'Restored from the archive', 'entryvault' );
                 break;
+            case 'spam_marked':
+                $s = __( 'Moved to spam', 'entryvault' );
+                break;
+            case 'spam_released':
+                $s = __( 'Marked as not spam', 'entryvault' );
+                break;
             case 'ai_read':
                 /* translators: %s: user display name the assistant signed in as. */
                 $s = sprintf( __( 'Opened by an AI assistant signed in as %s', 'entryvault' ), self::user_name( (int) ( $row['user_id'] ?? 0 ) ) );

@@ -4,7 +4,7 @@ Tags: form entries, contact form, crm, leads, csv export
 Requires at least: 6.2
 Tested up to: 7.1
 Requires PHP: 8.2
-Stable tag: 1.23.0
+Stable tag: 1.24.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -139,6 +139,23 @@ Use the contact page at https://jnkplugins.com/entryvault/, or Feedback & Suppor
 7. Pro: automations that tag, assign, move or email entries for you.
 
 == Changelog ==
+
+= 1.24.0 =
+* New: WP-CLI commands. `wp entryvault export` (CSV, Excel or JSON; by pipeline, stage, date range, source, status, chosen columns; `--view` with a Pro saved view), `wp entryvault import <file>` (the CSV importer, with `--dry-run`), `wp entryvault backfill <source>` (past entries from the form plugin, every batch at once, no WP-Cron needed; `--dry-run` counts), and `wp entryvault sources|pipelines|stages|entries|views list` with `--format=table|csv|json|yaml|count|ids`.
+* New: star entries and keep track of what has been read. Opening an entry marks it read for everyone on the site (a shared inbox). Unread entries are bold with a dot on the board and in Submissions, the admin menu shows the unread count, each pipeline and stage shows its own, and the board and Submissions filter by Unread or Starred. Bulk actions: Mark as read, Mark as unread, Star, Remove star. Entries already in the database count as read, as do past entries and CSV imports.
+* New: file uploads open from the entry panel. Each upload is a link, images show a thumbnail. Works with WPForms, Gravity Forms (through its own download link), Fluent Forms, Formidable, Forminator, Ninja Forms, Contact Form 7 with CFDB7, Trinity Forms and the others that store a file URL. Files kept off the public web (Trinity Forms 2.9+, CFDB7 copies) are streamed only to someone who may view the entry's pipeline; the link never names the file on disk. The public table still shows file names only.
+* New: visitor filters on the public table. Add filters="stage,tag,date" (and any field key the table shows as a column, e.g. filters="stage,city") to [entryvault_table], or tick them under Visitor filters on the block. Filters live in the URL, so a filtered view can be linked, and they only exist for what the table already shows: the tag list only holds tags of published entries. Existing tables look the same until you add filters.
+* New: a Spam folder (Submissions > Spam). With "Leave out entries your form plugin marked as spam" unticked, flagged entries now wait there instead of landing on the board with a Spam tag; they keep the pipeline and stage they would have gone to and stay out of the board, counts, reports, exports, contacts and public views. "Not spam" (row link or bulk action) puts an entry on its board; "Move to spam" works from any view; delete one by one or Empty spam.
+* New: export to CSV, Excel (.xlsx) or JSON from Submissions. The Export button opens a panel: pick the file type, tick the columns you want (fixed ones and every form field) and put them in order with the arrows. The file holds exactly what the list is filtering, across all pages; your choice is remembered for next time. CSV keeps the byte-order mark so Excel reads every language, and cells starting with = + - @ stay text.
+* New: Past entries reads WS Form (Lite and Pro) through its own submit reader and Otter Blocks form submissions (grouped by the page the form is on; unpaid drafts left out). Both use the same entry ids as live capture, so nothing is copied twice. Kadence Blocks is listed with a note: its free version keeps no entries (Entries are a Kadence Blocks Pro feature), so only new submissions are captured.
+* New: entries from JetFormBuilder and MW WP Form are captured too (with JetFormBuilder's field labels, and its record id when the form saves records). Beaver Builder Lite has no contact form module (it is in the paid Beaver Builder), and Bricks, Divi and FormLayer are paid or not public, so they are not covered.
+* New: two more privacy and access tools for AI assistants. "Only entries with AI consent" (AI assistants screen) shows assistants only the entries of forms you mark as asking visitors for AI consent; every other form, new ones included, stays hidden. The person-data-get ability answers a data access request: every entry sent with one email address, with fields, notes and emails, under the same masking rules; forms kept from assistants are counted, not shown; deleting stays a human decision.
+* New: an "EntryVault inbox" box on the WordPress Dashboard with unread entries, entries that came in today and open entries nobody owns (each a link to that list), the five newest entries and buttons to the board. It counts only the pipelines you can see. With Pro it also shows overdue follow-ups.
+* Fixed: Contact Form 7 file uploads were saved as a long code (the hash CF7 5.4+ posts) instead of the file name. New entries keep the name of each uploaded file.
+* Fixed: the Message column in Submissions showed a file name (or, for Contact Form 7, a long code) when the upload was longer than what the visitor wrote. It now shows the message, and the file name only when nothing else was sent.
+* Fixed: Contact Form 7 uploads saved by CFDB7 1.3 or later did not open from the entry panel (CFDB7 changed how it names its copies). They now open as links and thumbnails.
+* Fixed: Past entries from CFDB7 brought in a second copy of Contact Form 7 entries with a file upload that EntryVault had already captured live. Those are now recognised and skipped.
+* Fixed: masking contact details for AI assistants changed ordinary words that match part of the sender's name ("Team photo" became "Team P." for a sender called Priya Photo). The sender's name is now masked only where it is written as a name: the full name in any case, a single part as a capitalised whole word (or a whole word in scripts without capitals, with Korean, Chinese and Japanese particles allowed). Emails and phone numbers are masked as before.
 
 = 1.23.0 =
 * New: the AI assistants screen has a "Guide for your assistant" download, a short file that tells Claude or another AI app how to use the EntryVault abilities safely: preview first, ask before changing anything, leave masked contact details alone.

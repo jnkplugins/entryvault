@@ -19,6 +19,8 @@ use EntryVault\Adapters\Adapter_Kadence_Forms;
 use EntryVault\Adapters\Adapter_Otter_Forms;
 use EntryVault\Adapters\Adapter_Spectra_Forms;
 use EntryVault\Adapters\Adapter_Elementor_Forms;
+use EntryVault\Adapters\Adapter_JetFormBuilder;
+use EntryVault\Adapters\Adapter_MW_WP_Form;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -52,6 +54,8 @@ class Adapter_Registry {
             Adapter_Otter_Forms::class,
             Adapter_Spectra_Forms::class,
             Adapter_Elementor_Forms::class,
+            Adapter_JetFormBuilder::class,
+            Adapter_MW_WP_Form::class,
         ];
 
         $candidates = apply_filters( 'entryvault_adapters', $candidates );

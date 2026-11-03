@@ -1,9 +1,9 @@
 import { useState } from "@wordpress/element";
 import { useDroppable } from "@dnd-kit/core";
-import { __, sprintf } from "@wordpress/i18n";
+import { __, _n, sprintf } from "@wordpress/i18n";
 import Card from "./Card";
 
-export default function Column( { stage, onOpenCard, onLoadMore } ) {
+export default function Column( { stage, onOpenCard, onLoadMore, onStar } ) {
     const cards = stage.cards || [];
     // The column shows the first page of its cards; the count is the whole stage.
     const total = stage.total !== undefined && stage.total !== null ? Number( stage.total ) : cards.length;
@@ -34,11 +34,16 @@ export default function Column( { stage, onOpenCard, onLoadMore } ) {
                     className="ev-col-count"
                     title={ overLimit ? __( "More cards than this stage's limit", "entryvault" ) : undefined }
                 >{ countLabel }</span>
+                { Number( stage.unread ) > 0 && ( () => {
+                    /* translators: %d: unread entries in this stage. */
+                    const label = sprintf( _n( "%d unread", "%d unread", Number( stage.unread ), "entryvault" ), Number( stage.unread ) );
+                    return <span className="ev-col-unread" title={ label } aria-label={ label } role="img">{ Number( stage.unread ) }</span>;
+                } )() }
             </h3>
             <div className="ev-col-body">
                 { cards.length === 0
                     ? <p className="ev-col-empty">{ __( "No submissions", "entryvault" ) }</p>
-                    : cards.map( ( c ) => <Card key={ c.id } card={ c } onOpen={ onOpenCard } /> ) }
+                    : cards.map( ( c ) => <Card key={ c.id } card={ c } onOpen={ onOpenCard } onStar={ onStar } /> ) }
                 { left > 0 && onLoadMore && (
                     <button
                         type="button"

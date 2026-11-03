@@ -177,6 +177,20 @@ class Abilities {
             'permission_callback' => [ __CLASS__, 'can_manage' ],
         ] );
 
+        self::add( 'person-data-get', 'read', [
+            'label'               => __( 'Get everything held about one person', 'entryvault' ),
+            'description'         => __( 'For a data access request: every entry sent with one email address (any form, any board), with its fields, notes and the emails exchanged. The privacy settings still apply: contact details stay masked unless the site owner allows them, files and passwords are never included, and forms kept from assistants are only counted. Reading is noted on each entry. Deleting a person\'s data stays a human decision in wp-admin.', 'entryvault' ),
+            'input_schema'        => [
+                'type'                 => 'object',
+                'properties'           => [ 'email' => [ 'type' => 'string', 'format' => 'email', 'maxLength' => 254 ] ],
+                'required'             => [ 'email' ],
+                'additionalProperties' => false,
+            ],
+            'output_schema'       => $any_object,
+            'execute_callback'    => [ __CLASS__, 'person_data_get' ],
+            'permission_callback' => [ __CLASS__, 'can_manage' ],
+        ] );
+
         /** Add more abilities with Abilities::add() (the Pro module's entry tools). */
         do_action( 'entryvault_register_abilities' );
     }
@@ -269,7 +283,7 @@ class Abilities {
         }
         $note = self::UNTRUSTED;
         if ( $hidden ) {
-            $note .= ' ' . sprintf( '%d entries on this page come from forms the site owner keeps from assistants and were left out.', $hidden );
+            $note .= ' ' . sprintf( '%d entries on this page come from forms the site owner keeps from assistants (hidden, or without AI consent) and were left out.', $hidden );
         }
         return [ 'total' => (int) $result['total'], 'entries' => $entries, 'note' => $note ];
     }
@@ -324,6 +338,70 @@ class Abilities {
 
         self::note_read( $id );
         return (array) apply_filters( 'entryvault_ai_entry', $out, $row );
+    }
+
+    /**
+     * Everything held for one email address (GDPR access request), with the
+     * privacy layer applied. Entries in forms kept from assistants are counted,
+     * not shown, so the person handling the request knows to export them.
+     */
+    public static function person_data_get( $input = null ) {
+        global $wpdb;
+        $email = sanitize_email( (string) ( is_array( $input ) ? ( $input['email'] ?? '' ) : '' ) );
+        if ( ! is_email( $email ) ) {
+            return new \WP_Error( 'entryvault_bad_email', 'Give a valid email address.' );
+        }
+        $ids = array_map( 'intval', (array) $wpdb->get_col( $wpdb->prepare(
+            "SELECT id FROM {$wpdb->prefix}entryvault_submissions WHERE email = %s ORDER BY created_at ASC, id ASC LIMIT 200",
+            $email
+        ) ) );
+        // Also entries where the address only sits in a field (the column held another one).
+        foreach ( (array) $wpdb->get_col( $wpdb->prepare(
+            "SELECT DISTINCT submission_id FROM {$wpdb->prefix}entryvault_submission_data WHERE is_stale = 0 AND value = %s LIMIT 200",
+            $email
+        ) ) as $sid ) {
+            $ids[] = (int) $sid;
+        }
+        $ids     = array_values( array_unique( $ids ) );
+        $stages  = self::stage_names();
+        $entries = [];
+        $held    = 0;
+        foreach ( $ids as $id ) {
+            $row = Submission_Store::get( $id );
+            if ( ! $row ) {
+                continue;
+            }
+            if ( ! AI_Privacy::entry_visible( $row ) ) {
+                $held++;
+                continue;
+            }
+            $one = self::get_entry( [ 'entry_id' => $id ] );
+            if ( is_wp_error( $one ) ) {
+                continue;
+            }
+            unset( $one['note'] );
+            $one['status'] = (string) ( $row['status'] ?? '' );
+            $one['emails'] = array_map( static fn( $m ) => [
+                'direction'   => (string) ( $m['direction'] ?? '' ),
+                'subject'     => AI_Privacy::scrub( (string) ( $m['subject'] ?? '' ) ),
+                'body'        => AI_Privacy::scrub( wp_strip_all_tags( (string) ( $m['body'] ?? '' ) ) ),
+                'created_utc' => (string) ( $m['created_at'] ?? '' ),
+            ], Submission_Store::emails_for( $id ) );
+            $entries[] = $one;
+        }
+        $note = self::UNTRUSTED . ' Contact details are masked by the site\'s privacy settings when contact_details_masked is true; the full record is in wp-admin (Tools > Export Personal Data).';
+        if ( $held ) {
+            $note .= ' ' . sprintf( '%d more entries with this address come from forms the site owner keeps from assistants; they are not shown here but are part of the person\'s data.', $held );
+        }
+        return [
+            'email'                  => AI_Privacy::masking() ? AI_Privacy::mask_email( $email ) : $email,
+            'entries_found'          => count( $entries ) + $held,
+            'entries'                => $entries,
+            'entries_not_shown'      => $held,
+            'contact_details_masked' => AI_Privacy::masking(),
+            'note'                   => $note,
+            'log'                    => sprintf( 'person-data-get: %d entries, %d not shown', count( $entries ), $held ),
+        ];
     }
 
     /**

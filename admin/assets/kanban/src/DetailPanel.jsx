@@ -14,9 +14,21 @@ import {
     detachTag,
     sendEmail,
     fetchEmails,
+    setFlags,
 } from "./api";
 
 const TABS = [ "Details", "Timeline", "Notes", "Email" ];
+
+/**
+ * Extra tabs an add-on registers on the PHP side (filter entryvault_panel_tabs,
+ * handed over in EntryVaultBoot.panelTabs as [{ key, label }]). The app draws
+ * the tab and an empty slot (div.ev-tab-ext) the add-on fills; nothing else.
+ */
+function extensionTabs() {
+    const boot = typeof window !== "undefined" ? ( window.EntryVaultBoot || {} ) : {};
+    const list = Array.isArray( boot.panelTabs ) ? boot.panelTabs : [];
+    return list.filter( ( t ) => t && t.key && t.label ).map( ( t ) => ( { key: "ext:" + String( t.key ), slot: String( t.key ), label: String( t.label ) } ) );
+}
 
 function tabLabel( key ) {
     switch ( key ) {
@@ -39,6 +51,7 @@ export default function DetailPanel( { submissionId, stages = [], onClose, onMut
     const [ tags, setTags ] = useState( [] );
     const [ notes, setNotes ] = useState( [] );
     const [ currentUser, setCurrentUser ] = useState( () => readBootUser() );
+    const [ extTabs ] = useState( () => extensionTabs() );
 
     useEffect( () => {
         if ( ! submissionId ) return;
@@ -51,10 +64,31 @@ export default function DetailPanel( { submissionId, stages = [], onClose, onMut
                 const d = res && res.data ? res.data : res;
                 setData( d );
                 setTags( d?.tags || [] );
+                // Opening an entry reads it (for everyone: the read state is per site).
+                if ( d?.submission && ! d.submission.is_read ) {
+                    setFlags( submissionId, { read: true } )
+                        .then( () => {
+                            setData( ( prev ) => ( prev && prev.submission ? { ...prev, submission: { ...prev.submission, is_read: true } } : prev ) );
+                            notifyMutate();
+                        } )
+                        .catch( () => {} );
+                }
             } )
             .catch( ( e ) => setError( e.message || __( "Could not load this submission.", "entryvault" ) ) );
         loadNotes( submissionId );
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [ submissionId ] );
+
+    async function handleFlag( flags ) {
+        try {
+            const res = await setFlags( submissionId, flags );
+            const f = res && res.data ? res.data : {};
+            setData( ( prev ) => ( prev && prev.submission ? { ...prev, submission: { ...prev.submission, is_starred: !! f.is_starred, is_read: !! f.is_read } } : prev ) );
+            notifyMutate();
+        } catch ( e ) {
+            setError( e.message || __( "Could not save. Reload the page and try again.", "entryvault" ) );
+        }
+    }
 
     function loadNotes( id ) {
         fetchNotes( id )
@@ -253,6 +287,15 @@ export default function DetailPanel( { submissionId, stages = [], onClose, onMut
                         onSave={ handleTitleSave }
                         disabled={ ! data }
                     />
+                    { data?.submission && (
+                        <StarButton
+                            on={ !! data.submission.is_starred }
+                            title={ data.submission.title }
+                            onToggle={ () => handleFlag( { starred: ! data.submission.is_starred } ) }
+                        />
+                    ) }
+                    { /* Extension slot for header buttons; left empty by this app. */ }
+                    <div className="ev-panel-actions-ext" data-ev-submission-id={ submissionId }></div>
                     <button type="button" className="ev-panel-close" onClick={ onClose } aria-label={ __( "Close", "entryvault" ) }>×</button>
                 </header>
                 { data?.submission && (
@@ -261,6 +304,13 @@ export default function DetailPanel( { submissionId, stages = [], onClose, onMut
                             <span className="ev-panel-stage" style={ { "--ev-stage": data.stage.color || "#94a3b8" } }>{ data.stage.name }</span>
                         ) }
                         { data.submission.email && <span className="ev-panel-email">{ data.submission.email }</span> }
+                        { data.submission.is_read && (
+                            <button
+                                type="button"
+                                className="button-link ev-panel-unread"
+                                onClick={ () => handleFlag( { read: false } ) }
+                            >{ __( "Mark as unread", "entryvault" ) }</button>
+                        ) }
                     </div>
                 ) }
 
@@ -276,6 +326,16 @@ export default function DetailPanel( { submissionId, stages = [], onClose, onMut
                             className={ tab === t ? "ev-panel-tab is-active" : "ev-panel-tab" }
                             onClick={ () => setTab( t ) }
                         >{ tabLabel( t ) }</button>
+                    ) ) }
+                    { extTabs.map( ( t ) => (
+                        <button
+                            key={ t.key }
+                            type="button"
+                            role="tab"
+                            aria-selected={ tab === t.key }
+                            className={ tab === t.key ? "ev-panel-tab is-active" : "ev-panel-tab" }
+                            onClick={ () => setTab( t.key ) }
+                        >{ t.label }</button>
                     ) ) }
                 </nav>
 
@@ -319,11 +379,42 @@ export default function DetailPanel( { submissionId, stages = [], onClose, onMut
                                     onSend={ handleSendEmail }
                                 />
                             ) }
+                            { extTabs.filter( ( t ) => t.key === tab ).map( ( t ) => (
+                                <div
+                                    key={ t.key + ":" + submissionId }
+                                    className="ev-tab-ext"
+                                    data-ev-tab={ t.slot }
+                                    data-ev-submission-id={ submissionId }
+                                ></div>
+                            ) ) }
                         </>
                     ) }
                 </div>
             </aside>
         </div>
+    );
+}
+
+/** Star toggle, shared by the card and the panel. */
+export function StarButton( { on, title, onToggle, small = false } ) {
+    const label = on
+        /* translators: %s: submission title. */
+        ? sprintf( __( "Remove the star from %s", "entryvault" ), title || __( "this submission", "entryvault" ) )
+        /* translators: %s: submission title. */
+        : sprintf( __( "Star %s", "entryvault" ), title || __( "this submission", "entryvault" ) );
+    const stop = ( e ) => e.stopPropagation();
+    return (
+        <button
+            type="button"
+            className={ "ev-star" + ( on ? " is-on" : "" ) + ( small ? " is-small" : "" ) }
+            aria-pressed={ on }
+            aria-label={ label }
+            title={ label }
+            onPointerDown={ stop }
+            onMouseDown={ stop }
+            onKeyDown={ stop }
+            onClick={ ( e ) => { stop( e ); onToggle(); } }
+        ><span className={ "dashicons " + ( on ? "dashicons-star-filled" : "dashicons-star-empty" ) } aria-hidden="true" /></button>
     );
 }
 
@@ -416,7 +507,7 @@ function Details( { data, stages, owners, allTags, tags, onStageChange, onOwnerC
                     <Row
                         key={ f.field_key }
                         label={ label }
-                        value={ formatValue( f.value ) }
+                        value={ Array.isArray( f.files ) && f.files.length ? <FileList files={ f.files } /> : formatValue( f.value ) }
                         muted={ stale }
                     />
                 );
@@ -511,6 +602,27 @@ function TagPicker( { allTags, tags, onAttachTag, onDetachTag, onCreateTag } ) {
                 </select>
             ) }
         </div>
+    );
+}
+
+/** Uploaded files: a thumbnail for images, a link for everything. */
+function FileList( { files } ) {
+    return (
+        <ul className="ev-files">
+            { files.map( ( f, i ) => (
+                <li key={ i } className="ev-file">
+                    { f.image && f.thumb && (
+                        <a href={ f.url } target="_blank" rel="noopener noreferrer" className="ev-file-thumb">
+                            <img src={ f.thumb } alt="" loading="lazy" />
+                        </a>
+                    ) }
+                    <a href={ f.url } target="_blank" rel="noopener noreferrer" className="ev-file-name">
+                        <span className="dashicons dashicons-media-default" aria-hidden="true" />
+                        <bdi>{ f.name }</bdi>
+                    </a>
+                </li>
+            ) ) }
+        </ul>
     );
 }
 
