@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: EntryVault\n"
 "Report-Msgid-Bugs-To: https://jnkplugins.com/entryvault/\n"
-"POT-Creation-Date: 2026-11-02T19:56:30+00:00\n"
+"POT-Creation-Date: 2026-11-03T09:35:41+00:00\n"
 "PO-Revision-Date: 2026-10-10 16:40+0000\n"
 "Last-Translator: JNK Plugins\n"
 "Language-Team: Korean\n"
@@ -209,14 +209,14 @@ msgstr "라이선스 서버에서 예상하지 못한 응답이 왔습니다."
 
 #. translators: %s: human-readable time difference, e.g. "3 hours".
 #: pro/licensorpro-client/licensorpro-client.php:1758
-#: includes/class-dates.php:65
+#: includes/class-dates.php:67
 #, php-format
 msgid "in %s"
 msgstr "%s 후"
 
 #. translators: %s: human-readable time difference, e.g. "3 hours".
 #: pro/licensorpro-client/licensorpro-client.php:1759
-#: includes/class-dates.php:73
+#: includes/class-dates.php:75
 #, php-format
 msgid "%s ago"
 msgstr "%s 전"
@@ -2423,7 +2423,7 @@ msgstr "(읽지 않음)"
 msgid "No open entries yet. New form submissions show up here."
 msgstr "아직 열린 항목이 없습니다. 새 양식 제출이 여기에 표시됩니다."
 
-#: includes/class-dates.php:61 admin/assets/kanban/build/index.js:18
+#: includes/class-dates.php:63 admin/assets/kanban/build/index.js:18
 #: admin/assets/kanban/build/index.js:26
 msgid "just now"
 msgstr "방금"

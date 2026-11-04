@@ -54,13 +54,15 @@ class Dates {
 
     private static function relative_from_ts( int $ts ): string {
         $now = time();
-        // Timestamps written a moment ago can land a second or two ahead of
-        // this clock, and "in 1 second" for something that just happened reads
-        // as a bug.
-        if ( $ts > $now && $ts - $now <= MINUTE_IN_SECONDS ) {
+        // Anything within a minute either side reads "just now". An entry
+        // written in the same second as this page load has $ts == $now, and
+        // human_time_diff() never says 0, so the equal case must be in here
+        // too, or it reads "in 1 second". A clock a second or two ahead, or
+        // "12 seconds ago", is noise in an admin list as well.
+        if ( abs( $ts - $now ) <= MINUTE_IN_SECONDS ) {
             return __( 'just now', 'entryvault' );
         }
-        if ( $ts >= $now ) {
+        if ( $ts > $now ) {
             /* translators: %s: human-readable time difference, e.g. "3 hours". */
             $phrase = __( 'in %s', 'entryvault' );
             if ( 'in %s' === $phrase ) {

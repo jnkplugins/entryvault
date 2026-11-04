@@ -4,7 +4,7 @@ Tags: form entries, contact form, crm, leads, csv export
 Requires at least: 6.2
 Tested up to: 7.1
 Requires PHP: 8.2
-Stable tag: 1.24.0
+Stable tag: 1.24.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -139,6 +139,9 @@ Use the contact page at https://jnkplugins.com/entryvault/, or Feedback & Suppor
 7. Pro: automations that tag, assign, move or email entries for you.
 
 == Changelog ==
+
+= 1.24.1 =
+* Fixed: an entry opened in the same second it arrived said "in 1 second" in Submissions (the 1.23.0 fix missed that second). Anything within a minute either side of now reads "just now", never "in 1 second" or "12 seconds ago".
 
 = 1.24.0 =
 * New: WP-CLI commands. `wp entryvault export` (CSV, Excel or JSON; by pipeline, stage, date range, source, status, chosen columns; `--view` with a Pro saved view), `wp entryvault import <file>` (the CSV importer, with `--dry-run`), `wp entryvault backfill <source>` (past entries from the form plugin, every batch at once, no WP-Cron needed; `--dry-run` counts), and `wp entryvault sources|pipelines|stages|entries|views list` with `--format=table|csv|json|yaml|count|ids`.

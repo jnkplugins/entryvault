@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: EntryVault\n"
 "Report-Msgid-Bugs-To: https://jnkplugins.com/entryvault/\n"
-"POT-Creation-Date: 2026-11-02T19:56:30+00:00\n"
+"POT-Creation-Date: 2026-11-03T09:35:41+00:00\n"
 "PO-Revision-Date: 2026-10-29 12:00+0000\n"
 "Last-Translator: JNK Plugins\n"
 "Language-Team: Hindi\n"
@@ -209,14 +209,14 @@ msgstr "लाइसेंस सर्वर से अनपेक्षित
 
 #. translators: %s: human-readable time difference, e.g. "3 hours".
 #: pro/licensorpro-client/licensorpro-client.php:1758
-#: includes/class-dates.php:65
+#: includes/class-dates.php:67
 #, php-format
 msgid "in %s"
 msgstr "%s में"
 
 #. translators: %s: human-readable time difference, e.g. "3 hours".
 #: pro/licensorpro-client/licensorpro-client.php:1759
-#: includes/class-dates.php:73
+#: includes/class-dates.php:75
 #, php-format
 msgid "%s ago"
 msgstr "%s पहले"
@@ -2410,7 +2410,7 @@ msgstr "(अपठित)"
 msgid "No open entries yet. New form submissions show up here."
 msgstr "अभी कोई खुली एंट्री नहीं है। नए फ़ॉर्म सबमिशन यहाँ दिखेंगे।"
 
-#: includes/class-dates.php:61 admin/assets/kanban/build/index.js:18
+#: includes/class-dates.php:63 admin/assets/kanban/build/index.js:18
 #: admin/assets/kanban/build/index.js:26
 msgid "just now"
 msgstr "अभी-अभी"
