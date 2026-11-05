@@ -60,7 +60,7 @@ class LicensorPro_Client {
      * change and re-propagate to every plugin's pro/licensorpro-client/.
      * Audit sync with: LicensorPro_Client::SDK_VERSION.
      */
-    const SDK_VERSION = '1.8.5';
+    const SDK_VERSION = '1.8.6';
 
     /** @var array */
     private $opts;
@@ -1714,6 +1714,52 @@ class LicensorPro_Client {
             return;
         }
         $this->clear_cache();
+        $this->release_seat_if_downgraded();
+    }
+
+    /**
+     * Pro replaced by a free build (1.8.6). Uploading the free zip over Pro runs
+     * in a request where this Pro code is still loaded, so this is the last
+     * moment anything can free the seat: the free build has no client, and its
+     * uninstall cannot. If the plugin's folder is still there but holds no copy
+     * of this client any more, give the seat back. Local key state is cleared
+     * only when the server confirmed, so an unreachable server leaves the key in
+     * place (a reinstalled Pro then still works) rather than stranding the seat.
+     */
+    public function release_seat_if_downgraded() {
+        if (!$this->pro_build || $this->plugin_file === '' || !file_exists($this->plugin_file)) {
+            return false;
+        }
+        $key = (string) get_option($this->opt_key, '');
+        if ($key === '' || $this->api_url === '') {
+            return false;
+        }
+        $dir = dirname($this->plugin_file);
+        foreach (['/licensorpro-client.php', '/*/licensorpro-client.php', '/*/*/licensorpro-client.php'] as $pattern) {
+            if (glob($dir . $pattern)) {
+                return false; // Still a Pro build (an update, not a downgrade).
+            }
+        }
+        // Short: a slow licensing server must not hang the upload screen.
+        $resp = wp_remote_post($this->api_url . '/api/v1/license/deactivate', [
+            'timeout'   => 5,
+            'sslverify' => true,
+            'headers'   => ['Content-Type' => 'application/json', 'Accept' => 'application/json'],
+            'body'      => wp_json_encode(['license_key' => $key, 'site_url' => home_url('/')]),
+        ]);
+        $data = $this->parse_response($resp);
+        if (empty($data['ok'])) {
+            return false;
+        }
+        // The "ever licensed" marker stays, as in deactivate().
+        delete_option($this->opt_key);
+        delete_option($this->opt_license);
+        delete_option($this->opt_remote);
+        delete_option($this->opt_lapse);
+        delete_transient($this->tr_validate);
+        delete_transient($this->tr_update);
+        $this->unschedule();
+        return true;
     }
 
     // ---- Admin UI ----------------------------------------------------------

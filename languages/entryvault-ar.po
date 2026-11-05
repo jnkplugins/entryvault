@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: EntryVault\n"
 "Report-Msgid-Bugs-To: https://jnkplugins.com/entryvault/\n"
-"POT-Creation-Date: 2026-11-03T09:35:41+00:00\n"
+"POT-Creation-Date: 2026-11-05T19:08:25+00:00\n"
 "PO-Revision-Date: 2026-10-29 18:00+0000\n"
 "Last-Translator: JNK Plugins\n"
 "Language-Team: Arabic\n"
@@ -206,25 +206,25 @@ msgid "Unexpected response from license server."
 msgstr "رد غير متوقع من خادم التراخيص."
 
 #. translators: %s: human-readable time difference, e.g. "3 hours".
-#: pro/licensorpro-client/licensorpro-client.php:1758
+#: pro/licensorpro-client/licensorpro-client.php:1804
 #: includes/class-dates.php:67
 #, php-format
 msgid "in %s"
 msgstr "خلال %s"
 
 #. translators: %s: human-readable time difference, e.g. "3 hours".
-#: pro/licensorpro-client/licensorpro-client.php:1759
+#: pro/licensorpro-client/licensorpro-client.php:1805
 #: includes/class-dates.php:75
 #, php-format
 msgid "%s ago"
 msgstr "قبل %s"
 
-#: pro/licensorpro-client/licensorpro-client.php:1775
+#: pro/licensorpro-client/licensorpro-client.php:1821
 #, php-format
 msgid "%s License"
 msgstr "ترخيص %s"
 
-#: pro/licensorpro-client/licensorpro-client.php:1785
+#: pro/licensorpro-client/licensorpro-client.php:1831
 msgid ""
 "This site was deactivated, so its seat is free for another site. Enter the "
 "key again here to switch the Pro tools back on."
@@ -232,29 +232,29 @@ msgstr ""
 "تم تعطيل هذا الموقع، لذا أصبح مقعده متاحًا لموقع آخر. أدخل المفتاح مجددًا هنا "
 "لإعادة تشغيل أدوات Pro."
 
-#: pro/licensorpro-client/licensorpro-client.php:1803
-#: pro/licensorpro-client/licensorpro-client.php:2351
+#: pro/licensorpro-client/licensorpro-client.php:1849
+#: pro/licensorpro-client/licensorpro-client.php:2397
 msgid "Enter your license key first."
 msgstr "أدخل مفتاح الترخيص أولًا."
 
-#: pro/licensorpro-client/licensorpro-client.php:1804
+#: pro/licensorpro-client/licensorpro-client.php:1850
 msgid "Installing Pro. This takes a few seconds, keep this page open…"
 msgstr "جارٍ تثبيت Pro. يستغرق ذلك بضع ثوانٍ، أبقِ هذه الصفحة مفتوحة…"
 
-#: pro/licensorpro-client/licensorpro-client.php:1805
+#: pro/licensorpro-client/licensorpro-client.php:1851
 msgid "Reloading to switch on the Pro tools…"
 msgstr "جارٍ إعادة التحميل لتشغيل أدوات Pro…"
 
-#: pro/licensorpro-client/licensorpro-client.php:1806
+#: pro/licensorpro-client/licensorpro-client.php:1852
 msgid "Reload now"
 msgstr "أعد التحميل الآن"
 
-#: pro/licensorpro-client/licensorpro-client.php:1807
+#: pro/licensorpro-client/licensorpro-client.php:1853
 msgid ""
 "Could not reach the licensing server. Check your connection and try again."
 msgstr "تعذّر الوصول إلى خادم التراخيص. تحقق من اتصالك وحاول مجددًا."
 
-#: pro/licensorpro-client/licensorpro-client.php:1808
+#: pro/licensorpro-client/licensorpro-client.php:1854
 msgid ""
 "Deactivate this license on this site? Premium features switch off here and "
 "the seat is freed for another site."
@@ -262,69 +262,69 @@ msgstr ""
 "هل تريد تعطيل هذا الترخيص على هذا الموقع؟ ستتوقف الميزات المميزة هنا ويصبح "
 "المكان متاحًا لموقع آخر."
 
-#: pro/licensorpro-client/licensorpro-client.php:1809
+#: pro/licensorpro-client/licensorpro-client.php:1855
 #: includes/class-plugin.php:403
 msgid "Done."
 msgstr "تم."
 
-#: pro/licensorpro-client/licensorpro-client.php:1810
+#: pro/licensorpro-client/licensorpro-client.php:1856
 msgid "Deactivated."
 msgstr "تم التعطيل."
 
-#: pro/licensorpro-client/licensorpro-client.php:1811
+#: pro/licensorpro-client/licensorpro-client.php:1857
 msgid "Checked."
 msgstr "تم الفحص."
 
-#: pro/licensorpro-client/licensorpro-client.php:1982
-#: pro/licensorpro-client/licensorpro-client.php:2013
-#: pro/licensorpro-client/licensorpro-client.php:2088
+#: pro/licensorpro-client/licensorpro-client.php:2028
+#: pro/licensorpro-client/licensorpro-client.php:2059
+#: pro/licensorpro-client/licensorpro-client.php:2134
 msgid "License key"
 msgstr "مفتاح الترخيص"
 
-#: pro/licensorpro-client/licensorpro-client.php:1983
+#: pro/licensorpro-client/licensorpro-client.php:2029
 msgid "Type"
 msgstr "النوع"
 
-#: pro/licensorpro-client/licensorpro-client.php:1985
+#: pro/licensorpro-client/licensorpro-client.php:2031
 msgid ""
 "Free license: updates of the free version only. It does not switch on Pro."
 msgstr "ترخيص Free: تحديثات النسخة المجانية فقط. لا يشغّل Pro."
 
-#: pro/licensorpro-client/licensorpro-client.php:1986
+#: pro/licensorpro-client/licensorpro-client.php:2032
 msgid "Free license: updates arrive in your dashboard like any other plugin."
 msgstr "ترخيص Free: تصل التحديثات إلى لوحة التحكم مثل أي إضافة أخرى."
 
-#: pro/licensorpro-client/licensorpro-client.php:1988
-#: pro/licensorpro-client/licensorpro-client.php:2056
+#: pro/licensorpro-client/licensorpro-client.php:2034
+#: pro/licensorpro-client/licensorpro-client.php:2102
 msgid "Last checked"
 msgstr "آخر فحص"
 
-#: pro/licensorpro-client/licensorpro-client.php:1992
-#: pro/licensorpro-client/licensorpro-client.php:2062
+#: pro/licensorpro-client/licensorpro-client.php:2038
+#: pro/licensorpro-client/licensorpro-client.php:2108
 msgid "Check for updates now"
 msgstr "تحقق من التحديثات الآن"
 
-#: pro/licensorpro-client/licensorpro-client.php:1995
+#: pro/licensorpro-client/licensorpro-client.php:2041
 msgid "Bought Pro?"
 msgstr "اشتريت Pro؟"
 
-#: pro/licensorpro-client/licensorpro-client.php:1996
+#: pro/licensorpro-client/licensorpro-client.php:2042
 msgid ""
 "Enter your Pro license key and Pro is installed over this version. "
 "Everything you set up stays."
 msgstr ""
 "أدخل مفتاح ترخيص Pro وسيُثبَّت Pro فوق هذا الإصدار. كل ما أعددته يبقى كما هو."
 
-#: pro/licensorpro-client/licensorpro-client.php:1998
+#: pro/licensorpro-client/licensorpro-client.php:2044
 msgid "Pro license key"
 msgstr "مفتاح ترخيص Pro"
 
-#: pro/licensorpro-client/licensorpro-client.php:2001
-#: pro/licensorpro-client/licensorpro-client.php:2069
+#: pro/licensorpro-client/licensorpro-client.php:2047
+#: pro/licensorpro-client/licensorpro-client.php:2115
 msgid "Install Pro now"
 msgstr "ثبّت Pro الآن"
 
-#: pro/licensorpro-client/licensorpro-client.php:2003
+#: pro/licensorpro-client/licensorpro-client.php:2049
 msgid ""
 "Rather do it by hand? Download the Pro zip from your account and upload it "
 "over this plugin."
@@ -332,120 +332,120 @@ msgstr ""
 "تفضّل القيام بذلك يدويًا؟ نزّل ملف Pro المضغوط (zip) من حسابك وارفعه فوق هذه "
 "الإضافة."
 
-#: pro/licensorpro-client/licensorpro-client.php:2004
-#: pro/licensorpro-client/licensorpro-client.php:2096
+#: pro/licensorpro-client/licensorpro-client.php:2050
+#: pro/licensorpro-client/licensorpro-client.php:2142
 msgid "Go to your account"
 msgstr "اذهب إلى حسابك"
 
-#: pro/licensorpro-client/licensorpro-client.php:2017
+#: pro/licensorpro-client/licensorpro-client.php:2063
 msgid "this site is not activated"
 msgstr "هذا الموقع غير مُفعّل"
 
-#: pro/licensorpro-client/licensorpro-client.php:2018
+#: pro/licensorpro-client/licensorpro-client.php:2064
 msgid "this key is for a different plugin"
 msgstr "هذا المفتاح لإضافة أخرى"
 
-#: pro/licensorpro-client/licensorpro-client.php:2019
+#: pro/licensorpro-client/licensorpro-client.php:2065
 msgid "key not recognised"
 msgstr "مفتاح غير معروف"
 
-#: pro/licensorpro-client/licensorpro-client.php:2020
-#: pro/licensorpro-client/licensorpro-client.php:2021
+#: pro/licensorpro-client/licensorpro-client.php:2066
+#: pro/licensorpro-client/licensorpro-client.php:2067
 msgid "revoked"
 msgstr "مُلغى"
 
-#: pro/licensorpro-client/licensorpro-client.php:2025
+#: pro/licensorpro-client/licensorpro-client.php:2071
 msgid "active"
 msgstr "نشط"
 
 #. translators: %s: date the Pro tools lock
-#: pro/licensorpro-client/licensorpro-client.php:2027
+#: pro/licensorpro-client/licensorpro-client.php:2073
 #, php-format
 msgid "expired, Pro tools stay on until %s"
 msgstr "منتهٍ، تبقى أدوات Pro تعمل حتى %s"
 
-#: pro/licensorpro-client/licensorpro-client.php:2028
+#: pro/licensorpro-client/licensorpro-client.php:2074
 msgid "expired, Pro tools locked"
 msgstr "منتهٍ، أدوات Pro مقفلة"
 
-#: pro/licensorpro-client/licensorpro-client.php:2029
+#: pro/licensorpro-client/licensorpro-client.php:2075
 msgid "no longer active (refunded or cancelled)"
 msgstr "لم يعد نشطًا (تم الاسترداد أو الإلغاء)"
 
 #. translators: %s: date the Pro tools lock
-#: pro/licensorpro-client/licensorpro-client.php:2033
+#: pro/licensorpro-client/licensorpro-client.php:2079
 #, php-format
 msgid "renewal payment failed, Pro tools stay on until %s"
 msgstr "فشل دفع التجديد، تبقى أدوات Pro مفعّلة حتى %s"
 
-#: pro/licensorpro-client/licensorpro-client.php:2035
+#: pro/licensorpro-client/licensorpro-client.php:2081
 #: admin/views/past-entries.php:91 includes/class-export.php:51
 #: admin/assets/kanban/build/index.js:3
 msgid "Status"
 msgstr "الحالة"
 
-#: pro/licensorpro-client/licensorpro-client.php:2037
+#: pro/licensorpro-client/licensorpro-client.php:2083
 msgid "Renew"
 msgstr "تجديد"
 
-#: pro/licensorpro-client/licensorpro-client.php:2041
+#: pro/licensorpro-client/licensorpro-client.php:2087
 msgid "Offline mode"
 msgstr "وضع عدم الاتصال"
 
-#: pro/licensorpro-client/licensorpro-client.php:2043
+#: pro/licensorpro-client/licensorpro-client.php:2089
 #, php-format
 msgid "cached license valid until %s"
 msgstr "الترخيص المخزّن مؤقتًا صالح حتى %s"
 
-#: pro/licensorpro-client/licensorpro-client.php:2048
+#: pro/licensorpro-client/licensorpro-client.php:2094
 msgctxt "update channel"
 msgid "stable"
 msgstr "مستقر"
 
-#: pro/licensorpro-client/licensorpro-client.php:2049
+#: pro/licensorpro-client/licensorpro-client.php:2095
 msgctxt "update channel"
 msgid "beta"
 msgstr "بيتا"
 
-#: pro/licensorpro-client/licensorpro-client.php:2050
+#: pro/licensorpro-client/licensorpro-client.php:2096
 msgctxt "update channel"
 msgid "release candidate"
 msgstr "إصدار مرشّح"
 
-#: pro/licensorpro-client/licensorpro-client.php:2051
+#: pro/licensorpro-client/licensorpro-client.php:2097
 msgctxt "update channel"
 msgid "development"
 msgstr "تطوير"
 
-#: pro/licensorpro-client/licensorpro-client.php:2053
+#: pro/licensorpro-client/licensorpro-client.php:2099
 msgid "Update channel"
 msgstr "قناة التحديث"
 
-#: pro/licensorpro-client/licensorpro-client.php:2054
+#: pro/licensorpro-client/licensorpro-client.php:2100
 msgid "Site limit"
 msgstr "حد المواقع"
 
-#: pro/licensorpro-client/licensorpro-client.php:2054
+#: pro/licensorpro-client/licensorpro-client.php:2100
 msgid "Unlimited"
 msgstr "غير محدود"
 
-#: pro/licensorpro-client/licensorpro-client.php:2055
+#: pro/licensorpro-client/licensorpro-client.php:2101
 msgid "Expires"
 msgstr "ينتهي في"
 
-#: pro/licensorpro-client/licensorpro-client.php:2055
+#: pro/licensorpro-client/licensorpro-client.php:2101
 msgid "Never"
 msgstr "أبدًا"
 
-#: pro/licensorpro-client/licensorpro-client.php:2060
+#: pro/licensorpro-client/licensorpro-client.php:2106
 msgid "Deactivate this site"
 msgstr "تعطيل هذا الموقع"
 
-#: pro/licensorpro-client/licensorpro-client.php:2067
+#: pro/licensorpro-client/licensorpro-client.php:2113
 msgid "This is the free version, running on your Pro license."
 msgstr "هذه هي النسخة المجانية، تعمل على ترخيص Pro الخاص بك."
 
-#: pro/licensorpro-client/licensorpro-client.php:2084
+#: pro/licensorpro-client/licensorpro-client.php:2130
 msgid ""
 "Have a Pro license key? Enter it here to switch on the Pro tools. It "
 "replaces the free license on this site."
@@ -453,31 +453,31 @@ msgstr ""
 "لديك مفتاح ترخيص Pro؟ أدخله هنا لتشغيل أدوات Pro. سيحل محل الترخيص المجاني "
 "على هذا الموقع."
 
-#: pro/licensorpro-client/licensorpro-client.php:2085
+#: pro/licensorpro-client/licensorpro-client.php:2131
 msgid "Enter your license key to activate this site."
 msgstr "أدخل مفتاح الترخيص لتفعيل هذا الموقع."
 
-#: pro/licensorpro-client/licensorpro-client.php:2092
+#: pro/licensorpro-client/licensorpro-client.php:2138
 msgid "Activate"
 msgstr "تفعيل"
 
-#: pro/licensorpro-client/licensorpro-client.php:2095
+#: pro/licensorpro-client/licensorpro-client.php:2141
 msgid "Your key is in your purchase email and in your account."
 msgstr "تجد مفتاحك في رسالة الشراء وفي حسابك."
 
-#: pro/licensorpro-client/licensorpro-client.php:2103
+#: pro/licensorpro-client/licensorpro-client.php:2149
 msgid "Need a hand?"
 msgstr "تحتاج مساعدة؟"
 
-#: pro/licensorpro-client/licensorpro-client.php:2104
+#: pro/licensorpro-client/licensorpro-client.php:2150
 msgid "Contact support"
 msgstr "تواصل مع الدعم"
 
-#: pro/licensorpro-client/licensorpro-client.php:2151
+#: pro/licensorpro-client/licensorpro-client.php:2197
 msgid "Only someone who may install plugins on this site can install Pro."
 msgstr "فقط من يملك صلاحية تثبيت الإضافات على هذا الموقع يمكنه تثبيت Pro."
 
-#: pro/licensorpro-client/licensorpro-client.php:2164
+#: pro/licensorpro-client/licensorpro-client.php:2210
 msgid ""
 "That is a free license key, so it keeps this free version updated. Pro needs "
 "the key from your purchase email."
@@ -486,7 +486,7 @@ msgstr ""
 "المفتاح الموجود في رسالة الشراء."
 
 #. translators: %s: URL of the customer account
-#: pro/licensorpro-client/licensorpro-client.php:2169
+#: pro/licensorpro-client/licensorpro-client.php:2215
 #, php-format
 msgid ""
 "Your key is active. Download the Pro zip from your account (%s) and upload "
@@ -495,41 +495,41 @@ msgstr ""
 "مفتاحك نشط. نزّل ملف Pro المضغوط من حسابك (%s) وارفعه فوق هذه الإضافة بدلًا من "
 "ذلك."
 
-#: pro/licensorpro-client/licensorpro-client.php:2173
+#: pro/licensorpro-client/licensorpro-client.php:2219
 msgid "This site does not allow installing plugins from the dashboard."
 msgstr "هذا الموقع لا يسمح بتثبيت الإضافات من لوحة التحكم."
 
-#: pro/licensorpro-client/licensorpro-client.php:2177
+#: pro/licensorpro-client/licensorpro-client.php:2223
 msgid "The Pro download could not be fetched for this key."
 msgstr "تعذّر جلب تنزيل Pro لهذا المفتاح."
 
-#: pro/licensorpro-client/licensorpro-client.php:2185
+#: pro/licensorpro-client/licensorpro-client.php:2231
 msgid "This site asks for FTP details to install plugins."
 msgstr "يطلب هذا الموقع بيانات FTP لتثبيت الإضافات."
 
-#: pro/licensorpro-client/licensorpro-client.php:2220
+#: pro/licensorpro-client/licensorpro-client.php:2266
 msgid "Installing Pro did not finish."
 msgstr "لم يكتمل تثبيت Pro."
 
 #. translators: %s: plugin name
-#: pro/licensorpro-client/licensorpro-client.php:2225
+#: pro/licensorpro-client/licensorpro-client.php:2271
 #, php-format
 msgid "%s Pro is installed and your license is active. Reloading…"
 msgstr "تم تثبيت %s Pro وترخيصك نشط. جارٍ إعادة التحميل…"
 
-#: pro/licensorpro-client/licensorpro-client.php:2244
+#: pro/licensorpro-client/licensorpro-client.php:2290
 msgid "License activated."
 msgstr "تم تفعيل الترخيص."
 
-#: pro/licensorpro-client/licensorpro-client.php:2256
+#: pro/licensorpro-client/licensorpro-client.php:2302
 msgid "Site deactivated."
 msgstr "تم تعطيل الموقع."
 
-#: pro/licensorpro-client/licensorpro-client.php:2278
+#: pro/licensorpro-client/licensorpro-client.php:2324
 msgid "License is valid. Update info refreshed."
 msgstr "الترخيص صالح. تم تحديث معلومات التحديث."
 
-#: pro/licensorpro-client/licensorpro-client.php:2312
+#: pro/licensorpro-client/licensorpro-client.php:2358
 msgid ""
 "Every seat on this license is in use. Deactivate one of your other sites "
 "from your account, then try again."
@@ -537,7 +537,7 @@ msgstr ""
 "كل المواقع المسموح بها في هذا الترخيص مستخدمة. عطّل أحد مواقعك الأخرى من "
 "حسابك ثم حاول مجددًا."
 
-#: pro/licensorpro-client/licensorpro-client.php:2315
+#: pro/licensorpro-client/licensorpro-client.php:2361
 msgid ""
 "This license has expired. Renewing it from your account reactivates this "
 "site immediately. Your settings and data are untouched."
@@ -545,7 +545,7 @@ msgstr ""
 "انتهت صلاحية هذا الترخيص. تجديده من حسابك يعيد تفعيل هذا الموقع فورًا، وتبقى "
 "إعداداتك وبياناتك كما هي."
 
-#: pro/licensorpro-client/licensorpro-client.php:2317
+#: pro/licensorpro-client/licensorpro-client.php:2363
 msgid ""
 "The last renewal payment for this license did not go through, so it is "
 "paused. Update your payment details in your account and it switches back on. "
@@ -554,7 +554,7 @@ msgstr ""
 "لم تكتمل آخر دفعة تجديد لهذا الترخيص، لذا تم إيقافه مؤقتًا. حدّث بيانات الدفع "
 "في حسابك وسيعود للعمل. إعداداتك وبياناتك لم تُمس."
 
-#: pro/licensorpro-client/licensorpro-client.php:2320
+#: pro/licensorpro-client/licensorpro-client.php:2366
 msgid ""
 "This license was cancelled or refunded, so it no longer switches on Pro. If "
 "that is a mistake, reply to your purchase email."
@@ -562,7 +562,7 @@ msgstr ""
 "تم إلغاء هذا الترخيص أو استرداد ثمنه، لذا لم يعد يفعّل Pro. إن كان ذلك خطأ، "
 "فرُدّ على رسالة الشراء."
 
-#: pro/licensorpro-client/licensorpro-client.php:2323
+#: pro/licensorpro-client/licensorpro-client.php:2369
 msgid ""
 "That key was not recognised. Check for a missing character, or copy it again "
 "from your purchase email."
@@ -570,7 +570,7 @@ msgstr ""
 "لم نتعرّف على هذا المفتاح. تأكد من عدم نقص أي حرف، أو انسخه مجددًا من رسالة "
 "الشراء."
 
-#: pro/licensorpro-client/licensorpro-client.php:2325
+#: pro/licensorpro-client/licensorpro-client.php:2371
 msgid ""
 "This key is for a different plugin. Each plugin has its own key: use the one "
 "from the purchase email for this plugin."
@@ -578,7 +578,7 @@ msgstr ""
 "هذا المفتاح لإضافة أخرى. لكل إضافة مفتاحها الخاص: استخدم المفتاح الموجود في "
 "رسالة شراء هذه الإضافة."
 
-#: pro/licensorpro-client/licensorpro-client.php:2328
+#: pro/licensorpro-client/licensorpro-client.php:2374
 msgid ""
 "This key has been revoked. If you believe that is a mistake, reply to your "
 "purchase email and we will sort it out."
@@ -586,14 +586,14 @@ msgstr ""
 "تم إلغاء هذا المفتاح. إن كنت ترى أن ذلك خطأ، فردّ على رسالة الشراء وسنحلّ "
 "الأمر."
 
-#: pro/licensorpro-client/licensorpro-client.php:2330
+#: pro/licensorpro-client/licensorpro-client.php:2376
 msgid ""
 "This site is not activated on this license any more. Enter the key again to "
 "activate it."
 msgstr ""
 "لم يعد هذا الموقع مفعّلًا على هذا الترخيص. أدخل المفتاح مرة أخرى لتفعيله."
 
-#: pro/licensorpro-client/licensorpro-client.php:2332
+#: pro/licensorpro-client/licensorpro-client.php:2378
 msgid ""
 "That is a free license key. It keeps the free version updated but does not "
 "switch on Pro. Enter the Pro key from your purchase email."
@@ -601,39 +601,39 @@ msgstr ""
 "هذا مفتاح ترخيص مجاني. يُبقي النسخة المجانية محدّثة لكنه لا يفعّل Pro. أدخل "
 "مفتاح Pro من رسالة الشراء."
 
-#: pro/licensorpro-client/licensorpro-client.php:2335
+#: pro/licensorpro-client/licensorpro-client.php:2381
 msgid "This plugin has no free license. Use the key from your purchase email."
 msgstr "لا يوجد ترخيص مجاني لهذه الإضافة. استخدم المفتاح من رسالة الشراء."
 
-#: pro/licensorpro-client/licensorpro-client.php:2337
+#: pro/licensorpro-client/licensorpro-client.php:2383
 msgid ""
 "The licensing server does not know this plugin. Update the plugin, or reply "
 "to your purchase email."
 msgstr "خادم التراخيص لا يعرف هذه الإضافة. حدّث الإضافة أو رُدّ على رسالة الشراء."
 
-#: pro/licensorpro-client/licensorpro-client.php:2339
+#: pro/licensorpro-client/licensorpro-client.php:2385
 msgid ""
 "This site's license session ran out. Check the license again to renew it."
 msgstr "انتهت جلسة الترخيص لهذا الموقع. تحقّق من الترخيص مرة أخرى لتجديدها."
 
-#: pro/licensorpro-client/licensorpro-client.php:2342
+#: pro/licensorpro-client/licensorpro-client.php:2388
 msgid ""
 "The download link has expired. Check for updates again to get a fresh one."
 msgstr ""
 "انتهت صلاحية رابط التنزيل. ابحث عن التحديثات مرة أخرى للحصول على رابط جديد."
 
-#: pro/licensorpro-client/licensorpro-client.php:2344
+#: pro/licensorpro-client/licensorpro-client.php:2390
 msgid ""
 "The download is not on the server right now. Try again later, or download "
 "the zip from your account."
 msgstr ""
 "التنزيل غير متوفر على الخادم حاليًا. حاول لاحقًا أو نزّل ملف zip من حسابك."
 
-#: pro/licensorpro-client/licensorpro-client.php:2346
+#: pro/licensorpro-client/licensorpro-client.php:2392
 msgid "Enter a valid email address."
 msgstr "أدخل عنوان بريد إلكتروني صالحًا."
 
-#: pro/licensorpro-client/licensorpro-client.php:2349
+#: pro/licensorpro-client/licensorpro-client.php:2395
 msgid ""
 "The request to the licensing server was missing details. Reload this page "
 "and try again."
@@ -641,7 +641,7 @@ msgstr ""
 "كان الطلب المرسل إلى خادم التراخيص ينقصه بعض التفاصيل. أعد تحميل هذه الصفحة "
 "وحاول مجددًا."
 
-#: pro/licensorpro-client/licensorpro-client.php:2353
+#: pro/licensorpro-client/licensorpro-client.php:2399
 msgid ""
 "The answer from the licensing server could not be verified, so it was not "
 "trusted. Try again in a few minutes. If it keeps happening, reply to your "
@@ -650,7 +650,7 @@ msgstr ""
 "تعذّر التحقق من رد خادم التراخيص، لذا لم يُعتمد. حاول مجددًا بعد بضع دقائق. إن "
 "تكرر ذلك، فرُدّ على رسالة الشراء."
 
-#: pro/licensorpro-client/licensorpro-client.php:2356
+#: pro/licensorpro-client/licensorpro-client.php:2402
 msgid ""
 "Could not reach the licensing server. Your site may be blocking outbound "
 "requests. This is usually temporary, so try again in a minute."
@@ -658,11 +658,11 @@ msgstr ""
 "تعذّر الوصول إلى خادم التراخيص. ربما يمنع موقعك الطلبات الخارجية. غالبًا يكون "
 "ذلك مؤقتًا، فحاول مجددًا بعد دقيقة."
 
-#: pro/licensorpro-client/licensorpro-client.php:2359
+#: pro/licensorpro-client/licensorpro-client.php:2405
 msgid "Too many attempts in a short window. Wait a minute and try again."
 msgstr "محاولات كثيرة خلال وقت قصير. انتظر دقيقة ثم حاول مجددًا."
 
-#: pro/licensorpro-client/licensorpro-client.php:2361
+#: pro/licensorpro-client/licensorpro-client.php:2407
 msgid ""
 "The licensing server had a problem on its side. Your key was not rejected. "
 "Try again in a few minutes, and if it keeps happening, reply to your "
@@ -672,7 +672,7 @@ msgstr ""
 "دقائق، وإن تكرر ذلك فردّ على رسالة الشراء."
 
 #. translators: %s: short error code from the licensing server
-#: pro/licensorpro-client/licensorpro-client.php:2365
+#: pro/licensorpro-client/licensorpro-client.php:2411
 #, php-format
 msgid ""
 "The licensing server could not confirm this license (%s). Try again in a few "
@@ -682,7 +682,7 @@ msgstr ""
 "تعذّر على خادم التراخيص تأكيد هذا الترخيص (%s). حاول مجددًا بعد بضع دقائق. إن "
 "تكرر ذلك، فرُدّ على رسالة الشراء واذكر هذا الرمز."
 
-#: pro/licensorpro-client/licensorpro-client.php:2391
+#: pro/licensorpro-client/licensorpro-client.php:2437
 msgid "Permission denied."
 msgstr "تم رفض الإذن."
 
@@ -1516,7 +1516,7 @@ msgid "Use the default pipeline"
 msgstr "استخدم المسار الافتراضي"
 
 #: admin/views/import.php:91 includes/class-export.php:45
-#: includes/class-frontend.php:835 includes/class-submissions-list-table.php:61
+#: includes/class-frontend.php:897 includes/class-submissions-list-table.php:61
 #: public/templates/submissions-table.php:78 admin/assets/js/dashboard.js:143
 #: admin/assets/js/dashboard.js:222 admin/assets/kanban/build/index.js:3
 #: blocks/submissions-table/index.js:26 blocks/submissions-table/index.js:118
@@ -2050,7 +2050,7 @@ msgstr ""
 "المقالات مشمولون دائمًا."
 
 #: admin/views/tags.php:14 includes/class-admin-ui.php:26
-#: includes/class-export.php:47 includes/class-frontend.php:837
+#: includes/class-export.php:47 includes/class-frontend.php:899
 #: includes/class-plugin.php:160 includes/class-submissions-list-table.php:65
 #: admin/assets/kanban/build/index.js:3
 msgid "Tags"
@@ -2073,7 +2073,7 @@ msgid "Edit a tag to rename it or change its colour. Entries keep their tags."
 msgstr "حرّر وسمًا لإعادة تسميته أو تغيير لونه. تحتفظ الإدخالات بوسومها."
 
 #: admin/views/tags.php:27 admin/views/tags.php:45
-#: includes/class-frontend.php:833
+#: includes/class-frontend.php:895
 #: blocks/submissions-table/index.js:23
 msgid "Name"
 msgstr "الاسم"
@@ -2462,14 +2462,14 @@ msgstr "لم يقبل برنامج البريد الرسالة."
 msgid "ID"
 msgstr "ID"
 
-#: includes/class-export.php:42 includes/class-frontend.php:832
+#: includes/class-export.php:42 includes/class-frontend.php:894
 #: includes/class-plugin.php:392 includes/class-privacy.php:227
 #: includes/class-submissions-list-table.php:54
 #: blocks/submissions-table/index.js:24
 msgid "Title"
 msgstr "العنوان"
 
-#: includes/class-export.php:43 includes/class-frontend.php:834
+#: includes/class-export.php:43 includes/class-frontend.php:896
 #: includes/class-plugin.php:393 includes/class-privacy.php:228
 #: includes/class-submissions-list-table.php:55
 #: admin/assets/kanban/build/index.js:1
@@ -2477,7 +2477,7 @@ msgstr "العنوان"
 msgid "Email"
 msgstr "البريد الإلكتروني"
 
-#: includes/class-export.php:46 includes/class-frontend.php:836
+#: includes/class-export.php:46 includes/class-frontend.php:898
 #: includes/class-submissions-list-table.php:66
 #: includes/class-submissions-list-table.php:164
 #: admin/assets/js/dashboard.js:159
@@ -2499,7 +2499,7 @@ msgstr "ID النموذج"
 msgid "Entry ID in the form plugin"
 msgstr "معرّف الإدخال في إضافة النماذج"
 
-#: includes/class-export.php:52 includes/class-frontend.php:831
+#: includes/class-export.php:52 includes/class-frontend.php:893
 #: includes/class-submissions-list-table.php:68
 #: blocks/submissions-table/index.js:29
 msgid "Created"
@@ -2558,19 +2558,19 @@ msgstr "ليست لديك صلاحية تنزيل هذا الملف."
 msgid "File not found."
 msgstr "لم يُعثر على الملف."
 
-#: includes/class-frontend.php:86
+#: includes/class-frontend.php:123
 msgid "No pipeline specified."
 msgstr "لم يتم تحديد مسار."
 
-#: includes/class-frontend.php:91 includes/class-rest-public.php:123
+#: includes/class-frontend.php:128 includes/class-rest-public.php:123
 msgid "Pipeline not found."
 msgstr "المسار غير موجود."
 
-#: includes/class-frontend.php:101 includes/class-rest-public.php:107
+#: includes/class-frontend.php:138 includes/class-rest-public.php:107
 msgid "Access required."
 msgstr "الوصول مطلوب."
 
-#: includes/class-frontend.php:105
+#: includes/class-frontend.php:142
 msgid ""
 "Only editors see this note: visitors cannot read this table because the "
 "access_token is missing or does not match this pipeline. Copy the ready-made "
@@ -2580,15 +2580,16 @@ msgstr ""
 "access_token مفقود أو لا يطابق هذا المسار. انسخ الرمز القصير الجاهز من "
 "EntryVault > الإعدادات > عام."
 
-#: includes/class-frontend.php:782 includes/class-frontend.php:785
+#: includes/class-frontend.php:844 includes/class-frontend.php:847
 msgid "(no name)"
 msgstr "(بلا اسم)"
 
-#: includes/class-frontend.php:784
+#: includes/class-frontend.php:846
 msgid "(email hidden)"
 msgstr "(البريد مخفي)"
 
-#: includes/class-frontend.php:830 blocks/submissions-table/index.js:30
+#: includes/class-frontend.php:892
+#: blocks/submissions-table/index.js:30
 msgid "Submitted"
 msgstr "تاريخ الإرسال"
 

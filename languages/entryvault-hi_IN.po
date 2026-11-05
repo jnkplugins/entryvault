@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: EntryVault\n"
 "Report-Msgid-Bugs-To: https://jnkplugins.com/entryvault/\n"
-"POT-Creation-Date: 2026-11-03T09:35:41+00:00\n"
+"POT-Creation-Date: 2026-11-05T19:08:25+00:00\n"
 "PO-Revision-Date: 2026-10-29 12:00+0000\n"
 "Last-Translator: JNK Plugins\n"
 "Language-Team: Hindi\n"
@@ -208,25 +208,25 @@ msgid "Unexpected response from license server."
 msgstr "लाइसेंस सर्वर से अनपेक्षित जवाब मिला।"
 
 #. translators: %s: human-readable time difference, e.g. "3 hours".
-#: pro/licensorpro-client/licensorpro-client.php:1758
+#: pro/licensorpro-client/licensorpro-client.php:1804
 #: includes/class-dates.php:67
 #, php-format
 msgid "in %s"
 msgstr "%s में"
 
 #. translators: %s: human-readable time difference, e.g. "3 hours".
-#: pro/licensorpro-client/licensorpro-client.php:1759
+#: pro/licensorpro-client/licensorpro-client.php:1805
 #: includes/class-dates.php:75
 #, php-format
 msgid "%s ago"
 msgstr "%s पहले"
 
-#: pro/licensorpro-client/licensorpro-client.php:1775
+#: pro/licensorpro-client/licensorpro-client.php:1821
 #, php-format
 msgid "%s License"
 msgstr "%s लाइसेंस"
 
-#: pro/licensorpro-client/licensorpro-client.php:1785
+#: pro/licensorpro-client/licensorpro-client.php:1831
 msgid ""
 "This site was deactivated, so its seat is free for another site. Enter the "
 "key again here to switch the Pro tools back on."
@@ -234,29 +234,29 @@ msgstr ""
 "इस साइट को निष्क्रिय कर दिया गया, इसलिए इसकी सीट किसी दूसरी साइट के लिए खाली है। "
 "Pro टूल फिर से चालू करने के लिए यहाँ Key दोबारा डालें।"
 
-#: pro/licensorpro-client/licensorpro-client.php:1803
-#: pro/licensorpro-client/licensorpro-client.php:2351
+#: pro/licensorpro-client/licensorpro-client.php:1849
+#: pro/licensorpro-client/licensorpro-client.php:2397
 msgid "Enter your license key first."
 msgstr "पहले अपनी लाइसेंस Key डालें।"
 
-#: pro/licensorpro-client/licensorpro-client.php:1804
+#: pro/licensorpro-client/licensorpro-client.php:1850
 msgid "Installing Pro. This takes a few seconds, keep this page open…"
 msgstr "Pro इंस्टॉल हो रहा है। इसमें कुछ सेकंड लगेंगे, यह पेज खुला रखें…"
 
-#: pro/licensorpro-client/licensorpro-client.php:1805
+#: pro/licensorpro-client/licensorpro-client.php:1851
 msgid "Reloading to switch on the Pro tools…"
 msgstr "Pro टूल चालू करने के लिए पेज फिर से लोड हो रहा है…"
 
-#: pro/licensorpro-client/licensorpro-client.php:1806
+#: pro/licensorpro-client/licensorpro-client.php:1852
 msgid "Reload now"
 msgstr "अभी फिर से लोड करें"
 
-#: pro/licensorpro-client/licensorpro-client.php:1807
+#: pro/licensorpro-client/licensorpro-client.php:1853
 msgid ""
 "Could not reach the licensing server. Check your connection and try again."
 msgstr "लाइसेंस सर्वर तक नहीं पहुँच सके। अपना कनेक्शन जाँचें और फिर कोशिश करें।"
 
-#: pro/licensorpro-client/licensorpro-client.php:1808
+#: pro/licensorpro-client/licensorpro-client.php:1854
 msgid ""
 "Deactivate this license on this site? Premium features switch off here and "
 "the seat is freed for another site."
@@ -264,53 +264,53 @@ msgstr ""
 "इस साइट पर यह लाइसेंस निष्क्रिय करें? यहाँ प्रीमियम फ़ीचर बंद हो जाएँगे और यह जगह किसी "
 "दूसरी साइट के लिए खाली हो जाएगी।"
 
-#: pro/licensorpro-client/licensorpro-client.php:1809
+#: pro/licensorpro-client/licensorpro-client.php:1855
 #: includes/class-plugin.php:403
 msgid "Done."
 msgstr "हो गया।"
 
-#: pro/licensorpro-client/licensorpro-client.php:1810
+#: pro/licensorpro-client/licensorpro-client.php:1856
 msgid "Deactivated."
 msgstr "निष्क्रिय हो गया।"
 
-#: pro/licensorpro-client/licensorpro-client.php:1811
+#: pro/licensorpro-client/licensorpro-client.php:1857
 msgid "Checked."
 msgstr "जाँच हो गई।"
 
-#: pro/licensorpro-client/licensorpro-client.php:1982
-#: pro/licensorpro-client/licensorpro-client.php:2013
-#: pro/licensorpro-client/licensorpro-client.php:2088
+#: pro/licensorpro-client/licensorpro-client.php:2028
+#: pro/licensorpro-client/licensorpro-client.php:2059
+#: pro/licensorpro-client/licensorpro-client.php:2134
 msgid "License key"
 msgstr "लाइसेंस Key"
 
-#: pro/licensorpro-client/licensorpro-client.php:1983
+#: pro/licensorpro-client/licensorpro-client.php:2029
 msgid "Type"
 msgstr "प्रकार"
 
-#: pro/licensorpro-client/licensorpro-client.php:1985
+#: pro/licensorpro-client/licensorpro-client.php:2031
 msgid ""
 "Free license: updates of the free version only. It does not switch on Pro."
 msgstr "Free लाइसेंस: सिर्फ़ Free वर्शन के अपडेट। इससे Pro चालू नहीं होता।"
 
-#: pro/licensorpro-client/licensorpro-client.php:1986
+#: pro/licensorpro-client/licensorpro-client.php:2032
 msgid "Free license: updates arrive in your dashboard like any other plugin."
 msgstr "Free लाइसेंस: अपडेट किसी भी दूसरे प्लगइन की तरह आपके डैशबोर्ड में आते हैं।"
 
-#: pro/licensorpro-client/licensorpro-client.php:1988
-#: pro/licensorpro-client/licensorpro-client.php:2056
+#: pro/licensorpro-client/licensorpro-client.php:2034
+#: pro/licensorpro-client/licensorpro-client.php:2102
 msgid "Last checked"
 msgstr "पिछली जाँच"
 
-#: pro/licensorpro-client/licensorpro-client.php:1992
-#: pro/licensorpro-client/licensorpro-client.php:2062
+#: pro/licensorpro-client/licensorpro-client.php:2038
+#: pro/licensorpro-client/licensorpro-client.php:2108
 msgid "Check for updates now"
 msgstr "अभी अपडेट जाँचें"
 
-#: pro/licensorpro-client/licensorpro-client.php:1995
+#: pro/licensorpro-client/licensorpro-client.php:2041
 msgid "Bought Pro?"
 msgstr "Pro खरीदा है?"
 
-#: pro/licensorpro-client/licensorpro-client.php:1996
+#: pro/licensorpro-client/licensorpro-client.php:2042
 msgid ""
 "Enter your Pro license key and Pro is installed over this version. "
 "Everything you set up stays."
@@ -318,136 +318,136 @@ msgstr ""
 "अपनी Pro लाइसेंस Key डालें और Pro इस वर्शन के ऊपर इंस्टॉल हो जाएगा। आपने जो कुछ सेट "
 "किया है, वह बना रहेगा।"
 
-#: pro/licensorpro-client/licensorpro-client.php:1998
+#: pro/licensorpro-client/licensorpro-client.php:2044
 msgid "Pro license key"
 msgstr "Pro लाइसेंस Key"
 
-#: pro/licensorpro-client/licensorpro-client.php:2001
-#: pro/licensorpro-client/licensorpro-client.php:2069
+#: pro/licensorpro-client/licensorpro-client.php:2047
+#: pro/licensorpro-client/licensorpro-client.php:2115
 msgid "Install Pro now"
 msgstr "अभी Pro इंस्टॉल करें"
 
-#: pro/licensorpro-client/licensorpro-client.php:2003
+#: pro/licensorpro-client/licensorpro-client.php:2049
 msgid ""
 "Rather do it by hand? Download the Pro zip from your account and upload it "
 "over this plugin."
 msgstr ""
 "खुद करना चाहते हैं? अपने अकाउंट से Pro zip डाउनलोड करें और इसे इस प्लगइन के ऊपर अपलोड करें।"
 
-#: pro/licensorpro-client/licensorpro-client.php:2004
-#: pro/licensorpro-client/licensorpro-client.php:2096
+#: pro/licensorpro-client/licensorpro-client.php:2050
+#: pro/licensorpro-client/licensorpro-client.php:2142
 msgid "Go to your account"
 msgstr "अपने अकाउंट पर जाएँ"
 
-#: pro/licensorpro-client/licensorpro-client.php:2017
+#: pro/licensorpro-client/licensorpro-client.php:2063
 msgid "this site is not activated"
 msgstr "यह साइट सक्रिय नहीं है"
 
-#: pro/licensorpro-client/licensorpro-client.php:2018
+#: pro/licensorpro-client/licensorpro-client.php:2064
 msgid "this key is for a different plugin"
 msgstr "यह कुंजी किसी दूसरे प्लगइन की है"
 
-#: pro/licensorpro-client/licensorpro-client.php:2019
+#: pro/licensorpro-client/licensorpro-client.php:2065
 msgid "key not recognised"
 msgstr "कुंजी पहचानी नहीं गई"
 
-#: pro/licensorpro-client/licensorpro-client.php:2020
-#: pro/licensorpro-client/licensorpro-client.php:2021
+#: pro/licensorpro-client/licensorpro-client.php:2066
+#: pro/licensorpro-client/licensorpro-client.php:2067
 msgid "revoked"
 msgstr "रद्द किया गया"
 
-#: pro/licensorpro-client/licensorpro-client.php:2025
+#: pro/licensorpro-client/licensorpro-client.php:2071
 msgid "active"
 msgstr "सक्रिय"
 
 #. translators: %s: date the Pro tools lock
-#: pro/licensorpro-client/licensorpro-client.php:2027
+#: pro/licensorpro-client/licensorpro-client.php:2073
 #, php-format
 msgid "expired, Pro tools stay on until %s"
 msgstr "समाप्त, Pro टूल %s तक चालू रहेंगे"
 
-#: pro/licensorpro-client/licensorpro-client.php:2028
+#: pro/licensorpro-client/licensorpro-client.php:2074
 msgid "expired, Pro tools locked"
 msgstr "समाप्त, Pro टूल लॉक हैं"
 
-#: pro/licensorpro-client/licensorpro-client.php:2029
+#: pro/licensorpro-client/licensorpro-client.php:2075
 msgid "no longer active (refunded or cancelled)"
 msgstr "अब सक्रिय नहीं (पैसा लौटाया गया या रद्द)"
 
 #. translators: %s: date the Pro tools lock
-#: pro/licensorpro-client/licensorpro-client.php:2033
+#: pro/licensorpro-client/licensorpro-client.php:2079
 #, php-format
 msgid "renewal payment failed, Pro tools stay on until %s"
 msgstr "नवीनीकरण भुगतान विफल रहा, Pro टूल %s तक चालू रहेंगे"
 
-#: pro/licensorpro-client/licensorpro-client.php:2035
+#: pro/licensorpro-client/licensorpro-client.php:2081
 #: admin/views/past-entries.php:91 includes/class-export.php:51
 #: admin/assets/kanban/build/index.js:3
 msgid "Status"
 msgstr "स्थिति"
 
-#: pro/licensorpro-client/licensorpro-client.php:2037
+#: pro/licensorpro-client/licensorpro-client.php:2083
 msgid "Renew"
 msgstr "रिन्यू करें"
 
-#: pro/licensorpro-client/licensorpro-client.php:2041
+#: pro/licensorpro-client/licensorpro-client.php:2087
 msgid "Offline mode"
 msgstr "ऑफ़लाइन मोड"
 
-#: pro/licensorpro-client/licensorpro-client.php:2043
+#: pro/licensorpro-client/licensorpro-client.php:2089
 #, php-format
 msgid "cached license valid until %s"
 msgstr "कैश किया गया लाइसेंस %s तक मान्य"
 
-#: pro/licensorpro-client/licensorpro-client.php:2048
+#: pro/licensorpro-client/licensorpro-client.php:2094
 msgctxt "update channel"
 msgid "stable"
 msgstr "स्टेबल"
 
-#: pro/licensorpro-client/licensorpro-client.php:2049
+#: pro/licensorpro-client/licensorpro-client.php:2095
 msgctxt "update channel"
 msgid "beta"
 msgstr "बीटा"
 
-#: pro/licensorpro-client/licensorpro-client.php:2050
+#: pro/licensorpro-client/licensorpro-client.php:2096
 msgctxt "update channel"
 msgid "release candidate"
 msgstr "रिलीज़ कैंडिडेट"
 
-#: pro/licensorpro-client/licensorpro-client.php:2051
+#: pro/licensorpro-client/licensorpro-client.php:2097
 msgctxt "update channel"
 msgid "development"
 msgstr "डेवलपमेंट"
 
-#: pro/licensorpro-client/licensorpro-client.php:2053
+#: pro/licensorpro-client/licensorpro-client.php:2099
 msgid "Update channel"
 msgstr "अपडेट चैनल"
 
-#: pro/licensorpro-client/licensorpro-client.php:2054
+#: pro/licensorpro-client/licensorpro-client.php:2100
 msgid "Site limit"
 msgstr "साइट सीमा"
 
-#: pro/licensorpro-client/licensorpro-client.php:2054
+#: pro/licensorpro-client/licensorpro-client.php:2100
 msgid "Unlimited"
 msgstr "असीमित"
 
-#: pro/licensorpro-client/licensorpro-client.php:2055
+#: pro/licensorpro-client/licensorpro-client.php:2101
 msgid "Expires"
 msgstr "समाप्त होता है"
 
-#: pro/licensorpro-client/licensorpro-client.php:2055
+#: pro/licensorpro-client/licensorpro-client.php:2101
 msgid "Never"
 msgstr "कभी नहीं"
 
-#: pro/licensorpro-client/licensorpro-client.php:2060
+#: pro/licensorpro-client/licensorpro-client.php:2106
 msgid "Deactivate this site"
 msgstr "इस साइट को निष्क्रिय करें"
 
-#: pro/licensorpro-client/licensorpro-client.php:2067
+#: pro/licensorpro-client/licensorpro-client.php:2113
 msgid "This is the free version, running on your Pro license."
 msgstr "यह Free वर्शन है, जो आपके Pro लाइसेंस पर चल रहा है।"
 
-#: pro/licensorpro-client/licensorpro-client.php:2084
+#: pro/licensorpro-client/licensorpro-client.php:2130
 msgid ""
 "Have a Pro license key? Enter it here to switch on the Pro tools. It "
 "replaces the free license on this site."
@@ -455,32 +455,32 @@ msgstr ""
 "क्या आपके पास Pro लाइसेंस Key है? Pro टूल चालू करने के लिए उसे यहाँ डालें। यह इस साइट के "
 "Free लाइसेंस की जगह ले लेगी।"
 
-#: pro/licensorpro-client/licensorpro-client.php:2085
+#: pro/licensorpro-client/licensorpro-client.php:2131
 msgid "Enter your license key to activate this site."
 msgstr "इस साइट को सक्रिय करने के लिए अपनी लाइसेंस Key डालें।"
 
-#: pro/licensorpro-client/licensorpro-client.php:2092
+#: pro/licensorpro-client/licensorpro-client.php:2138
 msgid "Activate"
 msgstr "सक्रिय करें"
 
-#: pro/licensorpro-client/licensorpro-client.php:2095
+#: pro/licensorpro-client/licensorpro-client.php:2141
 msgid "Your key is in your purchase email and in your account."
 msgstr "आपकी Key आपके खरीद वाले ईमेल में और आपके अकाउंट में है।"
 
-#: pro/licensorpro-client/licensorpro-client.php:2103
+#: pro/licensorpro-client/licensorpro-client.php:2149
 msgid "Need a hand?"
 msgstr "मदद चाहिए?"
 
-#: pro/licensorpro-client/licensorpro-client.php:2104
+#: pro/licensorpro-client/licensorpro-client.php:2150
 msgid "Contact support"
 msgstr "सहायता से संपर्क करें"
 
-#: pro/licensorpro-client/licensorpro-client.php:2151
+#: pro/licensorpro-client/licensorpro-client.php:2197
 msgid "Only someone who may install plugins on this site can install Pro."
 msgstr ""
 "Pro सिर्फ़ वही इंस्टॉल कर सकता है जिसे इस साइट पर प्लगइन इंस्टॉल करने की अनुमति है।"
 
-#: pro/licensorpro-client/licensorpro-client.php:2164
+#: pro/licensorpro-client/licensorpro-client.php:2210
 msgid ""
 "That is a free license key, so it keeps this free version updated. Pro needs "
 "the key from your purchase email."
@@ -489,7 +489,7 @@ msgstr ""
 "खरीद वाले ईमेल की Key चाहिए।"
 
 #. translators: %s: URL of the customer account
-#: pro/licensorpro-client/licensorpro-client.php:2169
+#: pro/licensorpro-client/licensorpro-client.php:2215
 #, php-format
 msgid ""
 "Your key is active. Download the Pro zip from your account (%s) and upload "
@@ -498,41 +498,41 @@ msgstr ""
 "आपकी Key सक्रिय है। इसके बजाय अपने अकाउंट (%s) से Pro zip डाउनलोड करें और इसे इस "
 "प्लगइन के ऊपर अपलोड करें।"
 
-#: pro/licensorpro-client/licensorpro-client.php:2173
+#: pro/licensorpro-client/licensorpro-client.php:2219
 msgid "This site does not allow installing plugins from the dashboard."
 msgstr "यह साइट डैशबोर्ड से प्लगइन इंस्टॉल करने की अनुमति नहीं देती।"
 
-#: pro/licensorpro-client/licensorpro-client.php:2177
+#: pro/licensorpro-client/licensorpro-client.php:2223
 msgid "The Pro download could not be fetched for this key."
 msgstr "इस Key के लिए Pro डाउनलोड नहीं मिल सका।"
 
-#: pro/licensorpro-client/licensorpro-client.php:2185
+#: pro/licensorpro-client/licensorpro-client.php:2231
 msgid "This site asks for FTP details to install plugins."
 msgstr "प्लगइन इंस्टॉल करने के लिए यह साइट FTP विवरण माँगती है।"
 
-#: pro/licensorpro-client/licensorpro-client.php:2220
+#: pro/licensorpro-client/licensorpro-client.php:2266
 msgid "Installing Pro did not finish."
 msgstr "Pro इंस्टॉल करना पूरा नहीं हुआ।"
 
 #. translators: %s: plugin name
-#: pro/licensorpro-client/licensorpro-client.php:2225
+#: pro/licensorpro-client/licensorpro-client.php:2271
 #, php-format
 msgid "%s Pro is installed and your license is active. Reloading…"
 msgstr "%s Pro इंस्टॉल है और आपका लाइसेंस सक्रिय है। फिर से लोड हो रहा है…"
 
-#: pro/licensorpro-client/licensorpro-client.php:2244
+#: pro/licensorpro-client/licensorpro-client.php:2290
 msgid "License activated."
 msgstr "लाइसेंस सक्रिय हो गया।"
 
-#: pro/licensorpro-client/licensorpro-client.php:2256
+#: pro/licensorpro-client/licensorpro-client.php:2302
 msgid "Site deactivated."
 msgstr "साइट निष्क्रिय हो गई।"
 
-#: pro/licensorpro-client/licensorpro-client.php:2278
+#: pro/licensorpro-client/licensorpro-client.php:2324
 msgid "License is valid. Update info refreshed."
 msgstr "लाइसेंस मान्य है। अपडेट जानकारी ताज़ा की गई।"
 
-#: pro/licensorpro-client/licensorpro-client.php:2312
+#: pro/licensorpro-client/licensorpro-client.php:2358
 msgid ""
 "Every seat on this license is in use. Deactivate one of your other sites "
 "from your account, then try again."
@@ -540,7 +540,7 @@ msgstr ""
 "इस लाइसेंस की सभी साइटें इस्तेमाल में हैं। अपने अकाउंट से कोई दूसरी साइट निष्क्रिय करें, फिर "
 "दोबारा कोशिश करें।"
 
-#: pro/licensorpro-client/licensorpro-client.php:2315
+#: pro/licensorpro-client/licensorpro-client.php:2361
 msgid ""
 "This license has expired. Renewing it from your account reactivates this "
 "site immediately. Your settings and data are untouched."
@@ -548,7 +548,7 @@ msgstr ""
 "इस लाइसेंस की अवधि खत्म हो गई है। अपने अकाउंट से रिन्यू करते ही यह साइट फिर से सक्रिय हो "
 "जाएगी। आपकी सेटिंग्स और डेटा जैसे हैं वैसे रहेंगे।"
 
-#: pro/licensorpro-client/licensorpro-client.php:2317
+#: pro/licensorpro-client/licensorpro-client.php:2363
 msgid ""
 "The last renewal payment for this license did not go through, so it is "
 "paused. Update your payment details in your account and it switches back on. "
@@ -558,7 +558,7 @@ msgstr ""
 "खाते में भुगतान विवरण अपडेट करें और यह फिर से चालू हो जाएगा। आपकी सेटिंग्स और डेटा सुरक्षित "
 "हैं।"
 
-#: pro/licensorpro-client/licensorpro-client.php:2320
+#: pro/licensorpro-client/licensorpro-client.php:2366
 msgid ""
 "This license was cancelled or refunded, so it no longer switches on Pro. If "
 "that is a mistake, reply to your purchase email."
@@ -566,7 +566,7 @@ msgstr ""
 "यह लाइसेंस रद्द या रिफ़ंड कर दिया गया था, इसलिए यह अब Pro चालू नहीं करता। अगर यह "
 "गलती है, तो अपने खरीद ईमेल का जवाब दें।"
 
-#: pro/licensorpro-client/licensorpro-client.php:2323
+#: pro/licensorpro-client/licensorpro-client.php:2369
 msgid ""
 "That key was not recognised. Check for a missing character, or copy it again "
 "from your purchase email."
@@ -574,7 +574,7 @@ msgstr ""
 "यह Key पहचानी नहीं गई। देखें कि कोई अक्षर छूटा तो नहीं, या खरीद वाले ईमेल से इसे फिर से "
 "कॉपी करें।"
 
-#: pro/licensorpro-client/licensorpro-client.php:2325
+#: pro/licensorpro-client/licensorpro-client.php:2371
 msgid ""
 "This key is for a different plugin. Each plugin has its own key: use the one "
 "from the purchase email for this plugin."
@@ -582,7 +582,7 @@ msgstr ""
 "यह Key किसी दूसरे प्लगइन की है। हर प्लगइन की अपनी Key होती है: इस प्लगइन के खरीद वाले "
 "ईमेल में दी गई Key इस्तेमाल करें।"
 
-#: pro/licensorpro-client/licensorpro-client.php:2328
+#: pro/licensorpro-client/licensorpro-client.php:2374
 msgid ""
 "This key has been revoked. If you believe that is a mistake, reply to your "
 "purchase email and we will sort it out."
@@ -590,14 +590,14 @@ msgstr ""
 "यह Key रद्द कर दी गई है। अगर आपको लगता है कि यह गलती है, तो खरीद वाले ईमेल का जवाब "
 "दें, हम इसे ठीक कर देंगे।"
 
-#: pro/licensorpro-client/licensorpro-client.php:2330
+#: pro/licensorpro-client/licensorpro-client.php:2376
 msgid ""
 "This site is not activated on this license any more. Enter the key again to "
 "activate it."
 msgstr ""
 "यह साइट अब इस लाइसेंस पर सक्रिय नहीं है। इसे सक्रिय करने के लिए कुंजी फिर से दर्ज करें।"
 
-#: pro/licensorpro-client/licensorpro-client.php:2332
+#: pro/licensorpro-client/licensorpro-client.php:2378
 msgid ""
 "That is a free license key. It keeps the free version updated but does not "
 "switch on Pro. Enter the Pro key from your purchase email."
@@ -605,40 +605,40 @@ msgstr ""
 "यह एक मुफ़्त लाइसेंस कुंजी है। यह मुफ़्त संस्करण को अपडेट रखती है, लेकिन Pro चालू नहीं करती। "
 "अपने खरीद ईमेल से Pro कुंजी दर्ज करें।"
 
-#: pro/licensorpro-client/licensorpro-client.php:2335
+#: pro/licensorpro-client/licensorpro-client.php:2381
 msgid "This plugin has no free license. Use the key from your purchase email."
 msgstr "इस प्लगइन का कोई मुफ़्त लाइसेंस नहीं है। अपने खरीद ईमेल वाली कुंजी का उपयोग करें।"
 
-#: pro/licensorpro-client/licensorpro-client.php:2337
+#: pro/licensorpro-client/licensorpro-client.php:2383
 msgid ""
 "The licensing server does not know this plugin. Update the plugin, or reply "
 "to your purchase email."
 msgstr ""
 "लाइसेंस सर्वर इस प्लगइन को नहीं पहचानता। प्लगइन अपडेट करें, या अपने खरीद ईमेल का जवाब दें।"
 
-#: pro/licensorpro-client/licensorpro-client.php:2339
+#: pro/licensorpro-client/licensorpro-client.php:2385
 msgid ""
 "This site's license session ran out. Check the license again to renew it."
 msgstr ""
 "इस साइट का लाइसेंस सत्र समाप्त हो गया। इसे नवीनीकृत करने के लिए लाइसेंस फिर से जाँचें।"
 
-#: pro/licensorpro-client/licensorpro-client.php:2342
+#: pro/licensorpro-client/licensorpro-client.php:2388
 msgid ""
 "The download link has expired. Check for updates again to get a fresh one."
 msgstr "डाउनलोड लिंक की समय-सीमा समाप्त हो गई। नया लिंक पाने के लिए फिर से अपडेट जाँचें।"
 
-#: pro/licensorpro-client/licensorpro-client.php:2344
+#: pro/licensorpro-client/licensorpro-client.php:2390
 msgid ""
 "The download is not on the server right now. Try again later, or download "
 "the zip from your account."
 msgstr ""
 "डाउनलोड अभी सर्वर पर नहीं है। बाद में फिर से कोशिश करें, या अपने खाते से zip डाउनलोड करें।"
 
-#: pro/licensorpro-client/licensorpro-client.php:2346
+#: pro/licensorpro-client/licensorpro-client.php:2392
 msgid "Enter a valid email address."
 msgstr "एक मान्य ईमेल पता दर्ज करें।"
 
-#: pro/licensorpro-client/licensorpro-client.php:2349
+#: pro/licensorpro-client/licensorpro-client.php:2395
 msgid ""
 "The request to the licensing server was missing details. Reload this page "
 "and try again."
@@ -646,7 +646,7 @@ msgstr ""
 "लाइसेंस सर्वर को भेजे गए अनुरोध में जानकारी अधूरी थी। यह पेज फिर से लोड करें और दोबारा "
 "कोशिश करें।"
 
-#: pro/licensorpro-client/licensorpro-client.php:2353
+#: pro/licensorpro-client/licensorpro-client.php:2399
 msgid ""
 "The answer from the licensing server could not be verified, so it was not "
 "trusted. Try again in a few minutes. If it keeps happening, reply to your "
@@ -655,7 +655,7 @@ msgstr ""
 "लाइसेंस सर्वर के उत्तर की पुष्टि नहीं हो सकी, इसलिए उस पर भरोसा नहीं किया गया। कुछ "
 "मिनट बाद फिर से कोशिश करें। अगर ऐसा होता रहे, तो अपने खरीद ईमेल का जवाब दें।"
 
-#: pro/licensorpro-client/licensorpro-client.php:2356
+#: pro/licensorpro-client/licensorpro-client.php:2402
 msgid ""
 "Could not reach the licensing server. Your site may be blocking outbound "
 "requests. This is usually temporary, so try again in a minute."
@@ -663,11 +663,11 @@ msgstr ""
 "लाइसेंस सर्वर तक नहीं पहुँच सके। हो सकता है आपकी साइट बाहर जाने वाले अनुरोध रोक रही हो। "
 "यह अक्सर कुछ देर के लिए होता है, इसलिए एक मिनट बाद फिर कोशिश करें।"
 
-#: pro/licensorpro-client/licensorpro-client.php:2359
+#: pro/licensorpro-client/licensorpro-client.php:2405
 msgid "Too many attempts in a short window. Wait a minute and try again."
 msgstr "थोड़े समय में बहुत ज़्यादा कोशिशें हो गईं। एक मिनट रुकें और फिर कोशिश करें।"
 
-#: pro/licensorpro-client/licensorpro-client.php:2361
+#: pro/licensorpro-client/licensorpro-client.php:2407
 msgid ""
 "The licensing server had a problem on its side. Your key was not rejected. "
 "Try again in a few minutes, and if it keeps happening, reply to your "
@@ -677,7 +677,7 @@ msgstr ""
 "कोशिश करें, और अगर यह बार-बार हो तो खरीद वाले ईमेल का जवाब दें।"
 
 #. translators: %s: short error code from the licensing server
-#: pro/licensorpro-client/licensorpro-client.php:2365
+#: pro/licensorpro-client/licensorpro-client.php:2411
 #, php-format
 msgid ""
 "The licensing server could not confirm this license (%s). Try again in a few "
@@ -687,7 +687,7 @@ msgstr ""
 "लाइसेंस सर्वर इस लाइसेंस की पुष्टि नहीं कर सका (%s)। कुछ मिनट बाद फिर से कोशिश करें। अगर "
 "ऐसा होता रहे, तो अपने खरीद ईमेल का जवाब दें और यह कोड बताएँ।"
 
-#: pro/licensorpro-client/licensorpro-client.php:2391
+#: pro/licensorpro-client/licensorpro-client.php:2437
 msgid "Permission denied."
 msgstr "अनुमति नहीं है।"
 
@@ -1520,7 +1520,7 @@ msgid "Use the default pipeline"
 msgstr "डिफ़ॉल्ट पाइपलाइन इस्तेमाल करें"
 
 #: admin/views/import.php:91 includes/class-export.php:45
-#: includes/class-frontend.php:835 includes/class-submissions-list-table.php:61
+#: includes/class-frontend.php:897 includes/class-submissions-list-table.php:61
 #: public/templates/submissions-table.php:78 admin/assets/js/dashboard.js:143
 #: admin/assets/js/dashboard.js:222 admin/assets/kanban/build/index.js:3
 #: blocks/submissions-table/index.js:26 blocks/submissions-table/index.js:118
@@ -2039,7 +2039,7 @@ msgstr ""
 "संपादित कर सकते हैं, वे हमेशा शामिल होते हैं।"
 
 #: admin/views/tags.php:14 includes/class-admin-ui.php:26
-#: includes/class-export.php:47 includes/class-frontend.php:837
+#: includes/class-export.php:47 includes/class-frontend.php:899
 #: includes/class-plugin.php:160 includes/class-submissions-list-table.php:65
 #: admin/assets/kanban/build/index.js:3
 msgid "Tags"
@@ -2062,7 +2062,7 @@ msgid "Edit a tag to rename it or change its colour. Entries keep their tags."
 msgstr "किसी टैग का नाम या रंग बदलने के लिए उसे संपादित करें। एंट्रियों के टैग बने रहते हैं।"
 
 #: admin/views/tags.php:27 admin/views/tags.php:45
-#: includes/class-frontend.php:833
+#: includes/class-frontend.php:895
 #: blocks/submissions-table/index.js:23
 msgid "Name"
 msgstr "नाम"
@@ -2449,14 +2449,14 @@ msgstr "मेलर ने ईमेल स्वीकार नहीं क�
 msgid "ID"
 msgstr "ID"
 
-#: includes/class-export.php:42 includes/class-frontend.php:832
+#: includes/class-export.php:42 includes/class-frontend.php:894
 #: includes/class-plugin.php:392 includes/class-privacy.php:227
 #: includes/class-submissions-list-table.php:54
 #: blocks/submissions-table/index.js:24
 msgid "Title"
 msgstr "शीर्षक"
 
-#: includes/class-export.php:43 includes/class-frontend.php:834
+#: includes/class-export.php:43 includes/class-frontend.php:896
 #: includes/class-plugin.php:393 includes/class-privacy.php:228
 #: includes/class-submissions-list-table.php:55
 #: admin/assets/kanban/build/index.js:1
@@ -2464,7 +2464,7 @@ msgstr "शीर्षक"
 msgid "Email"
 msgstr "ईमेल"
 
-#: includes/class-export.php:46 includes/class-frontend.php:836
+#: includes/class-export.php:46 includes/class-frontend.php:898
 #: includes/class-submissions-list-table.php:66
 #: includes/class-submissions-list-table.php:164
 #: admin/assets/js/dashboard.js:159
@@ -2486,7 +2486,7 @@ msgstr "फ़ॉर्म ID"
 msgid "Entry ID in the form plugin"
 msgstr "फ़ॉर्म प्लगइन में प्रविष्टि ID"
 
-#: includes/class-export.php:52 includes/class-frontend.php:831
+#: includes/class-export.php:52 includes/class-frontend.php:893
 #: includes/class-submissions-list-table.php:68
 #: blocks/submissions-table/index.js:29
 msgid "Created"
@@ -2544,19 +2544,19 @@ msgstr "आपको यह फ़ाइल डाउनलोड करने �
 msgid "File not found."
 msgstr "फ़ाइल नहीं मिली।"
 
-#: includes/class-frontend.php:86
+#: includes/class-frontend.php:123
 msgid "No pipeline specified."
 msgstr "कोई पाइपलाइन नहीं बताई गई।"
 
-#: includes/class-frontend.php:91 includes/class-rest-public.php:123
+#: includes/class-frontend.php:128 includes/class-rest-public.php:123
 msgid "Pipeline not found."
 msgstr "पाइपलाइन नहीं मिली।"
 
-#: includes/class-frontend.php:101 includes/class-rest-public.php:107
+#: includes/class-frontend.php:138 includes/class-rest-public.php:107
 msgid "Access required."
 msgstr "एक्सेस ज़रूरी है।"
 
-#: includes/class-frontend.php:105
+#: includes/class-frontend.php:142
 msgid ""
 "Only editors see this note: visitors cannot read this table because the "
 "access_token is missing or does not match this pipeline. Copy the ready-made "
@@ -2566,15 +2566,16 @@ msgstr ""
 "है या इस पाइपलाइन से मेल नहीं खाता। तैयार शॉर्टकोड EntryVault > सेटिंग्स > सामान्य से "
 "कॉपी करें।"
 
-#: includes/class-frontend.php:782 includes/class-frontend.php:785
+#: includes/class-frontend.php:844 includes/class-frontend.php:847
 msgid "(no name)"
 msgstr "(कोई नाम नहीं)"
 
-#: includes/class-frontend.php:784
+#: includes/class-frontend.php:846
 msgid "(email hidden)"
 msgstr "(ईमेल छिपा है)"
 
-#: includes/class-frontend.php:830 blocks/submissions-table/index.js:30
+#: includes/class-frontend.php:892
+#: blocks/submissions-table/index.js:30
 msgid "Submitted"
 msgstr "भेजा गया"
 

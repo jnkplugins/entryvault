@@ -43,6 +43,43 @@ class Frontend {
 		'created',
 	];
 
+	/** Prefix of a public column key that stands for a form field key sanitize_key() would change. */
+	const ENCODED_PREFIX = 'evx_';
+
+	/** Longest raw field key (bytes) that can be addressed as a public column. */
+	const MAX_RAW_KEY = 100;
+
+	/**
+	 * The key a public table uses for a form field. Columns go through
+	 * sanitize_key(), which empties an Arabic CSV header and lowercases "Your
+	 * Name". A key it would change is carried as evx_<hex of the key> instead,
+	 * and decoded again by field_key_for() where values are read. Plain keys
+	 * (job_title, 0, 1, …) stay as they are.
+	 */
+	public static function column_key( string $field_key ): string {
+		if ( '' === $field_key ) {
+			return '';
+		}
+		if ( sanitize_key( $field_key ) === $field_key && 0 !== strpos( $field_key, self::ENCODED_PREFIX ) ) {
+			return $field_key;
+		}
+		return strlen( $field_key ) <= self::MAX_RAW_KEY ? self::ENCODED_PREFIX . bin2hex( $field_key ) : '';
+	}
+
+	/** The stored field key behind a public column key (see column_key()). */
+	public static function field_key_for( string $column ): string {
+		if ( 0 === strpos( $column, self::ENCODED_PREFIX ) ) {
+			$hex = substr( $column, strlen( self::ENCODED_PREFIX ) );
+			if ( '' !== $hex && 0 === strlen( $hex ) % 2 && ctype_xdigit( $hex ) ) {
+				$raw = hex2bin( $hex );
+				if ( false !== $raw && '' !== $raw && wp_check_invalid_utf8( $raw, true ) === $raw ) {
+					return $raw;
+				}
+			}
+		}
+		return $column;
+	}
+
 	/**
 	 * Hook into WordPress.
 	 */
@@ -439,8 +476,33 @@ class Frontend {
 		}
 		foreach ( (array) ( $f['fields'] ?? [] ) as $key => $text ) {
 			$where[]  = "EXISTS ( SELECT 1 FROM {$wpdb->prefix}entryvault_submission_data fd WHERE fd.submission_id = s.id AND fd.field_key = %s AND fd.is_stale = 0 AND fd.value LIKE %s )";
-			$params[] = (string) $key;
+			$params[] = self::field_key_for( (string) $key );
 			$params[] = '%' . $wpdb->esc_like( (string) $text ) . '%';
+		}
+
+		// Entries that match another entry on one value (the related-entries
+		// section of a profile page). Built by the caller, never from a URL.
+		if ( ! empty( $opts['exclude_id'] ) ) {
+			$where[]  = 's.id <> %d';
+			$params[] = (int) $opts['exclude_id'];
+		}
+		$m = (array) ( $opts['match'] ?? [] );
+		if ( isset( $m['key'], $m['value'] ) ) {
+			$mkey = (string) $m['key'];
+			$mval = trim( (string) $m['value'] );
+			if ( '' === $mval ) {
+				$where[] = '1 = 0'; // an empty value never matches everything with an empty value
+			} elseif ( 'id' === $mkey ) {
+				$where[]  = 's.id = %d';
+				$params[] = (int) $mval;
+			} elseif ( 'email' === $mkey ) {
+				$where[]  = 'LOWER( s.email ) = LOWER( %s )';
+				$params[] = $mval;
+			} else {
+				$where[]  = "EXISTS ( SELECT 1 FROM {$wpdb->prefix}entryvault_submission_data md WHERE md.submission_id = s.id AND md.field_key = %s AND md.is_stale = 0 AND md.value = %s )";
+				$params[] = self::field_key_for( $mkey );
+				$params[] = $mval;
+			}
 		}
 
 		/**
@@ -764,7 +826,7 @@ class Frontend {
 				$tags = $row['tags'] ?? [];
 				return is_array( $tags ) ? implode( ', ', $tags ) : (string) $tags;
 			default:
-				return Field_Values::display( $row['fields'][ $column ] ?? '' );
+				return Field_Values::display( $row['fields'][ self::field_key_for( $column ) ] ?? '' );
 		}
 	}
 
