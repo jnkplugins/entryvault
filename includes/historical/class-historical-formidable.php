@@ -158,7 +158,7 @@ class Historical_Formidable extends Provider_Base {
             $entry_id = (int) $item->id;
             $metas    = [];
             foreach ( (array) ( $item->metas ?? [] ) as $field_id => $value ) {
-                $metas[ (string) $field_id ] = maybe_unserialize( $value );
+                $metas[ (string) $field_id ] = \EntryVault\Safe_Unserialize::maybe( $value );
             }
             $out[] = [
                 'source_entry_id' => (string) $entry_id,
@@ -225,7 +225,7 @@ class Historical_Formidable extends Provider_Base {
                 "SELECT field_id, meta_value FROM {$wpdb->prefix}frm_item_metas WHERE item_id = %d AND field_id > 0 ORDER BY id ASC",
                 $entry_id
             ) ) as $m ) {
-                $metas[ (string) $m->field_id ] = maybe_unserialize( $m->meta_value );
+                $metas[ (string) $m->field_id ] = \EntryVault\Safe_Unserialize::maybe( $m->meta_value );
             }
             $out[] = [
                 'source_entry_id' => (string) $entry_id,

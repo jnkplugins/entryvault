@@ -14,13 +14,16 @@ defined( 'ABSPATH' ) || exit;
  *   - Gravity Forms: through Gravity Forms' own download link for the field;
  *   - Formidable: an attachment id, linked to the attachment;
  *   - Trinity Forms 2.9+: outside the web root. Trinity's own signed URL tells
- *     us which file (Private_Files::resolve() checks the signature and keeps it
- *     inside Trinity's folder), and EntryVault streams it;
+ *     us which file, and EntryVault streams it;
  *   - CFDB7 (Contact Form 7): the saved name in uploads/cfdb7_uploads.
  * A file that has no public URL is only ever served through this class's
  * admin-post route, to someone who may view the entry's pipeline. The route
  * takes the entry id, field key and position; the path is looked up again on
  * the server, so a request can never name a file.
+ *
+ * Where a path comes from is never taken on trust, whatever the form plugin
+ * or a filter says about it: every path is resolved (.. and symlinks) and
+ * must be a file inside one of base_dirs() before it is linked or streamed.
  *
  * The public table keeps showing file names only, and the AI privacy layer
  * keeps leaving file fields out (AI_Privacy::NEVER_TYPES).
@@ -61,6 +64,16 @@ class File_Links {
 	 */
 	public static function for_field( array $submission, array $field ): array {
 		$field = self::normalize( $field );
+		// A drawn signature is the image itself, not a file on disk.
+		$inline = Field_Values::data_image( $field['value'] ?? '' );
+		if ( '' !== $inline ) {
+			return [ [
+				'name'  => Field_Values::screen( $inline, (string) ( $field['field_type'] ?? '' ) ),
+				'url'   => $inline,
+				'thumb' => $inline,
+				'image' => true,
+			] ];
+		}
 		if ( ! self::is_file_type( (string) ( $field['field_type'] ?? '' ) ) ) {
 			return [];
 		}
@@ -138,7 +151,74 @@ class File_Links {
 		 * @param array $field      Field row.
 		 */
 		$files = (array) apply_filters( 'entryvault_resolve_files', $files, $submission, $field );
-		return array_values( array_filter( $files, static fn( $f ) => is_array( $f ) && '' !== (string) ( $f['name'] ?? '' ) ) );
+		$files = array_values( array_filter( $files, static fn( $f ) => is_array( $f ) && '' !== (string) ( $f['name'] ?? '' ) ) );
+		// Whoever named the path (a form plugin's stored data, the filter above):
+		// it is only kept when it is a real file inside an allowed folder.
+		foreach ( $files as &$file ) {
+			if ( ! array_key_exists( 'path', $file ) ) {
+				continue;
+			}
+			$real = is_string( $file['path'] ) ? self::contained( $file['path'] ) : '';
+			if ( '' !== $real ) {
+				$file['path'] = $real;
+			} else {
+				unset( $file['path'] );
+			}
+		}
+		unset( $file );
+		return $files;
+	}
+
+	/**
+	 * The folders a streamed file may live in: the uploads folder, CFDB7's
+	 * folder in it, and Trinity Forms' private upload folder.
+	 *
+	 * @return string[] Resolved paths, each with a trailing slash.
+	 */
+	private static function base_dirs(): array {
+		$uploads = (string) ( wp_upload_dir( null, false )['basedir'] ?? '' );
+		$bases   = '' !== $uploads ? [ $uploads, $uploads . '/cfdb7_uploads' ] : [];
+		if ( class_exists( '\\TrinityForms\\Private_Files' ) && method_exists( '\\TrinityForms\\Private_Files', 'root' ) ) {
+			$bases[] = (string) \TrinityForms\Private_Files::root();
+		}
+		/**
+		 * Filter the folders EntryVault may stream a private file from.
+		 *
+		 * A file whose resolved path is outside all of them is never linked or
+		 * sent. Add a folder here when 'entryvault_resolve_files' returns paths
+		 * kept somewhere else.
+		 *
+		 * @param string[] $bases Absolute folder paths.
+		 */
+		$bases = (array) apply_filters( 'entryvault_file_base_dirs', $bases );
+		$out   = [];
+		foreach ( $bases as $base ) {
+			$real = is_string( $base ) && '' !== $base ? realpath( $base ) : false;
+			// Not a folder, or the filesystem root (which would allow everything).
+			if ( ! $real || ! is_dir( $real ) || dirname( $real ) === $real ) {
+				continue;
+			}
+			$out[] = trailingslashit( wp_normalize_path( $real ) );
+		}
+		return array_values( array_unique( $out ) );
+	}
+
+	/** The resolved path when $path is a file inside one of base_dirs(), else ''. */
+	private static function contained( string $path ): string {
+		if ( '' === $path || false !== strpos( $path, "\0" ) ) {
+			return '';
+		}
+		$real = realpath( $path );
+		if ( ! $real || ! is_file( $real ) ) {
+			return '';
+		}
+		$norm = wp_normalize_path( $real );
+		foreach ( self::base_dirs() as $base ) {
+			if ( 0 === strpos( $norm, $base ) ) {
+				return $real;
+			}
+		}
+		return '';
 	}
 
 	/**
@@ -265,7 +345,9 @@ class File_Links {
 	/**
 	 * Trinity Forms keeps the file object (name, signed url, path) in its own
 	 * entry meta. Its signed URL goes through Trinity's resolve(), which checks
-	 * the signature and that the file is inside Trinity's folders.
+	 * the signature. Trinity's word on where the file is (resolve(),
+	 * is_managed_path()) is not enough on its own: the stored object may have
+	 * been written by a visitor, so the path must also pass contained().
 	 *
 	 * @return array<int,array{name:string,path:string}>
 	 */
@@ -296,13 +378,13 @@ class File_Links {
 				$q = [];
 				wp_parse_str( (string) wp_parse_url( $url, PHP_URL_QUERY ), $q );
 				if ( ! empty( $q['file'] ) && ! empty( $q['sig'] ) ) {
-					$path = (string) \TrinityForms\Private_Files::resolve( (string) $q['file'], (string) $q['sig'] );
+					$path = self::contained( (string) \TrinityForms\Private_Files::resolve( (string) $q['file'], (string) $q['sig'] ) );
 				}
 			}
 			// Signed with an older salt: fall back to the stored path, if Trinity manages it.
-			if ( '' === $path && ! empty( $file['path'] ) && method_exists( '\\TrinityForms\\Private_Files', 'is_managed_path' )
-				&& \TrinityForms\Private_Files::is_managed_path( (string) $file['path'] ) && is_file( (string) $file['path'] ) ) {
-				$path = (string) $file['path'];
+			if ( '' === $path && ! empty( $file['path'] ) && is_string( $file['path'] ) && method_exists( '\\TrinityForms\\Private_Files', 'is_managed_path' )
+				&& \TrinityForms\Private_Files::is_managed_path( $file['path'] ) ) {
+				$path = self::contained( $file['path'] );
 			}
 			$name = (string) ( $file['filename'] ?? wp_basename( $path ) );
 			if ( '' !== $name ) {
@@ -370,8 +452,10 @@ class File_Links {
 			}
 		}
 		$files = ( $field && self::is_file_type( (string) ( $field['field_type'] ?? '' ) ) ) ? self::resolve( $submission, $field ) : [];
-		$path  = (string) ( $files[ $index ]['path'] ?? '' );
-		if ( '' === $path || ! is_file( $path ) || ! is_readable( $path ) ) {
+		// resolve() already dropped any path outside the allowed folders; checked
+		// once more here, right before the file is sent.
+		$path  = self::contained( (string) ( $files[ $index ]['path'] ?? '' ) );
+		if ( '' === $path || ! is_readable( $path ) ) {
 			return new \WP_Error( 'entryvault_file_missing', __( 'File not found.', 'entryvault' ), [ 'status' => 404 ] );
 		}
 		return $path;

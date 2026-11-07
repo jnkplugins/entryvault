@@ -72,7 +72,9 @@ class Frontend {
 			$hex = substr( $column, strlen( self::ENCODED_PREFIX ) );
 			if ( '' !== $hex && 0 === strlen( $hex ) % 2 && ctype_xdigit( $hex ) ) {
 				$raw = hex2bin( $hex );
-				if ( false !== $raw && '' !== $raw && wp_check_invalid_utf8( $raw, true ) === $raw ) {
+				// preg_match //u is a silent UTF-8 check. wp_check_invalid_utf8( $raw, true )
+				// used iconv before WordPress 7.0, which raised a notice on bytes like "\xff".
+				if ( false !== $raw && '' !== $raw && 1 === preg_match( '//u', $raw ) ) {
 					return $raw;
 				}
 			}
@@ -826,7 +828,7 @@ class Frontend {
 				$tags = $row['tags'] ?? [];
 				return is_array( $tags ) ? implode( ', ', $tags ) : (string) $tags;
 			default:
-				return Field_Values::display( $row['fields'][ self::field_key_for( $column ) ] ?? '' );
+				return Field_Values::screen( $row['fields'][ self::field_key_for( $column ) ] ?? '' );
 		}
 	}
 

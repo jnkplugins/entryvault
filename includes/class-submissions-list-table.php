@@ -295,7 +295,11 @@ class Submissions_List_Table extends \WP_List_Table {
         foreach ( (array) $rows as $row ) {
             // A file name says less than the message: use it only when nothing else is there.
             if ( File_Links::is_file_type( (string) ( $row['field_type'] ?? '' ) ) ) {
-                $file = '' !== $file ? $file : trim( Field_Values::display( (string) $row['value'], (string) $row['field_type'] ) );
+                $file = '' !== $file ? $file : trim( Field_Values::screen( (string) $row['value'], (string) $row['field_type'] ) );
+                continue;
+            }
+            if ( '' !== Field_Values::data_image( (string) $row['value'] ) ) {
+                $file = '' !== $file ? $file : Field_Values::screen( (string) $row['value'], (string) ( $row['field_type'] ?? '' ) );
                 continue;
             }
             $candidate = trim( Field_Values::display( (string) $row['value'], (string) ( $row['field_type'] ?? '' ) ) );

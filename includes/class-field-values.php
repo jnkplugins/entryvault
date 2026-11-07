@@ -48,6 +48,36 @@ class Field_Values {
 	}
 
 	/**
+	 * The value when it is an inline image (a drawn signature is stored as a
+	 * data: URL), else ''. Raster types only: SVG can carry script. The strict
+	 * pattern also makes the result safe inside a src attribute.
+	 *
+	 * @param mixed $value Stored value.
+	 */
+	public static function data_image( $value ): string {
+		if ( ! is_string( $value ) ) {
+			return '';
+		}
+		$value = trim( $value );
+		return 1 === preg_match( '#^data:image/(png|jpeg|gif|webp);base64,[A-Za-z0-9+/]+=*$#', $value ) ? $value : '';
+	}
+
+	/**
+	 * display() for a screen: an inline image reads as a short label instead
+	 * of kilobytes of base64. display() itself is unchanged because capture and
+	 * exports keep the full value.
+	 *
+	 * @param mixed                $value  Stored value.
+	 * @param array<string,string> $labels Choice value => label.
+	 */
+	public static function screen( $value, string $type = '', array $labels = [] ): string {
+		if ( '' !== self::data_image( $value ) ) {
+			return false !== stripos( $type, 'signature' ) ? __( 'Signature (image)', 'entryvault' ) : __( 'Image', 'entryvault' );
+		}
+		return self::display( $value, $type, $labels );
+	}
+
+	/**
 	 * Every spelling a stored value can be compared as.
 	 *
 	 * Choice fields used to be stored as option values ("pro", ["a"], "1") and

@@ -120,7 +120,7 @@ class Adapter_Ninja_Forms extends Adapter_Base {
      */
     public static function choice_map( $options ): array {
         if ( is_string( $options ) ) {
-            $options = maybe_unserialize( $options );
+            $options = \EntryVault\Safe_Unserialize::maybe( $options );
         }
         $out = [];
         foreach ( is_array( $options ) ? $options : [] as $opt ) {

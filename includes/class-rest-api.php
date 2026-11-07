@@ -487,7 +487,7 @@ class REST_API {
                 }
                 // Stored JSON (checkbox lists, file objects with a server path)
                 // reads as text, and a path is never sent to the browser.
-                $f_row['value'] = Field_Values::display( $f_row['value'] ?? '', (string) ( $f_row['field_type'] ?? '' ) );
+                $f_row['value'] = Field_Values::screen( $f_row['value'] ?? '', (string) ( $f_row['field_type'] ?? '' ) );
             }
             unset( $f_row );
         }

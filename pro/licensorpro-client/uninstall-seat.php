@@ -39,7 +39,7 @@ if ($uninstall_seat_key !== '') {
             // asks for the key, as on a new site. The "ever licensed" marker
             // stays. If the server could not be reached the seat is still held,
             // and so is the key.
-            foreach (['_key', '_license', '_remote', '_lapse'] as $uninstall_seat_suffix) {
+            foreach (['_key', '_license', '_remote', '_lapse', '_verdict_cache', '_activated'] as $uninstall_seat_suffix) {
                 delete_option('licensorpro_' . $uninstall_seat_slug . $uninstall_seat_suffix);
             }
             delete_transient('licensorpro_' . $uninstall_seat_slug . '_validate');

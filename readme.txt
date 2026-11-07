@@ -4,7 +4,7 @@ Tags: form entries, contact form, crm, leads, csv export
 Requires at least: 6.2
 Tested up to: 7.1
 Requires PHP: 8.2
-Stable tag: 1.25.0
+Stable tag: 1.26.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -24,7 +24,7 @@ It's built for agencies, freelancers, and small teams who outgrew "submissions l
 
 = What you can do today (free version) =
 
-* **Capture from 17 form builders**: Contact Form 7, WPForms (Lite included), Gravity Forms, Fluent Forms, Forminator, SureForms, Ninja Forms, Formidable Forms, WS Form, Everest Forms, Trinity Forms, Jetpack Forms, MetForm, Kadence Forms, Otter Forms, Spectra Forms and Elementor Pro forms. EntryVault notices which ones are active and only listens to those. No shortcode changes, no field re-mapping.
+* **Capture from 19 form builders**: Contact Form 7, WPForms (Lite included), Gravity Forms, Fluent Forms, Forminator, SureForms, Ninja Forms, Formidable Forms, WS Form, Everest Forms, Trinity Forms, Jetpack Forms, MetForm, Kadence Forms, Otter Forms, Spectra Forms, JetFormBuilder, MW WP Form and Elementor Pro forms. EntryVault notices which ones are active and only listens to those. No shortcode changes, no field re-mapping.
 * **Work a Kanban board** — a drag-and-drop React board with a default Inbox pipeline (New / Contacted / Qualified / Won / Lost). Search thousands of entries and see what's new since you last looked.
 * **Tag, note, and assign** — colour-coded tags, threaded notes with a full activity timeline, and owner assignment to any WordPress user.
 * **Bulk actions** — assign an owner, add a tag, or archive/unarchive many submissions at once from the list screen.
@@ -61,7 +61,7 @@ Or bundle any two JnK plugins for ~20% off, or all three for ~25% off: https://l
 
 The common way to turn Gravity Forms entries into a workflow is Gravity Flow (~$99/year) plus GravityView (~$99/year) — about $198/year, and tied to Gravity Forms specifically.
 
-* EntryVault works with 17 form builders, not one.
+* EntryVault works with 19 form builders, not one.
 * One flat price by site count, no renewal price hikes.
 * Your data stays in your own WordPress database — no SaaS, no telemetry.
 * Free tier is a complete single-site CRM; Pro is optional.
@@ -88,7 +88,7 @@ Your data is never touched. The free tier keeps working — you keep capturing e
 
 = Which form plugins does EntryVault work with? =
 
-17 form builders, out of the box: Contact Form 7, WPForms (Lite included), Gravity Forms, Fluent Forms, Forminator, SureForms, Ninja Forms, Formidable Forms, WS Form, Everest Forms, Trinity Forms, Jetpack Forms, MetForm, Kadence Forms, Otter Forms, Spectra Forms and Elementor Pro forms. EntryVault auto-detects which are active and only loads matching adapters, so there's no overhead for plugins you don't use.
+19 form builders, out of the box: Contact Form 7, WPForms (Lite included), Gravity Forms, Fluent Forms, Forminator, SureForms, Ninja Forms, Formidable Forms, WS Form, Everest Forms, Trinity Forms, Jetpack Forms, MetForm, Kadence Forms, Otter Forms, Spectra Forms, JetFormBuilder, MW WP Form and Elementor Pro forms. EntryVault auto-detects which are active and only loads matching adapters, so there's no overhead for plugins you don't use.
 
 = Do I need all of those plugins installed? =
 
@@ -139,6 +139,13 @@ Use the contact page at https://jnkplugins.com/entryvault/, or Feedback & Suppor
 7. Pro: automations that tag, assign, move or email entries for you.
 
 == Changelog ==
+
+= 1.26.0 =
+* Security: a file link on an entry only sends files from the uploads folder or Trinity Forms' private folder. Before, a Trinity Forms entry with a forged file path could make it send another file from the server to people who can see the pipeline. Please update.
+* Security: reading Ninja Forms, Formidable and Otter Blocks data no longer creates PHP objects.
+* Docs: the readme counts 19 form builders (JetFormBuilder and MW WP Form were added in 1.24.0).
+* Fixed: on WordPress 6.4 to 6.9, a table filter address with a malformed field key (for example evx_ff) raised a PHP notice. The key is now checked quietly and left alone.
+* Fixed: a drawn signature (from Trinity Forms and other builders) showed as a long run of letters in the entry panel, the print view and the Submissions table. It now shows as an image, and as "Signature (image)" in lists.
 
 = 1.25.0 =
 * Changed: nothing changes in the free version. This release adds Pro features (related entries on profile pages, and page templates that can be changed after they are made).

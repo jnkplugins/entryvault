@@ -64,7 +64,7 @@ class Historical_Otter_Forms extends Provider_Base {
 		) );
 		$out = [];
 		foreach ( (array) $rows as $r ) {
-			$meta  = maybe_unserialize( $r->meta_value );
+			$meta  = \EntryVault\Safe_Unserialize::maybe( $r->meta_value );
 			$out[] = [ 'id' => (int) $r->ID, 'meta' => is_array( $meta ) ? $meta : [], 'date' => (string) $r->post_date ];
 		}
 		return $out;

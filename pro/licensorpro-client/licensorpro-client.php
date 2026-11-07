@@ -60,7 +60,7 @@ class LicensorPro_Client {
      * change and re-propagate to every plugin's pro/licensorpro-client/.
      * Audit sync with: LicensorPro_Client::SDK_VERSION.
      */
-    const SDK_VERSION = '1.8.6';
+    const SDK_VERSION = '1.8.8';
 
     /** @var array */
     private $opts;
@@ -98,8 +98,15 @@ class LicensorPro_Client {
     /** @var string */
     private $opt_remote;
 
-    /** @var string */
+    /** @var string Legacy (before 1.8.7): the verdict cache was a transient. Only deleted now. */
     private $tr_validate;
+
+    /**
+     * @var string The last verdict, cached for 12 hours (1.8.7). An autoloaded
+     * option, not a transient: a transient with an expiry is never autoloaded, so
+     * reading it cost a database query on every page of the site.
+     */
+    private $opt_vcache;
 
     /** @var string */
     private $tr_update;
@@ -205,6 +212,7 @@ class LicensorPro_Client {
         $this->opt_license  = 'licensorpro_' . $this->slug . '_license';
         $this->opt_remote   = 'licensorpro_' . $this->slug . '_remote';
         $this->tr_validate  = 'licensorpro_' . $this->slug . '_validate';
+        $this->opt_vcache   = 'licensorpro_' . $this->slug . '_verdict_cache';
         $this->tr_update    = 'licensorpro_' . $this->slug . '_update';
         $this->opt_lapse    = 'licensorpro_' . $this->slug . '_lapse';
         $this->opt_ever     = 'licensorpro_' . $this->slug . '_ever';
@@ -462,10 +470,10 @@ class LicensorPro_Client {
      * Survives "Deactivate this site" on purpose, for the same reason.
      */
     public function was_ever_licensed() {
-        $ever = (bool) get_option($this->opt_ever);
+        $ever = (bool) $this->autoloaded_option($this->opt_ever, 0);
         // Installs licensed before 1.7.0 have a stored verdict but no marker yet.
         if (!$ever && $this->valid_verdict($this->stored_verdict()) && !self::verdict_is_free($this->stored_verdict())) {
-            update_option($this->opt_ever, time(), false);
+            update_option($this->opt_ever, time(), true);
             $ever = true;
         }
         /** Filter: licensorpro_was_ever_licensed. Tests use it to simulate a lapsed site. */
@@ -501,7 +509,7 @@ class LicensorPro_Client {
 
     private function compute_status() {
         $out   = ['state' => 'unlicensed', 'expired_at' => 0, 'grace_ends' => 0, 'days_left' => 0, 'code' => '', 'free' => false];
-        $lapse = get_option($this->opt_lapse, null);
+        $lapse = $this->autoloaded_option($this->opt_lapse, '');
         $lapse = is_array($lapse) ? $lapse : null;
 
         if ($lapse && ($lapse['kind'] ?? '') === 'revoked') {
@@ -543,7 +551,7 @@ class LicensorPro_Client {
             // the later of the expiry date and today, so a site that was already
             // long expired when it got this version is not locked on the spot.
             $lapse = ['kind' => 'expired', 'code' => 'expired', 'since' => $now, 'expires_at' => $expires];
-            update_option($this->opt_lapse, $lapse, false);
+            update_option($this->opt_lapse, $lapse, true);
         }
 
         // The expiry date is when it lapsed, unless the server said "expired"
@@ -664,14 +672,16 @@ class LicensorPro_Client {
             'code'       => (string) $code,
             'since'      => $since,
             'expires_at' => $expires,
-        ], false);
-        delete_transient($this->tr_validate);
+        ], true);
+        $this->forget_cached_verdict();
     }
 
     // ---- Daily check ---------------------------------------------------------
 
     public function ensure_schedule() {
-        if ((string) get_option($this->opt_key, '') === '') {
+        // Runs on every request. On a site with no key the option did not exist,
+        // and a missing option costs a query each time (1.8.8).
+        if ((string) $this->autoloaded_option($this->opt_key, '') === '') {
             return;
         }
         if (!wp_next_scheduled($this->cron_hook)) {
@@ -702,7 +712,7 @@ class LicensorPro_Client {
 
     /** Has a key been entered on this site (any key, free or Pro)? */
     public function has_key() {
-        return (string) get_option($this->opt_key, '') !== '';
+        return (string) $this->autoloaded_option($this->opt_key, '') !== '';
     }
 
     /** Is this the Pro build (the one with paid features), as the plugin said? */
@@ -772,11 +782,21 @@ class LicensorPro_Client {
         if (!$this->pro_build_declared || !current_user_can('manage_options')) {
             return;
         }
-        $flag = 'licensorpro_' . $this->slug . '_activated';
-        if (!get_transient($flag) || !$this->is_licensed()) {
+        // An autoloaded option holding "show until" (1.8.8). A transient with an
+        // expiry is never autoloaded, so checking it cost a query on every admin
+        // screen. Licence first: an unlicensed site never reads the flag.
+        if (!$this->is_licensed()) {
             return;
         }
-        delete_transient($flag);
+        $flag  = 'licensorpro_' . $this->slug . '_activated';
+        $until = (int) $this->autoloaded_option($flag, 0);
+        if ($until === 0) {
+            return;
+        }
+        update_option($flag, 0, true);
+        if ($until < time()) {
+            return;
+        }
         $msg = sprintf(
             /* translators: %s: plugin name */
             __('<strong>%s Pro is on.</strong> Thank you! Every Pro tool is switched on for this site, and updates come to your dashboard.', $this->text_domain),
@@ -997,11 +1017,53 @@ class LicensorPro_Client {
     }
 
     public function get_license() {
-        $cached = get_transient($this->tr_validate);
-        if (is_array($cached)) {
-            return $cached;
+        $cached = $this->autoloaded_option($this->opt_vcache, '');
+        if (is_array($cached) && (int) ($cached['until'] ?? 0) > time() && is_array($cached['verdict'] ?? null)) {
+            return $cached['verdict'];
         }
-        return get_option($this->opt_license, null) ?: null;
+        return $this->autoloaded_option($this->opt_license, '') ?: null;
+    }
+
+    /** Keep a verdict for $ttl seconds (what the 12-hour transient did before 1.8.7). */
+    private function cache_verdict($verdict, $ttl) {
+        update_option($this->opt_vcache, ['until' => time() + (int) $ttl, 'verdict' => $verdict], true);
+    }
+
+    /** Drop the cached verdict, and the pre-1.8.7 transient if one is left. */
+    private function forget_cached_verdict() {
+        update_option($this->opt_vcache, '', true);
+        delete_transient($this->tr_validate);
+    }
+
+    /**
+     * An option every page reads (licence state), read so that it costs no query.
+     *
+     * WordPress loads all autoloaded options in one query per request; any other
+     * option, or one that does not exist, costs a query of its own each time. Until
+     * 1.8.7 these were stored with autoload off or left missing, so every page of a
+     * site with a JnK Pro plugin made 3-4 extra queries. An option found outside the
+     * autoloaded set is fixed once here: switched to autoload, or stored with the
+     * $missing value (which every reader treats the same as "not there").
+     *
+     * @param mixed $missing
+     * @return mixed
+     */
+    private function autoloaded_option($name, $missing) {
+        $value = get_option($name, null);
+        if (!function_exists('wp_load_alloptions') || array_key_exists($name, (array) wp_load_alloptions())) {
+            return $value === null ? $missing : $value;
+        }
+        if ($value === null) {
+            update_option($name, $missing, true);
+            return $missing;
+        }
+        if (function_exists('wp_set_option_autoload')) {
+            wp_set_option_autoload($name, true);   // WordPress 6.4+
+        } else {
+            delete_option($name);
+            add_option($name, $value, '', 'yes');
+        }
+        return $value;
     }
 
     public function activate($key) {
@@ -1025,14 +1087,14 @@ class LicensorPro_Client {
                         'message' => __('License response failed signature verification.', $this->text_domain)];
             }
             $resp['_checked_at'] = time();
-            update_option($this->opt_key, $key);
+            update_option($this->opt_key, $key, true);
             update_option($this->opt_license, $resp);
-            set_transient($this->tr_validate, $resp, 12 * HOUR_IN_SECONDS);
+            $this->cache_verdict($resp, 12 * HOUR_IN_SECONDS);
             delete_option($this->opt_lapse);
             if (!self::verdict_is_free($resp)) {
-                update_option($this->opt_ever, time(), false);
+                update_option($this->opt_ever, time(), true);
                 // Shown once, on the page the card reloads to. See render_activated_notice().
-                set_transient('licensorpro_' . $this->slug . '_activated', 1, 10 * MINUTE_IN_SECONDS);
+                update_option('licensorpro_' . $this->slug . '_activated', time() + 10 * MINUTE_IN_SECONDS, true);
             }
             $this->ensure_schedule();
             $this->refresh_remote(true);
@@ -1055,7 +1117,7 @@ class LicensorPro_Client {
         delete_option($this->opt_license);
         delete_option($this->opt_remote);
         delete_option($this->opt_lapse);
-        delete_transient($this->tr_validate);
+        $this->forget_cached_verdict();
         delete_transient($this->tr_update);
         $this->unschedule();
         return $resp;
@@ -1087,7 +1149,7 @@ class LicensorPro_Client {
             $resp['_checked_at'] = time();
             unset($resp['_offline']);
             update_option($this->opt_license, $resp);
-            set_transient($this->tr_validate, $resp, 12 * HOUR_IN_SECONDS);
+            $this->cache_verdict($resp, 12 * HOUR_IN_SECONDS);
             // Renewed, or re-activated after a refund: whatever lapsed is over.
             // A licence still past its expiry date stays in its grace period;
             // status() reads expires_at from the verdict just stored.
@@ -1098,7 +1160,7 @@ class LicensorPro_Client {
                 delete_option($this->opt_lapse);
             }
             if (!self::verdict_is_free($resp)) {
-                update_option($this->opt_ever, time(), false);
+                update_option($this->opt_ever, time(), true);
             }
             return $resp;
         }
@@ -1119,7 +1181,7 @@ class LicensorPro_Client {
                 if ($age <= $this->grace_days * DAY_IN_SECONDS) {
                     $cached['_offline']     = true;
                     $cached['_offline_age'] = $age;
-                    set_transient($this->tr_validate, $cached, HOUR_IN_SECONDS);
+                    $this->cache_verdict($cached, HOUR_IN_SECONDS);
                     return $cached;
                 }
             }
@@ -1175,7 +1237,7 @@ class LicensorPro_Client {
     }
 
     public function clear_cache() {
-        delete_transient($this->tr_validate);
+        $this->forget_cached_verdict();
         delete_transient($this->tr_update);
         delete_option($this->opt_remote);
     }
@@ -1756,7 +1818,7 @@ class LicensorPro_Client {
         delete_option($this->opt_license);
         delete_option($this->opt_remote);
         delete_option($this->opt_lapse);
-        delete_transient($this->tr_validate);
+        $this->forget_cached_verdict();
         delete_transient($this->tr_update);
         $this->unschedule();
         return true;
