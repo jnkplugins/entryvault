@@ -60,7 +60,7 @@ class LicensorPro_Client {
      * change and re-propagate to every plugin's pro/licensorpro-client/.
      * Audit sync with: LicensorPro_Client::SDK_VERSION.
      */
-    const SDK_VERSION = '1.8.8';
+    const SDK_VERSION = '1.8.9';
 
     /** @var array */
     private $opts;
@@ -1229,11 +1229,33 @@ class LicensorPro_Client {
             || strpos($options['package'], '/api/v1/update/download') === false) {
             return $options;
         }
+        // The last gate before files are replaced. A Pro build without a proven
+        // paid licence installs nothing, whatever an older cached response says:
+        // an empty package makes the upgrader stop with "package not available".
+        if ($this->pro_update_refused()) {
+            $options['package'] = '';
+            return $options;
+        }
         $remote = $this->refresh_remote(true);
+        if (is_array($remote) && !empty($remote['blocked'])) {
+            $options['package'] = '';
+            return $options;
+        }
         if (is_array($remote) && !empty($remote['download_url'])) {
             $options['package'] = (string) $remote['download_url'];
         }
         return $options;
+    }
+
+    /**
+     * True when this is the Pro build and the site cannot prove a paid licence
+     * (free key, no key, or a missing or unreadable verdict). Such a site must
+     * not take an update: the server would send the free build and pro/ would
+     * be deleted. Keys off pro_build_declared, so a free build, and an older
+     * plugin that loaded this copy without declaring a build, are unaffected.
+     */
+    private function pro_update_refused() {
+        return $this->pro_build_declared && !$this->is_licensed_paid();
     }
 
     public function clear_cache() {
@@ -1596,13 +1618,19 @@ class LicensorPro_Client {
         if ($key === '') {
             return null;
         }
-        $resp = $this->get('/api/v1/update/check', [
+        $args = [
             'license_key'     => $key,
             'site_url'        => home_url('/'),
             'product_slug'    => $this->slug,
             'current_version' => $this->installed_version(),
             'channel'         => $this->channel,
-        ]);
+        ];
+        // Says which build is installed, so the server can refuse to "update" a
+        // Pro build to the free one when the key is free (1.8.9).
+        if ($this->pro_build_declared) {
+            $args['build'] = 'pro';
+        }
+        $resp = $this->get('/api/v1/update/check', $args);
         if (!empty($resp['ok'])) {
             set_transient($this->tr_update, $resp, 12 * HOUR_IN_SECONDS);
             update_option($this->opt_remote, $resp);
@@ -1633,8 +1661,12 @@ class LicensorPro_Client {
         $has_update = $remote && !empty($remote['version']) && !empty($remote['has_update'])
             && version_compare((string) $remote['version'], $installed, '>')
             // The server answers a free licence with the free build. Installed over
-            // a Pro build that would delete pro/ without a word (1.8.0).
-            && !($this->pro_build_declared && $this->is_free_licence());
+            // a Pro build that would delete pro/ without a word (1.8.0). Until 1.8.9
+            // this asked "is the licence free?", which a missing or unreadable
+            // verdict answers "no", so the update went through anyway (TF Pro
+            // 2.25.2 -> free 2.26.0, 7 Nov 2026). A Pro build now updates only on
+            // a verdict that proves a paid licence.
+            && !$this->pro_update_refused();
 
         $icons   = $this->plugin_icons($remote);
         $banners = $this->plugin_banners($remote);

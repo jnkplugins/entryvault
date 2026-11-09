@@ -4,7 +4,7 @@ Tags: form entries, contact form, crm, leads, csv export
 Requires at least: 6.2
 Tested up to: 7.1
 Requires PHP: 8.2
-Stable tag: 1.26.0
+Stable tag: 1.26.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -139,6 +139,9 @@ Use the contact page at https://jnkplugins.com/entryvault/, or Feedback & Suppor
 7. Pro: automations that tag, assign, move or email entries for you.
 
 == Changelog ==
+
+= 1.26.1 =
+* Changed: nothing changes in the free version. This release stops a Pro install with a free licence key from being replaced by the free version when it updates.
 
 = 1.26.0 =
 * Security: a file link on an entry only sends files from the uploads folder or Trinity Forms' private folder. Before, a Trinity Forms entry with a forged file path could make it send another file from the server to people who can see the pipeline. Please update.
