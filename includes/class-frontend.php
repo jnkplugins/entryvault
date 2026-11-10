@@ -87,6 +87,28 @@ class Frontend {
 	 */
 	public static function register(): void {
 		add_shortcode( 'entryvault_table', [ __CLASS__, 'shortcode' ] );
+		add_filter( 'entryvault_public_query_where', [ __CLASS__, 'exclude_spam_tagged' ], 5, 1 );
+	}
+
+	/**
+	 * Entries tagged Spam (kept on the board because "Leave out spam" is
+	 * unticked) are never published: not in the public table, not on the
+	 * public board.
+	 *
+	 * @param mixed $extra
+	 * @return array<int,array{sql:string,params:array<int,mixed>}>
+	 */
+	public static function exclude_spam_tagged( $extra ): array {
+		$extra    = (array) $extra;
+		$spam_tag = Tag_Manager::spam_tag_id( false );
+		if ( $spam_tag > 0 ) {
+			global $wpdb;
+			$extra[] = [
+				'sql'    => "NOT EXISTS ( SELECT 1 FROM {$wpdb->prefix}entryvault_submission_tags spt WHERE spt.submission_id = s.id AND spt.tag_id = %d )",
+				'params' => [ $spam_tag ],
+			];
+		}
+		return $extra;
 	}
 
 	/**

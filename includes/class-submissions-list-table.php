@@ -83,6 +83,15 @@ class Submissions_List_Table extends \WP_List_Table {
         return apply_filters( 'entryvault_submissions_list_columns', $columns );
     }
 
+    /**
+     * The name is the column that stays on a phone. WordPress otherwise takes
+     * the first data column (the star), so under 782 px every row showed only
+     * a checkbox and a star.
+     */
+    protected function get_default_primary_column_name() {
+        return 'title';
+    }
+
     public function get_sortable_columns(): array {
         return [
             'id'         => [ 'id', false ],
@@ -242,7 +251,7 @@ class Submissions_List_Table extends \WP_List_Table {
             ? '<span class="ev-unread-dot" title="' . esc_attr__( 'Unread', 'entryvault' ) . '"></span><span class="screen-reader-text">' . esc_html__( 'Unread', 'entryvault' ) . ' </span>'
             : '';
         $html = sprintf(
-            '%s<strong><a href="%s">%s</a></strong>',
+            '<strong>%s<a href="%s">%s</a></strong>',
             $dot,
             esc_url( $url ),
             esc_html( $title )
@@ -277,43 +286,68 @@ class Submissions_List_Table extends \WP_List_Table {
 
     /** A short preview of the submitted content, so the list is scannable. */
     protected function column_preview( $item ): string {
-        global $wpdb;
-        $table = $wpdb->prefix . 'entryvault_submission_data';
-        // phpcs:ignore WordPress.DB.DirectDatabaseQuery -- per-row preview on an admin list; page size is capped.
-        // Longest value first, but read as text: a file upload's JSON (with its
-        // server path) is usually the longest string and used to win.
-        $rows = $wpdb->get_results( $wpdb->prepare(
-            "SELECT value, field_type FROM {$table}
-             WHERE submission_id = %d AND is_stale = 0 AND value <> ''
-             ORDER BY CHAR_LENGTH(value) DESC
-             LIMIT 5",
-            (int) $item['id']
-        ), ARRAY_A );
-
-        $text = '';
-        $file = '';
-        foreach ( (array) $rows as $row ) {
-            // A file name says less than the message: use it only when nothing else is there.
-            if ( File_Links::is_file_type( (string) ( $row['field_type'] ?? '' ) ) ) {
-                $file = '' !== $file ? $file : trim( Field_Values::screen( (string) $row['value'], (string) $row['field_type'] ) );
-                continue;
-            }
-            if ( '' !== Field_Values::data_image( (string) $row['value'] ) ) {
-                $file = '' !== $file ? $file : Field_Values::screen( (string) $row['value'], (string) ( $row['field_type'] ?? '' ) );
-                continue;
-            }
-            $candidate = trim( Field_Values::display( (string) $row['value'], (string) ( $row['field_type'] ?? '' ) ) );
-            if ( strlen( $candidate ) > strlen( $text ) ) {
-                $text = $candidate;
-            }
-        }
-        if ( '' === $text ) {
-            $text = $file;
-        }
+        $text = self::preview_text( (int) $item['id'] );
         if ( '' === $text ) {
             return '<span aria-hidden="true">—</span>';
         }
         return '<span title="' . esc_attr( $text ) . '">' . esc_html( wp_trim_words( $text, 12, '…' ) ) . '</span>';
+    }
+
+    /**
+     * What the person wrote: the form's message (a textarea, or a field named
+     * message/comment) when it has one. Only a form without such a field falls
+     * back to the longest value, read as text. Picking the longest value always
+     * showed the email address or the name whenever the message was short.
+     */
+    public static function preview_text( int $submission_id ): string {
+        global $wpdb;
+        $table = $wpdb->prefix . 'entryvault_submission_data';
+        // phpcs:ignore WordPress.DB.DirectDatabaseQuery -- per-row preview on an admin list; page size is capped.
+        $rows = $wpdb->get_results( $wpdb->prepare(
+            "SELECT field_key, field_label, value, field_type FROM {$table}
+             WHERE submission_id = %d AND is_stale = 0 AND value <> ''
+             ORDER BY id ASC
+             LIMIT 60",
+            $submission_id
+        ), ARRAY_A );
+
+        $longest = '';
+        $file    = '';
+        $named   = '';
+        foreach ( (array) $rows as $row ) {
+            $type = strtolower( (string) ( $row['field_type'] ?? '' ) );
+            // A file name says less than the message: use it only when nothing else is there.
+            if ( File_Links::is_file_type( $type ) ) {
+                $file = '' !== $file ? $file : trim( Field_Values::screen( (string) $row['value'], $type ) );
+                continue;
+            }
+            if ( '' !== Field_Values::data_image( (string) $row['value'] ) ) {
+                $file = '' !== $file ? $file : Field_Values::screen( (string) $row['value'], $type );
+                continue;
+            }
+            $candidate = trim( Field_Values::display( (string) $row['value'], $type ) );
+            if ( '' === $candidate ) {
+                continue;
+            }
+            if ( false !== strpos( $type, 'textarea' ) ) {
+                return $candidate; // the form's message box
+            }
+            if ( '' === $named && self::looks_like_message( (string) ( $row['field_key'] ?? '' ) . ' ' . (string) ( $row['field_label'] ?? '' ) ) ) {
+                $named = $candidate;
+            }
+            if ( strlen( $candidate ) > strlen( $longest ) ) {
+                $longest = $candidate;
+            }
+        }
+        if ( '' !== $named ) {
+            return $named;
+        }
+        return '' !== $longest ? $longest : $file;
+    }
+
+    /** A field key or label that names a message, in the languages we ship. */
+    private static function looks_like_message( string $name ): bool {
+        return (bool) preg_match( '/message|comment|enquir|inquir|nachricht|mensaje|mensagem|messaggio|bericht|رسالة|메시지|संदेश|メッセージ/iu', $name );
     }
 
     protected function column_tags( $item ): string {
@@ -407,6 +441,18 @@ class Submissions_List_Table extends \WP_List_Table {
         // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- read-only list filters from GET; no state change.
         if ( isset( $_GET['owner_id'] ) && '0' === (string) $_GET['owner_id'] ) {
             $ev_filtered = true;
+        }
+
+        // Past the last page (an old link, or &paged=99): there are entries,
+        // just not on this page. Saying "No submissions yet" was wrong.
+        if ( (int) $this->get_pagination_arg( 'total_items' ) > 0 ) {
+            echo '<strong>' . esc_html__( 'No submissions on this page.', 'entryvault' ) . '</strong> ';
+            printf(
+                '<a href="%s">%s</a>',
+                esc_url( remove_query_arg( 'paged' ) ),
+                esc_html__( 'Go to the first page', 'entryvault' )
+            );
+            return;
         }
 
         if ( $ev_filtered ) {

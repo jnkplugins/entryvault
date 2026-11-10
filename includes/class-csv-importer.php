@@ -146,6 +146,9 @@ class CSV_Importer {
      *                 kept as the entry's date, so old leads keep their dates
      *   - id_col      (string) optional header with the form plugin's entry id
      *                 (found by its name when not given)
+     *   - date_order  (string) 'dmy' or 'mdy': how to read a numeric date like
+     *                 01/10/2026 (the import screen asks; see date_order_guess()).
+     *                 Empty keeps PHP's reading (slash = month first).
      *
      * Options:
      *   - dry_run (bool) skip Sync_Engine::ingest() but still validate rows
@@ -167,6 +170,7 @@ class CSV_Importer {
         $stage_id    = (int)    ( $mapping['stage_id']    ?? 0 );
         $fields_cols = (array)  ( $mapping['fields_cols'] ?? [] );
         $date_col    = (string) ( $mapping['date_col'] ?? '' );
+        $date_order  = in_array( (string) ( $mapping['date_order'] ?? '' ), [ 'dmy', 'mdy' ], true ) ? (string) $mapping['date_order'] : '';
 
         $dry_run        = ! empty( $opts['dry_run'] );
         $default_source = (string) ( $opts['default_source'] ?? 'csv_import' );
@@ -221,15 +225,26 @@ class CSV_Importer {
             $row_num = $i + 1;
             $row     = self::sanitize_row( $raw );
 
+            // A blank line (or a spreadsheet's ",,,,") is not a row: skip it quietly.
+            if ( '' === implode( '', $row ) ) {
+                continue;
+            }
+
             if ( $email_col === '' || ! array_key_exists( $email_col, $row ) ) {
                 $skipped++;
                 $errors[] = [ 'row' => $row_num, 'message' => 'Missing email column in mapping.' ];
                 continue;
             }
             $email = (string) $row[ $email_col ];
-            if ( $email === '' || ! self::is_email( $email ) ) {
+            if ( $email === '' ) {
                 $skipped++;
-                $errors[] = [ 'row' => $row_num, 'message' => 'Invalid email: ' . $email ];
+                $errors[] = [ 'row' => $row_num, 'message' => __( 'The email is empty.', 'entryvault' ) ];
+                continue;
+            }
+            if ( ! self::is_email( $email ) ) {
+                $skipped++;
+                /* translators: %s: the value found in the email column. */
+                $errors[] = [ 'row' => $row_num, 'message' => sprintf( __( '"%s" is not a valid email address.', 'entryvault' ), $email ) ];
                 continue;
             }
 
@@ -249,7 +264,7 @@ class CSV_Importer {
             // landed as "just now" and the board read "32 new today".
             $created = '';
             if ( '' !== $date_col && '' !== (string) ( $row[ $date_col ] ?? '' ) ) {
-                $created = self::parse_date( (string) $row[ $date_col ] );
+                $created = self::parse_date( (string) $row[ $date_col ], $date_order );
                 if ( '' === $created ) {
                     $bad_dates++;
                 }
@@ -411,10 +426,20 @@ class CSV_Importer {
      * be read. Read in the site's time zone unless the value carries an offset
      * ("2026-10-29T06:18:59Z", "+02:00"), which is how form plugins export.
      */
-    public static function parse_date( string $value ): string {
+    public static function parse_date( string $value, string $order = '' ): string {
         $value = trim( $value );
         if ( '' === $value || ! preg_match( '/\d/', $value ) ) {
             return '';
+        }
+        // 01/10/2026 (or 01.10.2026, 01-10-2026): day and month in the order the
+        // import screen says. Rewritten as 2026-10-01 so PHP cannot guess.
+        if ( '' !== $order && preg_match( self::NUMERIC_DATE, $value, $m ) ) {
+            [ $day, $month ] = 'dmy' === $order ? [ (int) $m[1], (int) $m[2] ] : [ (int) $m[2], (int) $m[1] ];
+            $year            = strlen( $m[3] ) === 2 ? 2000 + (int) $m[3] : (int) $m[3];
+            if ( ! checkdate( $month, $day, $year ) ) {
+                return '';
+            }
+            $value = sprintf( '%04d-%02d-%02d', $year, $month, $day ) . (string) ( $m[4] ?? '' );
         }
         // A bare number is a Unix timestamp only when it is long enough to be one.
         if ( preg_match( '/^\d{9,10}$/', $value ) ) {
@@ -430,6 +455,50 @@ class CSV_Importer {
             return '';
         }
         return $dt->setTimezone( new \DateTimeZone( 'UTC' ) )->format( 'Y-m-d H:i:s' );
+    }
+
+    /** A day/month/year date written with numbers only, plus an optional time after it. */
+    private const NUMERIC_DATE = '#^(\d{1,2})[/.\-](\d{1,2})[/.\-](\d{4}|\d{2})(\s.*|T.*)?$#';
+
+    /**
+     * How a column's numeric dates (01/10/2026) should be read.
+     *
+     * A value with a first number above 12 can only be day first; a second
+     * number above 12 only month first. When every date fits both (01/10/2026),
+     * the order is a guess: month first for a US English site, day first
+     * otherwise, and 'ambiguous' says the person should check it.
+     *
+     * @param array<int,string> $values
+     * @return array{order:string,ambiguous:bool,example:string} order '' = no numeric dates
+     */
+    public static function date_order_guess( array $values ): array {
+        $first = '';
+        $both  = ''; // a date that reads either way, e.g. 01/10/2026
+        $dmy   = false;
+        $mdy   = false;
+        foreach ( $values as $v ) {
+            $v = trim( (string) $v );
+            if ( ! preg_match( self::NUMERIC_DATE, $v, $m ) ) {
+                continue;
+            }
+            $first = '' !== $first ? $first : $v;
+            if ( (int) $m[1] > 12 ) {
+                $dmy = true;
+            } elseif ( (int) $m[2] > 12 ) {
+                $mdy = true;
+            } elseif ( '' === $both && (int) $m[1] !== (int) $m[2] ) {
+                $both = $v;
+            }
+        }
+        $example = '' !== $both ? $both : $first;
+        if ( '' === $example ) {
+            return [ 'order' => '', 'ambiguous' => false, 'example' => '' ];
+        }
+        if ( $dmy !== $mdy ) {
+            return [ 'order' => $dmy ? 'dmy' : 'mdy', 'ambiguous' => false, 'example' => $example ];
+        }
+        $locale = function_exists( 'get_user_locale' ) ? get_user_locale() : 'en_US';
+        return [ 'order' => 'en_US' === $locale ? 'mdy' : 'dmy', 'ambiguous' => true, 'example' => $example ];
     }
 
     /** A read/unread status column changes between exports; it is not part of who sent what. */

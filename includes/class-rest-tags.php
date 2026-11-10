@@ -82,7 +82,13 @@ class REST_Tags {
      * ------------------------------------------------------------------ */
 
     public static function list_tags( WP_REST_Request $req ): WP_REST_Response {
-        return self::envelope( Tag_Manager::all() );
+        // slug_label: the short name as people read it. sanitize_title() stores
+        // emoji and non-Latin letters percent-encoded ("lead-%f0%9f%8e%bf").
+        $rows = array_map( static function ( $t ) {
+            $t['slug_label'] = urldecode( (string) ( $t['slug'] ?? '' ) );
+            return $t;
+        }, Tag_Manager::all() );
+        return self::envelope( $rows );
     }
 
     public static function create_tag( WP_REST_Request $req ): WP_REST_Response {

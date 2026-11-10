@@ -1,5 +1,15 @@
 import { useEffect, useMemo, useState } from "@wordpress/element";
-import { DndContext, PointerSensor, useSensor, useSensors, DragOverlay } from "@dnd-kit/core";
+import { DndContext, PointerSensor, useSensor, useSensors, DragOverlay, pointerWithin, rectIntersection } from "@dnd-kit/core";
+
+/**
+ * The stage under the pointer wins; only when the pointer is over none (or
+ * there is no pointer) does the dragged card's overlap decide. Overlap alone
+ * sent a card dropped on Contacted to Qualified when the card was wide.
+ */
+function dropTarget( args ) {
+    const hits = pointerWithin( args );
+    return hits.length ? hits : rectIntersection( args );
+}
 import { __, _n, sprintf } from "@wordpress/i18n";
 import Column from "./Column";
 import Card from "./Card";
@@ -433,7 +443,7 @@ export default function Board( { pipelineId, onPipelineChange, initialOpenId = n
             { boardIsEmpty && pipelinesLoaded && ( otherBoards.length
                 ? <OtherBoards boards={ otherBoards } onPick={ onPipelineChange } />
                 : ( ( window.EntryVaultBoot || {} ).pastEntriesBox ? null : <GettingStarted /> ) ) }
-            <DndContext sensors={ sensors } onDragStart={ handleDragStart } onDragEnd={ handleDragEnd } accessibility={ dragA11y }>
+            <DndContext sensors={ sensors } collisionDetection={ dropTarget } onDragStart={ handleDragStart } onDragEnd={ handleDragEnd } accessibility={ dragA11y }>
                 <div className="ev-board">
                     { stagesView.map( ( s ) => <Column key={ s.id } stage={ s } onOpenCard={ setOpenId } onLoadMore={ loadMore } onStar={ handleStar } /> ) }
                 </div>

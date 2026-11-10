@@ -4,7 +4,7 @@ Tags: form entries, contact form, crm, leads, csv export
 Requires at least: 6.2
 Tested up to: 7.1
 Requires PHP: 8.2
-Stable tag: 1.26.1
+Stable tag: 1.27.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -139,6 +139,21 @@ Use the contact page at https://jnkplugins.com/entryvault/, or Feedback & Suppor
 7. Pro: automations that tag, assign, move or email entries for you.
 
 == Changelog ==
+
+= 1.27.0 =
+* Fixed: the Overview counted entries in the Spam folder in "New in the last 7 days" and the total. Spam now stays out of every count, as the Spam folder says.
+* Fixed: in Submissions, the unread dot pushed the entry's name onto a second line.
+* Fixed: deleting the plugin while keeping its data (the default) left its scheduled jobs behind in WordPress's task list. They are now removed whether the data stays or goes.
+* Fixed: on a phone, Submissions showed only a checkbox and a star on each row. The name now stays on screen, with the other details under "Show more details".
+* Fixed: the Message column in Submissions showed the email address or the name whenever the message was short. It now shows the form's message field, and only falls back to the longest answer when the form has none.
+* Fixed: opening a Submissions page past the last one said "No submissions yet". It now says there are none on this page and links back to the first page.
+* Fixed: an entry you marked as spam in Trinity Forms after EntryVault had it was archived and still counted. With "Leave out entries your form plugin marked as spam" ticked it now goes to the Spam folder (out of the board, counts and exports), and "Not spam" in Trinity Forms brings it back. With the box unticked it keeps its Spam tag on the board but no longer shows on public tables and boards.
+* Fixed: the Overview funnel could show more than 100% moving on (Qualified 200%). It now counts the entries that reached each stage or a later one, so the share is never above 100%, and a Reached column shows that number.
+* Fixed: the Overview and the "EntryVault inbox" box on the WordPress Dashboard gave different numbers for today when an entry was archived. Both now count every entry received today except spam, archived ones included, and say "received today".
+* Fixed: the Tags list showed the short name of a tag with emoji or non-Latin letters as percent codes (lead-%f0%9f...). It now shows it as you would read it.
+* Fixed: CSV import reported a row with no email as "Invalid email:" with nothing after it, and listed blank lines as errors. It now says "The email is empty." for that row and skips blank lines quietly.
+* Fixed: CSV import read a date like 01/10/2026 as January 10 without saying so. The import screen now says which order it will use (day first or month first), worked out from your file where it can, and lets you change it before you import.
+* Fixed: one entry with a very long unbroken name stretched every card in its board column over the other columns, so a card dropped on one stage could land in the next, and made the Submissions table scroll sideways. Long names are now cut on the board and wrap in the table and the entry panel, and a card lands in the stage under the pointer.
 
 = 1.26.1 =
 * Changed: nothing changes in the free version. This release stops a Pro install with a free licence key from being replaced by the free version when it updates.

@@ -12,6 +12,17 @@ if ( is_readable( __DIR__ . "/pro/licensorpro-client/uninstall-seat.php" ) ) {
     include __DIR__ . "/pro/licensorpro-client/uninstall-seat.php";
 }
 
+// Scheduled events (IMAP poll, retention, scheduled exports, digest, backfill
+// batches) go whether or not the data stays: with no plugin left nothing answers
+// them (the keep-data default left a daily job behind, review 8 Nov 2026).
+foreach ( (array) _get_cron_array() as $entryvault_events ) {
+    foreach ( array_keys( (array) $entryvault_events ) as $entryvault_hook ) {
+        if ( 0 === strpos( (string) $entryvault_hook, 'entryvault_' ) ) {
+            wp_unschedule_hook( $entryvault_hook );
+        }
+    }
+}
+
 $settings = get_option( "entryvault_settings", [] );
 if ( empty( $settings["delete_data_on_uninstall"] ) ) {
     return;
@@ -62,15 +73,6 @@ if ( function_exists( 'wp_roles' ) ) {
             foreach ( [ 'entryvault_manage', 'entryvault_view_pipeline', 'entryvault_edit_pipeline' ] as $entryvault_cap ) {
                 $entryvault_role->remove_cap( $entryvault_cap );
             }
-        }
-    }
-}
-
-// Scheduled events (IMAP poll, retention, scheduled exports, backfill batches).
-foreach ( (array) _get_cron_array() as $entryvault_events ) {
-    foreach ( array_keys( (array) $entryvault_events ) as $entryvault_hook ) {
-        if ( 0 === strpos( (string) $entryvault_hook, 'entryvault_' ) ) {
-            wp_unschedule_hook( $entryvault_hook );
         }
     }
 }

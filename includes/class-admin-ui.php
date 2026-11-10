@@ -49,6 +49,21 @@ class Admin_UI {
         return $out;
     }
 
+    /**
+     * wp_nonce_field() with its own element id. Every form on a screen that
+     * holds several (Settings) printed id="_wpnonce", so the page had duplicate
+     * ids. The field name stays _wpnonce, so check_admin_referer() is unchanged.
+     */
+    public static function nonce_field( string $action, string $id ): void {
+        $html = wp_nonce_field( $action, '_wpnonce', true, false );
+        echo str_replace( 'id="_wpnonce"', 'id="' . esc_attr( $id ) . '"', $html ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- core markup, id escaped.
+    }
+
+    /** submit_button() with its own element id (see nonce_field()). */
+    public static function submit_button( string $text, string $id ): void {
+        submit_button( $text, 'primary', 'submit', true, [ 'id' => $id ] );
+    }
+
     public static function url( string $slug ): string {
         return admin_url( 'admin.php?page=' . $slug );
     }

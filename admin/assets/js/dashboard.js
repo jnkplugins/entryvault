@@ -140,11 +140,11 @@
     }
 
     function renderFunnel(rows) {
-        var html = '<table class="jnkui-table ev-table"><thead><tr><th>' + esc(__('Stage', 'entryvault')) + '</th><th class="is-num">' + esc(__('Entries', 'entryvault')) + '</th><th class="is-num">' + esc(__('Moved on', 'entryvault')) + '</th></tr></thead><tbody>';
+        var html = '<table class="jnkui-table ev-table"><thead><tr><th>' + esc(__('Stage', 'entryvault')) + '</th><th class="is-num">' + esc(__('Entries', 'entryvault')) + '</th><th class="is-num">' + esc(__('Reached', 'entryvault')) + '</th><th class="is-num">' + esc(__('Moved on', 'entryvault')) + '</th></tr></thead><tbody>';
         rows.forEach(function (r) {
             var conv = (r.conversion === null || r.conversion === undefined) ? '—' : (r.conversion + '%');
             html += '<tr><td><span class="ev-swatch" style="background:' + esc(r.color || '#999') + '"></span>' + esc(r.stage_name) + '</td>';
-            html += '<td class="is-num">' + esc(r.count) + '</td><td class="is-num">' + esc(conv) + '</td></tr>';
+            html += '<td class="is-num">' + esc(r.count) + '</td><td class="is-num">' + esc(r.reached === undefined ? r.count : r.reached) + '</td><td class="is-num">' + esc(conv) + '</td></tr>';
         });
         html += '</tbody></table>';
         document.getElementById('ev-funnel').innerHTML = html;

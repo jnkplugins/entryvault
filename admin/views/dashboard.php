@@ -20,9 +20,10 @@ $week_ago  = gmdate( 'Y-m-d H:i:s', $now - WEEK_IN_SECONDS );
 $day_start = \EntryVault\Dates::site_day_bounds_utc( \EntryVault\Dates::site_today() )[0];
 $stale_at  = gmdate( 'Y-m-d H:i:s', $now - 3 * DAY_IN_SECONDS );
 
-$ev_total = (int) $wpdb->get_var( $wpdb->prepare( 'SELECT COUNT(*) FROM %i', $t_sub ) );
-$new_week = (int) $wpdb->get_var( $wpdb->prepare( 'SELECT COUNT(*) FROM %i WHERE created_at >= %s', $t_sub, $week_ago ) );
-$new_day  = (int) $wpdb->get_var( $wpdb->prepare( 'SELECT COUNT(*) FROM %i WHERE created_at >= %s', $t_sub, $day_start ) );
+// Spam stays out of every count (see class-spam-folder.php).
+$ev_total = (int) $wpdb->get_var( $wpdb->prepare( 'SELECT COUNT(*) FROM %i WHERE status <> %s', $t_sub, 'spam' ) );
+$new_week = (int) $wpdb->get_var( $wpdb->prepare( 'SELECT COUNT(*) FROM %i WHERE status <> %s AND created_at >= %s', $t_sub, 'spam', $week_ago ) );
+$new_day  = (int) $wpdb->get_var( $wpdb->prepare( 'SELECT COUNT(*) FROM %i WHERE status <> %s AND created_at >= %s', $t_sub, 'spam', $day_start ) );
 
 // "Open" = not archived and not sitting in a final stage (Won, Lost and the like).
 $open_where = "s.status NOT IN ( 'archived', 'spam' ) AND COALESCE(st.is_terminal, 0) = 0";
@@ -43,7 +44,7 @@ $attention = (array) $wpdb->get_results( $wpdb->prepare(
 ), ARRAY_A );
 // phpcs:enable WordPress.DB.PreparedSQL.InterpolatedNotPrepared
 
-$won_week = (int) $wpdb->get_var( $wpdb->prepare( 'SELECT COUNT(*) FROM %i s INNER JOIN %i st ON st.id = s.stage_id WHERE st.is_won = 1 AND s.status <> %s AND s.updated_at >= %s', $t_sub, $t_stage, 'archived', $week_ago ) );
+$won_week = (int) $wpdb->get_var( $wpdb->prepare( 'SELECT COUNT(*) FROM %i s INNER JOIN %i st ON st.id = s.stage_id WHERE st.is_won = 1 AND s.status NOT IN ( %s, %s ) AND s.updated_at >= %s', $t_sub, $t_stage, 'archived', 'spam', $week_ago ) );
 
 // Recent activity across every entry.
 $activity = (array) $wpdb->get_results( $wpdb->prepare(
@@ -92,8 +93,8 @@ Admin_UI::open(
         <div class="jnkui-stat-label"><span class="jnkui-dot is-brand"></span><?php esc_html_e( 'New in the last 7 days', 'entryvault' ); ?></div>
         <div class="jnkui-stat-value"><?php echo esc_html( number_format_i18n( $new_week ) ); ?></div>
         <div class="jnkui-stat-foot"><?php
-            /* translators: %s: number of submissions received today. */
-            printf( esc_html__( '%s today', 'entryvault' ), esc_html( number_format_i18n( $new_day ) ) );
+            /* translators: %s: number of submissions received today (spam left out, archived ones counted). */
+            printf( esc_html__( '%s received today', 'entryvault' ), esc_html( number_format_i18n( $new_day ) ) );
         ?></div>
     </a>
     <a class="jnkui-stat" href="<?php echo esc_url( $board() ); ?>">
@@ -243,7 +244,7 @@ Admin_UI::open(
 <div class="jnkui-grid-2">
     <div class="jnkui-card">
         <div class="jnkui-card-head"><div><h2><?php esc_html_e( 'Funnel', 'entryvault' ); ?></h2>
-        <p><?php esc_html_e( 'How many entries reach each stage, and the share that move on.', 'entryvault' ); ?></p></div></div>
+        <p><?php esc_html_e( 'Entries: in the stage now. Reached: in the stage or a later one. Moved on: the share of the stage before that got this far.', 'entryvault' ); ?></p></div></div>
         <div class="jnkui-card-body" id="ev-funnel"></div>
     </div>
     <div class="jnkui-card">

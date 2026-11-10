@@ -35,7 +35,7 @@ $notices = [
 // The forms entries come from, for "Never show to assistants".
 global $wpdb;
 $forms = (array) $wpdb->get_results( $wpdb->prepare(
-    'SELECT source_plugin, source_form_id, COUNT(*) AS n FROM %i GROUP BY source_plugin, source_form_id ORDER BY n DESC LIMIT 200',
+    "SELECT source_plugin, source_form_id, COUNT(*) AS n FROM %i WHERE status <> 'spam' GROUP BY source_plugin, source_form_id ORDER BY n DESC LIMIT 200",
     $wpdb->prefix . 'entryvault_submissions'
 ) );
 $hidden = AI_Privacy::hidden_forms();

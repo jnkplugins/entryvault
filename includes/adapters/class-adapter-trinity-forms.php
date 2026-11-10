@@ -73,7 +73,10 @@ class Adapter_Trinity_Forms extends Adapter_Base {
      * Restored ("completed"): bring it in if EntryVault has no copy (it used to
      * look only in the skip list, which keeps the latest 100, so an older spam
      * entry restored there never arrived), and undo an archive we made.
-     * Spam: archive the card when spam is left out, else tag it Spam.
+     * Spam, with "Leave out spam" ticked: the card goes to the Spam folder
+     *   (off the board, counts, exports and public views), as live spam does.
+     *   It used to be archived, which kept it in the counts.
+     * Spam, with the box unticked: tag it Spam (public views leave it out).
      * Trash: archive the card, so it leaves the board but can come back.
      */
     public function on_status_changed( $entry_id, $status = "" ): void {
@@ -92,6 +95,11 @@ class Adapter_Trinity_Forms extends Adapter_Base {
             }
             $spam_tag = \EntryVault\Tag_Manager::spam_tag_id( false );
             foreach ( $ids as $id ) {
+                $row = \EntryVault\Submission_Store::get( $id );
+                if ( $row && \EntryVault\Spam_Folder::STATUS === (string) $row['status'] && \EntryVault\Spam_Folder::marked_by_source( $id ) ) {
+                    \EntryVault\Spam_Folder::release( [ $id ] );
+                    continue;
+                }
                 \EntryVault\Submission_Store::unarchive_for_source( $id );
                 if ( $spam_tag > 0 && in_array( $spam_tag, array_map( "intval", wp_list_pluck( \EntryVault\Tag_Manager::for_submission( $id ), "id" ) ), true ) ) {
                     \EntryVault\Tag_Manager::detach( $id, $spam_tag );
@@ -110,7 +118,12 @@ class Adapter_Trinity_Forms extends Adapter_Base {
             return;
         }
 
-        if ( "spam" === $status || "trash" === $status ) {
+        if ( "spam" === $status ) {
+            \EntryVault\Spam_Folder::mark( $ids, null, [ "source" => $this->slug() ] );
+            return;
+        }
+
+        if ( "trash" === $status ) {
             foreach ( $ids as $id ) {
                 \EntryVault\Submission_Store::archive_for_source( $id, $status );
             }

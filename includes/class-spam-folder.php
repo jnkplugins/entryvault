@@ -47,9 +47,10 @@ class Spam_Folder {
 	/**
 	 * Move entries into the Spam folder.
 	 *
-	 * @param int[] $ids
+	 * @param int[]               $ids
+	 * @param array<string,mixed> $note Extra timeline data (e.g. 'source' when the form plugin marked it).
 	 */
-	public static function mark( array $ids, ?int $actor = null ): int {
+	public static function mark( array $ids, ?int $actor = null, array $note = [] ): int {
 		global $wpdb;
 		$n = 0;
 		foreach ( array_unique( array_map( 'intval', $ids ) ) as $id ) {
@@ -58,10 +59,24 @@ class Spam_Folder {
 				continue;
 			}
 			$wpdb->update( self::table(), [ 'status' => self::STATUS, 'updated_at' => current_time( 'mysql', true ) ], [ 'id' => $id ] );
-			Timeline::log( $id, 'spam_marked', $actor, [ 'from' => (string) $row['status'] ] );
+			Timeline::log( $id, 'spam_marked', $actor, array_merge( $note, [ 'from' => (string) $row['status'] ] ) );
 			$n++;
 		}
 		return $n;
+	}
+
+	/**
+	 * Whether the entry's latest move into the Spam folder came from its form
+	 * plugin (not from a person here), so the form plugin's "not spam" may undo it.
+	 */
+	public static function marked_by_source( int $id ): bool {
+		global $wpdb;
+		$data = $wpdb->get_var( $wpdb->prepare(
+			"SELECT data FROM {$wpdb->prefix}entryvault_timeline WHERE submission_id = %d AND type = 'spam_marked' ORDER BY id DESC LIMIT 1",
+			$id
+		) );
+		$data = is_string( $data ) ? json_decode( $data, true ) : null;
+		return is_array( $data ) && ! empty( $data['source'] );
 	}
 
 	/**

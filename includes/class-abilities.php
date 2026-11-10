@@ -448,7 +448,7 @@ class Abilities {
             $tags[] = [ 'tag_id' => (int) ( $t['id'] ?? 0 ), 'name' => (string) ( $t['name'] ?? '' ) ];
         }
         $forms = [];
-        foreach ( (array) $wpdb->get_results( $wpdb->prepare( 'SELECT source_plugin, source_form_id, COUNT(*) AS n FROM %i GROUP BY source_plugin, source_form_id ORDER BY n DESC LIMIT 100', $wpdb->prefix . 'entryvault_submissions' ) ) as $f ) {
+        foreach ( (array) $wpdb->get_results( $wpdb->prepare( "SELECT source_plugin, source_form_id, COUNT(*) AS n FROM %i WHERE status <> 'spam' GROUP BY source_plugin, source_form_id ORDER BY n DESC LIMIT 100", $wpdb->prefix . 'entryvault_submissions' ) ) as $f ) {
             if ( AI_Privacy::form_hidden( (string) $f->source_plugin, (string) $f->source_form_id ) ) {
                 continue;
             }

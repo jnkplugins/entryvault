@@ -26,16 +26,22 @@ final class Dashboard_Widget {
 		wp_add_dashboard_widget( self::ID, __( 'EntryVault inbox', 'entryvault' ), [ __CLASS__, 'render' ] );
 	}
 
-	/** WHERE fragment + params limiting to the user's pipelines (and open entries). @return array{0:string,1:array} */
-	private static function scope(): array {
+	/**
+	 * WHERE fragment + params limiting to the user's pipelines (and, by
+	 * default, open entries).
+	 *
+	 * @param string $status Fixed SQL status fragment.
+	 * @return array{0:string,1:array}
+	 */
+	private static function scope( string $status = "status = 'open'" ): array {
 		if ( Capabilities::current_user_can_manage() ) {
-			return [ "status = 'open'", [] ];
+			return [ $status, [] ];
 		}
 		$ids = array_values( array_filter( array_map( 'intval', Capabilities::viewable_pipeline_ids_for_current_user() ) ) );
 		if ( ! $ids ) {
 			return [ '0=1', [] ];
 		}
-		return [ "status = 'open' AND pipeline_id IN (" . implode( ',', array_fill( 0, count( $ids ), '%d' ) ) . ')', $ids ];
+		return [ $status . ' AND pipeline_id IN (' . implode( ',', array_fill( 0, count( $ids ), '%d' ) ) . ')', $ids ];
 	}
 
 	/**
@@ -52,11 +58,16 @@ final class Dashboard_Widget {
 		$count = static function ( string $extra, array $params = [] ) use ( $wpdb, $t, $where, $p ): int {
 			return (int) $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM %i WHERE {$where} {$extra}", array_merge( [ $t ], $p, $params ) ) );
 		};
+		// "Received today" counts what the Overview counts: every entry that
+		// came in today except spam, archived ones included. It used to count
+		// open entries only, so archiving one made the two screens disagree.
+		[ $rwhere, $rp ] = self::scope( "status <> 'spam'" );
+		$received_today  = (int) $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM %i WHERE {$rwhere} AND created_at BETWEEN %s AND %s", array_merge( [ $t ], $rp, [ $start, $end ] ) ) );
 		// phpcs:enable WordPress.DB.PreparedSQL.InterpolatedNotPrepared
 		$list  = admin_url( 'admin.php?page=entryvault-submissions' );
 		$stats = [
 			[ 'key' => 'unread', 'label' => __( 'Unread', 'entryvault' ), 'count' => $count( 'AND read_at IS NULL' ), 'url' => add_query_arg( 'unread', '1', $list ) ],
-			[ 'key' => 'today', 'label' => __( 'New today', 'entryvault' ), 'count' => $count( 'AND created_at BETWEEN %s AND %s', [ $start, $end ] ), 'url' => add_query_arg( [ 'date_from' => Dates::site_today(), 'date_to' => Dates::site_today() ], $list ) ],
+			[ 'key' => 'today', 'label' => __( 'Received today', 'entryvault' ), 'count' => $received_today, 'url' => add_query_arg( [ 'date_from' => Dates::site_today(), 'date_to' => Dates::site_today() ], $list ) ],
 			[ 'key' => 'unassigned', 'label' => __( 'No owner yet', 'entryvault' ), 'count' => $count( 'AND owner_user_id IS NULL' ), 'url' => add_query_arg( 'owner_id', '0', $list ) ],
 		];
 		/**

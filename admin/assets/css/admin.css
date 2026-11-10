@@ -171,10 +171,12 @@
 .jnkui .ev-col-name { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .jnkui .ev-col-count { font-size: 11.5px; font-weight: 650; color: var(--jnk-mute); background: #fff; border-radius: 999px; padding: 1px 8px; font-variant-numeric: tabular-nums; }
 .jnkui .ev-col.is-over-limit .ev-col-count { background: var(--jnk-bad-bg); color: var(--jnk-bad); }
-.jnkui .ev-col-body { display: grid; gap: 8px; min-height: 40px; }
+/* minmax(0, 1fr): one card with a long unbroken name made the grid track as wide
+   as that name (2351 px), so every card in the column lay over the next columns. */
+.jnkui .ev-col-body { display: grid; grid-template-columns: minmax(0, 1fr); gap: 8px; min-height: 40px; }
 .jnkui .ev-col-empty { margin: 0; padding: 18px 8px; text-align: center; color: var(--jnk-mute); font-size: 12.5px; border: 1px dashed #cbd5e1; border-radius: 10px; }
 .jnkui .ev-col-more { display: block; width: 100%; margin-top: 4px; text-align: center; }
-.jnkui .ev-card { position: relative; background: #fff; border: 1px solid var(--jnk-line); border-radius: 10px; padding: 10px 12px; box-shadow: var(--jnk-shadow); cursor: grab; }
+.jnkui .ev-card { position: relative; min-width: 0; background: #fff; border: 1px solid var(--jnk-line); border-radius: 10px; padding: 10px 12px; box-shadow: var(--jnk-shadow); cursor: grab; }
 .jnkui .ev-card::before { content: ""; position: absolute; inset-inline-start: -1px; top: 10px; bottom: 10px; width: 3px; border-start-end-radius: 3px; border-end-end-radius: 3px; background: var(--ev-stage, transparent); }
 .jnkui .ev-card:hover { border-color: #cbd5e1; box-shadow: var(--jnk-shadow-lg); }
 .jnkui .ev-card.is-dragging { opacity: .4; }
@@ -202,6 +204,8 @@
 @media (prefers-reduced-motion: reduce) { .jnkui .ev-panel { animation: none; } }
 .jnkui .ev-panel-head { display: flex; align-items: center; gap: 10px; padding: 18px 20px 6px; }
 .jnkui .ev-panel-title { flex: 1; min-width: 0; font-size: 18px; font-weight: 650; letter-spacing: -.01em; color: var(--jnk-ink); overflow-wrap: anywhere; border-radius: 6px; padding: 2px 4px; margin-inline-start: -4px; }
+/* A very long name wraps, but at most three lines (click it to see and edit the whole name). */
+.jnkui .ev-panel-title { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
 .jnkui .ev-panel-title.is-editable { cursor: text; }
 .jnkui .ev-panel-title.is-editable:hover { background: var(--jnk-line-2); }
 .jnkui .ev-panel-title-input { flex: 1; font-size: 17px !important; font-weight: 650; }
@@ -219,7 +223,7 @@
 .jnkui .ev-panel-tab:focus-visible { outline: 2px solid var(--jnk-brand); outline-offset: -4px; border-radius: 8px; }
 .jnkui .ev-panel-body { flex: 1; overflow-y: auto; padding: 16px 20px 28px; }
 .jnkui .ev-panel-h { margin: 22px 0 6px; font-size: 11.5px; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; color: var(--jnk-mute); }
-.jnkui .ev-row { display: grid; grid-template-columns: 130px 1fr; gap: 12px; padding: 9px 0; border-bottom: 1px solid var(--jnk-line-2); font-size: 13.5px; }
+.jnkui .ev-row { display: grid; grid-template-columns: 130px minmax(0, 1fr); gap: 12px; padding: 9px 0; border-bottom: 1px solid var(--jnk-line-2); font-size: 13.5px; }
 .jnkui .ev-row.is-editor { align-items: center; }
 .jnkui .ev-row-label { color: var(--jnk-mute); font-size: 12.5px; font-weight: 600; padding-top: 1px; }
 .jnkui .ev-row-value { min-width: 0; color: var(--jnk-ink); overflow-wrap: anywhere; white-space: pre-wrap; }

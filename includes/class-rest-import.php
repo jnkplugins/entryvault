@@ -48,10 +48,20 @@ class REST_Import {
         }
         $parsed  = CSV_Importer::parse( $csv );
         $preview = array_slice( $parsed['rows'], 0, 10 );
+        // Per column with numeric dates (01/10/2026): the order we would read
+        // them in, so the screen can say so and let the person change it.
+        $date_orders = [];
+        foreach ( $parsed['headers'] as $h ) {
+            $guess = CSV_Importer::date_order_guess( array_column( $parsed['rows'], $h ) );
+            if ( '' !== $guess['order'] ) {
+                $date_orders[ $h ] = $guess;
+            }
+        }
         return self::envelope( [
-            'headers'    => $parsed['headers'],
-            'rows'       => $preview,
-            'total_rows' => count( $parsed['rows'] ),
+            'headers'     => $parsed['headers'],
+            'rows'        => $preview,
+            'total_rows'  => count( $parsed['rows'] ),
+            'date_orders' => (object) $date_orders,
         ] );
     }
 

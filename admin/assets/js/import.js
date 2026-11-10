@@ -23,6 +23,8 @@
 
     var lastCsv     = '';
     var lastHeaders = [];
+    var dateOrders  = {};
+    var dateBox     = null;
 
     function setStatus(msg, isError) {
         statusEl.textContent = msg || '';
@@ -91,6 +93,7 @@
             }
             lastCsv     = csv;
             lastHeaders = res.body.data.headers || [];
+            dateOrders  = res.body.data.date_orders || {};
             renderMapping(res.body.data);
             previewWrap.style.display = '';
             setStatus(
@@ -161,7 +164,56 @@
         });
 
         resolveDuplicateTitles();
+        renderDateOrder();
     }
+
+    /** The column mapped as Date received, or ''. */
+    function dateColumn() {
+        var col = '';
+        mappingTbody.querySelectorAll('select.ev-import-map').forEach(function (s) {
+            if (!col && s.value === 'date') { col = s.dataset.col; }
+        });
+        return col;
+    }
+
+    /**
+     * A date like 01/10/2026 is 1 October in most of the world and January 10
+     * in the US. Say which one we will use and let the person change it before
+     * anything is imported (it used to be read month first, silently).
+     */
+    function renderDateOrder() {
+        if (!dateBox) {
+            dateBox = document.createElement('div');
+            dateBox.id = 'ev-import-date-order';
+            dateBox.className = 'jnkui-card-body';
+            var wrap = mappingTbody.closest('.jnkui-table-wrap');
+            wrap.parentNode.insertBefore(dateBox, wrap.nextSibling);
+        }
+        var col   = dateColumn();
+        var guess = col ? dateOrders[col] : null;
+        if (!guess || !guess.order) {
+            dateBox.style.display = 'none';
+            dateBox.innerHTML = '';
+            return;
+        }
+        dateBox.style.display = '';
+        dateBox.innerHTML =
+            '<label class="jnkui-field" for="ev-import-date-order-sel">' +
+                escapeHtml((I18N.date_order_label || 'Dates like %s are read as').replace('%s', guess.example)) +
+                ' <select id="ev-import-date-order-sel">' +
+                    '<option value="dmy">' + escapeHtml(I18N.date_dmy || 'Day first (DD/MM/YYYY)') + '</option>' +
+                    '<option value="mdy">' + escapeHtml(I18N.date_mdy || 'Month first (MM/DD/YYYY)') + '</option>' +
+                '</select>' +
+            '</label>' +
+            '<p class="description">' + escapeHtml(guess.ambiguous ? (I18N.date_order_check || '') : (I18N.date_order_found || '')) + '</p>';
+        document.getElementById('ev-import-date-order-sel').value = guess.order;
+    }
+
+    mappingTbody.addEventListener('change', function (e) {
+        if (e.target && e.target.classList && e.target.classList.contains('ev-import-map')) {
+            renderDateOrder();
+        }
+    });
 
     /**
      * Only one column can be the title, so if the guesses picked several, keep the
@@ -218,6 +270,10 @@
         if (!mapping.email_col) {
             setStatus(I18N.you_must_map, true);
             return;
+        }
+        var orderSel = document.getElementById('ev-import-date-order-sel');
+        if (mapping.date_col && orderSel) {
+            mapping.date_order = orderSel.value;
         }
         mapping.pipeline_id = parseInt(pipelineSel.value, 10) || 0;
         mapping.stage_id    = parseInt(stageSel.value, 10) || 0;

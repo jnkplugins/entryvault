@@ -37,7 +37,7 @@
             var tr = document.createElement( 'tr' );
             tr.innerHTML =
                 '<td><span class="ev-tag-swatch" style="background:' + escapeHtml( t.color ) + '"></span><strong>' + escapeHtml( t.name ) + '</strong></td>' +
-                '<td><code>' + escapeHtml( t.slug ) + '</code></td>' +
+                '<td><code>' + escapeHtml( t.slug_label || t.slug ) + '</code></td>' +
                 '<td class="jnkui-muted">' + escapeHtml( t.color ) + '</td>' +
                 '<td class="is-num" style="white-space:nowrap">' +
                   '<button type="button" class="button button-small" data-edit="' + t.id + '">' + escapeHtml( I18N.edit || 'Edit' ) + '</button> ' +

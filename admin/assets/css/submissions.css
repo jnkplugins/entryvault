@@ -18,7 +18,8 @@
 	.wp-list-table.submissions td.column-created_at,
 	.wp-list-table.submissions td.column-updated_at { white-space: nowrap; }
 
-	.wp-list-table.submissions td.column-title { min-width: 110px; }
+	.wp-list-table.submissions td.column-title,
+	.wp-list-table.submissions th.column-title { min-width: 110px; }
 	.wp-list-table.submissions td.column-tags { min-width: 100px; }
 	.wp-list-table.submissions td.column-preview { min-width: 140px; }
 
@@ -31,6 +32,11 @@
 		white-space: nowrap;
 	}
 }
+
+/* A long unbroken name (250 x "X") made the table 3129 px wide at 1366 px:
+   let the name break anywhere instead of pushing every other column off screen. */
+.wp-list-table.submissions .column-title,
+.wp-list-table.submissions td.column-preview { overflow-wrap: anywhere; word-break: break-word; }
 
 /* The column is called "preview", and WordPress core has `.preview { float: right }`
    for its Preview button: every message cell floated, dropped out of the table

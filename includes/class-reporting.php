@@ -183,27 +183,66 @@ class Reporting {
     }
 
     /**
-     * Funnel for a pipeline: ordered stages with counts and conversion %
-     * relative to the previous stage. The first stage's `conversion` is null.
+     * Funnel for a pipeline: ordered stages with the entries sitting in each
+     * stage now (`count`), the entries that reached it (`reached`: in this
+     * stage or a later one) and the share of the previous stage's reached
+     * entries that got this far (`conversion`, never above 100). The first
+     * stage's `conversion` is null; so is one whose previous stage was never
+     * reached.
      *
-     * @return array<int,array{stage_id:int,stage_name:string,color:string,count:int,conversion:?float}>
+     * It used to divide this stage's current count by the previous stage's,
+     * so two cards dragged New -> Qualified past an empty Contacted read 200%.
+     *
+     * @return array<int,array{stage_id:int,stage_name:string,color:string,count:int,reached:int,conversion:?float}>
      */
     public static function funnel( $pipeline_id ): array {
-        $stages = self::counts_by_stage( (int) $pipeline_id );
-        $out    = [];
-        $prev   = null;
-        foreach ( $stages as $s ) {
-            $conv = null;
-            if ( $prev !== null && $prev > 0 ) {
-                $conv = round( ( $s['count'] / $prev ) * 100, 2 );
+        global $wpdb;
+        $stages = array_values( self::counts_by_stage( (int) $pipeline_id ) );
+        // A final stage that is not a win (Lost) is a way out, not a step: its
+        // entries count as having arrived (first stage) but not as reaching
+        // the stages drawn before it, and it gets no "moved on" share.
+        $exits = array_map( 'intval', (array) $wpdb->get_col( $wpdb->prepare(
+            "SELECT id FROM {$wpdb->prefix}entryvault_stages WHERE pipeline_id = %d AND is_terminal = 1 AND COALESCE(is_won, 0) = 0",
+            (int) $pipeline_id
+        ) ) );
+        $is_exit = static fn( array $s ): bool => in_array( (int) $s['stage_id'], $exits, true );
+
+        $reached = [];
+        $running = 0;
+        $out_n   = 0;
+        for ( $i = count( $stages ) - 1; $i >= 0; $i-- ) {
+            if ( $is_exit( $stages[ $i ] ) ) {
+                $reached[ $i ] = (int) $stages[ $i ]['count'];
+                $out_n        += (int) $stages[ $i ]['count'];
+                continue;
             }
-            // When the preceding stage is empty there is nothing to convert FROM,
-            // so the rate is undefined, not zero. Reporting 0.0 made a stage that
-            // genuinely held records read as "0%" — and because the board lets you
-            // move a card straight from New to Qualified, an empty predecessor is
-            // routine rather than a corner case. null renders as "—".
-            $out[] = array_merge( $s, [ 'conversion' => $conv ] );
-            $prev  = $s['count'];
+            $running      += (int) $stages[ $i ]['count'];
+            $reached[ $i ] = $running;
+        }
+        $first = null;
+        foreach ( $stages as $i => $s ) {
+            if ( ! $is_exit( $s ) ) {
+                $first = $i;
+                break;
+            }
+        }
+        if ( null !== $first ) {
+            $reached[ $first ] += $out_n;
+        }
+
+        $out  = [];
+        $prev = null;
+        foreach ( $stages as $i => $s ) {
+            $conv = null;
+            if ( $is_exit( $s ) ) {
+                $out[] = array_merge( $s, [ 'reached' => $reached[ $i ], 'conversion' => null ] );
+                continue;
+            }
+            if ( null !== $prev && $prev > 0 ) {
+                $conv = round( ( $reached[ $i ] / $prev ) * 100, 2 );
+            }
+            $out[] = array_merge( $s, [ 'reached' => $reached[ $i ], 'conversion' => $conv ] );
+            $prev  = $reached[ $i ];
         }
         return $out;
     }

@@ -412,6 +412,12 @@ final class Plugin {
                     'skipped'         => __( 'Skipped:', 'entryvault' ),
                     'errors'          => __( 'Errors', 'entryvault' ),
                     'row'             => __( 'Row', 'entryvault' ),
+                    /* translators: %s: a date from the file, e.g. 01/10/2026. */
+                    'date_order_label' => __( 'Dates like %s are read as', 'entryvault' ),
+                    'date_dmy'         => __( 'Day first (DD/MM/YYYY)', 'entryvault' ),
+                    'date_mdy'         => __( 'Month first (MM/DD/YYYY)', 'entryvault' ),
+                    'date_order_check' => __( 'Every date in this column fits both orders, so this is a guess. Check it before you import.', 'entryvault' ),
+                    'date_order_found' => __( 'Worked out from the dates in your file.', 'entryvault' ),
                 ],
             ] );
         }
