@@ -229,7 +229,7 @@ if ( isset( $notices[ $notice ] ) ) {
 <div class="jnkui-card">
     <div class="jnkui-card-head"><div><h2><?php esc_html_e( '4. What an assistant can use', 'entryvault' ); ?></h2>
         <p><?php esc_html_e( 'Every EntryVault ability on this site and whether assistants can use it now.', 'entryvault' ); ?></p></div></div>
-    <div class="jnkui-table-wrap"><table class="widefat striped">
+    <div class="jnkui-table-wrap"><table class="widefat striped ev-m-stack">
         <thead><tr><th><?php esc_html_e( 'Ability', 'entryvault' ); ?></th><th><?php esc_html_e( 'What it does', 'entryvault' ); ?></th><th><?php esc_html_e( 'Kind', 'entryvault' ); ?></th><th><?php esc_html_e( 'Assistants', 'entryvault' ); ?></th></tr></thead>
         <tbody>
         <?php foreach ( $ours as $ability ) :
@@ -243,8 +243,8 @@ if ( isset( $notices[ $notice ] ) ) {
             $on = (bool) $ability->get_meta_item( 'show_in_rest', false );
             ?>
             <tr>
-                <td dir="ltr"><code><?php echo esc_html( $ability->get_name() ); ?></code><span class="jnkui-sub"><?php echo esc_html( $ability->get_label() ); ?></span></td>
-                <td><?php echo esc_html( $ability->get_description() ); ?></td>
+                <td class="ev-m-full" dir="ltr"><code><?php echo esc_html( $ability->get_name() ); ?></code><span class="jnkui-sub"><?php echo esc_html( $ability->get_label() ); ?></span></td>
+                <td class="ev-m-full"><?php echo esc_html( $ability->get_description() ); ?></td>
                 <td><span class="jnkui-pill <?php echo esc_attr( $kind_class ); ?>"><?php echo esc_html( $kind_label ); ?></span></td>
                 <td><?php echo $on ? '<span class="jnkui-pill is-ok">' . esc_html__( 'Allowed', 'entryvault' ) . '</span>' : '<span class="jnkui-pill">' . esc_html__( 'Off', 'entryvault' ) . '</span>'; ?></td>
             </tr>
@@ -260,17 +260,17 @@ if ( isset( $notices[ $notice ] ) ) {
     <?php if ( ! $entries ) : ?>
         <div class="jnkui-card-body"><p class="jnkui-sub"><?php esc_html_e( 'No requests yet.', 'entryvault' ); ?></p></div>
     <?php else : ?>
-    <div class="jnkui-table-wrap"><table class="widefat striped">
+    <div class="jnkui-table-wrap"><table class="widefat striped ev-m-stack">
         <thead><tr><th><?php esc_html_e( 'When', 'entryvault' ); ?></th><th><?php esc_html_e( 'User', 'entryvault' ); ?></th><th><?php esc_html_e( 'Ability', 'entryvault' ); ?></th><th><?php esc_html_e( 'Asked', 'entryvault' ); ?></th><th><?php esc_html_e( 'Result', 'entryvault' ); ?></th></tr></thead>
         <tbody>
         <?php foreach ( $entries as $e ) :
             $who = get_userdata( (int) ( $e['u'] ?? 0 ) );
             ?>
             <tr>
-                <td><?php echo esc_html( wp_date( get_option( 'date_format' ) . ' ' . get_option( 'time_format' ), (int) ( $e['t'] ?? 0 ) ) ); ?></td>
+                <td class="ev-m-grow"><?php echo esc_html( wp_date( get_option( 'date_format' ) . ' ' . get_option( 'time_format' ), (int) ( $e['t'] ?? 0 ) ) ); ?></td>
                 <td><?php echo esc_html( $who ? $who->display_name : '-' ); ?></td>
                 <td dir="ltr"><code><?php echo esc_html( (string) ( $e['a'] ?? '' ) ); ?></code></td>
-                <td dir="ltr"><code><?php echo esc_html( (string) ( $e['i'] ?? '' ) ); ?></code></td>
+                <td class="ev-m-full" dir="ltr" data-label="<?php esc_attr_e( 'Asked', 'entryvault' ); ?>"><code><?php echo esc_html( (string) ( $e['i'] ?? '' ) ); ?></code></td>
                 <td><?php echo ! empty( $e['o'] ) ? '<span class="jnkui-pill is-ok">' . esc_html__( 'Done', 'entryvault' ) . '</span>' : '<span class="jnkui-pill is-bad">' . esc_html__( 'Failed', 'entryvault' ) . '</span>'; ?>
                     <?php if ( ! empty( $e['m'] ) ) : ?><span class="jnkui-sub"><?php echo esc_html( (string) $e['m'] ); ?></span><?php endif; ?></td>
             </tr>

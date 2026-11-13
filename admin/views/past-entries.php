@@ -84,7 +84,7 @@ $ev_view_data = $ev_found;
             <div class="jnkui-card-body jnkui-muted"><?php esc_html_e( 'No forms found in this plugin.', 'entryvault' ); ?></div>
         <?php else : ?>
             <div class="jnkui-table-wrap">
-            <table class="widefat" data-source="<?php echo esc_attr( $a['key'] ); ?>">
+            <table class="widefat ev-m-stack" data-source="<?php echo esc_attr( $a['key'] ); ?>">
                 <thead>
                     <tr>
                         <th><?php esc_html_e( 'Form', 'entryvault' ); ?></th>
@@ -97,7 +97,7 @@ $ev_view_data = $ev_found;
                     <?php foreach ( $a['forms'] as $f ) : ?>
                         <tr data-form-id="<?php echo esc_attr( (int) $f['id'] ); ?>"
                             data-source="<?php echo esc_attr( $a['key'] ); ?>">
-                            <td>
+                            <td class="ev-m-full">
                                 <strong><?php echo esc_html( $f['title'] ?: ( '#' . (int) $f['id'] ) ); ?></strong>
                                 <span class="jnkui-sub"><?php
                                     echo esc_html( sprintf( /* translators: %d: form ID. */ __( 'Form ID %d', 'entryvault' ), (int) $f['id'] ) );
@@ -109,7 +109,7 @@ $ev_view_data = $ev_found;
                             </td>
                             <td class="ev-bf-status"><span class="jnkui-pill"><?php esc_html_e( 'Not run yet', 'entryvault' ); ?></span></td>
                             <td class="ev-bf-progress"><span class="jnkui-muted">&ndash;</span></td>
-                            <td style="text-align:end;white-space:nowrap">
+                            <td class="ev-m-end" style="text-align:end;white-space:nowrap">
                                 <button type="button" class="button ev-bf-start">
                                     <?php esc_html_e( 'Bring in entries', 'entryvault' ); ?>
                                 </button>

@@ -237,3 +237,108 @@
 	.evt-filter { flex: 1 1 100%; }
 	.evt-filter select, .evt-filter input { width: 100%; }
 }
+
+/* ------------------------------------------------------------ phone layout */
+
+/*
+ * On a phone a table of five or six columns was wider than the screen, and the
+ * whole page zoomed out to fit it. Each entry becomes a card with the column name
+ * next to each value, and the column headers stay as a row of sort buttons.
+ */
+@media (max-width: 600px) {
+	.evt-table,
+	.evt-table > tbody {
+		display: block;
+		width: 100%;
+	}
+
+	.evt-table {
+		border: 0;
+		border-radius: 0;
+		background: none;
+		overflow: visible;
+	}
+
+	.evt-table > thead {
+		display: block;
+	}
+
+	.evt-table > thead > tr {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 6px;
+		margin: 0 0 10px;
+	}
+
+	.evt-table .evt-th {
+		display: block;
+		padding: 0;
+		background: none;
+		border: 0;
+	}
+
+	.evt-table .evt-th .evt-sort-link {
+		display: inline-flex;
+		align-items: center;
+		gap: 4px;
+		min-height: 32px;
+		box-sizing: border-box;
+		padding: 5px 12px;
+		border: 1px solid color-mix(in srgb, currentColor 25%, transparent);
+		border-radius: 999px;
+	}
+
+	.evt-table .evt-th.is-active .evt-sort-link {
+		border-color: currentColor;
+	}
+
+	.evt-table .evt-row {
+		display: block;
+		margin: 0 0 10px;
+		padding: 6px 0;
+		background: #fff;
+		border: 1px solid #e0e0e3;
+		border-radius: 8px;
+	}
+
+	.evt-table .evt-row .evt-td {
+		display: grid;
+		grid-template-columns: minmax(0, 35%) minmax(0, 1fr);
+		gap: 10px;
+		align-items: baseline;
+		padding: 5px 12px;
+		border: 0;
+		background: transparent;
+		overflow-wrap: anywhere;
+	}
+
+	.evt-table .evt-row .evt-td::before {
+		content: attr(data-label);
+		font-size: 12px;
+		font-weight: 600;
+		color: #50575e;
+	}
+
+	.evt-table .evt-td-email {
+		white-space: normal;
+	}
+
+	.evt-table .evt-stage-pill {
+		justify-self: start;
+	}
+
+	.evt-table .evt-empty,
+	.evt-table .evt-empty > td {
+		display: block;
+	}
+
+	.evt-pagination {
+		justify-content: center;
+		flex-wrap: wrap;
+	}
+
+	.evt-page-prev,
+	.evt-page-next {
+		padding: 8px 14px;
+	}
+}

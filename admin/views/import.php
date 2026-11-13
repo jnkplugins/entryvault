@@ -62,7 +62,7 @@ $entryvault_stages = \EntryVault\Default_Names::label_rows( (array) $wpdb->get_r
         <div class="jnkui-card-head"><div><h2><span class="ev-step">2</span><?php esc_html_e( 'Match the columns', 'entryvault' ); ?></h2>
         <p><?php esc_html_e( 'Tell EntryVault what each column holds. One column must be the email address.', 'entryvault' ); ?></p></div></div>
         <div class="jnkui-table-wrap">
-            <table class="widefat" id="ev-import-mapping-table">
+            <table class="widefat ev-m-stack" id="ev-import-mapping-table">
                 <thead>
                     <tr>
                         <th><?php esc_html_e( 'Column', 'entryvault' ); ?></th>

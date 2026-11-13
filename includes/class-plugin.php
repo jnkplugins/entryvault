@@ -237,6 +237,16 @@ final class Plugin {
             ENTRYVAULT_VERSION
         );
 
+        // On a phone the section tabs scroll sideways, and on Import or Health the
+        // tab you are on started past the right edge, so nothing looked selected.
+        // Scroll the strip so the current tab is in view.
+        wp_register_script( 'entryvault-ui', false, [], ENTRYVAULT_VERSION, true );
+        wp_enqueue_script( 'entryvault-ui' );
+        wp_add_inline_script(
+            'entryvault-ui',
+            "(function(){var n=document.querySelector('.jnkui-tabs'),a=n&&n.querySelector('.jnkui-tab.is-active,[aria-current=\"page\"]');if(!a||n.scrollWidth<=n.clientWidth){return;}var r=a.getBoundingClientRect(),b=n.getBoundingClientRect();if(r.right>b.right||r.left<b.left){n.scrollLeft+=r.left-b.left-(b.width-r.width)/2;}})();"
+        );
+
         // Settings screen: enqueue the tab/save script (previously inline) and hand
         // it the REST root, nonce and defaults via a localized bootstrap object.
         // Independent of the Kanban assets below.

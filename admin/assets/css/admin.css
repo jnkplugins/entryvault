@@ -359,3 +359,106 @@
 .jnkui .ev-card-badge.is-bad { background: var(--jnk-bad-bg); color: var(--jnk-bad); border-color: color-mix(in srgb, var(--jnk-bad) 25%, #fff); }
 .jnkui .ev-card-badge.is-warn { background: var(--jnk-warn-bg); color: var(--jnk-warn); }
 .jnkui .ev-card-badge.is-ok { background: var(--jnk-ok-bg); color: var(--jnk-ok); }
+
+/* ---------- Phone layout (412 px and smaller) ---------- */
+
+/* Board: one column at a time. Each column scrolls its own cards, so the next
+   stage is a swipe away instead of below 40 cards, and a swipe stops on a column. */
+@media (max-width: 600px) {
+	.jnkui .ev-board { scroll-snap-type: x mandatory; scroll-padding-inline: 2px; }
+	.jnkui .ev-col { scroll-snap-align: start; }
+	.jnkui .ev-col-body { max-height: calc(100vh - 210px); max-height: calc(100dvh - 210px); overflow-y: auto; overscroll-behavior: contain; padding: 2px; margin: -2px; }
+	/* Fingers, not a mouse: the filter chips, card star and Open button at 32 px or more. */
+	.jnkui .ev-board-toolbar .ev-chip { min-height: 32px; }
+	.jnkui .ev-card .ev-star.is-small { padding: 6px; margin: -4px; }
+	.jnkui .ev-card .ev-card-open { min-height: 32px; }
+	.jnkui .ev-panel .ev-tag-x { min-width: 28px; min-height: 28px; }
+	.jnkui .ev-panel .ev-note-del { min-width: 32px; min-height: 32px; }
+}
+
+/* Settings forms stacked by WordPress on a phone: the heading sits on top of its
+   field, so its 240 px width and its own divider drew a line that stopped short. */
+@media (max-width: 782px) {
+	.jnkui .form-table th, .jnkui .jnkui-grid-2 .form-table th { width: auto; border-bottom: 0; padding-bottom: 0; }
+	.jnkui .form-table td { padding-top: 8px; }
+}
+
+/* Settings tabs: twelve tabs in a sideways strip hid most of them, and the one you
+   were on. On a phone they wrap onto as many rows as they need. */
+@media (max-width: 782px) {
+	.jnkui .nav-tab-wrapper { flex-wrap: wrap; overflow: visible; row-gap: 0; }
+	.jnkui .nav-tab-wrapper .nav-tab { padding: 10px 10px; }
+}
+
+/* Settings panels that are one card with loose paragraphs (Where entries come from,
+   Submitter edits, AI on entries, Page templates): give the text the card's padding. */
+.jnkui .ev-tab-panel > form.jnkui-card > :is(p, h2, h3, fieldset, label, div):not(.submit):not(.notice) { margin-inline: 22px; }
+.jnkui .ev-tab-panel > form.jnkui-card > :is(table.widefat, textarea, .jnkui-table-wrap) { margin-inline: 22px; width: calc(100% - 44px); box-sizing: border-box; }
+.jnkui .ev-tab-panel > form.jnkui-card > :is(p, h2, h3):not(.submit):first-of-type { margin-top: 18px; }
+.jnkui .ev-tab-panel > form.jnkui-card > p.submit:not(.jnkui-card-foot) { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin: 18px 0 0; padding: 14px 22px; border-top: 1px solid var(--jnk-line-2); background: #fbfbfe; border-radius: 0 0 var(--jnk-radius) var(--jnk-radius); }
+.jnkui .ev-tab-panel .ev-dir-card { padding: 18px 22px; }
+@media (max-width: 782px) { .jnkui .ev-tab-panel .ev-dir-card { padding: 16px; } }
+@media (max-width: 782px) {
+	.jnkui .ev-tab-panel > form.jnkui-card > :is(p, h2, h3, fieldset, label, div):not(.submit):not(.notice) { margin-inline: 16px; }
+	.jnkui .ev-tab-panel > form.jnkui-card > :is(table.widefat, textarea, .jnkui-table-wrap) { margin-inline: 16px; width: calc(100% - 32px); }
+}
+
+/* Tables marked ev-m-stack turn into one block per row on a phone, so the
+   buttons at the end of a row are on screen instead of past the right edge. */
+@media (max-width: 600px) {
+	.jnkui .jnkui-table-wrap:has(> table.ev-m-stack) { overflow: visible; }
+	.jnkui table.ev-m-stack, .jnkui table.ev-m-stack > tbody { display: block; width: 100%; }
+	.jnkui table.ev-m-stack > thead { display: none; }
+	.jnkui table.ev-m-stack > tbody > tr { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; padding: 12px 14px; border-bottom: 1px solid var(--jnk-line-2); }
+	.jnkui table.ev-m-stack > tbody > tr:last-child { border-bottom: 0; }
+	.jnkui table.ev-m-stack > tbody > tr > td { display: block; width: auto !important; min-width: 0; padding: 0; border: 0; text-align: start !important; }
+	.jnkui table.ev-m-stack > tbody > tr > td:empty { display: none; }
+	.jnkui table.ev-m-stack > tbody > tr > td.ev-m-full, .jnkui table.ev-m-stack > tbody > tr > td[colspan] { flex: 1 1 100%; }
+	.jnkui table.ev-m-stack > tbody > tr > td.ev-m-grow { flex: 1 1 0; }
+	.jnkui table.ev-m-stack > tbody > tr > td.ev-m-end { margin-inline-start: auto; }
+	.jnkui table.ev-m-stack > tbody > tr > td[data-label]::before { content: attr(data-label); display: block; margin-bottom: 2px; font-size: 11.5px; font-weight: 600; color: var(--jnk-mute); }
+	.jnkui table.ev-m-stack select, .jnkui table.ev-m-stack input[type="text"], .jnkui table.ev-m-stack input[type="email"] { max-width: 100%; }
+
+	/* Past entries: the form on its own line, then status, progress and the button. */
+	.jnkui table.ev-m-stack .ev-bf-progress { flex: 1 1 90px; }
+	/* Import: column and first value, then the "use as" choice across the row. */
+	.jnkui #ev-import-mapping-table > tbody > tr > td:nth-child(2) { flex: 1 1 0; overflow-wrap: anywhere; }
+	.jnkui #ev-import-mapping-table > tbody > tr > td:nth-child(3) { flex: 1 1 100%; }
+	.jnkui #ev-import-mapping-table select { width: 100%; }
+	/* Scheduled exports: the address takes the row. */
+	.jnkui .ev-exports-table input[type="email"] { width: 100%; }
+}
+
+/* Smaller tables on a phone: tighter cells so they fit without scrolling. */
+@media (max-width: 600px) {
+	.jnkui table.jnkui-table th, .jnkui table.jnkui-table td { padding: 9px 8px; }
+	.jnkui table.jnkui-table td:has(> .ev-swatch:first-child) { white-space: nowrap; }
+	.jnkui #ev-auto-tag-table td { padding: 8px 6px; }
+	.jnkui #ev-auto-tag-table td:first-child { width: 40%; }
+	.jnkui #ev-auto-tag-table input, .jnkui #ev-auto-tag-table select { width: 100%; min-width: 0; }
+}
+.jnkui #ev-auto-tag-table [data-remove] { min-width: 32px; min-height: 32px; font-size: 20px; text-decoration: none; }
+
+/* Status links (All, Unread, Starred, Archived, Spam) wrap on a narrow phone
+   instead of widening the page. */
+@media (max-width: 600px) {
+	.jnkui .subsubsub { flex-wrap: wrap; max-width: 100%; box-sizing: border-box; }
+	.jnkui .subsubsub a { padding: 6px 10px; }
+}
+
+/* Submissions on a phone: the filters in two even columns, with the From / To
+   labels shown (the two date boxes looked the same), and bigger column arrows. */
+@media (max-width: 600px) {
+	.jnkui .ev-ui-filters .tablenav .actions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: end; gap: 8px; float: none; width: 100%; padding: 0; }
+	.jnkui .ev-ui-filters .tablenav .actions > * { width: 100%; min-width: 0; max-width: none; margin: 0; float: none; box-sizing: border-box; }
+	.jnkui .ev-ui-filters .tablenav .actions > label { display: flex; flex-direction: column; gap: 2px; }
+	.jnkui .ev-ui-filters .tablenav .actions > label input { width: 100% !important; min-width: 0; max-width: none; box-sizing: border-box; }
+	.jnkui .ev-ui-filters .tablenav .actions > label:has(input[type="date"]) .screen-reader-text { position: static; width: auto; height: auto; margin: 0; clip: auto; clip-path: none; overflow: visible; white-space: normal; font-size: 12px; font-weight: 600; color: var(--jnk-mute); }
+	.jnkui .ev-ui-filters .tablenav .actions > .button { text-align: center; }
+	.jnkui .ev-export-cols .button-link { min-width: 32px; min-height: 32px; }
+}
+/* WordPress labels each stacked cell with its column name; the star cell is too
+   narrow for "Starred", so a cut-off "S" showed behind every star. */
+@media (max-width: 782px) {
+	.wp-list-table.submissions tr:not(.inline-edit-row):not(.no-items) td.column-starred::before { display: none; }
+}

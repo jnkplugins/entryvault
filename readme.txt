@@ -4,7 +4,7 @@ Tags: form entries, contact form, crm, leads, csv export
 Requires at least: 6.2
 Tested up to: 7.1
 Requires PHP: 8.2
-Stable tag: 1.27.0
+Stable tag: 1.27.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -139,6 +139,16 @@ Use the contact page at https://jnkplugins.com/entryvault/, or Feedback & Suppor
 7. Pro: automations that tag, assign, move or email entries for you.
 
 == Changelog ==
+
+= 1.27.1 =
+* Fixed: on a phone, a table of entries on your site ([entryvault_table] or the Submissions Table block) was wider than the screen and the whole page zoomed out. Each entry is now a card with the column names beside the values, and the column headings stay as buttons to sort by.
+* Fixed: on a phone, the board showed a whole stage of cards before the next stage. Each stage now scrolls its own cards, and a swipe moves one stage at a time.
+* Fixed: on a phone, Submissions showed a cut-off "S" behind every star, the filters sat in uneven rows with two unlabelled date boxes, and the All / Unread / Starred / Archived / Spam links widened the page on small phones. The filters now sit in two even columns with From and To shown.
+* Fixed: on a phone, the "Bring in entries" button on Past entries and the "Use as" choice on Import were past the right edge of the screen. Each row now stacks, with the button and the choice on screen.
+* Fixed: on a phone, the list of what an AI assistant can use squeezed its text to one or two words a line, which made the AI assistants screen very long. Each item is now a block of its own.
+* Fixed: on a phone, the section tabs at the top did not show the one you were on when it was past the right edge (Import, Health). The strip now scrolls to it.
+* Fixed: on a phone, the Settings tabs were a sideways strip that hid most of them. They now wrap onto more rows, and each setting's heading no longer has a divider line that stops halfway.
+* Fixed: on a phone, buttons and links on the board and in the entry panel (filter chips, star, Open, removing a tag, deleting a note) are bigger to tap.
 
 = 1.27.0 =
 * Fixed: the Overview counted entries in the Spam folder in "New in the last 7 days" and the total. Spam now stays out of every count, as the Spam folder says.

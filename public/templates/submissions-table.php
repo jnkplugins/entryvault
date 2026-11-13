@@ -186,7 +186,7 @@ $table_uid    = 'evt-' . substr( md5( (string) ( $attrs['pipeline'] ?? '' ) . wp
 				<?php foreach ( $submissions as $row ) : ?>
 					<tr class="evt-row" data-id="<?php echo esc_attr( (string) ( $row['id'] ?? '' ) ); ?>">
 						<?php foreach ( $columns as $col ) : ?>
-							<td class="evt-td evt-td-<?php echo esc_attr( $col ); ?>">
+							<td class="evt-td evt-td-<?php echo esc_attr( $col ); ?>" data-label="<?php echo esc_attr( \EntryVault\Frontend::column_label( $col ) ); ?>">
 								<?php
 								$cell = \EntryVault\Frontend::format_cell( $col, $row, $show_email );
 								if ( $col === 'stage' && ! empty( $row['stage_color'] ) ) :
