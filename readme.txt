@@ -4,7 +4,7 @@ Tags: form entries, contact form, crm, leads, csv export
 Requires at least: 6.2
 Tested up to: 7.1
 Requires PHP: 8.2
-Stable tag: 1.27.1
+Stable tag: 1.27.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -14,7 +14,7 @@ Kanban CRM for your form entries — a self-hosted alternative to Gravity Flow +
 
 **Your form submissions are stranded in your inbox — or in a form plugin that was never meant to be a CRM.**
 
-https://www.youtube.com/watch?v=JmBZw7nU8R8
+https://www.youtube.com/watch?v=n6VZ-bUDVZo
 
 You collected the lead. Now what? To actually *work* those entries — move them through stages, assign them to a teammate, keep notes, reply — the usual answer is to bolt Gravity Flow ($99/year) onto GravityView ($99/year), roughly $198/year in add-ons on top of the form plugin you already bought, all tied to one form builder.
 
@@ -139,6 +139,9 @@ Use the contact page at https://jnkplugins.com/entryvault/, or Feedback & Suppor
 7. Pro: automations that tag, assign, move or email entries for you.
 
 == Changelog ==
+
+= 1.27.2 =
+* Changed: the readme links to the new product video.
 
 = 1.27.1 =
 * Fixed: on a phone, a table of entries on your site ([entryvault_table] or the Submissions Table block) was wider than the screen and the whole page zoomed out. Each entry is now a card with the column names beside the values, and the column headings stay as buttons to sort by.
